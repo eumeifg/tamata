@@ -1,0 +1,87 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_VendorPromotion
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+
+<?php
+$_element = $this->getElement();
+$elements = $this->getElement()->getElements()->getIterator();
+$wideElementsTop = $this->getElement()->getWideColumnTop();
+$wideElementsBottom = $this->getElement()->getWideColumnBottom();
+$lcElements = $this->getElement()->getLeftColumn();
+$rcElements = $this->getElement()->getRightColumn();
+?>
+<div class="generic-box">
+<div class="box-head"><h3><?php echo $this->getElement()->getLegend() ?></h3></div>
+
+ <div class="generic-box-body">
+<?php if (!empty($wideElementsTop)) : ?>
+<ul class="rule-tree" id="actions_filter_fieldset">
+<?php foreach ($wideElementsTop as $wideElement) : ?>
+<li id="<?php echo $wideElement.'-container'?>" class="wide" <?php if ($this->isHidden($wideElement)) {
+    echo 'style="display: none;"';
+        } ?>>
+<?php echo $this->getChildElementHtml($wideElement); ?>
+</li>
+<?php endforeach ?>
+</ul>
+
+<?php endif ?>
+
+
+<?php if (!empty($lcElements)) : ?>
+<ul class="form-list">
+<?php foreach ($lcElements as $lcElement) : ?>
+<li id="<?php echo $lcElement.'-container'?>">
+<?php echo $this->getChildElementHtml($lcElement); ?>
+</li>
+<?php endforeach ?>
+</ul>
+<?php endif ?>
+
+
+<?php if (!empty($lcElements)) : ?>
+<ul class="form-list">
+<?php foreach ($rcElements as $rcElement) : ?>
+<li id="<?php echo $lcElement.'-container'?>">
+<?php echo $this->getChildElementHtml($rcElement); ?>
+</li>
+<?php endforeach ?>
+</ul>
+<?php endif ?>
+
+
+<?php if (!empty($wideElementsBottom)) : ?>
+<ul class="form-list">
+<?php foreach ($wideElementsBottom as $wideElement) : ?>
+<li id="<?php echo $wideElement.'-container'?>" class="wide" <?php if ($this->isHidden($wideElement)) {
+    echo 'style="display: none;"';
+        } ?>>
+<?php echo $this->getChildElementHtml($wideElement); ?>
+</li>
+<?php endforeach ?>
+</ul>
+
+<?php endif ?>
+
+
+
+
+</div>
+</div>
+
+<script type="text/javascript">
+require(["Magedelight_VendorPromotion/rules", "prototype"], function(VarienRulesForm) {
+
+window.<?php echo $_element->getHtmlId() ?> = new VarienRulesForm('<?php echo $_element->getHtmlId() ?>', '<?php echo $this->getNewChildUrl() ?>', '<?php echo $this->getChooserPath();?>', '<?php echo $this->getBackendFrontName() ?>');
+
+});
+</script>

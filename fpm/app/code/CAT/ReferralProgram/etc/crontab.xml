@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="referral_code_update" instance="CAT\ReferralProgram\Cron\UpdateReferralCode" method="execute">
+            <config_path>cat_customer_referral/general/cron_frequency</config_path>
+        </job>
+        <job name="unlinked_coupon_code_delete" instance="CAT\ReferralProgram\Cron\CleanUnlinkedCoupons" method="cleanUnlinkedCouponCodes">
+            <config_path>cat_customer_referral/coupon_clean/cron_run_time</config_path>
+        </job>
+    </group>
+</config>

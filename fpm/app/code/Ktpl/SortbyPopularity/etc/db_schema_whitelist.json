@@ -1,0 +1,11 @@
+{
+    "md_search_store_data_temporary": {
+        "column": {
+            "entity_id": true,
+            "score": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

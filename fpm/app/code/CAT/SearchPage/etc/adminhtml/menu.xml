@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+      <add id="cat_searchpage::core" title="Search Page" module="CAT_SearchPage" sortOrder="20" resource="CAT_SearchPage::sample"/>
+        <add id="cat_searchpage::search" title="Manage Search Page" module="CAT_SearchPage" sortOrder="11" parent="cat_searchpage::core" action="search_page/items/" resource="CAT_SearchPage::items"/>
+    </menu>
+</config>

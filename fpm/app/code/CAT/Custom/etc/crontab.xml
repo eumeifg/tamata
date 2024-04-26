@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="bulk_store_credit_update" instance="CAT\Custom\Cron\UpdateStoreCredit" method="updateBulkStoreCredit">
+            <config_path>automation/store_credit_config/cron_frequency</config_path>
+        </job>
+        <job name="product_offer_update_async" instance="CAT\Custom\Cron\UpdateProductOffers" method="updateProductOffers">
+            <config_path>automation/offer_update_config/cron_frequency</config_path>
+        </job>
+        <!--<job name="bulk_vendor_payment_status_update" instance="CAT\Custom\Cron\UpdateVendorPayment" method="updateBulkVendorPayment">
+            <config_path>automation/vendor_payment_config/cron_frequency</config_path>
+        </job>
+        <job name="bulk_invoice_shipment_update" instance="CAT\Custom\Cron\UpdateInvoiceShipment" method="updateBulkInvoiceShipment">
+            <config_path>automation/invoice_shipment_config/cron_frequency</config_path>
+        </job>-->
+
+        <job name="background_invoice_generate" instance="CAT\Custom\Cron\BackgroundInvoiceGenerate" method="backgroundProcess">
+            <config_path>automation/auto_invoice/cron_frequency</config_path>
+        </job>
+        <job name="update_product_skus" instance="CAT\Custom\Cron\UpdateProductSkus" method="updateProductSkus">
+            <config_path>automation/sku_update_config/cron_frequency</config_path>
+        </job>
+        <job name="update_product_vendor_qty" instance="CAT\Custom\Cron\UpdateVendorQty" method="updateVendorQty">
+            <config_path>automation/vendor_qty_update_config/cron_frequency</config_path>
+        </job>
+        <job name="automation_product_offer_index" instance="CAT\Custom\Cron\AutomatedProductOfferIndexer" method="execute">
+            <config_path>automation/offer_update_config/indexer_cron</config_path>
+        </job>
+    </group>
+</config>

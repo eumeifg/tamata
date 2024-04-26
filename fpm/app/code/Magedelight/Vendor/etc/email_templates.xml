@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magedelight_Backend:etc/email_templates.xsd">
+    <template id="vendor_design_email_header_template" label="Header" file="header.html" type="html" module="Magedelight_Vendor" area="sellerhtml"/>
+    <template id="vendor_design_email_footer_template" label="Footer" file="footer.html" type="html" module="Magedelight_Vendor" area="sellerhtml"/>
+    <template id="vendor_create_account_email_confirmation_template" label="New Account Confirmation Key" file="account/new_confirmation.html" type="html" module="Magedelight_Vendor" area="sellerhtml"/>
+    <template id="vendor_password_forgot_email_template" label="Forgot Password" file="account/password_reset_confirmation.html" type="html" module="Magedelight_Vendor" area="sellerhtml"/>
+    <template id="vendor_password_remind_email_template" label="Remind Password" file="account/password_new.html" type="html" module="Magedelight_Vendor" area="sellerhtml"/>
+    <template id="vendor_password_reset_password_template" label="Reset Password" file="account/password_reset.html" type="html" module="Magedelight_Vendor" area="sellerhtml"/>
+    <template id="vendor_status_request_email_notification_template" label="Vendor Profile Status Request Notification" file="account/request_status_notification.html" type="html" module="Magedelight_Vendor" area="sellerhtml"/>
+    <template id="vendor_status_request_email_notification_reject_template" label="Vendor Profile Status Request Reject Notification" file="account/request_status_notification_reject.html" type="html" module="Magedelight_Vendor" area="sellerhtml"/>
+    <template id="vendor_status_request_email_notification_admin_template" label="Vendor Profile Status Request Admin Notification" file="account/request_status_notification_admin.html" type="html" module="Magedelight_Vendor" area="sellerhtml"/>
+    <template id="vendor_contact_admin_email_template" label="Vendor Contact Form" file="contact_admin.html" type="html" module="Magedelight_Vendor" area="sellerhtml"/>
+    <template id="vendor_new_category_request_admin_notification_template" label="Admin Notification For New Category Request" file="vendor_new_category_request_admin_notification_template.html" type="html" area="sellerhtml" module="Magedelight_Vendor"/>
+    <template id="vendor_new_category_request_vendor_notification_template" label="Vendor New Category Request Notification" file="vendor_new_category_request_vendor_notification_template.html" type="html" area="sellerhtml" module="Magedelight_Vendor"/>
+    <template id="vendor_category_request_approval_vendor_notification_template" label="Vendor Category Request Approval Notification" file="vendor_category_request_approval_vendor_notification_template.html" type="html" area="sellerhtml" module="Magedelight_Vendor"/>
+    <template id="emailconfiguration_vendor_register_first_step_template" label="Admin email for vendor new registration first step" file="emailconfiguration_vendor_register_first_step_template.html" type="html" area="sellerhtml" module="Magedelight_Vendor"/>
+    <template id="emailconfiguration_vendor_email_verification_template" label="Vendor Email Verification" file="emailconfiguration_vendor_email_verification_template.html" type="html" area="frontend" module="Magedelight_Vendor"/>
+    <template id="emailconfiguration_new_vendor_template" label="New Vendor Register Notification" file="emailconfiguration_new_vendor_template.html" type="html" area="sellerhtml" module="Magedelight_Vendor"/>
+    <template id="emailconfiguration_vendor_register_admin_template" label="Admin email for vendor new registration" file="emailconfiguration_vendor_register_admin_template.html" type="html" area="sellerhtml" module="Magedelight_Vendor"/>
+    <template id="emailconfiguration_vendor_status_change_template" label="Vendor Status Notification" file="emailconfiguration_vendor_status_change_template.html" type="html" area="sellerhtml" module="Magedelight_Vendor"/>
+    <template id="emailconfiguration_vendor_profile_update_template" label="Vendor Profile Update Notification" file="account/profile_update_notification_admin.html" type="html" area="sellerhtml" module="Magedelight_Vendor"/>
+    <template id="emailconfiguration_vendor_delete_template" label="Vendor Delete Notification" file="emailconfiguration_vendor_delete_template.html" type="html" area="frontend" module="Magedelight_Vendor"/>
+</config>

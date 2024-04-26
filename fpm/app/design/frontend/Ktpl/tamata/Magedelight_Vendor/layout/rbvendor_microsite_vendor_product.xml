@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="page-products"/>
+        <move element="breadcrumbs" destination="content" before="-" />
+        <referenceContainer name="content">
+            <block class="Magedelight\Vendor\Block\Microsite\Html\VendorSidebar" name="vendor.front.categories" template="Magedelight_Vendor::microsite/vendor_sidebar.phtml" />
+            <block class="Magedelight\Vendor\Block\Microsite\Html\VendorProductAll" name="vendor.front.products" template="Magedelight_Vendor::microsite/vendor_product_list.phtml" >
+                <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                    <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+                </block>
+                <action method="setToolbarBlockName">
+                    <argument name="name" xsi:type="string">product_list_toolbar</argument>
+                </action>
+            </block>
+            <block class="Magedelight\Vendor\Block\Microsite\Html\Header" name="vendor.front.promo.banners" before = "vendor.front.products" template="Magedelight_Vendor::microsite/promotional_banners.phtml" />
+            <block class="Magedelight\Vendor\Block\Microsite\Html\Header" name="vendor.front.reviews" after="vendor.front.products" template="Magedelight_Vendor::microsite/reviews.phtml" />
+        </referenceContainer>
+    </body>
+</page>

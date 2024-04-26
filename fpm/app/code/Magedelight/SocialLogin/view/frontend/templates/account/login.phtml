@@ -1,0 +1,63 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2018 Magedelight <info@magedelight.com>.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @category Magedelight
+ * @package Magedelight_SocialLogin
+ * @copyright Copyright (c) 2018 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<div class="md-login-user" style="display: none;">
+<!-- form Login -->
+<h3 class="md-login-h3"><?php /* @noEscape */ echo __('Sign in'); ?></h3>
+<!-- error invalid email -->
+<div id="md-invalid-email" class="md-error"></div>
+
+<form id="md-sociallogin-form" class="md-login-form-popup" name="md-sociallogin-form" 
+ action='<?php /* @noEscape */ echo $block->getUrl("mdsocial/account/loginPost"); ?>' method='post'>
+    <?php /* @noEscape */ echo $block->getBlockHtml('formkey'); ?>
+    <!-- email -->
+    <div class="md-login-input-box">
+        <div class="sociallogin-input-box">
+            <label class="required login-label" for="email"><?php /* @noEscape */ echo __('Email Address'); ?></label>
+            <input id="md-sociallogin-popup-email" class="input-text required-entry validate-email" type="text"
+            title="Email Address" value="" name="login[username]">
+        </div>
+    </div>
+    <!-- password -->
+    <div id="md-sociallogin-password" class="md-login-input-box">
+        <div class="sociallogin-input-box">
+            <label class="required login-label" for="pass"> <?php /* @noEscape */ echo __('Password') ?> </label>
+            <input type="password" id="md-sociallogin-popup-pass" class="input-text required-entry validate-password"
+            title="Password" value="" name="login[password]">
+        </div>
+    </div>
+    <!-- sumbit -->
+    <div class="md-login-popup-button">
+        <button type="button" class="action login primary md-form-button" id="md-button-sociallogin-login">
+            <span><?php /* @noEscape */ echo __('Login') ?></span>
+        </button>
+        <div class="pass-register">
+            <a id="md-forgot-password" href="javascript:void(0);" onclick="displayforgot();">
+                <?php /* @noEscape */ echo __('Forgot?'); ?></a>
+            <span style="float: left">&nbsp; | &nbsp;</span>
+            <a id="md-sociallogin-create" href="javascript:void(0);" onclick="displayregister();"
+               style="display: block;">
+            <?php /* @noEscape */ echo __('Register') ?> </a>
+        </div>
+    </div>
+</form>
+</div>

@@ -1,0 +1,155 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var \Magedelight\Catalog\Block\Product $block */
+/**
+ * This file use when perform offer edit.
+ */
+?>
+<div class="row">
+<div class="toolbar-wrapper mb10">
+            <div class="topbar-right col-md-4 pt10">
+                <div class="data-grid-filters-actions-wrap">
+                    <div class="data-grid-filters-action-wrap">
+                        <a href="<?= $this->getUrl($this->getRedirectUrl());?>">
+                            <button type="button" data-action="grid-filter-expand" title="Back" class="action button secondary back mrn" >
+                                <span><?= __('Back') ?></span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>            
+        </div>
+
+    <div class="col-md-12">
+        <div class="rbpanel">
+            <form name="product_request_info_form"
+                  id="product-request-info-form" 
+                  enctype="multipart/form-data" 
+                  method="post" 
+                  action="<?= $this->getCreatePostActionUrl() ?>"
+                  data-hasrequired="<?= __('* Required Fields') ?>" 
+                  data-mage-init='{"validation":{}}'>
+                <input type="hidden" name="offer[attribute_set_id]" value="<?= $block->getCategoryAttributeSetId() ?>"/>
+                <input type="hidden" name="offer[main_category_id]" value="<?= $block->getLoadedCategory()->getId() ?>"/>
+                <input type="hidden" name="offer[marketplace_product_id]" value="<?= $block->getProduct()->getId() ?>"/>
+                <input type="hidden" name="is_offered" value="1"/>
+                <input type="hidden" name="offer[category_id]" value="<?= $block->getLoadedCategory()->getId() ?>"/>
+                <input type="hidden" id="product-request-id" name="offer[product_request_id]" value = "<?= $block->getAttributeValue('product_request_id') ?>"/>
+
+                <?php
+                if ($block->getRequest()->getParam('id', false)) {
+                    ?>
+                    <input type="hidden" name="offer[product_request_id]" value="<?=
+                    $block->getRequest()->getParam('id', false);
+                    ?>"/>
+                <?php } ?>
+                <input type="hidden" name="offer[category_id]" value="<?= $block->getLoadedCategory()->getId() ?>"/>                
+
+                <div class="rbpanel-body ">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="product-image">
+                                <a href="#" class="product photo product-item-photo">
+                                    <span class="product-image-container" style="width:240px;">
+                                        <span class="product-image-wrapper" style="padding-bottom: 125%;">
+                                            <?php $_imagehelper = $this->helper('Magento\Catalog\Helper\Image'); ?>
+                                            <?php
+                                            $imageSize = 300;
+                                            $productImage = $_imagehelper->init($block->getProduct(), 'category_page_list', ['height' => $imageSize, 'width' => $imageSize])->getUrl();
+                                            ?>
+                                            <img src="<?= $productImage ?>" title="<?= $block->getProduct()->getName() ?>" alt="<?= $block->getProduct()->getName() ?>" class="product-image-photo"/>
+
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <input type="hidden" name="offer[product_name]" value="<?= $block->getProduct()->getName() ?>" /> 
+                        <input type="hidden" name="store" value="<?= $block->getCurrentStore() ?>" /> 
+                        <div class="col-md-10 product-info pl20">
+                            <div class="product details product-item-details">
+                                <h2 class="product name product-item-name">                                        
+                                    <?= $block->getProduct()->getName() ?>
+                                </h2>
+                                
+                                <?php if (false === strpos($block->getProduct()->getProductUrl(), 'catalog/product')) { ?>
+                                    <div class="actions-toolbar">
+                                        <div class="primary">
+                                            <a class="action product-item-link" target="_blank" href="<?= $block->getProduct()->getProductUrl() ?>">
+                                                (<?= __('View Detail Page') ?>)
+                                            </a>
+                                        </div>
+                                    </div>                                    
+                                <?php } ?>
+                                
+                                <div class="product-short-description">
+                                    <?=
+                                    $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getShortDescription(), 'short_description')
+                                    ?>
+                                </div>
+                            </div>
+                            <?php if ($block->getProduct()->getTypeId() == 'simple') { ?>
+                                <div id="offers" class="tab-content">
+                                <?= $block->getChildHtml('offers') ?>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <?php if ($block->getProduct()->getTypeId() == 'configurable') { ?>
+                        <div id="offers" class="tab-content">
+                            <?= $block->getChildHtml('offers') ?>
+                        </div>
+                        <?php } ?>
+                    </div>
+                    <?php if (!$block->isView()): ?>
+                        <div class="row">
+                            <div class="rbpanel-body-top-container rbpanel-body-bottombar-container bbn pbn">
+                                <div class="col-md-12">
+                                    <div class="actions-toolbar offers-actions-toolbars">
+                                        <div class="primary">
+                                            <button type="submit"
+                                                    title="<?= __('Save & Finish') ?>"
+                                                    class="action button primary btn-submit">
+                                                <span><?= __('Save & Finish') ?></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+            </form>
+            <?= $block->getChildHtml('productoffers') ?>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery', /* jquery Library */
+        'rbCommonMethods',
+        "mage/calendar", /* Calender widget */
+        'mage/translate', /* Magento text translate (Validation message translte as per language) */
+        'mage/mage',
+        'mage/validation'
+    ], function ($, rbCommonMethods) {
+        $.validator.addMethod(
+        'validate-less-than-price', function (v, elm) {
+            var priceFieldId = $(elm).attr('id').toString().replace('special-', '');
+            var price = $('#' + priceFieldId).val();
+            return ($.mage.isEmptyNoTrim(v) || parseFloat(v) < parseFloat(price))
+        }, $.mage.__('Please enter special price less than price.')
+        );
+    });
+</script>

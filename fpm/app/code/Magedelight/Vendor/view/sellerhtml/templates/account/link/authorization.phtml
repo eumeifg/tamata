@@ -1,0 +1,25 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+/* @codingStandardsIgnoreFile */
+
+/** @var $block \Magedelight\Vendor\Block\Account\AuthorizationLink */
+$dataPostParam = '';
+if ($block->isLoggedIn()) {
+    $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+}
+?>
+<li class="authorization-link" data-label="<?= $block->escapeHtml(__('or')); ?>">
+    <a <?php /* @escapeNotVerified */ echo $block->getLinkAttributes(); ?><?php /* @escapeNotVerified */ echo $dataPostParam; ?>>
+        <?= $block->escapeHtml($block->getLabel()); ?>
+    </a>
+</li>

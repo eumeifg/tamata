@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Krish TechnoLabs, All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <!--  <preference for="Magedelight\Vendor\Api\Data\VendorInterface" type="MDC\GoogleMapAddress\Api\Data\VendorManager" /> -->
+    <preference for="Magedelight\Vendor\Model\AccountManagement" type="MDC\GoogleMapAddress\Model\AccountManagement" />
+</config>

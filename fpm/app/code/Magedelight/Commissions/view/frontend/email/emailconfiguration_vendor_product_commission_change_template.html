@@ -1,0 +1,13 @@
+<!--@subject Vendor Product Commission Change@-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Hello %vendor_name" vendor_name=$vendor_name}}</p>
+<p>{{trans "This is to inform you that the commission rate for %product has been changed." product=$product}}</p>
+<p>{{trans "Current commission:"}} {{var old_value}}</p>
+<p>{{trans "New commission:"}}  {{var cur_value}}</p>
+<p>{{trans "This new commission will be charged from now onwards."}}</p>
+<p>{{trans "In case of any queries, kindly contact %store_email" store_email=$store_email}}</p>
+
+
+{{template config_path="design/email/footer_template"}}

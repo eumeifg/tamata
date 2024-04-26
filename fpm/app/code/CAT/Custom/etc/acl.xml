@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Ktpl_Core::menu" title="KTPL" sortOrder="1000">
+                    <resource id="CAT_Custom::menu" title="Bulk Automation" sortOrder="1001">
+                        <resource id="CAT_Custom::manage_bulk_automation" title="Manage Bulk Automation" sortOrder="1002"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

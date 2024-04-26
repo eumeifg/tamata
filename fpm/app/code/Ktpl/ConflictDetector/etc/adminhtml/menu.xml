@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Krish TechnoLabs, All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ktpl_ConflictDetector::elements" title="Conflict Detector" module="Ktpl_ConflictDetector" parent="Magento_Backend::system_tools" action="conflictdetector/index" sortOrder="50" resource="Ktpl_ConflictDetector::elements"/>
+    </menu>
+</config>

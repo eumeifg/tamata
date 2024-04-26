@@ -1,0 +1,13 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Order Cancel for your %store_name order" store_name=$store.getFrontendName()}} @-->
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Dear "}}{{var business_name}},</p>
+<p>{{trans "Customer"}} {{var customer_name}} {{trans " has cancelled the order"}} {{var increment_id}}</p>
+
+{{template config_path="design/email/footer_template"}}

@@ -1,0 +1,16 @@
+{
+    "address_city": {
+        "column": {
+            "entity_id": true,
+            "region_id": true,
+            "city": true,
+            "city_ar": true
+        },
+        "index": {
+            "ADDRESS_CITY_REGION_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

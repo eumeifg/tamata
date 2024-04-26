@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">ktpl_banner_form.bannermanagement_slider_listing_data_source</item>
+            <item name="deps" xsi:type="string">ktpl_banner_form.bannermanagement_slider_listing_data_source</item>
+        </item>
+        <item name="label" translate="true" xsi:type="string">Banner Information</item>
+        <item name="layout" xsi:type="array">
+            <item name="type" xsi:type="string">tabs</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Ktpl\BannerManagement\Block\Adminhtml\Block\Edit\BackButton</item>
+            <item name="save_and_continue" xsi:type="string">Ktpl\BannerManagement\Block\Adminhtml\Block\Edit\SaveAndContinueButton</item>
+            <item name="delete" xsi:type="string">Ktpl\BannerManagement\Block\Adminhtml\Block\Edit\DeleteButton</item>
+            <item name="save" xsi:type="string">Ktpl\BannerManagement\Block\Adminhtml\Block\Edit\SaveButton</item>
+        </item>
+    </argument>
+    <settings>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+    </settings>
+    <dataSource name="bannermanagement_slider_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Ktpl\BannerManagement\Model\DataProvider</argument>
+            <argument name="name" xsi:type="string">bannermanagement_slider_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">banner_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" path="bannermanagement/banner/save" xsi:type="url"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" translate="true" xsi:type="string">Banner Information</item>
+            </item>
+        </argument>
+        <field name="banner_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">contact</item>
+                </item>
+            </argument>
+        </field>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Name</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Enabledisable</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Status</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">status</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\BannerManagement\Model\Config\Source\Type</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Type</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">type</item>
+                </item>
+            </argument>
+        </field>
+        <field formElement="imageUploader" name="image">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">general</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Upload File</label>
+                <visible>true</visible>
+                <required>false</required>
+                <additionalClasses>
+                    <class name="bannerimageClass">true</class>
+                </additionalClasses>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="bannermanagement/image/save"/>
+                        </uploaderConfig>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <openDialogTitle>Upload File</openDialogTitle>
+                        <initialMediaGalleryOpenSubpath>ktpl/banners</initialMediaGalleryOpenSubpath>
+                        <allowedExtensions>jpg jpeg gif png ico apng avi MTS M2TS mov qt wmv mp4 webm</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Banner Title</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">title</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                </item>
+            </argument>
+        </field>
+        <field name="banner_text">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Banner Text</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="wysiwyg" xsi:type="boolean">false</item>
+                    <item name="dataScope" xsi:type="string">banner_text</item>
+                    <item name="source" xsi:type="string">banners</item>
+                    <item name="sortOrder" xsi:type="number">65</item>
+                </item>
+            </argument>
+        </field>
+        <field name="url">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Url</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">url_banner</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="sort_order">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Sort Order</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">sort_order</item>
+                    <item name="sortOrder" xsi:type="number">80</item>                   
+                </item>
+            </argument>
+        </field>
+
+        <field name="page_type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\BannerManagement\Model\Config\Source\PageType</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Page Type</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">page_type</item>
+                    <item name="sortOrder" xsi:type="number">80</item>
+                    <item name="notice" translate="true" xsi:type="string">Note: This field is used for Mobile APP only.</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="data_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Data Id</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">data_id</item>
+                    <item name="sortOrder" xsi:type="number">90</item>
+                    <item name="notice" translate="true" xsi:type="string">Note: This field is used for Mobile APP only.</item>
+                </item>
+            </argument>
+        </field>
+        <field name="newtab">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Enabledisable</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Open new tab after click</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">newtab</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                    <item name="notice" translate="true" xsi:type="string">Automatically open new tab after clicking on the banner</item>
+                </item>
+            </argument>
+        </field>
+        <field component="Magento_Ui/js/form/element/ui-select" formElement="select" name="sliders_ids" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                    <item name="showCheckbox" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                    <item name="sortOrder" xsi:type="number">550</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <label translate="true">Sliders</label>
+                <dataScope>sliders_ids</dataScope>
+                <componentType>field</componentType>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Ktpl\BannerManagement\Model\Config\Source\SliderList"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

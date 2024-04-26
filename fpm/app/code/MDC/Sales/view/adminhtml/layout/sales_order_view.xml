@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="order_items">
+        	<arguments>
+                <argument name="pickup_status_model" xsi:type="object">MDC\Sales\ViewModel\PickupStatuses</argument>
+            </arguments>
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">MDC_Sales::sales/order/view/items.phtml</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceBlock name="order_info">            
+            <action method="setTemplate">
+              <argument name="template" xsi:type="string">MDC_Sales::sales/order/view/info.phtml</argument>
+            </action>
+        </referenceBlock>
+
+
+        <!-- Display canceled order amount -->
+            <referenceBlock name="order_totals">
+                <block class="Magento\Sales\Block\Adminhtml\Order\Totals\Item" name="canceled_order_total" template="Magento_Sales::order/totals/item.phtml">
+                    <action method="setSourceField">
+                        <argument name="value" xsi:type="string">total_canceled</argument>
+                    </action>
+                    <action method="setLabel">
+                        <argument name="value" xsi:type="string">Total Cancelled</argument>
+                    </action>
+                    <action method="setDisplayArea">
+                        <argument name="value" xsi:type="string">footer</argument>
+                    </action>
+                    <action method="setStrong">
+                        <argument name="flag" xsi:type="string">true</argument>
+                    </action>
+                    <action method="setHtmlClass">
+                        <argument name="class" xsi:type="string">emph</argument>
+                    </action>
+                </block>
+            </referenceBlock>
+        <!-- Display canceled order amount -->
+        
+    </body>
+</page>

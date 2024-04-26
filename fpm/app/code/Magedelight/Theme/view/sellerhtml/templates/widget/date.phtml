@@ -1,0 +1,33 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Theme
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+/**
+USAGE:
+
+Simple:
+
+<?php echo $block->getLayout()->createBlock('RB_Block_Widget_DateBlockName')
+   ->setDate($date)
+   ->toHtml() ?>
+ */
+?>
+<?php
+$fieldCssClass = 'field date ' . $this->getFieldId();
+$fieldCssClass .= $this->isRequired() ? ' required' : '';
+?>
+<div class="<?=  /* @noEscape */ $fieldCssClass; ?>">
+    <label class="label" for="<?=  /* @noEscape */ $this->getFieldId()?>">
+        <span><?=  /* @noEscape */ $this->getLabel() ?></span></label>
+    <div class="control">
+        <?=  /* @noEscape */ $this->getFieldHtml(); ?>
+    </div>
+</div>

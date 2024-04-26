@@ -1,0 +1,15 @@
+<?php
+/**
+ * Copyright © Krish TechnoLabs, All rights reserved.
+ */
+?>
+<?php if ($comment = $block->getOrderComment()) :?>
+    <section class="admin__page-section um-ordercomment">
+        <div class="admin__page-section-title">
+            <span class="title"><?= /* @noEscape */ __('Order Instructions') ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <?= /* @noEscape */ nl2br($block->escapeHtml($comment));?>
+        </div>
+    </section>
+<?php endif; ?>

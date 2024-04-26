@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_SearchElastic
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <search>
+            <engine>
+                <elastic_host>127.0.0.1</elastic_host>
+                <elastic_port>9200</elastic_port>
+                <elastic_prefix>magento2</elastic_prefix>
+            </engine>
+        </search>
+    </default>
+</config>

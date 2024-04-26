@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_Vendor
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="vendor_edit_tabs">
+            <block class="MDC\Vendor\Block\Adminhtml\Vendor\Edit\Tab\Microsite" name="vendor_edit_tab_microsite"/>
+            <action method="addTab">
+                <argument name="name" xsi:type="string">microsite_section</argument>
+                <argument name="block" xsi:type="string">vendor_edit_tab_microsite</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

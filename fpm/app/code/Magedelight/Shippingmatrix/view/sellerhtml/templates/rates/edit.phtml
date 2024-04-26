@@ -1,0 +1,225 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Shippingmatrix
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var \Magedelight\Shippingmatrix\Block\Rates\ $block */
+$countries = $block->getCountryCollection();
+$matrixRate = $block->getMatrixRateCollection();
+?>
+<div id="product-offers-content" class="product-offers-content">
+  <form name="matrix_rate_form"
+    id="matrix_rate_form"
+    method="post" 
+    action="<?php echo $this->getEditPostActionUrl() ?>"
+    data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" 
+    data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <input class="input-text required-entry"
+          type="hidden"
+          name="pk"
+          id="pk"
+          value = "<?php echo @$matrixRate['pk']; ?>"/>
+        <input class="input-text required-entry"
+          type="hidden"
+          name="vendor_id"
+          id="vendor_id"
+          value = "<?php echo @$matrixRate['vendor_id']; ?>"
+          data-validate="{required:true}"/>
+        <input class="input-text required-entry"
+          type="hidden"
+          name="condition_name"
+          id="condition_name"
+          value = "<?php echo $block->getShippingMatrixCondition(); ?>"
+          data-validate="{required:true}"/>
+        <div class="field item-condition required">
+            <label class="label">
+                <span><?php echo __('Country') ?></span>
+            </label>
+            <div class="control select">                
+                <select name="dest_country_id" id="country_id" data-validate="{required:true}">
+                  <option value="0">All</option>
+                    <?php foreach ($countries as $country) : ?>
+                  <option value="<?php echo $country['country_id'];?>" 
+                        <?php if (isset($matrixRate['dest_country_id']) && $country['country_id'] == $matrixRate['dest_country_id']) :
+                            echo 'selected';
+                        endif;?>>
+                        <?php echo $country['country_name'];?></option>
+                    <?php endforeach;?>
+                </select>
+            </div>
+        </div>
+        <div class="field item-condition required">
+            <label class="label">
+                <span><?php echo __('Region') ?></span>
+            </label>
+            <div class="control select">                
+                <select name="dest_region_id" id="region_id" data-validate="{required:true}">
+                  <option value="0">All</option>
+                    <?php
+                    if (isset($matrixRate['dest_region_id'])) :
+                        $regions = $block->getRegionCollection($matrixRate['dest_country_id']);
+                        foreach ($regions as $region) :
+                            ?>
+                  <option value="<?php echo $region['region_id'];?>" 
+                            <?php if ($region['region_id'] == $matrixRate['dest_region_id']) :
+                                echo 'selected';
+                            endif;?>>
+                            <?php echo $region['name'];?></option>
+                        <?php endforeach;
+                    endif;?>
+                </select>
+            </div>
+        </div>
+        <div class="field vendor-sku required">
+            <label class="label" for="vendor-sku">
+                <span><?php echo __('City') ?></span>
+            </label>
+            <div class="control">
+                <input class="input-text required-entry"
+                       type="text"
+                       id="dest_city"
+                       name="dest_city"
+                       value = "<?php echo (isset($matrixRate['dest_city'])) ? @$matrixRate['dest_city'] : '*'?>"
+                       data-validate="{required:true}"
+                       placeholder="<?php echo __('City'); ?>"/>
+                <div class="note"><span>* is for all cities.</span></div>
+            </div>            
+        </div>
+        <div class="field vendor-sku required">
+            <label class="label" for="vendor-sku">
+                <span><?php echo __('Zipcode From') ?></span>
+            </label>
+            <div class="control">
+                <input class="input-text required-entry"
+                       type="text"
+                       id="dest_zip"
+                       name="dest_zip"
+                       value = "<?php echo (isset($matrixRate['dest_zip'])) ? @$matrixRate['dest_zip'] : '*'?>"
+                       data-validate="{required:true}"
+                       placeholder="<?php echo __('Zipcode From'); ?>"/>
+                <div class="note"><span>* is for all Zipcode.</span></div>
+            </div>
+        </div>
+        <div class="field vendor-sku required">
+            <label class="label" for="vendor-sku">
+                <span><?php echo __('Zipcode To') ?></span>
+            </label>
+            <div class="control">
+                <input class="input-text required-entry"
+                       type="text"
+                       id="dest_zip_to"
+                       name="dest_zip_to"
+                       value = "<?php echo (isset($matrixRate['dest_zip_to'])) ? @$matrixRate['dest_zip_to'] : '*'?>"
+                       data-validate="{required:true}"
+                       placeholder="<?php echo __('Zipcode To'); ?>"/>
+                <div class="note"><span>* is for all Zipcode.</span></div>
+            </div>
+        </div>        
+        <div class="field vendor-sku required">
+            <label class="label" for="vendor-sku">
+                <span><?php echo __('Condition From') ?></span>
+            </label>
+            <div class="control">
+                <input class="input-text required-entry"
+                       type="number"
+                       id="condition_from_value"
+                       min="1"
+                       name="condition_from_value"
+                       value = "<?php echo @$matrixRate['condition_from_value'];?>"
+                       data-validate="{required:true}"
+                       placeholder="<?php echo __('Condition From'); ?>"/>
+            </div>
+        </div>
+        <div class="field vendor-sku required">
+            <label class="label" for="vendor-sku">
+                <span><?php echo __('Condition To') ?></span>
+            </label>
+            <div class="control">
+                <input class="input-text required-entry"
+                       type="number"
+                       id="condition_to_value"
+                       min="1"
+                       name="condition_to_value"
+                       value = "<?php echo @$matrixRate['condition_to_value'];?>"
+                       data-validate="{required:true}"
+                       placeholder="<?php echo __('Condition To'); ?>"/>
+            </div>
+        </div>
+        <div class="field vendor-sku required">
+            <label class="label" for="vendor-sku">
+                <span><?php echo __('Price') ?></span>
+            </label>
+            <div class="control">
+                <input class="input-text required-entry"
+                       type="number"
+                       id="price"
+                       name="price"
+                       min="1"
+                       value = "<?php echo @$matrixRate['price'];?>"
+                       data-validate="{required:true}"
+                       placeholder="<?php echo __('Price'); ?>"/>
+            </div>
+        </div>
+        <div class="field vendor-sku required">
+            <label class="label" for="vendor-sku">
+                <span><?php echo __('Cost') ?></span>
+            </label>
+            <div class="control">
+                <input class="input-text required-entry"
+                       type="text"
+                       id="cost"
+                       name="cost"
+                       value = "<?php echo @$matrixRate['cost'];?>"
+                       data-validate="{required:true}"
+                       placeholder="<?php echo __('Cost'); ?>"/>
+            </div>
+        </div>
+        <div class="actions-toolbar pn">
+                                <div class="primary pn">
+                                    <button type="submit"
+                                            title="<?php echo __('Save') ?>"
+                                            class="action button primary btn-submit">
+                                        <span><?php echo __('Save') ?></span>
+                                    </button>
+                                </div>
+                            </div>
+    </fieldset>
+  </form>
+</div>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function($){
+       $(document).on('change','#country_id',function() {
+          var requestUrl = "<?php echo $this->getUrl('rbshippingmatrix/rates/regionlist');?>" + 'country_id/' +  $('#country_id').val() ;
+          $.ajax({
+              showLoader: true,
+              url : requestUrl,
+              type: "GET",
+              dataType: 'json'
+          }).done(function (data) {
+              /*data.value has the array of regions */
+              $('#region_id').empty();
+              $('#region_id').append(data.htmlconent);
+          });
+        });
+       $(document).ready(function() {
+            $('#dest_city,#dest_zip,#dest_zip_to').on('focus', function() {
+             if (!$(this).data('defaultText')) $(this).data('defaultText', $(this).val());
+             if ($(this).val()==$(this).data('defaultText')) $(this).val('');
+            });
+            $('#dest_city,#dest_zip,#dest_zip_to').on('blur', function() {
+             if ($(this).val()=='') $(this).val($(this).data('defaultText')); 
+            });
+        });
+    });
+</script>
+

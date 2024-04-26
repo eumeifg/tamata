@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Ktpl\Warehousemanagement\Api\WarehousemanagementRepositoryInterface" type="Ktpl\Warehousemanagement\Model\WarehousemanagementRepository"/>
+	<preference for="Ktpl\Warehousemanagement\Api\Data\WarehousemanagementInterface" type="Ktpl\Warehousemanagement\Model\Data\Warehousemanagement"/>
+	<preference for="Ktpl\Warehousemanagement\Api\Data\WarehousemanagementSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<preference for="Magento\Ui\Model\Export\ConvertToCsv" type="Ktpl\Warehousemanagement\Model\Data\ConvertToCsv"/>
+	<virtualType name="Ktpl\Warehousemanagement\Model\ResourceModel\Warehousemanagement\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ktpl_warehousemanagement_warehousemanagement</argument>
+			<argument name="resourceModel" xsi:type="string">Ktpl\Warehousemanagement\Model\ResourceModel\Warehousemanagement\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="ktpl_warehousemanagement_warehousemanagement_listing_data_source" xsi:type="string">Ktpl\Warehousemanagement\Model\ResourceModel\Warehousemanagement\Grid\Collection</item>
+				<item name="ktpl_warehousemanagement_warehousemanagement_trackrecord_listing_data_source" xsi:type="string">Ktpl\Warehousemanagement\Model\ResourceModel\Warehousemanagement\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<!-- <type name="Magento\Framework\View\Element\UiComponent\DataProvider\Reporting">
+       <plugin name="warehouse_grid_collection" type="\Ktpl\Warehousemanagement\Plugin\ResourceModel\Warehouse\Grid"/>
+    </type> -->
+    
+    <type name="Ktpl\Warehousemanagement\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Ktpl\Warehousemanagement\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">warehousemanagement</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Ktpl\Warehousemanagement\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

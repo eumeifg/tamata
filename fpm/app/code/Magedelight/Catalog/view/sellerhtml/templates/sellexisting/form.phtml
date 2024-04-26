@@ -1,0 +1,107 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var \Magedelight\Vendor\Api\Data\VendorInterface $vendor
+ * @var \Magedelight\Catalog\Block\Product $block
+ */
+$helper = $this->helper('Magedelight\Catalog\Helper\Data');
+?>
+<div class="rbpanel">
+    <div class="rbpanel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="rbpanel">
+                    <div class="rbpanel-heading">
+                        <span class="rbpanel-title"><?= __('Search Simillar Products')
+                        ?></span>
+                    </div>
+                    <div class="rbpanel-body minh150">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="field-label"><?= __('Search Product in Marketplace')
+                                ?></label>
+                            </div>
+                        </div>
+                        <div class="row catalog-search-container">
+
+                            <form id="search-products-form" method="GET" enctype='multipart/form-data'
+                                  action="<?= $helper->getResultUrl()
+                                    ?>"
+                                  data-hasrequired="<?= __('* Required Fields') ?>"
+                                  data-mage-init='{"validation":{}}'>
+                                <div class="field col-md-4 col-lg-5">
+                                    <div class="control">
+
+                                        <input
+                                                data-mage-init='{"quickProductSearch":{
+                                "formSelector":"#search-products-form",
+                                "url":"<?= $block->getUrl('rbcatalog/ajaxsearch/suggest'); ?>",
+                                "destinationSelector":"#search-autocomplete"}
+                           }'
+                                                placeholder="<?= __('Product name');?>"
+                                                type="text"
+                                                value="<?= $helper->searchText() ?>"
+                                                name="<?= $helper->getQueryParamName() ?>"
+                                                id="vendor-search-catalog" class="vendor search-catalog-input"
+                                        />
+                                        <div id="search-autocomplete" class="search-autocomplete"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-lg-4 pl10">
+                                    <div class="">
+                                        <div class="sell-exist">
+                                            <select name="category" id="category" title="" class="select filter"
+                                                    placeholder="">
+                                                <option value=""><?= __('Select Category') ?></option>
+                                                <?php foreach ($block->getAllowedTabCategories() as $rootcategory => $value): ?>
+                                                    <option <?php if ($this->getRequest()->getParam('category') == $rootcategory) { ?>
+                                                        <?= 'selected'; ?>
+                                                    <?php } ?> value="<?= $rootcategory; ?>"><?= $value ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-lg-2 pl10">
+                                    <div class="vendor actions-toolbar mln">
+                                        <div class="vendor primary">
+                                            <button id="submit-form" type="submit" class="vendor action login primary mrn button-m">
+                                                <span><?= __('Search') ?></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-lg-1 pl10">
+                                    <a rel="new" href="javascript:void(0)" class="action-reset search"><?= __('Reset') ?></a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="not-catalogue-link mt15"><?= __('If it is not in catalogue:') ?> 
+                            <a href="<?= $helper->getProductCreateUrl() . 'tab/1,1/'
+                            ?>" id=""><?= __('Create a new product listing') ?> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    require(['jquery', 'Magento_Ui/js/modal/confirm','Magedelight_Theme/js/common'], function ($, confirmation, common) {
+        $(".action-reset").click(function () {
+            $('#vendor-search-catalog').val('');
+            $('#category').val('');
+            $( "#submit-form" ).trigger( "click" );
+        });
+    })
+</script>

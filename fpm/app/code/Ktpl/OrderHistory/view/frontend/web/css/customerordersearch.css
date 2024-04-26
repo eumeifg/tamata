@@ -1,0 +1,29 @@
+.co-search{ width: 100%; box-sizing: border-box; }
+.account .co-search .data.table .col.date .form-date{ /*float: left;*/ width: 150px; display: inline-block; }
+.account .co-search .data.table .col.date .to-date{ /*float: right;*/ width: 150px; display: inline-block; }
+.table-order-items.history thead tr:first-child th.col.actions {
+    text-align: right;
+}
+.table-order-items.history thead tr:first-child th.col.actions button {
+    font-size: 14px;
+}
+
+.account .co-search .data.table .col.date .form-date input[type=text],
+.account .co-search .data.table .col.date .to-date input[type=text] {
+	vertical-align: middle;
+}
+.date-filter.actions {
+	display: inline-block;
+}
+.date-filter.actions button {
+    vertical-align: middle;
+}
+@media screen and (max-width: 768px) {
+	.account .co-search .data.table .col.date .form-date{ width: 145px; margin-bottom: 10px; }
+	.account .co-search .data.table .col.date .to-date{ width: 125px; margin-bottom: 10px;}
+}
+@media screen and (max-width: 680px) {
+	.date-filter.actions button {
+	    margin-bottom: 5px;
+	}
+}

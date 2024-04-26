@@ -1,0 +1,54 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php /** @var $block \Magedelight\Sales\Block\Items\Renderer\DefaultRenderer */ ?>
+<?php $_item = $block->getItem() ?>
+<?php $block->setPriceDataObject($_item); ?>
+<tr>
+    <td class="col-product"><?= $block->getColumnHtml($_item, 'name') ?></td>
+    <td class="col-price">
+        <?= $block->getColumnHtml($_item, 'price'); ?>
+    </td>
+    <td class="col-ordered-qty"><?= $block->getColumnHtml($_item, 'qty') ?></td>
+    <?php if ($block->canParentReturnToStock($_item)) : ?>
+        <td class="col-return-to-stock">
+        <?php if ($block->canReturnItemToStock($_item)) : ?>
+            <input type="checkbox"
+                   class="front__control-checkbox"
+                   name="creditmemo[items][<?= /* @escapeNotVerified */ $_item->getOrderItemId() ?>][back_to_stock]"
+                   id="creditmemo[items][<?= /* @escapeNotVerified */ $_item->getOrderItemId() ?>][back_to_stock]"
+                   value="1"<?php if ($_item->getBackToStock()) :
+                        ?> checked<?php
+                            endif;?>/>
+            <label for="creditmemo[items][<?= /* @escapeNotVerified */ $_item->getOrderItemId() ?>][back_to_stock]" class="front__field-label"></label>
+        <?php endif; ?>
+        </td>
+    <?php endif; ?>
+    <td class="col-refund col-qty">
+    <?php if ($block->canEditQty()) : ?>
+        <input type="text"
+               class="input-text front__control-text qty-input"
+               name="creditmemo[items][<?= /* @escapeNotVerified */ $_item->getOrderItemId() ?>][qty]"
+               value="<?= /* @escapeNotVerified */ $_item->getQty()*1 ?>"/>
+    <?php else : ?>
+        <?= /* @escapeNotVerified */ $_item->getQty()*1 ?>
+    <?php endif; ?>
+    </td>
+    <td class="col-subtotal">
+        <?= $block->getColumnHtml($_item, 'subtotal'); ?>
+    </td>
+    <td class="col-tax-amount"><?= /* @escapeNotVerified */ $block->displayPriceAttribute('tax_amount') ?></td>
+    <td class="col-discont"><?= /* @escapeNotVerified */ $block->displayPriceAttribute('discount_amount') ?></td>
+    <td class="col-total last">
+        <?= $block->getColumnHtml($_item, 'total'); ?>
+    </td>
+</tr>

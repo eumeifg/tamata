@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="seller_account"/>
+    <referenceContainer name="content.top">            
+        <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order" name="vendor.order.new.summary" template="Magedelight_Sales::vendor/order/new/summary.phtml"/>
+    </referenceContainer>
+    <body>        
+        <referenceContainer name="content">            
+            <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order" name="vendor.order.new.main" template="Magedelight_Sales::vendor/order/new/order.phtml" cacheable="false">
+                <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\SummarizedDetails" name="summarized.order.details" />
+                <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Neworder" name="vendor.order.new" template="Magedelight_Sales::vendor/order/new/new.phtml" group="vendor_order_list" cacheable="false">
+                    <block class="Magento\Theme\Block\Html\Pager" name="vendor.order.neworder.pager" />
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Upcoming</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Confirmedorder" name="vendor-order-confirmed" template="Magedelight_Sales::vendor/order/new/confirmed.phtml" group="vendor_order_list" cacheable="false">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">New</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Pack" name="vendor-order-packed" template="Magedelight_Sales::vendor/order/new/pack.phtml" group="vendor_order_list" cacheable="false">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Pack</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Handover" name="vendor-order-handover" template="Magedelight_Sales::vendor/order/new/handover.phtml" group="vendor_order_list" cacheable="false">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Handover</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Intransit" name="vendor-order-intransit" group="vendor_order_list" template="Magedelight_Sales::vendor/order/new/intransit.phtml" cacheable="false" >
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">In Transit</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

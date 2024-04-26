@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_User
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    
+    <!-- md_vendor_website_data table starts. -->
+    <table name="md_vendor_website_data">
+        <column xsi:type="tinyint" name="enable_microsite" nullable="false" padding="2" default="0" comment="0 - No, 1 - Yes"/>
+    </table>
+    <!-- md_vendor_website_data table ends. -->
+
+    <!-- md_vendor_microsites table starts. -->
+    <table name="md_vendor_microsites">
+        <column xsi:type="varchar" name="promo_banner_1" nullable="true" length="255" comment="Promotional Banner 1"/>
+        <column xsi:type="varchar" name="promo_banner_2" nullable="true" length="255" comment="Promotional Banner 2"/>
+        <column xsi:type="varchar" name="promo_banner_3" nullable="true" length="255" comment="Promotional Banner 3"/>
+        <column xsi:type="varchar" name="mobile_promo_banner_1" nullable="true" length="255" comment="Mobile Promotional Banner 1"/>
+        <column xsi:type="varchar" name="mobile_promo_banner_2" nullable="true" length="255" comment="Mobile Promotional Banner 2"/>
+        <column xsi:type="varchar" name="mobile_promo_banner_3" nullable="true" length="255" comment="Mobile Promotional Banner 3"/>
+        <column xsi:type="varchar" name="banner_associate_url" nullable="true" length="255" comment="Banner Associate Url"/>
+        <column xsi:type="varchar" name="promo_banner_associate_url1" nullable="true" length="255" comment="Promotional Banner Associate Url 1"/>
+        <column xsi:type="varchar" name="promo_banner_associate_url2" nullable="true" length="255" comment="Promotional Banner Associate Url 2"/>
+        <column xsi:type="varchar" name="promo_banner_associate_url3" nullable="true" length="255" comment="Promotional Banner Associate Url 3"/>
+        <column xsi:type="varchar" name="mobile_banner_associate_url" nullable="true" length="255" comment="Mobile Promotional Banner Associate Url"/>
+        <column xsi:type="varchar" name="mobile_banner_associate_url2" nullable="true" length="255" comment="Mobile Promotional Banner Associate Url 2"/>
+        <column xsi:type="varchar" name="mobile_banner_associate_url3" nullable="true" length="255" comment="Mobile Promotional Banner Associate Url 3"/>
+    </table>
+    <!-- md_vendor_microsites table ends. -->
+</schema>

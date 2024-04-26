@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="vendor_order_admin_confirm">
+        <observer name="rbvendor_vorder_admin_confirm" instance="Magedelight\Sales\Observer\Sales\OrderAdminConfirm"/>
+        <observer name="vendororderadminconfirm" instance="Magedelight\Sales\Observer\VendorOrderEmail" />
+    </event>
+    <event name="vendor_order_admin_mass_confirm">
+        <observer name="rbvendor_vorder_admin_mass_confirm" instance="Magedelight\Sales\Observer\Sales\OrderAdminMassConfirm" />
+        <observer name="vendororderadminmassconfirm" instance="Magedelight\Sales\Observer\VendorOrderAdminMassConfirm" />
+    </event>
+    <event name="vendor_order_auto_confirmed">
+        <observer name="vendororderautoconfirm" instance="Magedelight\Sales\Observer\VendorOrderEmail" />
+    </event>
+    <event name="admin_orders_cancel_after">
+        <observer name="adminorderscancelafter" instance="Magedelight\Sales\Observer\AdminOrderEmailCancel" />
+    </event>
+    <event name="vendor_order_status_complete">
+        <observer name="vendororderstatuscomplete" instance="Magedelight\Sales\Observer\VendorOrderStatusComplete" />
+    </event>
+    <event name="email_invoice_set_template_vars_before">
+        <observer name="admin_invoice_send_customer" instance="Magedelight\Sales\Observer\SendInvoice" />
+    </event>
+
+    <!-- To display vendor name while line-item wise reorder on cart page -->
+    <event name="sales_quote_item_set_product">
+        <observer name="admin_sales_quote_item_set_product" instance="Magedelight\Sales\Observer\AdminCartSalesQuoteItemSetProduct" shared="true" />
+    </event>
+</config>

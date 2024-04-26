@@ -1,0 +1,10 @@
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_invoice_columns">
+        <column name="vendor_order_id" class="Magedelight\Sales\Ui\Component\Listing\Column\InvoiceSubOrderId">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">SubOrder Id</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

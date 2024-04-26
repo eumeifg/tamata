@@ -1,0 +1,79 @@
+<?php
+/**
+ * Copyright © Krish TechnoLabs, All rights reserved.
+ */
+$categoryData = $block->getTopCategoryData();
+$mode = 'grid';
+?>
+<div class="home-cate-slider">
+	<?php if($categoryData->count()) : ?>
+		<div class="carousel-container">
+	        <div id="homecateslider" class="products-<?= $mode; ?> <?= $mode; ?> owl-carousel owl-theme">
+				<?php
+					foreach($categoryData as $key => $category) : ?>
+						<div class="item">
+		                   	<a id="<?= $category->getId()?>" name="<?= $category->getName()?>" data-toggle="tab" href="<?= $category->getUrl()?>" class="prod-img-box">
+									<?php
+									$_outputhelper = $this->helper('Magento\Catalog\Helper\Output');
+									$_imgHtml = '';
+									if ($category->getThumbnail()) {
+										$_imgUrl = $block->getThumbnailImagePath($category->getThumbnail());
+										$_imgHtml = '<img src="' . $_imgUrl . '" />';
+										$_imgHtml = $_outputhelper->categoryAttribute($category, $_imgHtml, 'thumbnail');
+										/* @escapeNotVerified */ echo $_imgHtml;
+									}
+									?>
+									<span class="dealzone-details">
+										<?= $block->escapeHtmlAttr(__($category->getName())) ?>
+									</span>
+
+								</a>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+	<?php endif; ?>
+</div>
+
+<script type="text/javascript">
+         require(["jquery","owlcarousel"],function($) {
+           $(document).ready(function () {
+                $("#homecateslider").owlCarousel({
+                autoPlay: 3000, //3000 Set AutoPlay to 3 seconds
+                margin:0,
+                items : 8,
+                navigation : false,
+                nav: true,
+                loop:true,
+                rtl:true,
+                responsive:{
+                    0:{
+                        items:5,
+                        autoWidth:true
+                    },
+                    400:{
+                        items:5,
+                        autoWidth:true,
+                        margin:0,
+                    },
+                    600:{
+                        items:5,
+                        autoWidth:true
+                    },
+                    800:{
+                        items:5,
+                    },
+                    1200:{
+                        items:6
+                    },
+                    1400:{
+                        items:7
+                    },
+                    1500:{
+                        items:8
+                    }
+                }
+          });
+    });
+});
+</script>

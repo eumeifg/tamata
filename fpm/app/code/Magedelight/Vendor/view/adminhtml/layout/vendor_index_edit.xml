@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Magedelight_Vendor/js/profile/vendor-profile.js"/>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+        <css src="Magedelight_Vendor::catalog/category-selector.css"/>
+    </head>
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magedelight\Vendor\Block\Adminhtml\Vendor\Edit" name="vendor_edit_page"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Magedelight\Vendor\Block\Adminhtml\Vendor\Edit\Tabs" name="vendor_edit_tabs">
+                <block class="Magedelight\Vendor\Block\Adminhtml\Vendor\Edit\Tab\VendorView" name="vendor_edit_tab_vendor_view"
+                       template="Magedelight_Vendor::vendor/tab/view/personal_info.phtml"/>
+                <block class="Magedelight\Vendor\Block\Adminhtml\Vendor\Edit\Tab\Main" name="vendor_edit_tab_profile"/>
+                <block class="Magedelight\Vendor\Block\Adminhtml\Vendor\Edit\Tab\Business" name="vendor_edit_tab_business"/>
+                <block class="Magedelight\Vendor\Block\Adminhtml\Vendor\Edit\Tab\Bank" name="vendor_edit_tab_bank"/>
+                <block class="Magedelight\Vendor\Block\Adminhtml\Vendor\Edit\Tab\Shipping" name="vendor_edit_tab_shipping"/>
+                <block class="Magedelight\Vendor\Block\Adminhtml\Vendor\Edit\Tab\Category" name="vendor_edit_tab_category"/>
+                <block class="Magedelight\Vendor\Block\Adminhtml\Vendor\Edit\Tab\Website" name="vendor_edit_tab_website"/>
+
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">vendor_view_section</argument>
+                    <argument name="block" xsi:type="string">vendor_edit_tab_vendor_view</argument>
+                </action>
+
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">profile_section</argument>
+                    <argument name="block" xsi:type="string">vendor_edit_tab_profile</argument>
+                </action>
+                 
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">business_section</argument>
+                    <argument name="block" xsi:type="string">vendor_edit_tab_business</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">bank_section</argument>
+                    <argument name="block" xsi:type="string">vendor_edit_tab_bank</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">shipping_section</argument>
+                    <argument name="block" xsi:type="string">vendor_edit_tab_shipping</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">category_section</argument>
+                    <argument name="block" xsi:type="string">vendor_edit_tab_category</argument>
+                </action>
+                
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">website_section</argument>
+                    <argument name="block" xsi:type="string">vendor_edit_tab_website</argument>
+                </action>
+                
+                <action method="addTab" ifconfig="rbbrand/general/enable" >
+                    <argument name="name" xsi:type="string">brand_section</argument>
+                    <argument name="block" xsi:type="array">
+                        <item name="label" xsi:type="string">Brand</item>
+                        <item name="title" xsi:type="string">Brand</item>
+                        <item name="url" xsi:type="helper" helper="Magedelight\Vendor\Helper\Data::getBrandsGridUrl"></item>
+                        <item name="class" xsi:type="string">ajax</item>
+                    </argument>
+                </action>                
+            </block>
+        </referenceContainer>
+    </body>
+</page>

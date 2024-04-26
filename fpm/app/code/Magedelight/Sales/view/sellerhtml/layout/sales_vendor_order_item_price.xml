@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Item\Renderer\DefaultRenderer" name="item_unit_price" template="Magedelight_Sales::vendor/order/items/price/unit.phtml"/>
+        <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Item\Renderer\DefaultRenderer" name="item_row_total" template="Magedelight_Sales::vendor/order/items/price/row.phtml"/>
+        <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Item\Renderer\DefaultRenderer" name="item_row_total_after_discount" template="Magedelight_Sales::vendor/order/items/price/total_after_discount.phtml"/>
+    </body>
+</page>

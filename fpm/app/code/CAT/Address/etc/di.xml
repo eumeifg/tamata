@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="CAT\Address\Api\Data\RomCityInterface"
+                type="CAT\Address\Model\RomCity"/>
+    <preference for="CAT\Address\Api\StatesInterface" type="CAT\Address\Model\Api\States"/>
+
+    <preference for="CAT\Address\Api\RomCityRepositoryInterface"
+                type="CAT\Address\Model\RomCityRepository" />
+
+    <preference for="CAT\Address\Api\Data\CitySearchResultInterface"
+                type="Magento\Framework\Api\SearchResults" />
+
+    <preference for="Magento\Directory\Helper\Data"
+                type="CAT\Address\Helper\CitiesJsonRomCity" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="city_data_source" xsi:type="string">
+                    CAT\Address\Model\ResourceModel\Collection\City\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="CAT\Address\Model\ResourceModel\Collection\City\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">address_city</argument>
+            <argument name="eventPrefix" xsi:type="string">fields_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">fields_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">CAT\Address\Model\ResourceModel\RomCity</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="xtea_region_listing_data_source" xsi:type="string">
+                    CAT\Address\Model\ResourceModel\Collection\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="CAT\Address\Model\ResourceModel\Collection\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">directory_country_region</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Directory\Model\ResourceModel\Region</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="FieldsGridDataProvider"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">
+                CAT\Address\Model\ResourceModel\Collection\Grid\Collection
+            </argument>
+            <argument name="filterPool" xsi:type="object" shared="false">TemplatesGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -1,0 +1,9 @@
+<!--@subject Product Status: {{var status}} - {{var product_name}} @-->
+<!-- Begin wrapper table -->
+{{template config_path="vendor_design/email/header_template"}}
+
+<p>{{trans "Hello"}} {{var vendor_name}},</p>
+<p>{{trans "Product Name: "}} <strong>{{var product_name}}</strong>{{trans " status has been changed to "}}<strong>{{var status}}</strong>{{trans "."}}</p>
+
+{{template config_path="vendor_design/email/footer_template"}}
+

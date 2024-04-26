@@ -1,0 +1,11 @@
+<?php
+    if ($block->getProduct()->getIsReturnable() === 1) {
+?>
+        <div class="return-policy-link">
+            <?php echo __("This product is returnable."); ?>
+        </div>
+<?php } else { ?>
+        <div class="return-policy-link">
+            <?php echo __("This product is not returnable."); ?>
+        </div>
+<?php } ?>

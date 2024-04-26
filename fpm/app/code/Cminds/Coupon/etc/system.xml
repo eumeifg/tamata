@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/system_file.xsd">
+    <system>
+        <tab id="helloworld" translate="label" sortOrder="100">
+            <label>Hello World</label>
+        </tab>
+        <section id="helloworld" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Hello World Configuration</label>
+            <tab>helloworld</tab>
+            <resource>Excercise_HelloWorld::test_config</resource>
+        </section>
+    </system>
+</config>

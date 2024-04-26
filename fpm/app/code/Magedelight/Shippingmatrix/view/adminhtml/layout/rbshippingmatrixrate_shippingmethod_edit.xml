@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Shippingmatrix
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">         
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magedelight\Shippingmatrix\Block\Adminhtml\Shippingmethod\Edit" name="md_shippingmatrix_shippingmethod_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Magedelight\Shippingmatrix\Block\Adminhtml\Shippingmethod\Edit\Tabs" name="md_shippingmatrix_shippingmethod_edit_tabs">
+                <block class="Magedelight\Shippingmatrix\Block\Adminhtml\Shippingmethod\Edit\Tab\Shippingmethod" name="md_shippingmatrix_shippingmethod_edit_tab_shippingmethod"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">md_shippingmatrix_shippingmethod_edit_tab_shippingmethod</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

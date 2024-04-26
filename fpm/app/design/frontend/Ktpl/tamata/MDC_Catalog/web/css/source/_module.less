@@ -1,0 +1,79 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+	/*.view_in_app {
+    	display: none!important;
+    }*/
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@media screen and (min-width: 767px) {
+    .view_in_app {
+    	display: none;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+@media screen and (max-width: 767px) {
+    .view_in_app {
+	    background: #707070;
+	    color: #fff;
+	    display: table;
+	    padding: 8px;
+	    line-height: 18px;
+	    width: 100%;
+	}
+	.open_in_app_icon,
+	.open_in_app_description,
+	.open_in_app_link {
+	    display: table-cell;
+	    vertical-align: middle;
+	}
+	.open_in_app_icon {
+	    /*width: 20%;*/
+	    background: #fffbfa;
+	    width: 38px;
+	    padding: 3px 0 0 0;
+	    text-align: center;
+	    border-radius: 5px;
+	}
+	.open_in_app_description {
+	    padding: 0 10px;
+	    /*width: 50%;*/
+	}
+	.open_in_app_link {
+		/*width: 30%;*/
+		text-align: right;
+		.rtl_layout & {
+			text-align: left;
+		}
+	}
+	.open_in_app_link a {
+	    color: #eb0028;
+	    background: #f5ffff;
+	    border-radius: 6px;
+	    padding: 4px 10px;
+	    line-height: 20px;
+	    -webkit-appearance: none;
+	    white-space: nowrap;
+	}
+	/*.tamata-sticky-menu-effect .view_in_app {
+	    position: fixed;
+	    z-index: 3;
+	    width: 100%;
+	    top: 51px;
+	}*/
+}

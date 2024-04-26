@@ -1,0 +1,25 @@
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<!--@subject Vendor Email Verification@-->
+<!--@subject {{var store.getFrontendName()}} Welcome to {{var store.getFrontendName()}} Marketplace @-->
+
+{{template config_path="vendor_design/email/header_template"}}
+
+<p>{{trans "Hello"}} {{var vendor_name}},</p>
+<p>{{trans "Greetings from"}} {{var %store_name store_name=$store.getFrontendName() |raw}} {{trans "Marketplace!"}}</p>
+<p>{{trans "Thank you for registering with %store_name Marketplace." store_name=$store.getFrontendName()}}</p>
+
+<p>{{trans "Now, you will be able to login with your credentials and can manage your account."}}</p>
+<p>{{trans 'In case of any queries, kindly contact  <a href="mailto:%store_email">%store_email</a>' store_email=$store_email |raw}}</p>
+
+{{template config_path="vendor_design/email/footer_template"}}

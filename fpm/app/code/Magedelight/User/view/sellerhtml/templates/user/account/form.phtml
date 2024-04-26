@@ -1,0 +1,152 @@
+<?php
+/** @var $block \Magedelight\User\Block\User\Edit */
+$user = $this->getUser();
+$status = $user->getData('status');
+?>
+<div class="tray">
+    <div class="rbvendor-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="rbpanel">
+                    <div class="rbpanel-heading">
+                        <span class="panel-title"><?php
+                            /* @escapeNotVerified */
+                            echo __('User Information');
+                        ?></span>
+                    </div>
+                    <div class="rbpanel-body">
+                        <form method="POST" id="vendorRoleForm" enctype='multipart/form-data'
+                              action="<?php echo $block->getSubmitUrl(true); ?>"
+                              data-hasrequired="<?php echo __('* Required Fields') ?>"
+                              accept-charset=""data-mage-init='{"validation":{}}'>
+                            <input type="hidden" name="user_id" value="<?php echo $user->getId() ?>">
+                            <fieldset class="fieldset">
+                                <div class="field required">
+                                    <label class="label" for="name">
+                                        <span><?php echo __('Name') ?></span>
+                                    </label>
+                                    <div class="control _with-tooltip">
+                                        <input type="text" name="name" id="name" value="<?php echo $user->getName() ?>" class="input-box required-entry">
+                                        <div class="field-tooltip toggle">
+                                           <span class="field-tooltip-action action-help" tabindex="0"></span>
+                                            <div class="field-tooltip-content">
+                                                 <span><?php echo __('Enter Name') ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field required">
+                                    <label class="label" for="email">
+                                        <span><?php echo __('Email') ?></span>
+                                    </label>
+                                    <div class="control _with-tooltip">
+                                        <input type="email" name="email" disabled id="email" value="<?php echo $user->getEmail() ?>" class="input-box required-entry">
+                                            <div class="field-tooltip toggle">
+                                               <span class="field-tooltip-action action-help" tabindex="0"></span>
+                                                <div class="field-tooltip-content">
+                                                     <span><?php echo __('Enter Email') ?></span>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="field required">
+                                    <label class="label" for="mobile">
+                                        <span><?php echo __('Mobile') ?></span>
+                                    </label>
+                                    <div class="control _with-tooltip">
+                                        <input type="number" name="mobile" id="mobile" value="<?php echo $user->getMobile() ?>" class="input-box required-entry">
+                                            <div class="field-tooltip toggle">
+                                               <span class="field-tooltip-action action-help" tabindex="0"></span>
+                                                <div class="field-tooltip-content">
+                                                     <span><?php echo __('Enter Mobile Number') ?></span>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="field <?php echo ($user && $user->getId()?'':'required')?>">
+                                    <label class="label" for="password">
+                                        <span><?php echo __('Password') ?></span>
+                                    </label>
+                                    <div class="control _with-tooltip">
+                                        <input type="password" name="password" id="password" data-validate="{required:<?php echo ($user && $user->getId()?'false':'true')?>}" class="input-box validate-custom-pswd <?php echo ($user && $user->getId()?'':'required-entry')?>"> 
+                                        <div class="field-tooltip toggle">
+                                           <span class="field-tooltip-action action-help" tabindex="0"></span>
+                                            <div class="field-tooltip-content">
+                                                 <span><?php echo __('Enter Password') ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field <?php echo ($user && $user->getId()?'':'required')?>">
+                                    <label class="label" for="user_confirmation">
+                                        <span><?php echo __('Confirm Password') ?></span>
+                                    </label>
+                                    <div class="control _with-tooltip">
+                                        <input type="password" name="password_confirmation" id="user_confirmation" data-validate="{required:<?php echo ($user && $user->getId()?'false':'true')?>, <?php echo ($user && $user->getId()?"":"equalTo:'#password'")?>}" class="input-box validate-cpassword <?php echo ($user && $user->getId()?'':'required-entry')?> "> 
+                                        <div class="field-tooltip toggle">
+                                           <span class="field-tooltip-action action-help" tabindex="0"></span>
+                                            <div class="field-tooltip-content">
+                                                 <span><?php echo __('Enter Confirm Password') ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="rbpanel-footer">
+                                <div class="actions-toolbar popup-actions-toolbar">
+                                    <div class="primary">
+                                        <button type="button" title="<?php echo __('Save') ?>"
+                                                class="action button primary btn-submit">
+                                            <span><?php echo __('Save') ?></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        'jquery', /* jquery Library */
+        "mage/calendar", /* Calender widget */
+        'mage/translate', /* Magento text translate (Validation message translte as per language) */
+        'mage/mage',
+        'mage/validation'
+    ], function ($) {
+        $(".btn-submit").click(function () {
+            if($('#vendorRoleForm').valid()){
+                $('#vendorRoleForm').submit();
+            }
+        });
+        $(document).ready(function () {
+              /* Tooltip code starts */
+              $(".field-tooltip").on('click', function (event) {
+                if($(this).hasClass('_active')){
+                  $(this).removeClass('_active');
+                  $(this).find('.field-tooltip-content').removeClass('_active');
+                } else {
+                  $(".field-tooltip").removeClass('_active');
+                  $(".field-tooltip-content").removeClass('_active');
+                  $(this).addClass('_active');
+                  $(this).find('.field-tooltip-content').addClass('_active');
+                }
+              });
+              /* Tooltip code ends */ 
+            });
+    });
+</script>
+
+<script type="text/javascript">
+require([
+    'jquery', // jquery Library
+    'Magedelight_Vendor/js/registration/validation/vendor-info'
+], function ($,validateVendorInfo) {
+    /*Vendor Information code starts.*/
+    validateVendorInfo();
+    /*Vendor Information code ends.*/
+});
+</script>

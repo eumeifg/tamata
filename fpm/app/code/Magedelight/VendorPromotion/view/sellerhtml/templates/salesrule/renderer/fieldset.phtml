@@ -1,0 +1,75 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_VendorPromotion
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php
+$elements = $this->getElement()->getElements()->getIterator();
+$wideElementsTop = $this->getElement()->getWideColumnTop();
+$wideElementsBottom = $this->getElement()->getWideColumnBottom();
+$lcElements = $this->getElement()->getLeftColumn();
+$rcElements = $this->getElement()->getRightColumn();
+$formAfter = $this->getElement()->getData('rbpromo_form_after');
+?>
+<div class="generic-box">
+    <div class="box-head"><h3><?php echo $this->getElement()->getLegend() ?></h3></div>
+
+  <div class="generic-box-body">
+  <fieldset class="fieldset cart-price-rule-fieldset">
+
+    <?php if (!empty($wideElementsTop)) : ?>
+    <?php foreach ($wideElementsTop as $wideElement) : ?>
+  <div class="field <?php echo $wideElement;?> wide<?php echo $block->isRequired($wideElement) ? " required":"" ?>" <?php if ($this->isHidden($wideElement)) {
+        echo 'style="display: none;"';
+                    } ?>>
+    <?php echo $this->getChildElementHtml($wideElement); ?>
+  </div>
+    <?php endforeach ?>
+    <?php endif ?>
+
+    <?php if (!empty($lcElements)) : ?>
+    <?php foreach ($lcElements as $lcElement) : ?>
+  <div class="field <?php echo $lcElement;?><?php echo $block->isRequired($lcElement) ? " required":"" ?>" <?php if ($this->isHidden($lcElement)) {
+        echo 'style="display: none;"';
+                    } ?>>
+    <?php echo $this->getChildElementHtml($lcElement); ?>
+  </div>
+    <?php endforeach ?>
+    <?php endif ?>
+
+    <?php if (!empty($rcElements)) : ?>
+    <?php foreach ($rcElements as $rcElement) : ?>
+  <div class="field <?php echo $rcElement;?><?php echo $block->isRequired($rcElement) ? " required":"" ?>" <?php if ($this->isHidden($rcElement)) {
+        echo 'style="display: none;"';
+                    } ?>>
+    <?php echo $this->getChildElementHtml($rcElement); ?>
+  </div>
+    <?php endforeach ?>
+
+    <?php endif ?>
+
+    <?php if (!empty($wideElementsBottom)) : ?>
+    <?php foreach ($wideElementsBottom as $wideElement) : ?>
+  <div class="field <?php echo $wideElement;?><?php echo $block->isRequired($wideElement) ? " required":"" ?>" <?php if ($this->isHidden($wideElement)) {
+        echo 'style="display: none;"';
+                    } ?>>
+    <?php echo $this->getChildElementHtml($wideElement); ?>
+    <?php endforeach ?>
+  </div>
+    <?php endif ?>
+
+
+  </fieldset>
+
+</div>
+</div>
+
+<?php echo $formAfter ? $formAfter->toHtml() : '' ?>
+

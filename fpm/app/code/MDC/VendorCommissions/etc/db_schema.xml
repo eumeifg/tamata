@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_VendorCommissions
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+        
+    <!-- md_vendor_category_commissions table starts. -->
+    <table name="md_vendor_category_commission" resource="default" engine="innodb" comment="md_vendor_category_commission">
+        <column xsi:type="int" name="vendor_category_commission_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Vendor Category Commission ID" />
+        <column xsi:type="smallint" name="calculation_type" padding="6" nullable="false" comment="Commission Calculation Type." />
+        <column xsi:type="decimal" name="commission_value" scale="4" precision="12" comment="Commission Value" />
+        <column xsi:type="smallint" name="marketplace_fee_type" padding="6" nullable="false" comment="1 => Flat, 2=> Percentage" />
+        <column xsi:type="decimal" name="marketplace_fee" scale="4" precision="12" comment="Marketplace Fee for product listing." />
+        <column xsi:type="decimal" name="cancellation_fee_commission_value" scale="4" precision="12" nullable="false" default="0" comment="cancellation_fee_commission_value" />
+        <column xsi:type="smallint" name="cancellation_fee_calculation_type" padding="6" nullable="false" default="0" comment="Total service tax collected on Fees." />
+        <column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="false" comment="Vendor ID" />
+        <column xsi:type="int" name="product_category" padding="11" nullable="true" comment="Product Category" />
+        <column xsi:type="boolean" name="status" default="false" comment="Status" />
+        <column xsi:type="smallint" name="website_id" padding="5" nullable="false" default="1" unsigned="true" comment="Website ID" />
+        <column xsi:type="smallint" name="store_id" padding="5" nullable="false" default="1" unsigned="true" comment="Store ID" />
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="vendor_category_commission_id"/>
+        </constraint>
+        <index referenceId="IDX_RB_VENDOR_CAT_COMMISION_VENDOR_ID" indexType="btree">
+            <column name="vendor_id"/>
+        </index>
+    </table>
+    <!-- md_vendor_category_commissions table ends. -->
+</schema>

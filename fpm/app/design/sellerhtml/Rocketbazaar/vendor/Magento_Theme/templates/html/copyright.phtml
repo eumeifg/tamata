@@ -1,0 +1,16 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<div class="copyright">
+    <span>
+        <?php /* @escapeNotVerified */ echo preg_replace('/(^|\s)(\d{4})(\s|$)/m', " ".date('Y'). " ", $block->getCopyright()); ?>
+    </span>
+</div>
+<style>
+    li.item.home {
+        display: none !important;
+    }
+</style>

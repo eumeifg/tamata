@@ -1,0 +1,193 @@
+& when (@media-common = true) {
+	.ktpl-quickview-catalog-product-view,
+	.ktpl_quickview-catalog_product-view {
+		.box-tocart .action.tocart {
+			width: 100%;
+		}
+		.page-wrapper .page-main {
+			padding: 20px;
+			min-height: 600px;
+		}
+		.reviews-actions .add {
+			display: none;
+		}
+
+		&.page-product-downloadable {
+			.product-options-wrapper,
+			.product-options-bottom {
+				float: none;
+				width: 100%;
+			}
+			.product-options-bottom {
+				.price-box {
+					display: none;
+				}
+			}
+		}
+		.product-info-main {
+		    width: 40%;
+	        float: right;
+		}
+		.product.media {
+		    width: 58%;
+	        float: left;
+		}
+	}
+
+	.box-gotoproduct #product-gotoproduct-button {
+		width: 100%;
+		padding: 14px 17px;
+		font-size: 1.8rem;
+		text-align: center;
+		border: 1px solid transparent;
+	}
+
+	.page-products .product-item .ktpl-quickview {
+		display: none
+	}
+
+	.ktpl-quickview-catalog-product-view,
+	.ktpl_quickview-catalog_product-view {
+		.page-wrapper {
+			min-height: auto !important;
+		}
+		.column.main {
+			display: inline-block;
+			padding-bottom: 0;
+		    flex-direction: inherit !important;
+		}
+		&.catalog-product-view .page-title-wrapper {
+			h1 {
+				font-size: 22px !important;
+			}
+		}
+	}
+
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+	.ktpl-quickview-catalog-product-view,
+	.ktpl_quickview-catalog_product-view {
+		&.catalog-product-view .breadcrumbs,
+		&.catalog-product-view .columns,
+		&.catalog-product-view .page.messages,
+		&.catalog-product-view .page-title-wrapper {
+			max-width: 100%;
+			width: 100%;
+			margin: 0 auto;
+		}
+	}
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+	.page-products .products-list .product-item {
+		position: relative;
+
+		.product-item-info {
+			.ktpl-quickview.ktpl_quickview_button_v1 span {
+				padding: 18px;
+				display: block;
+			}
+			&:hover {
+				.ktpl-quickview.ktpl_quickview_button_v1 {
+					display: block;
+					position: absolute;
+					top: 230px;
+					margin-left: -250px;
+					z-index: 9;
+					width: 30%;
+					text-align: center;
+					color: #eeeeee;
+					background: rgba(0, 0, 0, 0.7);
+					font-size: 15px;
+					text-decoration: none;
+					span:before {
+						-webkit-font-smoothing: antialiased;
+						font-size: 15px;
+						line-height: 1;
+						color: #eeeeee;
+						content: '\e615';
+						font-family: 'luma-icons';
+						margin: 0;
+						vertical-align: top;
+						display: inline-block;
+						font-weight: normal;
+						overflow: hidden;
+						speak: none;
+						text-align: center;
+						position: relative;
+						top: 4px;
+						left: -5px
+					}
+				}
+				.ktpl-quickview.ktpl_quickview_button_v2 {
+					display: block;
+					z-index: 9;
+					position: absolute;
+					text-indent: -10000px;
+					width: 45px;
+					height: 40px;
+					top: 0px;
+					left: -265px;
+				}
+			}
+		}
+	}
+	.page-products .products-grid .product-item {
+		position: relative;
+
+		.product-item-info {
+			.ktpl-quickview.ktpl_quickview_button_v1 span {
+				padding: 18px;
+				display: block;
+			}
+			&:hover {
+				.ktpl-quickview.ktpl_quickview_button_v1 {
+					position: absolute;
+                    top: 0;
+                    width: auto;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    color: @color-red;
+                    line-height: 16px;
+                    margin: 0 0 0 -22px;
+                    left: 50%;
+                    text-decoration: none;
+                    border-bottom: @color-red solid 1px;
+                    display: block;
+                    z-index: 3;
+
+                    &:before {
+                        font-size: 22px;
+                        font-family: 'luma-icons';
+                        content: "\e90d";
+                        color: @color-red;
+                        line-height: 16px;
+                        vertical-align: top;
+                        position: absolute;
+                        left: -30px;
+                    }
+
+                    &:hover {
+                        color: @color-black;
+                        border-bottom: @color-black solid 1px;
+
+                        &:before {
+                            color: @color-black;
+                        }
+                    }
+		        }
+				.ktpl-quickview.ktpl_quickview_button_v2 {
+					display: block;
+					z-index: 9;
+					position: absolute;
+					text-indent: -10000px;
+					width: 45px;
+					height: 40px;
+					top: -290px;
+					left: 5px;
+				}
+			}
+		}
+	}
+}

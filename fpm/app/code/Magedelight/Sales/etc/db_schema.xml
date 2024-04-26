@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- md_vendor_order table starts. -->
+    <table name="md_vendor_order" resource="default" engine="innodb" comment="Table stores information of Vendors orders">
+		<column xsi:type="int" name="vendor_order_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Vendor Order ID" />
+        <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" comment="Order ID of Marketplace" />
+        <column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="false" comment="Vendor ID" />
+        <column xsi:type="varchar" name="increment_id" length="32" nullable="false" comment="Order ID - prepended by (Vendor/Sub) Order ID" />
+        <column xsi:type="varchar" name="status" length="32" nullable="true" comment="Vendor Order Status" />
+        <column xsi:type="varchar" name="coupon_code" length="255" nullable="true" comment="Coupon Code" />
+        <column xsi:type="varchar" name="protect_code" length="255" nullable="true" comment="Protect Code" />
+        <column xsi:type="varchar" name="shipping_description" length="255" nullable="true" comment="Shipping Description" />
+        <column xsi:type="decimal" name="weight" scale="4" precision="12" nullable="true" comment="Vendor Order Weight" />
+        <column xsi:type="smallint" name="is_virtual" padding="5" unsigned="true" default="0" comment="Is order Virtual" />
+        <column xsi:type="decimal" name="subtotal" scale="4" precision="12" default="0.00" comment="Vendor order Sub-Total" />
+        <column xsi:type="decimal" nullable="true" name="base_shipping_discount_amount" scale="4" precision="12" default="0.00" comment="Base Shipping Discount Amount" />
+        <column xsi:type="decimal" name="shipping_discount_amount" scale="4" precision="12" default="0.00" nullable="true" comment="Shipping Discount Amount" />
+        <column xsi:type="decimal" name="bundle_discount_amount" scale="4" precision="12" default="0.00" nullable="true" comment="Bundle Discount Amount" />
+        <column xsi:type="decimal" name="base_bundle_discount_amount" scale="4" precision="12" default="0.00" nullable="true" comment="Base Bundle Discount Amount" />
+        <column xsi:type="decimal" name="discount_tax_compensation_amount" scale="4" precision="12" default="0.00" nullable="true" comment="Discount Tax Compensation Amount" />
+        <column xsi:type="decimal" name="base_discount_tax_compensation_amount" scale="4" precision="12" default="0.00" nullable="true" comment="Base Discount Tax Compensation Amount" />
+        <column xsi:type="decimal" name="shipping_discount_tax_compensation_amount" scale="4" precision="12" default="0.00" nullable="true" comment="Shipping Discount Tax Compensation Amount" />
+        <column xsi:type="decimal" name="base_shipping_discount_tax_compensation_amnt" scale="4" precision="12" default="0.00" nullable="true" comment="Base Shipping Discount Tax Compensation Amount" />
+        <column xsi:type="decimal" name="discount_tax_compensation_invoiced" scale="4" precision="12" default="0.00" nullable="true" comment="Discount Tax Compensation Invoiced" />
+        <column xsi:type="decimal" name="base_discount_tax_compensation_invoiced" scale="4" precision="12" default="0.00" nullable="true" comment="Base Discount Tax Compensation Invoiced" />
+        <column xsi:type="decimal" name="discount_tax_compensation_refunded" scale="4" precision="12" default="0.00" nullable="true" comment="Discount Tax Compensation Refunded" />
+        <column xsi:type="decimal" name="base_discount_tax_compensation_refunded" scale="4" precision="12" default="0.00" nullable="true" comment="Base Discount Tax Compensation Refunded" />
+        <column xsi:type="decimal" name="tax_amount" scale="4" precision="12" default="0.00" nullable="true" comment="Vendor order tax" />
+        <column xsi:type="decimal" name="shipping_amount" scale="4" precision="12" default="0.00" nullable="true" comment="Vendor order shipping amount" />
+        <column xsi:type="decimal" name="giftwrap_amount" scale="4" precision="12" default="0.00" nullable="true" comment="Vendor order giftwrap amount" />
+        <column xsi:type="decimal" name="shipping_tax_amount" scale="4" precision="12" default="0.00" nullable="true" comment="Tax on Shipping charge" />
+        <column xsi:type="varchar" name="shipping_method" length="50" default="" nullable="true" comment="Vendor Order Shipping Method" />
+        <column xsi:type="varchar" name="shipping_method_title" length="50" default="" nullable="true" comment="Vendor Order Shipping Method Title" />
+        <column xsi:type="varchar" name="shipping_carrier" length="50" nullable="true" comment="Vendor Order Shipping carrier" />
+        <column xsi:type="varchar" name="shipping_carrier_title" length="50" nullable="true" comment="Vendor Order Shipping carrier Title" />
+        <column xsi:type="decimal" name="discount_amount" scale="4" precision="12" default="0.00" nullable="true" comment="Discount Amount" />
+        <column xsi:type="varchar" name="discount_description" length="255" default="" nullable="true" comment="Discount Description" />
+        <column xsi:type="decimal" name="grand_total" scale="4" precision="12" default="0.00" nullable="true" comment="grand_total" />
+        <column xsi:type="decimal" name="commission_amount" scale="4" precision="12" default="0.00" nullable="true" comment="commission_amount" />
+        <column xsi:type="decimal" name="discount_canceled" scale="4" precision="12" default="0.00" nullable="false" comment="discount_canceled" />
+        <column xsi:type="decimal" name="discount_invoiced" scale="4" precision="12" default="0.00" nullable="false" comment="discount_invoiced" />
+        <column xsi:type="decimal" name="discount_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="discount_refunded" />
+        <column xsi:type="decimal" name="shipping_canceled" scale="4" precision="12" default="0.00" nullable="false" comment="shipping_canceled" />
+        <column xsi:type="decimal" name="shipping_invoiced" scale="4" precision="12" default="0.00" nullable="false" comment="shipping_invoiced" />
+        <column xsi:type="decimal" name="shipping_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="shipping_refunded" />
+        <column xsi:type="decimal" name="shipping_tax_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="shipping_tax_refunded" />
+        <column xsi:type="decimal" name="subtotal_canceled" scale="4" precision="12" default="0.00" nullable="false" comment="subtotal_canceled" />
+        <column xsi:type="decimal" name="subtotal_invoiced" scale="4" precision="12" default="0.00" nullable="false" comment="subtotal_invoiced" />
+        <column xsi:type="decimal" name="subtotal_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="subtotal_refunded" />
+        <column xsi:type="decimal" name="tax_canceled" scale="4" precision="12" default="0.00" nullable="false" comment="tax_canceled" />
+        <column xsi:type="decimal" name="tax_invoiced" scale="4" precision="12" default="0.00" nullable="false" comment="tax_invoiced" />
+        <column xsi:type="decimal" name="tax_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="tax_refunded" />
+        <column xsi:type="decimal" name="base_subtotal" scale="4" precision="12" default="0.00" nullable="false" comment="base_subtotal" />
+        <column xsi:type="decimal" name="base_discount_amount" scale="4" precision="12" default="0.00" nullable="false" comment="base_discount_amount" />
+        <column xsi:type="decimal" name="base_tax_amount" scale="4" precision="12" default="0.00" nullable="false" comment="base_tax_amount" />
+        <column xsi:type="decimal" name="base_shipping_amount" scale="4" precision="12" default="0.00" nullable="false" comment="base_shipping_amount" />
+        <column xsi:type="decimal" name="base_shipping_tax_amount" scale="4" precision="12" default="0.00" nullable="false" comment="base_shipping_tax_amount" />
+        <column xsi:type="decimal" name="base_grand_total" scale="4" precision="12" default="0.00" nullable="false" comment="base_grand_total" />
+        <column xsi:type="decimal" name="base_discount_canceled" scale="4" precision="12" default="0.00" nullable="false" comment="base_discount_canceled" />
+        <column xsi:type="decimal" name="base_discount_invoiced" scale="4" precision="12" default="0.00" nullable="false" comment="base_discount_invoiced" />
+        <column xsi:type="decimal" name="base_discount_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="base_discount_refunded" />
+        <column xsi:type="decimal" name="base_shipping_canceled" scale="4" precision="12" default="0.00" nullable="false" comment="base_shipping_canceled" />
+        <column xsi:type="decimal" name="base_shipping_invoiced" scale="4" precision="12" default="0.00" nullable="false" comment="base_shipping_invoiced" />
+        <column xsi:type="decimal" name="base_shipping_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="base_shipping_refunded" />
+        <column xsi:type="decimal" name="base_shipping_tax_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="base_shipping_tax_refunded" />
+        <column xsi:type="decimal" name="base_subtotal_canceled" scale="4" precision="12" default="0.00" nullable="false" comment="base_subtotal_canceled" />
+        <column xsi:type="decimal" name="base_subtotal_invoiced" scale="4" precision="12" default="0.00" nullable="false" comment="base_subtotal_invoiced" />
+        <column xsi:type="decimal" name="base_subtotal_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="base_subtotal_refunded" />
+        <column xsi:type="decimal" name="base_tax_canceled" scale="4" precision="12" default="0.00" nullable="false" comment="base_tax_canceled" />
+        <column xsi:type="decimal" name="base_tax_invoiced" scale="4" precision="12" default="0.00" nullable="false" comment="base_tax_invoiced" />
+        <column xsi:type="decimal" name="base_tax_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="base_tax_refunded" />
+        <column xsi:type="decimal" name="base_total_canceled" scale="4" precision="12" default="0.00" nullable="false" comment="base_total_canceled" />
+        <column xsi:type="decimal" name="base_total_invoiced" scale="4" precision="12" default="0.00" nullable="false" comment="base_total_invoiced" />
+        <column xsi:type="decimal" name="base_total_paid" scale="4" precision="12" default="0.00" nullable="false" comment="base_total_paid" />
+        <column xsi:type="decimal" name="base_total_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="base_total_refunded" />
+        <column xsi:type="decimal" name="total_canceled" scale="4" precision="12" default="0.00" nullable="false" comment="total_canceled" />
+        <column xsi:type="decimal" name="total_invoiced" scale="4" precision="12" default="0.00" nullable="false" comment="total_invoiced" />
+        <column xsi:type="decimal" name="total_paid" scale="4" precision="12" default="0.00" nullable="false" comment="total_paid" />
+        <column xsi:type="decimal" name="total_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="total_refunded" />
+        <column xsi:type="decimal" name="subtotal_incl_tax" scale="4" precision="12" default="0.00" nullable="false" comment="subtotal_incl_tax" />
+        <column xsi:type="decimal" name="shipping_incl_tax" scale="4" precision="12" default="0.00" nullable="false" comment="shipping_incl_tax" />
+        <column xsi:type="decimal" name="base_subtotal_incl_tax" scale="4" precision="12" default="0.00" nullable="false" comment="base_subtotal_incl_tax" />
+        <column xsi:type="decimal" name="base_shipping_incl_tax" scale="4" precision="12" default="0.00" nullable="false" comment="base_shipping_incl_tax" />
+        <column xsi:type="decimal" name="total_online_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="total_online_refunded" />
+        <column xsi:type="decimal" name="total_offline_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="total_offline_refunded" />
+        <column xsi:type="decimal" name="base_total_online_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="base_total_online_refunded" />
+        <column xsi:type="decimal" name="base_total_offline_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="base_total_offline_refunded" />
+        <column xsi:type="decimal" name="commission_amount_refunded" scale="4" precision="12" default="0.00" nullable="false" comment="commission_amount_refunded" />
+        <column xsi:type="decimal" name="base_adjustment_positive" scale="4" precision="12" default="0.00" nullable="true" comment="base_adjustment_positive" />
+        <column xsi:type="decimal" name="adjustment_positive" scale="4" precision="12" default="0.00" nullable="true" comment="adjustment_positive" />
+        <column xsi:type="decimal" name="base_adjustment_negative" scale="4" precision="12" default="0.00" nullable="true" comment="base_adjustment_negative" />
+        <column xsi:type="decimal" name="adjustment_negative" scale="4" precision="12" default="0.00" nullable="true" comment="adjustment_negative" />
+        <column xsi:type="varchar" name="payout_status" length="200" default="0.00" nullable="false" comment="payout_status" />
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" comment="Store ID" />
+        <column xsi:type="decimal" name="base_to_global_rate" scale="4" precision="12" nullable="true" comment="Base To Global Rate" />
+        <column xsi:type="decimal" name="base_to_order_rate" scale="4" precision="12" nullable="true" comment="Base To Order Rate" />
+        <column xsi:type="decimal" name="store_to_base_rate" scale="4" precision="12" nullable="true" comment="Store To Base Rate" />
+        <column xsi:type="decimal" name="store_to_order_rate" scale="4" precision="12" nullable="true" comment="Store To Order Rate" />
+        <column xsi:type="varchar" name="base_currency_code" length="3" nullable="true" comment="Base Currency Code" />
+        <column xsi:type="varchar" name="global_currency_code" length="3" nullable="true" comment="Global Currency Code" />
+        <column xsi:type="varchar" name="order_currency_code" length="3" nullable="true" comment="Order Currency Code" />
+        <column xsi:type="varchar" name="store_currency_code" length="3" nullable="true" comment="Store Currency Code" />
+        <column xsi:type="boolean" name="is_confirmed" default="0" nullable="false" comment="Describes that customer order confirmed By Vendor." />
+        <column xsi:type="timestamp" name="confirmed_at" default="NULL" nullable="true" comment="confirmed_at" />
+        <column xsi:type="varchar" name="cancelled_by" length="20" nullable="true" comment="Order Cancelled By Entity" />
+        <column xsi:type="timestamp" name="created_at" default="CURRENT_TIMESTAMP" nullable="false" on_update="false" comment="created_at" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="vendor_order_id"/>
+        </constraint>
+        <index referenceId="RB_VENDOR_ORDER_CONFIRMED_AT" indexType="btree">
+            <column name="confirmed_at"/>
+        </index>
+        <index referenceId="RB_VENDOR_ORDER_IS_CONFIRMED" indexType="btree">
+            <column name="is_confirmed"/>
+        </index>
+        <index referenceId="RB_VENDOR_ORDER_INCREMENT_ID" indexType="btree">
+            <column name="increment_id"/>
+        </index>
+        <index referenceId="RB_VENDOR_ORDER_VENDOR_ID" indexType="btree">
+            <column name="vendor_id"/>
+        </index>
+        <index referenceId="RB_VENDOR_ORDER_ORDER_ID" indexType="btree">
+            <column name="order_id"/>
+        </index>
+        <index referenceId="RB_VENDOR_ORDER_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+        <index referenceId="RB_VENDOR_ORDER_PAYOUT_STATUS" indexType="btree">
+            <column name="payout_status"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="MD_VENDOR_ORDER_VENDOR_ID_MD_VENDOR_VENDOR_ID" table="md_vendor_order" column="vendor_id" referenceTable="md_vendor" referenceColumn="vendor_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="MD_VENDOR_ORDER_ORDER_ID_SALES_ORDER_ENTITY_ID" table="md_vendor_order" column="order_id" referenceTable="sales_order" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+    <!-- md_vendor_order table ends. -->
+    <!-- quote_item table starts. -->
+    <table name="quote_item" resource="default">
+        <column xsi:type="int" name="vendor_id" padding="10" nullable="true" comment="Vendor ID" />
+        <column xsi:type="varchar" name="vendor_sku" length="255" nullable="true" comment="Vendor Product SKU" />
+    </table>
+    <!-- quote_item table ends. -->
+    <!-- sales_order_item table starts. -->
+    <table name="sales_order_item" resource="default">
+        <column xsi:type="int" name="vendor_id" padding="10" nullable="true" comment="Vendor ID" />
+        <column xsi:type="int" name="vendor_order_id" padding="10" nullable="true" comment="Vendor Order ID" />
+        <column xsi:type="varchar" name="vendor_sku" length="255" nullable="true" comment="Vendor Product SKU" />
+        <column xsi:type="varchar" name="cancel_item_reason" length="100" nullable="true" comment="Order Item Cancel Reason" />
+        <column xsi:type="varchar" name="cancel_item_comment" length="100" nullable="true" comment="Order Item Cancel Comment" />
+    </table>
+    <!-- sales_order_item table ends. -->
+    <!-- sales_order table starts. -->
+    <table name="sales_order" resource="default">
+        <column xsi:type="boolean" name="is_split" nullable="false" default="0" comment="Describes that vendor order created or not" />
+        <column xsi:type="boolean" name="is_confirmed" nullable="false" default="0" comment="Describes that customer order confirmed By Admin" />
+        <column xsi:type="varchar" name="order_cancel_reason" length="100" nullable="true" comment="Full Order Cancel Reason" />
+    </table>
+    <!-- sales_order table ends. -->
+    <!-- sales_invoice table starts. -->
+    <table name="sales_invoice" resource="default">
+        <column xsi:type="int" name="vendor_id" padding="10" nullable="true" comment="Vendor ID" />
+        <column xsi:type="int" name="vendor_order_id" padding="10" nullable="true" comment="Vendor Order ID" />
+    </table>
+    <!-- sales_invoice table ends. -->
+
+    <!-- sales_invoice_grid table starts. -->
+    <table name="sales_invoice_grid">
+        <column xsi:type="int" name="vendor_order_id" padding="10" nullable="true" comment="Vendor Order ID" />
+    </table>
+    <!-- sales_invoice_grid table ends. -->
+
+    <!-- sales_shipment_grid table starts. -->
+    <table name="sales_shipment_grid">
+        <column xsi:type="int" name="vendor_order_id" padding="10" nullable="true" comment="Vendor Order ID" />
+    </table>
+    <!-- sales_shipment_grid table ends. -->
+
+    <!-- sales_shipment table starts. -->
+    <table name="sales_shipment" resource="default">
+        <column xsi:type="int" name="vendor_id" padding="10" nullable="true" comment="Vendor ID" />
+        <column xsi:type="int" name="vendor_order_id" padding="10" nullable="true" comment="Vendor Order ID" />
+    </table>
+    <!-- sales_shipment table ends. -->
+    <!-- sales_creditmemo table starts. -->
+    <table name="sales_creditmemo" resource="default">
+        <column xsi:type="int" name="vendor_id" padding="10" nullable="true" comment="Vendor ID" />
+    </table>
+    <!-- sales_creditmemo table ends. -->
+    <!-- catalog_compare_item table starts. -->
+    <table name="catalog_compare_item" resource="default">
+        <column xsi:type="int" name="vendor_id" padding="10" nullable="true" comment="Vendor ID" />
+    </table>
+    <!-- catalog_compare_item table ends. -->
+    <!-- sales_order_grid table starts. -->
+    <table name="sales_order_grid" resource="default">
+        <column xsi:type="boolean" name="is_confirmed" nullable="false" default="0" comment="Describes that customer order confirmed By Admin" />
+    </table>
+    <!-- sales_order_grid table ends. -->
+</schema>

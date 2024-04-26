@@ -1,0 +1,60 @@
+<?php
+/** @var $block Magedelight\Sales\Block\Vendor\Order */
+?>
+<div class="row-gutter">
+    <div class="col-md-2 col-lg-2 col-xl-2">
+        <div class="rbpanel">                
+            <div class="rbpanel-body">
+                <div class="order-summary-wrapper">
+                    <h2><?= $block->getCountOrdersToBeConfirm() ?></h2>
+                    <div class="text-muted"><?= __('Orders') ?></div>
+                    <div class="status success"><?= __('To Be Confirmed') ?></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="col-md-2 col-lg-2 col-xl-2">
+        <div class="rbpanel">
+            <div class="rbpanel-body">
+                <div class="order-summary-wrapper">
+                    <h2><?= $block->getCountOrdersToBePacked() ?></h2>
+                    <div class="text-muted"><?= __('Orders') ?></div>
+                    <div class="status warning"><?= __('To Be Packed') ?></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="col-md-2 col-lg-2 col-xl-2">
+        <div class="rbpanel">
+            <div class="rbpanel-body">
+                <div class="order-summary-wrapper">
+                    <h2><?= $block->getCountOrdersToBeHandover() ?></h2>
+                    <div class="text-muted"><?= __('Orders') ?></div>
+                    <div class="status warning"><?= __('To Be Handover') ?></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="col-md-2 col-lg-2 col-xl-2">
+        <div class="rbpanel">
+            <div class="rbpanel-body">
+                <div class="order-summary-wrapper">
+                    <h2><?= $block->getCountOrdersToBeInTransit() ?></h2>
+                    <div class="text-muted"><?= __('Orders') ?></div>
+                    <div class="status warning"><?= __('Ready For Dispatch') ?></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="col-md-2 col-lg-2 col-xl-2">
+        <div class="rbpanel">
+            <div class="rbpanel-body">
+                <div class="order-summary-wrapper">
+                    <h2><?= $block->getCountOrdersTobeInDelivered() ?></h2>
+                    <div class="text-muted"><?= __('Orders') ?></div>
+                    <div class="status warning"><?= __('Out For Delivery') ?></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>

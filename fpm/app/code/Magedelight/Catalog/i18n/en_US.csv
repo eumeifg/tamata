@@ -1,0 +1,204 @@
+"Choose an Option...","Choose an Option..."
+"Sold by (%1) Vendor","Sold by (%1) Vendor"
+Vendor,Vendor
+Condition,Condition
+Rating,Rating
+Price,Price
+<span>N</span>/A,<span>N</span>/A
+"<span> %1 </span> / 5","<span> %1 </span> / 5"
+"Add To Cart","Add To Cart"
+"View All (%1) Vendors","View All (%1) Vendors"
+"We can't add this item to your shopping cart right now.","We can't add this item to your shopping cart right now."
+"We can't rebuild the index for an undefined product.","We can't rebuild the index for an undefined product."
+"Bad value was supplied.","Bad value was supplied."
+"No vendor found for this product.","No vendor found for this product."
+"The product %1 is not available in the requested quantity from %2, you may choose some other vendor.","The product %1 is not available in the requested quantity from %2, you may choose some other vendor."
+"The Requested quantity is not available from %1, you may add %2 quantity only. You may choose other vendor if available for more quantity.","The Requested quantity is not available from %1, you may add %2 quantity only. You may choose other vendor if available for more quantity."
+"Sold By","Sold By"
+"The requested quantity for ""%1"" is not available.","The requested quantity for ""%1"" is not available."
+"The product was updated in your shopping cart.","The product was updated in your shopping cart."
+"We can't find products matching the selection.","We can't find products matching the selection."
+"In stock","In stock"
+"Out of stock","Out of stock"
+"Add to Wish List","Add to Wish List"
+"Add to Compare","Add to Compare"
+"Learn More","Learn More"
+"Other offers from %1","Other offers from %1"
+"Sold By:","Sold By:"
+<span>N/A</span>,<span>N/A</span>
+"More Vendors","More Vendors"
+"* Required Fields","* Required Fields"
+"Select Vendor","Select Vendor"
+Adding...,Adding...
+Added,Added
+"Add to Cart","Add to Cart"
+"Vendor Product Listing","Vendor Product Listing"
+"Map products with associated vendors","Map products with associated vendors"
+"Vendor Sku","Vendor Sku"
+"Product Name","Product Name"
+Price,Price
+"Special Price","Special Price"
+Quantity,Quantity
+"Edit Product","Edit Product"
+Edit,Edit
+Qty,Qty
+"Special From Date","Special From Date"
+"Special To Date","Special To Date"
+"My Listing","My Listing"
+"Product saved successfully","Product saved successfully"
+"Product data not found","Product data not found"
+"Please select product(s).","Please select product(s)."
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"Product list successfully !","Product list successfully !"
+"Product Unlist successfully !","Product Unlist successfully !"
+"Product data not found.","Product data not found."
+"* Required Fields","* Required Fields"
+"Product Name, Vendor SKU...","Product Name, Vendor SKU..."
+Search,Search
+Reset,Reset
+Export,Export
+"View Only Out Of Stock","View Only Out Of Stock"
+Action,Action
+Unlist,Unlist
+"Product Image","Product Image"
+"Quick edit Offer and Inventory","Quick edit Offer and Inventory"
+"Quick Edit","Quick Edit"
+"Your search result could not find.","Your search result could not find."
+"You have no products to display.","You have no products to display."
+"Product Summary","Product Summary"
+"This Product no longer exists.","This Product no longer exists."
+SKU:,SKU:
+"Price on MarketPlace:","Price on MarketPlace:"
+more,more
+"Minimum price will be calculate whether it price or special price. Marketplace Fees, Marketplace Commission, and Service Tax will be deduct from minimum price. The commission, marketplace fees and service tax are based on the current commission and payment settings. The actual charges may vary depending on date of order.","Minimum price will be calculate whether it price or special price. Marketplace Fees, Marketplace Commission, and Service Tax will be deduct from minimum price. The commission, marketplace fees and service tax are based on the current commission and payment settings. The actual charges may vary depending on date of order."
+Category:,Category:
+" , "," , "
+"Your Price","Your Price"
+"Your Quantity","Your Quantity"
+"Reorder Level","Reorder Level"
+"Sale Date","Sale Date"
+"Start Date","Start Date"
+"End Date","End Date"
+Submit,Submit
+"Please enter special price less than price.","Please enter special price less than price."
+"Select Date","Select Date"
+Approved,Approved
+Pending,Pending
+Disapproved,Disapproved
+Delete,Delete
+List,List
+Image,Image
+"Requested for Edit","Requested for Edit"
+Yes,Yes
+No,No
+Reason,Reason
+Resubmit,Resubmit
+"Product request disapproved reason.","Product request disapproved reason."
+"Sale Start Date","Sale Start Date"
+"Sale End Date","Sale End Date"
+OK,OK
+Cancel,Cancel
+products,products
+Live,Live
+"Non Live","Non Live"
+"Unable to open file!","Unable to open file!"
+"Click here to download","Click here to download"
+"Guidelines - Bulkimport","Guidelines - Bulkimport"
+"Your offer(s) has been successfully applied.","Your offer(s) has been successfully applied."
+"Failed to apply your offer(s). Please try again. %1","Failed to apply your offer(s). Please try again. %1"
+"Please check following mandatory fields in your csv file : [ %1 ]","Please check following mandatory fields in your csv file : [ %1 ]"
+"exception, %1","exception, %1"
+"Email could not be sent. Please try again or contact us.","Email could not be sent. Please try again or contact us."
+"Something went wrong. Please try again.","Something went wrong. Please try again."
+"Your catalog has been successfully imported.","Your catalog has been successfully imported."
+"Failed to import data. Please try again. %1","Failed to import data. Please try again. %1"
+"Your csv file contains invalid data.","Your csv file contains invalid data."
+"Invalid file format. Please upload file of type csv.","Invalid file format. Please upload file of type csv."
+"Configurable product(s) can not be a variant , Please check your configuration.","Configurable product(s) can not be a variant , Please check your configuration."
+"Selected category and category in csv file does not match.","Selected category and category in csv file does not match."
+"Vendor sku already exists in pending request","Vendor sku already exists in pending request"
+"Please check variant combinations for the configurable products, seems duplicate/invalid data.","Please check variant combinations for the configurable products, seems duplicate/invalid data."
+"Please check super_sku in your csv file. If product haven't variants than it must be blank","Please check super_sku in your csv file. If product haven't variants than it must be blank"
+"Bulk Import Product Request","Bulk Import Product Request"
+"Bulk Import","Bulk Import"
+"Category Name","Category Name"
+"Attribute Name","Attribute Name"
+"View Valid Attributes Value","View Valid Attributes Value"
+View,View
+"No results matched.","No results matched."
+"Select Some Options","Select Some Options"
+Bulk-Import,Bulk-Import
+"Download Catalogue Template","Download Catalogue Template"
+"Upload Catalogue","Upload Catalogue"
+"Bulk Offer Update","Bulk Offer Update"
+"Download Category Template","Download Category Template"
+"Step 1: Image Upload","Step 1: Image Upload"
+Help,Help
+"Choose file(s)","Choose file(s)"
+Upload,Upload
+"Upload image with dimension","Upload image with dimension"
+"(' . . 'X' . . ')","(' . . 'X' . . ')"
+"Please avoid following special characters in fields images & base_image. - [+,%]","Please avoid following special characters in fields images & base_image. - [+,%]"
+"File(s) once uploaded irrespective of catalog file in step2, need not require to be uploaded again.","File(s) once uploaded irrespective of catalog file in step2, need not require to be uploaded again."
+"Step 2: Catalogue Upload","Step 2: Catalogue Upload"
+"Select Category","Select Category"
+"Choose a file","Choose a file"
+"Bulk Offer Template ","Bulk Offer Template "
+Download,Download
+"Step-1: Image Upload","Step-1: Image Upload"
+"Upload image with dimension(1500X1500)","Upload image with dimension(1500X1500)"
+"Step-2: Catalogue Upload","Step-2: Catalogue Upload"
+"Fields Description","Fields Description"
+Name,Name
+"Enter the name of the product.","Enter the name of the product."
+marketplace_product_id,marketplace_product_id
+"Leave it blank for new product creation. You need to enter the marketplace_product_id only if you wish to edit the existing product.","Leave it blank for new product creation. You need to enter the marketplace_product_id only if you wish to edit the existing product."
+has_variants,has_variants
+"Insert one of the given options. 0 - For Simple product, 1 - For Configurable product.","Insert one of the given options. 0 - For Simple product, 1 - For Configurable product."
+vendor_sku,vendor_sku
+"Each product is identified by a unique vendor sku. You can enter a alphanumerical value.","Each product is identified by a unique vendor sku. You can enter a alphanumerical value."
+super_sku,super_sku
+"Leave it blank for creating Simple product. For Configurable product, you need to specify vendor_sku of parent/main product in this field.","Leave it blank for creating Simple product. For Configurable product, you need to specify vendor_sku of parent/main product in this field."
+price,price
+"Enter the price of the product in this field.","Enter the price of the product in this field."
+special_price,special_price
+"It is the selling price which you use to provide a discount on your product.","It is the selling price which you use to provide a discount on your product."
+"Bulk offer update","Bulk offer update"
+"Required fields","Required fields"
+"Vendor_sku – Each product is identified by a unique vendor sku. You can enter a alphanumerical value.","Vendor_sku – Each product is identified by a unique vendor sku. You can enter a alphanumerical value."
+"Qty – Enter the quantity of the product you have for sale","Qty – Enter the quantity of the product you have for sale"
+"Price - Enter the unit price for this product.","Price - Enter the unit price for this product."
+"Optional fields","Optional fields"
+"special_price - It is the selling price which you use to provide a discount on your product.","special_price - It is the selling price which you use to provide a discount on your product."
+"special_from_date – Start date of special price","special_from_date – Start date of special price"
+"special_to_date – End date of special price","special_to_date – End date of special price"
+"reorder_level - Enter a minimum amount of value such that, when stock falls to this amount, the item must be reordered.","reorder_level - Enter a minimum amount of value such that, when stock falls to this amount, the item must be reordered."
+"MP SKU","MP SKU"
+MPID,MPID
+"Bulk products have been successfully uploaded.","Bulk products have been successfully uploaded."
+"Attribute Option Values","Attribute Option Values"
+Close,Close
+"Please upload a file.","Please upload a file."
+"Please upload appropriate image size. (Maximum 2MB)","Please upload appropriate image size. (Maximum 2MB)"
+Uploading..,Uploading..
+" File(s) uploaded successfully."," File(s) uploaded successfully."
+"Please select category.","Please select category."
+"Please select file of appropriate size(Max. 2MB).","Please select file of appropriate size(Max. 2MB)."
+"Please upload csv file only.","Please upload csv file only."
+"Request Status: ","Request Status: "
+" Status Text: "," Status Text: "
+"Please select appropriate file size(Maximum 512 KB).","Please select appropriate file size(Maximum 512 KB)."
+"Select Category To Proceed From Drop Down.","Select Category To Proceed From Drop Down."
+"Licence Detail","Licence Detail"
+"Serial Key","Serial Key"
+"Activation Key","Activation Key"
+"General Settings","General Settings"
+Enable,Enable
+"Email Enable","Email Enable"
+"Image Width","Image Width"
+"Image Height","Image Height"
+"Admin Email","Admin Email"
+"Bulk Product Listing","Bulk Product Listing"
+products,products
+Guidelines,Guidelines,
+"We couldn't find any records.","We couldn't find any records."

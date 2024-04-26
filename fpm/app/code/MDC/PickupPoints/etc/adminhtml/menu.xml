@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MDC_PickupPoints::pickupspoints" title="Manage Pickup Points" module="MDC_PickupPoints"
+             sortOrder="10000" resource="MDC_PickupPoints::pickupspoints" parent="Ktpl_Core::menu"/>
+        <add action="pickuppoints/index/index" id="MDC_PickupPoints::addpickups" module="MDC_PickupPoints"
+             parent="MDC_PickupPoints::pickupspoints" resource="MDC_PickupPoints::addpickups" sortOrder="10"
+             title="Pickup Points"/>
+    </menu>
+</config>

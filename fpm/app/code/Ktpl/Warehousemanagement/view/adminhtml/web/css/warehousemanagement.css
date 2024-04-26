@@ -1,0 +1,12 @@
+/*
+ * Copyright © 2019 Krish Technolabs. All rights reserved.
+ * See COPYING.txt for license details
+ */
+
+.ktpl_warehousemanagement-warehousemanagement-index .main-col {
+    display: none;
+}
+
+.ktpl_warehousemanagement-warehousemanagement-indexreturn .main-col {
+    display: none;
+}

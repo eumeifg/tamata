@@ -1,0 +1,48 @@
+<?php
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_MegaMenu
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+
+$sellers = $block->getBestSellersCollection(6);
+?>
+<?php if ($sellers && $sellers->getSize()) : ?>
+    <div class="menu-top-partners">
+        <h3><?=  $block->escapeHtml(__('Top Partners')); ?></h3>
+        <ol id="top_partners_content" class="top-partners-content">
+            <?php $iterator = 1; ?>
+            <?php foreach ($sellers as $seller) : ?>
+                <?=  ($iterator++ == 1) ? '<li class="seller">' : '</li><li class="seller">' ?>
+                <div class="seller-info">
+                    <div class="seller-image">
+                        <?php if ($block->getMicrositeUrl($seller)) { ?>
+                        <a title="<?= $block->escapeHtml($seller->getBusinessName()) ?>" href="<?=  $block->escapeHtml($block->getMicrositeUrl($seller)) ?>">
+                            <img src="<?= $block->escapeHtml($block->getSellerLogo($seller)); ?>" alt="<?= $block->escapeHtml($seller->getBusinessName()) ?>"/>
+                        </a>
+                        <?php } else { ?>
+                           <img src="<?= $block->escapeHtml($block->getSellerLogo($seller)); ?>" alt="<?= $block->escapeHtml($seller->getBusinessName()) ?>"/> 
+                        <?php } ?>
+                    </div>
+                    <div class="seller-name">
+                        <?php if ($block->getMicrositeUrl($seller)) { ?>
+                        <a title="<?= $block->escapeHtml($seller->getBusinessName()) ?>"
+                           href="<?=  $block->escapeHtml($block->getMicrositeUrl($seller)) ?>" >
+                            <?= $block->escapeHtml($seller->getBusinessName()) ?>
+                        </a>
+                        <?php } else { ?>
+                            <?= $block->escapeHtml($seller->getBusinessName()) ?>
+                        <?php } ?>
+                    </div>
+                </div>
+                <?= ($iterator == count($sellers)+1) ? '</li>' : '' ?>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+<?php endif;?>

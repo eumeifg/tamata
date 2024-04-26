@@ -1,0 +1,99 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+<?php
+    $images = $block->getGalleryImages()->getItems();
+    $mainImage = current(array_filter($images, function ($img) use ($block) {
+        return $block->isMainImage($img);
+    }));
+
+    if (!empty($images) && empty($mainImage)) {
+        $mainImage = $block->getGalleryImages()->getFirstItem();
+    }
+
+    $helper = $block->getData('imageHelper');
+    $mainImageData = $mainImage ?
+        $mainImage->getData('medium_image_url') :
+        $helper->getDefaultPlaceholderUrl('image');
+
+?>
+
+<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <img
+        alt="main product photo"
+        class="gallery-placeholder__image"
+        src="<?= /* @noEscape */ $mainImageData ?>"
+    />
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?= /* @escapeNotVerified */ $block->getMagnifier() ?>,
+                "data": <?= /* @escapeNotVerified */ $block->getGalleryImagesJson() ?>,
+                "options": <?= /* @noEscape */ $block->getGalleryOptions()->getOptionsJson() ?>,
+                "fullscreen": <?= /* @noEscape */ $block->getGalleryOptions()->getFSOptionsJson() ?>,
+                "breakpoints": <?= /* @escapeNotVerified */ $block->getBreakpoints() ?>,
+                 "maxheight": "844"
+            }
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
+    require(['jquery'], function($){
+        $(document).ready(function () {
+                $('a#show').click(function() {
+                    $('li.review-item').show();
+                    $('.more-review').hide();
+            });
+
+            if ($(".overvw_n_specfc_short_description")[0]){
+                $('.overvw_n_specfc_description').css
+
+                ("display", "none");
+            } else {
+                $('.overvw_n_specfc_short_description').css("display", "none");
+            }
+
+            $( "<div class='description_plus_specification' > </div>" ).insertAfter(".product-wrapper-sticky");
+
+            if( ($(".product.attribute.overview")[0]) || ($(".product.attribute.description")[0]) || ($(".product.attribute")[0])){
+                $('<h3 class="additional_attributes_detail"> <p class="overvw_n_specfc_short_description"><?php echo __('Overview & Specifications') ?>  </p> </h3> <div data-role="content" class="description_body"> </div> ').appendTo('.description_plus_specification');
+            }
+
+            if ($(".product.attribute.overview")[0]){
+                $(".product.attribute.overview").appendTo('.description_body');
+            }
+            if ($(".product.attribute.description")[0]){
+                $(".product.attribute.description").appendTo('.description_body');
+            }
+            if ($(".product.attribute")[0]){
+                $(".product.attribute").appendTo('.description_body');
+            }        
+
+            if (/iP(od|hone)/i.test(window.navigator.userAgent) || /IEMobile/i.test(window.navigator.userAgent) || /Windows Phone/i.test(window.navigator.userAgent) || /BlackBerry/i.test(window.navigator.userAgent) || /BB10/i.test(window.navigator.userAgent) || /Android.*Mobile/i.test(window.navigator.userAgent)) {
+                
+               $('.description_plus_specification').click(function(){
+                    $('.description_body').slideToggle('slow');
+                })    
+
+              }            
+        });
+    });
+</script>

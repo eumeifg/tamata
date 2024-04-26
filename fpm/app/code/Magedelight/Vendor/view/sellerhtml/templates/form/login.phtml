@@ -1,0 +1,289 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ *
+ * @var $block \Magedelight\Vendor\Block\Sellerhtml\Form\Login
+ */
+$helper = $this->helper(\Magedelight\Vendor\Helper\Data::class);
+?>
+
+<div class="logmod">
+  <div class="logmod__wrapper">
+    <div class="logmod__container">
+        <?= $this->getChildHtml('additional_content_before_login'); ?>
+      <ul class="logmod__tabs">
+        <li data-tabtar="lgm-2"><a href="#"><?= __('Login') ?></a></li>
+        <li data-tabtar="lgm-1"><a href="#"><?= __('Sign Up') ?></a></li>
+      </ul>
+        <div class="logmod__tab-wrapper">
+            <div class="logmod__tab lgm-1">
+                <div class="logmod__form">
+                  <form name="vendor_registration" id="vendor-registration" class="simform" enctype="multipart/form-data" method="post" action="<?= $this->getRegisterPostActionUrl() ?>">
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="user-name"><?= __('Email') ?>*</label>
+                        <input name="email" id="email" title="<?= __('Email') ?>" maxlength="255" size="50" placeholder="<?= __('Email') ?>" class="string required-entry validate-email2" type="email" />
+                      </div>
+                    </div>
+                    <div class="sminputs">
+                      <div class="input string optional">
+                        <label class="string optional" for="user-pw"><?= __('Phone Number') ?>*</label>
+                        <input name="mobile" id="mobile" title="<?= __('Phone Number') ?>" value="" class="string required-entry validate-digits validate-phone-international" maxlength="10" type="text" placeholder="<?= __('Phone Number') ?>" />
+                        <input name="country_code" id="country_code" type="hidden" />
+                      </div>
+                    </div>
+                    <?php if ($helper->useWizard()) { ?>
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="name"><?= __('Full Name') ?>*</label>
+                        <input name="name" id="name" title="<?= __('Enter your full name') ?>" maxlength="255" size="50" placeholder="<?= __('Enter your full name') ?>" class="string required-entry" type="text" />
+                      </div>
+                    </div>
+                      
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="password"><?= __('Create Password') ?>*</label>
+                        <input name="password" id="password" title="<?= __('Create Password') ?>" class="input-text required-entry validate-custom-pswd"   type="password" placeholder="Create Password"  minlength="6"/>
+                      </div>
+                    </div>
+                      
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="cpassword"><?= __('Confirm Password') ?>*</label>
+                        <input name="cpassword" id="cpassword" title="<?= __('Confirm Password') ?>" class="input-text required-entry validate-cpassword"  type="password" placeholder="Enter Confirm Password " />
+                      </div>
+                    </div>
+                    <?php } ?>
+                    <div class="simform__actions">
+                        <button class="action sumbit" name="commit" type="sumbit" title="<?= __('Create Account') ?>">
+                            <span><?= __("Create Account"); ?></span>
+                        </button>
+                    </div> 
+                  </form>
+                </div> 
+            </div>
+          
+            <div class="logmod__tab lgm-2"> 
+                <div class="logmod__form">
+                    <form class="simform" action="<?= /* @escapeNotVerified */ $block->getPostActionUrl() ?>" method="post" id="login-form" data-mage-init='{"validation":{}}'>
+                    <?= $block->getBlockHtml('formkey'); ?>
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="user-name"><?= /* @escapeNotVerified */ __('Email') ?>*</label>
+                        <input name="login[username]" value="<?= $block->escapeHtml($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()) :
+                            ?> autocomplete="off"<?php
+                                                             endif; ?> id="email" type="email" placeholder="<?= /* @escapeNotVerified */ __('Email') ?>" autofocus class="string required-entry" title="<?= /* @escapeNotVerified */ __('Email') ?>" data-validate="{required:true, 'validate-email':true}">
+                      </div>
+                    </div>
+                    <div class="sminputs">
+                      <div class="input full">
+                        <label class="string optional" for="user-pw"><?= /* @escapeNotVerified */ __('Password') ?>*</label>
+                        <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()) :
+                            ?> autocomplete="off"<?php
+                                                                      endif; ?> placeholder="<?= /* @escapeNotVerified */ __('Password') ?>" class="string required-entry" id="pass" title="<?= /* @escapeNotVerified */ __('Password') ?>"  data-validate="{required:true, 'validate-password':false}">
+                        <span class="hide-password">Show</span>
+                      </div>
+                    </div>
+                    <div class="simform__actions">
+                        <span class="simform__actions-sidetext"><a class="special" role="link" title="<?= __('Forgot your password') ?>" href="<?= /* @escapeNotVerified */ $block->getForgotPasswordUrl() ?>"><?= __('Forgot your password') ?>?</a></span>
+                        <button class="action sumbit" name="commit" type="sumbit" title="<?= __('Log In') ?>">
+                            <span><?= __("Log In");?></span>
+                        </button>
+                    </div> 
+                  </form>
+                </div> 
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+<script type="text/javascript">
+require([
+    'jquery', 
+    'jquery/ui',
+    'jquery/validate', 
+    'mage/mage',
+    'mage/translate', 
+    'intltelinpututil', 
+    'Magedelight_Vendor/build/js/intlTelInput' 
+], function($){
+    
+    var LoginModalController = {
+    tabsElementName: ".logmod__tabs li",
+    tabElementName: ".logmod__tab",
+    inputElementsName: ".logmod__form .input",
+    hidePasswordName: ".hide-password",
+    
+    inputElements: null,
+    tabsElement: null,
+    tabElement: null,
+    hidePassword: null,
+    
+    activeTab: null,
+    tabSelection: 0, // 0 - first, 1 - second
+    
+    findElements: function () {
+        var base = this;
+        
+        base.tabsElement = $(base.tabsElementName);
+        base.tabElement = $(base.tabElementName);
+        base.inputElements = $(base.inputElementsName);
+        base.hidePassword = $(base.hidePasswordName);
+        
+        return base;
+    },
+    
+    setState: function (state) {
+        var base = this,
+            elem = null;
+        
+        if (!state) {
+            state = 0;
+        }
+        
+        if (base.tabsElement) {
+            elem = $(base.tabsElement[state]);
+            elem.addClass("current");
+            $("." + elem.attr("data-tabtar")).addClass("show");
+        }
+  
+        return base;
+    },
+    
+    getActiveTab: function () {
+        var base = this;
+        
+        base.tabsElement.each(function (i, el) {
+           if ($(el).hasClass("current")) {
+               base.activeTab = $(el);
+           }
+        });
+        
+        return base;
+    },
+   
+    addClickEvents: function () {
+        var base = this;
+        
+        base.hidePassword.on("click", function (e) {
+            var $this = $(this),
+                $pwInput = $this.prev("input");
+            
+            if ($pwInput.attr("type") == "password") {
+                $pwInput.attr("type", "text");
+                $this.text("Hide");
+            } else {
+                $pwInput.attr("type", "password");
+                $this.text("Show");
+            }
+        });
+ 
+        base.tabsElement.on("click", function (e) {
+            var targetTab = $(this).attr("data-tabtar");
+            
+            e.preventDefault();
+            base.activeTab.removeClass("current");
+            base.activeTab = $(this);
+            base.activeTab.addClass("current");
+            
+            base.tabElement.each(function (i, el) {
+                el = $(el);
+                el.removeClass("show");
+                if (el.hasClass(targetTab)) {
+                    el.addClass("show");
+                }
+            });
+        });
+        
+        base.inputElements.find("label").on("click", function (e) {
+           var $this = $(this),
+               $input = $this.next("input");
+            
+            $input.focus();
+        });
+        
+        return base;
+    },
+
+        initialize: function () {
+            var base = this;
+
+            base.findElements().setState().getActiveTab().addClickEvents();
+        }
+    };
+
+    $(document).ready(function() {
+        LoginModalController.initialize();
+    });
+
+
+    vendorForm = $('#vendor-registration');
+    var ignore = null;
+    $validator = vendorForm.mage('validation', {
+        ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+    }).find('input:text').attr('autocomplete', 'off');
+    
+    var telInput = $("#mobile");
+    var allowCountry = "<?= strtolower($this->getAllowCountry()); ?>";
+
+    var AC = allowCountry.split(",");
+
+   telInput.intlTelInput({
+      responsiveDropdown: 1,
+      onlyCountries: AC,
+      nationalMode: 0,
+      autoFormat: 0,
+      initialCountry: '<?= strtolower($this->getDefaultCountry()); ?>',
+      /*utilsScript: "intltelinpututil",*/
+      autoPlaceholder: "off",
+      separateDialCode: true
+      
+    });
+
+   
+    $dialCode = $('.country-list li.country.active').attr('data-dial-code');
+    $paddingLeft = ($dialCode.toString().length + 1) * 15;
+    
+    /*$('.selected-flag').appendchild("+" + $('.country-list li.country.active').attr('data-dial-code'));*/
+    $(telInput).css('padding-left',$paddingLeft.toString() + 'px');
+    $.validator.addMethod(
+        'validate-email2',
+        function (v) {
+            return $.mage.isEmptyNoTrim(v) || /^([a-z0-9,!\#\$%&'\*\+\/=\?\^_`\{\|\}~-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z0-9,!\#\$%&'\*\+\/=\?\^_`\{\|\}~-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*@([a-z0-9-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z0-9-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*\.(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]){2,})$/i.test(v);
+        },
+        $.mage.__('Please enter a valid email address.')
+    );
+    $.validator.addMethod(
+        'validate-phone-international',
+        function (v) {
+            var isValidNumber;
+            if(isValidNumber = telInput.intlTelInput("isValidNumber")){
+                $('#country_code').val($('.country-list li.country.active').attr('data-dial-code'));
+            }else{
+                $('#country_code').val('');
+            }
+            return isValidNumber;
+        },
+        $.mage.__('Please enter a valid mobile number.')
+    );
+    $('#mobile').keypress(function (e) {
+        var a = [];
+        var k = e.which;
+
+        for (i = 48; i < 58; i++)
+            a.push(i);
+
+        if ((!(a.indexOf(k) >= 0)) || ($(this).val().length >= 10))
+            e.preventDefault();
+
+    });
+});
+</script>

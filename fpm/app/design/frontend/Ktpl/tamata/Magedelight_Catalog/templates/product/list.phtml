@@ -1,0 +1,200 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper('\Magento\Catalog\Helper\Output');
+$loggedIn = true;
+$loggedIn = $this->helper('\Magedelight\Theme\Helper\Data')->isCustomerLogIn();
+
+$thresholdQtyHelper = $this->helper('MDC\Catalog\Helper\OnlyXLeft');
+
+?>
+
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?>
+    <?php echo $block->getToolbarHtml() ?>
+    <?php echo $block->getAdditionalHtml() ?>
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $image = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $image = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+    <div class="prods-with-toolbar">
+    <div class="products wrapper <?php /* @escapeNotVerified */ echo $viewMode; ?> products-<?php /* @escapeNotVerified */ echo $viewMode; ?>">
+        <?php $iterator = 1; ?>
+        <ol class="products list items product-items">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($_productCollection as $_product): ?>
+                 <?=($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                <div class="product-item-info" data-container="product-grid">
+                    <div class="prod-list-imgbox">
+                        <?php
+                        $productImage = $block->getImage($_product, $image);
+                        if ($pos != null) {
+                            $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                                . 'top:' . $productImage->getHeight() . 'px;"';
+                        }
+                        ?>
+                        <?php /* Product Image */ ?>
+                        <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                            <?php echo $productImage->toHtml(); ?>
+                        </a>
+                    </div>
+
+                    <div class="product details product-item-details">
+
+                        <!-- /*.....Custom review section Start.....*/ -->
+                        <?php //if ($block->canShowReview()) : ?>
+                            <?php
+                                $productId = $_product->getId();
+                                $ratingData = $this->getLayout()->createBlock('Ktpl\Productslider\Block\CategoryId')->getReviewSummary($productId);
+                                $ratingSummary = $ratingData['ratingSummary'];
+                                $ratingSummaryCount = ((5*$ratingSummary)/100);
+                                $reviewCount = $ratingData['reviewCount'];
+                                ?>
+
+                                <?php 
+                                    if($_product->getTypeId() === "simple"){
+                                        $thresoldStatus = $thresholdQtyHelper->getProductXleftById($productId);
+
+                                        if($thresoldStatus["status"] && $thresoldStatus["qty"] > 0){ ?>
+
+                                            <div class="listing-view-only-few-lefts">
+                                                <div class="availability only" title="Only <?php echo $thresoldStatus['qty'];?> left">
+                                                    <?= __('Only %1 left!',"<strong>".$thresoldStatus["qty"]."</strong>") ?>
+                                                </div>
+                                            </div>
+
+                                        <?php }else{ ?>
+                                                <div class="listing-view-only-few-lefts">
+                                                    <div class="availability only empty"> 
+                                                    </div>
+                                                </div>
+                                            <?php
+                                        }
+                                    }else{
+                                        ?>
+                                         <div class="listing-view-only-few-lefts">
+                                                <div class="availability only empty"> 
+                                                </div>
+                                            </div>
+                                        <?php
+                                    }
+                                ?>
+                                
+                                <?php if ($ratingSummary) { ?>
+                                <div class="product-reviews-summary short">
+                                    <div class="rating-summary">
+                                        <div title="<?php echo (int)$ratingSummary; ?>%" class="rating-result">
+                                            <span style="width:<?php echo (int)$ratingSummary; ?>%"><span><?php echo (int)$ratingSummary; ?>%</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-actions">
+                                        <?php echo number_format($ratingSummaryCount, 1); ?>
+                                    </div>
+                                </div>
+                            <?php  } else { ?>
+                                <div class="short empty">
+                                    <div class="reviews-actions">
+                                        <a class="action add" href="<?= $_product->getProductUrl().'#review-form' ?>">
+                                            <?= $block->escapeHtml(__('Write a Review')) ?>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        <?php //endif; ?>
+                        <!-- /*.....Custom review section End.....*/ -->
+                        
+                        <?php
+                            $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                        ?>
+                        <strong class="product name product-item-name">
+                            <a class="product-item-link"
+                               href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+                                <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+                            </a>
+                        </strong>
+
+                        <!-- Add to wishlist feature  -->
+                         <div data-role="add-to-links" class="actions-secondary add-wish"<?= strpos($pos, $viewMode . '-secondary') ? $position : '' ?>>
+                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                        <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
+                                    <?php endif; ?>
+                        </div>
+                        <!-- Add to wishlist feature  -->
+
+                        <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>
+                        
+                                        
+                    </div>
+                </div>
+                <?php echo($iterator == count($_productCollection)+1) ? '</li>' : '' ?>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+    <?php echo $block->getToolbarHtml() ?>
+</div>
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {}
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+
+         $(document).ready(function(){
+           $(".product.details.product-item-details .actions-secondary.add-wish").attr("style", "");
+            });
+
+            var isLoggedin = <?php echo $loggedIn ? 1 : 0; ?>;
+            if (isLoggedin == 0) {
+                $('[data-action="ajax-add-to-wishlist"]').each(function(index, element) {
+                    $(element).click(function(event){
+                        event.stopPropagation();
+                        event.preventDefault();
+                        $(this).attr('rel','ajaxwishlist');
+                        $('.header.links .link-login .social-login').attr('rel','ajaxwishlist').trigger('click');
+                    });
+                });
+            }
+    });
+</script>
+
+<style>
+      a.action.tocompare {
+            display: none;
+    }
+    .page-products.rtl_layout .products-list li.product-item .product-item-details .actions-secondary .towishlist span {display: none }
+    html[lang=ar] .products-grid .actions-secondary .action.towishlist span {display: none;}
+    .catalog-category-view .product-item .price-box span.saving_price.sly-old-price {
+display: none;
+}
+</style>

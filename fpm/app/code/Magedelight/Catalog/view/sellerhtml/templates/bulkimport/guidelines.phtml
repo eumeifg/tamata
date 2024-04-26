@@ -1,0 +1,120 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php $helper = $this->helper('Magedelight\Catalog\Helper\Data'); ?>
+<div class="bulkimport-guidelines">       
+<div class="bulkimport-step2">
+    <div class="title"><?= __('Step-1: Image Upload');?></div>
+
+<div class="field-description-wrapper">
+    <div class="field-description-container">
+        <ul>
+                <li>
+                    <?= __('Upload square image(s) with maximum dimension'); ?>
+                    <?= ('('.$helper->getImageWidth().'X'.$helper->getImageHeight().')');?>
+                </li>
+                <li>
+                        <?= __('Please avoid following special characters in fields images & base_image. - [+,%]');?>
+                </li>
+
+                <li>
+                        <?= __('File(s) once uploaded irrespective of catalog file in step2, need not require to be uploaded again.');?>
+                </li>
+                </ul>
+</div>
+</div>
+</div>   
+<div class="bulkimport-step2">
+    <div class="title"><?= __('Step-2: Catalogue Upload');?></div>
+
+<div class="field-description-wrapper">
+    <div class="field-description-container">
+        <h2><?= __('Fields Description');?></h2>
+
+            <ul>
+                <li>
+                    <strong><?= __('Name');?></strong>
+                    <?= __('Enter the name of the product.');?>
+                </li>
+
+                <li>
+                    <strong><?= __('has_variants');?></strong>
+                    <?= __('Insert one of the given options. 0 - For Simple product, 1 - For Configurable product.');?>
+                </li>
+
+                <li>
+                    <strong><?= __('vendor_sku');?></strong>
+                    <?= __('Each product is identified by a unique vendor sku. You can enter a alphanumerical value.');?>
+                </li>
+
+                <li>
+                    <strong><?= __('super_sku');?></strong>
+                    <?= __('Leave it blank for creating Simple product. For Configurable product, you need to specify vendor_sku of parent/main product in this field.');?>
+                </li>
+
+                 <li>
+                    <strong><?= __('price');?></strong>
+                    <?= __('Enter the price of the product in this field.');?>
+                </li>
+
+                 <li>
+                    <strong><?= __('special_price');?></strong>
+                    <?= __('It is the selling price which you use to provide a discount on your product.');?>
+                </li>                
+
+            </ul>
+</div>
+</div>
+
+
+   
+</div>
+<div class="bulkimport-step2">
+    <div class="title"><?= __('Bulk offer update');?></div>
+
+<div class="field-description-wrapper">
+    <div class="field-description-container">
+         <h2><?= __('Required fields');?></h2>
+
+            <ul>
+                <li>
+                    <?= __('Vendor_sku – Each product is identified by a unique vendor sku. You can enter a alphanumerical value.');?>
+                </li>
+                <li>
+                        <?= __('Qty – Enter the quantity of the product you have for sale');?>
+                </li>
+
+                <li>
+                        <?= __('Price - Enter the unit price for this product.');?>
+                </li>
+            </ul>
+            <h2><?= __('Optional fields');?></h2>   
+            <ul>
+                <li>
+                    <?= __('special_price - It is the selling price which you use to provide a discount on your product.');?>
+                </li>
+                <li>
+                        <?= __('special_from_date – Start date of special price');?>
+                </li>
+
+                <li>
+                        <?= __('special_to_date – End date of special price');?>
+                </li>
+                 <li>
+                        <?= __('reorder_level - Enter a minimum amount of value such that, when stock falls to this amount, the item must be reordered.');?>
+                </li>
+            </ul> 
+</div>
+</div>
+</div> 
+</div> 
+

@@ -1,0 +1,90 @@
+<?php $_product = $block->getProduct(); ?>
+<?php $addToCartTitle = __('Add to Cart 1111'); ?>
+<?php if ($_product->isSaleable()): ?>
+    <div data-bind="scope: 'addtocartbuynow'" class="addtocart-buynow">
+        <div class="addtobag-buynow-box">
+            <div class="fieldset">
+                <div class="actions">
+                    <button type="submit"
+                            title="<?php /* @escapeNotVerified */ echo __($addToCartTitle) ?>"
+                            id="product-addtocart-button"
+                            class="action primary tocart addtobagbtn"
+                            data-bind='click: addToCartClick'>
+                        <span><?= /* @escapeNotVerified */ $addToCartTitle ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <?php // Add ByNow button ?>
+        
+            <button type="submit"
+                    title="<?php /* @escapeNotVerified */ echo __('Buy Now') ?>"
+                    id="buy-now"
+                    class="action primary buynow"
+                    data-bind='click: buyNowClick'>
+                <span><?php /* @escapeNotVerified */ echo __('Buy Now') ?></span>
+            </button>
+        
+    </div>
+<?php endif; ?>
+
+
+
+<?php //AddToCart script ?>
+<?php if ($block->isRedirectToCartEnabled()) : ?>
+    <script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+<?php else : ?>
+    <script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "addtocartbuynow": {
+                            "component": "Ktpl_Buynow/js/buy-now"
+                        }
+                    }
+                }
+        }
+    }
+</script>
+
+
+<!-- <div class="addtobag-buynow-box">
+<button type="button"
+        title="Add to Cart"
+        class="action primary tocart addtobagbtn"
+        id="product-addtobag-button">
+        <span><?= /* @escapeNotVerified */ __('Add to Bag') ?></span>
+</button>
+
+<a class="action primary buynow">
+    <span><?= /* @escapeNotVerified */ __('Buy Now') ?></span>
+</a>
+
+</div>
+
+<script type="text/javascript">
+         require(["jquery"],function($) {
+            $(document).ready(function () {
+                $(".addtobagbtn").click(function() {
+                $( "#product-addtocart-button" ).trigger( "click" );
+            });
+    });
+});
+</script> -->

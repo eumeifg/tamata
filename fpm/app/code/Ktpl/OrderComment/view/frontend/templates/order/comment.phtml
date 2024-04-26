@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright © Krish TechnoLabs, All rights reserved.
+ */
+
+/** @var \Ulmod\OrderComment\Block\Order\Comment $block */
+?>
+
+<?php if ($comment = $block->getOrderComment()) : ?>
+<div class="block block-order-comment um-ordercomment-block">
+    <div class="block-content">
+        <div class="block-title">
+            <strong><?= /* @noEscape */ __('Order Comment') ?></strong>
+        </div>
+        <div class="box-content">
+            <?= $block->getOrderCommentHtml();?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

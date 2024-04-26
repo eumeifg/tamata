@@ -1,0 +1,20 @@
+<?php
+	$confirmationCode = $block->getOrderConfirmationCode();
+ ?>
+
+ <?php if ( !is_null($confirmationCode )) : ?>
+<div class="block block-order-details-view confirmation-code">
+<div class="block-content">
+<div class="box box-order-confirmation-code">
+    
+        <div class="box-title">
+            <strong><?= /* @noEscape */ __('Confirmation Code') ?></strong>
+        </div>
+        <div class="box-content">
+            <?= $confirmationCode;?>
+        </div>
+     
+</div>
+</div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,70 @@
+<?php /** @var $block Magedelight\Sales\Block\Vendor\Order\View */ ?>
+<?php $_order = $block->getOrderData(); ?>
+<div class="rbpanel-heading">
+<?= $block->escapeHtml(
+        __('Order # %1', $_order->getIncrementId())
+    );
+?>
+</div>
+<div class="rbpanel-body">
+    <div class="row order-date-status mb5">
+        <div class="col-md-3">
+            <div class="field date">
+                <div class="info-detail">
+                    <label class="label"><span><?= $block->escapeHtml(__('Date')) ?>:</span></label>
+                    <label class="label value">
+                        <span><?= $block->formatDate(
+                                    $_order->getCreatedAt(),
+                                    \IntlDateFormatter::MEDIUM,
+                                    true
+                                );
+                            ?></span>
+                    </label>
+                </div>
+            </div>
+            <div class="field status">
+                <div class="info-detail">
+                    <label class="label" for="status"><span><?= $block->escapeHtml(__('Status')) ?>:</span></label>
+                    <label class="label value">
+                        <?= $block->escapeHtml($block->getOrderStatusLabel($_order->getStatus())) ?>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-gutter order-addresses mb20">
+        <div class="col-md-3">
+            <div class="rbpanel">
+                <div class="rbpanel-heading p10"><?= $block->escapeHtml(__('Payment Information')) ?></div>
+                <div class="rbpanel-body minh200">
+                    <?= $block->getPaymentInfoHtml() ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="rbpanel">
+                <div class="rbpanel-heading p10"><?= $block->escapeHtml(__('Shipping & Handling Information')) ?></div>
+                <div class="rbpanel-body minh200">
+                    <?php if ($_order->getShippingDescription()): ?>
+                        <?= $_order->getShippingDescription() ?>
+                        <?php /*if (floatval($_order->getShippingAmount())) {*/ ?>
+                        <br/>
+                        <?= $_order->formatValue($_order->getShippingAmount()); ?>
+                        <?php /*}*/ ?>
+<?php else: ?>
+    <?php /* @escapeNotVerified */ echo __('No shipping information available'); ?>
+<?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row order-details-items bbn mbn">
+        <div class="col-md-12">
+            <div class="table-wrapper orders-history mbn">
+
+    <?= $block->getChildHtml('order_items') ?>
+            </div>
+        </div>
+    </div>
+<?= $block->getChildHtml('order_shipment') ?>
+</div>

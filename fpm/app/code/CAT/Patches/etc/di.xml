@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magedelight\Vendor\Helper\Data" type="CAT\Patches\Helper\Data"/>
+    <preference for="Mirasvit\Helpdesk\Model\ResourceModel\DesktopNotification\Collection" type="CAT\Patches\Model\ResourceModel\DesktopNotification\Collection" />
+    <preference for="Magedelight\Catalog\Model\ResourceModel\Indexer\Vendor\DefaultVendors" type="CAT\Patches\Model\ResourceModel\Indexer\Vendor\DefaultVendors" />
+    <preference for="Magedelight\Catalog\Model\ResourceModel\Product\Collection" type="CAT\Patches\Model\ResourceModel\Product\Collection" />
+    <preference for="Magento\CatalogSearch\Model\Autocomplete\DataProvider" type="CAT\Patches\Model\CatalogSearch\Autocomplete\DataProvider"/>
+    <!-- Re-arrange the batching for improved indexing -->
+    <type name="Magento\Catalog\Model\Indexer\Category\Product\Action\Full">
+        <arguments>
+            <argument name="batchRowsCount" xsi:type="number">500</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Indexer\Price\BatchSizeCalculator">
+        <arguments>
+            <argument name="batchRowsCount" xsi:type="array">
+                <item name="configurable" xsi:type="number">500</item>
+                <item name="simple" xsi:type="number">200</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogInventory\Model\Indexer\Stock\Action\Full">
+        <arguments>
+            <argument name="batchRowsCount" xsi:type="array">
+                <item name="configurable" xsi:type="number">200</item>
+                <item name="simple" xsi:type="number">200</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\Indexer\Fulltext\Action\Full">
+        <arguments>
+            <argument name="batchRowsCount" xsi:type="array">
+                <item name="configurable" xsi:type="number">200</item>
+                <item name="simple" xsi:type="number">200</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Model\Indexer\Product\Eav\Action\Full">
+        <arguments>
+            <argument name="batchRowsCount" xsi:type="array">200</argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Customer\Model\AccountManagement" type="CAT\Patches\Model\AccountManagementRewrite"/>
+</config>

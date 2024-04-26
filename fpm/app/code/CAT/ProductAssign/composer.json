@@ -1,0 +1,22 @@
+{
+    "name": "cat/module-productassign",
+    "description": "Assign Product By Parent SKU ",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ashwinder Singh",
+            "email": "asingh@creativeadvtech.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "CAT\\ProductAssign\\": ""
+        }
+    }
+}

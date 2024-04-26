@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Copyright © 2018 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+/>
+    <preference for="Magedelight\MobileInit\Api\MobileInitInterface" type="Magedelight\MobileInit\Model\MobileInit"/>
+    <preference for="Magedelight\MobileInit\Api\Data\MobileInitDataInterface" type="Magedelight\MobileInit\Model\MobileInitData"/>
+    <preference for="Magedelight\MobileInit\Api\Data\MobilePriceFormatDataInterface" type="Magedelight\MobileInit\Model\MobilePriceFormatData"/>
+    <preference for="Magedelight\MobileInit\Api\Data\MobileConfigModuleInterface" type="Magedelight\MobileInit\Model\MobileConfigModule"/>
+    <preference for="Magedelight\MobileInit\Api\Data\MobileCategoryDataInterface" type="Magedelight\MobileInit\Model\MobileCategoryData"/>
+    <preference for="Magedelight\MobileInit\Api\Data\MobileSettingDataInterface" type="Magedelight\MobileInit\Model\MobileSettingData"/>
+</config>

@@ -1,0 +1,136 @@
+{
+    "md_commissions": {
+        "column": {
+            "commission_id": true,
+            "calculation_type": true,
+            "commission_value": true,
+            "marketplace_fee_type": true,
+            "marketplace_fee": true,
+            "cancellation_fee_commission_value": true,
+            "cancellation_fee_calculation_type": true,
+            "product_category": true,
+            "status": true,
+            "cod": true,
+            "pre_paid": true,
+            "website_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "md_vendor_commissions": {
+        "column": {
+            "vendor_commission_id": true,
+            "vendor_calculation_type": true,
+            "vendor_commission_value": true,
+            "vendor_marketplace_fee_type": true,
+            "vendor_marketplace_fee": true,
+            "vendor_cancellation_fee": true,
+            "vendor_cancellation_fee_type": true,
+            "vendor_id": true,
+            "vendor_status": true,
+            "website_id": true,
+            "store_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_COMMISSIONS_VENDOR_ID_WEBSITE_ID": true
+        }
+    },
+    "md_vendor_order": {
+        "column": {
+            "po_generated": true
+        }
+    },
+    "md_vendor_commission_payment": {
+        "column": {
+            "vendor_payment_id": true,
+            "purchase_order_id": true,
+            "commission_invoice_id": true,
+            "vendor_order_id": true,
+            "vendor_id": true,
+            "comment": true,
+            "commission_level": true,
+            "total_commission": true,
+            "shipping_amount": true,
+            "tax_amount": true,
+            "adjustment_amount": true,
+            "total_amount": true,
+            "total_due": true,
+            "total_paid": true,
+            "marketplace_fee": true,
+            "transaction_fee": true,
+            "cancellation_fee": true,
+            "service_tax": true,
+            "status": true,
+            "website_id": true,
+            "store_id": true,
+            "transaction_summary": true,
+            "created_at": true,
+            "updated_at": true,
+            "paid_at": true,
+            "transaction_type": true,
+            "is_settled": true,
+            "settled_transaction_id": true
+        },
+        "index": {
+            "MD_VENDOR_COMMISSION_PAYMENT_PURCHASE_ORDER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_BA83DEE7915600A573EC66BCB9CF4C0D": true
+        }
+    },
+    "md_vendor_commission_invoice": {
+        "column": {
+            "vendor_invoice_id": true,
+            "invoice_number": true,
+            "vendor_id": true,
+            "total_commission": true,
+            "marketplace_fee": true,
+            "cancellation_fee": true,
+            "transaction_fee": true,
+            "adjustment_amount": true,
+            "service_tax": true,
+            "amount": true,
+            "created_at": true
+        },
+        "index": {
+            "MD_VENDOR_COMMISSION_INVOICE_VENDOR_ID": true,
+            "MD_VENDOR_COMMISSION_INVOICE_CREATED_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_COMMISSION_INVOICE_VENDOR_ID_MD_VENDOR_VENDOR_ID": true
+        }
+    },
+    "md_vendor_commission_invoice_payment": {
+        "column": {
+            "vendor_invoice_id": true,
+            "vendor_payment_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_17E3169F1DAF2E8A0FB786B30BFA1F3F": true,
+            "FK_81179ECE7657C510CF4504E492EB9C49": true
+        }
+    },
+    "md_vendor_payment_history": {
+        "column": {
+            "payment_transaction_id": true,
+            "vendor_payment_id": true,
+            "vendor_id": true,
+            "transaction_id": true,
+            "transaction_amount": true,
+            "transaction_date": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_C9D0AB70A24A3C5146C6D4F62D9C26CB": true
+        }
+    }
+}

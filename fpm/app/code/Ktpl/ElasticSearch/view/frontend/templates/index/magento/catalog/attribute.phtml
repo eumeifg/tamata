@@ -1,0 +1,36 @@
+<?php
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+?>
+
+<?php
+//@codingStandardsIgnoreFile
+/** @var $block \Ktpl\ElasticSearch\Block\Index\Base */
+
+$collection = $this->getCollection();
+$attr = $block->getIndex()->getProperty('attribute');
+?>
+<div class="ktpl-search__index ktpl-search__index-magento-catalog-attribute">
+    <ul>
+        <?php foreach ($collection as $item): ?>
+
+            <li>
+                <div class="ktpl-search__index-title">
+                    <a href="<?= $block->getUrl('catalogsearch/advanced/result', ['_query' => [$attr => $item->getValue()]]) ?>">
+                        <?= $item->getLabel() ?>
+                    </a>
+                </div>
+            </li>
+        <?php endforeach ?>
+    </ul>
+</div>

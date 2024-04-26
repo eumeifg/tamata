@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+	<group id="default">
+        <job name="recentlyviewcron" instance="Ktpl\Pushnotification\Cron\RecentlyViewed" method="execute">
+            <config_path>crontab/default/jobs/recentlyviewcron/schedule/cron_expr</config_path>
+        </job>
+        <job name="recentlyviewnotificationsend" instance="Ktpl\Pushnotification\Cron\RecentlyViewedNotificationSend" method="execute">
+            <schedule>*/10 * * * *</schedule>
+        </job>
+
+      	<job name="auto_send_promotional_notification" instance="Ktpl\Pushnotification\Cron\AutoSendPromotionalNotification" method="sendPushNotifications">
+            <config_path>pushnotification/auto_send_promotional_notification/job_frequency</config_path>
+        </job>
+         <job name="device_token_check" instance="Ktpl\Pushnotification\Cron\DeviceTokenCheck" method="checkDeviceToken">
+            <config_path>pushnotification/device_token_check/syc_frequency</config_path>
+        </job>
+
+
+	</group>
+</config>

@@ -1,0 +1,11 @@
+<!--@subject Vendor Approve Product Mass List@-->
+
+{{template config_path="vendor_design/email/header_template"}}
+
+<p>{{trans "Hello %vendor_name" vendor_name=$vendor_name}}</p>
+                    
+<p>{{trans "Following offer(s) of yours have been listed."}}</p>
+<p>{{trans "Vendor Offer SKU(s)"}} : <b>{{var offer_skus}}<b></p>
+
+
+{{template config_path="vendor_design/email/footer_template"}}

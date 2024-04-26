@@ -1,0 +1,16 @@
+{
+    "name": "ktpl/module-googlemapaddress",
+    "description": "The module adds google map functionality for searching addresses on shipping address on checkout as well as on customer address add/edit sections.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Ktpl\\GoogleMapAddress\\": ""
+        }
+    }
+}

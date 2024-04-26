@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/integration/seller/token" method="POST">
+        <service class="Magedelight\Vendor\Api\SellerTokenServiceInterface" method="createSellerAccessToken"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+    <!-- Get Vendor Account by ID -->
+    <route url="/V1/seller/:vendorId" method="GET">
+        <service class="Magedelight\Vendor\Api\VendorRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    
+    <!-- Get Vendor Account by ID -->
+    <route url="/V1/seller/profile/:vendorId" method="GET">
+        <service class="Magedelight\Vendor\Api\VendorRepositoryInterface" method="getProfileById"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+    <!-- Get Vendor Account Form Field -->
+    <route url="/V1/seller/formfields" method="GET">
+        <service class="Magedelight\Vendor\Api\VendorRepositoryInterface" method="getFormConfigFields"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+        
+    <!-- Change Vendor Password  -->
+    <route url="/V1/seller/me/password" method="PUT">
+        <service class="Magedelight\Vendor\Api\AccountManagementInterface" method="changePasswordById"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+        <data>
+            <parameter name="id" force="true">%id%</parameter>
+        </data>
+    </route>
+    
+    <!-- Change Vendor Password Mail -->
+    <route url="/V1/seller/password" method="PUT">
+        <service class="Magedelight\Vendor\Api\AccountManagementInterface" method="initiatePasswordReset"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+    <!-- Register Vendor 1 send mail -->
+    <route url="/V1/seller/register" method="POST">
+        <service class="Magedelight\Vendor\Api\AccountManagementInterface" method="sendVerificationMail"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+    
+    <!-- Register Vendor -->
+    <route url="/V1/seller/account/registerPost" method="POST">
+        <service class="Magedelight\Vendor\Api\AccountManagementInterface" method="registerVendor"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+    <!-- Register Post Vendor-->
+    <route url="/V1/seller/account/registerPostVendor" method="POST">
+        <service class="Magedelight\Vendor\Api\AccountManagementInterface" method="registerPostVendor"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    
+    
+    <!-- Send Vendor status request-->
+    <route url="/V1/seller/status" method="POST">
+        <service class="Magedelight\Vendor\Api\ProfileManagementInterface" method="vendorStatusChangeRequest"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    
+    <!-- vendor personal information update -->
+    <route url="/V1/seller/personalinfo/save" method="POST">
+        <service class="Magedelight\Vendor\Api\ProfileManagementInterface" method="vendorPersonalInfoUpdate"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    
+    <!-- vendor business information update -->
+    <route url="/V1/seller/businessinfo/save" method="POST">
+        <service class="Magedelight\Vendor\Api\ProfileManagementInterface" method="vendorBusinessInfoUpdate"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    
+    <!-- vendor shipping information update -->
+    <route url="/V1/seller/shippinginfo/save" method="POST">
+        <service class="Magedelight\Vendor\Api\ProfileManagementInterface" method="vendorShippingInfoUpdate"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    <!-- vendor shipping information update -->
+    <route url="/V1/seller/bankinginfo/save" method="POST">
+        <service class="Magedelight\Vendor\Api\ProfileManagementInterface" method="vendorBankingInfoUpdate"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    <!-- vendor logo information update -->
+    <route url="/V1/seller/logo/save" method="POST">
+        <service class="Magedelight\Vendor\Api\ProfileManagementInterface" method="vendorLogoUpdate"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    
+    <!-- Is E-Mail available-->
+    <route url="/V1/seller/isEmailAvailable" method="POST">
+        <service class="Magedelight\Vendor\Api\AccountManagementInterface" method="isEmailAvailable"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vendor/saveReview" method="POST">
+        <service class="Magedelight\Vendor\Api\VendorReviewRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vendor/review/getByCustomerId" method="GET">
+        <service class="Magedelight\Vendor\Api\VendorReviewRepositoryInterface" method="getByCustomerId"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+
+    <route url="/V1/vendor/reviews" method="GET">
+        <service class="Magedelight\Vendor\Api\VendorReviewRepositoryInterface" method="getByVendorId"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/seller/dashboard" method="GET">
+        <service class="Magedelight\Vendor\Api\DashboardManagementInterface" method="vendorDashboard"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+    <route url="/V1/seller/submitQueryToAdmin" method="POST">
+        <service class="Magedelight\Vendor\Api\AccountManagementInterface" method="submitVendorQuery"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+    <route url="/V1/seller/requestlist" method="GET">
+        <service class="Magedelight\Vendor\Api\RequestRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+    </route>
+
+    <!-- Microsite -->
+    <route url="/V1/microsite/:vendorId/:storeId" method="GET">
+        <service class="Magedelight\Vendor\Api\MicrositeBuilderInterface" method="build"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <route url="/V1/microsite-products/:vendorId" method="GET">
+        <service class="Magedelight\Vendor\Api\Microsite\ProductsInterface" method="build"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <route url="/V1/microsite/save" method="POST">
+        <service class="Magedelight\Vendor\Api\MicrositeRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+    </route>
+
+    <route url="/V1/seller/microsite/:vendorId/:storeId" method="GET">
+        <service class="Magedelight\Vendor\Api\MicrositeRepositoryInterface" method="getByVendorId"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+    </route>
+    <!-- Microsite -->
+</routes>

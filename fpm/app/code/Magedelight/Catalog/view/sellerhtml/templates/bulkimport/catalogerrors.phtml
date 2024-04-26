@@ -1,0 +1,25 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<div class="cat-imoprt-error" id="cat-imoprt-error">
+    <div class="bulkimport block-container">
+        <div class="bulkimport-title">
+            <h2 class="bulkimport-pass-title"><?= __('Bulk-Import'); ?></h2>
+        </div>
+        <div class="block col-mg mg-12">
+            <div class="block-content">
+                <?= (!empty($error)) ? $error : ""; ?>
+                <?= (!empty($success)) ? $success : ""; ?>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="CAT_CustomerBalance::creative_customer_balance" title="Manage Store Credit" translate="title" module="CAT_CustomerBalance" sortOrder="100" parent="Magento_Customer::customer" resource="CAT_CustomerBalance::creative_customer_balance" />
+        <!-- <add id="CAT_CustomerBalance::customer_balance_rule" title="Store Credit Rules" translate="title" module="CAT_CustomerBalance" sortOrder="1" parent="CAT_CustomerBalance::creative_customer_balance" action="catcustomerbalance/import/index" resource="CAT_CustomerBalance::creative_customer_balance"/> -->
+        <!-- <add id="CAT_CustomerBalance::import_list" title="Import Bulk Store Credit" translate="title" module="CAT_CustomerBalance" sortOrder="2" parent="CAT_CustomerBalance::creative_customer_balance" action="catcustomerbalance/import/index" resource="CAT_CustomerBalance::creative_customer_balance"/> -->
+    </menu>
+</config>

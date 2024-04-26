@@ -1,0 +1,173 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Theme
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+/**
+ * @var \Magento\Theme\Block\Html\Header\Logo $block
+ */
+$rtlFlag = $block->getRTLFlag();
+?>
+<?php $leftHead = $block->getHeaderLeftHeadColor(); ?>
+<?php $leftMain = $block->getHeaderLeftMainColor(); ?>
+<div class="nav-bar-logo">
+    <?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt(); ?>
+    <?php /* <span id="burger-menu-action" data-action="toggle-nav" class="action nav-toggle active"><span><?php echo __('Toggle Nav') ?></span></span> */ ?>
+    
+    <?php if ($block->isHomePage()): ?>
+        <strong class="logo">
+    <?php else: ?>
+                <a class="logo" href="<?=  /* @noEscape */ $block->getUrl('rbvendor/account/dashboard'); ?>" title="<?=  /* @noEscape */ $storeName ?>">
+    <?php endif ?>
+                <img class="logo-img" src="<?=  /* @noEscape */ $block->getLogoSrc() ?>"
+                     alt="<?=  /* @noEscape */ $block->getLogoAlt() ?>"
+                     />
+                        <?php if ($block->isHomePage()): ?>
+                    </strong>
+                        <?php else: ?>
+                </a>   
+                        <?php endif ?>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery', /* jquery Library */
+        'mage/mage',
+        'mage/cookies'
+    ], function ($,mage) {
+        $(document).ready(function () {
+            if (mage.cookies.get('burger-menu-expanded') != null) {
+               var burgerExpanded = mage.cookies.get('burger-menu-expanded'); 
+            } else {
+                var burgerExpanded = 1;
+            }
+            var clickDisabled = false;
+            var toDay = new Date();/*for getting todays date. */
+            toDay.setTime(toDay.getTime());
+            var expaireTime = 7 * 1000 * 60 * 60 * 24;
+            var expaireDate = new Date(toDay.getTime()+(expaireTime));
+            $('#burger-menu-action').click(function (ev) {
+                if (clickDisabled) {
+                    return false;
+                }
+                clickDisabled = 1;
+                marginvalue = (burgerExpanded === "1" || burgerExpanded === 1) ? '-=142' : '+=142';
+                $width = (burgerExpanded === "1" || burgerExpanded === 1) ? '88px' : '230px';
+                $font = (burgerExpanded === "1" || burgerExpanded === 1) ? '0.8rem' : '1.5rem';
+                $paddingLeftIcon = (burgerExpanded === "1" || burgerExpanded === 1) ? '0' : '15px';
+                $paddingRightIcon = (burgerExpanded === "1" || burgerExpanded === 1) ? '0' : '10px';
+                $titleDisplay = (burgerExpanded === "1" || burgerExpanded === 1) ? 'block' : '';
+                $textTransform = (burgerExpanded === "1" || burgerExpanded === 1) ? 'uppercase' : '';
+                $textAlign = (burgerExpanded === "1" || burgerExpanded === 1) ? 'center' : '';
+                $burgerIconLefPos = (burgerExpanded === "1" || burgerExpanded === 1) ? '50%' : '10px';
+                $burgerIconML = (burgerExpanded === "1" || burgerExpanded === 1) ? '-15px' : '0';
+                $rotateAngle = (burgerExpanded === "1" || burgerExpanded === 1) ? 90 : 0;
+                $startAngle = (burgerExpanded === "1" || burgerExpanded === 1) ? 0 : 90;
+                $('.logo_container .logo-img').toggle('slide', 'left', 1000);
+                burgerExpanded = (burgerExpanded === "1" || burgerExpanded === 1) ? 0 : 1;
+                if (burgerExpanded) {
+                    $("#nav-sidebar-menu .ui-accordion-content-active").show().prev('a').attr('aria-expanded','1').toggleClass('ui-state-active');
+                    $('.vendor-menu-wrapper').toggleClass('collapsed');
+                    $('.nav-bar-logo').toggleClass('active');
+                } else {
+                    $("#nav-sidebar-menu .ui-accordion-content-active").hide().prev('a').attr('aria-expanded','false').toggleClass('ui-state-active');
+                }
+                mage.cookies.set('burger-menu-expanded', burgerExpanded, {'expires': expaireDate});
+                $({deg: $startAngle}).animate({deg: $rotateAngle}, {
+                    duration: 1000,
+                    queue: false,
+                    step: function(now) {
+                        /* in the step-callback (that is fired each step of the animation),
+                         you can use the `now` paramter which contains the current
+                         animation-position (`0` up to `angle`) */
+                        $('#burger-menu-action').css('-ms-transform', 'rotate(' + now + 'deg)');
+                        $('#burger-menu-action').css('-webkit-transform', 'rotate(' + now + 'deg)');
+                        $('#burger-menu-action').css('transform', 'rotate(' + now + 'deg)');
+                    },
+                    complete: function(){
+                        if (!burgerExpanded) {
+                            $('.vendor-menu-wrapper').toggleClass('collapsed');
+                            $('.nav-bar-logo').toggleClass('active');
+                        }
+                    }
+                });
+                $('.vendor-menu-wrapper, .nav-bar-logo').animate({
+                    width: $width
+                }, {
+                    duration: 1000,
+                    queue: false,
+                    complete: function () {
+                        
+                    }
+                });
+                $('#burger-menu-action').animate({
+                    left: $burgerIconLefPos,
+                    marginLeft:$burgerIconML
+                }, {
+                    duration: 1000,
+                    queue: false,
+                    complete: function () {
+
+                    }
+                });
+                $('.vendor-menu-wrapper .sidebar-menu-container .sidebar-menu li a span.rbvt-icon').animate({
+                    paddingLeft: $paddingLeftIcon,
+                    paddingRight: $paddingRightIcon,
+                }, {
+                    duration: 1000,
+                    queue: false,
+                    complete: function () {
+                        $(this).css({
+                            'display':$titleDisplay,
+                            'text-align':$textAlign
+                        })
+                    }
+                });
+                $('.vendor-menu-wrapper .sidebar-menu-container .sidebar-menu li a span.sidebar-title').animate({
+                    fontSize: $font,
+                }, {
+                    duration: 1000,
+                    queue: false,
+                    complete: function () {
+                        $(this).css({
+                            'text-transform': $textTransform,
+                            'display': $titleDisplay,
+                            'text-align': $textAlign
+                        })
+                    }
+                });
+                $('#vendor-main-content-wrapper,.page-footer').animate({
+                    marginLeft: marginvalue
+                }, {
+                    duration: 1000,
+                    queue: false,
+                    complete: function () {
+                        clickDisabled = false;
+                    }
+                });
+                $('.panel.header').animate({
+                    paddingLeft: marginvalue
+                }, {
+                    duration: 1000,
+                    queue: false,
+                    complete: function () {
+                        clickDisabled = false;
+                    }
+                });
+            })
+        })
+    });
+</script>
+<script type="text/javascript">
+var para = document.getElementsByTagName("HTML")[0];
+<?php if ($rtlFlag) {?>
+para.className = "rtl-layout";
+    <?php
+}?>
+</script>

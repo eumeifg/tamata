@@ -1,0 +1,178 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">ktpl_warehousemanagement_trackrecord_listing.ktpl_warehousemanagement_warehousemanagement_trackrecord_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>ktpl_warehousemanagement_trackrecord_columns</spinner>
+		<deps>
+			<dep>ktpl_warehousemanagement_trackrecord_listing.ktpl_warehousemanagement_warehousemanagement_trackrecord_listing_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource component="Magento_Ui/js/grid/provider" name="ktpl_warehousemanagement_warehousemanagement_trackrecord_listing_data_source">
+		<settings>
+			<storageConfig>
+                <param name="indexField" xsi:type="string">warehousemanagement_id</param>
+            </storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Ktpl_Warehousemanagement::Warehousemanagement</aclResource>
+		<dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="ktpl_warehousemanagement_warehousemanagement_trackrecord_listing_data_source">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>warehousemanagement_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<!-- <settings>
+			<sticky>true</sticky>
+		</settings> -->
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		 <filterSearch name="fulltext"/>
+		<filters name="listing_filters"/>
+		<!-- <massaction name="listing_massaction">
+		            <argument name="data" xsi:type="array">
+		                <item name="config" xsi:type="array">
+		                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+		                </item>
+		            </argument>
+		            <action name="delete">
+		                <argument name="data" xsi:type="array">
+		                    <item name="config" xsi:type="array">
+		                        <item name="type" xsi:type="string">delete</item>
+		                        <item name="label" xsi:type="string" translate="true">Delete</item>
+		                        <item name="url" xsi:type="url" path="ktpl_warehousemanagement/Warehousemanagement/massDelete"/>
+		                        <item name="confirm" xsi:type="array">
+		                            <item name="title" xsi:type="string" translate="true">Delete Sliders</item>
+		                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected Sliders?</item>
+		                        </item>
+		                    </item>
+		                </argument>
+		            </action>
+		        </massaction> -->
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="ktpl_warehousemanagement_trackrecord_columns">
+		<settings>
+			  <editorConfig>
+                <param name="selectProvider" xsi:type="string">ktpl_warehousemanagement_trackrecord_listing.ktpl_warehousemanagement_trackrecord_listing.ktpl_warehousemanagement_trackrecord_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">warehousemanagement_id</param>
+				<param name="clientConfig" xsi:type="array">
+					<item name="saveUrl" path="ktpl_warehousemanagement/Warehousemanagement/InlineEdit" xsi:type="url"/>
+					<item name="validateBeforeSave" xsi:type="boolean">false</item>
+				</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">ktpl_warehousemanagement_trackrecord_listing.ktpl_warehousemanagement_trackrecord_listing.ktpl_warehousemanagement_trackrecord_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+		</settings>
+		<!-- <selectionsColumn name="ids">
+			<settings>
+				<indexField>warehousemanagement_id</indexField>
+			</settings>
+		</selectionsColumn> -->
+		<!-- <column name="warehousemanagement_id" sortOrder="20">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column> -->
+		<column name="main_order_id">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Main Order ID</label>
+			</settings>
+		</column>
+		<column name="sub_order_id" >
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Sub Order ID</label>
+			</settings>
+		</column>
+		<column name="product_name">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Product Name</label>
+			</settings>
+		</column>
+		<column name="price">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Price</label>
+			</settings>
+		</column>
+		<column name="qty">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Qty</label>
+			</settings>
+		</column>
+        <!-- <column name="sales_order_status" class="Ktpl\Warehousemanagement\Ui\Component\Listing\Column\OrderStatus">
+            <settings>
+                <filter>select</filter>
+                <options class="Magento\Sales\Ui\Component\Listing\Column\Status\Options"/>
+                <dataType>select</dataType>
+                <label translate="true">Main Order Status</label>
+            </settings>
+        </column>
+        <column name="md_vendor_order_status" class="Ktpl\Warehousemanagement\Ui\Component\Listing\Column\VendorOrderStatus">
+            <settings>
+                <filter>select</filter>
+                <options class="Ktpl\Warehousemanagement\Ui\Component\Listing\Column\Options"/>
+                <dataType>select</dataType>
+                <label translate="true">Sub Order Status</label>
+            </settings>
+        </column> -->
+		<column name="product_location" component="Magento_Ui/js/grid/columns/select">
+			<settings>
+				<options class="Ktpl\Warehousemanagement\Ui\Component\Listing\Column\MainOrderStatus" />
+				<filter>select</filter>
+				<dataType>select</dataType>
+				<label translate="true">Product Location</label>
+				<editor>
+					<editorType>select</editorType>
+				</editor>
+			</settings>
+		</column>
+		<column name="order_event" component="Magento_Ui/js/grid/columns/select">
+			<settings>
+				<options class="Ktpl\Warehousemanagement\Ui\Component\Listing\Column\OrderEventStatus" />
+				<filter>select</filter>
+				<dataType>select</dataType>
+				<label translate="true">Event</label>
+				<editor>
+					<editorType>select</editorType>
+				</editor>
+			</settings>
+		</column>
+		<!-- <column name="war_created_at">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Date and Time</label>
+			</settings>
+		</column> -->
+		<column name="war_created_at" class="Magento\Ui\Component\Listing\Columns\Date">
+		    <argument name="data" xsi:type="array">
+		        <item name="config" xsi:type="array">
+		            <item name="filter" xsi:type="string">dateRange</item>
+		            <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+		            <item name="dataType" xsi:type="string">date</item>
+		            <item name="label" xsi:type="string" translate="true">Scanned date</item>
+		        </item>
+		    </argument>
+		</column>
+	</columns>
+</listing>

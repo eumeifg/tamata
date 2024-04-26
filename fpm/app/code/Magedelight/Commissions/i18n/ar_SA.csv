@@ -1,0 +1,177 @@
+Commissions,Commissions
+"Manage Category Commision","Manage Category Commision"
+Save,Save
+"Save and Continue Edit","Save and Continue Edit"
+Delete,Delete
+"Edit Commission '%1'","Edit Commission '%1'"
+"New Commissions","New Commissions"
+"Commission & Fees Information","Commission & Fees Information"
+Category,Category
+Commission,Commission
+Value,Value
+"Commission Type","Commission Type"
+Status,Status
+"Page Status","Page Status"
+"Commission Information","Commission Information"
+"Add New Vendor commission","Add New Vendor commission"
+"Save and Continue","Save and Continue"
+"Edit Item '%1'","Edit Item '%1'"
+"New Item","New Item"
+"Vendor commission Information","Vendor commission Information"
+"-- Please select vendor --","-- Please select vendor --"
+Vendor,Vendor
+"Vendor Commission","Vendor Commission"
+"Calculation Type","Calculation Type"
+"Vendor commission","Vendor commission"
+"Vendor Commission & Fees Information","Vendor Commission & Fees Information"
+"The commission has been deleted.","The commission has been deleted."
+"Edit Commission","Edit Commission"
+"Manage Commissions","Manage Commissions"
+"This commission no longer exists.","This commission no longer exists."
+"Edit Category Commission","Edit Category Commission"
+"Add New Category Commission","Add New Category Commission"
+"Manage Category Commissions","Manage Category Commissions"
+"Manage Commission","Manage Commission"
+"By Category","By Category"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"A total of %1 record(s) have been disabled.","A total of %1 record(s) have been disabled."
+"A total of %1 record(s) have been enabled.","A total of %1 record(s) have been enabled."
+"New Commission","New Commission"
+"The commission has been saved.","The commission has been saved."
+"'Something went wrong while saving the commission.' .","'Something went wrong while saving the commission.' ."
+"Vendor Payments - Pending","Vendor Payments - Pending"
+"Please select payments to proceed.","Please select payments to proceed."
+"A total of %1 payment(s) have been marked as paid.","A total of %1 payment(s) have been marked as paid."
+"Vendor Payments - Paid","Vendor Payments - Paid"
+"Delete successfully !","Delete successfully !"
+"This Vendor commission type no longer exists.","This Vendor commission type no longer exists."
+"Edit Vendor commission","Edit Vendor commission"
+"Manage Vendor commission","Manage Vendor commission"
+"Please select Vendor commission(s).","Please select Vendor commission(s)."
+"A total of %1 record(s) have been updated.","A total of %1 record(s) have been updated."
+"The Vendor commission has been saved.","The Vendor commission has been saved."
+"Something went wrong while saving the Vendor type.","Something went wrong while saving the Vendor type."
+"Commission Invoice","Commission Invoice"
+"There are no printable documents related to selected payment.","There are no printable documents related to selected payment."
+"Order No","Order No"
+"Created Date","Created Date"
+"Order Value","Order Value"
+"Shipping Charges","Shipping Charges"
+"Total Refunded","Total Refunded"
+"Marketplace Fee","Marketplace Fee"
+"Cancellation Fee","Cancellation Fee"
+"Service Tax","Service Tax"
+"Net Payable","Net Payable"
+"Transaction Summary","Transaction Summary"
+"Invoice # ","Invoice # "
+"Invoice Date: ","Invoice Date: "
+"We found an invalid renderer model.","We found an invalid renderer model."
+"Please define the PDF object before using.","Please define the PDF object before using."
+"We don't recognize the draw line data. Please define the ""lines"" array.","We don't recognize the draw line data. Please define the ""lines"" array."
+"Commission Fee","Commission Fee"
+"Shipping Fee","Shipping Fee"
+"Adjustment Amount with comment","Adjustment Amount with comment"
+Total,Total
+"Display Name: ","Display Name: "
+"Business Name: ","Business Name: "
+"Telephone: ","Telephone: "
+"Email: ","Email: "
+"VAT Number: ","VAT Number: "
+-,-
+"Sr. No","Sr. No"
+Description,Description
+Amount,Amount
+"This is a computer generated invoice. No signature required","This is a computer generated invoice. No signature required"
+"The order object is not specified.","The order object is not specified."
+"The source object is not specified.","The source object is not specified."
+"An item object is not specified.","An item object is not specified."
+"A PDF object is not specified.","A PDF object is not specified."
+"A PDF page object is not specified.","A PDF page object is not specified."
+"Requested vendor doesn't exist","Requested vendor doesn't exist"
+"Unable to save vendor","Unable to save vendor"
+Admin,Admin
+Flat,Flat
+Percentage,Percentage
+"-- Please Select a Category --","-- Please Select a Category --"
+Product,Product
+Pending,Pending
+Processed,Processed
+Enabled,Enabled
+Disabled,Disabled
+Edit,Edit
+"Delete Commission #${ $.$data.commission_id }","Delete Commission #${ $.$data.commission_id }"
+"Are you sure you wan't to delete commission?","Are you sure you wan't to delete commission?"
+"Delete Vendor Commission #${ $.$data.vendor_commission_id }","Delete Vendor Commission #${ $.$data.vendor_commission_id }"
+"Are you sure you wan't to delete Vendor commission?","Are you sure you wan't to delete Vendor commission?"
+Search...,Search...
+Search,Search
+Reset,Reset
+Clear,Clear
+Filters,Filters
+"Invoice Generate Date","Invoice Generate Date"
+from,from
+to,to
+"Consollidated Invoice Number","Consollidated Invoice Number"
+"Total Fees Amount","Total Fees Amount"
+Cancel,Cancel
+Apply,Apply
+"Invoice Generation Date","Invoice Generation Date"
+Action,Action
+"Download Invoice","Download Invoice"
+"Select Date","Select Date"
+"Items %1 to %2 of %3 total","Items %1 to %2 of %3 total"
+"%1 Item","%1 Item"
+"%1 Item(s)","%1 Item(s)"
+Page,Page
+Previous,Previous
+"You're currently reading page","You're currently reading page"
+Next,Next
+Show,Show
+"per page","per page"
+"Order Number","Order Number"
+"Order No#","Order No#"
+"Shipping charges are already included in respective order value.","Shipping charges are already included in respective order value."
+Balance,Balance
+"Commission and Payments","Commission and Payments"
+"Commission Calculation Type","Commission Calculation Type"
+"Commission Rate","Commission Rate"
+"Marketplace Fee Calculation Type","Marketplace Fee Calculation Type"
+Payout,Payout
+"Shipping Liability","Shipping Liability"
+"Tax Liability","Tax Liability"
+"Adjustment Liability","Adjustment Liability"
+"Order Cancellation Fee Calculation Type","Order Cancellation Fee Calculation Type"
+"Order Cancellation Fee","Order Cancellation Fee"
+"Generate payout after order completes","Generate payout after order completes"
+"Vendor Commission Precedence Settings","Vendor Commission Precedence Settings"
+"Commission Precedence 1","Commission Precedence 1"
+"Commission Precedence 2","Commission Precedence 2"
+"Commission Precedence 3","Commission Precedence 3"
+"Delete items","Delete items"
+"Are you sure you wan't to delete selected items?","Are you sure you wan't to delete selected items?"
+Disable,Disable
+Enable,Enable
+ID,ID
+"Product Category","Product Category"
+"Invoice ID","Invoice ID"
+"Order Amount","Order Amount"
+"Paid Date","Paid Date"
+"Mark as Paid","Mark as Paid"
+"Are you sure you wan't to mark selected transactions as paid?","Are you sure you wan't to mark selected transactions as paid?"
+"Add New Vendor Commission","Add New Vendor Commission"
+From,From
+To,To
+Select...,Select...
+"Delete selected items?","Delete selected items?"
+20,20
+30,30
+50,50
+100,100
+200,200
+IDs,IDs
+"Vendor Commission Value","Vendor Commission Value"
+"Vendor Name","Vendor Name"
+Financials,Financials
+financials,financials
+"Transactions Summary","Transactions Summary"
+"Commissions Invoice","Commissions Invoice"

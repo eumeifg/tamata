@@ -1,0 +1,28 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<div class="vendor-offer-grid-block <?= /* @noEscape */ $block->getData('config/dataScope') ?>" data-role="vendor-offer-grid-step">
+    <div class="vendor-offer-actions" >
+        <?= /* @noEscape */  $block->getAddNewOfferButton(); ?>
+    </div>
+    <h2 class="steps-wizard-title"><?= $block->escapeHtml(
+        __('Vendor Offers')
+    ); ?></h2>
+</div>
+<?= $block->getChildHtml(); ?>
+
+<script>
+    require(['jquery'], function ($) {
+        $('.vendor-offer-grid-block[data-role = vendor-offer-grid-step]').applyBindings();
+        $('body').trigger('contentUpdated');
+    })
+</script>

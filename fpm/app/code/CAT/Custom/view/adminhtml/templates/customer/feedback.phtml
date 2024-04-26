@@ -1,0 +1,30 @@
+<?php /** $block \CAT\Custom\Block\Adminhtml\Customer\Edit\Tab\Feedback */ ?>
+<?php $feedback = $block->getFeedback(); ?>
+<?php if($feedback): ?>
+    <div class="fieldset-wrapper">
+        <div class="fieldset-wrapper-title">
+            <span class="title"><?= __('Customer Feedback') ?></span>
+        </div>
+        <div id="feedbackGrid" data-grid-id="feedbackGrid">
+            <div class="admin__data-grid-wrap admin__data-grid-wrap-static">
+                <table class="data-grid" id="feedbackGrid_table">
+                <!-- Rendering column set -->
+                    <thead>
+                        <tr>
+                            <th class="data-grid-th  no-link col-amount"><span><?= __('Score:')?></span></th>
+                            <th class="data-grid-th last no-link col-website_id"><span><?= __('Comment:')?></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-role="row" title="#" class="even _clickable">
+                            <td data-column="amount" class=" col-amount a-left  "><?= __($feedback->getScore()) ?></td>
+                            <td data-column="website_id" class=" col-website_id  last"><?= __($feedback->getComment()) ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<?php else :?>
+    <h2><?= __('No record found.')?></h2>
+<?php endif; ?>

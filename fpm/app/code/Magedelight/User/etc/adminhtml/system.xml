@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_User
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="vendorauthorization" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label" sortOrder="10">
+            <label>Users and Role</label>
+            <tab>rbsettings</tab>
+            <resource>Magedelight_Theme::config</resource>
+            
+            <!-- SECTION_GROUP_LICENSE -->
+            <group id="license" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>License Configuration</label>
+                <field id="serial_key" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Serial Key</label>
+                    <comment><![CDATA[Enter the serial key that you received at time of purchase.]]></comment>
+                </field>
+                <field id="activation_key" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Activation Key</label>
+                    <comment><![CDATA[Enter the activation key that you received at time of purchase.]]></comment>
+                </field>
+            </group>
+            <!-- SECTION_GROUP_LICENSE -->
+            
+            <group id="general" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="0">
+                <label>General Settings</label>
+                <field id="enable" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!-- <field id="select_website" translate="label" type="multiselect" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Select Website</label>
+                    <source_model>Magedelight\User\Model\Config\Source\Website</source_model>
+                    <comment>Please save serial and activation keys to get the available options.</comment>
+                </field> -->
+            </group>            
+        </section>
+    </system>
+</config>

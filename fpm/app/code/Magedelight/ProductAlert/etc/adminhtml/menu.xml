@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_ProductAlert
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magedelight_ProductAlert::notifications" title="Notifications" module="Magedelight_ProductAlert" sortOrder="120"
+             parent="Magento_Reports::report" resource="Magedelight_ProductAlert::notifications"/>
+        <add id="Magedelight_ProductAlert::productalert_stock" title="Out of Stock Notifications" module="Magedelight_ProductAlert" sortOrder="10"
+             parent="Magedelight_ProductAlert::notifications" action="productalert/stock/index" resource="Magedelight_ProductAlert::stock"/>
+        <add id="Magedelight_ProductAlert::productalert_price" title="Price Notifications" module="Magedelight_ProductAlert" sortOrder="20"
+             parent="Magedelight_ProductAlert::notifications" action="productalert/price/index" resource="Magedelight_ProductAlert::price"/>
+    </menu>
+</config>

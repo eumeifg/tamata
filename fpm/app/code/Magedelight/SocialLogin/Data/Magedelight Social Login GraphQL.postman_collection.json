@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "e3ee7af4-1030-4847-b2c4-b3c209ef8054",
+		"name": "Magedelight Social Login GraphQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authenticate Customer With Social Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n    authenticateCustomerWithSocialLogin(\n        input:{\n\n            firstname:\"David\"\n            lastname:\"Backham\"\n            socialId: \"ya29.Il-zBw6-roPJ0F6z71otkEaaQyPCayDD19sWYPoAHZYh3iatHnBaBLEjfFLWrIDQ2IoBjFwjXGzWq3zaaiT1NOnTHROgf9p57xjx1q6K6734Ps1i2il1gUEIZAN7UWqOVg\"\n            socialLoginType: \"google\"\n        }\n    ){\n        token\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://10.16.16.161/pwa-backend/graphql",
+					"protocol": "http",
+					"host": [
+						"10",
+						"16",
+						"16",
+						"161"
+					],
+					"path": [
+						"pwa-backend",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Web Api for Social Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"websiteId\":\"1\",\n   \t\"firstname\": \"David1111\",\n\t\"lastname\": \"Backham1111\",\n\t\"socialId\": \"ya29.Il-zBw1231136\",\n\t\"email\":\"ravi1@yopmail.com\",\n\t\"socialLoginType\": \"google\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1/m232ee/rest/V1/authenticateCustomerWithSocialLoginWithApi?XDEBUG_SESSION_START=PHPSTORM",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"m232ee",
+						"rest",
+						"V1",
+						"authenticateCustomerWithSocialLoginWithApi"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

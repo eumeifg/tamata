@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="navlinks" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label">
+			<label>KTPL Custom Menu</label>
+			<tab>ktpl</tab>
+			<resource>Ktpl_NavLinks::config_ktpl_navlinks</resource>
+			<group id="before_menu" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label">
+				<label>Before Menu Items</label>
+				<field id="items" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Menu Items</label>
+                    <frontend_model>Ktpl\NavLinks\Block\Adminhtml\Form\Field\MenuItem</frontend_model>
+                    <backend_model>Ktpl\NavLinks\Config\Backend\MenuItem</backend_model>
+                    <comment>Item added in this section will get displayed on Top menu section before default Category menu items. Items will be sorted based on Ids. If parent id is not added, the menu will be added as Main menu item. If parent value is added then, the item will be added as a child element of defined parent.</comment>
+                </field>
+			</group>
+            <group id="after_menu" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label">
+				<label>After Menu Items</label>
+				<field id="items" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Menu Items</label>
+                    <frontend_model>Ktpl\NavLinks\Block\Adminhtml\Form\Field\MenuItem</frontend_model>
+                    <backend_model>Ktpl\NavLinks\Config\Backend\MenuItem</backend_model>
+                    <comment>Item added in this section will get displayed on Top menu section after default Category menu items. Items will be sorted based on Ids. If parent id is not added, the menu will be added as Main menu item. If parent value is added then, the item will be added as a child element of defined parent.</comment>
+                </field>
+			</group>
+		</section>
+	</system>
+</config>

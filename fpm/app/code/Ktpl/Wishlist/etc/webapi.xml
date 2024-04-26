@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Krish TechnoLabs, All rights reserved.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/ktpl/wishlist/items" method="GET">
+        <service class="Ktpl\Wishlist\Api\WishlistManagerInterface" method="getWishlistForCustomer"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/ktpl/wishlist/info" method="GET">
+        <service class="Ktpl\Wishlist\Api\WishlistManagerInterface" method="getWishlistInfo"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/ktpl/wishlist/add/:productId" method="POST">
+        <service class="Ktpl\Wishlist\Api\WishlistManagerInterface" method="addWishlistForCustomer"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/ktpl/wishlist/delete/:wishlistItemId" method="DELETE">
+        <service class="Ktpl\Wishlist\Api\WishlistManagerInterface" method="deleteWishlistForCustomer"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/ktpl/extendedwishlist/add/" method="POST">
+        <service class="Ktpl\Wishlist\Api\WishlistManagerInterface" method="add"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/ktpl/extendedwishlist/remove/" method="POST">
+        <service class="Ktpl\Wishlist\Api\WishlistManagerInterface" method="remove"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

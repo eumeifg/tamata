@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="rbvendor_quote_to_order" instance="Magedelight\Sales\Observer\Sales\ConvertQuote"/>
+    </event>
+    <event name="sales_order_save_after">
+        <observer name="rbvendor_split_order" instance="Magedelight\Sales\Observer\Sales\OrderSave"/>
+    </event>
+    <event name="vendor_order_split_after">
+        <observer name="rbvendor_split_invoice" instance="Magedelight\Sales\Observer\Sales\SplitInvoice"/>
+    </event>
+    <event name="vendor_order_auto_confirmed">
+        <observer name="rbvendor_vorder_auto_confirm" instance="Magedelight\Sales\Observer\Sales\OrderAutoConfirm"/>
+        <observer name="vendor_order_auto_confirmed" instance="Magedelight\Sales\Observer\VendorOrderAutoConfirmed" />
+    </event>
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="vendorinventory" instance="Magedelight\Sales\Observer\RefundOrderInventoryObserver"/>
+    </event>
+    <event name="vendor_order_admin_confirm_cron">
+        <observer name="rbvendor_vorder_admin_confirm_cron" instance="Magedelight\Sales\Observer\Sales\OrderAdminConfirm"/>
+    </event>
+    <event name="order_cancel_after">
+        <observer name="marketplace_order_cancel_after" instance="Magedelight\Sales\Observer\Sales\OrderCancelAfter"/>
+    </event>
+
+    <event name="vendor_order_invoice_generate_after">
+        <observer name="rbvendor_vorder_order_invoice_generate_after" instance="Magedelight\Sales\Observer\Sales\InvoiceSaveAfter"/>
+    </event>
+    <event name="vendor_orders_confirm_after">
+        <observer name="rbvendor_vorder_order_confirm_after" instance="Magedelight\Sales\Observer\Sales\OrdersConfirmAfter"/>
+    </event>
+    <event name="sales_order_shipment_track_save_after">
+        <observer name="vendor_order_shipment_track_save_after" instance="Magedelight\Sales\Observer\Sales\OrderShipmentTrackSaveAfter" />
+    </event>
+    <!-- set session of quote data
+    For checkQty based on vendor product Stock not Core product stock -->
+    <event name="sales_quote_collect_totals_after">
+        <observer name="checkout_cart_save_item_data_session_qty_stock" instance="Magedelight\Sales\Observer\CartSaveAfter" shared="true" /> 
+    </event>
+
+    <event name="layout_generate_blocks_after">
+        <observer name="remove_order_status" instance="Magedelight\Sales\Observer\RemoveOrderStatus" />
+    </event>
+    <event name="check_product_inventory">
+        <observer name="checkproductinventory" instance="Magedelight\Sales\Observer\CheckProductInvetory" />
+    </event>
+    <event name="email_invoice_set_template_vars_before">
+        <observer name="frontend_invoice_send_customer" instance="Magedelight\Sales\Observer\SendInvoice" />
+    </event>
+    <event name="vendor_orders_cancel_after">
+        <observer name="vendororderscancelafterfromvendor" instance="Magedelight\Sales\Observer\VendorOrderCancelEmail" />
+    </event>
+</config>

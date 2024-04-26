@@ -1,0 +1,192 @@
+// /**
+//  * Copyright © 2016 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+@toolbar-mode-icon-font-size: 24px;
+@toolbar-element-background: @panel__background-color;
+
+@toolbar-background: transparent;
+@toolbar-element-background: @color-gray94;
+@pager-action__background: @toolbar-element-background;
+@pager-action__hover__background: darken(@toolbar-element-background, 7%);
+@pager__font-weight: @font-weight__bold;
+
+& when (@media-common = true) {
+
+    .toolbar {
+        &:extend(.abs-add-clearfix all);
+        &-amount {
+            display: block;
+            line-height: @toolbar-mode-icon-font-size+2;
+            margin: 0 10px 0 0 !important;
+            padding: 7px 0 0;
+            vertical-align: middle;
+            font-weight: @font-weight__semibold;
+            .products.wrapper ~ .toolbar & {
+                display: none;
+            }
+        }
+    }
+
+    .sorter {
+        padding: @indent__s + 3 0;
+        margin: 0px 0 0px;
+        .products.wrapper ~ .toolbar & {
+            display: none;
+        }
+        &-options {
+            margin: 0 0 0 7px;
+            width: auto;
+        }
+        &-action {
+            vertical-align: top;
+            .lib-icon-font(
+            @icon-arrow-long-up1,
+            @_icon-font-size: 18px,
+            @_icon-font-line-height: 32px,
+            @_icon-font-color: @color-blue1,
+            @_icon-font-color-hover: @header-icons-color-hover,
+            @_icon-font-text-hide: true
+            );
+            .rbvt-font-icon;
+            &.sort-desc:before {
+                content: @icon-arrow-long-down1;
+            }
+        }
+    }
+
+    .modes {
+        display: none;
+    }
+
+    .limiter {
+        &-options {
+            width: auto;
+            margin: 0 5px 0 7px;
+        }
+        &-label {
+            font-weight: 400;
+        }
+        .page-products .toolbar & {
+            display: none;
+        }
+    }
+}
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .toolbar {
+        .products.wrapper ~ & .pages {
+            float: left;
+        }
+        &-amount {
+            float: left;
+        }
+        &-products {
+            margin-top: 0;
+            padding: @indent__base @indent__xs 0;
+            &:extend(.abs-add-clearfix all);
+        }
+    }
+    .sorter {
+        float: right;
+    }
+}
+
+//
+//    tablet
+//--------------------------------------
+
+@media all and (max-width:1023px) and (min-width: 768px){
+    .toolbar {
+        .products.wrapper ~ & .pages {
+            float: left;
+        }
+        &-amount {
+            float: left;
+        }
+    }
+    .sorter {
+        float: right;
+    }
+}
+//
+//  Desctop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .toolbar {
+        .products.wrapper ~ & .pages {
+            float: left;
+        }
+        &-amount {
+            float: left;
+        }
+    }
+
+    .sorter {
+        float: right;
+    }
+
+    .modes {
+        display: inline-block;
+        float: left;
+        margin-right: @indent__base;
+
+        .products.wrapper ~ .toolbar & {
+            display: none;
+        }
+
+        &-label {
+            &:extend(.abs-visually-hidden-desktop-s all);
+        }
+
+        &-mode {
+            .lib-css(color, @text__color__muted);
+            border: 1px solid @border-color__base;
+            border-right: 0;
+            float: left;
+            font-weight: @font-weight__regular;
+            line-height: 1;
+            padding: 7px 10px;
+            text-align: center;
+            &:not(.active):hover {
+                .lib-css(color, @text__color__muted);
+                background: darken(@toolbar-element-background, 7%);
+            }
+            &:last-child {
+                border-right: 1px solid @border-color__base;
+            }
+            &.active {
+                .lib-css(color, @primary__color__light);
+            }
+            .lib-icon-font(
+            @icon-grid,
+            @_icon-font-size: @toolbar-mode-icon-font-size,
+            @_icon-font-text-hide: true,
+            @_icon-font-color: @text__color__muted,
+            @_icon-font-color-hover: @text__color__muted
+            );
+
+        }
+    }
+
+    .mode-list {
+        .lib-icon-font-symbol(@icon-list);
+    }
+
+    .limiter {
+        float: right;
+        .products.wrapper ~ .toolbar & {
+            display: block;
+        }
+    }
+}

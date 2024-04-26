@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="mobilebanner" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>mobilebanner</label>
+			<tab>rbsettings</tab>
+			<resource>MDC_MobileBanner::config_mdc_mobilebanner</resource>
+			<group id="mobilebanner" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>mobilebanner</label>
+				<field id="section" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+					<label>section</label>
+					<comment/>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- md_search_store_data_temporary table starts. -->
+    <table name="md_search_store_data_temporary" resource="default" engine="innodb" comment="Temporary storing Score of Relevance for searched term in API search.">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="false" nullable="false" identity="false" comment="Entity ID" />
+        <column xsi:type="decimal" name="score" precision="12" scale="4" nullable="false" comment="Score of Searched Term for Product" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id" />
+        </constraint>
+    </table>
+</schema>

@@ -1,0 +1,171 @@
+    <?php
+/**
+ * Copyright © 2016 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/* @codingStandardsIgnoreFile */
+/** @var $block Magedelight\User\Block\Role\Grid */
+$collection = $block->getVendorRoleCollection();
+?>
+
+<form method="get" action="<?php echo $block->getSubmitUrl() ?>" id="vendor-role-search" name="vendor_role_search" >
+    <div class="row">
+
+        <div class="row-gutter toolbar-wrapper mb10">
+            <div class="col-md-4">
+                <input type="hidden" name="tab" value="<?php echo $this->getRequest()->getParam('tab', '12,1') ?>">                
+                <div class="block block-search">
+                    <div class="content">
+                        <div class="field search-catalog">
+                            <div class="control">
+                                <input placeholder="<?php echo __('Search...') ?>" type="text" value="" name="q" id="vendor_order_search" class="input-text vendor search-order-input filter">
+                            </div>
+                            <div class="actions">
+                                <div class="vendor primary"><button type="submit" class="vendor action login primary"><span><?php echo __('Search') ?></span></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                  <div class="topbar-left col-md-3 pt10">
+                        <a rel="new" href="javascript:void(0)" class="action-reset search"><?php echo __('Reset') ?></a>
+                </div>
+                <div class="topbar-right col-md-9 pt10">
+                    <div class="data-grid-filters-actions-wrap">
+                        <div class="data-grid-filters-action-wrap">
+                           
+                            <button type="button" title="<?php echo __('Add New Role'); ?>" data-url="<?php echo $this->getAddNewUrl(); ?>" class="action button primary">
+                                <span><?php echo __('Add New Role'); ?></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>                
+                    
+                </div>
+            </div>
+        </div>
+    </div>    
+</form>
+<div class="table-wrapper rb-role-history">
+    <table class="data table table-role-items rb-table-role-items history" id="role-table">
+        <thead>
+            <tr>
+                <th scope="col" class="col id sortable"><?php echo __('ID') ?></th>
+                <th scope="col" class="col role"><?php echo __('Role') ?></th>
+                <th scope="col" class="col action"><?php echo __('Action') ?></th>
+            </tr>
+        </thead>
+        <tbody>  
+            <?php if ($collection->count()) { ?>
+                <?php foreach ($collection as $_item) { ?>
+                    <tr>
+                        <td class="col data-grid-id-cell"><div class="data-grid-cell-content"><?php echo $_item->getId() ?></div></td>
+                        <td class="col data-grid-role-cell"><div class="data-grid-cell-content"><?php echo $_item->getRoleName() ?></div></td>
+                        <td class="col data-grid-actions-cell"><div class="data-grid-cell-content">                                
+                            <a href="<?php echo $this->getEditUrl($_item->getId()) ?>" class="action edit"><span><?php echo __('Edit') ?></span></a>                             
+                            <a href="<?php echo $block->getDeleteUrl($_item->getId()) ?>" class="action delete deleteRole"><span><?php echo __('Delete') ?></span>
+                        </a>
+                            </div></td>
+                    </tr>
+                <?php } ?>
+            <?php } else { ?>
+                <tr><td colspan="3"><div class="message info empty" id="role-msg"></div></td></tr>
+            <?php } ?>
+        </tbody>
+    </table>    
+</div>
+<?php if ($block->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+<?php endif ?>
+<script type="text/javascript">
+    require(['jquery', 'Magento_Ui/js/modal/confirm','Magedelight_Theme/js/common'], function ($, confirmation, common) {
+
+        $('.action.button').click(function (e) {
+            window.location.href = $(this).attr('data-url');
+            return false;
+        });
+
+        /* 
+        Refresh Page
+        Date : 22 03 2018 
+        Developer: Dharmesh Vaja
+
+        */
+
+        $(".action-reset").click(function () {
+            $('#vendor_order_search').val('');
+            $('#vendor-role-search').submit();
+        });
+        
+        /* 
+        Message related to search parameters
+        Date : 22 03 2018 
+        Developer: Dharmesh Vaja
+
+        */
+        $value = "false";
+        $('input[type=text]').each(function () {
+            var text_value = $(this).val();
+            if (text_value != '') {
+                $value = "true";
+            }
+        });
+
+         if ($('#vendor_order_search')[0].value != "" || $value == "true") {
+            
+            $('#role-msg').html('<span>' + $.mage.__('Your search result could not find.') + '</<span>');
+        } else {
+            
+            $('#role-msg').html('<span>' + $.mage.__('We couldn\'t find any records.') + '</<span>');
+        }
+
+        // Reset search filters.
+        $('#reset_filter').click(function () {
+            $('.filter').each(function () {
+                $(this).val('');
+            });
+            $("#vendor-role-search").submit();
+            return false;
+        });
+
+        $('.deleteRole').on('click', function ($e) {
+            $value = $(this).attr('href');
+            confirmation({
+                title: '',
+                content: $.mage.__('Are you sure to delete the Role?'),
+                actions: {
+                    confirm: function () {
+                        window.location.href = $value;
+                        return true;
+                    },
+                    cancel: function () {
+
+                    }
+                },
+                buttons: [{
+                    text: $.mage.__('OK'),
+                    class: 'action secondary action-accept',
+                    /**
+                     * Click handler.
+                     */
+                    click: function (event) {
+                        this.closeModal(event, true);
+                    }
+                }, {
+                    text: $.mage.__('Cancel'),
+                    class: 'action secondary action-dismiss',
+                    /**
+                     * Click handler.
+                     */
+                    click: function (event) {
+                        this.closeModal(event);
+                    }
+                }]
+            });
+            return false;
+        });
+
+    });
+</script>  

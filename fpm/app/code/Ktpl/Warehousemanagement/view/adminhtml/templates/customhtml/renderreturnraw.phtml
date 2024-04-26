@@ -1,0 +1,35 @@
+<?php
+$allItemData = $block->getData('data');
+$deliveryType = $block->getData('deliveryType');
+$returnType = $block->getData('returnType');
+$barcodeNumber = $block->getData('barcodeNumber');
+$visitoreIp = $block->getData('visitoreIp');
+$userId = $block->getData('userId');
+?>
+<?php foreach ($allItemData as $itemData) { ?>
+<tr>
+    <td><input type="hidden" name="<?= $itemData['item_id'] ?>[main_order_id]" value="<?= $itemData['main_order_id'] ?>" /><?= $itemData['main_order_id'] ?></td>
+    <td><input type="hidden" name="<?= $itemData['item_id'] ?>[sub_order_id]" value="<?= $itemData['sub_order_id'] ?>" /><?= $itemData['sub_order_id'] ?></td>
+    <td><input type="hidden" name="<?= $itemData['item_id'] ?>[product_name]" value="<?= $itemData['product_name'] ?>" /><?= $itemData['product_name'] ?></td>
+    <td><input type="hidden" name="<?= $itemData['item_id'] ?>[price]" value="<?= $itemData['price'] ?>" /><?= $itemData['price'] ?></td>
+    <td><input type="hidden" name="<?= $itemData['item_id'] ?>[qty]" value="<?= $itemData['qty'] ?>" /><?= $itemData['qty'] ?></td>
+    <td>
+        <input type="hidden" name="<?= $itemData['item_id'] ?>[main_order_status]" value="<?= $itemData['main_order_status'] ?>">
+        <?php if ($deliveryType == 0) { ?>
+            <?= __("In Warehouse"); ?>
+        <?php } else { ?>
+            <?= __("Out of Warehouse"); ?>
+        <?php } ?>
+    </td>
+    <td>
+    <input type="hidden" name="<?= $itemData['item_id'] ?>[sub_order_status]" value="<?= $itemData['sub_order_status'] ?>" /><?= $itemData['sub_order_status'] ?></td>
+
+    <input type="hidden" name="<?= $itemData['item_id'] ?>[product_location]" value="<?= $deliveryType; ?>" />
+    <input type="hidden" name="<?= $itemData['item_id'] ?>[order_event]" value="<?= $returnType; ?>" />
+
+    <input type="hidden" name="<?= $itemData['item_id'] ?>[barcode_number]" value="<?= $barcodeNumber ?>" />
+    <input type="hidden" name="<?= $itemData['item_id'] ?>[ip_address]" value="<?= $visitoreIp ?>" />
+    <input type="hidden" name="<?= $itemData['item_id'] ?>[user_id]" value="<?= $userId ?>" />
+    <input type="hidden" name="<?= $itemData['item_id'] ?>[product_id]" value="<?= $itemData['product_id'] ?>" />
+</tr>
+<?php } ?>

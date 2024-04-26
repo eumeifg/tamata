@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    
+    <!-- Customer - Return list of RMA -->
+    <route url="/V1/returnsList" method="GET">
+        <service class="Magedelight\Rma\Api\MdRmaManagementInterface" method="getRmaList"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    
+    <!-- Customer - Retrive Specific Return By Id -->
+    <route url="/V1/return/:id" method="GET">
+        <service class="Magedelight\Rma\Api\MdRmaManagementInterface" method="getById"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    
+    <!-- Customer - Rma Comment Post -->
+    <route url="/V1/return/comments" method="POST">
+        <service class="Magedelight\Rma\Api\CommentManagementInterface" method="addComment"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    
+    
+    <!-- Return list of RMA -->
+    <route url="/V1/prepareCreateReturnData" method="POST">
+        <service class="Magedelight\Rma\Api\MdRmaManagementInterface" method="getCreateReturnData"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+
+    <!-- Create RMA -->
+    <route url="/V1/createReturn" method="POST">
+        <service class="Magedelight\Rma\Api\MdRmaManagementInterface" method="createReturn"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+
+</routes>

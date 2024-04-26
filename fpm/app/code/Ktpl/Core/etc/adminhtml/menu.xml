@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_Core
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ktpl_Core::menu" title="KTPL" module="Ktpl_Core" translate="title" sortOrder="30" resource="Ktpl_Core::menu"/>
+    </menu>
+</config>

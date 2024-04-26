@@ -1,0 +1,21 @@
+{
+    "mdc_mobilebanner_banner": {
+        "column": {
+            "entity_id": true,
+            "section_details": true,
+            "section_title": true,
+            "layout": true,
+            "section_enable": true,
+            "created_at": true,
+            "updated_at": true,
+            "is_after_top_category": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        },
+        "index": {
+            "MDC_MOBILEBANNER_BANNER_SECTION_ENABLE": true,
+            "MDC_MOBILEBANNER_BANNER_IS_AFTER_TOP_CATEGORY": true
+        }
+    }
+}

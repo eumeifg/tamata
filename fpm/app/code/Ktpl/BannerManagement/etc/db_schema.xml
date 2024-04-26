@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table comment="Banner Table" engine="innodb" name="ktpl_bannerslider_banner" resource="default">
+        <column comment="Banner ID" identity="true" name="banner_id" nullable="false" padding="10" unsigned="true" xsi:type="int"/>
+        <column comment="Banner Name" length="255" name="name" nullable="true" xsi:type="varchar"/>
+        <column comment="Banner Status" default="1" identity="false" name="status" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Banner Type" default="0" identity="false" name="type" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Banner Default Template" default="0" identity="false" name="default_template" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Custom html, css" name="content" nullable="true" xsi:type="text"/>
+        <column comment="Banner Image" length="255" name="image" nullable="true" xsi:type="varchar"/>
+        <column comment="Banner Url" length="255" name="url_banner" nullable="true" xsi:type="varchar"/>
+        <column comment="Title" length="255" name="title" nullable="true" xsi:type="varchar"/>
+        <column comment="Banner Text" name="banner_text" nullable="true" xsi:type="text"/>
+        <column comment="Open new tab" default="1" identity="false" name="newtab" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+        
+        <column comment="Page Type - used for Mobile App" length="255" nullable="true" name="page_type" xsi:type="varchar"/>
+        <column comment="Sort Order" identity="false" name="sort_order" nullable="true" padding="10" xsi:type="int"/>
+        <column comment="Data ID - used for Mobile App" padding="10" nullable="true" identity="false"  name="data_id" xsi:type="int"/>
+
+        <column comment="Banner Created At" name="created_at" nullable="true" on_update="false" xsi:type="timestamp"/>
+        <column comment="Banner Updated At" name="updated_at" nullable="true" on_update="false" xsi:type="timestamp"/>
+        <constraint referenceId="PRIMARY" xsi:type="primary">
+            <column name="banner_id"/>
+        </constraint>
+        <index indexType="fulltext" referenceId="KTPL_BANNERSLIDER_BANNER_NAME_IMAGE_URL_BANNER">
+            <column name="name"/>
+            <column name="image"/>
+            <column name="url_banner"/>
+        </index>
+    </table>
+    <table comment="Slider Table" engine="innodb" name="ktpl_bannerslider_slider" resource="default">
+        <column comment="Slider ID" identity="true" name="slider_id" nullable="false" padding="10" unsigned="true" xsi:type="int"/>
+        <column comment="Slider Name" length="255" name="name" nullable="true" xsi:type="varchar"/>
+        <column comment="Slider Status" default="1" identity="false" name="status" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Location" name="location" nullable="true" xsi:type="text"/>
+        <column comment="Store_ids" length="255" name="store_ids" nullable="true" xsi:type="varchar"/>
+        <column comment="Customer_group_ids" length="255" name="customer_group_ids" nullable="true" xsi:type="varchar"/>
+        <column comment="Priority" default="0" identity="false" name="priority" nullable="false" padding="10" unsigned="true" xsi:type="int"/>
+        <column comment="Animation effect" length="255" name="effect" nullable="true" xsi:type="varchar"/>
+        <column comment="Auto Width" identity="false" name="autowidth" nullable="true" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Auto Height" identity="false" name="autoheight" nullable="true" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Manually design" default="0" identity="false" name="design" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Loop slider" identity="false" name="loop" nullable="true" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Lazyload image" identity="false" name="lazyload" nullable="true" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Autoplay" identity="false" name="autoplay" nullable="true" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="autoplay Timeout" default="5000" length="255" name="autoplaytimeout" nullable="true" xsi:type="varchar"/>
+        <column comment="Navigation" identity="false" name="nav" nullable="true" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Dots" identity="false" name="dots" nullable="true" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Responsive" identity="false" name="is_responsive" nullable="true" padding="6" unsigned="false" xsi:type="smallint"/>
+        <column comment="Max Items Slider" length="255" name="responsive_items" nullable="true" xsi:type="varchar"/>
+        <column comment="From" name="from_date" xsi:type="date"/>
+        <column comment="To" name="to_date" xsi:type="date"/>
+        <column comment="Slider Created At" name="created_at" nullable="true" on_update="false" xsi:type="timestamp"/>
+        <column comment="Slider Updated At" name="updated_at" nullable="true" on_update="false" xsi:type="timestamp"/>
+        <column comment="Visible Devices" length="255" name="visible_devices" nullable="true" xsi:type="varchar"/>
+        <column comment="Auto Play Hover Pause" identity="false" name="autoplayhoverpause" nullable="true" padding="6" unsigned="false" xsi:type="smallint"/>
+        <constraint referenceId="PRIMARY" xsi:type="primary">
+            <column name="slider_id"/>
+        </constraint>
+    </table>
+    <table comment="Slider To Banner Link Table" engine="innodb" name="ktpl_bannerslider_banner_slider" resource="default">
+        <column comment="Slider ID" identity="false" name="slider_id" nullable="false" padding="10" unsigned="true" xsi:type="int"/>
+        <column comment="Banner ID" identity="false" name="banner_id" nullable="false" padding="10" unsigned="true" xsi:type="int"/>
+        <column comment="Position" default="0" identity="false" name="position" nullable="false" padding="11" unsigned="false" xsi:type="int"/>
+        <constraint referenceId="PRIMARY" xsi:type="primary">
+            <column name="slider_id"/>
+            <column name="banner_id"/>
+        </constraint>
+        <constraint column="slider_id" onDelete="CASCADE" referenceColumn="slider_id" referenceId="FK_0171260D9E7C2C5B8CD004BFA1D2D278" referenceTable="ktpl_bannerslider_slider" table="ktpl_bannerslider_banner_slider" xsi:type="foreign"/>
+        <constraint column="banner_id" onDelete="CASCADE" referenceColumn="banner_id" referenceId="FK_9FA6B75A952C347768A5747F47BBD20B" referenceTable="ktpl_bannerslider_banner" table="ktpl_bannerslider_banner_slider" xsi:type="foreign"/>
+        <constraint referenceId="KTPL_BANNERSLIDER_BANNER_SLIDER_SLIDER_ID_BANNER_ID" xsi:type="unique">
+            <column name="slider_id"/>
+            <column name="banner_id"/>
+        </constraint>
+        <index indexType="btree" referenceId="KTPL_BANNERSLIDER_BANNER_SLIDER_SLIDER_ID">
+            <column name="slider_id"/>
+        </index>
+        <index indexType="btree" referenceId="KTPL_BANNERSLIDER_BANNER_SLIDER_BANNER_ID">
+            <column name="banner_id"/>
+        </index>
+    </table>
+</schema>

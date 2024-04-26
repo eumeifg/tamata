@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <cat_customer_referral>
+            <general>
+                <cron_frequency>0 * * * *</cron_frequency>
+                <page_size>1000</page_size>
+                <current_page>1</current_page>
+            </general>
+        </cat_customer_referral>
+    </default>
+</config>

@@ -1,0 +1,197 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var  $block \Magento\Sales\Block\Order\Item\Renderer\DefaultRenderer */
+$helper = $this->helper('Magedelight\Vendor\Helper\Data');
+$_item = $block->getItem();
+$salesHelper = $this->helper('Magedelight\Sales\Helper\Data');
+$cancelOrderReasonArray = $salesHelper->getCustomerCancelOrderReason();
+$cancelOrderReasonCount = count($cancelOrderReasonArray);
+$getCancelOrderItemUrl = $salesHelper->getCancelOrderItemUrl();
+$cancelItem = false;
+ if (($block->getItem()->getQtyShipped() == 0)
+    && ($block->getItem()->getQtyInvoiced() == 0)
+    && ($block->getItem()->getQtyCanceled() == 0)
+    && ($cancelOrderReasonCount !== 0)
+){
+    $cancelItem = true;     
+}
+?>
+<tr id="order-item-row-<?=  $_item->getId() ?>">
+    <td class="col name" data-th="<?= $block->escapeHtml(__('Product Name')) ?>">
+        <strong class="product name product-item-name"><?= $block->escapeHtml($_item->getName()) ?></strong>
+        <?php if ($_options = $block->getItemOptions()): ?>
+        <dl class="item-options">
+        <?php foreach ($_options as $_option) : ?>
+            <dt><?= $block->escapeHtml($_option['label']) ?></dt>
+            <?php if (!$block->getPrintStatus()): ?>
+                <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                <dd>
+                    <?php if (isset($_formatedOptionValue['full_view'])): ?>
+                        <?= $block->escapeHtml($_formatedOptionValue['full_view'], ['a']) ?>
+                    <?php else: ?>
+                        <?=$block->escapeHtml($_formatedOptionValue['value'], ['a']) ?>
+                    <?php endif; ?>
+                </dd>
+            <?php else: ?>
+                <dd>
+                    <?= nl2br($block->escapeHtml((isset($_option['print_value']) ? $_option['print_value'] : $_option['value']))) ?>
+                </dd>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        </dl>
+        <?php endif; ?>
+        <?php if ($block->getItem()->getQtyCanceled() > 0): ?> 
+        <dl>
+            <?php
+            if ($_item->getCancelItemReason() != ""){ 
+            ?>
+                <dd><?= sprintf(__('Cancel Reason: %s'), $_item->getCancelItemReason()); ?></dd>
+                
+            <?php
+            }
+            if ($_item->getCancelItemComment() != ""){
+            ?>
+            <dd><?= sprintf(__('Comment: %s'), $_item->getCancelItemComment()); ?></dd>
+            <?php
+            }
+            ?>
+        </dl>
+        <?php endif; ?>
+        
+        <?php $addtInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+        <?php if ($addtInfoBlock) :?>
+            <?= $addtInfoBlock->setItem($_item)->toHtml() ?>
+        <?php endif; ?>
+        <?= $block->escapeHtml($_item->getDescription()) ?>
+    </td>
+    <td class="col sku" data-th="<?= $block->escapeHtml(__('SKU')) ?>"><?=  $block->prepareSku($block->getSku()) ?></td>
+    <td class="col price" data-th="<?= $block->escapeHtml(__('Price')) ?>">
+        <?= $block->getItemPriceHtml() ?>
+    </td>
+    <td class="col qty" data-th="<?= $block->escapeHtml(__('Qty')) ?>">
+        <ul class="items-qty">
+        <?php if ($block->getItem()->getQtyOrdered() > 0): ?>
+            <li class="item">
+                <span class="title"><?=  __('Ordered') ?></span>
+                <span class="content"><?=  $block->getItem()->getQtyOrdered()*1 ?></span>
+            </li>
+        <?php endif; ?>
+        <?php if ($block->getItem()->getQtyShipped() > 0): ?>
+            <li class="item">
+                <span class="title"><?=  __('Shipped') ?></span>
+                <span class="content"><?= $block->getItem()->getQtyShipped()*1 ?></span>
+            </li>
+        <?php endif; ?>
+        <?php if ($block->getItem()->getQtyCanceled() > 0): ?>
+            <li class="item">
+                <span class="title"><?=  __('Canceled') ?></span>
+                <span class="content"><?= $block->getItem()->getQtyCanceled()*1 ?></span>
+            </li>
+        <?php endif; ?>
+        <?php if ($block->getItem()->getQtyRefunded() > 0): ?>
+            <li class="item">
+                <span class="title"><?=  __('Refunded') ?></span>
+                <span class="content"><?= $block->getItem()->getQtyRefunded()*1 ?></span>
+            </li>
+        <?php endif; ?>
+        </ul>
+    </td>
+    <td class="col subtotal" data-th="<?= $block->escapeHtml(__('Subtotal')) ?>">
+        <?= $block->getItemRowTotalHtml() ?>
+    </td>
+    <td class="col status" data-th="<?= $block->escapeHtml(__('Status')) ?>">
+        <?php
+            $vendorOrder = $_item->getVendorOrder();
+            echo ($vendorOrder)?$vendorOrder->getStatusLabel():'';
+        ?>
+    </td>
+    
+    <td class="col action" data-th="<?= $block->escapeHtml(__('Action')) ?>">
+        <?php if ($cancelItem) { ?>
+            <a class="cancel_item" href="javascript:void(0);" id="<?php echo $_item->getId(); ?>">
+                <span><?php echo __('Cancel Item') ?></span>
+            </a>
+        <?php } ?>
+        
+        <?= $this->getChildHtml('additional_sales_order_item_actions', false); ?>
+    </td>
+</tr>
+
+
+<?php if ($cancelItem) { ?>
+    <div class="cancel_item_popup_form_<?php echo $_item->getId(); ?>">
+        <form class="form cancel-order_<?php echo $_item->getId(); ?>"
+              action="<?php echo $getCancelOrderItemUrl ?>" id="cancellation-form_<?php echo $_item->getId(); ?>" method="post">
+            <input type="hidden" name="order_id" value="<?php echo $_item->getOrderId(); ?>">
+            <input type="hidden" name="order_item_id" value="<?php echo $_item->getId(); ?>">
+            <input type="hidden" name="vendor_order_id" value="<?php echo $vendorOrder->getVendorOrderId(); ?>"> <!--  for store credit revert changes -->
+            <fieldset class="fieldset">
+                <div class="field note no-label order-q">
+                    <?php  echo __('Are you sure to cancel selected order item?') ?><br>
+                    <span class="order-item-sku">
+                        <?php  echo __('Item Sku:') ?> <?php  echo $_item->getSku() ?>
+                    </span><br>
+                    <span class="order-item-name">
+                        <?php  echo __('Item Name:') ?> <?php  echo $_item->getName() ?>
+                    </span>
+                </div>
+                <div class="field select-reason">
+                    <label class="label" for="select-reason">
+                        <span><?php  echo __('Select Any Reason') ?></span>
+                    </label>
+                    <div class="control">
+                        <select id="select-reason_<?php echo $_item->getId(); ?>" name="cancel_item_reason" >
+                           <?php foreach($cancelOrderReasonArray as $cancelOrderReason){ ?>
+                            <option value="<?php echo $cancelOrderReason->order_cancel_reasons; ?>">
+                                <?php echo $cancelOrderReason->order_cancel_reasons; ?>
+                            </option>
+                        <?php }?>
+                        </select>
+                    </div>
+                </div>
+                <div class="field comment">
+                    <label class="label" for="comment"><span><?php  echo __('Any cancellation comment ?') ?></span></label>
+                    <div class="control">
+                        <textarea name="cancel_item_comment" id="cancel_item_comment_<?php echo $_item->getId(); ?>" title="<?php echo __('Any cancellation comment ?') ?>" placeholder="<?php echo __('Why do you want to cancel this order?') ?>" class="input-text" cols="5" rows="3"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <script type = 'text/javascript'>
+    require(
+        ['jquery',
+         'Magento_Ui/js/modal/modal'],
+            function ($,modal)
+            {
+                var itemId = <?php echo $_item->getId(); ?>;
+                var options = {
+                    type: 'popup',
+                    buttons: [{
+                            text: $.mage.__('Yes'),
+                            class: 'btn-yes',
+                            click: function () {
+                                $('#cancellation-form_'+itemId).submit();
+                            }
+                        }, {
+                            text: $.mage.__('No'),
+                            class: 'btn-no',
+                            click: function () {
+                                this.closeModal();
+                            }
+                        }]
+                };
+                var popup = modal(options, $('.cancel_item_popup_form_'+itemId));
+                $(".cancel_item").on('click', function () {
+                    $(".cancel_item_popup_form_"+this.id).modal("openModal");
+                });
+            }
+        );
+    </script>
+<?php } ?>

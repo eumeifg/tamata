@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="mobileinit" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Mobile Init</label>
+            <tab>rbsettings</tab>
+            <resource>Magedelight_Common::config</resource>
+            <group id="general" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="0">
+                <label>General Settings</label>
+                <field id="front_modules" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Front Area Enabled Modules For App</label>
+                    <source_model>Magedelight\MobileInit\Model\Source\Config\FrontModules</source_model>
+                    <comment>Select the modules to be shown in Front are of APP </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

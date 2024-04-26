@@ -1,0 +1,492 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Edit customer address template
+ *
+ * @var $block \Magento\Customer\Block\Address\Edit
+ */
+/** @var \Magento\Customer\Helper\Address $addressHelper */
+$addressHelper = $this->helper('Magento\Customer\Helper\Address');
+$requiredAttributesPrechecked = $block->getData('required_attributes_prechecked');
+$defaultLat = $block->getAddress()->getCustomAttribute('latitude') ? $block->getAddress()->getCustomAttribute('latitude')->getValue() : 33.312805;
+$defaultLng = $block->getAddress()->getCustomAttribute('longitude') ? $block->getAddress()->getCustomAttribute('longitude')->getValue() : 44.361488;
+?>
+<form class="form-address-edit" action="<?= /* @escapeNotVerified */ $block->getSaveUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data" data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>">
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= /* @escapeNotVerified */ __('Contact Information') ?></span></legend><br>
+        <?= $block->getBlockHtml('formkey') ?>
+        <input type="hidden" name="success_url" value="<?= /* @escapeNotVerified */ $block->getSuccessUrl() ?>"/>
+        <input type="hidden" name="error_url" value="<?= /* @escapeNotVerified */ $block->getErrorUrl() ?>"/>
+        <?= $block->getNameBlockHtml() ?>
+        <?php if ($addressHelper->isAttributeVisible('company')): ?>
+            <div class="field company <?php if (in_array('company', $requiredAttributesPrechecked)): ?>required<?php endif; ?>">
+                <label class="label" for="company"><span><?= /* @escapeNotVerified */ __('Company') ?></span></label>
+                <div class="control">
+                    <input type="text" name="company" id="company" title="<?= /* @escapeNotVerified */ __('Company') ?>" value="<?= $block->escapeHtml($block->getAddress()->getCompany()) ?>" class="input-text <?= /* @escapeNotVerified */ $addressHelper->getAttributeValidationClass('company') ?>"/>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if ($addressHelper->isAttributeVisible('telephone')): ?>
+            <div class="field telephone <?php if (in_array('telephone', $requiredAttributesPrechecked)): ?>required<?php endif; ?>">
+                <label class="label" for="telephone"><span><?= /* @escapeNotVerified */ __('Phone Number') ?></span></label>
+                <div class="control">
+                    <input type="text" name="telephone" value="<?= $block->escapeHtml($block->getAddress()->getTelephone()) ?>" title="<?= /* @escapeNotVerified */ __('Phone Number') ?>" class="input-text <?= /* @escapeNotVerified */ $addressHelper->getAttributeValidationClass('telephone') ?>" id="telephone"/>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if ($addressHelper->isAttributeVisible('fax')): ?>
+            <div class="field fax">
+                <label class="label" for="fax"><span><?= /* @escapeNotVerified */ __('Fax') ?></span></label>
+                <div class="control">
+                    <input type="text" name="fax" id="fax" title="<?= /* @escapeNotVerified */ __('Fax') ?>" value="<?= $block->escapeHtml($block->getAddress()->getFax()) ?>" class="input-text <?= /* @escapeNotVerified */ $addressHelper->getAttributeValidationClass('fax') ?>"/>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if($block->getConfig('google_map/general/active')) : ?>
+        <div class="field fax">
+            <label class="label" for="fax"><span><?= /* @escapeNotVerified */ __('Location') ?></span></label>
+            <div class="control">
+                <input class="form-control places-autocomplete" type="text" id="location" name="Location" placeholder="" value="">
+            </div>
+        </div>
+        <div class="field fax">
+            <div id="google_map" />
+
+        </div>
+        <?php endif; ?>
+    </fieldset>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= /* @escapeNotVerified */ __('Address') ?></span></legend><br>
+        <?php $_streetValidationClass = $addressHelper->getAttributeValidationClass('street'); ?>
+        <div class="field street required">
+            <label for="street_1" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('street') ?></span></label>
+            <div class="control">
+                <input type="text" name="street[]" value="<?= $block->escapeHtml($block->getStreetLine(1)) ?>" title="<?= /* @escapeNotVerified */ __('Street Address') ?>" id="street_1" class="input-text <?= /* @escapeNotVerified */ $_streetValidationClass ?>"/>
+                <div class="nested">
+                    <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+                    <?php for ($_i = 3, $_n = $addressHelper->getStreetLines(); $_i <= $_n; $_i++): ?>
+                        <div class="field additional">
+                            <label class="label" for="street_<?= /* @escapeNotVerified */ $_i ?>">
+                                <span><?= /* @escapeNotVerified */ __('Street Address %1', $_i) ?></span>
+                            </label>
+                            <div class="control">
+                                <input type="text" name="street[]" value="<?= $block->escapeHtml($block->getStreetLine($_i)) ?>" title="<?= /* @escapeNotVerified */ __('Street Address %1', $_i) ?>" id="street_<?= /* @escapeNotVerified */ $_i ?>" class="input-text <?= /* @escapeNotVerified */ $_streetValidationClass ?>"/>
+                            </div>
+                        </div>
+                    <?php endfor; ?>
+                </div>
+            </div>
+        </div>
+
+        <?php if ($addressHelper->isVatAttributeVisible()) : ?>
+            <div class="field taxvat">
+                <label class="label" for="vat_id"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('vat_id') ?></span></label>
+                <div class="control">
+                    <input type="text" name="vat_id" value="<?= $block->escapeHtml($block->getAddress()->getVatId()) ?>" title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('vat_id') ?>" class="input-text <?= /* @escapeNotVerified */ $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('vat_id') ?>" id="vat_id"/>
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="field city required">
+            <label class="label" for="city"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('city') ?></span></label>
+            <div class="control">
+                <input type="text" name="city" value="<?= $block->escapeHtml($block->getAddress()->getCity()) ?>" title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('city') ?>" class="input-text <?= /* @escapeNotVerified */ $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('city') ?>" id="city"/>
+            </div>
+        </div>
+        <div class="field region required">
+            <label class="label" for="region_id"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('region') ?></span></label>
+            <div class="control">
+                <select id="region_id" name="region_id" title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('region') ?>" class="validate-select region_id" <?= (!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : '';?>>
+                    <option value=""><?= /* @escapeNotVerified */ __('Please select a region, state or province.') ?></option>
+                </select>
+                <input type="text" id="region" name="region" value="<?= $block->escapeHtml($block->getRegion()) ?>"  title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('region') ?>" class="input-text <?= /* @escapeNotVerified */ $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('region') ?>"<?= (!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : '';?>/>
+            </div>
+        </div>
+        <div class="field zip required">
+            <label class="label" for="zip"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('postcode') ?></span></label>
+            <div class="control">
+                <input type="text" name="postcode" value="<?= $block->escapeHtml($block->getAddress()->getPostcode()) ?>" title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('postcode') ?>" id="zip" class="input-text validate-zip-international <?= /* @escapeNotVerified */ $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode') ?>"/>
+                <div role="alert" class="message warning" style="display:none">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="field country required">
+            <label class="label" for="country"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('country_id') ?></span></label>
+            <div class="control">
+                <?= $block->getCountryHtmlSelect() ?>
+            </div>
+        </div>
+
+        <?php $userDefinedAttributes = $block->getLayout()->getBlock('customer_form_address_user_attributes'); ?>
+        <?php if ($userDefinedAttributes):?>
+            <?= $userDefinedAttributes->setShowContainer(false)->toHtml() ?>
+        <?php endif;?>
+        <?php if ($block->isDefaultBilling()): ?>
+            <div class="message info">
+                <span><?= /* @escapeNotVerified */ __("This is your default billing address.") ?></span>
+            </div>
+        <?php elseif ($block->canSetAsDefaultBilling()): ?>
+            <div class="field choice set billing">
+                <input type="checkbox" id="primary_billing" name="default_billing" value="1" class="checkbox"/>
+                <label class="label" for="primary_billing"><span><?= /* @escapeNotVerified */ __('Use as my default billing address') ?></span></label>
+            </div>
+        <?php else: ?>
+            <input type="hidden" name="default_billing" value="1"/>
+        <?php endif; ?>
+
+        <?php if ($block->isDefaultShipping()): ?>
+            <div class="message info">
+                <span><?= /* @escapeNotVerified */ __("This is your default shipping address.") ?></span>
+            </div>
+        <?php elseif ($block->canSetAsDefaultShipping()): ?>
+            <div class="field choice set shipping">
+                <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox"/>
+                <label class="label" for="primary_shipping"><span><?= /* @escapeNotVerified */ __('Use as my default shipping address') ?></span></label>
+            </div>
+        <?php else: ?>
+            <input type="hidden" name="default_shipping" value="1"/>
+        <?php endif; ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" data-action="save-address" title="<?= /* @escapeNotVerified */ __('Save Address') ?>">
+                <span><?= /* @escapeNotVerified */ __('Save Address') ?></span>
+            </button>
+        </div>
+        <div class="secondary">
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>">
+                <span><?= /* @escapeNotVerified */ __('Go back') ?></span>
+            </a>
+        </div>
+    </div>
+</form>
+<script type="text/x-magento-init">
+    {
+        "#form-validate": {
+            "addressValidation": {
+                "postCodes": <?= /* @noEscape */ $block->getPostCodeConfig()->getSerializedPostCodes(); ?>
+            }
+        },
+        "#country": {
+            "regionUpdater": {
+                "optionalRegionAllowed": <?= /* @escapeNotVerified */ ($block->getConfig('general/region/display_all') ? 'true' : 'false') ?>,
+                "regionListId": "#region_id",
+                "regionInputId": "#region",
+                "postcodeId": "#zip",
+                "form": "#form-validate",
+                "regionJson": <?= /* @escapeNotVerified */ $this->helper('Magento\Directory\Helper\Data')->getRegionJson() ?>,
+                "defaultRegion": "<?= /* @escapeNotVerified */ $block->getRegionId() ?>",
+                "countriesWithOptionalZip": <?= /* @escapeNotVerified */ $this->helper('Magento\Directory\Helper\Data')->getCountriesWithOptionalZip(true) ?>
+            }
+        }
+    }
+</script>
+<?php if($block->getConfig('google_map/general/active')) : ?>
+<script>
+    require([
+        'jquery',
+        'https://maps.googleapis.com/maps/api/js?key=<?php echo $block->getConfig('google_map/general/google_api_key')?>&libraries=places'
+        ], function($, googleMapApi) {
+
+        var placeSearch, autocomplete;
+        var enabled = '<?php echo $block->getConfig('google_map/general/active')?>';
+        var componentForm = {
+            street_number: 'short_name',
+            route: 'long_name',
+            locality: 'long_name',
+            administrative_area_level_1: 'long_name',
+            country: 'short_name',
+            postal_code: 'short_name',
+            postal_town: 'short_name',
+            sublocality_level_1: 'short_name'
+        };
+
+        var lookupElement = {
+            street_number: 'street_1',
+            route: 'street_2',
+            locality: 'city',
+            administrative_area_level_1: 'region',
+            country: 'country',
+            postal_code: 'zip'
+        }
+
+        var marker = '';
+        var markers = [];
+
+        var defaultLat = '<?php echo $defaultLat; ?>';
+        var defaultLng = '<?php echo $defaultLng; ?>';
+        var baghdad = {lat: Number(defaultLat), lng: Number(defaultLng)};
+        var map = new google.maps.Map(
+            document.getElementById('google_map'), {zoom: 16, center: baghdad});
+        var marker = new google.maps.Marker({position: baghdad, map: map})
+
+        markers.push(marker);
+
+        map.addListener('click', function(e) {
+            setMapOnAll(null);
+            placeMarker(e.latLng, map);
+        });
+
+
+        fillInAddress = function () {
+            var place = autocomplete.getPlace();
+            var street = [];
+            var region  = '';
+            var city = '';
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (componentForm[addressType]) {
+                    var val = place.address_components[i][componentForm[addressType]];
+                    if(addressType == 'street_number') {
+                        street[0] = val;
+                    }
+                    else if(addressType == 'route') {
+                        street[1] = val;
+                    }
+                    else if (addressType == 'administrative_area_level_1') {
+                        region = val;
+                    }
+                    else if (addressType == 'sublocality_level_1') {
+                        city = val;
+                    }
+                    else if (addressType == 'postal_town') {
+                        city = val;
+                    }
+                    else if (addressType == 'locality' && city == '') {
+                        //ignore if we are using one of other city values already
+                        city = val;
+                    }
+                    else {
+                        var elementId = lookupElement[addressType];
+                        document.getElementById(elementId).value = val;
+                        if(addressType == 'country') {
+                            document.getElementById(elementId).dispatchEvent(new  window.CustomEvent('change'));
+                        }
+                    }
+                }
+            }
+            if(street.length > 0) {
+                document.getElementById('street_1').value = street.join(' ');
+            }
+            document.getElementById('city').value = city;
+            if(region != '') {
+                if(document.getElementById('region_id')) {
+                    var regionSelector = document.getElementById('region_id');
+                    for (i = 0; i < regionSelector.length; i++) {
+                        if(regionSelector.options[i].text === region)
+                        {
+                            regionSelector.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+                if(document.getElementById('region')) {
+                    document.getElementById('region').value = region;
+
+                }
+            }
+
+            if(document.getElementById('latitude')) {
+                document.getElementById('latitude').value = place.geometry.location.lat().toFixed(6);
+            }
+            if(document.getElementById('longitude')) {
+                document.getElementById('longitude').value = place.geometry.location.lng().toFixed(6);
+            }
+
+            createMarker(place.geometry.location.lat(), place.geometry.location.lng());
+        }
+
+        if(enabled == '1') {
+
+            var input = document.getElementById('location');
+
+            autocomplete = new google.maps.places.Autocomplete(
+                /** @type {!HTMLInputElement} */(document.getElementById('location')),
+                {types: ['geocode']});
+
+            autocomplete.setComponentRestrictions(
+                {'country': ['iq']});
+
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+
+        createMarker = function (lat, lng) {
+
+            // The purpose is to create a single marker, so
+            // check if there is already a marker on the map.
+            // With a new click on the map the previous
+            // marker is removed and a new one is created.
+
+            // If the marker variable contains a value
+            if (marker) {
+                // remove that marker from the map
+                marker.setMap(null);
+                // empty marker variable
+                marker = "";
+            }
+
+            // Set marker variable with new location
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lng),
+                draggable: true, // Set draggable option as true
+                map: map
+            });
+
+            markers.push(marker);
+            // This event detects the drag movement of the marker.
+            // The event is fired when left button is released.
+            google.maps.event.addListener(marker, 'dragend', function() {
+
+                // Updates lat and lng position of the marker.
+                marker.position = marker.getPosition();
+
+                // Get lat and lng coordinates.
+                var lat = marker.position.lat().toFixed(6);
+                var lng = marker.position.lng().toFixed(6);
+                if(lat) {
+                    document.getElementById('latitude').value = lat;
+                }
+                if(lng) {
+                    document.getElementById('longitude').value = lng;
+                }
+
+                // Update lat and lng values into text boxes.
+                getCoords(lat, lng);
+
+            });
+
+            map.setZoom(16);
+            map.setCenter(new google.maps.LatLng(lat, lng));
+
+            if(document.getElementById('latitude')) {
+                document.getElementById('latitude').value = lat.toFixed(4);
+            }
+            if(document.getElementById('longitude')) {
+                document.getElementById('longitude').value = lng.toFixed(4);
+            }
+        }
+
+        placeMarker = function  (position, map) {
+            marker = new google.maps.Marker({
+                position: position,
+                map: map
+            });
+            map.panTo(position);
+            markers.push(marker);
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': position }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        //alert("Location: " + results[0].formatted_address);
+                        /*....Start set address related field from map pin location....*/
+                        var place = results[0];
+                        var street = [];
+                        var region  = '';
+                        var city = '';
+                        for (var i = 0; i < place.address_components.length; i++) {
+                            var addressType = place.address_components[i].types[0];
+                            if (componentForm[addressType]) {
+                                var val = place.address_components[i][componentForm[addressType]];
+                                if(addressType == 'street_number') {
+                                    street[0] = val;
+                                }
+                                else if(addressType == 'route') {
+                                    street[1] = val;
+                                }
+                                else if (addressType == 'administrative_area_level_1') {
+                                    region = val;
+                                }
+                                else if (addressType == 'sublocality_level_1') {
+                                    city = val;
+                                }
+                                else if (addressType == 'postal_town') {
+                                    city = val;
+                                }
+                                else if (addressType == 'locality' && city == '') {
+                                    //ignore if we are using one of other city values already
+                                    city = val;
+                                }
+                                else {
+                                    var elementId = lookupElement[addressType];
+                                    document.getElementById(elementId).value = val;
+                                    if(addressType == 'country') {
+                                        document.getElementById(elementId).dispatchEvent(new  window.CustomEvent('change'));
+                                    }
+                                }
+                            }
+                        }
+                        if(street.length > 0) {
+                            document.getElementById('street_1').value = street.join(' ');
+                        }
+                        document.getElementById('city').value = city;
+                        if(region != '') {
+                            if(document.getElementById('region_id')) {
+                                var regionSelector = document.getElementById('region_id');
+                                for (i = 0; i < regionSelector.length; i++) {
+                                    if(regionSelector.options[i].text === region)
+                                    {
+                                        regionSelector.selectedIndex = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            if(document.getElementById('region')) {
+                                document.getElementById('region').value = region;
+
+                            }
+                        }
+
+                        if(document.getElementById('latitude')) {
+                            document.getElementById('latitude').value = place.geometry.location.lat().toFixed(6);
+                        }
+                        if(document.getElementById('longitude')) {
+                            document.getElementById('longitude').value = place.geometry.location.lng().toFixed(6);
+                        }
+                        /*....End set address related field from map pin location....*/
+                    }
+                }
+            });
+        }
+
+        setMapOnAll = function  (map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+    });
+</script>
+<script>
+
+    (function () {
+        if ( typeof window.CustomEvent === "function" ) return false;
+
+        function CustomEvent ( event, params ) {
+            params = params || { bubbles: false, cancelable: false, detail: undefined };
+            var evt = document.createEvent( 'CustomEvent' );
+            evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+            return evt;
+        }
+
+        CustomEvent.prototype = window.Event.prototype;
+        window.CustomEvent = CustomEvent;
+
+    })();
+
+</script>
+
+<style>
+    #google_map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+    }
+</style>
+<?php endif; ?>

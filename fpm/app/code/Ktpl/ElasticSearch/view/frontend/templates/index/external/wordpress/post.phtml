@@ -1,0 +1,36 @@
+<?php
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+?>
+
+<?php
+//@codingStandardsIgnoreFile
+/** @var \Ktpl\ElasticSearch\Block\Index\Base $block */
+?>
+<div class="ktpl-search__index ktpl-search__index-external-wordpress-post">
+    <?= $block->getPager() ?>
+    <ul>
+        <?php foreach ($block->getCollection() as $post) : ?>
+            <li>
+                <div class="ktpl-search__index-title">
+                    <a href="<?= $post->getUrl() ?>">
+                        <?= $post->getPostTitle() ?></a>
+                </div>
+                <div class="ktpl-search__index-content">
+                    <?= $this->truncate($post->getTeaser()) ?>
+                </div>
+            </li>
+        <?php endforeach ?>
+    </ul>
+    <?= $block->getPager() ?>
+</div>

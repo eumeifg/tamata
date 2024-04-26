@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<logging xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Logging:etc/logging.xsd">
+    <groups>
+        <group name="offer_page">
+            <label translate="true">Offer Page</label>
+            <expected_models>
+                <expected_model class="CAT\OfferPage\Model\OfferPage"/>
+            </expected_models>
+            <events>
+                <event controller_action="cat_offerpage_items_save" action_alias="save"/>
+                <event controller_action="cat_offerpage_items_delete" action_alias="delete"/>
+            </events>
+        </group>
+    </groups>
+</logging>

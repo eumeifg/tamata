@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+ 
+    <preference for="Magedelight\CatalogGraphQl\DataProvider\Product\LayeredNavigation\Builder\Category" 
+                type="MDC\Custom\DataProvider\Product\LayeredNavigation\Builder\Category" />
+
+    <type name="MDC\Custom\Controller\Adminhtml\Category\Mobilecategroyimage\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">MDC\Custom\CategoryImageUpload</argument>
+        </arguments>
+    </type>
+
+    <type name="MDC\Custom\Controller\Adminhtml\Category\Mobilecategroybanner\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">MDC\Custom\CategoryImageUpload</argument>
+        </arguments>
+    </type> 
+
+    
+      <virtualType name="MDC\Custom\CategoryImageUpload" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">catalog/tmp/category</argument>
+            <argument name="basePath" xsi:type="string">catalog/category</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="svg" xsi:type="string">svg</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <preference for="Magedelight\CatalogGraphQl\Model\Resolver\Category\SortFields"
+                type="MDC\Custom\Model\Resolver\Category\SortFields" />
+    <preference for="Magedelight\CatalogGraphQl\DataProvider\Product\LayeredNavigation\Builder\Attribute"
+                type="MDC\Custom\DataProvider\Product\LayeredNavigation\Builder\Attribute" />
+
+    <preference for="Magento\Framework\GraphQlSchemaStitching\GraphQlReader" 
+                type="MDC\Custom\GraphQlSchemaStitching\GraphQlReader" />
+
+    
+</config>

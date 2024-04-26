@@ -1,0 +1,28 @@
+{
+    "name": "Magedelight\/Customer",
+    "description": "",
+    "require": {
+        "php": "~5.6.0|~7.0.0"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "Proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magedelight\\Customer\\": ""
+        }
+    },
+    "extra": {
+        "map": [
+            [
+                "*",
+                "Magedelight\/Customer"
+            ]
+        ]
+    }
+}

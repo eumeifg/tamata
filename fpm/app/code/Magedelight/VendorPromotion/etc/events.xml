@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_VendorPromotion
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- <event name="layout_render_before">
+       <observer name="magedelight_vendorpromotion_check_util" instance="Magedelight\VendorPromotion\Observer\Util" />
+    </event>
+    <event name="admin_system_config_changed_section_vendorpromotion">`
+        <observer name="custom_admin_system_config_changed_section_vendorpromotion" instance="Magedelight\VendorPromotion\Observer\Mdkc"/>
+        <observer name="magedelight_vendorpromotion_frd_track" instance="Magedelight\VendorPromotion\Observer\Mdfrd" />
+    </event> -->
+<!--    <event name="sales_quote_collect_totals_after"> -->
+<!--        <observer name="checkout_cart_save_item_data_session" instance="Magedelight\VendorPromotion\Observer\CartSaveAfter" shared="true" /> -->
+<!--    </event>-->
+    <event name="vendor_status_mass_delete_after">
+        <observer name="delete_cart_price_rule_on_vendor_delete" instance="Magedelight\VendorPromotion\Observer\RemoveVendorFromCartPriceRule"/>
+    </event>
+</config>

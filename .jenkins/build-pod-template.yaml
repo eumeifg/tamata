@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: infra
+spec:
+  serviceAccountName: kaniko
+  securityContext:
+    fsGroup: 1000
+  containers:
+    - name: builder
+      image: gcr.io/kaniko-project/executor:debug
+      imagePullPolicy: IfNotPresent
+      command:
+        - /busybox/cat
+      tty: true
+      resources:
+        limits:
+          memory: "6Gi"
+        requests:
+          cpu: "4"
+          memory: "6Gi"
+      volumeMounts:
+        - name: docker-config
+          mountPath: /kaniko/.docker
+  volumes:
+    - name: docker-config
+      configMap:
+        name: regcred

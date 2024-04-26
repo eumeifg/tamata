@@ -1,0 +1,287 @@
+{
+    "md_vendor_product_request": {
+        "column": {
+            "product_request_id": true,
+            "marketplace_product_id": true,
+            "vendor_product_id": true,
+            "vendor_id": true,
+            "vendor_sku": true,
+            "type_id": true,
+            "qty": true,
+            "website_ids": true,
+            "attribute_set_id": true,
+            "main_category_id": true,
+            "has_variants": true,
+            "disapprove_message": true,
+            "used_product_attribute_ids": true,
+            "configurable_attributes": true,
+            "configurable_attribute_codes": true,
+            "configurable_attributes_data": true,
+            "images": true,
+            "base_image": true,
+            "is_requested_for_edit": true,
+            "is_offered": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "MD_VENDOR_PRODUCT_REQUEST_MARKETPLACE_PRODUCT_ID": true,
+            "MD_VENDOR_PRODUCT_REQUEST_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_PRODUCT_REQUEST_VENDOR_ID_VENDOR_SKU": true,
+            "MD_VENDOR_PRODUCT_REQUEST_VENDOR_ID_MD_VENDOR_VENDOR_ID": true
+        }
+    },
+    "md_vendor_product_request_website": {
+        "column": {
+            "row_id": true,
+            "product_request_id": true,
+            "website_id": true,
+            "category_id": true,
+            "price": true,
+            "special_price": true,
+            "special_from_date": true,
+            "special_to_date": true,
+            "reorder_level": true,
+            "condition": true,
+            "warranty_type": true
+        },
+        "index": {
+            "MD_VENDOR_PRODUCT_REQUEST_WEBSITE_PRODUCT_REQUEST_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_909BB03865A14CFAEF74C5F93B81FAD4": true,
+            "MD_VENDOR_PRD_REQUEST_WS_WS_ID_STORE_WS_WS_ID": true
+        }
+    },
+    "md_vendor_product_request_store": {
+        "column": {
+            "row_id": true,
+            "product_request_id": true,
+            "store_id": true,
+            "website_id": true,
+            "name": true,
+            "condition_note": true,
+            "warranty_description": true,
+            "attributes": true
+        },
+        "index": {
+            "MD_VENDOR_PRODUCT_REQUEST_STORE_PRODUCT_REQUEST_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_6607BEBB3583DF18F8D62A4E660D5B14": true,
+            "MD_VENDOR_PRODUCT_REQUEST_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "md_vendor_product_request_super_link": {
+        "column": {
+            "link_id": true,
+            "product_request_id": true,
+            "parent_id": true
+        },
+        "index": {
+            "MD_VENDOR_PRODUCT_REQUEST_SUPER_LINK_PARENT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_359080B421A01C6D289C314DD277F0DC": true,
+            "FK_FCFC0795E91EE73D9A4FE263446B078C": true,
+            "MD_VENDOR_PRD_REQUEST_SPR_LNK_PRD_REQUEST_ID_PARENT_ID": true
+        }
+    },
+    "md_eav_attribute_placeholder": {
+        "column": {
+            "attribute_placeholder_id": true,
+            "attribute_id": true,
+            "store_id": true,
+            "value": true
+        },
+        "index": {
+            "MD_EAV_ATTRIBUTE_PLACEHOLDER_STORE_ID": true,
+            "MD_EAV_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE_ID_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_EAV_ATTR_PLACEHOLDER_ATTR_ID_EAV_ATTR_ATTR_ID": true,
+            "MD_EAV_ATTRIBUTE_PLACEHOLDER_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "md_eav_attribute_tooltip": {
+        "column": {
+            "attribute_tooltip_id": true,
+            "attribute_id": true,
+            "store_id": true,
+            "value": true
+        },
+        "index": {
+            "MD_EAV_ATTRIBUTE_TOOLTIP_STORE_ID": true,
+            "MD_EAV_ATTRIBUTE_TOOLTIP_ATTRIBUTE_ID_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_EAV_ATTRIBUTE_TOOLTIP_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID": true,
+            "MD_EAV_ATTRIBUTE_TOOLTIP_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "catalog_product_index_price_final_idx": {
+        "column": {
+            "vendor_id": true,
+            "special_price": true,
+            "special_from_date": true,
+            "special_to_date": true
+        }
+    },
+    "catalog_product_index_price_final_tmp": {
+        "column": {
+            "vendor_id": true,
+            "special_price": true,
+            "special_from_date": true,
+            "special_to_date": true
+        }
+    },
+    "catalog_product_index_price_idx": {
+        "column": {
+            "vendor_id": true,
+            "special_price": true,
+            "special_from_date": true,
+            "special_to_date": true
+        }
+    },
+    "catalog_product_index_price": {
+        "column": {
+            "vendor_id": true,
+            "special_price": true,
+            "special_from_date": true,
+            "special_to_date": true
+        }
+    },
+    "catalog_product_index_price_tmp": {
+        "column": {
+            "vendor_id": true,
+            "special_price": true,
+            "special_from_date": true,
+            "special_to_date": true
+        }
+    },
+    "catalog_product_index_price_replica": {
+        "column": {
+            "vendor_id": true,
+            "special_price": true,
+            "special_from_date": true,
+            "special_to_date": true
+        }
+    },
+    "catalog_product_index_price_bundle_tmp": {
+        "column": {
+            "vendor_id": true,
+            "special_price": true,
+            "special_from_date": true,
+            "special_to_date": true
+        }
+    },
+    "md_vendor_product_listing_idx": {
+        "column": {
+            "marketplace_product_id": true,
+            "parent_id": true,
+            "vendor_id": true,
+            "website_id": true,
+            "price": true,
+            "special_price": true,
+            "special_from_date": true,
+            "special_to_date": true,
+            "qty": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "md_vendor_product": {
+        "column": {
+            "vendor_product_id": true,
+            "marketplace_product_id": true,
+            "parent_id": true,
+            "type_id": true,
+            "vendor_id": true,
+            "external_id": true,
+            "is_deleted": true,
+            "vendor_sku": true,
+            "qty": true,
+            "is_offered": true,
+            "approved_at": true
+        },
+        "index": {
+            "MD_VENDOR_PRODUCT_MARKETPLACE_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_PRODUCT_VENDOR_ID_VENDOR_SKU": true,
+            "MD_VENDOR_PRODUCT_VENDOR_ID_MD_VENDOR_VENDOR_ID": true,
+            "MD_VENDOR_PRD_MARKETPLACE_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "md_vendor_product_website": {
+        "column": {
+            "row_id": true,
+            "vendor_product_id": true,
+            "vendor_id": true,
+            "category_id": true,
+            "price": true,
+            "special_price": true,
+            "special_from_date": true,
+            "special_to_date": true,
+            "condition": true,
+            "warranty_type": true,
+            "reorder_level": true,
+            "status": true,
+            "website_id": true
+        },
+        "index": {
+            "MD_VENDOR_PRODUCT_WEBSITE_VENDOR_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_PRODUCT_WEBSITE_VENDOR_PRODUCT_ID_WEBSITE_ID": true,
+            "MD_VENDOR_PRD_WS_VENDOR_PRD_ID_MD_VENDOR_PRD_VENDOR_PRD_ID": true
+        }
+    },
+    "md_vendor_product_store": {
+        "column": {
+            "row_id": true,
+            "vendor_product_id": true,
+            "condition_note": true,
+            "warranty_description": true,
+            "store_id": true,
+            "website_id": true
+        },
+        "index": {
+            "MD_VENDOR_PRODUCT_STORE_VENDOR_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_PRODUCT_STORE_VENDOR_PRODUCT_ID_WEBSITE_ID_STORE_ID": true,
+            "MD_VENDOR_PRD_STORE_VENDOR_PRD_ID_MD_VENDOR_PRD_VENDOR_PRD_ID": true
+        }
+    },
+    "md_vendor_product_bulk_request": {
+        "column": {
+            "vendor_product_bulk_request_id": true,
+            "vendor_id": true,
+            "file_name": true,
+            "category_id": true,
+            "uploaded_at": true,
+            "status": true
+        },
+        "index": {
+            "MD_VENDOR_PRODUCT_BULK_REQUEST_VENDOR_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_PRODUCT_BULK_REQUEST_VENDOR_ID_MD_VENDOR_VENDOR_ID": true
+        }
+    }
+}

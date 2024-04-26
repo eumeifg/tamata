@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    <attribute name="class" value="page-products"/>
+    <attribute name="class" value="catalog-category-view"/>
+        <referenceContainer name="columns.top">
+            <container name="category.view.container" htmlTag="div" htmlClass="category-view">
+                <block class="Magedelight\Vendor\Block\Microsite\Sellerdirectory\Seller" name="category.image" template="Magedelight_Vendor::microsite/seller_directory/image.phtml" cacheable="false" />
+                <block class="Magedelight\Vendor\Block\Microsite\Sellerdirectory\Seller" name="category.description" template="Magedelight_Vendor::microsite/seller_directory/description.phtml" cacheable="false" />
+            </container>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Magedelight\Vendor\Block\Microsite\Sellerdirectory\Seller" name="seller_directory" template="Magedelight_Vendor::microsite/seller_directory/seller.phtml" cacheable="false"  />
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <block class="Magedelight\Vendor\Block\Microsite\Sellerdirectory\Sidebar" name="sellerdirectory.sidebar" template="Magedelight_Vendor::microsite/seller_directory/sidebar.phtml" cacheable="false" />
+        </referenceContainer>
+        <move element="sellerdirectory.sidebar" destination="sidebar.additional" before="-"/>
+    </body>
+</page>

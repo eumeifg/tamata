@@ -1,0 +1,215 @@
+<?php
+
+
+use Magento\Framework\App\Action\Action;
+
+/** @var AbstractSlider $block */
+
+$mode = 'grid';
+$viewAllLink = $block->getviewallUrl();
+$items = $block->getSliderCollection();
+$thresholdQtyHelper = $this->helper('MDC\Catalog\Helper\OnlyXLeft');
+$AIRecommendHelper = $this->helper('CAT\AIRecommend\Helper\Data');
+$title = $AIRecommendHelper->getItembasedTitle($block->getStore()->getId());
+$userData = $AIRecommendHelper->getUserID();
+if (count($items) > 0 && $AIRecommendHelper->IsItembasedEnable()) : ?>
+<div class="ktpl-prodslider block related">
+    <div class="block-title title">
+        <strong id="block-related-heading" role="heading" aria-level="2"><?= $title; ?></strong>
+    </div>
+    <div class="block-content vkvkvkvk">
+        <div class="products-<?= $mode; ?> <?= $mode; ?>">
+            <?php $iterator = 1; ?>
+                <div id="ktpl-list-items-AI" class="owl-carousel owl-theme">
+                    <?php foreach ($items as $_item) : ?>
+                        <?= ($iterator++ == 1) ? '<div class="product-item product-slider item">' : '</div><div class="product-item product-slider item">' ?>
+                        <div class="slider-product-item-info">
+                            <div class="prod-img-box">
+                              
+                                    <div class="actions-secondary" data-role="add-to-links">
+                                        <?php $productId = $_item->getId(); ?>
+                                            <div id="wishlist_<?php echo $productId; ?>" class="action wishlist-container" data-bind="scope:'wishlist_<?php echo $productId; ?>'">
+                                                <!-- ko template: getTemplate() --><!-- /ko -->
+                                            </div>
+                                            <script type="text/x-magento-init">
+                                                {
+                                                    "#wishlist_<?php echo $productId; ?>": {
+                                                        "Magento_Ui/js/core/app": {
+                                                           "components": {
+                                                                "wishlist_<?php echo $productId; ?>": {
+                                                                    "component": "Ktpl_Wishlist/js/wishlist",
+                                                                    "template" : "Ktpl_Wishlist/wishlist",
+                                                                    "productId": <?= /* @escapeNotVerified */ $productId ?>,
+                                                                    "loginUrl": "<?= /* @escapeNotVerified */ $this->getUrl('customer/account/login') ?>"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            </script>
+
+                                             
+                                      </div>
+                                  
+                                <a attr-p_id="<?=$_item->getId();?>" href="<?= $block->getProductUrl($_item) ?>"
+                                   class="product photo slider-product-item-photo AII_recomment_P">
+                                    <?= $block->getImage($_item, 'category_page_list')->toHtml(); ?>
+                                </a>
+
+                            </div>
+                            <div class="product details slider-product-item-details">
+                                <strong class="product name product-item-name">
+                                    <a attr-p_id="<?=$_item->getId();?>" class="AII_recomment_P" title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?= $block->getProductUrl($_item) ?>">
+                                        <?= $block->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
+                                    <?= $block->getProductPrice($_item); ?>
+                                <?php if (false) : ?>
+                                    <?php
+                                        if($_item->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE){
+
+                                         $swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer.phtml");
+                                           echo $swatchBlock->setProduct($_item)->toHtml();
+                                        }
+                                    ?>
+                                <?php endif; ?>
+                                <?php
+                                $productId = $_item->getId();
+                                $ratingData = $block->getReviewSummary($productId);
+                                $ratingSummary = $ratingData['ratingSummary'];
+                                $ratingSummaryCount = ((5*$ratingSummary)/100);
+                                $reviewCount = $ratingData['reviewCount'];
+                                ?>
+
+                                <?php 
+                                    if($_item->getTypeId() === "simple"){
+                                        $thresoldStatus = $thresholdQtyHelper->getProductXleftById($productId);
+
+                                        if($thresoldStatus["status"] && $thresoldStatus["qty"] > 0){ ?>
+
+                                            <div class="listing-view-only-few-lefts">
+                                                <div class="availability only" title="Only <?php echo $thresoldStatus['qty'];?> left">
+                                                    <?= __('Only %1 left!',"<strong>".$thresoldStatus["qty"]."</strong>") ?>
+                                                </div>
+                                            </div>
+
+                                        <?php }else{
+                                            ?>
+                                                <div class="listing-view-only-few-lefts">
+                                                    <div class="availability only empty"> 
+                                                    </div>
+                                                </div>
+                                            <?php
+                                        }
+                                    }else{
+                                        ?>
+                                        <div class="listing-view-only-few-lefts">
+                                            <div class="availability only empty"> 
+                                            </div>
+                                        </div>
+                                        <?php
+                                    }
+                                ?>
+                                <?php if ($ratingSummary) { ?>
+                                    <div class="product-reviews-summary short">
+                                        <div class="rating-summary">
+                                            <div title="<?php echo (int)$ratingSummary; ?>%" class="rating-result">
+                                                <span style="width:<?php echo (int)$ratingSummary; ?>%"><span><?php echo (int)$ratingSummary; ?>%</span></span>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-actions">
+                                            <?php echo '('.number_format($ratingSummaryCount, 1).')'; ?>
+                                        </div>
+                                    </div>
+                                <?php  } else { ?>
+                                    <div class="short empty">
+                                        <div class="reviews-actions">
+                                            <a attr-p_id="<?=$_item->getId();?>" class="action add AII_recomment_P" href="<?= $_item->getProductUrl().'#review-form' ?>">
+                                                <?= $block->escapeHtml(__('Write a Review')) ?>
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                                <?php //$block->getReviewsSummaryHtml($_item, 'short', true) ?>
+                            </div>
+                        </div>
+                        <?= ($iterator === count($items) + 1) ? '</div>' : '' ?>
+                    <?php endforeach ?>
+            </div>
+        </div>
+        <?= $block->getPagerHtml() ?>
+    </div>
+</div>
+    <script>
+        require(['jquery', 'ktpl/productslider/owl.carousel'], function ($) {
+            /*$( window ).resize(function() {*/
+                if ($(window).width() >= 1024) {
+                    $('#ktpl-list-items-AI').owlCarousel({responsive:{1400:{items:6},1000:{items:4},767:{items:3,autoWidth:true},220:{items:3,autoWidth:true}},loop:false,nav:true,navText: [
+                                "<span class='left-arrow'>",
+                                "<span class='right-arrow'>"
+                            ],dots:false,lazyLoad:false,autoplay:false,autoplayHoverPause:false, <?php if($block->getStore()->getId() == 2){ echo 'rtl:true'; } ?>});
+                }
+            /*});*/
+
+            /* Clicked Event Trigger */
+            $(document).on('click', '.AII_recomment_P', function(){
+                var url = $(this).attr('href');
+                event.preventDefault();
+
+                // Date and time assign
+                const dateObj = new Date();
+
+                let year = dateObj.getFullYear();
+
+                let month = dateObj.getMonth();
+                month = ('0' + (month + 1)).slice(-2);
+                // To make sure the month always has 2-character-format. For example, 1 => 01, 2 => 02
+
+                let date = dateObj.getDate();
+                date = ('0' + date).slice(-2);
+                // To make sure the date always has 2-character-format
+
+                let hour = dateObj.getHours();
+                hour = ('0' + hour).slice(-2);
+                // To make sure the hour always has 2-character-format
+
+                let minute = dateObj.getMinutes();
+                minute = ('0' + minute).slice(-2);
+                // To make sure the minute always has 2-character-format
+
+                let second = dateObj.getSeconds();
+                second = ('0' + second).slice(-2);
+                // To make sure the second always has 2-character-format
+
+                const time = `${year}/${month}/${date} ${hour}:${minute}:${second}`;
+
+                $.ajax({
+                      url: "<?=$AIRecommendHelper->getClickedAPI()?>",
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      data : JSON.stringify({
+                            "StreamName": "tamata-staging-recommendations",
+                            "Data": {
+                              "Recommdendor": "item_base",
+                              "user": JSON.parse('<?=json_encode($userData);?>'),
+                              "Product_id": $(this).attr('attr-p_id'),
+                              "clicked_at": time
+                            },
+                            "PartitionKey": "1"
+                          }),
+                      success: function(response) {
+                        // Handle response
+                        console.log(response);
+                        window.location.href = url;
+                      },
+                      error: function(xhr, status, error) {
+                        // Handle error
+                        window.location.href = url;
+                      }
+                    });
+
+            }) 
+        });
+    </script>
+<?php endif; ?>

@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Copyright © 2019 Krish Technolabs. All rights reserved.
+ * See COPYING.txt for license details
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Ktpl\BannerManagement\Api\Data\BannerSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<preference for="Ktpl\BannerManagement\Api\Data\BannerInterface" type="Ktpl\BannerManagement\Model\Banner"/>
+	<preference for="Ktpl\BannerManagement\Api\BannerRepositoryInterface" type="Ktpl\BannerManagement\Model\BannerRepository"/>
+	<preference for="Ktpl\BannerManagement\Api\Data\SliderSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<preference for="Ktpl\BannerManagement\Api\Data\SliderInterface" type="Ktpl\BannerManagement\Model\Slider"/>
+	<preference for="Ktpl\BannerManagement\Api\SliderRepositoryInterface" type="Ktpl\BannerManagement\Model\SliderRepository"/>
+
+	<virtualType name="Ktpl\BannerManagement\Model\ResourceModel\Banner\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ktpl_bannerslider_banner</argument>
+			<argument name="resourceModel" xsi:type="string">Ktpl\BannerManagement\Model\ResourceModel\Banner</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="bannersmanagement_banner_listing_data_source" xsi:type="string">Ktpl\BannerManagement\Model\ResourceModel\Banner\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="bannersmanagement_banner_slider_listing_data_source" xsi:type="string">Ktpl\BannerManagement\Model\ResourceModel\Banner\Grid\CollectionBannerSlider</item>
+            </argument>
+        </arguments>
+	</type>
+	<type name="Ktpl\BannerManagement\Model\ResourceModel\Banner\Grid\CollectionBannerSlider">
+	    <arguments>
+	        <argument name="mainTable" xsi:type="string">ktpl_bannerslider_banner</argument>
+	         <argument name="eventPrefix" xsi:type="string">banner_slider_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">banner_grid_collection</argument>
+	        <argument name="resourceModel" xsi:type="string">Ktpl\BannerManagement\Model\ResourceModel\Banner</argument>
+	    </arguments>
+	</type>
+
+	<virtualType name="Ktpl\BannerManagement\Model\ResourceModel\Slider\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ktpl_bannerslider_slider</argument>
+			<argument name="resourceModel" xsi:type="string">Ktpl\BannerManagement\Model\ResourceModel\Slider</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="bannermanagement_slider_listing_data_source" xsi:type="string">Ktpl\BannerManagement\Model\ResourceModel\Slider\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<virtualType name="Ktpl\BannerManagement\ImageUpload" type="Ktpl\BannerManagement\Model\ImageUploader">
+		<arguments>
+			<argument name="baseTmpPath" xsi:type="string">ktpl/banners</argument>
+			<argument name="basePath" xsi:type="string">ktpl/banners</argument>
+			<argument name="allowedExtensions" xsi:type="array">
+				<item name="jpg" xsi:type="string">jpg</item>
+				<item name="jpeg" xsi:type="string">jpeg</item>
+				<item name="gif" xsi:type="string">gif</item>
+				<item name="png" xsi:type="string">png</item>
+				<item name="ico" xsi:type="string">ico</item>
+				<item name="apng" xsi:type="string">apng</item>
+				<item name="avi" xsi:type="string">avi</item>
+				<item name="MTS" xsi:type="string">MTS</item>
+				<item name="M2TS" xsi:type="string">M2TS</item>
+				<item name="mov" xsi:type="string">mov</item>
+				<item name="qt" xsi:type="string">qt</item>
+				<item name="wmv" xsi:type="string">wmv</item>
+				<item name="mp4" xsi:type="string">mp4</item>
+			</argument>
+		</arguments>
+	</virtualType>
+	<type name="Ktpl\BannerManagement\Controller\Adminhtml\Image\Save">
+		<arguments>
+			<argument name="imageUploader" xsi:type="object">Ktpl\BannerManagement\ImageUpload</argument>
+		</arguments>
+	</type>
+	<type name="Ktpl\BannerManagement\Block\WysiwygBlock">
+		<arguments>
+			<argument name="templateProcessor" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
+		</arguments>
+	</type>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Ktpl\CityDropdown\Api\Data\CityInterface"
+                type="Ktpl\CityDropdown\Model\City"/>
+
+    <preference for="Ktpl\CityDropdown\Api\CityRepositoryInterface"
+                type="Ktpl\CityDropdown\Model\CityRepository" />
+
+    <preference for="Ktpl\CityDropdown\Api\Data\CitySearchResultInterface"
+                type="Magento\Framework\Api\SearchResults" />
+
+    <preference for="Magento\Directory\Helper\Data"
+                type="Ktpl\CityDropdown\Helper\CitiesJsonCity" />
+</config>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- To update log while confirming order -->
+    <event name="vendor_orders_confirm_after">
+        <observer name="rbvendor_vorder_order_confirm_after_update_log" instance="MDC\Sales\Observer\Sales\OrdersConfirmStatusLog"/>
+    </event>
+    <!-- To update log while generating invoice order -->
+    <event name="vendor_order_invoice_generate_after">
+        <observer name="rbvendor_vorder_order_invoice_generate_after_update_log" instance="MDC\Sales\Observer\Sales\OrderInvoiceStatusLog"/>
+    </event>
+    <!-- To update log while generating shipment order -->
+    <event name="vendor_order_shipment_generate_after">
+        <observer name="rbvendor_vorder_order_shipment_generate_after_update_log" instance="MDC\Sales\Observer\Sales\OrderShipmentStatusLog"/>
+    </event>
+    <!-- To update log while order in-transit order -->
+    <event name="vendor_orders_in_transit_after">
+        <observer name="rbvendor_vorder_order_in_transit_generate_after_update_log" instance="MDC\Sales\Observer\Sales\OrderInTransitStatusLog"/>
+    </event>
+    <!-- To update log while order out-warehouse order -->
+    <event name="vendor_orders_out_warehouse_after">
+        <observer name="rbvendor_vorder_order_in_transit_generate_after_update_log" instance="MDC\Sales\Observer\Sales\OrderOutWarehouseStatusLog"/>
+    </event>
+    <!-- To update log while order complete order -->
+    <event name="vendor_orders_delivered_after">
+        <observer name="rbvendor_vorder_order_delivered_generate_after_update_log" instance="MDC\Sales\Observer\Sales\OrderDeliveredStatusLog"/>
+    </event>
+
+    <event name="refund_store_credit_order_cancel_after">
+        <observer name="magento_customerbalance" instance="MDC\Sales\Observer\RevertStoreCreditObserver"/>
+    </event>
+
+    <event name="vendor_order_place_after">
+        <observer name="update_custom_fields" instance="MDC\Sales\Observer\Sales\VendorOrderUpdate"/>
+    </event>
+
+    <event name="vendor_order_admin_confirm">
+        <observer name="vendor_order_confirm" instance="MDC\Sales\Observer\Sales\VendorOrderConfirm"/>
+    </event>
+
+</config>

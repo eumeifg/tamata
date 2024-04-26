@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductInterface">
+        <attribute code="appended_data" type="Magedelight\Catalog\Api\Data\ProductDataInterface"/>
+        <!--attribute code="related_rule_data" type="Magedelight\Catalog\Api\Data\ProductDataInterface"/-->
+    </extension_attributes>
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductAttributeMediaGalleryEntryInterface">
+        <attribute code="resized_medium_image" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductAttributeMediaGalleryEntryInterface">
+        <attribute code="mobile_image" type="string"/>
+    </extension_attributes>
+</config>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Result\Page">
+        <plugin name="ktpl-quickview-resultpage"
+            type="Ktpl\Quickview\Plugin\ResultPage" sortOrder="1"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View">
+        <plugin name="ktpl-quickview-block-product-view"
+                type="Ktpl\Quickview\Plugin\BlockProductView" sortOrder="1"/>
+    </type>
+     <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="ktpl-quickview-block-product-list"
+                type="Ktpl\Quickview\Plugin\BlockProductList"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Gallery">
+        <plugin name="ktpl-quickview-block-product-view-gallery-magnifier"
+                type="Ktpl\Quickview\Plugin\BlockProductViewGalleryMagnifier" sortOrder="15"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\AbstractProduct">
+        <plugin name="ktpl-quickview-scopeconfig"
+        type="Ktpl\Quickview\Plugin\AbstractProduct" sortOrder="5"/>
+    </type>
+    <type name="Magento\Framework\App\Config\ScopeConfigInterface">
+        <plugin name="ktpl-quickview-scopeconfig"
+                type="Ktpl\Quickview\Plugin\ScopeConfig" sortOrder="5"/>
+    </type>
+    <type name="Magento\Checkout\Controller\Cart\Add">
+        <plugin name="ktpl-quickview-cart-add"
+                type="Ktpl\Quickview\Plugin\CartAdd" sortOrder="5"/>
+    </type>
+    <type name="Magento\Framework\View\Page\Config\Structure">
+        <plugin name="ktpl-quickview-page-config-structure"
+                type="Ktpl\Quickview\Plugin\PageConfigStructure" sortOrder="10"/>
+    </type>
+</config>

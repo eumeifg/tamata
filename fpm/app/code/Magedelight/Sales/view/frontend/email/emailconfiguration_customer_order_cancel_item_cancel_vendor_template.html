@@ -1,0 +1,33 @@
+<!--@subject {{trans "Update to your %store_name order" store_name=$store.getFrontendName()}} @-->
+{{template config_path="design/email/header_template"}} 
+<table>
+    <tr class="email-intro">
+        <td>
+            <p>{{trans "Hello"}} {{var vendor_name}},</p>
+            <p>
+                {{trans " We would like to inform you that following item is canceled by customer in the Order "}} {{var increment_id}}
+            </p>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            <table class="email-items">
+                <thead>
+                    <tr>
+                        <th class="item-info">{{trans "Item Name"}}</th>
+                        <th class="item-info">{{trans "Qty"}}</th>
+                        <th class="item-info">{{trans "Price"}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="item-info">{{var item_name}}</td>
+                        <td class="item-info">{{var item_qty}}</td>
+                        <td class="item-info">{{var item_price}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}} 

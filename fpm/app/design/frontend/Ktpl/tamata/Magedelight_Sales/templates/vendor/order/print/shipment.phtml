@@ -1,0 +1,103 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php /* @var $block \Magento\Sales\Block\Order\PrintOrder\Shipment */ ?>
+<?php $order = $block->getOrder(); ?>
+<?php if (!$block->getObjectData($order, 'is_virtual')): ?>
+<?php foreach ($block->getShipmentsCollection() as $shipment): ?>
+    <div class="order-details-items shipments">
+        <div class="order-title">
+            <strong><?php /* @escapeNotVerified */ echo __('Shipment #%1', $block->getObjectData($shipment, 'increment_id')); ?></strong>
+        </div>
+        <div class="table-wrapper order-items-shipment">
+
+            <?php $vendor = $block->getVendorDetail($shipment->getVendorId()); ?>
+            <?php if(!empty($vendor)){ ?>
+                <div class="sold-by">
+                    <span class="vendor-label"><?php echo __('Sold By : ') ?></span>
+                    <span class="vendor-name" id="vendor-name-invoice">
+                    <?php if(!empty($vendor->getBusinessName())) {
+                        echo $vendor->getBusinessName();
+                    } ?></span><br/>
+                </div>
+            <?php } ?>
+
+            <table class="data table table-order-items shipment" id="my-shipment-table-<?php /* @escapeNotVerified */ echo $block->getObjectData($shipment, 'id') ?>">
+                <caption class="table-caption"><?php /* @escapeNotVerified */ echo __('Items Invoiced') ?></caption>
+                <thead>
+                <tr>
+                    <th class="col name"><?php /* @escapeNotVerified */ echo __('Product Name') ?></th>
+                    <th class="col sku"><?php /* @escapeNotVerified */ echo __('SKU') ?></th>
+                    <th class="col price"><?php /* @escapeNotVerified */ echo __('Qty Shipped') ?></th>
+                </tr>
+                </thead>
+                <?php foreach ($block->getShipmentItems($shipment) as $item): ?>
+                <tbody>
+                    <?php echo $block->getItemHtml($item) ?>
+                </tbody>
+                <?php endforeach; ?>
+            </table>
+        </div>
+        <div class="block block-order-details-view">
+            <div class="block-title">
+                <strong><?php /* @escapeNotVerified */ echo __('Order Information') ?></strong>
+            </div>
+            <div class="block-content">
+                <div class="box box-order-shipping-address">
+                    <div class="box-title">
+                        <strong><?php /* @escapeNotVerified */ echo __('Shipping Address') ?></strong>
+                    </div>
+                    <div class="box-content">
+                        <address><?php echo $block->getShipmentAddressFormattedHtml($shipment); ?></address>
+                    </div>
+                </div>
+
+                <div class="box box-order-shipping-method">
+                    <div class="box-title">
+                        <strong><?php /* @escapeNotVerified */ echo __('Shipping Method') ?></strong>
+                    </div>
+                    <div class="box-content">
+                    <?php echo $block->escapeHtml($block->getObjectData($order, 'shipping_description')); ?>
+                    <?php $tracks = $block->getShipmentTracks($shipment);
+                    if ($tracks): ?>
+                        <dl class="order-tracking">
+                        <?php foreach ($tracks as $track): ?>
+                            <dt class="tracking-title"><?php echo $block->escapeHtml($block->getObjectData($track, 'title')); ?></dt>
+                            <dd class="tracking-content"><?php echo $block->escapeHtml($block->getObjectData($track, 'number')); ?></dd>
+                            <?php endforeach; ?>
+                        </dl>
+                    <?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="box box-order-billing-method">
+                    <div class="box-title">
+                        <strong><?php /* @escapeNotVerified */ echo __('Billing Address') ?></strong>
+                    </div>
+                    <div class="box-content">
+                        <address><?php echo $block->getBillingAddressFormattedHtml($order); ?></address>
+                    </div>
+                </div>
+
+                <div class="box box-order-billing-method">
+                    <div class="box-title">
+                        <strong><?php /* @escapeNotVerified */ echo __('Payment Method') ?></strong>
+                    </div>
+                    <div class="box-content">
+                        <?php echo $block->getPaymentInfoHtml() ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+<?php endif; ?>

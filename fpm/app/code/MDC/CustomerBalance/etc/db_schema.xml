@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    
+    <!-- Quote table add customer custom balance amount used -->
+     <table name="quote" resource="default">
+        <column xsi:type="decimal" name="customer_custom_balance_amount_used" scale="4" unsigned="false" precision="12" nullable="true" comment="update custom credit balance amount used by customer at checkout" />
+    </table>
+    
+</schema>

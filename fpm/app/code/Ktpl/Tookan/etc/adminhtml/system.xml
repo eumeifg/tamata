@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="tookan" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="120" translate="label">
+			<label>Tookan App</label>
+			<tab>ktpl</tab>
+			<resource>Ktpl_Tookan::config_ktpl_tookan</resource>
+			<group id="general" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label">
+				<label>General</label>
+				<field id="enable" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label" type="select">
+					<label>Enable</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="order_pickup_buffer" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="20" translate="label" type="text">
+					<label>Buffer Time for Pickup Tasks</label>
+					<comment>Buffer time in hours. Default buffer time will be +4</comment>
+				</field>
+				<field id="order_delivery_buffer" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="30" translate="label" type="text">
+					<label>Buffer Time for Delivery Tasks</label>
+					<comment>Buffer time in hours. Default buffer time will be +24</comment>
+				</field>
+			</group>
+		</section>
+		<section id="general">
+			<group id="store_information">
+				<field id="latitude" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="100" translate="label" type="text">
+					<label>Latitude</label>
+					<comment/>
+				</field>
+				<field id="longitude" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="110" translate="label" type="text">
+					<label>Longitude</label>
+					<comment/>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

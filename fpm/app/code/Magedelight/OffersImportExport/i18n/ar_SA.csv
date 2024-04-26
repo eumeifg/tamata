@@ -1,0 +1,48 @@
+Save Offers,عروض حفظ
+Offers,عروض
+Choose a csv file,اختيار ملف CSV
+Download a sample csv file,تحميل ملف CSV عينة
+Add Offers,إضافة عروض
+Offers Information,تقدم معلومات
+Export Offers,عروض التصدير
+-- All --,-- الكل --
+Vendor,بائع
+Download Vendor Data,تحميل بيانات البائع
+Update Offers,عروض التحديث
+%1 Offer(s) updated.,٪ 1 عرض (ق) المحدثة.
+%1 Offer(s) saved.,٪ 1 عرض (ق) المحفوظة.
+Invalid file upload attempt.,محاولة تحميل ملف غير صالح.
+Please correct offers file format.,الرجاء العروض الصحيحة تنسيق الملف.
+Sample file and Uploading file's header fields are not matched.,لا تتم مطابقة حقول رأس الملف وتحميل نموذج الملف.
+We couldn't import this file because of these errors: %1,لم نتمكن من استيراد هذا الملف لأنه من هذه الأخطاء:٪ 1
+Vendor offer already exists.,بائع العرض موجود بالفعل.
+Please correct offers csv format in row #%1. Invalid number of columns,يرجى تصحيح تقدم تنسيق CSV في الصف # 1٪. عدد غير صالح من الأعمدة
+Please correct marketplace_sku "%1" in row #%2.,يرجى تصحيح marketplace_sku "٪ 1" في الصف # 2٪.
+. 'Please correct marketplace_sku "%1" in row #%2.',. 'الرجاء تصحيح marketplace_sku "٪ 1" في الصف # 2٪ ".
+Please correct vendor_id value %1 in Row #%2.,يرجى تصحيح VENDOR_ID قيمة٪ 1 في صف #٪ 2.
+Please correct vendor_id "%1" in row #%2.,يرجى تصحيح VENDOR_ID "٪ 1" في الصف # 2٪.
+Please correct price  %1 in row #%2.,يرجى تصحيح سعر٪ 1 في الصف # 2٪.
+Please correct special_price   %1 in row #%2.,يرجى تصحيح special_price٪ 1 في الصف # 2٪.
+Enter Pincode to check delivery details.,أدخل رمز رقم التعريف الشخصي للتحقق من تفاصيل التسليم.
+Enter Delivery Pincode,أدخل رمز رقم التعريف الشخصي تسليم
+Search,بحث
+Check,التحقق من
+Vendor Offers,عروض بائع
+Licence Detail,رخصة التفاصيل
+Serial Key,رقم مسلسل
+Activation Key,مفتاح التفعيل
+Add New Zipcode,إضافة الرمز البريدي الجديد
+Delete items,حذف العناصر
+Delete selected items?,حذف العناصر المحددة؟
+Delete,حذف
+Change status,تغيير الوضع
+Enable,مكن
+Disable,تعطيل
+ID,هوية شخصية
+Zipcode,الرمز البريدي
+City,مدينة
+State/Province,الدولة / مقاطعة
+Country,بلد
+COD Availability,COD التوفر
+Pre-paid Service Availability,المدفوعة مسبقا خدمة التوفر
+Status,الحالة

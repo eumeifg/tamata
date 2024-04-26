@@ -1,0 +1,28 @@
+// /**
+//  * Copyright © Krish TechnoLabs, All rights reserved.
+//  */
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .opc-wrapper {
+       	.opc-step-title {
+       		> span {
+				&:after {
+				    display: none !important;
+				}
+       		}
+            &._active {
+                > span {
+            		&:after {
+                		display: none !important;
+                	}
+                }
+            }
+            &._complete {
+                cursor: auto;
+            }
+        }
+    }
+}

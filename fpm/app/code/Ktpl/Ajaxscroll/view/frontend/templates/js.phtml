@@ -1,0 +1,107 @@
+<?php
+$loggedIn = $block->getIsCustomerLoggedIn();
+?>
+<script type="text/javascript">
+    var isCustLoggedin = <?php echo $loggedIn ? 1 : 0; ?>;
+    require(['jquery', 'ktpl/ias', 'ktpl/goup', 'ktpl/callbacks', 'ktpl/paging', 'ktpl/history', 'ktpl/trigger', 'ktpl/spinner', 'ktpl/noneleft'], function ($) {
+        $(document).ready(function () {
+            if ( $(window).width() < 854 ) {
+                $('.limiter').hide();
+                var currentItem = parseInt($('.item.product.product-item').length);
+                $('.toolbar-products .toolbar-number').text(currentItem);
+                var ias = $.ias({
+                    container: '.product-items',
+                    item: '.product-item',
+                    pagination: '.pages .item',
+                    next: '.next',
+                });
+                var style = '';
+    <?php if ($this->getConfigButton('background_btn_loadmore')): ?>
+                    style += 'background: #<?php echo $this->getConfigButton("background_btn_loadmore") ?>;';
+    <?php endif; ?>
+    <?php if ($this->getConfigButton('color_btn_loadmore')): ?>
+                    style += 'color: #<?php echo $this->getConfigButton("color_btn_loadmore") ?>;';
+    <?php endif; ?>
+                ias.extension(new IASPagingExtension());
+    <?php if ($this->getConfig('use_previous')): ?>
+                    ias.extension(new IASHistoryExtension({prev: '.previous'}));
+    <?php endif; ?>
+    <?php if ($this->getConfig('triggerpage_threshold')): ?>
+                    ias.extension(new IASTriggerExtension({
+                        offset: '<?php echo $this->getConfig("triggerpage_threshold"); ?>',
+                        html: '<div class="ias-trigger ias-trigger-next" style="text-align: center; cursor: pointer;"><button style="' + style + '"><?php echo $this->getConfigButton("text_btn_loadmore"); ?></buttons></div>',
+                        htmlPrev: '<div class="ias-trigger ias-trigger-prev" style="text-align: center; cursor: pointer;margin-bottom:35px"><button style="' + style + '"><?php echo $this->getConfigButton("text_btn_prev"); ?></button></div>',
+                    }));
+    <?php endif; ?>
+                ias.extension(new IASSpinnerExtension({
+    <?php if ($this->loadingIcon()): ?>
+                        html: '<li class="ias-spinner" style="text-align: center; clear:both;"><img src="<?php echo $this->loadingIcon(); ?>"/></li>',
+    <?php endif; ?>
+                }));
+    <?php if ($this->getConfigButton('text_end_load')): ?>
+                    ias.extension(new IASNoneLeftExtension({text: '<?php echo $this->getConfigButton("text_end_load"); ?>'}));
+    <?php endif; ?>
+                ias.on('loaded', function (data, items) {
+                    var $items = $(items);
+                    var currentItem = parseInt($('.item.product.product-item').length);
+                    var loadedItem = parseInt($items.length);
+                    $('.toolbar-products .toolbar-number').text(currentItem + loadedItem);
+                });
+                ias.on('rendered', function () {
+                    if (isCustLoggedin == 0) {
+                        $('[data-action="ajax-add-to-wishlist"]').each(function (index, element) {
+                            $(element).click(function (event) {
+                                event.stopPropagation();
+                                event.preventDefault();
+                                $(this).attr('rel', 'ajaxwishlist');
+                                $('.header.links .link-login .social-login').attr('rel', 'ajaxwishlist').trigger('click');
+                            });
+                        });
+                    }
+                });
+                $.goup({
+    <?php if ($this->getConfigGototop('goup_speed')): ?>
+                    goupSpeed: '<?php echo $this->getConfigGototop("goup_speed"); ?>',
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('location')): ?>
+                    location: '<?php echo $this->getConfigGototop("location"); ?>',
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('location_offset')): ?>
+                    locationOffset: parseInt('<?php echo $this->getConfigGototop("location_offset"); ?>'),
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('bottom_offset')): ?>
+                    bottomOffset: parseInt('<?php echo $this->getConfigGototop("bottom_offset"); ?>'),
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('container_size')): ?>
+                    containerSize: parseInt('<?php echo $this->getConfigGototop("container_size"); ?>'),
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('container_radius')): ?>
+                    containerRadius: parseInt('<?php echo $this->getConfigGototop("container_radius"); ?>'),
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('always_visible')): ?>
+                    alwaysVisible: true,
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('trigger')): ?>
+                    trigger: '<?php echo 600; ?>',
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('hide_under_width')): ?>
+                    hideUnderWidth: '<?php echo $this->getConfigGototop("hide_under_width"); ?>',
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('container_color')): ?>
+                    containerColor: '#<?php echo $this->getConfigGototop("container_color"); ?>',
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('arrow_color')): ?>
+                    arrowColor: '#<?php echo $this->getConfigGototop("arrow_color"); ?>',
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('text_hover')): ?>
+                    title: '<?php echo $this->getConfigGototop("text_hover"); ?>',
+    <?php endif; ?>
+    <?php if ($this->getConfigGototop('zindex')): ?>
+                    zIndex: '<?php echo $this->getConfigGototop("zindex"); ?>',
+    <?php endif; ?>
+            });
+        }
+    });
+});
+</script>
+<?php // endif; ?>

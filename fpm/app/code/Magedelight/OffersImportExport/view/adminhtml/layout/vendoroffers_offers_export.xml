@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_OffersImportExport
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magedelight_Theme::css/jquery-customselect.css" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magedelight\OffersImportExport\Block\Adminhtml\Offers\Export\Edit" name="rb_vendor_offers_export"></block>
+        </referenceContainer>
+        
+        <referenceContainer name="left">
+            <block class="Magedelight\OffersImportExport\Block\Adminhtml\Offers\Export\Edit\Tabs" name="rb_vendor_offers_tabs">
+                <block class="Magedelight\OffersImportExport\Block\Adminhtml\Offers\Export\Edit\Tab\Offers" name="rb_vendor_offers_tab_main" />
+                    <action method="addTab">
+                        <argument name="name" xsi:type="string">main_section</argument>
+                        <argument name="block" xsi:type="string">rb_vendor_offers_tab_main</argument>
+                    </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

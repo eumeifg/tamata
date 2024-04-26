@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="seller_account"/>
+    <update handle="rbsales_order_item_price"/>
+        <body>
+    <referenceContainer name="content">
+            
+            <block class="Magedelight\Sales\Block\Sellerhtml\Order\Creditmemo\Create" name="rbsales_creditmemo_create">
+                <block class="Magedelight\Sales\Block\Sellerhtml\Order\Creditmemo\Create\Form" name="form" template="Magedelight_Sales::order/creditmemo/create/form.phtml">
+                    <block class="Magedelight\Sales\Block\Sellerhtml\Order\View\Info" name="rbsales_order_info" template="Magedelight_Sales::order/view/info.phtml"/>
+                    <block class="Magedelight\Sales\Block\Sellerhtml\Order\Payment" name="rbsales_order_payment"/>
+                    <block class="Magedelight\Sales\Block\Sellerhtml\Order\Creditmemo\Create\Items" name="rbsales_order_items" template="Magedelight_Sales::order/creditmemo/create/items.phtml">
+                        <block class="Magedelight\Sales\Block\Sellerhtml\Items\Renderer\DefaultRenderer" as="default" template="Magedelight_Sales::order/creditmemo/create/items/renderer/default.phtml"/>
+                        <block class="Magedelight\Sales\Block\Sellerhtml\Items\Column\Qty" name="column_qty" template="Magedelight_Sales::items/column/qty.phtml" group="column"/>
+                        <block class="Magedelight\Sales\Block\Sellerhtml\Items\Column\Name" name="column_name" template="Magedelight_Sales::items/column/name.phtml" group="column"/>
+                        <block class="Magento\Framework\View\Element\Text\ListText" name="rbsales_order_item_extra_info"/>
+                        <block class="Magedelight\Sales\Block\Sellerhtml\Order\Totalbar" name="rbsales_order_totalbar" template="Magedelight_Sales::order/totalbar.phtml"/>
+                        <block class="Magedelight\Sales\Block\Sellerhtml\Order\Creditmemo\Totals" name="rbsales_creditmemo_totals" template="Magedelight_Sales::order/totals.phtml">
+                            <block class="Magedelight\Sales\Block\Sellerhtml\Order\Creditmemo\Create\Adjustments" name="rbsales_adjustments" template="Magedelight_Sales::order/creditmemo/create/totals/adjustments.phtml"/>
+                            <block class="Magedelight\Sales\Block\Sellerhtml\Order\Totals\Tax" name="tax" template="Magedelight_Sales::order/totals/tax.phtml"/>
+                        </block>
+                        <container name="submit_before" label="Submit Before"/>
+                        <container name="submit_after" label="Submit After"/>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+        </body>
+</page>

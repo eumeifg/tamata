@@ -1,0 +1,92 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var \Magedelight\Catalog\Block\Bulkimport\Attributeselector $block
+ *
+ */
+?>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="rbpanel">
+            <div class="rbpanel-heading">
+                <span class="panel-title"><?= __('View Valid Attributes Value') ?></span>
+            </div>
+            <div class="rbpanel-body bulk-import-select-opt-box">
+                <input name="category-ids" id="category-ids" class="category-ids" type="hidden" value="">
+                <select  multiple  name="attribute-name" id="attribute-name" class="attribute-name">
+
+                    <?php
+                    $categories = $block->getAllowedTabCategories();
+                    if (!empty($categories)) {
+                        foreach ($categories as $categoryId => $categoryName) {
+                            ?>
+                            <option id="<?= $categoryId; ?>" class="a-spacing-mini"  data-browse-path="<?= $categoryName; ?>" data-level="" data-label="<?= $categoryName; ?>"><?= $categoryName; ?></option>
+                            <?php
+                        }
+                    }
+                    ?>
+                </select>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="actions-toolbar text-left">
+                            <div class="primary text-left fnone mt20">
+                                <button id="viewCategoriesBtn"  type="button" title="<?= __('View') ?>" class="action primary attribute-list btn-download-attribute" id="openModel">
+                                    <span><?= __('View') ?></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cat-info" id="cat-info"></div>
+<script type="text/javascript">
+
+    require(
+            [
+                'jquery',
+                'Magento_Ui/js/modal/modal',
+                'Magedelight_Catalog/js/bulkimport/custom',
+                'Magedelight_Catalog/js/bulkimport/chosen_jquery_min'
+            ],
+            function ($, modal, custom) {
+                var options = {
+                    type: 'popup',
+                    responsive: true,
+                    innerScroll: true,
+                    title: $.mage.__('Attribute Option Values'),
+                    buttons: [{
+                            text: $.mage.__('Close'),
+                            class: '',
+                            click: function () {
+                                this.closeModal();
+                            }
+                        }]
+                };
+
+                $('#viewCategoriesBtn').on('click', function (e) {
+                    custom.getAttributeList('<?= $this->getUrl('rbcatalog/bulkimport/categoryattributelist'); ?>');
+                    return false;
+                });
+                /*var popup = modal(options, $('#myModel'));
+                 $("#openModel").on("click", function () {
+                 $('#myModel').modal('openModal');
+                 }); */
+                $(document).ready(function ()
+                {
+                    $("#attribute-name").chosen({no_results_text: "<?= __("No results matched.");?>", default_multiple_text: "<?= __("Select Some Options");?>"});
+                });
+            });
+</script>

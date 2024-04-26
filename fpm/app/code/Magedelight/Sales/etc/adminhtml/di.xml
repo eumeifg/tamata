@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Block\Adminhtml\Order\View" type="Magedelight\Sales\Block\Adminhtml\Sales\Order\View" />
+    <!--preference for="Magento\Sales\Block\Adminhtml\Order\View\Items" type="Magedelight\Sales\Block\Adminhtml\Sales\Order\View\Items" /-->
+    <type name="Magento\Ui\Model\Export\MetadataProvider">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="vendor_order_view_invoice_grid" xsi:type="array">
+                    <item name="created_at" xsi:type="string">created_at</item>
+                    <item name="order_created_at" xsi:type="string">order_created_at</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <preference for="Magento\Sales\Model\Order\Pdf\Invoice" type="Magedelight\Sales\Model\Order\Pdf\Invoice" />
+    <preference for="Magento\Sales\Block\Adminhtml\Order\View\Items" type="Magedelight\Sales\Block\Adminhtml\Sales\Order\View\Items" />
+    <preference for="Magento\Sales\Block\Adminhtml\Order\View\History" type="Magedelight\Sales\Block\Adminhtml\Order\View\History" />
+    <preference for="Magento\Sales\Block\Adminhtml\Order\Invoice\View\Form" type="Magedelight\Sales\Block\Adminhtml\Sales\Order\Invoice\View\Form" />
+    <preference for="Magento\Shipping\Block\Adminhtml\View\Form" type="Magedelight\Sales\Block\Adminhtml\Sales\Order\Shipment\View\Form" />
+    <preference for="Magento\Sales\Block\Adminhtml\Order\View\Info" type="Magedelight\Sales\Block\Adminhtml\Sales\Order\View\Info" />
+    <preference for="Magento\Ui\Model\Export\MetadataProvider" type="Magedelight\Sales\Model\Export\MetadataProvider" />
+    <preference for="Magento\Sales\Block\Adminhtml\Order\Creditmemo\View\Form" type="Magedelight\Sales\Block\Adminhtml\Sales\Order\Creditmemo\View\Form" />
+    
+    <type name="Magento\Backend\Block\Widget\Button\Toolbar">
+        <plugin name="orderFormToolbarButtons" type="Magedelight\Sales\Block\Adminhtml\Sales\Order\Button\Toolbar" />
+    </type>
+
+    <!-- Admin Order create for specific customer -->
+    <preference for="Magento\Sales\Model\AdminOrder\Create" type="Magedelight\Sales\Model\AdminOrder\Create" />
+</config>

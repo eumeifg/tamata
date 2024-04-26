@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="bulk_store_credit_import" instance="CAT\CustomerBalance\Cron\UpdateBulkStoreCredit" method="updateBulkStoreCredit">
+            <config_path>customer/magento_customerbalance/cron_frequency</config_path>
+        </job>
+    </group>
+</config>

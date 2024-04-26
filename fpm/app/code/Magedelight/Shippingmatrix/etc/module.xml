@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Magedelight_Shippingmatrix">
+        <sequence>
+            <module name="Magento_Config"/>
+            <module name="Magento_Store"/>
+            <module name="Magento_Sales"/>
+            <module name="Magento_Quote"/>
+            <module name="Magento_SalesRule"/>
+            <module name="Magedelight_Theme"/>
+            <module name="Magedelight_Vendor"/>
+        </sequence>
+    </module>
+</config>

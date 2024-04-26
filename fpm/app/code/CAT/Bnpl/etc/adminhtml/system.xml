@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment" translate="label" type="text" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="bnpl" translate="label" type="text" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Buy Now Pay Later</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Title</label>
+                </field>
+                <group id="bnpl_api" translate="label" type="text" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>BNPL APIs Configuration</label>
+                    <field id="environment" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                        <label>Environment</label>
+                        <source_model>CAT\Bnpl\Model\Config\Source\Environment</source_model>
+                    </field>
+                    <field id="staging_token" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>API Token (Staging)</label>
+                        <depends>
+                            <field id="environment">staging</field>
+                        </depends>
+                    </field>
+                    <field id="staging_end_point" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>End Point (Staging)</label>
+                        <depends>
+                            <field id="environment">staging</field>
+                        </depends>
+                    </field>
+                    <field id="production_token" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>API Token (Production)</label>
+                        <depends>
+                            <field id="environment">production</field>
+                        </depends>
+                    </field>
+                    <field id="production_end_point" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                        <label>End Point (Production)</label>
+                        <depends>
+                            <field id="environment">production</field>
+                        </depends>
+                    </field>
+                </group>
+                <field id="order_status" translate="label" type="select" sortOrder="102" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>New Order Status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\NewStatus</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="103" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-number</frontend_class>
+                </field>
+                <field id="minamount" translate="label" type="text" sortOrder="103" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Minimum Order Amount </label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

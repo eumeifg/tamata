@@ -1,0 +1,94 @@
+// /**
+//  * Copyright � 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+.rb-transaction-history {
+      .table.rb-table-transaction-items {
+           .lib-table();
+           .lib-table-resize(
+              @_td-padding-top: 10px,
+              @_td-padding-right: 10px,
+              @_td-padding-bottom: 10px,
+              @_td-padding-left: 10px,
+              @_th-padding-top: 10px,
+              @_th-padding-right: 10px,
+              @_th-padding-bottom: 10px,
+              @_th-padding-left: 10px
+          );
+
+               > thead {
+                 > tr {
+                   > th {
+                        &.col {
+                          .lib-css(text-align, left);
+                        }
+                   }
+                 }
+               }
+           &.rb-shipping-admin-liable {
+               > tbody {
+                 > tr {
+                   > td {
+                        &.col {
+                          &.rb-shipping-charges {
+                            .lib-css(color, @color-negative);
+                            .lib-css(font-weight, @font-weight__bold);
+
+                          }
+                        }
+                    }
+                  }
+                }
+           }
+         }
+   }
+
+
+html.rtl-layout {
+  .rb-transaction-history {
+      .table.rb-table-transaction-items {
+               > thead {
+                 > tr {
+                   > th {
+                        &.col {
+                          .lib-css(text-align, right);
+                        }
+                   }
+                 }
+               }
+         }
+   }
+}
+
+}
+
+
+
+//
+//    Mobile @screen__s
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+//
+//    Mobile @screen__m
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//    Desktop
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+
+

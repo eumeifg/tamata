@@ -1,0 +1,204 @@
+Choose an Option...,إختر خيار...
+Sold by (%1) Vendor,المباعة من قبل (٪ 1) بائع
+Vendor,بائع
+Condition,شرط
+Rating,تقييم
+Price,السعر
+<span>N</span>/A,<SPAN> N </ SPAN> / A
+<span> %1 </span> / 5,<SPAN>٪ 1 </ SPAN> / 5
+Add To Cart,أضف إلى السلة
+View All (%1) Vendors,عرض جميع (٪ 1) الباعة
+We can't add this item to your shopping cart right now.,ونحن لا يمكن إضافة هذا البند إلى عربة التسوق الخاصة بك الآن.
+We can't rebuild the index for an undefined product.,نحن لا نستطيع إعادة بناء مؤشر لمنتج غير معروف.
+Bad value was supplied.,تم توفير قيمة غير صحيحة.
+No vendor found for this product.,لم يتم العثور على هذا المنتج بائع.
+"The product %1 is not available in the requested quantity from %2, you may choose some other vendor.",المنتج٪ 1 لم يعد متوفرا في الكمية المطلوبة من٪ 2، يمكنك اختيار بعض البائعين الآخرين.
+"The Requested quantity is not available from %1, you may add %2 quantity only. You may choose other vendor if available for more quantity.",الكمية المطلوبة غير متوفرة من٪ 1، يمكنك إضافة 2٪ الكمية فقط. يمكنك اختيار أي مركز آخر إذا كانت متوفرة لمزيد من الكمية.
+Sold By,تم بيعها من قبل
+The requested quantity for "%1" is not available.,الكمية المطلوبة ل "٪ 1" غير متوفر.
+The product was updated in your shopping cart.,تم تحديث المنتج في عربة التسوق الخاصة بك.
+We can't find products matching the selection.,لا يمكننا العثور على منتجات مطابقة مع الاختيارات.
+In stock,في المخزن
+Out of stock,إنتهى من المخزن
+Add to Wish List,أضف إلى قائمة الامنيات
+Add to Compare,أضف إلى قارن
+Learn More,أعرف أكثر
+Other offers from %1,عروض اخرى من٪ 1
+Sold By:,البائع:
+<span>N/A</span>,<SPAN> N / A </ SPAN>
+More Vendors,المزيد من الباعة
+* Required Fields,* الحقول المطلوبة
+Select Vendor,حدد البائع
+Adding...,مضيفا ...
+Added,وأضاف
+Add to Cart,أضف إلى السلة
+Vendor Product Listing,قائمة بائع المنتج
+Map products with associated vendors,منتجات الخرائط مع البائعين المرتبطة بها
+Vendor Sku,بائع سكو
+Product Name,اسم المنتج
+Price,السعر
+Special Price,سعر خاص
+Quantity,كمية
+Edit Product,تحرير المنتج
+Edit,تصحيح
+Qty,الكمية
+Special From Date,خاص من التسجيل
+Special To Date,خاص إلى تاريخ
+My Listing,منتجاتي
+Product saved successfully,المنتج حفظ بنجاح
+Product data not found,بيانات المنتج لم يتم العثور على
+Please select product(s).,يرجى اختيار المنتج (ق).
+A total of %1 record(s) have been deleted.,تم حذف ما مجموعه٪ 1 سجل (ق).
+Product list successfully !,قائمة المنتجات بنجاح!
+Product Unlist successfully !,إلغاء إدراج المنتج بنجاح!
+Product data not found.,بيانات المنتج غير موجود.
+* Required Fields,* الحقول المطلوبة
+"Product Name, Vendor SKU...",اسم المنتج، بائع SKU ...
+Search,بحث
+Reset,إعادة تعيين
+Export,تصدير
+View Only Out Of Stock,عرض فقط من المخزون
+Action,عمل
+Unlist,إلغاء إدراج
+Product Image,صورة المنتج
+Quick edit Offer and Inventory,سريع تحرير العرض والمخزون
+Quick Edit,تحرير سريع
+Your search result could not find.,نتيجة البحث الخاص بك لا يمكن العثور عليها.
+You have no products to display.,لا يوجد لديك منتجات لعرضه.
+Product Summary,ملخص المنتج
+This Product no longer exists.,هذا المنتج لم يعد يخرج.
+SKU:,SKU:
+Price on MarketPlace:,السعر في السوق:
+more,أكثر من
+"Minimum price will be calculate whether it price or special price. Marketplace Fees, Marketplace Commission, and Service Tax will be deduct from minimum price. The commission, marketplace fees and service tax are based on the current commission and payment settings. The actual charges may vary depending on date of order.",سعر الحد الأدنى سيتم حساب ما إذا كان السعر أو سعر خاص. سيتم خصم رسوم السوق، لجنة السوق، وضريبة الخدمات من سعر الحد الأدنى. لجنة، تستند رسوم السوق وضريبة الخدمة على إعدادات جنة والدفع الحالية. قد تختلف الرسوم الفعلية اعتمادا على تاريخ النظام.
+Category:,الفئة:
+" , ",،
+Your Price,السعر الخاص
+Your Quantity,الكمية الخاصة بك
+Reorder Level,إعادة ترتيب مستوى
+Sale Date,تاريخ البيع
+Start Date,تاريخ البدء
+End Date,تاريخ الانتهاء
+Submit,خضع
+Please enter special price less than price.,الرجاء إدخال سعر خاص أقل من السعر.
+Select Date,حدد تاريخ
+Approved,وافق
+Pending,قيد الانتظار
+Disapproved,مرفوض
+Delete,حذف
+List,قائمة
+Image,صورة
+Requested for Edit,طلب لتحرير
+Yes,نعم فعلا
+No,لا
+Reason,السبب
+Resubmit,إعادة
+Product request disapproved reason.,رفض طلب المنتج سبب.
+Sale Start Date,تاريخ بدء بيع
+Sale End Date,تاريخ بيع النهاية
+OK,حسنا
+Cancel,إلغاء
+products,منتجات
+Live,حي
+Non Live,غير مباشر
+Unable to open file!,غير قادر على فتح ملف!
+Click here to download,إضغط هنا للتحميل
+Guidelines - Bulkimport,المبادئ التوجيهية - Bulkimport
+Your offer(s) has been successfully applied.,عرض الخاص بك (ق) وقد طبقت بنجاح.
+Failed to apply your offer(s). Please try again. %1,فشل في تطبيق العرض الخاص بك (ق). حاول مرة اخرى. ٪ 1
+Please check following mandatory fields in your csv file : [ %1 ],الرجاء الاختيار التالية حقول إجبارية في ملف CSV: [٪ 1]
+"exception, %1",استثناء،٪ 1
+Email could not be sent. Please try again or contact us.,تعذر إرسال البريد الإلكتروني. يرجى المحاولة مرة أخرى أو الاتصال بنا.
+Something went wrong. Please try again.,هناك خطأ ما. حاول مرة اخرى.
+Your catalog has been successfully imported.,تم استيراد الكتالوج الخاص بك بنجاح.
+Failed to import data. Please try again. %1,فشل لاستيراد البيانات. حاول مرة اخرى. ٪ 1
+Your csv file contains invalid data.,يحتوي ملف CSV بيانات غير صالحة.
+Invalid file format. Please upload file of type csv.,تنسيق ملف غير صالح. يرجى تحميل الملف من نوع CSV.
+"Configurable product(s) can not be a variant , Please check your configuration.",المنتج شكلي (ق) لا يمكن أن يكون البديل، يرجى مراجعة التكوين الخاص بك.
+Selected category and category in csv file does not match.,لا يتطابق مع الفئة المختارة وفئة في ملف CSV.
+Vendor sku already exists in pending request,بائع سكو موجود بالفعل في الطلب ريثما
+"Please check variant combinations for the configurable products, seems duplicate/invalid data.",يرجى التحقق من مجموعات مختلفة لنفس المنتجات شكلي، يبدو تكرار / بيانات غير صالحة.
+Please check super_sku in your csv file. If product haven't variants than it must be blank,يرجى مراجعة super_sku في ملف CSV. إذا كان المنتج لديها ليس المتغيرات من يجب أن يكون فارغا
+Bulk Import Product Request,طلب السائبة استيراد المنتج
+Bulk Import,استيراد السائبة
+Category Name,اسم التصنيف
+Attribute Name,اسم السمة
+View Valid Attributes Value,عرض سمات صالحة القيمة
+View,رأي
+No results matched.,لا نتائج مطابقة.
+Select Some Options,حدد بعض الخيارات
+Bulk-Import,السائبة والاستيراد
+Download Catalogue Template,تحميل قالب كتالوج
+Upload Catalogue,تحميل كتالوج
+Bulk Offer Update,السائبة عرض تحديث
+Download Category Template,قالب تحميل الفئة
+Step 1: Image Upload,الخطوة 1: تحميل الصور
+Help,مساعدة
+Choose file(s),اختر الملفات)
+Upload,تحميل
+Upload image with dimension,تحميل الصور مع البعد
+(' . . 'X' . . '),( '.' X '.')
+"Please avoid following special characters in fields images & base_image. - [+,%]",يرجى تجنب التالية أحرف خاصة في المجالات الصور وbase_image. - [+،٪]
+"File(s) once uploaded irrespective of catalog file in step2, need not require to be uploaded again.",ملف (ق) مرة واحدة تم تحميلها بغض النظر عن ملف الخدمات في STEP2، ليس من الضروري يحتاج إلى تحميلها مرة أخرى.
+Step 2: Catalogue Upload,الخطوة 2: كتالوج تحميل
+Select Category,اختر الفئة
+Choose a file,اختيار ملف
+Bulk Offer Template ,قالب عرض السائبة
+Download,تحميل
+Step-1: Image Upload,خطوة 1: صورة تحميل
+Upload image with dimension(1500X1500),تحميل الصور مع البعد (1500X1500)
+Step-2: Catalogue Upload,الخطوة 2: كتالوج تحميل
+Fields Description,حقول الوصف
+Name,اسم
+Enter the name of the product.,أدخل اسم المنتج.
+marketplace_product_id,marketplace_product_id
+Leave it blank for new product creation. You need to enter the marketplace_product_id only if you wish to edit the existing product.,اتركه فارغا لخلق منتج جديد. أنت بحاجة إلى إدخال marketplace_product_id فقط إذا كنت ترغب في تعديل منتج موجود.
+has_variants,has_variants
+"Insert one of the given options. 0 - For Simple product, 1 - For Configurable product.",إدراج أحد الخيارات معينة. 0 - للمنتج بسيط، 1 - للمنتج شكلي.
+vendor_sku,vendor_sku
+Each product is identified by a unique vendor sku. You can enter a alphanumerical value.,يتم تعريف كل منتج من قبل بائع فريد سكو. يمكنك إدخال قيمة حرفي رقمي.
+super_sku,super_sku
+"Leave it blank for creating Simple product. For Configurable product, you need to specify vendor_sku of parent/main product in this field.",اتركه فارغا لخلق منتج بسيط. للمنتج شكلي، تحتاج إلى تحديد vendor_sku الوالد المنتج / الرئيسي في هذا المجال.
+price,السعر
+Enter the price of the product in this field.,أدخل سعر المنتج في هذا المجال.
+special_price,سعر خاص
+It is the selling price which you use to provide a discount on your product.,هو سعر البيع الذي تستخدمه لتقديم خصم على المنتج الخاص بك.
+Bulk offer update,عرض التحديث السائبة
+Required fields,الحقول المطلوبة
+Vendor_sku – Each product is identified by a unique vendor sku. You can enter a alphanumerical value.,Vendor_sku - يتم تعريف كل منتج من قبل بائع فريد سكو. يمكنك إدخال قيمة حرفي رقمي.
+Qty – Enter the quantity of the product you have for sale,الكمية - أدخل كمية المنتج لديك للبيع
+Price - Enter the unit price for this product.,السعر - أدخل سعر الوحدة لهذا المنتج.
+Optional fields,الحقول الاختيارية
+special_price - It is the selling price which you use to provide a discount on your product.,special_price - وهو سعر البيع الذي تستخدمه لتقديم خصم على المنتج الخاص بك.
+special_from_date – Start date of special price,special_from_date - تاريخ بدء سعر خاص
+special_to_date – End date of special price,تاريخ الانتهاء من سعر خاص - special_to_date
+"reorder_level - Enter a minimum amount of value such that, when stock falls to this amount, the item must be reordered.",reorder_level - أدخل الحد الأدنى للقيمة مثل ذلك، عندما يسقط الأوراق المالية لهذا المبلغ، لا بد من إعادة ترتيب هذا البند.
+MP SKU,النائب SKU
+MPID,MPID
+Bulk products have been successfully uploaded.,المنتجات السائبة تم تحميلها بنجاح.
+Attribute Option Values,السمة القيم الخيار
+Close,قريب
+Please upload a file.,يرجى تحميل الملف.
+Please upload appropriate image size. (Maximum 2MB),يرجى تحميل حجم الصورة المناسب. (الحد الأقصى 2MB)
+Uploading..,تحميل ..
+ File(s) uploaded successfully.,ملف (ق) تم الرفع بنجاح.
+Please select category.,الرجاء تحديد الفئة.
+Please select file of appropriate size(Max. 2MB).,الرجاء تحديد ملف الحجم المناسب (كحد أقصى 2MB).
+Please upload csv file only.,يرجى تحميل ملف CSV فقط.
+Request Status: ,حالة الطلب:
+ Status Text: ,نص الحالة:
+Please select appropriate file size(Maximum 512 KB).,يرجى تحديد حجم الملف المناسب (الحد الأقصى 512 KB).
+Select Category To Proceed From Drop Down.,اختر الفئة الانطلاق من المنسدلة.
+Licence Detail,رخصة التفاصيل
+Serial Key,رقم مسلسل
+Activation Key,مفتاح التفعيل
+General Settings,الاعدادات العامة
+Enable,مكن
+Email Enable,البريد الإلكتروني تمكين
+Image Width,عرض صورة
+Image Height,ارتفاع الصورة
+Admin Email,أرسل مشرف
+Bulk Product Listing,السائبة قائمة المنتجات
+products,منتجات
+Guidelines,القواعد الارشادية
+We couldn't find any records ,لم نتمكن من العثور على أي سجلات 

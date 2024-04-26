@@ -1,0 +1,32 @@
+<div class="field" data-bind="visible: visible, attr: {'name': element.dataScope}, css: additionalClasses" name="">
+
+    <label class="label" data-bind="attr: { for: element.uid }" for="location">
+        <span data-bind="i18n: element.label">Location</span>
+    </label>
+
+    <div class="control">
+        <input class="input-text location" type="text" data-bind="
+    value: value,
+    valueUpdate: 'keyup',
+    hasFocus: focused,
+    attr: {
+        name: inputName,
+        placeholder: placeholder,
+        'aria-describedby': getDescriptionId(),
+        'aria-required': required,
+        'aria-invalid': error() ? true : 'false',
+        id: uid,
+        disabled: disabled
+    }" name="location_shipping" aria-invalid="false" id="location">
+    </div>
+</div>
+<div class="field">
+    <div id="google_map" />
+</div>
+<style>
+    #google_map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+    }
+</style>

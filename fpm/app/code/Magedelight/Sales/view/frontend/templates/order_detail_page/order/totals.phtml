@@ -1,0 +1,38 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var $block \Magento\Sales\Block\Order\Totals
+ * @see \Magento\Sales\Block\Order\Totals
+ */
+?>
+<?php foreach ($block->getTotals() as $_code => $_total) : ?>
+    <?php if ($_total->getBlockName()) : ?>
+        <?= $block->getChildHtml($_total->getBlockName(), false) ?>
+    <?php else :?>
+    <tr class="<?= /* @escapeNotVerified */ $_code ?>">
+        <th <?= /* @escapeNotVerified */ $block->getLabelProperties() ?> scope="row">
+            <?php if ($_total->getStrong()) :?>
+            <strong><?= $block->escapeHtml($_total->getLabel()) ?></strong>
+            <?php else :?>
+                <?= $block->escapeHtml($_total->getLabel()) ?>
+            <?php endif?>
+        </th>
+        <td <?= /* @escapeNotVerified */ $block->getValueProperties() ?> data-th="<?= $block->escapeHtml($_total->getLabel()) ?>">
+            <?php if ($_total->getStrong()) :?>
+            <strong><?= /* @escapeNotVerified */ $block->formatValue($_total) ?></strong>
+            <?php else :?>
+                <?= /* @escapeNotVerified */ $block->formatValue($_total) ?>
+            <?php endif?>
+        </td>
+    </tr>
+    <?php endif?>
+<?php endforeach?>

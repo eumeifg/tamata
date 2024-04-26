@@ -1,0 +1,169 @@
+& when (@media-common =true) {
+    
+    html[lang="ar"] {
+
+        .home-topcate-slider,
+        .cate-landing-slider {
+            a {
+                float: right;
+                margin-left: 0;
+                margin-right: 2.2%;
+            }
+        }
+        &.catalog-product-view.page-product-configurable {
+            .product-info-main {
+                .product-info-price {
+                    .price-box {
+                        .normal-price {
+                            float: right;
+                        }
+                    }
+                }
+            }
+        }
+        .product-info-main {
+            .product.attribute.description {
+                .value {
+                    ul {
+                        > li {
+                            padding-left: 0px;
+                            padding-right: 16px;
+                            &:before {
+                                display: inline-block;
+                                left: auto;
+                                right: 0;
+                                transform:rotate(180deg);
+                                -webkit-transform:rotate(180deg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .header.content .header-right-section .header.panel .customer-menu .header.links > li {
+            display: block;
+            float: none;
+            text-align: right;
+            padding: 2px 3px !important;
+        }
+        .nav-sections {
+            .switcher {
+                padding: 15px 20px 15px 50px;
+            }
+            .switcher-trigger {
+                strong:after {
+                    right: auto;
+                    left: -@indent__m;
+                }
+            }
+        }
+        
+        /*.form.form-edit-account fieldset.fieldset.password,
+        .form-address-edit fieldset.fieldset + fieldset.fieldset {
+            float: left;
+        }*/
+        select {
+            background-position: 10px 50%;
+        }
+        &.nav-open {
+            .nav-sections {
+                left: auto;
+                right: 0;
+            }
+            .block-collapsible-nav {
+                z-index: 1;
+            }
+        }
+        &.nav-before-open {
+            .page-wrapper {
+                right: 0;
+                -webkit-transition: right 0.3s;
+                -moz-transition: right 0.3s;
+                -ms-transition: right 0.3s;
+                transition: right 0.3s;
+            }
+        }
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    
+    html[lang="ar"] {
+        .form.form-edit-account fieldset.fieldset.password,
+        .form-address-edit fieldset.fieldset + fieldset.fieldset {
+            float: left;
+        }
+    }
+
+}
+
+//
+//  Mobile
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
+    
+    html[lang="ar"] {
+        .block-collapsible-nav {
+            z-index: 1;
+        }
+    }
+
+
+}
+
+
+@media screen and (max-width: 999px) {
+
+    
+    html[lang="ar"] {
+
+        .nav-sections-item-content {
+            float: left;
+            margin-right: -100%;
+            margin-left: 0px;
+        }
+        .nav-sections-item-title {
+            float: right;
+        }
+
+        .block-best-sellers {
+            padding: @indent__base @indent__base @indent__base 0;
+        }
+    }
+
+
+}
+
+
+@media screen and (max-width: 639px) {
+    html[lang="ar"] {
+        .ktpl-searchautocomplete__autocomplete {
+            .ktpl-searchautocomplete__close {
+                left:0;
+                right:auto; 
+            }
+        }                
+    }
+}
+
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__s) {
+    
+    html[lang="ar"] {
+            
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__xs) {
+
+     html[lang="ar"] {
+            
+    }
+}

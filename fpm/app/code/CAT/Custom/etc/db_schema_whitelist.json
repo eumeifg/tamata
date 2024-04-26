@@ -1,0 +1,103 @@
+{
+    "catalog_product_entity": {
+        "column": {
+            "box_number": true
+        },
+        "index": {
+            "CATALOG_PRODUCT_ENTITY_CREATED_AT": true,
+            "CATALOG_PRODUCT_ENTITY_CREATED_AT_UPDATED_AT": true
+        }
+    },
+    "automation_import_history": {
+        "column": {
+            "import_id": true,
+            "entity_type": true,
+            "file_name": true,
+            "report_url": true,
+            "created_at": true,
+            "processed_at": true,
+            "status": true,
+            "batch_counter": true,
+            "additional_info": true,
+            "started_at": true,
+            "indexer_data": true,
+            "user_name": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "customer_feedback_by_admin": {
+        "column": {
+            "feedback_id": true,
+            "customer_id": true,
+            "score": true,
+            "comment": true
+        },
+        "index": {
+            "CUSTOMER_FEEDBACK_BY_ADMIN_CUSTOMER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "CUSTOMER_FEEDBACK_BY_ADMIN_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    },
+    "catalog_product_entity_text": {
+        "index": {
+            "CATALOG_PRODUCT_ENTITY_TEXT_ATTRIBUTE_ID_STORE_ID": true
+        }
+    },
+    "catalog_product_entity_varchar": {
+        "index": {
+            "CATALOG_PRODUCT_ENTITY_VARCHAR_VALUE": true,
+            "CATALOG_PRODUCT_ENTITY_VARCHAR_ROW_ID": true
+        }
+    },
+    "md_vendor_order": {
+        "column": {
+            "vendor_invoice_number": true,
+            "vendor_invoice_amount": true,
+            "amount_paid": true,
+            "amount_enveloped": true,
+            "invoice_paid": true,
+            "paid_date": true,
+            "in_warehouse_date": true,
+            "accounting_notes": true,
+            "cost_value": true,
+            "vendor_commission": true,
+            "item_commission": true
+        }
+    },
+    "sales_order_item": {
+        "index": {
+            "SALES_ORDER_ITEM_VENDOR_ORDER_ID": true,
+            "SALES_ORDER_ITEM_VENDOR_ID": true,
+            "SALES_ORDER_ITEM_SKU": true,
+            "SALES_ORDER_ITEM_PARENT_ITEM_ID": true
+        }
+    },
+    "sales_order": {
+        "index": {
+            "SALES_ORDER_CUSTOMER_EMAIL": true,
+            "SALES_ORDER_IS_CONFIRMED": true
+        }
+    },
+    "sales_invoice": {
+        "index": {
+            "SALES_INVOICE_VENDOR_ID": true,
+            "SALES_INVOICE_VENDOR_ORDER_ID": true
+        }
+    },
+    "sales_shipment": {
+        "index": {
+            "SALES_SHIPMENT_VENDOR_ID": true,
+            "SALES_SHIPMENT_VENDOR_ORDER_ID": true
+        }
+    },
+    "md_vendor_order_log": {
+        "index": {
+            "MD_VENDOR_ORDER_LOG_STATUS_CHANGE_TO": true,
+            "MD_VENDOR_ORDER_LOG_VENDOR_ORDER_ID": true
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "name": "CAT/Bnpl",
+    "description": "Bnpl is a offline payment method",
+    "type": "magento2-module",
+    "version": "2.0.1",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "CAT\\Bnpl\\": ""
+        }
+    },
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "CAT BNPL",
+            "email": ""
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "magento/magento2-base": ">=2.3",
+        "magento/module-backend": "*",
+        "magento/module-sales": "*",
+        "magento/module-customer": "*"
+    }
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_ConfigurableProduct
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">        
+    <preference for="Magento\ConfigurableProduct\Model\ResourceModel\Product\Indexer\Price\Configurable" type="Magedelight\ConfigurableProduct\Model\ResourceModel\Product\Indexer\Price\Configurable" />
+    <type name="Magento\ConfigurableProduct\Pricing\Price\ConfigurablePriceResolver">
+        <plugin name="change_product_price" type="Magedelight\ConfigurableProduct\Plugin\ConfigurablePriceResolver" sortOrder="1"/>
+    </type>
+    <preference for="Magento\ConfigurableProduct\Pricing\Render\FinalPriceBox" type="Magedelight\ConfigurableProduct\Pricing\Render\FinalPriceBox"/>
+    <preference for="Magento\Swatches\Block\Product\Renderer\Configurable" type="Magedelight\ConfigurableProduct\Block\Product\View\Type\Renderer\Configurable"/>
+    <!-- Interfaces for configurable product in extension Attributes -->
+    <preference for="Magedelight\ConfigurableProduct\Api\Data\ConfigurableDataInterface" type="Magedelight\ConfigurableProduct\Model\ConfigurableData"/>
+    <preference for="Magedelight\ConfigurableProduct\Api\Data\ConfigurableAttributeDataInterface" type="Magedelight\ConfigurableProduct\Model\ConfigurableAttributeData"/>    
+    <preference for="Magedelight\ConfigurableProduct\Api\Data\ConfigurableOptionDataInterface" type="Magedelight\ConfigurableProduct\Model\ConfigurableOptionData"/>
+    <preference for="Magedelight\ConfigurableProduct\Api\Data\AssociativeArrayItemInterface" type="Magedelight\ConfigurableProduct\Model\AssociativeArrayItem"/>
+
+
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Magedelight\Catalog\Api\Data\ProductRequestInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">md_vendor_product_request</item>
+                    <item name="identifierField" xsi:type="string">product_request_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Magedelight\Catalog\Api\Data\ProductRequestInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Magedelight\Catalog\Api\Data\ProductRequestInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="read_configurable_options" xsi:type="string">Magedelight\ConfigurableProduct\Model\ProductRequest\ReadHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

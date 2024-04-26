@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="uiConfigurationDomMerger" type="Magento\Framework\View\Element\UiComponent\Config\DomMerger">
+        <arguments>
+            <argument name="schema" xsi:type="string">urn:magento:module:Magento_Ui:etc/ui_configuration.xsd</argument>
+            <argument name="contextXPath" xsi:type="array">
+                <item name="ui_context" xsi:type="string">/</item>
+            </argument>
+            <argument name="idAttributes" xsi:type="array">
+                <item name="attribute_name" xsi:type="string">name</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Ktpl\ElasticSearch\Ui\Index\Form\DataProvider">
+        <arguments>
+            <argument name="domMerger" xsi:type="object">uiConfigurationDomMerger</argument>
+        </arguments>
+    </type>
+
+</config>

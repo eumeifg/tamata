@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Rma
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <section id="rma" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label" sortOrder="100">
+            <label>Returns</label>
+            <tab>sales</tab>
+            <resource>Magedelight_Rma::config_rma</resource>
+            <group id="policy" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                <label>Returns Policy</label>
+                <field id="return_period" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow for Returns request up to days after order completion</label>
+                    <comment><![CDATA[Customer can apply for Returns only for mentioned days for complete order. After that, customer can not apply for any Returns request.]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

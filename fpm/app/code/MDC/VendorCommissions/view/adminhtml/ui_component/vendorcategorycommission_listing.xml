@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_VendorCommissions
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">vendorcategorycommission_listing.vendorcategorycommission_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Vendor Category Commission</label>
+            </button>
+        </buttons>
+        <spinner>vendor_category_commission_columns</spinner>
+        <deps>
+            <dep>vendorcategorycommission_listing.vendorcategorycommission_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="vendorcategorycommission_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">vendor_category_commission_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="vendorcategorycommission_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>vendor_category_commission_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="commissionsadmin/vendorCategoryCommission/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+            <action name="disable">
+                <settings>
+                    <url path="commissionsadmin/vendorCategoryCommission/massDisable"/>
+                    <type>disable</type>
+                    <label translate="true">Disable</label>
+                </settings>
+            </action>
+            <action name="enable">
+                <settings>
+                    <url path="commissionsadmin/vendorCategoryCommission/massEnable"/>
+                    <type>enable</type>
+                    <label translate="true">Enable</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    
+    <columns name="vendor_category_commission_columns">
+        <settings>
+            <editorConfig>
+                <param name="indexField" xsi:type="string">vendor_category_commission_id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">vendorcategorycommission_listing.vendorcategorycommission_listing.vendor_category_commission_columns.ids</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">vendorcategorycommission_listing.vendorcategorycommission_listing.vendor_category_commission_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>vendor_category_commission_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+        <column name="vendor_category_commission_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="calculation_type" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magedelight\Commissions\Model\Source\CalculationType"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Calculation Type</label>
+            </settings>
+        </column>
+        <column name="commission_value">
+            <settings>
+                <filter>textRange</filter>
+                <dataType>text</dataType>
+                <label translate="true">Commission</label>
+            </settings>
+        </column>
+        <column name="marketplace_fee_type" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magedelight\Commissions\Model\Source\CalculationType"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Marketplace Fee Calculation Type</label>
+            </settings>
+        </column>
+        <column name="marketplace_fee">
+            <settings>
+                <filter>textRange</filter>
+                <dataType>text</dataType>
+                <label translate="true">Marketplace Fee Commission</label>
+            </settings>
+        </column>
+        <column name="cancellation_calculation_type" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magedelight\Commissions\Model\Source\CalculationType"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Cancellation Calculation Type</label>
+            </settings>
+        </column>
+        <column name="cancellation_commission_value">
+            <settings>
+                <filter>textRange</filter>
+                <dataType>text</dataType>
+                <label translate="true">Cancellation Fee Commission</label>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magedelight\Commissions\Model\Source\Status"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="MDC\VendorCommissions\Ui\Component\Listing\Column\VendorCategoryCommissionActions">
+            <settings>
+                <indexField>vendor_category_commission_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

@@ -1,0 +1,34 @@
+<?php
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+?>
+
+<?php
+//@codingStandardsIgnoreFile
+/** @var \Ktpl\ElasticSearch\Block\Index\Base $block */
+
+?>
+<div class="ktpl-search__index ktpl-search__index-blackbird_contentmanager_content">
+    <ul>
+        <?php /** @var \Blackbird\ContentManager\Model\Content $content */ ?>
+        <?php foreach ($block->getCollection() as $content): ?>
+            <li>
+                <div class="ktpl-search__index-title">
+                    <a href="<?= $content->getLinkUrl() ?>"><?= $content->getTitle() ?></a>
+                </div>
+                <div class="ktpl-search__index-content">
+                    <?= $this->truncate($content->getShortContent()) ?>
+                </div>
+            </li>
+        <?php endforeach ?>
+</div>

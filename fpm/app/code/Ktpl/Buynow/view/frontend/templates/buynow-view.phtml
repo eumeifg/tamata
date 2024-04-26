@@ -1,0 +1,64 @@
+<?php 
+$_product = $block->getProduct();
+$formId = "product_addtocart_form";
+$buttonTitle = __('Update Cart');
+$helper = $this->helper("Ktpl\Buynow\Helper\Data");
+$stockStatusData = $helper->checkInStockStatus($_product->getSku());
+?>
+
+<?php if ($stockStatusData) : ?>
+<div class="addtobag-buynow-box">
+
+    <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Buy Now') ?>" id="buy-now" class="action primary tocart addtobagbtn" data-mage-init='
+    {
+        "Ktpl_Buynow/js/buy-now": {
+            "form": "#<?php echo $formId; ?>"
+        }
+    }
+    '>
+    <span><?php /* @escapeNotVerified */ echo __('Buy Now') ?></span>
+    </button>
+    <button type="button"
+            title="Add to Cart"
+            class="action primary tocart buynowbtn addtobagbtn"
+            id="product-addtobag-button">
+            <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+    </button>
+    <button type="submit"
+            title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+            class="action primary tocart"
+            id="product-updatecart-button">
+        <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+    </button>
+    <?= $block->getChildHtml('', true) ?>
+</div>
+<?php endif; ?>
+    <script type="text/x-magento-init">
+        {
+            "#product_addtocart_form": {
+                "validation": {},
+                "addToCart": {
+                    "cartButtonId": "#product-updatecart-button",
+                    "cartForm": "#product_addtocart_form"
+                }
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+         require(["jquery"],function($) {
+            $(document).ready(function () {
+                /*$("#product-addtobag-button").click(function() {
+                $( "#product-addtocart-button" ).trigger( "click" );
+            });*/
+            $(".box-tocart.update").removeAttr("style");
+
+            /*....To check product is out-of-stock then hide right side buttons on product details page....*/
+            if($("div").hasClass("box-tocart")){
+                $(".addtobag-buynow-box").show();
+            } else {
+                $(".addtobag-buynow-box").hide();
+            }
+    });
+});
+</script>

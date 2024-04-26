@@ -1,0 +1,306 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .pages {
+        .lib-pager();
+
+        .item {
+            float: left;
+        }
+
+        a.page,
+        strong.page {
+            width: 32px;
+            border-radius: 2px;
+            float: left;
+        }
+
+        .action {
+            border-radius: 50%;
+            padding: 0 16px;
+            border: #45434a solid 1px;
+            float: left;
+
+            &.next,
+            &.previous {
+                font-weight: 400;
+                text-transform: uppercase;
+
+                &:before {
+                    display: none;
+                }
+
+                .label {
+                    .lib-visually-hidden-reset();
+                }
+
+                > span {
+                   .lib-visually-hidden-reset();
+                   float: right;
+                   margin-right: 4px;
+                }
+            }
+
+            &.previous {
+                margin-right: 8px;
+            }
+
+            &.next {
+                margin-left: 8px;
+            }
+        }
+    }
+    .toolbar {
+        .pages {
+            margin-bottom: 20px;
+            .items.pages-items {
+                display: inline-block;
+                padding: 0;
+            }
+            a.page {
+                color: #888b8d;
+            }
+            .item:hover,
+            .item.current {
+                a.page,
+                strong.page {
+                    border-radius: 50%;
+                    background: none;
+                    border: 1px solid @color-red;
+                    color: @color-red;
+                    height: 32px;
+                    line-height: 30px;
+                }
+            }
+            li.item {
+                &.pages-item-first,
+                &.pages-item-last,
+                &.pages-item-previous,
+                &.pages-item-next {
+                    position: static;
+                    .action.previous,
+                    .action.next {
+                        margin-right: 0;
+                        margin-left: 0;
+                        height: 32px;
+                        padding: 0;
+                        width: 32px;
+                        position: relative;
+                        vertical-align: middle;
+                        border-radius: 50%;
+                        background: none;
+                        border: 1px solid #888b8d;
+                        color: #888b8d;
+                        span {
+                            display: none;
+                        }
+                        &:hover {
+                            border-color: @color-red;
+                            &:before {
+                                color: @color-red;
+                            }
+                        }
+                        &:before {
+                            line-height: normal;
+                            margin: -4px 0 0 0;
+                        }
+                    }
+                    .action.next {
+                        &:before {
+                            content: "\e914";
+                            display: inline-block;
+                        }
+                    }
+                    .action.previous {
+                        &:before {
+                            content: "\e617";
+                            display: inline-block;
+                        }
+                    }
+                    .action.first,
+                    .action.last {
+                        margin-right: 0;
+                        margin-left: 0;
+                        height: 32px;
+                        padding: 0;
+                        width: 32px;
+                        position: relative;
+                        vertical-align: middle;
+                        background: none;
+                        color: #888b8d;
+                        border: 0;
+                        &:hover {
+                            color: @color-red;
+                        }
+                        span {
+                            display: none;
+                        }
+                        &:before {
+                            line-height: normal;
+                            margin: 0;
+                            font-size: 31px;
+                        }
+                    }
+                    .action.first {
+                        &:before {
+                            content: "\e91c";
+                            display: inline-block;
+                            font-family: 'luma-icons';
+                            font-weight: normal;
+                        }
+                    }
+                    .action.last {
+                        &:before {
+                            content: "\e91d";
+                            display: inline-block;
+                            font-family: 'luma-icons';
+                            font-weight: normal;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    html[lang="ar"]{
+        .toolbar {
+            .pages {
+                li.item {
+                    &.pages-item-previous,
+                    &.pages-item-next {
+                        .action.next {
+                            &:before {
+                                content: "\e617";
+                            }
+                        }
+                        .action.previous {
+                            &:before {
+                                content: "\e914";
+                            }
+                        }
+                    }
+                    &.pages-item-first,
+                    &.pages-item-last {
+                        .action.first {
+                            &:before {
+                                content: "\e91d";
+                            }
+                        }
+                        .action.last {
+                            &:before {
+                                content: "\e91c";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    /*.toolbar {
+        .pages {
+            margin-bottom: 20px;
+            .items.pages-items {
+                display: inline-block;
+                padding: 0;
+            }
+            li.item {
+                &.pages-item-previous,
+                &.pages-item-next {
+                    position: static;
+                    .action.previous,
+                    .action.next {
+                        float: none;
+                        margin-right: 0;
+                        margin-left: 0;
+                        height: 32px;
+                        padding: 0;
+                        width: 32px;
+                        position: relative;
+                        vertical-align: middle;
+                        span {
+                            display: none;
+                        }
+                        &:before {
+                            line-height: normal;
+                            margin: -4px 0 0 0;
+                        }
+                    }
+                    .action.next {
+                        &:before {
+                            content: "\e914";
+                            display: inline-block;
+                        }
+                    }
+                    .action.previous {
+                        &:before {
+                            content: "\e617";
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    html[lang="ar"]{
+        .toolbar {
+            .pages {
+                li.item {
+                    &.pages-item-previous,
+                    &.pages-item-next {
+                        .action.next {
+                            &:before {
+                                content: "\e617";
+                            }
+                        }
+                        .action.previous {
+                            &:before {
+                                content: "\e914";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }*/
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .pages {
+        & &-items {
+            display: block;
+            padding: 2px 40px 0;
+            position: relative;
+            white-space: normal;
+            z-index: 1;
+        }
+
+        &-item-previous {
+            left: 0;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+        }
+
+        &-item-next {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+    }
+}

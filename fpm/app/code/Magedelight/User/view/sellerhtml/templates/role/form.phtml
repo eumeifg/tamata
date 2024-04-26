@@ -1,0 +1,136 @@
+<?php
+/** @var $block \Magedelight\User\Block\Role\Edit */
+$role = $block->getRole();
+?>
+<div class="tray">
+    <div class="rbvendor-content">
+        <div class="row">
+          <div class="toolbar-wrapper mb10">
+                <div class="topbar-right pt10">
+                    <div class="data-grid-filters-actions-wrap">
+                        <div class="data-grid-filters-action-wrap">
+                            <a href="<?= $block->getUrl('rbuser/user/role_index/tab/'.$block->getRequest()->getParam('tab'))?>">
+                                <button type="button" data-action="grid-filter-expand" title="Back" class="action button secondary back mrn" >
+                                    <span><?php echo __('Back') ?></span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>            
+            </div>          
+            <div class="col-md-12">
+                <div class="rbpanel">
+                    <div class="rbpanel-heading">
+                        <span class="panel-title"><?php /* @escapeNotVerified */
+                            echo __('Role Information'); ?></span>
+                     </div>
+                     <div class="rbpanel-body">
+                        <form method="POST" id="vendorRoleForm" enctype='multipart/form-data'
+                              action="<?php echo $block->getSubmitUrl(); ?>"
+                              data-hasrequired="<?php echo __('* Required Fields') ?>"
+                              accept-charset=""data-mage-init='{"validation":{}}'>
+                            <input type="hidden" name="role_id" id="role_id" value="<?php echo $role->getId() ?>">
+                            <fieldset class="fieldset">
+                                <div class="field required">
+                                    <label class="label" for="rolename">
+                                        <span><?php echo __('Role Name') ?></span>
+                                    </label>
+                                    <div class="control _with-tooltip">
+                                        <input type="text" name="rolename" id="rolename" value="<?php echo $role->getRoleName() ?>" class="input-box required-entry">
+                                        <div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?php echo __('Enter Role Name') ?></span>
+                                    </div>
+                                </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label" for="password">
+                                        <span><?php echo __('Resource Access') ?></span>
+                                    </label>
+                                    <div class="control _with-tooltip">
+                                        <select id="all" name="all" onchange="jQuery('[data-role=tree-resources-container]').toggle()" class="select">
+                                            <option value="0" <?php echo($block->isEverythingAllowed() ? '' : 'selected="selected"'); ?>><?php /* @escapeNotVerified */ echo __('Custom') ?></option>
+                                            <option value="1" <?php echo($block->isEverythingAllowed() ? 'selected="selected"' : ''); ?>><?php /* @escapeNotVerified */ echo __('All') ?></option>
+                                        </select>
+                                        <div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?php echo __('Select Resource Access') ?></span>
+                                    </div>
+                                </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="field<?php if ($block->isEverythingAllowed()) :
+                                        ?> no-display<?php
+                                                     endif?>" data-role="tree-resources-container">
+                                    <label class="label" for="resources">
+                                        <span><?php echo __('Resources') ?></span>
+                                    </label>
+                                    <div class="control">
+                                        <div class="tree x-tree" data-role="resource-tree" data-mage-init='<?php
+                                            echo $block->escapeHtml($this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode([
+                                                'rolesTree' => [
+                                                    "treeInitData" => $block->getTree(),
+                                                    "treeInitSelectedData" => $block->getSelectedResources(),
+                                                ],
+                                            ]));
+                                            ?>'>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="rbpanel-footer">
+                                <div class="actions-toolbar popup-actions-toolbar">
+                                    <div class="primary">
+                                        <button id="product_assigne_wrapper" type="button" title="<?php echo __('Save') ?>"
+                                                class="action button primary btn-submit">
+                                            <span><?php echo __('Save') ?></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        'jquery', /* jquery Library */
+        "mage/calendar", /* Calender widget */
+        'mage/translate', /* Magento text translate (Validation message translte as per language) */
+        'mage/mage',
+        'mage/validation'
+    ], function ($) {
+        $("#product_assigne_wrapper").click(function () {
+            $('#vendorRoleForm').submit();
+        });
+
+        $(document).ready(function () {
+              /* Tooltip code starts */
+              $(".field-tooltip").on('click', function (event) {
+                if($(this).hasClass('_active')){
+                  $(this).removeClass('_active');
+                  $(this).find('.field-tooltip-content').removeClass('_active');
+                } else {
+                  $(".field-tooltip").removeClass('_active');
+                  $(".field-tooltip-content").removeClass('_active');
+                  $(this).addClass('_active');
+                  $(this).find('.field-tooltip-content').addClass('_active');
+                }
+              });
+              /* Tooltip code ends */ 
+            });
+    });
+</script>
+<style type="text/css">
+#vendorRoleForm .jstree .jstree-real-checkbox{ display: inline-block !important; position: static; opacity:1;}
+#vendorRoleForm .jstree ins{display: none  !important;}
+#vendorRoleForm .jstree a {vertical-align: bottom !important;padding: 2px 2px !important; line-height: normal !important;height: auto !important;}
+</style>

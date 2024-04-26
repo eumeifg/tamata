@@ -1,0 +1,89 @@
+"-- Select Status --","-- Select Status --"
+"You have deleted user successfully .","You have deleted user successfully ."
+"Something went wrong while deleting the user.","Something went wrong while deleting the user."
+"This user no longer exists.","This user no longer exists."
+"Something went wrong while edit the user.","Something went wrong while edit the user."
+"Edit User","Edit User"
+"New User","New User"
+User,User
+"You have deleted Role successfully.","You have deleted Role successfully."
+"Something went wrong while deleting the role.","Something went wrong while deleting the role."
+"Edit Role","Edit Role"
+"Add New Role","Add New Role"
+Role,Role
+"This role no longer exists.","This role no longer exists."
+"You saved the role.","You saved the role."
+"An error occurred while saving this role.","An error occurred while saving this role."
+"You saved the user.","You saved the user."
+"You have entered an invalid password for current user.","You have entered an invalid password for current user."
+Email,Email
+"User Name","User Name"
+"A user with the same user name or email already exists.","A user with the same user name or email already exists."
+Enabled,Enabled
+Disabled,Disabled
+"Requested vendor doesn't exist","Requested vendor doesn't exist"
+"Unable to save vendor","Unable to save vendor"
+"User Name is a required field.","User Name is a required field."
+"First Name is a required field.","First Name is a required field."
+"Last Name is a required field.","Last Name is a required field."
+"Please enter a valid email.","Please enter a valid email."
+"Password is required field.","Password is required field."
+"Your password must be at least %1 characters.","Your password must be at least %1 characters."
+"Your password must include both numeric and alphabetic characters.","Your password must include both numeric and alphabetic characters."
+"Your password confirmation must match your password.","Your password confirmation must match your password."
+Back,Back
+"Role Information","Role Information"
+"* Required Fields","* Required Fields"
+"Role Name","Role Name"
+"Resource Access","Resource Access"
+Custom,Custom
+All,All
+Resources,Resources
+Save,Save
+Search...,Search...
+Search,Search
+"Reset Filter","Reset Filter"
+ID,ID
+Action,Action
+Edit,Edit
+Delete,Delete
+"User Information","User Information"
+Name,Name
+Mobile,Mobile
+Password,Password
+"Password Confirmation","Password Confirmation"
+"This account is","This account is"
+Active,Active
+Inactive,Inactive
+Reset,Reset
+"Add New User","Add New User"
+Clear,Clear
+Filters,Filters
+Status,Status
+"Please Select","Please Select"
+Cancel,Cancel
+Apply,Apply
+"ID #","ID #"
+"Is Active","Is Active"
+Yes,Yes
+No,No
+Actions,Actions
+"User Role","User Role"
+Assigned,Assigned
+"Are you sure to delete the Role?","Are you sure to delete the Role?"
+OK,OK
+"Your search result could not find.","Your search result could not find."
+"We couldn't find any records.","We couldn't find any records."
+"Allow everything","Allow everything"
+"Main Vendor","Main Vendor"
+"Vendor User Permission","Vendor User Permission"
+"Users and Role","Users and Role"
+"Licence Detail","Licence Detail"
+"Serial Key","Serial Key"
+"Activation Key","Activation Key"
+"General Settings","General Settings"
+Permissions,Permissions
+permissions,permissions
+"All Users","All Users"
+users,users
+"User Roles","User Roles"

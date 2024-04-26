@@ -1,0 +1,98 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+.opc-wrapper{
+	.opc{
+		#shipping{
+			&.checkout-shipping-address{
+				.address-type-wrapper{
+					.step-title{
+						display: block;
+					    padding: 32px 29px 0;
+					    border-top: 1px solid #efefef;
+					    border-bottom: 0px;
+					    margin-top: 10px;
+					    color: #000;
+					    font-weight: 500;
+					    font-size: 16px;
+					}
+				}
+			}
+		}
+	}
+}
+
+	.address-type-wrapper{
+		.field{
+			&.choice{
+				input[type="radio"]{
+				    left: 0px;
+				    position: inherit;
+				    visibility: visible;
+				    margin-top: 4px;
+				    &:checked{
+				    	+ .label{
+				    		&:before{
+								content:inherit;
+								width: 0;
+								height: 0;
+								display: none;
+				    		}
+				    	}
+				    }
+					+ .label{
+						padding-left: 0;
+						&:before,
+						&:after{
+							content:inherit;
+							width: 0;
+							height: 0;
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+	.address-type-wrapper{
+		.field{
+			&.choice{
+				margin: 0 0 0 29px;
+			}
+		}
+	}
+    
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+ 
+	.address-type-wrapper{
+		.field{
+			&.choice{
+				margin: 0;
+			}
+		}
+	}
+
+}

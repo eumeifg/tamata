@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magedelight\Vendor\Api\Data\Microsite\ProductInterface">
+        <attribute code="vip_price" type="CAT\VIP\Api\Data\MicroSiteVipDetailsInterface[]"/>
+    </extension_attributes>
+</config>

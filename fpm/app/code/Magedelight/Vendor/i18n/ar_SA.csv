@@ -1,0 +1,958 @@
+Invalid Form Key. Please refresh the page.,مفتاح نموذج غير صالح. يرجى تحديث الصفحة.
+You entered an invalid Secret Key. Please refresh the page.,لقد أدخلت سر مفتاح صالح. يرجى تحديث الصفحة.
+"Your account is under review. In the meantime, you can update your profile.",حسابك قيد الاستعراض. في غضون ذلك، يمكنك تحديث ملفك الشخصي.
+Your account is disapproved due to %1. Please correct and resubmit.,ورفض حسابك بسبب٪ 1. يرجى تصحيح وإعادة تقديمها.
+Your account mode is on vacation. Your selling is disabled till vacation ends.,وضع حسابك في إجازة. يتم تعطيل البيع الخاصة بك حتى انتهاء عطلة.
+Add Vendor,إضافة المورد
+start typing to search category,ابدأ الكتابة للبحث الفئة
+Delete File,حذف ملف
+Manage Vendor Order,إدارة الموردين ترتيب
+This product is disabled.,تم تعطيل هذا المنتج.
+Buy %1 for price %2,شراء 1٪ لسعر٪ 2
+Item ordered qty,أمرت البند الكمية
+%1 with %2 discount each,٪ 1 مع٪ 2 خصم كل
+%1 for %2,٪ 1 ل٪ 2
+* - Enter custom price including tax,* - أدخل عرف السعر بما في ذلك الضرائب
+* - Enter custom price excluding tax,* - أدخل عرف السعر غير شامل الضريبة
+Configure,تهيئة
+This product does not have any configurable options,لم يكن هذا المنتج أي خيارات شكلي
+Vendor ID,رقم المورد
+Order ID,رقم التعريف الخاص بالطلب
+ Purchased On,تم شراؤها في
+Vendor,بائع
+Admin Confirm,تأكيد المشرف
+Vendor Confirm,بائع تأكيد
+Status,الحالة
+Total Refunded,إجمالي المردودة
+Cancel By,إلغاء بواسطة
+Total,مجموع
+Cancellation Fee,رسوم الإلغاء
+Action,عمل
+Invoice ID,هوية صوتية
+Invoice At,فاتورة في
+Order #,طلب #
+Bill-to Name,مشروع قانون لاسم
+Order Date,تاريخ الطلب
+Shipment,شحنة
+Ship Date,تاريخ الشحن
+Ship-to Name,السفينة إلى اسم
+Total Quantity,الكمية الإجمالية
+Invoices1,Invoices1
+Order Invoices1,أجل Invoices1
+Manage Vendor Products,إدارة المورد المنتجات
+Deleted Products,المنتجات محذوفة
+ID,هوية شخصية
+Product Name,اسم المنتج
+QTY,الكمية
+Product SKU,SKU المنتج
+List,قائمة
+Unlist,إلغاء إدراج
+Edit Product '%1',تحرير المنتج '٪ 1'
+New Product,منتج جديد
+Product Information,معلومات المنتج
+Vendor SKU,بائع SKU
+Condition,شرط
+Condition Note,حالة ملاحظة
+Price,السعر
+Special Price,سعر خاص
+Special From Date,خاص من التسجيل
+Special To Date,خاص إلى تاريخ
+Quantity,كمية
+Reorder level,مستوى إعادة الطلب
+Warranty Type,نوع الضمان
+Warranty Description,الضمان الوصف
+Request Information,طلب معلومات
+Image,صورة
+Store View,عرض متجر
+Edit,تصحيح
+Delete,حذف
+Are you sure?,هل أنت واثق؟
+UnList,إلغاء إدراج
+Manage Product Request,إدارة طلب المنتج
+Approve,يوافق
+Approve and List,الموافقة وقائمة
+Disapprove,رفض
+Edit Product Request '%1',تحرير طلب المنتج '٪ 1'
+New Product Request,طلب المنتج الجديد
+Product Request Information,معلومات مخططات المنتجات
+Category,الفئة
+Category Information,معلومات الفئة
+Images,صور
+General Information,معلومات عامة
+Offer Information,معلومات العرض
+Marketplace Product Link,السوق رابط المنتج
+Seller SKU,البائع SKU
+Created At,أنشئت في
+Disapprove Message,لا يوافقون رسالة
+Product Variants,المتغيرات المنتج
+Variants,المتغيرات
+Has Variants,لديها المتغيرات
+Is Requested For Edit,مطلوب للتحرير
+Actions,أفعال
+[GLOBAL],[GLOBAL]
+[WEBSITE],[موقع الكتروني]
+[STORE VIEW],[عرض متجر]
+"Images (.gif, .jpg, .png)",الصور (أو jpg، بابوا نيو غينيا)
+Add New Images,إضافة صور جديدة
+Manage Request,إدارة طلب
+Save,حفظ
+Save and Continue Edit,حفظ ومتابعة تحرير
+Vendor Name,اسم البائع
+Request Type,نوع الطلب
+Vacation From Date,عطلة من التسجيل
+Vacation To Date,عطلة إلى تاريخ
+Reason,السبب
+Requested At,طلب في
+Approved At,وافق على
+Page Status,الحالة الصفحة
+Status operations of request auto assigned to vendor profile.,العمليات حالة طلب السيارات المخصصة للبائع الشخصي.
+Shipping & Handling,التوصيل
+Confirm,تؤكد
+Are you sure you want to do this?,هل انت متأكد من أنك تريد أن تفعل هذا؟
+Are you sure you want to cancel this order?,هل أنت متأكد أنك تريد إلغاء هذا النظام؟
+Cancel,إلغاء
+Invoice and Ship,فاتورة والسفينة
+Invoice,فاتورة
+Ship,سفينة
+"This will create an offline refund. To create an online refund, open an invoice and create credit memo for it. Do you wish to proceed?",وهذا خلق استرداد حاليا. لإنشاء رد على الانترنت، فتح الفاتورة وإنشاء مذكرة الائتمان لذلك. هل ترغب في المتابعة؟
+Credit Memo,ملاحظة ائتمانية
+Manage Vendors,إدارة الباعة
+Add New Vendor,إضافة بائع جديد
+Save Vendor,حفظ البائع
+Delete Vendor,حذف البائع
+Reset Password,إعادة تعيين كلمة المرور
+New Vendor,بائع جديد
+Bank Details,التفاصيل المصرفية
+Account Holder Name,اسم صاحب الحساب
+Bank Account Number,رقم الحساب المصرفي
+Bank Name,اسم البنك
+IFSC,IFSC
+"Allowed File Types : (JPG,JPEG,PNG), Max Size:2MB.",يسمح أنواع الملفات: (JPG، JPEG، PNG)، وماكس الحجم: 2MB.
+Business Details,تفاصيل العمل
+Business Name,الاسم التجاري
+Display Name,اسم العرض
+"Optional. If filled, it will display instead if business name.",اختياري. إذا شغل، فإنه سيتم عرض بدلا من ذلك إذا كان اسم الأعمال.
+Company Logo,شعار الشركة
+"Size: 164px x 24px, Allowed File Types : (JPG,JPEG,PNG), Max Size:2MB.",الحجم: 164px خ 24px، مسموح أنواع الملفات: (JPG، JPEG، PNG)، وماكس الحجم: 2MB.
+VAT,ضريبة
+VAT Document,وثيقة VAT
+Other Marketplace URL,URL سوق أخرى
+Categories,الاقسام
+Other Category,باقي الفئة
+Product(s) Category Details,المنتج (ق) الفئة تفاصيل
+Product(s) Category,المنتج (ق) الفئة
+Select All ,اختر الكل
+Profile Details,تفاصيل الملف الشخصي
+Name,اسم
+Vendor Email,بائع البريد الإلكتروني
+Mobile,التليفون المحمول
+Address Line 1,العنوان الأول
+Address Line 2,سطر العنوان 2
+Country,بلد
+State,حالة
+City,مدينة
+Pincode,الرقم السري
+Profile Status,حالة الملف الشخصي
+Inactive/Disapproved Reason,نشط / سبب مرفوض
+Vacation Message,عطلة رسالة
+Vendor Information,معلومات البائع
+Pickup and Shipping Information,بيك اب ومعلومات الشحن
+Revenue,إيرادات
+"Media (.avi, .flv, .swf)",وسائل الاعلام (افي، فلف، فرنك سويسري)
+All Files,كل الملفات
+We can't get the order instance right now.,ونحن لا يمكن الحصول على سبيل المثال النظام في الوقت الحالي.
+-- Select Status --,- اختر الحالة -
+Update Qty's,تحديث الكمية ل
+Submit Invoice and Shipment,إرسال فاتورة والشحن
+Submit Invoice,إرسال الفاتورة
+Paid Amount,المبلغ المدفوع
+Refund Amount,المبلغ المسترد
+Shipping Amount,كمية الشحن
+Shipping Refund,رد الشحن
+Order Grand Total,ترتيب المجموع
+Send Email,ارسل بريد الكتروني
+Are you sure you want to send an invoice email to customer?,هل أنت متأكد أنك تريد إرسال رسالة بريد إلكتروني فاتورة للعميل؟
+Capture,أسر
+Void,باطل
+Print,طباعة
+The invoice email was sent.,تم إرسال البريد الإلكتروني الفاتورة.
+The invoice email wasn't sent.,لم يتم إرسال البريد الإلكتروني الفاتورة.
+Invoice #%1 | %2 | %4 (%3),الفاتورة # 1٪ | ٪ 2 | 4٪ (3٪)
+Invalid parent block for this block,كتلة الأم غير صالحة لهذه المجموعة
+Custom Value,القيمة الجمركية
+Please correct the parent block for this block.,يرجى تصحيح كتلة الأم لهذه المجموعة.
+Order # %1,ترتيب # 1٪
+Root Catalog,كتالوج الجذر
+Yes,نعم فعلا
+No,لا
+Manufacturer,الصانع
+Remove,إزالة
+Bulk Images &amp; Price,صور السائبة اند السعر
+Click here or drag and drop to add images.,انقر هنا أو سحب وإسقاط لإضافة الصور.
+Delete image,حذف صورة
+Make Base,جعل قاعدة
+Hidden,مخفي
+Images and Videos,صور وفيديو
+Edit Offer to %1,تحرير العرض إلى٪ 1
+Add Offer to %1,إضافة إلى عرض٪ 1
+All Store Views,كل مخزن المشاهدات
+Contact Us,اتصل بنا
+Please enter query and query description.,الرجاء إدخال الاستعلام ووصف الاستعلام.
+Thanks for contacting us with your comments and questions. We'll respond to you very soon.,نشكرك على اتصالك بنا مع التعليقات والأسئلة الخاصة بك. سنقوم الرد عليك في وقت قريب جدا.
+Your password reset link has expired.,انتهت صلاحية رابط إعادة تعيين كلمة المرور.
+Dashboard,لوحة القيادة
+"Session has been timeout, Please login",وقد الدورة مهلة، الرجاء الدخول
+Please fill up all data,يرجى ملء جميع البيانات
+Please enter current password.,الرجاء إدخال كلمة المرور الحالية.
+Please enter new password.,يرجى إدخال كلمة المرور الجديدة.
+Please enter confirm password.,الرجاء إدخال تأكيد كلمة المرور.
+Confirm your new password.,تأكيد كلمة المرور الجديدة.
+Something went wrong while changing the password.,حدث خطأ ما أثناء تغيير كلمة المرور.
+Your status change request submitted successfully.,طلب تغيير حالتك قدمت بنجاح.
+Information has been updated successfully.,تم تحديث المعلومات بنجاح.
+Something went wrong while updating the profile.,حدث خطأ ما أثناء تحديث ملف التعريف.
+Enter a valid email address.,أدخل عنوان بريد إلكتروني صالح.
+"Sorry, we didn't found any account associated with '%1'.",عذرا، لم يتم العثور على أي حساب مرتبط مع '٪ 1'.
+We're unable to send the password reset email.,نحن غير قادرين على إرسال البريد الإلكتروني إعادة تعيين كلمة المرور.
+Please enter your email.,رجاءا أدخل بريدك الإلكتروني.
+If there is an account associated with %1 you will receive an email with a link to reset your password.,إذا كان هناك حساب مرتبط مع٪ 1 سوف تتلقى رسالة بريد إلكتروني مع وصلة لإعادة تعيين كلمة المرور الخاصة بك.
+My Profile,ملفي
+This account is not confirmed. <a href="%1">Click here</a> to resend confirmation email.,لم يتم تأكيد هذا الحساب. <a href="٪1"> انقر هنا </a> لإعادة إرسال البريد الإلكتروني تأكيد.
+Invalid login or password.,معلومات الدخول خاطئة او كلمة المرور خاطئة.
+A login and a password are required.,وثمة حاجة إلى تسجيل الدخول وكلمة مرور.
+Please register using Email address,الرجاء التسجيل باستخدام عنوان البريد الإلكتروني
+"You have already registered as vendor, Login to continue.",كنت قد سجلت بالفعل كما بائع، تسجيل الدخول للمتابعة.
+Create New Vendor Account,إنشاء حساب جديد البائع
+Please fill up all registration details,يرجى ملء جميع التفاصيل تسجيل
+"Your account has been setup and under review. In the meantime, you can update your profile.",وكان حسابك الإعداد وقيد الاستعراض. في غضون ذلك، يمكنك تحديث ملفك الشخصي.
+Something went wrong while saving the vendor.,حدث خطأ ما أثناء إنقاذ البائع.
+Please make sure your passwords match.,يرجى التأكد من تطابق كلمات السر الخاصة بك.
+New Password and Confirm New Password values didn't match.,لم المرور الجديدة وتأكيد القيم كلمة المرور الجديدة لا تتطابق.
+Please enter a new password.,الرجاء إدخال كلمة مرور جديدة.
+You updated your password.,قمت بتحديث كلمة المرور الخاصة بك.
+Something went wrong while saving the new password.,حدث خطأ أثناء حفظ كلمة المرور الجديدة.
+"You have already registered as vendor, Please proceed with further steps of registration.",كنت قد سجلت بالفعل كما بائع، يرجى المتابعة مع خطوات أخرى من التسجيل.
+"You have already registered as vendor, Login to continue..",كنت قد سجلت بالفعل كما بائع، تسجيل الدخول إلى الاستمرار ..
+Enter a valid phone number.,إدخال رقم هاتف صالح.
+"Thank you for registering, We have sent you an email with instructions and the next steps for you to complete your registration.",شكرا لك على التسجيل، لقد أرسلت لك رسالة بالبريد الالكتروني مع التعليمات والخطوات التالية لتتمكن من إتمام عملية التسجيل.
+invalid request,طلب غير صالح
+see error log for details,مراجعة سجل خطأ لمزيد من التفاصيل
+Service unavailable: %1,الخدمة غير متوفرة:٪ 1
+Vendors,الباعة
+Something went wrong while editing the vendor.,حدث خطأ ما أثناء تحرير بائع.
+Manage Approved Vendors,إدارة الموردين المعتمدين
+Manage Closed Vendors,إدارة الباعة مغلق
+You have deleted vendor successfully .,قمت بحذفها بائع بنجاح.
+Something went wrong while deleting the vendor.,حدث خطأ ما أثناء حذف البائع.
+Manage Inactive Vendors,إدارة الباعة الخاملة
+Manage Vendor New Registrations,إدارة الموردين المسجلون الجدد
+A totall of %1 record(s) have been deleted.,تم حذف A totall من٪ 1 سجل (ق).
+A total of %1 record(s) were updated.,تم تحديث ما مجموعه٪ 1 سجل (ق).
+Manage Vacation Mode On Vendors,إدارة الوضع عطلة على الباعة
+Manage Rejected Vendors,إدارة الباعة رفض
+The vendor will receive an email with a link to reset password.,سوف بائع تتلقى رسالة بريد إلكتروني مع وصلة لإعادة تعيين كلمة المرور.
+Something went wrong while resetting vendor password.,حدث خطأ ما أثناء إعادة تعيين كلمة المرور البائع.
+Make sure Vacation From Date and To Date.,تأكد من عطلة من التاريخ وحتى الآن.
+You saved the vendor.,قمت بحفظه البائع.
+The order has been canceled.,تم إلغاء هذا الأمر.
+The order has not been canceled.,لم يتم إلغاء الطلب.
+The order has been confirmed.,وقد تم تأكيد هذا الأمر.
+The order has not been confirmed.,لم يتم تأكيد هذا الأمر.
+Credit Memos,المذكرات الائتمان
+New Memo for #%1,مذكرة جديدة ل# 1٪
+New Memo,مذكرة جديدة
+You need to manage shipping amount manually.,تحتاج إلى إدارة كمية الشحن يدويا.
+The credit memo's total must be positive.,يجب أن يكون مجموع المذكرة الائتمان الإيجابي.
+Cannot create online refund for Refund to Store Credit.,لا يمكن إنشاء رد على الانترنت للاسترداد في مخزن الائتمان.
+You created the credit memo.,قمت بإنشاء مذكرة الائتمان.
+We can't save the credit memo right now.,ونحن لا يمكن حفظ المذكرة الائتمان في الوقت الحالي.
+We can't update the item's quantity right now.,ونحن لا يمكن تحديث كمية العنصر في الوقت الحالي.
+The order no longer exists.,الأمر لم يعد موجودا.
+We can't create credit memo for the order.,ونحن لا يمكن إنشاء مذكرة ائتمان للنظام.
+Manage Orders,إدارة الطلبات
+The order does not allow an invoice to be created.,أمر لا يسمح فاتورة المراد إنشاؤه.
+You can't create an invoice without products.,لا يمكنك إنشاء فاتورة دون المنتجات.
+Invoices,الفواتير
+New Invoice,فاتورة جديدة
+We can't save the invoice right now.,ونحن لا يمكن حفظ الفاتورة في الوقت الحالي.
+The invoice and the shipment  have been created. The shipping label cannot be created now.,وقد تم إنشاء الفاتورة والشحن. لا يمكن إنشاء بطاقة شحن الآن.
+You created the invoice and shipment.,قمت بإنشاء فاتورة والشحن.
+The invoice has been created.,تم إنشاء الفاتورة.
+We can't send the invoice email right now.,ونحن لا يمكن إرسال البريد الإلكتروني فاتورة الآن.
+We can't send the shipment right now.,لا يمكننا أن نرسل الشحنة في الوقت الحالي.
+Cannot update item quantity.,لا يمكن تحديث الكمية المطلوبة.
+We confirmed %1 order(s).,أكدنا٪ 1 النظام (ق).
+Shipments,شحنات
+New Shipment,شحنة جديدة
+We can't save the shipment right now.,ونحن لا يمكن حفظ الشحنة في الوقت الحالي.
+The order does not allow to create a shipment.,الأمر لا يسمح لخلق شحنة.
+The shipment has been created.,تم إنشاء الشحن.
+You created the shipping label.,قمت بإنشاء بطاقة شحن.
+An error occurred while creating shipping label.,حدث خطأ أثناء إنشاء بطاقة شحن.
+Cannot save shipment.,لا يمكن حفظ الشحن.
+Sales,مبيعات
+Orders,أوامر
+Deleted successfully !,حذف بنجاح !
+Disabled Products,المنتجات للمعاقين
+Products,منتجات
+This Product no longer exits. ,هذا المنتج لم يعد يخرج.
+Edit Product,تحرير المنتج
+. ' (' . . ')',. '('. ')'
+Manage Products,إدارة المنتجات
+The Product request has been disapproved.,لقد تم رفض طلب المنتج.
+Something went wrong while saving the product request.,حدث خطأ أثناء حفظ طلب المنتج.
+Vendor product Listed sucessfully.,المنتج بائع مدرج في القائمة بنجاح.
+Something went wrong while saving record.,حدث خطأ ما أثناء إنقاذ سجل.
+Please select product(s).,يرجى اختيار المنتج (ق).
+A total of %1 record(s) have been deleted.,تم حذف ما مجموعه٪ 1 سجل (ق).
+A total of %1 record(s) have been updated.,تم تحديث ما مجموعه٪ 1 سجل (ق).
+Vendor product unlisted sucessfully,المنتج بائع بنجاح غير المدرجة في البورصة
+Product request does not exist,لا وجود طلب المنتج
+Product does not found.,لم يتم العثور المنتج.
+Product Request has been approved.,وقد تمت الموافقة على مخططات المنتجات.
+No such product available.,لا يوجد مثل هذا المنتج متوفر.
+Unable to save product,غير قادر على حفظ المنتج
+SKU for product %1 has been changed to %2.,تم تغيير SKU للمنتج٪ 1 إلى٪ 2.
+Something went wrong.,هناك خطأ ما.
+Product is already exist vendor with same store.,المنتج هو موجود بالفعل بائع مع المخزن نفسه.
+This vendor product no longer exists.,هذا المنتج البائع لم يعد موجودا.
+The image cannot be removed as it has been assigned to the other image role,لا يمكن إزالة الصورة كما تم تعيينه إلى دور صورة أخرى
+Delete successfully !,حذف بنجاح!
+This Product Request no longer exits.,هذا طلب المنتج لم يعد يخرج.
+Edit Product Request,طلب تعديل المنتج
+New Request,طلب جديد
+Vendor Product,بائع المنتج
+This Product Request no longer exits. ,هذا طلب المنتج لم يعد يخرج.
+Please select product request(s).,الرجاء تحديد طلب المنتج (ق).
+Product request does not exist.,لا وجود طلب المنتج.
+Product request has been disaproved.,تم disaproved طلب المنتج.
+Product request has been saved.,تم حفظ الطلب المنتج.
+This Request no longer exits. ,هذا الطلب لم يعد يخرج.
+Edit Request,تحرير طلب
+Request,طلب
+Manage Vendor Request,إدارة الموردين طلب
+Something went wrong while updating the vendor(s) request status.,حدث خطأ ما أثناء تحديث بائع (ق) حالة الطلب.
+Something went wrong while load record.,حدث خطأ ما أثناء سجل الحمل.
+You saved this vendor request status.,يمكنك حفظ هذا بائع حالة الطلب.
+The order has could not been canceled.,لم يمكن أن يتم إلغاء الطلب.
+This order no longer exists.,هذا النظام لم يعد موجودا.
+Cancelled Orders,إلغاء أوامر
+Completed Orders,أوامر الانتهاء
+The order could not confirm.,أمر لا يمكن تأكيد.
+Vendor Order Id,بائع رسالة طلب رقم
+Purchase Date,تاريخ الشراء
+Ship To Name,السفينة إلى اسم
+Bill To Name,اسم بيل ل
+Grand Total,المبلغ الإجمالي
+Ship to Name,سفينة إلى اسم
+Active Orders,أوامر النشطة
+In Progress Orders,في أوامر التقدم
+"You are not allowed to use requested feature, Please contact Marketplace Admin in case any query.",لا يسمح لك باستخدام ميزة المطلوب، يرجى الاتصال سوق Admin في حالة أي استفسار.
+Failed to upload invoice.,فشل في تحميل الفاتورة.
+Please select order(s).,الرجاء تحديد النظام (ق).
+%1 Order Confirmed successfully.,٪ 1 أمر مؤكد بنجاح.
+%1 Order(s) canceled.,٪ 1 النظام (ق) الملغاة.
+There are no printable documents related to selected orders.,لا توجد وثائق للطباعة المتعلقة أوامر المحدد.
+Order Status has been updated successfully.,تم تحديث حالة الطلب بنجاح.
+Something went wrong while update order status.,حدث خطأ ما أثناء حالة الطلب التحديث.
+Cannot Generate shipment.,لا يمكن أن تولد شحنة.
+Shipment has been generated successfully.,تم إنشاء شحنة بنجاح.
+Shipping label has been created successfully.,تم إنشاء بطاقة شحن بنجاح.
+Cannot do shipment for the order separately from invoice.,لا تستطيع أن تفعل الشحن للنظام على حدة من الفاتورة.
+Cannot do shipment for the order.,لا تستطيع أن تفعل الشحن للنظام.
+Specified order does not found.,لم يتم العثور الترتيب المحدد.
+You are not allowed to use requested feature as your account status is pending.,لا يسمح لك باستخدام ميزة المطلوبة في حالة حسابك معلقة.
+This Product no longer exits.,هذا المنتج لم يعد يخرج.
+An edit request for this product is already exist. <a href="%1"> Click here to edit existing request.</a>,طلب تحرير لهذا المنتج موجودة بالفعل. <a href="٪1"> انقر هنا لتعديل الطلب الحالي. </A>
+Edit Approved Product,تعديل المنتج وافق
+Select Category,اختر الفئة
+"Sorry, Unauthorised action perform.",عذرا، عمل غير المصرح به أداء.
+No attribute set has added to selected category.,تمت إضافة أي مجموعة السمة إلى الفئة المختارة.
+Vendor SKU is already exist.,وجود بائع SKU بالفعل.
+Something went wrong while submitting product request.,حدث خطأ ما أثناء تقديم طلب المنتج.
+Seller Sku in offer section,البائع سكو في عرض القسم
+Price in offer section,السعر في العرض القسم
+Your product is added successfully for approval.,يضاف المنتج الخاص بك بنجاح للموافقة عليها.
+Can't send email.,لا يمكن إرسال البريد الإلكتروني.
+Your product changes are added successfully for approval.,تضاف التغييرات المنتج الخاص بك بنجاح للموافقة عليها.
+Something went wrong while submitting approved product change request.,حدث خطأ ما أثناء تقديم وافق على طلب تغيير المنتج.
+Product Attributes - Vital Info,سمات المنتج - معلومات حيوية
+Last 24 Hours,أخر 24 ساعه
+Last 7 Days,اخر 7 ايام
+Current Month,الشهر الحالي
+YTD,YTD
+2YTD,2YTD
+No confirmation needed.,أي تأكيد الحاجة.
+Please correct the transactional account email type.,يرجى تصحيح المعاملات نوع حساب البريد الإلكتروني.
+Account already active,حساب نشط بالفعل
+Invalid confirmation token,رمز تأكيد غير صحيح
+This account is not confirmed.,لم يتم تأكيد هذا الحساب.
+Your account has been closed.,تم إغلاق الحساب الخاص بك.
+Your account is inactive.,حسابك غير نشط.
+Please enter a password with at least %1 characters.,يرجى إدخال كلمة المرور مع٪ على الأقل 1 حرفا.
+The password can't begin or end with a space.,كلمة السر لا يمكن أن تبدأ أو تنتهي بمسافة.
+Reset password token mismatch.,إعادة تعيين كلمة المرور عدم تطابق رمزية.
+Reset password token expired.,إعادة تعيين كلمة المرور رمز منتهية الصلاحية.
+Please verify your account.,يرجى التحقق من حسابك.
+This vendor already exists in this store.,هذا البائع موجود بالفعل في هذا المخزن.
+A vendor with the same email already exists in an associated website.,وقال بائع مع نفس عنوان البريد الإلكتروني موجود بالفعل في موقع المرتبطة بها.
+The current password doesn't match this account.,كلمة المرور الحالية لا يتطابق مع هذا الحساب.
+Select,تحديد
+ You are not allowed to sell under this category.,لا يسمح لك أن تبيع تحت هذه الفئة.
+None,لا شيء
+Use Parent Category Settings,استخدام إعدادات الفئة الأم
+Global,عالمي
+Per Website,في الموقع
+We can't share vendor accounts globally when the accounts share identical email addresses on more than one website.,لا يمكننا تبادل حسابات الموردين عالميا عندما تتقاسم الحسابات عناوين البريد الإلكتروني متطابقة حول أكثر من موقع واحد.
+--Please Select--,--يرجى الاختيار--
+Order does not allow to be canceled.,أجل لا يسمح ليتم إلغاؤها.
+Invoice # ,فاتورة #
+Sold By : ,تم بيعها من قبل :
+Address : ,عنوان :
+VAT : ,ضريبة القيمة المضافة:
+GSTIN : ,GSTIN:
+No Vendor found for the item '%1'.,لم يتم العثور على العنصر '٪ 1' البائع.
+Approved but not listed,وافقت ولكنها غير مدرجة
+Listed,المدرج
+Used,مستخدم
+New,الجديد
+Rental,تأجير
+Invalid product and vendor.,منتج غير صالح والبائعين.
+Requested product doesn't exist,لا وجود المنتج المطلوب
+Please enter %1.,الرجاء إدخال٪ 1.
+Pending,قيد الانتظار
+Approved,وافق
+Disapproved,مرفوض
+Vendor SKU(s) %1 already exist.,بائع سكو (ق)٪ 1 موجودة بالفعل.
+Vendor SKU is already exist in Approved Products.,البائع Sku موجود بالفعل في المنتجات المعتمدة.
+Vendor SKU is already exist In Pending Request.,بائع SKU موجودة بالفعل في طلب معلق.
+Vendor SKU is already exist In Pending Request in variants.,بائع SKU موجودة بالفعل في طلب معلق في المتغيرات.
+Order # ,طلب #
+Order Date: ,تاريخ الطلب:
+Sold to:,بيعت ل:
+Ship to:,سافر على متن سفينة لِـ:
+Payment Method:,طريقة الدفع او السداد:
+Payment Method,طريقة الدفع او السداد
+Shipping Method:,طريقة الشحن:
+Title,عنوان
+Number,رقم
+Seller:,تاجر:
+Packing Slip # ,التعبئة زلة #
+Total Shipping Charges,مجموع رسوم الشحن
+We cannot register an existing credit memo.,ونحن لا يمكن تسجيل مذكرة الائتمان الحالية.
+The most money available to refund is %1.,معظم الاموال المتاحة للاسترداد هو٪ 1.
+Active,نشيط
+Inactive,غير نشط
+On Vacation,في عطلة
+Closed,مغلق
+Rejected,مرفوض
+Vacation,عطلة
+Close,قريب
+-- Please Select --,- اختيارا -
+Please Select,الرجاء الإختيار
+File size must be less than 512 KB.,يجب أن يكون حجم الملف أقل من 512 KB.
+Please enter name.,الرجاء إدخال اسم.
+Please use letters only (a-z or A-Z) in Name.,الرجاء استخدام حروف فقط (A-Z أو A-Z) في الاسم.
+Please enter password.,الرجاء إدخال كلمة المرور.
+Please enter 6 or more characters for password. Leading and trailing spaces will be ignored.,الرجاء إدخال 6 أحرف أو أكثر لكلمة المرور. الرائدة وسيتم تجاهل مسافات زائدة.
+Please enter email address.,الرجاء إدخال عنوان البريد الإلكتروني.
+Please correct this email address: "%1".,يرجى تصحيح عنوان البريد الإلكتروني هذا: "٪ 1".
+Please enter address line 1.,يرجى إدخال عنوان السطر 1.
+Please select state/region.,الرجاء تحديد الدولة / المنطقة.
+Please select city.,الرجاء تحديد المدينة.
+Please use only letters (a-z or A-Z) in city.,الرجاء استخدام الوحيدة الحروف (أ-ي أو A-Z) في المدينة.
+Please select pincode.,يرجى تحديد الرقم السري.
+Please enter pickup address line 1.,الرجاء إدخال صغيرة سطر العنوان 1.
+Please select pickup state/region.,الرجاء تحديد بيك آب الدولة / المنطقة.
+Please select pickup city.,الرجاء تحديد المدينة البيك أب.
+Please use only letters (a-z or A-Z) in pickup city.,الرجاء استخدام الوحيدة الحروف (أ-ي أو A-Z) في مدينة صغيرة.
+Please enter pickup pincode.,الرجاء إدخال الرقم السري لاقط.
+Please select a category or specify other category.,يرجى تحديد فئة أو تحديد فئة أخرى.
+Please enter business name.,الرجاء إدخال اسم الشركة.
+Please enter VAT.,الرجاء إدخال الضريبة على القيمة المضافة.
+Please enter bank account holder's name.,الرجاء إدخال اسم صاحب الحساب البنك.
+Please use only letters (a-z or A-Z) or spaces only in bank account holder's name.,الرجاء استخدام حروف فقط (A-Z أو A-Z) أو مسافات فقط في اسم صاحب الحساب البنك.
+Please enter bank account number.,الرجاء إدخال رقم الحساب المصرفي.
+Bank account number should be numeric value ranging from 10 to 17 digits.,يجب أن يكون رقم الحساب المصرفي قيمة رقمية تتراوح من 10 إلى 17 أرقام.
+Please enter bank name.,الرجاء إدخال اسم البنك.
+Please use only letters (a-z or A-Z) or spaces only in bank name.,الرجاء استخدام حروف فقط (A-Z أو A-Z) أو مسافات فقط في اسم البنك.
+"Please use only letters (a-z or A-Z), numbers (0-9) or spaces only in display name.",الرجاء استخدام الوحيدة الحروف (أ-ي أو A-Z) والأرقام (0-9) أو مسافات فقط في اسم العرض.
+Requested vendor doesn't exist,لا وجود بائع طلب
+Unable to save vendor,غير قادر على حفظ بائع
+Product not assigned to vendor(s) "%1" due to category mismatch.,المنتج غير المخصصة للبائع (ق) "٪ 1" بسبب عدم تطابق الفئة.
+Packed,معباه
+Shipment Generated,شحنة ولدت
+Delivered,تم التوصيل
+Delete ${ $.$data.name },حذف $ {$. $ data.name}
+Are you sure you want to delete a ${ $.$data.name } record?,هل أنت متأكد أنك تريد حذف $ {$. $ data.name} سجل؟
+Add Value,إضافة قيمة
+SKU,SKU
+Vendor Sku,بائع سكو
+Your price,السعر الخاص
+Qty,الكمية
+Your Quantity,الكمية الخاصة بك
+Sale Start Date,تاريخ بدء بيع
+MM/DD/YYYY,MM / DD / YYYY
+Sale End Date,تاريخ بيع النهاية
+No Variants found.,لا توجد المتغيرات.
+Browse to find or drag image here,استعرض للوصول إلى العثور على أو صورة السحب هنا
+Alt Text,نص بديل
+Role,وظيفة
+Image Size,حجم الصورة
+{size},{بحجم}
+Image Resolution,دقة الصورة
+{width}^{height} px,{عرض} ^ {} ارتفاع بكسل
+Hide from Product Page,اختباء من المنتج الصفحة
+Product,المنتج
+Subtotal,قيمة المنتجات
+Discount,خصم
+Row Subtotal,صف المجموع الفرعي
+No ordered items,لا المواد المطلوبة
+Update Items and Quantities,تحديث الأصناف والكميات
+Total %1 product(s),إجمالي٪ 1 منتج (منتجات)
+Subtotal:,قيمة المنتجات :
+selected,المحدد
+Tier Pricing,الطبقة التسعير
+Custom Price,الأسعار حسب الطلب
+Apply,تطبيق
+Please select,الرجاء تحديد
+Move to Shopping Cart,الانتقال إلى سلة التسوق
+Move to Wish List,الانتقال إلى قائمة الرغبات
+Payment &amp; Shipping Method,طريقة الشحن و أمبير؛ طريقة الشحن
+Payment Information,معلومات الدفع
+The order was placed using %1.,وضعت النظام باستخدام٪ 1.
+Shipping Information,معلومات الشحن
+Incl. Tax,بما في ذلك ضريبة
+Items to Refund,عناصر لبرد
+Return to Stock,العودة إلى الأسهم
+Qty to Refund,الكمية على رد
+Tax Amount,قيمة الضريبة
+Discount Amount,مقدار الخصم
+Row Total,صف إجمالي
+No Items To Refund,أي عناصر لبرد
+Order Total,الطلب الكلي
+Credit Memo Comments,مذكرة الائتمان تعليقات
+Comment Text,نص التعليق
+Refund Totals,المجاميع استرداد
+Append Comments,إلحاق تعليقات
+Email Copy of Credit Memo,أرسل نسخة من مذكرة الائتمان
+Items Refunded,البنود رد أموال
+No Items,لا عناصر
+Memo Total,مذكرة إجمالي
+Credit Memo History,مذكرة الائتمان التاريخ
+Credit Memo Totals,المجاميع مذكرة الائتمان
+Create Shipment,إنشاء شحنة
+Invoice and shipment types do not match for some items on this order. You can create a shipment only after creating the invoice.,فاتورة والشحن أنواع لا تتطابق لبعض العناصر في هذا النظام. يمكنك إنشاء شحنة فقط بعد إنشاء الفاتورة.
+Items Invoiced,البنود بفاتورة
+Invoice History,فاتورة التاريخ
+Invoice Totals,المجاميع الفاتورة
+Items to Ship,لشحن المواد
+Qty to Ship,الكمية إلى السفينة
+Shipment Total,شحنة إجمالي
+Shipment Comments,شحنة تعليقات
+Shipment Options,خيارات الشحن
+Create Shipping Label,إنشاء شحن تسمية
+Email Copy of Shipment,أرسل نسخة من الشحن
+Invalid value(s) for Qty to Ship,قيمة غير صالحة ل الكمية إلى السفينة
+Shipping and Tracking Information,الشحن وتتبع المعلومات
+Track this shipment,تتبع هذه الشحنة
+Items Shipped,البنود التي تم شحنها
+Shipment History,شحنة التاريخ
+Order & Account Information,النظام ومعلومات الحساب
+The order confirmation email was sent,تم إرسال البريد الإلكتروني تأكيد الطلب
+The order confirmation email is not sent,لم يتم إرسال البريد الإلكتروني تأكيد الطلب
+vendor Order # %1,بائع بالدفع # 1٪
+Vendor Order # %1,بائع بالدفع # 1٪
+Order Date (%1),الترتيب التاريخ (٪ 1)
+Order Status,حالة الطلب
+Purchased From,تم شراؤها من
+Link to the New Order,تصل إلى النظام الجديد
+Link to the Previous Order,تصل إلى النظام السابق
+Placed from IP,وضعت من IP
+%1 / %2 rate:,٪ 1 /٪ 2 معدل:
+Account Information,معلومات الحساب
+Customer Name,اسم الزبون
+Email,البريد الإلكتروني
+Customer Group,مجموعة العملاء
+Sold By,تم بيعها من قبل
+Address,عنوان
+GSTIN,GSTIN
+Address Information,معلومات العنوان
+Billing Address,عنوان وصول الفواتير
+Shipping Address,عنوان الشحن
+Vendor: %1 (%2),بائع:٪ 1 (٪ 2)
+Vendor order: #%1,أجل بائع: # 1٪
+Status: %1,الحالة:٪ 1
+Vendor does not exist.,لا وجود بائع.
+Item Status,حالة العنصر
+Original Price,السعر الأصلي
+Tax Percent,نسبة الضريبة
+Tax,ضريبة
+SKU:,SKU:
+Ordered,تم الطلب
+Shipping &amp; Handling Information,الشحن وأمبير. معاجلة البيانات
+Track Order,ترتيب المسار
+No shipping information available,أي معلومات الشحن المتاحة
+Items Ordered,المواد المطلوبة
+Order Totals,المجاميع ترتيب
+Access denied,تم الرفض
+You need more permissions to access this.,كنت بحاجة الى مزيد من صلاحية الوصول إلى هذا.
+Contact Information,معلومات الاتصال
+Change Password,تغيير كلمة السر
+Newsletters,النشرات الإخبارية
+You subscribe to "General Subscription".,قمت بالاشتراك في "الاشتراك عامة".
+You don't subscribe to our newsletter.,لم يكن الاشتراك في النشرة الإخبارية.
+or,أو
+Back,الى الخلف
+My Account,حسابي
+Business Information,معلومات العمل
+Login Information,معلومات تسجيل الدخول
+Selling Categories,بيع الفئات
+Selling Brands,بيع الماركات
+Bank Account Detail,تفاصيل الحساب المصرفي
+Payout Details,تفاصيل دفع تعويضات
+Account Holder's Name,اسم صاحب الحساب
+Account Number,رقم حساب
+IFSC Code,كود IFSC
+Re-type Account Number,من نوع إعادة رقم الحساب
+"Allowed File Types :(JPG,JPEG,PNG), Max Size:2MB",يسمح أنواع الملفات: (JPG، JPEG، PNG)، وماكس الحجم: 2MB
+Company's Logo,شعار الشركة
+Choose a file&hellip;,اختيار ملف و hellip؛
+VAT Number,ظريبه الشراء
+required-file,مطلوب ملف
+This Display Name is already exist,هذا اسم العرض هو موجود بالفعل
+Mobile Number,رقم الهاتف المحمول
+Email Address,عنوان البريد الإلكتروني
+Current Password,كلمة السر الحالية
+Create Password,إنشاء كلمة المرور
+New Password,كلمة السر الجديدة
+Confirm Password,تأكيد كلمة المرور
+State/Region,الدولة / المنطقة
+Current Status,الحالة الحالية
+Go to Vacation,الذهاب إلى عطلة
+From,من عند
+To,إلى
+Vacation Reason,عطلة السبب
+Select Date,حدد تاريخ
+Change,يتغيرون
+Reset,إعادة تعيين
+* Required Fields,* الحقول المطلوبة
+This tab contains invalid data. Please resolve this before saving.,هذا التبويب يحتوي على بيانات غير صالحة. الرجاء حل هذا قبل الحفظ.
+Previous,سابق
+Next,التالى
+Save & Finish,حفظ وإنهاء
+Balance,توازن
+View transactions,عرض المعاملات
+Product Sold,وتباع المنتجات
+Life Time Sales,مبيعات تايم لايف
+Average Orders,متوسط ​​الطلبات
+Paid,دفع
+Out of 5,من 5
+Orders Overview,أوامر نظرة عامة
+Amounts,كميات
+Approved Products,المنتجات المعتمدة
+View All,عرض جميع
+There are no product in this list.,لا توجد منتجات في هذه القائمة.
+Best Sellers,الأكثر مبيعا
+No Data Found,لاتوجد بيانات
+Chart is disabled by admin.,يتم تعطيل مخطط من قبل المشرف.
+New Orders,طلبات جديدة
+Guest,زائر
+No Orders Found.,لم يتم العثور على أية طلبات.
+Low Inventory Products,انخفاض المخزون المنتجات
+No products with low inventory.,لا توجد منتجات مع المخزون المنخفض.
+Most Viewed Products,المنتجات الأكثر مشاهدة
+No data found.,لاتوجد بيانات.
+Sale Summary,ملخص بيع
+Tenure,فترة
+Order Product Sales,مبيعات أجل المنتج
+No. Of Orders,عدد الطلبات
+Already added offers,العروض أضفت
+Weight,وزن
+Size,بحجم
+Color,اللون
+New Registration,تسجيل جديد
+Phone Number,رقم الهاتف
+Join Now,نضم الان
+Write Us,إرسال بنا
+Jot us a note and we’ll get back to you as quickly as possible.,مثقال ذرة لنا مذكرة وسنقوم بالرد عليك في أسرع وقت ممكن.
+Query,سؤال
+Query Summary,ملخص الاستعلام
+Description,وصف
+Query Description,استعلام الوصف
+Submit,خضع
+Forgot Your Password?,نسيت رقمك السري؟
+"Enter the email address associated with your Marketplace account, then click Submit. We'll send you a link to a page where you can easily create a new password.",أدخل عنوان البريد الإلكتروني المرتبط بحساب السوق الخاص بك، ثم انقر فوق إرسال. سنرسل لك رابطا لصفحة حيث يمكنك بسهولة إنشاء كلمة مرور جديدة.
+"If you don't remember email address associated with your Marketplace account, you may <a href='%1'>Contact Support</a> for help to access your account.",إذا كنت لا تتذكر عنوان البريد الإلكتروني المرتبط بحساب السوق الخاص بك، فإنك قد <a href='٪1'> اتصل بنا الدعم </a> للحصول على مساعدة للوصول إلى حسابك.
+Back to Login,العودة إلى تسجيل الدخول
+Password,كلمه السر
+Login,تسجيل الدخول
+Forgot Password?,هل نسيت كلمة المرور؟
+Pickup and Shipping information,بيك اب ومعلومات الشحن
+Use Vendor Address as Pickup Address,استخدام المورد عنوان كما بيك أب عنوان
+Do you need installation?,لا تحتاج التثبيت؟
+Installation fee,رسوم التركيب
+Select Category (Please select at least one or specify in other cateogry.),اختر الفئة (يرجى اختيار واحد على الأقل أو تحديد في cateogry أخرى).
+Do you Sell on other Marketplace?,هل بيع في السوق الآخر؟
+Please Enter Product URL,الرجاء إدخال URL المنتج
+I have read and agree to terms and conditions,لقد قرأت وأوافق على البنود والشروط
+Terms and conditions,الأحكام والشروط
+Continue,استمر
+Reset Vendor Password,إعادة تعيين كلمة المرور البائع
+Confirm New Password,تأكيد كلمة المرور الجديدة
+Set a New Password,تعيين كلمة المرور الجديدة
+Toggle Nav,تبديل التنقل
+Transaction(s) With Total Payable Amount,عملية (ق) مع المبلغ الكلي المستحق
+Items %1 to %2 of %3 total,العناصر٪ 1 إلى٪ 2 من٪ إجمالي 3
+%1 Item,٪ 1 تفاصيل
+%1 Item(s),٪ 1 البند (ق)
+Page,صفحة
+You're currently reading page,كنت تقرأ حاليا الصفحة
+Show,تبين
+per page,في كل صفحة
+Browse Files...,تصفح ملفات...
+New Vendors,الباعة جديدة
+"Creating an account has many benefits: check out faster, keep more than one address, track orders and more.",إنشاء حساب له فوائد عديدة: تحقق من أسرع، والحفاظ على أكثر من عنوان واحد، وتتبع أوامر وأكثر من ذلك.
+Create an Account,انشئ حساب
+View Detail Page,مشاهدة صفحة تفاصيل الخبر
+Search...,بحث...
+Search,بحث
+Export,تصدير
+Clear,واضح
+Filters,مرشحات
+Purchased Date,تاريخ الشراء
+from,من عند
+to,إلى
+Min,دقيقة
+Max,ماكس
+ID #,هوية شخصية #
+View,رأي
+Your search result could not find.,نتيجة البحث الخاص بك لا يمكن العثور عليها.
+You have received no orders.,كنت قد تلقيت أي أوامر.
+Canceled,ألغيت
+Dispatch By,إرسال بواسطة
+No orders found.,لم يتم العثور على أية طلبات.
+1%,0.01
+Qty to Invoice,الكمية إلى الفاتورة
+Invoice Comments,تعليقات الفاتورة
+Amount,كمية
+Capture Online,القبض على الإنترنت
+Capture Offline,التقاط غير متصل
+Not Capture,لا التقاط
+The invoice will be created offline without the payment gateway.,سيتم إنشاء الفاتورة حاليا بدون بوابة الدفع.
+Email Copy of Invoice,أرسل نسخة من الفاتورة
+Print All Invoices,طباعة جميع الفواتير
+Invoice #,فاتورة #
+Print Invoice,فاتورة طباعة
+Qty Invoiced,الكمية الفواتير
+Total Tax,مجموع الضريبة
+Review Vendor,بائع مراجعة
+Vendor Items Ordered,بائع المواد المطلوبة
+Gift Message,هدية رسالة
+Sold By:,البائع:
+Invoiced,فواتير
+Shipped,تم شحنها
+Refunded,ردها
+Excl. Tax,غير شامل. ضريبة
+Marketplace SKU,السوق SKU
+Generate Shipment,توليد شحنة
+Generate Packing Slip,توليد التعبئة زلة
+Print Invoices,طباعة الفواتير
+Confirm Order,أكد الطلب
+Cancel Order,الغاء الطلب
+To be Confirmed,وأكد أن
+To be Shipped,ليتم شحنها
+Order Information,معلومات الطلب
+Shipping Method,طريقة الشحن
+Shipment #%1,شحنة # 1٪
+Qty Shipped,الكمية يشحن
+Print All Shipments,طباعة جميع الشحنات
+Shipment #,شحنة #
+Print Shipment,طباعة شحن
+Tracking Number(s):,أرقام التتبع):
+Sku,سكو
+Shipping Details,تفاصيل الشحن
+Carrier,الناقل
+Shipping Service,خدمة الشحن
+Tracking ID,تتبع ID
+Shipment comment,شحنة تعليق
+Generate,توفير
+Order,طلب
+Ship-to-Name,السفينة إلى اسم
+Generate Invoice,توليد الفاتورة
+Date,تاريخ
+Is Confirmed,وأكد
+Shipping & Handling Information,الشحن والمناولة معلومات
+Your Price,السعر الخاص
+more,أكثر من
+"Minimum price will be calculate whether it price or special price. Marketplace Fees, Marketplace Commission, and Service Tax will be deduct from minimum price. The commission, marketplace fees and service tax are based on the current commission and payment settings. The actual charges may vary depending on date of order.",سعر الحد الأدنى سيتم حساب ما إذا كان السعر أو سعر خاص. سيتم خصم رسوم السوق، لجنة السوق، وضريبة الخدمات من سعر الحد الأدنى. لجنة، تستند رسوم السوق وضريبة الخدمة على إعدادات جنة والدفع الحالية. قد تختلف الرسوم الفعلية اعتمادا على تاريخ النظام.
+Reorder Level,إعادة ترتيب مستوى
+Example: 3 year parts and labor warranty is non-transferable and valid for 1 year from the original date of purchase.,مثال: قطع 3 سنوات والعمل الضمان غير قابل للنقل وصالحة لمدة 1 سنة من تاريخ الشراء الأصلي.
+Does this product have variants,هل هذا المنتج المتغيرات
+Does this product have variants.,هل هذا المنتج المتغيرات.
+Show All Fields,عرض جميع الحقول
+Please select atleast one option from,الرجاء تحديد خيار واحد من أتلست
+Show Minimal Fields,تظهر الحقول الحد الأدنى
+"Sorry, No variant attributes found for selected category.",عذرا، لا سمات البديل تم العثور عليها ل الفئة المختارة.
+"Sorry, No attributes found.",عذرا، لم يتم العثور على سمات.
+Create Grid,إنشاء الشبكة
+My Listing,بلدي قائمة
+List New Product,ادراج منتج جديد
+Select and Sell,ادراج منتج شبيه
+Completed,منجز
+Financials,المالية
+Transactions Summary,ملخص المعاملات
+Commissions Invoice,اللجان الفاتورة
+Vendor Service,خدمة بائع
+Feedback and Rating,ردود الفعل والتقييم
+Shipping Matrix,الشحن مصفوفة
+The information in this tab has been changed.,تم تغيير المعلومات الواردة في هذا التبويب.
+Loading...,جار التحميل...
+"Dear %name,",عزيزي اسم٪،
+Welcome to ,مرحبا بك في
+Please verify your email address by clicking on the link below or by opening it in your browser.,يرجى التحقق من عنوان البريد الإلكتروني الخاص بك عن طريق النقر على الرابط أدناه أو عن طريق فتحه في المتصفح الخاص بك.
+Confirm Your Account,اكد حسابك
+Thank you!,شكرا لكم!
+"%name,",٪اسم،
+There was recently a request to change the password for your account.,وكان هناك مؤخرا طلبا لتغيير كلمة المرور لحسابك.
+"If you requested this change, set a new password here:",إذا طلبت هذا التغيير، تعيين كلمة مرور جديدة هنا:
+"If you did not make this request, you can ignore this email and your password will remain the same.",إذا كنت لم تتقدم بهذا الطلب، يمكنك تجاهل هذا البريد الإلكتروني وكلمة المرور الخاصة بك سوف تبقى كما هي.
+The password for your account has been successfully changed.,تم تغيير كلمة السر لحسابك بنجاح.
+"If you did not request this change, please contact us.",إذا كنت لم تطلب هذا التغيير، يرجى الاتصال بنا.
+Hello,مرحبا
+Your vacation request from,طلب عطلة الخاص بك من
+has been approved.,تمت الموافقة.
+Account status has been changed to,تم تغيير حالة الحساب ل
+You will be able to operate the vendor panel however your products will inactive on the marketplace.,سوف تكون قادرة على العمل لوحة بائع ولكن المنتجات الخاصة بك وسوف نشط على السوق.
+has requested for vacation from,وقد طلبت لقضاء اجازة من
+.,.
+along with comment:,جنبا إلى جنب مع تعليق:
+Kindly check the request and do the necessary.,يرجى مراجعة الطلب وعمل اللازم.
+has been rejected.,وقد رفض.
+Account status is active.,حالة الحساب غير النشط.
+You are able to operate the vendor panel.,كنت قادرا على تشغيل اللوحة البائع.
+"Thank you, %store_name",شكرا لكم، و٪ STORE_NAME
+Please use only letters (a-z or A-Z) or spaces only in this field.,الرجاء استخدام حروف فقط (A-Z أو A-Z) أو مسافات فقط في هذا المجال.
+Please enter valid IFSC Code. For e.g. {ABCD1234567}.,الرجاء إدخال الرمز صحيح IFSC. على سبيل المثال؛ {ABCD1234567}.
+Logo file size is more than 2MB,حجم ملف الشعار هو أكثر من 2MB
+Vat file size is more than 2MB,حجم ملف ضريبة القيمة المضافة هو أكثر من 2MB
+Add Products,إضافة المنتجات
+You have item changes,لديك تغييرات البند
+Please make sure your bank account numbers match.,يرجى التأكد من بنك أرقام الحسابات مباراة الخاص بك.
+Please enter valid VAT. For e.g. {24ABCDE2345F6ZM}.,الرجاء إدخال ضريبة القيمة المضافة صالحة. على سبيل المثال؛ {24ABCDE2345F6ZM}.
+Please enter special price less than price.,الرجاء إدخال سعر خاص أقل من السعر.
+Please enter a valid email address.,رجاء قم بإدخال بريد الكتروني صحيح.
+Please enter a valid mobile number.,الرجاء إدخال رقم جوال صحيح.
+We could not detect a size.,لم نتمكن من الكشف عن الحجم.
+Uploaded file dimension is too large.,البعد الملف الذي تم تحميله كبير جدا.
+Please upload appropriate image size. (Maximum 2MB),يرجى تحميل حجم الصورة المناسب. (الحد الأقصى 2MB)
+We don't recognize or support this file extension type.,نحن لا نعترف أو دعم هذا الملف نوع التمديد.
+OK,حسنا
+This Business Name is Available.,هذا اسم العمل هو متاح.
+This Business Name already exists. Please try another.,هذا اسم الشركة موجود بالفعل. يرجى المحاولة مرة أخرى.
+This Display Name is available.,هذا اسم العرض هو متاح.
+This Display Name already exists. Please try another.,هذا اسم العرض موجود بالفعل. يرجى المحاولة مرة أخرى.
+Installation fee : <strong>,رسوم التركيب: على <strong>
+File type is not allowed,لا يسمح نوع الملف
+Please enter category name or select from above list.,الرجاء إدخال اسم الفئة أو حدد من القائمة أعلاه.
+This Business Name is already exist. Please try another.,هذا اسم العمل هو موجود فعلا. يرجى المحاولة مرة أخرى.
+Gift Options for ,خيارات هدية ل
+Edit Order,تحرير ترتيب
+Ok,حسنا
+Vendor Configuration,تكوين بائع
+Create New Account Options,إنشاء خيارات حساب جديد
+Require Emails Confirmation,تتطلب رسائل البريد الإلكتروني تأكيد
+Email Sender,البريد الإلكتروني المرسل
+Confirmation Link Email,تأكيد ارتباط البريد الإلكتروني
+Email template chosen based on theme fallback when "Default" option is selected.,قالب البريد الإلكتروني المختار على أساس موضوع تراجع عند تحديد الخيار "الافتراضي".
+Vendor Status Request,الحالة بائع طلب
+Email Receiver,البريد الإلكتروني استقبال
+Email address to receive vendor notifications for status change request.,عنوان البريد الإلكتروني لتلقي الإخطارات بائع لطلب تغيير الوضع.
+Notification Email,البريد الإلكتروني الإخطار
+Notification Email To Admin,إشعار البريد الإلكتروني إلى admin
+Contact Configurations,الاتصال تكوينات
+Email Template,قالب البريد الإلكتروني
+Password Options,خيارات كلمة المرور
+Forgot Email Template,نسيت قالب البريد الإلكتروني
+Remind Email Template,تذكير قالب البريد الإلكتروني
+Reset Password Template,قالب إعادة تعيين كلمة المرور
+Password Template Email Sender,كلمة قالب البريد الإلكتروني المرسل
+Vendor Password Recovery Link Expiration Period (days),بائع استعادة كلمة السر لينك انتهاء الفترة (أيام)
+Please enter a number 1 or greater in this field.,الرجاء إدخال رقم 1 أو أكثر في هذا المجال.
+Terms and Conditions,الأحكام والشروط
+Content,يحتوى
+Dashboard Summary,ملخص لوحة القيادة
+Please enter a number to display number of records of "New Orders" on vendor dashboard.,الرجاء إدخال رقم لعرض عدد السجلات من "أوامر جديدة" على لوحة البائع.
+Please enter a number to display number of records of "Approve Products" on vendor dashboard.,الرجاء إدخال رقم لعرض عدد السجلات من "الموافقة على المنتجات" على لوحة البائع.
+Please enter a number to display number of records of "Low Inventory" Products on vendor dashboard.,الرجاء إدخال رقم لعرض عدد السجلات من المنتجات "انخفاض المخزون" على لوحة البائع.
+Please enter a number to display number of records of Sale Summary on vendor dashboard.,الرجاء إدخال رقم لعرض عدد السجلات من بيع موجز على لوحة البائع.
+Please enter a number to display number of records of "Best Sellers" on vendor dashboard.,الرجاء إدخال رقم لعرض عدد السجلات من "الأكثر مبيعا" على لوحة البائع.
+Please enter a number to display number of records of "Most Viewed Products" on vendor dashboard.,الرجاء إدخال رقم لعرض عدد السجلات من "المنتجات الأكثر مشاهدة" على لوحة البائع.
+General,جنرال لواء
+Allow Vendor for Vacation Mode,السماح المورد لوضع عطلة
+Allow Vendor to Generate Inovice,تسمح البائع لتوليد Inovice
+Vendor Design,تصميم بائع
+Vendor Profile,الملف بائع
+Default Avatar,افتراضي الصورة الرمزية
+Emails,رسائل البريد الإلكتروني
+Header Template,قالب رأس
+Footer Template,قالب تذييل
+Vendor Dashboard,بائع لوحة
+Left Panel Header Color,اليسار لوحة رأس اللون
+Left Panel Main Color,اليسار لوحة اللون الرئيسي
+Product Configurations,تكوينات المنتج
+Manage Attributes,إدارة سمات
+Exclude Attributes,استبعاد سمات
+Default Attribute Set For Category,افتراضي مجموعة السمات بالنسبة للفئة
+Product Image Style Guide,دليل صورة المنتج نمط
+Product Request Settings,إعدادات طلب المنتج
+Email address to receive vendor notifications for new product request.,عنوان البريد الإلكتروني لتلقي الإخطارات بائع لطلب المنتج الجديد.
+Admin Notification Email Template,قالب البريد الإلكتروني الإخطار مشرف
+Category Display Settings,إعدادات فئة العرض
+Display Authorised Categories Only,عرض المأذون فئات فقط
+Display Category Counts,التهم عرض الفئة
+Product Validation Settings,إعدادات التحقق من صحة المنتج
+Check Vendor SKU,تحقق البائع SKU
+Check Manufacturer SKU,تحقق الصانع SKU
+Allow Variants,السماح المتغيرات
+Image Width,عرض صورة
+Image Height,ارتفاع الصورة
+Sales Settings,إعدادات المبيعات
+Order Settings,إعدادات ترتيب
+Auto confirm marketplace orders,أوامر السوق تأكيد السيارات
+Statuses to delay auto confirm,الحالات لتأخير تأكيد السيارات
+Auto confirm vendor orders,أوامر بائع تأكيد السيارات
+Licence,رخصة
+Licence Detail,رخصة التفاصيل
+Serial Key,رقم مسلسل
+Activation Key,مفتاح التفعيل
+Attribute Set,السمة مجموعة
+Vendor Sell This Product,بائع بيع هذا المنتج
+Delete Request,حذف طلب
+Are you sure to delete selected request?,هل أنت متأكد من حذف الطلب المحدد؟
+Confirm order(s),تأكيد النظام (ق)
+Confirm selected order(s)?,تأكيد النظام المحدد (ق)؟
+Change status,تغيير الوضع
+Phone,هاتف
+Logo,شعار
+PDF Invoices,الفواتير PDF
+Invoice Date,تاريخ الفاتورة
+Shipping and Handling,الشحن والمناولة
+Delete items,حذف العناصر
+Are you sure to delete selected vendors?,هل أنت متأكد من حذف البائعين المختارة؟
+products,منتجات
+orders,أوامر
+Vendor Services,الخدمات بائع
+vendor_service,vendor_service
+Manage Profile,إدارة الملف الشخصي
+rbvendor/account,rbvendor/account
+Logout,الخروج
+rbvendor/account/logout,rbvendor/account/logout
+Password forgotten,نسيت كلمة المرور
+New Order,النظام الجديد
+Confirmed Order,أمر مؤكد
+Vital Info,معلومات حيوية
+Offers,عروض
+More Info,مزيد من المعلومات
+Already Registered,مسجل بالفعل
+We couldn't find any records ,لم نتمكن من العثور على أي سجلات 

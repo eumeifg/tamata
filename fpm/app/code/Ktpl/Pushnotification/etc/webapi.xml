@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Krish TechnoLabs, All rights reserved.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/ktpl/savedevicetoken" method="POST">
+        <service class="Ktpl\Pushnotification\Api\KtplDevicetokensInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <route url="/V1/ktpl/recentlyviewproduct" method="GET">
+        <service class="Ktpl\Pushnotification\Api\KtplRecentViewProductInterface" method="recentlyViewdProduct"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <!-- Changes By : RH -->
+    <route url="/V1/ktpl/notificationlist" method="GET">
+        <service class="Ktpl\Pushnotification\Api\KtplPushnotificationListInterface" method="getNotificationList"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <!-- Changes By : RH -->
+
+   <!--  <route url="/V1/ktpl/notificationsbycustomer" method="GET">
+        <service class="Ktpl\Pushnotification\Api\KtplCustomerPushnotificationListInterface" method="getNotificationList"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route> -->
+
+</routes>

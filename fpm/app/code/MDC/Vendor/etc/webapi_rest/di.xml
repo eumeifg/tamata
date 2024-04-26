@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MDC\Vendor\Api\Data\MicrositeInterface" type="MDC\Vendor\Model\Microsite" />
+
+     <preference for="Magedelight\Vendor\Model\Microsite\MicrositeBuilder" type="MDC\Vendor\Model\Microsite\MicrositeBuilder" />
+     
+    <type name="Magedelight\Vendor\Api\MicrositeRepositoryInterface">
+        <plugin name="add_microsite_custom_data" type="MDC\Vendor\Plugin\AddMicrositeCustomData" sortOrder="1"/>
+    </type>
+
+    <type name="Magedelight\Vendor\Model\Microsite\Build\Rating">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="top_reviews_limit" xsi:type="string">3</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="MDC\Vendor\Api\VendorRepoInterface" type="MDC\Vendor\Model\WebApi\VendorRepo" />
+</config>

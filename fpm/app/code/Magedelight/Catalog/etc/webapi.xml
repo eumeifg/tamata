@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- Product's gallery Import Service -->
+    <route url="/V1/seller/gallery/upload" method="POST">
+        <service class="Magedelight\Catalog\Api\CatalogGalleryInterface" method="upload"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+        <data>
+            <parameter name="sellerId" force="true">%seller_id%</parameter>
+        </data>
+    </route>
+
+    <!-- Product's CSV Import Service -->
+    <route url="/V1/seller/catalouge/upload" method="POST">
+        <service class="Magedelight\Catalog\Api\CatalogCsvInterface" method="upload"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+        <data>
+            <parameter name="sellerId" force="true">%seller_id%</parameter>
+        </data>
+    </route>
+    
+    <!-- Product's CSV Import Service For Seller Offer Update -->
+    <route url="/V1/seller/offers/upload" method="POST">
+        <service class="Magedelight\Catalog\Api\CatalogOffersInterface" method="upload"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+        <data>
+            <parameter name="sellerId" force="true">%seller_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/mdcategories/products" method="GET">
+        <service class="Magedelight\Catalog\Api\CategoryProductRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <!-- Products list-->
+    <route url="/V1/category/products" method="GET">
+        <service class="Magento\Catalog\Api\ProductRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+
+    <!--<route url="/V1/categoryspecific/products" method="GET">
+        <service class="Magento\Catalog\Api\ProductRenderListInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+-->
+    <route url="/V1/getproduct/:productId" method="GET">
+        <service class="Magento\Catalog\Api\ProductRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <route url="/V1/products/listing" method="GET">
+        <service class="Magedelight\Catalog\Api\VendorProductRepositoryInterface" method="getListingProducts"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+    </route>
+
+    <route url="/V1/productrequests/listing" method="GET">
+        <service class="Magedelight\Catalog\Api\ProductRequestRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+    </route>
+
+    <route url="/V1/seller/product/listUnlistVendorProduct" method="POST">
+        <service class="Magedelight\Catalog\Api\ProductManagementInterface" method="listUnlistProduct"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+    </route>
+
+    <route url="/V1/seller/product/deleteProduct" method="POST">
+        <service class="Magedelight\Catalog\Api\ProductRequestRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+    </route>
+
+    <route url="/V1/seller/productrequests/delete" method="POST">
+        <service class="Magedelight\Catalog\Api\ProductRequestRepositoryInterface" method="deleteByIds"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+    </route>
+
+    <route url="/V1/seller/product/quickEdit" method="POST">
+        <service class="Magedelight\Catalog\Api\ProductManagementInterface" method="quickEdit"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+</routes>

@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product view template
+ *
+ * @see \Magento\Catalog\Block\Product\View\Description
+ */
+?>
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+
+/*...To get description title values from admin config settings...*/
+$_settingHelper = $this->helper('Ktpl\ProductView\Helper\Data');
+
+if (!$_product instanceof \Magento\Catalog\Model\Product) {
+    return;
+}
+
+$_call = $block->getAtCall();
+$_code = $block->getAtCode();
+$_className = $block->getCssClass();
+$_attributeLabel = $block->getAtLabel();
+$_attributeType = $block->getAtType();
+$_attributeAddAttribute = $block->getAddAttribute();
+
+$renderLabel = true;
+// if defined as 'none' in layout, do not render
+if ($_attributeLabel == 'none') {
+    $renderLabel = false;
+}
+
+if ($_attributeLabel && $_attributeLabel == 'default') {
+    $_attributeLabel = $_product->getResource()->getAttribute($_code)->getStoreLabel();
+}
+if ($_attributeType && $_attributeType == 'text') {
+    $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code)) ? $_product->getAttributeText($_code) : '';
+} else {
+    $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
+}
+?>
+<!-- <h3 class="additional_attributes_detail">
+	<p class="<?php echo "overvw_n_specfc_".$_code ?>"><?= $block->escapeHtml(__('Overview & Specifications')) ?> </p>
+</h3> -->
+
+<?php if ($this->stripTags($_attributeValue)): ?>
+<div class="product attribute <?= /* @escapeNotVerified */ $_className ?>">
+	<!---Set descritpion and short description title to view on product details page--->
+	<?php if ($_code == "short_description") { ?>
+	<h3><?= __($_settingHelper->getShortDescTitle()); ?></h3>
+	<?php } elseif($_code == "description") { ?>
+	<h3><?= __($_settingHelper->getLongDescTitle()); ?></h3>
+	<?php } else {} ?>
+	<!---End set descritpion and short description title to view on product details page--->
+    <?php if ($renderLabel): ?><strong class="type"><?= /* @escapeNotVerified */ $_attributeLabel ?></strong><?php endif; ?>
+    <div class="value" <?= /* @escapeNotVerified */ $_attributeAddAttribute ?>><?= /* @escapeNotVerified */ $_attributeValue ?></div>
+</div>
+<?php endif; ?>
+
+

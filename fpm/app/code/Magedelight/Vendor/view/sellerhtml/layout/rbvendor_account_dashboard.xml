@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="seller_account"/>
+    <body>
+        <referenceBlock name="page.main.title" display="false"/>
+        <referenceContainer name="content">
+            <block class="Magedelight\Vendor\Block\Sellerhtml\Account\Dashboard" name="vendorDashboard" template="Magedelight_Vendor::dashboard.phtml" cacheable="false">
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Dashboard\Products\LowStock" name="vendor.low.inventory" as="vendor_low_stock_products" template="Magedelight_Vendor::dashboard/lowinventory.phtml" cacheable="false"/>
+                
+            <block class="Magedelight\Vendor\Block\Sellerhtml\Dashboard\Tab\Orders" name="orders" template="Magedelight_Vendor::dashboard/tab/orders.phtml" group="diagram_tab_content">                    
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Orders</argument>
+                </arguments>
+            </block>
+            <block class="Magedelight\Vendor\Block\Sellerhtml\Dashboard\Tab\Amounts" name="amounts" template="Magedelight_Vendor::dashboard/tab/amounts.phtml" group="diagram_tab_content">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Amount</argument>
+                    </arguments>
+            </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

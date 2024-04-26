@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="promo_sales_rule_edit_tab_messages" sortOrder="50" component="Magento_SalesRule/js/form/element/manage-coupon-codes">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Custom Coupons Error Messages</label>
+        </settings>
+        <htmlContent name="html_content">
+            <block class="Cminds\Coupon\Block\Adminhtml\Promo\Quote\Edit\Tab\Messages" name="promo_sales_rule_edit_tab_messages" as="promo_sales_rule_edit_tab_messages" template="Cminds_Coupon::tab/messages.phtml">
+                <block class="Cminds\Coupon\Block\Adminhtml\Promo\Quote\Edit\Tab\Messages\Form" name="promo_quote_edit_tab_messages_form"/>
+            </block>
+        </htmlContent>
+    </fieldset>
+</form>

@@ -1,0 +1,16 @@
+{
+    "customer_pickup_points": {
+        "column": {
+            "pickup_point_id": true,
+            "pickup_point_name": true,
+            "pickup_address": true,
+            "pickup_city": true,
+            "pickup_country": true,
+            "pickup_point_lat": true,
+            "pickup_point_long": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

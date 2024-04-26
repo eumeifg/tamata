@@ -1,0 +1,86 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/*
+ * Copyright © 2016 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details
+ */
+/** @var $block \Magento\Framework\View\Element\Template */
+use Magedelight\Vendor\Model\Vendor;
+
+$helper = $this->helper('Magedelight\Vendor\Helper\Data');
+?>
+<div class="block block-vendor-account-nav">
+    <div class="block-title">
+        <strong><?= /* @escapeNotVerified */ __('My Account'); ?></strong>
+    </div>
+    <div class="block-content">
+        <nav class="vendor-account-nav">
+            <ul class="items nav">
+                <li class="item">
+                    <a id="vendor-info" href="javascript:void(0);"><?= /* @escapeNotVerified */ __('Vendor Information'); ?></a>
+                </li>
+                <li class="item">
+                    <a id="business-info" href="javascript:void(0);"><?= __('Business Information'); ?></a>
+                </li>
+                <li class="item">
+                    <a id="login-info" href="javascript:void(0);"><?= __('Login Information'); ?></a>
+                </li>
+                
+                <li class="item">
+                    <a id="category-info" href="javascript:void(0);"><?= __('Selling Categories'); ?></a>
+                </li>
+                
+                <li class="item">
+                    <a id="status-info" href="javascript:void(0);"><?= __('Status'); ?></a>
+                </li>
+                <li class="item">
+                    <a id="shipping-info" href="javascript:void(0);"><?= __('Shipping Information'); ?></a>
+                </li>
+                
+                <?php if ($helper->getConfigValue(Vendor::IS_ENABLED_BANKING_DETAILS_XML_PATH)) { ?>
+                <li class="item">
+                    <a id="bank-info" href="javascript:void(0);"><?= __('Bank Account Detail'); ?></a>
+                </li>
+                <?php } ?>
+
+                <?php if ($helper->isModuleEnabled('RB_PayoutPaypalAdaptive')) :?>
+                <li class="item">
+                    <a id="payout-paypal" href="javascript:void(0);"><?= __('Payout Details'); ?></a>
+                </li>
+                <?php endif;?>
+                
+                <?php if ($helper->isModuleEnabled('Magedelight_RateCard')) :?>
+                    <?php if ($helper->getConfigValue('my_ratecard/general/enable')) :?>
+                        <li class="item">
+                            <a id="ratecard" href="javascript:void(0);"><?= __('My Rate Card'); ?></a>
+                        </li>
+                    <?php endif;?>
+                <?php endif;?>
+            </ul>
+        </nav>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery' /* jquery Library */
+    ], function($){
+        $(document).ready(function(e){
+            $('nav.vendor-account-nav li.item a').click(function($event){
+                ele = $(this);
+                $id = ele.attr('id');
+                if ($('#' + $id + '-content').hasClass('no-display')) {
+                    changeSection($, $id);
+                }
+            });
+        });
+    });
+</script>

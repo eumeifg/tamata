@@ -1,0 +1,8 @@
+<!--@subject Order Cancel @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Dear "}}{{var customer_name}},</p>
+<p>{{trans "your order has been cancel "}} {{var order_id}} {{trans "."}}</p>
+
+{{template config_path="design/email/footer_template"}}

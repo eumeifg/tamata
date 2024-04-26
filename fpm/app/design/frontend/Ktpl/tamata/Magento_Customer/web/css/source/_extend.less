@@ -1,0 +1,313 @@
+// /**
+//  * Copyright © Krish technolabs. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@import 'module/_language_extend.less';
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {   
+
+	.account .actions-toolbar a.action:visited {
+	    color: @color-white;
+	    background: @color-red;
+	}
+	.account {
+		.page-main {
+			padding: 0px;
+		}
+		&.page-layout-2columns-left {
+			.sidebar-main,
+			.sidebar-additional {
+				z-index: 0;
+			}
+		}
+		
+		.block-collapsible-nav {
+			.item {
+				a,
+				> strong {
+					padding: 7px 18px 7px 15px;
+				}
+			}
+			.content {
+				background-color: @color-white;
+			}
+		}
+		.block {
+			.block-content {
+				.box {
+					&.box-items,
+					&.box-upload {
+						margin: 0 0 @indent__s + @indent__xs;
+					}
+				}
+				.box,
+				.table-wrapper.orders-recent {
+					padding: 15px;
+					background-color: @color-white;
+					box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+					-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+				}
+			}
+		}
+		.data.table.table-order-items {
+			tfoot {
+				background: @color-white;
+				border-top: 1px solid @border-color__base;
+			}
+		}
+		.form-address-edit,
+		.form-edit-account,
+		.form-newsletter-manage,
+		.table-wrapper.order-items.rb-order-items,
+		.block-addresses-list,
+		.table-wrapper.orders-history {
+			padding: 15px;
+			background-color: @color-white;
+			box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+			-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+		}
+		.fieldset {
+			> legend.legend {
+				font-weight: 500;
+				> span {
+					font-weight: 500;
+				}
+			}
+		}
+		.column {
+			.block-addbysku {
+				.fieldset {
+					.fields {
+						.actions-toolbar {
+							position: static;
+							margin: 0 0 15px;
+						}
+					}
+				}
+				.action.remove {
+					background-image: none;
+					background: @color-red;
+					border: 0px solid #ccc;
+					color: @color-white;
+					cursor: pointer;
+					display: inline-block;
+					font-weight: @font-weight__bold;
+					margin: 0;
+					padding: 10px 20px;
+					font-size: 16px;
+					line-height: 16px;
+					border-radius: 3px;
+					vertical-align: middle;
+					&:hover {
+						text-decoration: none;
+						background-color: #333333;
+					}
+				}
+			}
+		}
+	}
+
+	.form.create.form-create-account,
+	.block.block-customer-login,
+	.block.block-new-customer,
+	.form.password.forget,
+	.form.form-add-invitations,
+	.hdmx__tickets,
+	.hdmx__ticket-view,
+	.hdmx__ticket-new {
+		padding: 15px;
+		background-color: @color-white;
+		box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+		-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+	}
+
+	.form.password.forget {
+		padding-bottom: 40px;
+		margin-bottom: 40px; 
+		overflow: hidden;
+		.actions-toolbar {
+			float: left;
+			width: auto;
+		}
+	}
+	.form.create.form-create-account {
+		display: block;
+		clear: both;
+		margin: @indent__s 0 40px; 
+		.fieldset.create.info,
+		.fieldset.create.account {
+			display: inline-block;
+			vertical-align: top;
+			width: 48%;
+			max-width: initial;
+			margin: 0px;
+			padding: @indent__s;
+		}
+		.actions-toolbar {
+		    padding: @indent__s;
+		}
+
+		.field.choice.newsletter {
+			input[type="checkbox"] {
+				top: inherit;
+			}
+		}
+	}
+
+	.page-wrapper {
+		.form.password.reset,
+		.form.send.confirmation,
+		.form.password.forget,
+		.form.create.account,
+		.form.search.advanced,
+		.form.form-orders-search {
+			width: 100%;
+			min-width: 100%;
+		}
+
+		.form.form-orders-search {
+			.input-text, .select {
+				max-width: 440px;
+			} 
+		}
+
+	}
+
+	.customer-account-login,
+	.customer-account-create,
+	.customer-account-forgotpassword {
+		.fieldset > legend.legend {
+			font-weight: 500;
+			> span {
+				font-weight: 500;
+			}
+		}
+		.page-main {
+			padding: 0px;
+		}
+	}
+
+	#vendor-review-popup-modal .review-field-ratings .review-field-rating {
+		position: relative;
+	}
+	#vendor-review-popup-modal .fieldset {
+	    margin: 0 0 10px;
+	}
+	#vendor-review-popup-modal .review-add {
+		margin-bottom: 0;
+	}
+	.hdmx__ticket-new {
+		textarea {
+			border-radius: 4px;
+		    background-color: #f8f8f8;
+		    border: #eee solid 1px;
+		}
+	}
+}
+
+@media screen and (max-width: 1639px) {
+
+	.account.page-layout-2columns-left {
+		.page-main {
+			padding: 15px 20px 0 20px;
+		}
+	}
+	.customer-account-login .page-main,
+	.customer-account-create .page-main,
+	.customer-account-forgotpassword .page-main {
+		padding: 0 @indent__base;
+		.page-title-wrapper h1 {
+			margin-left: 0px;
+		}
+	}
+	.login-container {
+	    display: block;
+	    clear: both;
+	}
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+	.account {
+		&.page-layout-2columns-left {
+			.page-wrapper {
+				.block-collapsible-nav {
+					.title {
+						background: #fff;
+					}
+					margin-bottom: 0;
+					background: #fff;
+				}
+			}
+		}
+	}
+	.form.create.form-create-account .actions-toolbar {
+	    max-width: 48%; 
+	}
+
+	.account .form.form-edit-account .actions-toolbar .primary {
+		text-align: left;
+	}
+
+	.account .form.form-edit-account .actions-toolbar .primary .action.save {
+		width: auto;
+	}
+	.hdmx__ticket-new {
+		overflow: hidden;
+	}
+
+	.page-wrapper .form.form-orders-search .actions-toolbar > .primary {
+		text-align: left;
+	}
+
+	.page-wrapper .form.form-orders-search .actions-toolbar > .primary .submit {
+		width: auto;
+	}
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+	.form.create.form-create-account .fieldset.create.info, 
+	.form.create.form-create-account .fieldset.create.account{
+		width: 100% !important; 
+	}
+	.column .block-addbysku .action.remove:before {
+		display: none;
+	}
+	.column .block-addbysku .action.remove > span {
+		.lib-visually-hidden-reset();
+	}
+
+	.sales-order-history .toolbar .pages {
+		float: none;
+	}
+	.sales-order-history .pages .pages-items {
+		display: inline-block;
+	}
+	.sales-order-history .pages-item-next,
+	.sales-order-history .pages-item-previous {
+		left: inherit;
+	    position: inherit;
+	    top: inherit;
+	}
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+	.form.create.form-create-account .actions-toolbar {
+	    max-width: 100%; 
+	}
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}

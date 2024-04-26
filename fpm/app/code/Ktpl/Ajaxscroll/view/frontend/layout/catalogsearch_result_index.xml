@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+        <referenceContainer name="after.body.start">
+            <block class="Ktpl\Ajaxscroll\Block\Ajaxscroll"  ifconfig="ajaxscroll/settings/active" name="ktpl_ajaxscroll" template="Ktpl_Ajaxscroll::js.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="product_list_toolbar">
+        	<action method='setTemplate'>
+	            <argument name="template" xsi:type="string">Ktpl_Ajaxscroll::product/list/toolbar.phtml</argument>
+	       	</action>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,70 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+<?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+<?php $_product = $block->getProduct(); ?>
+<?php if ($_product->isSaleable()):?>
+<div class="product-add-form <?= (!$_product->isSaleable()) ? 'stock-notify-form' : ''?>">    
+    <form action="<?= $block->getSubmitUrl($_product, ['vendor' => $_product->getVendorId()]) ?>" method="post"
+          id="product_addtocart_form"<?php if ($_product->getOptions()):
+                ?> enctype="multipart/form-data"<?php
+                                     endif; ?>>
+        <input type="hidden" name="product" value="<?= $_product->getId() ?>" />
+        <input type="hidden" name="selected_configurable_option" value="" />
+        <input type="hidden" name="related_product" id="related-products-field" value="" />
+        <input type="hidden" name="item"  value="<?= /* @noEscape */ $block->getRequest()->getParam('id') ?>" />
+        <input type="hidden" name="vendor_id" id="vendor-id" value="<?= $_product->getVendorId() ?>" />
+        <input type="hidden" name="simple_product" id="simple-product" value="<?= $_product->getId();  ?>" />
+
+        <?= $block->getBlockHtml('formkey')?>
+        <?= $block->getChildHtml('form_top'); ?>
+        <?= $block->getChildHtml('rb.product.warranty.details'); ?>
+        <?= $block->getChildHtml('rb.product.condition'); ?>
+        <?= $block->getChildHtml('rb.product.condition.note'); ?>
+        <?php if (!$block->hasOptions()):?>
+            <?= $block->getChildHtml('product_info_form_content'); ?>
+        <?php else:?>
+            <?php if ($_product->isSaleable() && $block->getOptionsContainer() == 'container1'):?>
+                <?= $block->getChildChildHtml('options_container') ?>
+            <?php endif;?>
+        <?php endif; ?>
+
+        <?php
+
+        if ($_product->isSaleable() && $block->hasOptions() && $block->getOptionsContainer() == 'container2'):?>
+            <?= $block->getChildChildHtml('options_container') ?>
+        <?php endif;?>
+        <?= $block->getChildHtml('form_bottom') ?>
+    </form>
+</div>
+<?php endif;?>
+<script>
+    require([
+        'jquery',
+        'priceBox'
+    ], function($){
+        var dataPriceBoxSelector = '[data-role=priceBox]',
+            dataProductIdSelector = '[data-product-id=<?= $block->escapeHtml($_product->getId()) ?>]',
+            priceBoxes = $(dataPriceBoxSelector + dataProductIdSelector);
+
+        priceBoxes = priceBoxes.filter(function(index, elem){
+            return !$(elem).find('.price-from').length;
+        });
+
+        priceBoxes.priceBox({'priceConfig': <?=  $block->getJsonConfig() ?>});
+    });
+</script>

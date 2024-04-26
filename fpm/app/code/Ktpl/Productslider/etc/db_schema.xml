@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2021 Amasty (https://www.amasty.com)
+ * @package Amasty_ImageOptimizer
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="ktpl_productslider_slider">
+        <column xsi:type="smallint" name="sort_order" nullable="true" unsigned="true" comment="Sort Order"/>
+        <column xsi:type="text" name="brand_vendor" nullable="false" comment="Brand and Vendor"/>
+        <column xsi:type="text" name="new_items_banner" nullable="true" comment="New Items Banner"/>
+        <column xsi:type="text" name="page_type" nullable="true" comment="Page Type"/>
+        <column xsi:type="text" name="data_id" nullable="true" comment="Data ID"/>
+    </table>
+</schema>

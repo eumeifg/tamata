@@ -1,0 +1,129 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">ktpl_warehousemanagement_producttrackreport.ktpl_warehousemanagement_warehousemanagement_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>ktpl_warehousemanagement_producttrackreport_columns</spinner>
+		<deps>
+			<dep>ktpl_warehousemanagement_producttrackreport.ktpl_warehousemanagement_warehousemanagement_listing_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource component="Magento_Ui/js/grid/provider" name="ktpl_warehousemanagement_warehousemanagement_listing_data_source">
+		<settings>
+			<storageConfig>
+                <param name="indexField" xsi:type="string">warehousemanagement_id</param>
+            </storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Ktpl_Warehousemanagement::Warehousemanagement</aclResource>
+		<dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="ktpl_warehousemanagement_warehousemanagement_listing_data_source">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>warehousemanagement_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<!-- <settings>
+			<sticky>true</sticky>
+		</settings> -->
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filterSearch name="fulltext"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+		<exportButton name="export_button"/>
+	</listingToolbar>
+	<columns name="ktpl_warehousemanagement_producttrackreport_columns">
+		<settings>
+			 <!--  <editorConfig>
+                <param name="selectProvider" xsi:type="string">ktpl_warehousemanagement_producttrackreport.ktpl_warehousemanagement_producttrackreport.ktpl_warehousemanagement_producttrackreport_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">warehousemanagement_id</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">ktpl_warehousemanagement_producttrackreport.ktpl_warehousemanagement_producttrackreport.ktpl_warehousemanagement_trackrecord_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults> -->
+		</settings>
+		<selectionsColumn name="ids" sortOrder="10">
+			<settings>
+				<indexField>warehousemanagement_id</indexField>
+			</settings>
+		</selectionsColumn>
+	<!-- 	<column name="warehousemanagement_id" sortOrder="20">
+			<settings>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column> -->
+		<column name="main_order_id" sortOrder="30">
+			<settings>
+				<label translate="true">Main Order ID</label>
+				  <sortable>false</sortable>
+			</settings>
+		</column>
+		<column name="sub_order_id" sortOrder="40">
+			<settings>
+				<label translate="true">Sub Order ID</label>
+			</settings>
+		</column>
+		<column name="product_name" sortOrder="50">
+			<settings>
+				<label translate="true">Product Name</label>
+			</settings>
+		</column>
+		<column name="price" sortOrder="60">
+			<settings>
+				<label translate="true">Price</label>
+			</settings>
+		</column>
+		<column name="qty" sortOrder="70">
+			<settings>
+				<label translate="true">Qty</label>
+			</settings>
+		</column>
+		<column name="product_location" component="Magento_Ui/js/grid/columns/select" sortOrder="110">
+			<settings>
+				<options class="Ktpl\Warehousemanagement\Ui\Component\Listing\Column\MainOrderStatus" />
+				<filter>select</filter>
+				<dataType>select</dataType>
+				<label translate="true">Product Location</label>
+			</settings>
+		</column>
+		<column name="order_event" component="Magento_Ui/js/grid/columns/select" sortOrder="120">
+			<settings>
+				<options class="Ktpl\Warehousemanagement\Ui\Component\Listing\Column\OrderEventStatus" />
+				<filter>select</filter>
+				<dataType>select</dataType>
+				<label translate="true">Event</label>
+			</settings>
+		</column>
+
+		<column name="user_id" class ="Ktpl\Warehousemanagement\Ui\Component\Listing\Column\ExecutiveEvent" sortOrder="130">
+			<settings>
+				<options class="Ktpl\Warehousemanagement\Ui\Component\Listing\Column\ExecutiveStatus" />
+				<filter>select</filter>
+				<dataType>select</dataType>
+				<label translate="true">Executive Name</label>
+			</settings>
+		</column>
+
+		<column name="war_created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Scanned date</label>
+            </settings>
+        </column>
+	</columns>
+</listing>

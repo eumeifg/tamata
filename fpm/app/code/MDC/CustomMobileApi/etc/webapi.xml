@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magedelight, All rights reserved.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/carts/mine/add-storecredit" method="POST">
+        <service class="MDC\CustomMobileApi\Api\StoreCreditManagementInterface" method="addStoreCreditAmount"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/carts/mine/remove-storecredit" method="POST">
+        <service class="MDC\CustomMobileApi\Api\StoreCreditManagementInterface" method="removeStoreCreditAmount"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/carts/mine/display-storecredit" method="POST">
+        <service class="MDC\CustomMobileApi\Api\StoreCreditManagementInterface" method="displayStoreCreditAmount"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/searchtermdata" method="GET">
+        <service class="MDC\CustomMobileApi\Api\StoreCreditManagementInterface" method="searchTermData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+        <data>
+            <parameter name="searchTerm" force="true">%search_term%</parameter>
+        </data>
+    </route>
+</routes>

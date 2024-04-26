@@ -1,0 +1,46 @@
+<?php
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_SearchAutocomplete
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+?>
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Ktpl\SearchAutocomplete\Block\Injection $block */
+$config = $block->getJsConfig();
+?>
+    <script>
+        require([
+                'jquery',
+                'Ktpl_SearchAutocomplete/js/autocomplete',
+                'Ktpl_SearchAutocomplete/js/typeahead'
+            ], function ($, autocomplete, typeahead) {
+                const selector = 'input#search, input#mobile_search, .minisearch input[type="text"]';
+
+                $(document).ready(function () {
+                    var $input = $(selector);
+
+                    $input.each(function (index, searchInput) {
+                        <?php if ($config['isTypeaheadEnabled']): ?>
+                        new typeahead($(searchInput)).init(<?=\Zend_Json::encode($config)?>);
+                        <?php endif ?>
+
+                        new autocomplete($(searchInput)).init(<?=\Zend_Json::encode($config)?>);
+                    });
+                });
+            }
+        );
+    </script>
+
+<?php if ($block->getCssStyles() != ''): ?>
+    <style><?= $block->getCssStyles() ?></style>
+<?php endif ?>

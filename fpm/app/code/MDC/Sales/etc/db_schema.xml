@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- md_vendor_order_log table starts. -->
+    <table name="md_vendor_order_log" resource="default" engine="innodb" comment="Table stores information of Vendors orders">
+		<column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Incremental ID" />
+        <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" comment="Main Order ID" />
+        <column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="false" comment="Vendor ID" />
+        <column xsi:type="int" name="vendor_order_id" padding="10" unsigned="true" nullable="false" comment="Vendor Order ID" />
+        <column xsi:type="varchar" name="inc_order_id" length="32" nullable="false" comment="Incremental Main Order ID" />
+        <column xsi:type="varchar" name="inc_vendor_order_id" length="32" nullable="false" comment="Incremental Vendor Order ID" />
+        <column xsi:type="varchar" name="current_status" length="100" nullable="true" comment="Order Current Status" />
+        <column xsi:type="varchar" name="status_change_to" length="100" nullable="true" comment="Order status after changed" />
+        <column xsi:type="timestamp" name="updated_at" default="CURRENT_TIMESTAMP" nullable="true" comment="Order completed date" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="MD_VENDOR_ORDER_LOG_INC_VENDOR_ORDER_ID" indexType="btree">
+            <column name="inc_vendor_order_id"/>
+        </index>
+    </table>
+    <!-- md_vendor_order_log table ends. -->
+
+    <!-- md_vendor_order table starts. -->
+    <table name="md_vendor_order">
+        <column xsi:type="smallint" name="pickup_status" padding="5" unsigned="true"  identity="false" default="0" comment="0 - Pending, 1 - Ready To Pick, 2 - Picked" />
+        <column xsi:type="text" name="barcode_number" nullable="true" comment="BarCode Number"/>
+        <column xsi:type="text" name="vendor_order_with_classification" nullable="true" comment="Vendor Order ID with classification"/>
+        <column xsi:type="smallint" name="is_packed" padding="5" unsigned="true"  identity="false" comment="Is Packed" />
+        <column xsi:type="smallint" name="ready_to_ship" padding="5" unsigned="true"  identity="false" comment="Is Packed" />
+        <column xsi:type="smallint" name="is_received" padding="5" unsigned="true"  identity="false" comment="Is Packed" />
+        <column xsi:type="smallint" name="is_picked_up" padding="5" unsigned="true"  identity="false" comment="Is Packed" />
+        <column xsi:type="smallint" name="is_sorted" padding="5" unsigned="true"  identity="false" comment="Is Packed" />
+        <column xsi:type="smallint" name="in_transit" padding="5" unsigned="true"  identity="false" comment="In Transit" />
+        <column xsi:type="datetime" name="is_picked_up_timestamp" on_update="false" nullable="true" comment="Is Picked up Time"/>
+        <column xsi:type="datetime" name="is_sorted_timestamp" on_update="false" nullable="true" comment="Is Shorted time"/>
+        <column xsi:type="datetime" name="is_packed_timestamp" on_update="false" nullable="true" comment="Is Packed Time"/>
+        <column xsi:type="datetime" name="ready_to_ship_timestamp" on_update="false" nullable="true" comment="Ready to ship time"/>
+        <column xsi:type="datetime" name="out_of_warehouse_timestamp" on_update="false" nullable="true" comment="Out of Warehouse time"/>
+        <column xsi:type="varchar" name="item_commission" nullable="true" length="255" comment="Item Commission"/>
+    </table>
+    <!-- md_vendor_order table ends. -->
+    <table name="sales_suborder_bulk_invoice_shipment" resource="default" engine="innodb" comment="Sales Suborder Bulk Invoice Shipment">
+        <column xsi:type="int" name="bulk_import_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Import Id"/>
+        <column xsi:type="varchar" name="file_name" nullable="false" length="255" comment="File Name"/>
+        <column xsi:type="varchar" name="report_url" nullable="true" length="255" comment="Report File Name"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Imported At"/>
+        <column xsi:type="datetime" name="processed_at" on_update="false" nullable="true" comment="Processed At" />
+        <column xsi:type="smallint" name="process_status" padding="5" unsigned="true" comment="Process Status" default="0" nullable="true"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" comment="File Status" default="0" nullable="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="bulk_import_id"/>
+        </constraint>
+    </table>
+    <table name="sales_order">
+        <column xsi:type="varchar" name="order_gender" nullable="true" length="255" comment="Order Confirm Gender"/>
+        <column xsi:type="varchar" name="in_box_status" nullable="true" length="255" comment="In Box Status : Suborders shipped :  All, Paartial, None."/>
+        <column xsi:type="varchar" name="item_counter" nullable="true" length="255" comment="Item Counter : Number of suborder shipped out of total suborder"/>
+        <column xsi:type="text" name="shelf_number" nullable="true" comment="Shelf Number"/>
+        <column xsi:type="text" name="shipping_history" nullable="true" comment="Shipping History"/>
+        <column xsi:type="text" name="sorting_history" nullable="true" comment="Sorting History"/>
+        <column xsi:type="smallint" name="ready_to_ship" padding="5" nullable="true" comment="Ready to Ship"/>
+        <column xsi:type="smallint" name="is_loaded" padding="5" nullable="true" comment="Is Loaded"/>
+        <column xsi:type="datetime" name="is_shelved_timestamp" on_update="false" nullable="true" comment="Is Shelved Time"/>
+        <column xsi:type="datetime" name="ready_to_ship_timestamp" on_update="false" nullable="true" comment="Ready to ship time"/>
+        <column xsi:type="text" name="container_type" nullable="true" comment="Container Type"/>
+    </table>
+    <table name="sales_shipment_item" resource="sales" engine="innodb" comment="Sales Flat Shipment Item">
+        <!-- Added -->
+        <index referenceId="SALES_SHIPMENT_ITEM_ORDER_ITEM_ID" indexType="btree">
+            <column name="order_item_id"/>
+        </index>
+    </table>
+</schema>

@@ -1,0 +1,8 @@
+{
+    "salesrule": {
+        "column": {
+            "vendor_id": true,
+            "created_by": true
+        }
+    }
+}

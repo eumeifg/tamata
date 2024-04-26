@@ -1,0 +1,165 @@
+<?php
+/*
+ * Copyright © 2019 Krish Technolabs. All rights reserved.
+ * See COPYING.txt for license details
+ */
+
+$banners = $block->getBannerCollection();
+
+$blockObj= $block->getLayout()->createBlock('Ktpl\BannerManagement\Block\WysiwygBlock');
+
+if (!empty($banners)) :
+    $sliderId = $block->getSliderId() . '-' . uniqid();
+    $sliderOptions = $block->getBannerOptions();
+    foreach ($block->getDeviceClass() as $device) {
+        ?>
+    <div class="carousel-container <?php echo $block->escapeHtml($device); ?> homepage-main-banner">
+        <div id="banner-slider-carousel">
+            <?php $iterator = 1; ?>
+            <div id="bannerslider-list-items-<?php echo $block->escapeHtml($sliderId).$device; ?>"
+                 class="owl-carousel owl-theme">
+                <?php foreach ($banners as $banner) : ?>
+                    <?php
+                    $bnType = $banner->getType();
+                    $bnTitle = $banner->getTitle();
+                    $bannerText = ($banner->getBannerText() ? $banner->getBannerText() : "");
+                    $bnUrl = $banner->getUrlBanner();
+                    $bnImg = $banner->getImageUrl();
+                    ?>
+
+                    <?php if ($bnType == \Ktpl\BannerManagement\Model\Config\Source\Type::VIDEO) : #video type?>
+                        <div class="item video-item  animated" data-merge="<?= $block->escapeHtml($iterator); ?>">
+                            <video class="video" width="1200" height="633" src="<?= $block->escapeHtml($bnImg); ?>" controls muted="muted"></video>
+                        </div>
+<!--                           <div class="play-pause-box" style="visibility: hidden;">
+                            <a class="play-pause-button button secondary pause">Play/Pause</a>
+                        </div> -->
+                    <?php elseif ($bnType == \Ktpl\BannerManagement\Model\Config\Source\Type::CONTENT) : #content type?>
+                        <div class="item content-item bounceInLeft animated" data-merge="<?= $block->escapeHtml($iterator); ?>">
+                            <?php echo $blockObj->filterOutputHtml($banner->getContent()); ?>
+                        </div>
+                    <?php else : #image type?>
+                        <div class="item-image">
+                            <?php if (!empty($bnUrl)) : ?>
+                                <a class="owl-image"
+                                       href="<?php echo $block->escapeHtml($bnUrl) ?>" <?php echo ($banner->getNewtab() == 1) ? 'target="_blank"' : '' ?>>
+                                <img class="img-responsive ktpl_banners" src="<?php echo $block->escapeHtml($bnImg) ?>" width="1600" height="450"/>
+                                <div class="banner-content">
+                                        <?php if (!empty($bnTitle)) : ?>
+                                            <div class="banner-title"><?php echo $block->escapeHtml($bnTitle) ?></div>
+                                        <?php endif; ?>
+                                </div>
+                                </a>
+                            <?php else : ?>
+                                <img class="owl-image img-responsive ktpl_banners" src="<?php echo $block->escapeHtml($bnImg) ?>"
+                                     title="<?php echo $block->escapeHtml($bnTitle) ?>" width="1600" height="450" />
+                            <?php endif; ?>
+                            <?php if ($bannerText && $blockObj->stripTags($bannerText) !== ""): ?>
+                            <div class="banner-description-box">
+                                    <?php echo $blockObj->filterOutputHtml($bannerText); ?>
+                            </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        require(['jquery', 'ktpl/bannermanagement/owl.carousel'], function ($) {
+
+            var owl<?= $block->escapeHtml($device); ?> = $('#bannerslider-list-items-<?php echo $block->escapeHtml($sliderId).$device; ?>');
+            $(document).ready(function () {
+                if ($(".<?= $block->escapeHtml($device); ?>").is(':visible')) {
+                    var optionData =<?php echo $sliderOptions; ?>;
+                    optionData.merge = 1;
+                    if($('html').attr('lang')==='ar'){
+                        optionData.rtl = 1;
+                    }
+                    optionData.margin = 0;
+                    //delete optionData.autoHeight;
+                    //delete optionData.autoWidth;
+                   // delete optionData.animateOut;
+                    //owl<?= $block->escapeHtml($device); ?>.owlCarousel(optionData);
+                    $(".homepage-main-banner .owl-carousel").owlCarousel(optionData);
+                    if (optionData.autoplayTimeout) {
+                        var timeOut = optionData.autoplayTimeout;
+                    } else {
+                        var timeOut = 2000;
+                    }
+                    $(document).on('click', '.<?= $block->escapeHtml($device); ?> .pause', function () {
+                        $(this).removeClass('pause');
+                        $(this).addClass('play');
+                        owl<?= $block->escapeHtml($device); ?>.trigger('stop.owl.autoplay');
+                    });
+                    $(document).on('click', '.<?= $block->escapeHtml($device); ?> .play', function () {
+                        $(this).removeClass('play');
+                        $(this).addClass('pause');
+                        owl<?= $block->escapeHtml($device); ?>.trigger('play.owl.autoplay', [timeOut]);
+                    });
+
+                    $('.<?= $block->escapeHtml($device); ?> video').on('ended', function () {
+                        $('.<?= $block->escapeHtml($device); ?> .play-pause-button').removeClass('play');
+                        $('.<?= $block->escapeHtml($device); ?> .play-pause-button').addClass('pause');
+                        owl<?= $block->escapeHtml($device); ?>.trigger('play.owl.autoplay', [timeOut]);
+
+                    });
+
+                    owl<?= $block->escapeHtml($device); ?>.on('changed.owl.carousel', function (property) {
+                        var current = property.item.index;
+                        var src = $(property.target).find(".owl-item").eq((current)).find("video");
+                        if (src.length == 1) {
+                            src[0].play();
+                            $('.<?= $block->escapeHtml($device); ?> .play-pause-button').removeClass('pause');
+                            $('.<?= $block->escapeHtml($device); ?> .play-pause-button').addClass('play');
+                            owl<?= $block->escapeHtml($device); ?>.trigger('stop.owl.autoplay');
+                        } else {
+                            $(".<?= $block->escapeHtml($device); ?> video").each(function () {
+                                this.pause();
+                            });
+                        }
+                    });
+                    if (optionData.autoplayhoverpause) {
+                        $(".carousel-container.<?php echo $block->escapeHtml($device); ?>").mouseenter(function () {
+                            $(this).addClass('pause');
+                            $(this).removeClass('play');
+                            owl<?= $block->escapeHtml($device); ?>.trigger('stop.owl.autoplay');
+                        }).mouseleave(function () {
+                            $(this).removeClass('pause');
+                            $(this).addClass('play');
+                            owl<?= $block->escapeHtml($device); ?>.trigger('play.owl.autoplay');
+                        });
+                    }
+                }
+            });
+
+            $(window).scroll(function() {
+                var top_of_element = $(".carousel-container.<?php echo $block->escapeHtml($device); ?>").offset().top;
+                var bottom_of_element = $(".carousel-container.<?php echo $block->escapeHtml($device); ?>").offset().top + $(".carousel-container.<?php echo $block->escapeHtml($device); ?>").outerHeight();
+                var bottom_of_screen = $(window).scrollTop() + $(window).innerHeight();
+                var top_of_screen = $(window).scrollTop();
+
+                if ((bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element)){
+                    $(this).removeClass('pause');
+                    $(this).addClass('play');
+                    owl<?= $block->escapeHtml($device); ?>.trigger('play.owl.autoplay');
+                } else {
+                    $(this).addClass('pause');
+                    $(this).removeClass('play');
+                    owl<?= $block->escapeHtml($device); ?>.trigger('stop.owl.autoplay');
+                }
+            });
+            /*function isScrolledIntoView(elem)
+            {
+                var docViewTop = $(window).scrollTop();
+                var docViewBottom = docViewTop + $(window).height();
+
+                var elemTop = $(elem).offset().top;
+                var elemBottom = elemTop + $(elem).height();
+
+                return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+            }*/
+        });
+    </script>
+<?php }endif; ?>

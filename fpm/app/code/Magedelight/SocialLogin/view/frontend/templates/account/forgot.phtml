@@ -1,0 +1,56 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2018 Magedelight <info@magedelight.com>.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+ *
+ * @category Magedelight
+ * @package Magedelight_SocialLogin
+ * @copyright Copyright (c) 2018 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<div class="md-forgot-user" style="display: none;">
+<form id="md-sociallogin-form-forgot" class="md-login-form-popup" 
+      action='<?php /* @noEscape */ echo $block->getUrl("mdsocial/account/forgotpasswordpost"); ?>' method='post'
+      data-mage-init='{"validation":{}}'>
+      <div id="md-forgot-email" class="md-error"></div>
+  <div class="field note">
+    <?php /* @noEscape */ echo __('Please enter your email address below to receive a password reset link.'); ?>
+  </div>
+  <div class="md-login-input-box">
+    <div class="sociallogin-input-box">
+        <label class="required login-label" for="email">
+            <?php /* @noEscape */ echo __('Email') ?>                      
+        </label>
+        <div class="control">
+            <input type="email" name="email" alt="email" id="md-sociallogin-popup-email-forgot" 
+            class="input-text required-entry validate-email" value=""
+            data-validate="{required:true, 'validate-email':true}">
+        </div>
+    </div>
+  </div>
+  <div class="md-login-popup-button">
+        <div class="primary">
+            <button type="button" class="action submit primary md-form-button" id="md-button-sociallogin-login-forgot">
+            <span><?php /* @noEscape */ echo __('Submit') ?></span>
+            </button>
+        </div>
+        <div class="secondary">
+        <a id="md-forgot-back" class='md-back' href="javascript:void(0);" onclick="displaysignin();"> 
+            <?php /* @noEscape */ echo __('Go back') ?>
+        </a>
+        </div>
+    </div>
+</form>
+</div>

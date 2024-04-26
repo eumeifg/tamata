@@ -1,0 +1,103 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/*
+ * Copyright © 2016 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details
+ */
+/** @var $this \Magedelight\Vendor\Block\Profile */
+$vendor = $this->getVendor();
+?>
+<script type="text/javascript">
+    var ignore = null;
+    function changeSection($, $id)
+    {
+        $('div.profile-step-content').addClass('no-display');
+        $('div.profile-step-content').removeClass('active');
+        $('.vendor-account-nav .items li.item').removeClass('active');
+        $('#' + $id).parent('li').addClass('active');
+        $('#' + $id + '-content').removeClass('no-display');
+        $('#' + $id + '-content').addClass('active');
+    }
+</script>
+<div class="sections signup-steps-sections profile-steps-sections ">
+    <div class="panel signup-steps profile-steps mb50">
+        <div class="rb-container">
+            <?php
+            foreach ($this->getChildNames() as $childName) { ?>
+                <?= $this->getChildHtml($childName); ?>
+            <?php }
+            ?>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery', /*jquery Library*/
+        'Magedelight_Vendor/js/registration/validation/common',
+        'jquery/ui', /*Jquery UI Library*/
+        'jquery/validate', /* query Validation Library*/
+        'mage/mage',
+        'mage/translate' /* Magento text translate (Validation message translte as per language)*/
+    ], function ($, commonValidation) {
+        $(document).ready(function (e) {
+            /* Call common validations*/
+            commonValidation();
+            
+            /* Tooltip code starts */
+            $(".field-tooltip").on('click', function (event) {
+                if($(this).hasClass('_active')){
+                    $(this).removeClass('_active');
+                    $(this).find('.field-tooltip-content').removeClass('_active');
+                } else {
+                    $(".field-tooltip").removeClass('_active');
+                    $(".field-tooltip-content").removeClass('_active');
+                    $(this).addClass('_active');
+                    $(this).find('.field-tooltip-content').addClass('_active');
+                }
+            });
+            
+            $(document).mouseup(function(e){
+                var container = $(".field-tooltip");
+                /* if the target of the click isn't the container nor a descendant of the container */
+                if (!container.is(e.target) && container.has(e.target).length === 0) 
+                {
+                    container.removeClass('_active');
+                    $(".field-tooltip-content").removeClass('_active');
+                }
+            });
+            /* Tooltip code ends */ 
+    
+            $('.control :input').attr('disabled', true);
+            $activeSection = '<?= $this->getRequest()->getParam('section', 'vendor-info'); ?>';
+            if ($activeSection != '') {
+                changeSection($, $activeSection);
+            }
+            $('.edit-link').click(function ($event) {
+                ele = $(this);
+                $parent = ele.parents('div.row');
+                $parent.toggleClass('edit');
+                canEdit = $parent.hasClass('edit');
+                if (canEdit && $($parent).attr('id') == 'status-info-content') {
+                    $("#vacation-from-date").datepicker('enable');
+                    $("#vacation-to-date").datepicker('enable');
+                }
+                $parent.find(':input,.ui-datepicker-trigger').attr('disabled', !canEdit);
+            });
+            $('form').on('reset', function (e) {
+                $(':input', $(this)).removeClass('mage-error');
+                $parent = $(this).parents('div.row');
+                $('.edit-link', $parent).trigger('click');
+                $('div.mage-error', $(this)).remove();
+            });
+        });
+    });
+</script>

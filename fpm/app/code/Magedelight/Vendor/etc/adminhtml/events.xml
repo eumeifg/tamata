@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_block_html_before">
+        <observer name="rb-rating-edit-tab-form-field-add" instance="Magedelight\Vendor\Observer\ModifyRatingTab" shared="false" />
+    </event>
+    <event name="adminhtml_vendor_save_after">
+        <observer name="adminhtmlvendorsaveafter" instance="Magedelight\Vendor\Observer\AdminVendorPrepareSave" />
+    </event>
+    <event name="vendor_status_mass_save_after">
+        <observer name="vendorstatusmasssaveafter" instance="Magedelight\Vendor\Observer\AdminVendorPrepareMassSave" />
+    </event>
+    <event name="vendor_status_mass_delete_after">
+        <observer name="vendorstatusmassdeleteafter" instance="Magedelight\Vendor\Observer\AdminVendorPrepareMassDelete" />
+    </event>
+</config>

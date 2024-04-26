@@ -1,0 +1,29 @@
+<!--@subject Vendor Payment Status Change@-->
+<!-- Begin wrapper table -->
+{{template config_path="design/email/header_template"}}
+<table class="wrapper" width="100%">
+    <tr>
+        <td class="wrapper-inner" align="center">
+            <table class="main" align="center">
+                <tr>
+                    <td class="main-content">
+                        <p>{{trans "Hello %name" name=$name}}</p>
+
+                        <p>{{trans "Greetings from %store_name" store_name=$store.getFrontendName()}}</p>
+                        <p>{{trans "We are happy to inform that your payment has been processed for the order"}} {{var purchase_order_id}} {{trans "."}}</p>
+                        <p>{{trans "Processed amount is "}} {{var total_amount}} {{trans "."}}</p>
+
+                        <p>{{trans "Look forward for further business with you."}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="footer">
+                        <p class="closing">{{trans "Thank you, %store_name" store_name=$store.getFrontendName()}}!</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}}
+<!-- End wrapper table -->

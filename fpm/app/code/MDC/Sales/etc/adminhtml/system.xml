@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="sales" >
+            <group id="cron_config" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Bulk Invoice/Shipment Cron Config</label>
+                <field id="job_frequency" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cron Job Frequency</label>
+                    <comment>Eg. (* * * * *)</comment>
+                </field>
+                <field id="remove_tat" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Remove Old Records in days</label>
+                    <validate>validate-digits</validate>
+                    <comment>Put the value in number</comment>
+                </field>
+                <field id="bulk_delete_frequency" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cron Job Frequency to delete the old records</label>
+                    <comment>Eg. (0 5 */15 * *)</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

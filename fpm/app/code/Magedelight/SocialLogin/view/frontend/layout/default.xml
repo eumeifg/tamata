@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Magedelight
+* Copyright (C) 2018 Magedelight <info@magedelight.com>
+*
+* NOTICE OF LICENSE
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+*
+* @category Magedelight
+* @package Magedelight_SocialLogin
+* @copyright Copyright (c) 2018 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magedelight_SocialLogin::css/font-awesome.min.css"/>
+    </head>
+    <body>
+        <referenceBlock name="head.components">
+            <block class="Magedelight\SocialLogin\Block\Account\Sociallogin" name="md.sociallogin.customcss"
+                   ifconfig="sociallogin/general/enable" template="Magedelight_SocialLogin::config/css.phtml"/>
+        </referenceBlock>
+        <referenceContainer name="page.messages">
+            <block class="Magedelight\SocialLogin\Block\Account\Message" name="md.sociallogin.message"/>
+        </referenceContainer>
+        <referenceBlock name="header.links">
+            <block class="Magedelight\SocialLogin\Block\Account\AuthorizationLink" ifconfig="sociallogin/general/enable"
+                   name="md.social.link" template="Magedelight_SocialLogin::account/authorization.phtml">
+                <block class="Magedelight\SocialLogin\Block\Account\Login" name="md.customer.login"
+                       template="Magedelight_SocialLogin::account/login.phtml"/>
+                <block class="Magento\Customer\Block\Account\Forgotpassword" name="md.customer.forgot"
+                       template="Magedelight_SocialLogin::account/forgot.phtml"/>
+                <block class="Magedelight\SocialLogin\Block\Account\Register" name="md.customer.register"
+                       template="Magedelight_SocialLogin::account/register.phtml">
+                    <block class="Magedelight\SocialLogin\Block\Account\Register" name="md.register.2.0.x"
+                           template="Magedelight_SocialLogin::account/register_2_0_x.phtml"/>
+                    <block class="Magedelight\SocialLogin\Block\Account\Register" name="md.register.2.1.x"
+                           template="Magedelight_SocialLogin::account/register_2_1_x.phtml"/>
+                </block>
+                <block class="Magedelight\SocialLogin\Block\Account\Sociallogin" name="md.customer.sociallogin"
+                       template="Magedelight_SocialLogin::account/sociallogin.phtml"/>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

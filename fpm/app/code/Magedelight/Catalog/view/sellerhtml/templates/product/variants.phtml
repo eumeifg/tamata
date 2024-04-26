@@ -1,0 +1,240 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+ /** @var $block Magedelight\Catalog\Block\Product\Variants */
+?>
+<div class="col-md-12">
+    <div id="product-variants-content" class="product-variants-content product-content-area">
+        <?php if ($block->getAttributesHtml()) { ?>
+            <fieldset class="fieldset <?= ($this->getRequest()->getParam('pid', false)) ? 'no-display': '' ?>">
+                <?php if ($this->getRequest()->getParam('pid', false)) { ?>
+                    <input type="hidden" id="has-variants" name="has_variants" value="1">
+                <?php } else { ?>
+                    <?php if ($block->isAllowVariants()) { ?>
+                    <div class="field has-variants">
+                        <label class="label">
+                            <span><?= __('Does this product have variants') ?></span>
+                        </label>
+                        <div class="control select _with-tooltip">
+                            <?= $block->getYesNoDropdown() ?>
+                            <div class="field-tooltip toggle"><span class="field-tooltip-action action-help" tabindex="0"></span><div class="field-tooltip-content"><span><?= __('Does this product have variants.') ?></span></div></div>
+                        </div>
+                    </div>            
+                    <?php } else { ?>
+                    <input type="hidden" id="has-variants" name="has_variants" value="0">
+                    <?php } ?>
+                <?php } ?>
+            </fieldset>
+            <fieldset class="fieldset">
+                <?php if (($this->getRequest()->getParam('pid', false) == false)) { ?>
+                    <?= $block->getDropdownAttributesHtml(); ?>
+                <?php } ?>
+            </fieldset>
+            <div class="fieldset variants-fieldset">
+                <?= $block->getAttributesMultiSelectHtml(); ?>
+                <?= $block->getAttributesHtml(); ?>
+                <div class="row">
+                    <div class="col-md-8 ">
+                            <div class="actions-toolbar mb10">
+                                <div class="primary pln">
+                                    <button type="button" id="createGrid"
+                                            title="<?= __('Create Grid') ?>"
+                                            class="action button secondary">
+                                        <span><?= __('Create Grid') ?></span>
+                                    </button>                                
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-md-4 show-hide-fields text-right mb10 mt10">
+                        <a id="show_hide_fields" class="button no-display" href="javascript:void(0)"><?= __('Show All Fields') ?></a>
+                    </div>
+                </div>  
+                <div class="row">
+
+                </div>
+                <div class="table-wrapper">
+                    <div id="variantGrid" class="table-cotainer">                     
+                    <?php if (($block->isProductEditMode() && $block->isProductHasVariants()) ||
+                        ($block->isRequestResubmitted() && $block->isProductHasVariants())) {
+                                                  $i = 0;
+                                                    ?>
+                        <input type="hidden" id="request-edit-mode" name="request_edit_mode" value="1">
+                        <table id="basicTable" class="data table variant-table-grid">
+                            <thead>
+                                <tr>
+                                                    <?php foreach ($block->getVariantColumns() as $label) { ?>
+                                                        <?php if ($label === 'Image') { ?>
+                                                            <th class="<?= $block->getFieldNameWithDashSeperator($label) ?>s">
+                                                            <?php } else { ?>
+                                        <th class="<?= $block->getFieldNameWithDashSeperator($label) ?>">
+                                            <?php } ?>
+                                                        <?= __($label) ?>
+                                        </th>
+                                    <?php } ?>
+                                </tr>                        
+                            </thead> 
+                            <tbody>
+                                                    <?php $variantsData = $block->getVariantsData();
+                                                    if ($variantsData) {
+                                                        foreach ($variantsData as $_item) { ?>
+                                    <input type="hidden" name="variants_data[<?= $i ?>][variant_id]" value="<?= $_item['product_request_id']; ?>">
+                                        <tr>
+                                                                <?php foreach ($block->getVariantColumns() as $label) { ?>
+                                            <td class="col col-<?= $block->getFieldNameWithDashSeperator($label) ?>">
+                                                <?php
+                                                    if (isset($_item[$block->getFieldName($label)])) {
+                                                        $element = ($block->getFieldName($label) == 'action') ? 'action' : $_item[$block->getFieldName($label)]; ?>
+                                                        <?= $block->renderField($block->getFieldName($label), $element, $i) ?>
+                                                    <?php }
+                                                    ?>
+                                            </td>
+                                            <?php } ?>
+                                        </tr>
+                                        <?php $i++; ?>
+                                    <?php } ?>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    <?php } ?>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    require([
+                        'jquery',                        
+                        'mage/calendar',
+                        'mage/translate',
+                        'rbCommonMethods',
+                        'Magedelight_Catalog/js/product/variants'
+                    ], function ($, calendar, $t, rbCommonMethods, variants) {
+                        
+                        $('document').ready(function () {
+                            var toggler = $('#has-variants');
+                            if (toggler.val() == 1) {
+                                toggler.parents('.fieldset').next().addClass('no-display');
+                                variants.toggleAttributeOptions(false);
+                                if ($('#request-edit-mode').val() == 1) {
+                                    $('#show_hide_fields').show();
+                                    variants.showHideFields(1);
+                                }
+                            } else {
+                                toggler.parents('.fieldset').next().removeClass('no-display');
+                                toggler.parents('.fieldset').next().next().addClass('no-display');
+                            }
+                        });
+                        /* show/hide Variant Attributes & Option secion*/
+                        $('#has-variants').change(function (e) {
+                            var toggler = $(this);
+                            var field1 = toggler.parents('.fieldset').next();
+                            var field = toggler.parents('.fieldset').next().next();
+                            if (toggler.val() == 1) {
+                                $('#tab-label-offers').hide();
+                                $('#offers #seller-sku').removeClass('required-entry').attr('data-validate', ' ');
+                                $('#offers #condition').attr('data-validate', ' ');
+                                $('#offers #vendor-price').removeClass('required-entry');
+                                field.removeClass('no-display');
+                                field1.addClass('no-display');
+                                $('.variant-container').hide();
+                            } else {
+                                $('#tab-label-offers').show();
+                                $('#offers #seller-sku').addClass('required-entry').attr(
+                                    'data-validate',
+                                    '{required:true}'
+                                );
+                                $('#offers #condition').attr('data-validate', '{required:true}');
+                                $('#offers #vendor-price').addClass('required-entry');
+                                field.addClass('no-display');
+                                field1.removeClass('no-display');
+                            }
+                        });
+
+                        $('#get_options_btn').click(function (e) {
+                            variants.toggleAttributeOptions();
+                        });
+
+                        $('#createGrid').click(function (e) {
+                            <?php
+                                $offerFields = $block->getVariantColumns(true);
+                                $offerFields[] = __('Action');
+                            ?>
+                            variants.createTable(
+                                variants.createArr(),
+                                <?= json_encode($offerFields); ?>,
+                                "<?= __('Please select atleast one option from') ?>",
+                                <?= json_encode($block->getProductConditionOption()); ?>,
+                                <?= json_encode($block->getWarrantyTypeOptions()); ?>
+                            );
+
+                            $(".btn").click(function (e) {
+                                $(this).parent().parent().remove();
+                                if ($('#basicTable tr').length == 1) {
+                                    $('#basicTable').find('thead').remove();
+                                    $('#show_hide_fields').hide();
+                                }
+                            });
+                            variants.showHideFields(1);
+                        });
+
+                        $('#show_hide_fields').click(function (e) {
+                            var text = '';
+                            var str = 0;
+                            if ($(this).text() == "<?= __('Show All Fields')?>") {
+                                text = "<?= __('Show Minimal Fields')?>";
+                                str = 0;
+                            } else {
+                                text = "<?= __('Show All Fields')?>";
+                                str = 1;
+                            }
+                            $(this).text(text);
+                            variants.showHideFields(str);
+                        });
+
+                        $('#variantGrid tr').each(function () {
+                            $row = $(this);
+                            $fromId = $(".date-from", $row).attr('id');
+                            $toId = $(".date-to", $row).attr('id');
+                            $row.dateRange({
+                                buttonText: "<?= __('Select Date') ?>",
+                                showOn: "button",
+                                from: {
+                                    id: $fromId
+                                },
+                                to: {
+                                    id: $toId
+                                }
+                            });
+                        });
+
+                        $(".btn").click(function (e) {
+                            $(this).parent().parent().remove();
+                            if ($('#basicTable tr').length == 1) {
+                                $('#basicTable').find('thead').remove();
+                                $('#show_hide_fields').hide();
+
+                            }
+                        });
+
+                        <?php if ($block->isRequestResubmitted()) { ?>
+                            $('document').ready(function () {
+                                $('html, body').animate({
+                                    scrollTop: $("#variantGrid").offset().top - 100
+                                }, 2000);
+                            });
+                        <?php } ?>
+                    });
+                </script>
+            </div>
+            <?php
+        } else { ?>
+            <?= __('Sorry, No variant attributes found for selected category.');
+        }
+        ?>
+    </div>
+</div>

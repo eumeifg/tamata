@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="vendor" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Vendor Configuration</label>
+            <tab>rbsettings</tab>
+            <resource>Magedelight_Theme::config</resource>
+            <group id="account_share" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Account Sharing Options</label>
+                <hide_in_single_store_mode>1</hide_in_single_store_mode>
+                <field id="scope" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Share Vendor Accounts</label>
+                    <backend_model>Magedelight\Vendor\Model\Config\Share</backend_model>
+                    <source_model>Magedelight\Vendor\Model\Config\Share</source_model>
+                </field>
+            </group>
+            <group id="create_account" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Create New Account Options</label>
+                <field id="confirm" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Require Emails Confirmation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="email_identity" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="email_confirmation_template" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Confirmation Link Email</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="enable_bank_details" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Banking Information</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If disabled, banking fields won't be visible during vendor registration.</comment>
+                </field>
+                <field id="is_bank_details_optional" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Is Banking Information Optional?</label>
+                    <depends>
+                        <field id="enable_bank_details">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            
+            <group id="status_request" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Status Request</label>
+                <field id="confirm" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Require Emails Confirmation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="email_identity" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="email_recipient" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Receiver</label>
+                    <comment>Email address to receive vendor notifications for status change request.</comment>
+                </field>
+                <field id="email_notification_template" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Email</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="email_notification_reject_template" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Email</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="email_notification_admin_template" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Email To Admin</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="contact_admin" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Contact Configurations</label>
+                <field id="email_identity" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="email_recipient" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Receiver</label>
+                    <comment>Email address to receive vendor notifications for status change request.</comment>
+                </field>
+                <field id="email_template" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="password" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Password Options</label>
+                <field id="forgot_email_template" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Forgot Email Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="remind_email_template" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Remind Email Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="reset_password_template" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reset Password Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="forgot_email_identity" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Password Template Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="reset_link_expiration_period" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Vendor Password Recovery Link Expiration Period (days)</label>
+                    <comment>Please enter a number 1 or greater in this field.</comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-</validate>
+                    <backend_model>Magento\Customer\Model\Config\Backend\Password\Link\Expirationperiod</backend_model>
+                </field>
+            </group>
+            <group id="terms_conditions" translate="label" type="text" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Terms and Conditions</label>
+                <field id="editortextarea" translate="label" type="editor" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Content</label>
+                    <frontend_model>Magedelight\Theme\Block\Adminhtml\System\Config\Editor</frontend_model>
+                </field>
+            </group>
+            <group id="dashboard_summary" translate="label" type="text" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Dashboard Summary</label>
+                <field id="new_orders" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>New Orders</label>
+                    <comment>Please enter a number to display number of records of "New Orders" on vendor dashboard.</comment>
+                </field>
+                <field id="approved_products" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Approved Products</label>
+                    <comment>Please enter a number to display number of records of "Approve Products" on vendor dashboard.</comment>
+                </field>
+                <field id="low_inventory_products" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Low Inventory Products</label>
+                    <comment>Please enter a number to display number of records of "Low Inventory" Products on vendor dashboard.</comment>
+                </field>
+                <field id="sale_summary" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sale Summary</label>
+                    <comment>Please enter a number to display number of records of Sale Summary on vendor dashboard.</comment>
+                </field>
+                <field id="best_sellers" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Best Sellers</label>
+                    <comment>Please enter a number to display number of records of "Best Sellers" on vendor dashboard.</comment>
+                </field>
+                <field id="most_viewed_products" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Most Viewed Products</label>
+                    <comment>Please enter a number to display number of records of "Most Viewed Products" on vendor dashboard.</comment>
+                </field>
+            </group>
+            <group id="general" translate="label" type="text" sortOrder="0" showInDefault="1" showInStore="1" showInWebsite="1">
+                <label>General</label>
+                <field id="allow_multiwebsite" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Multiple Website Scope</label>
+                    <source_model>Magedelight\Vendor\Model\Config\Source\Price\Scope</source_model>
+                    <hide_in_single_store_mode>1</hide_in_single_store_mode>
+                </field>
+                <field id="vendor_vacation_mode" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Allow Vendor for Vacation Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="company_logo_width" translate="label" type="text" sortOrder="22" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Company logo Width</label>
+                    <comment>Please enter a number 1 or greater in this field. Logo Width</comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-</validate>
+                </field>
+                 <field id="company_logo_height" translate="label" type="text" sortOrder="22" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Company logo Height</label>
+                    <comment>Please enter a number 1 or greater in this field.Logo Height</comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-</validate>
+                </field>
+                <field id="enable_selling_categories" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Selling Categories to opt for new categories request.</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="new_category_request_admin_notification" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Admin Notification For New Category Request</label>
+                <field id="template" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="new_category_request_vendor_notification" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor New Category Request Notification</label>    
+                <field id="template" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="category_request_approval_vendor_notification" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Category Request Approval Notification</label>    
+                <field id="template" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+
+            <group id="cron_config_vendor_app_link" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Create App Link Schedule</label>
+                <field id="cron_expr" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                    showInStore="1">
+                    <label>Cron Expression</label>
+                </field>
+            </group>
+        </section>
+        <section id="general">
+            <group id="locale">
+                <field id="is_rtl" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Is RTL</label>
+                    <comment>Select Yes for right to left layout</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+        <section id="vendor_design" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Vendor Design</label>
+            <tab>rbsettings</tab>
+            <resource>Magedelight_Theme::config</resource>
+            <group id="profile" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Profile</label>
+                <field id="default_avatar" translate="label" type="image" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Avatar</label>
+                    <comment>Vendor profile default Avatar. Allowed file types:PNG, JPG, JPEG. Preferred dimension 42 X 42.</comment>
+                    <backend_model>Magedelight\Vendor\Model\Config\Backend\Image\DefaultAvatar</backend_model>
+                    <base_url type="media" scope_info="1">vendor/logo</base_url>
+                </field>
+            </group>
+            <group id="email" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Emails</label>
+                <field id="header_template" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="footer_template" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <!-- RBOS-412 unused configuration -->
+            <!--<group id="vendor_dashboard" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Dashboard</label>
+               <field id="vendor_dashboard_color_option_header" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Left Panel Header Color</label>
+                    <comment><![CDATA[Left Panel Header Color]]></comment>
+                     <validate>jscolor</validate>
+                </field>
+                <field id="vendor_dashboard_color_option_main" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Left Panel Main Color</label>
+                    <comment><![CDATA[Left Panel Main Color]]></comment>
+                     <validate>jscolor</validate>
+                </field>
+            </group> -->
+        </section>
+        <section id="oauth">
+            <group id="access_token_lifetime">
+                <field id="seller" translate="label" type="text" sortOrder="65" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Seller(Vendor) Token Lifetime (hours)</label>
+                    <comment>We will disable this feature if the value is empty.</comment>
+                </field>
+            </group>
+        </section>
+        
+        <section id="rbmicrosite" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Microsite</label>
+            <tab>rbsettings</tab>
+            <resource>Magedelight_Theme::config</resource>
+            <group id="settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Seller Directory Setting</label>
+                <field id="sellerdirectory_banner_image" translate="label" type="image" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Banner Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">sellerdirectory</upload_dir>
+                    <base_url type="media" scope_info="1">sellerdirectory</base_url>
+                </field>
+                <field id="sellerdirectory_description" translate="label" type="textarea" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description</label>
+                </field>
+            </group>            
+        </section>
+        
+        <section id="emailconfiguration">
+            <group id="new_vendor" translate="label" sortOrder="80" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>New Vendor Registration</label>
+                <field id="notification" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable notification</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="vendor_status_change" translate="label" type="text" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Status Notification</label>    
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="vendor_delete" translate="label" type="text" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Delete Notification</label>    
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="vendor_profile_update" translate="label" type="text" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Profile Update Notification</label>    
+                <field id="template" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_register_admin" translate="label" type="text" sortOrder="295" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Admin Email For Vendor Profile Waiting Action</label>
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_register_first_step" translate="label" type="text" sortOrder="297" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Admin Email For New Vendor Signup</label>
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

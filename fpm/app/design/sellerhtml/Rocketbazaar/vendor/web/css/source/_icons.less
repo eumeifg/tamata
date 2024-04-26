@@ -1,0 +1,464 @@
+// /**
+//  * Copyright © 2016 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+.lib-font-face(
+    @family-name: @icons__font-name,
+    @font-path: @icons__font-path,
+    @font-weight: normal,
+    @font-style: normal
+);
+[class^="rbvt-icon-"], [class*=" rbvt-icon-"]
+{
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: @icons__font-name;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+
+ 
+}
+.rbvt-icon {
+   .lib-icon-font(
+        @_icon-font-content: '',
+      @_icon-font-size: @font-size__l,
+      @_icon-font-position: before,
+   );
+}
+
+.rbvt-icon-wishlist-full {
+    &:before {
+        content: @icon-wishlist-full;
+    }
+}
+.rbvt-icon-wishlist-empty {
+    &:before {
+        content: @icon-wishlist-empty;
+    }
+}
+.rbvt-icon-warning {
+    &:before {
+        content: @icon-warning;
+    }
+}
+.rbvt-icon-update {
+    &:before {
+        content: @icon-update;
+    }
+}
+.rbvt-icon-trash {
+    &:before {
+        content: @icon-trash;
+    }
+}
+.rbvt-icon-star {
+    &:before {
+        content: @icon-star;
+    }
+}
+.rbvt-icon-setting {
+    &:before {
+        content: @icon-setting;
+    }
+}
+.rbvt-icon-pointer-down {
+    &:before {
+        content: @icon-pointer-down;
+    }
+}
+.rbvt-icon-next {
+    &:before {
+        content: @icon-next;
+    }
+}
+.rbvt-icon-menu {
+    &:before {
+        content: @icon-menu;
+    }
+}
+.rbvt-icon-location {
+    &:before {
+        content: @icon-location;
+    }
+}
+.rbvt-icon-list {
+    &:before {
+        content: @icon-list;
+    }
+}
+.rbvt-icon-info {
+    &:before {
+        content: @icon-info;
+    }
+}
+.rbvt-icon-grid {
+    &:before {
+        content: @icon-grid;
+    }
+}
+.rbvt-icon-comment-reflected {
+    &:before {
+        content: @icon-comment-reflected;
+    }
+}
+.rbvt-icon-collapse {
+    &:before {
+        content: @icon-collapse;
+    }
+}
+.rbvt-icon-checkmark {
+    &:before {
+        content: @icon-checkmark;
+    }
+}
+.rbvt-icon-cart {
+    &:before {
+        content: @icon-cart;
+    }
+}
+.rbvt-icon-calendar {
+    &:before {
+        content: @icon-calendar;
+    }
+}
+.rbvt-icon-arrow-up {
+    &:before {
+        content: @icon-arrow-up;
+    }
+}
+.rbvt-icon-arrow-down {
+    &:before {
+        content: @icon-arrow-down;
+    }
+}
+.rbvt-icon-search {
+    &:before {
+        content: @icon-search;
+    }
+}
+.rbvt-icon-remove {
+    &:before {
+        content: @icon-remove;
+    }
+}
+.rbvt-icon-prev {
+    &:before {
+        content: @icon-prev;
+    }
+}
+.rbvt-icon-pointer-up {
+    &:before {
+        content: @icon-pointer-up;
+    }
+}
+.rbvt-icon-pointer-right {
+    &:before {
+        content: @icon-pointer-right;
+    }
+}
+.rbvt-icon-pointer-left {
+    &:before {
+        content: @icon-pointer-left;
+    }
+}
+.rbvt-icon-flag {
+    &:before {
+        content: @icon-flag;
+    }
+}
+.rbvt-icon-expand {
+    &:before {
+        content: @icon-expand;
+    }
+}
+.rbvt-icon-envelop {
+    &:before {
+        content: @icon-envelop;
+    }
+}
+.rbvt-icon-compare-full {
+    &:before {
+        content: @icon-compare-full;
+    }
+}
+.rbvt-icon-compare-empty {
+    &:before {
+        content: @icon-compare-empty;
+    }
+}
+.rbvt-icon-comment {
+    &:before {
+        content: @icon-comment;
+    }
+}
+.rbvt-icon-up {
+    &:before {
+        content: @icon-up;
+    }
+}
+.rbvt-icon-down {
+    &:before {
+        content: @icon-down;
+    }
+}
+.rbvt-icon-help {
+    &:before {
+        content: @icon-help;
+    }
+}
+.rbvt-icon-arrow-right-thin {
+    &:before {
+        content: @icon-arrow-right-thin;
+    }
+}
+.rbvt-icon-arrow-left-thin {
+    &:before {
+        content: @icon-arrow-left-thin;
+    }
+}
+.rbvt-icon-arrow-down-thin {
+    &:before {
+        content: @icon-arrow-down-thin;
+    }
+}
+.rbvt-icon-account {
+    &:before {
+        content: @icon-account;
+    }
+}
+.rbvt-icon-gift-registry {
+    &:before {
+        content: @icon-gift-registry;
+    }
+}
+.rbvt-icon-present {
+    &:before {
+        content: @icon-present;
+    }
+}
+.rbvt-icon-arrow-up-thin {
+    &:before {
+        content: @icon-arrow-up-thin;
+    }
+}
+.rbvt-icon-bell-empty {
+    &:before {
+        content: @icon-bell-empty;
+    }
+}
+.rbvt-icon-dashboard {
+    &:before {
+        content: @icon-dashboard;
+    }
+}
+.rbvt-icon-promotions {
+    &:before {
+        content: @icon-promotions;
+    }
+}
+.rbvt-icon-tag {
+    &:before {
+        content: @icon-tag;
+    }
+}
+.rbvt-icon-info-full {
+    &:before {
+        content: @icon-info-full;
+    }
+}
+.rbvt-icon-download {
+    &:before {
+        content: @icon-download;
+    }
+}
+.rbvt-icon-ok {
+    &:before {
+        content: @icon-ok;
+    }
+}
+.rbvt-icon-arrow-long-down1 {
+    &:before {
+        content: @icon-arrow-long-down1;
+    }
+}
+.rbvt-icon-arrow-long-up1 {
+    &:before {
+        content: @icon-arrow-long-up1;
+    }
+}
+.rbvt-icon-arrow-long-left1 {
+    &:before {
+        content: @icon-arrow-long-left1;
+    }
+}
+.rbvt-icon-arrow-long-right1 {
+    &:before {
+        content: @icon-arrow-long-right1;
+    }
+}
+.rbvt-icon-calendar1 {
+    &:before {
+        content: @icon-calendar1;
+    }
+}
+.rbvt-icon-camera {
+    &:before {
+        content: @icon-camera;
+    }
+}
+.rbvt-icon-cart1 {
+    &:before {
+        content: @icon-cart1;
+    }
+}
+.rbvt-icon-chevron-down {
+    &:before {
+        content: @icon-chevron-down;
+    }
+}
+.rbvt-icon-chevron-up {
+    &:before {
+        content: @icon-chevron-up;
+    }
+}
+.rbvt-icon-chevron-left {
+    &:before {
+        content: @icon-chevron-left;
+    }
+}
+.rbvt-icon-chevron-right {
+    &:before {
+        content: @icon-chevron-right;
+    }
+}
+.rbvt-icon-edit {
+    &:before {
+        content: @icon-edit;
+    }
+}
+.rbvt-icon-help-full {
+    &:before {
+        content: @icon-help-full;
+    }
+}
+.rbvt-icon-ok-full {
+    &:before {
+        content: @icon-ok-full;
+    }
+}
+.rbvt-icon-ok-empty {
+    &:before {
+        content: @icon-ok-empty;
+    }
+}
+.rbvt-icon-plus-full {
+    &:before {
+        content: @icon-plus-full;
+    }
+}
+.rbvt-icon-plus-thick {
+    &:before {
+        content: @icon-plus-thick;
+    }
+}
+.rbvt-icon-remove-full {
+    &:before {
+        content: @icon-remove-full;
+    }
+}
+.rbvt-icon-remove-empty {
+    &:before {
+        content: @icon-remove-empty;
+    }
+}
+.rbvt-icon-minus-full {
+    &:before {
+        content: @icon-minus-full;
+    }
+}
+.rbvt-icon-minus-thick {
+    &:before {
+        content: @icon-minus-thick;
+    }
+}
+.rbvt-icon-move {
+    &:before {
+        content: @icon-move;
+    }
+}
+.rbvt-icon-star-empty1 {
+    &:before {
+        content: @icon-star-empty1;
+    }
+}
+.rbvt-icon-star-full1 {
+    &:before {
+        content: @icon-star-full1;
+    }
+}
+.rbvt-icon-star-half {
+    &:before {
+        content: @icon-star-half;
+    }
+}
+
+.rbvt-icon-financial{
+    &:before {
+        content: @icon-financial;
+    }
+}
+.rbvt-icon-taxes{
+    &:before {
+        content: @icon-financial;
+    }
+}
+.rbvt-icon-vendor-services{
+    &:before {
+        content: @icon-vendor-services;
+    }
+}
+.rbvt-icon-deals{
+    &:before {
+        content: @icon-deals;
+    }
+}
+.rbvt-icon-size-chart{
+    &:before {
+        content: @icon-size-chart;
+    }
+}
+.rbvt-icon-testimonials{
+    &:before {
+        content: @icon-testimonials;
+    }
+}
+.rbvt-icon-bundle-promotions{
+    &:before {
+        content: @icon-bundle-promotions;
+    }
+}
+.rbvt-icon-helpdesk{
+    &:before {
+        content: @icon-helpdesk;
+    }
+}
+
+.rbvt-icon-gift-wrapper{
+    &:before {
+        content: @icon-gift-wrapper;
+    }
+}
+.rbvt-icon-permission{
+    &:before {
+        content: @icon-permissions;
+    }
+}

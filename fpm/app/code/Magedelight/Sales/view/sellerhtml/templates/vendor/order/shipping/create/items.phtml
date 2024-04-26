@@ -1,0 +1,51 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block Magedelight\Sales\Block\Vendor\Order\Shipping\Create\Items */
+?>
+<?php $_order = $block->getOrder(); ?>
+<div id="ship_items_container">
+    <div class="table-wrapper order-items rb-order-items">
+
+        <table class="data table table-order-items rb-table-order-items rb-order-shipment-table">
+            <thead>
+                <tr><th colspan="4"><?= __('Items to Ship') ?></th></tr>
+                <tr class="headings">
+                    <th class="col-product"><span><?= /* @escapeNotVerified */ __('Product') ?></span></th>
+                    <th class="col sku col-sku"><span><?= /* @escapeNotVerified */ __('Sku') ?></span></th>
+                    <th class="col qty col-ordered-qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></th>
+                    <th class="col qty col-qty<?php if ($block->isShipmentRegular()) :
+                        ?> last<?php
+                                              endif; ?>">
+                        <span><?= /* @escapeNotVerified */ __('Qty to Ship') ?></span>
+                    </th>
+                    <?php if (!$block->canShipPartiallyItem()) : ?>
+                        <th class="col qty col-ship last"><span><?= /* @escapeNotVerified */ __('Ship') ?></span></th>
+                    <?php endif; ?>
+                </tr>
+            </thead>                        
+            <?php $_items = $block->getShipment()->getAllItems() ?>
+            <?php
+            $_i = 0;
+            foreach ($_items as $_item) :
+                if ($_item->getOrderItem()->getIsVirtual() || $_item->getOrderItem()->getParentItem()) :
+                    continue;
+                endif;
+                $_i++
+                ?>
+                <tbody class="<?= /* @escapeNotVerified */ $_i % 2 ? 'odd' : 'even' ?>">
+                <?= $block->getItemHtml($_item) ?>
+                <?= $block->getItemExtraInfoHtml($_item->getOrderItem()) ?>
+                </tbody>
+            <?php endforeach; ?>
+        </table>                
+    </div>
+</div>

@@ -1,0 +1,66 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .search-autocomplete {
+        .actions-secondary {
+            position: static;
+            .action.towishlist {
+                margin: 0 5px 0 5px;
+            }
+            .action.tocompare {
+                display: none;
+            }
+        }
+        .amsearch-wrapper-content .product-item-actions {
+            padding-left: 0;
+            padding-right: 0;
+            position: static;
+        }
+    }
+    .rtl_layout {
+        .amsearch-wrapper-input.-left-position,
+        .search-autocomplete.-left-position {
+            right: 0;
+            left: auto;
+        }
+        .amasty-xsearch-loader {
+            right: auto;
+            left: 30px;
+        }
+        .amsearch-close {
+            right: auto;
+            left: 0;
+        }
+        .search .amsearch-loupe {
+            left: auto;
+            right: 10px;
+        }
+    }
+    html[lang="ar"] {
+        .rtl_layout {
+            .amsearch-form-container.-opened input.input-text {
+                padding-left: 35px;
+                padding-right: 26px;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    
+}

@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2018 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!--<route url="/V1/review/reviews/:productId" method="GET">
+        <service class="RB\MobileAppV2\Api\ReviewInterface" method="getReviewsList"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>-->
+<!--     <route url="/V1/rating/ratings/:store_id" method="GET">
+        <service class="RB\MobileAppV2\Api\ReviewInterface" method="getRatings"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route> -->
+
+    <route url="/V1/review/reviews/" method="GET">
+        <service class="Magedelight\Review\Api\ReviewInterface" method="getReviewsList"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+
+    <route url="/V1/review/reviews/:productId" method="GET">
+        <service class="Magedelight\Review\Api\ReviewInterface" method="getProductReviewsList"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <route url="/V1/review/mine/post" method="POST">
+        <service class="Magedelight\Review\Api\ReviewInterface" method="writeReviews"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/review/ratingCodes" method="GET">
+        <service class="Magedelight\Review\Api\ReviewInterface" method="getRatingCode"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <!--<route url="/V1/review/guest/post" method="POST">
+        <service class="RB\MobileAppV2\Api\ReviewInterface" method="writeReviews"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    
+    <route url="/V1/review/ratingCodes" method="GET">
+        <service class="RB\MobileAppV2\Api\ReviewInterface" method="getRatingCode"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route> -->
+    
+    <!-- <route url="/V1/contactUs" method="POST">
+        <service class="RB\MobileAppV2\Api\HomePageInterface" method="contactUs"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route> -->
+
+    <!-- update notification status to read for vendor -->
+    <!-- <route url="/V1/seller/updateVendorNotificationStatus" method="POST">
+        <service class="RB\MobileAppV2\Api\PushDataInterface" method="updateNotificationStatus"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+        <data>
+            <parameter name="id" force="true">%id%</parameter>
+        </data>
+    </route> -->
+    
+    <!-- update notification status to read for customer -->
+    <!-- <route url="/V1/updateCustomerNotificationStatus" method="POST">
+        <service class="RB\MobileAppV2\Api\PushDataInterface" method="updateNotificationStatus"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route> -->
+
+    <!-- vendor unread notification count -->
+    <!-- <route url="/V1/seller/getUnreadCountForVendor" method="GET">
+        <service class="RB\MobileAppV2\Api\PushDataInterface" method="getUnreadNotificationCount"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+        <data>
+            <parameter name="id" force="true">%id%</parameter>
+        </data>
+    </route>
+    
+    
+    <route url="/V1/getUnreadCountForCustomer" method="GET">
+        <service class="RB\MobileAppV2\Api\PushDataInterface" method="getUnreadNotificationCount"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>        
+    </route> -->
+
+    <!-- vendor unread notification count -->
+    <!-- <route url="/V1/seller/getUnreadListForVendor" method="GET">
+        <service class="RB\MobileAppV2\Api\PushDataInterface" method="getUnreadNotificationList"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+        <data>
+            <parameter name="id" force="true">%id%</parameter>
+        </data>
+    </route> -->
+    
+    <!-- customer unread notification count -->
+    <!-- <route url="/V1/getUnreadListForCustomer" method="GET">
+        <service class="RB\MobileAppV2\Api\PushDataInterface" method="getUnreadNotificationList"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>        
+    </route> -->
+</routes>
+    
+    

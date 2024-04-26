@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="CAT_Address::address" title="Address Module" module="CAT_Address" sortOrder="60"
+             resource="CAT_Address::address"/>
+
+        <add id="CAT_Address::city" title="City" module="CAT_Address" sortOrder="10"
+             resource="CAT_Address::city" parent="CAT_Address::address"/>
+
+        <add id="CAT_Address::city_list" title="Manage City List" module="CAT_Address" sortOrder="10"
+             parent="CAT_Address::city" action="manage_city/index"
+             resource="CAT_Address::city"/>
+
+        <!--<add id="CAT_Address::region_list" title="Manage Region List" module="CAT_Address" sortOrder="20"
+             parent="CAT_Address::city" action="manage_city/index/region"
+             resource="CAT_Address::city"/>-->
+
+    </menu>
+</config>

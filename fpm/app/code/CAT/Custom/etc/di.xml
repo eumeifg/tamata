@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="catcustom_automation_listing_data_source" xsi:type="string">CAT\Custom\Model\ResourceModel\Automation\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="CAT\Custom\Model\ResourceModel\Automation\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">automation_import_history</argument>
+            <argument name="resourceModel" xsi:type="string">CAT\Custom\Model\ResourceModel\Automation</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sales_order_grid_data_source" xsi:type="string">CAT\Custom\Model\ResourceModel\Order\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\Config">
+        <plugin name="catalog_config_plugin" type="CAT\Custom\Plugin\Config"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="catalog_productlist_toolbar_plugin" type="CAT\Custom\Plugin\Product\ProductList\Toolbar" />
+    </type>
+    <!-- Override GraphQl Controller to add the namespaces for new relic -->
+    <preference for="Magento\GraphQl\Controller\GraphQl" type="CAT\Custom\Controller\GraphQl" />
+    <preference for="Magento\Catalog\Model\Category\Attribute\Source\Sortby" type="CAT\Custom\Model\Category\Attribute\Source\Sortby" />
+</config>

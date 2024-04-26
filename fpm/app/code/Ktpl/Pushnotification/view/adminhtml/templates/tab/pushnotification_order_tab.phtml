@@ -1,0 +1,20 @@
+<div class="fieldset-wrapper order-information send-pushnotification">
+
+  <input type="hidden" name="sendnotificationurl" value="<?= /* @noEscape */ $this->getUrl('ktpl_pushnotification/ktplpushnotifications/sendbyorderview');?>">
+
+	<input type="hidden" name="send_to_customer" value="<?= /* @noEscape */ $block->getOrderEmail();?>">
+	<input type="hidden" name="order_id" value="<?= /* @noEscape */ $block->getOrderId();?>">
+	<input type="hidden" name="order_increment_id" value="<?= /* @noEscape */ $block->getOrderIncrementId();?>">
+	<input type="hidden" name="order_customer_id" value="<?= /* @noEscape */ $block->getCustomerId();?>">
+		
+  <button id="send_notification" title="Send Notifiation" type="button" class="send-push-notification-to-this-order action-basic" href="#" data-form-role="save" data-ui-id="save-button" role="button" aria-disabled="false"><span class="ui-button-text" style="float: right;">
+        <span>Send Notification</span>
+    </span></button>
+
+</div>
+
+<style type="text/css">
+    button#send_notification{        
+        margin-left: 231px;
+    }
+</style>

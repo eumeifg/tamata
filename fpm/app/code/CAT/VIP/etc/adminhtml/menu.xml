@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="CAT_VIP::vip_offers"
+            resource="CAT_VIP::vendor_offers"
+            module="CAT_VIP" title="VIP Program"
+            parent="Magedelight_Theme::addons"/>
+
+        <add id="CAT_VIP::grid"
+             title="VIP Orders"
+             module="CAT_VIP"
+             sortOrder="9"
+             parent="CAT_VIP::vip_offers"
+             action="viporders/grid/index"
+             resource="CAT_VIP::view"
+             dependsOnConfig="vip/general/enable"/>
+
+        <add id="CAT_VIP::import"
+             title="VIP Import"
+             module="CAT_VIP"
+             sortOrder="9"
+             parent="CAT_VIP::vip_offers"
+             action="viporders/offer/import"
+             resource="CAT_VIP::view"
+             dependsOnConfig="vip/general/enable"/>
+
+        <add id="CAT_VIP::logs"
+             title="VIP Logs"
+             module="CAT_VIP"
+             sortOrder="10"
+             parent="CAT_VIP::vip_offers"
+             action="viporders/logs"
+             resource="CAT_VIP::view"
+             dependsOnConfig="vip/general/enable"/>
+    </menu>
+</config>

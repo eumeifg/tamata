@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Magedelight
+* Copyright (C) 2017 Magedelight <info@magedelight.com>
+*
+* @category Magedelight
+* @package Magedelight_Abandonedcart
+* @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="abandonedcart_section" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>md_section_abandonedcart</class>
+            <label>Abandonedcart</label>
+            <tab>magedelight</tab>
+            <resource>Magedelight_Abandonedcart::config_root</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="send_email_to_guest" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Email to Guest Users</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Guest users wouldn't receive the abandoned cart emails in case selected to "No"</comment>
+                </field>
+                <field id="stop_after_visiting" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Stop After Visiting</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="abandonedcart_time" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Set Time After Cart Will Consider as Abandoned.</label>
+                    <comment>Please set time in Minutes. Max limit 2880</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="remove_history" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Remove History?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>The history older than 2 months will be removed if set to "Yes", update time limit after setting it to yes in case you want history for longer or short period of time. Keep it remain "No" in case you don't want the history be deleted.</comment>
+                </field>
+                <field id="keep_history_time" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Set Days After Which History Will Be Removed.</label>
+                    <comment>Please set time in Days (Minimum Value : 3). </comment>
+                    <validate>validate-number</validate>
+                    <depends>
+                        <field id="abandonedcart_section/general/remove_history">1</field>
+                    </depends>
+                </field>
+                <field id="identity" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Abandoned Cart Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="send_copy_to" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Email Copy To</label>
+                    <comment>Add email id to get the copy of Abandoned Cart emails</comment>
+                </field>
+                <field id="image_height" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Image Height In Mails (in px)</label>
+                    <comment>Set image height to be used in emails (ignore to add px)</comment>
+                </field>
+                <field id="image_width" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Image Width In Mails (in px)</label>
+                    <comment>Set image width to be used in emails (ignore to add px)</comment>
+                </field>
+                <field id="add_unsubscribe_link" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add Unsubscribe Link to Emails?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="test_email" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Test Email Configurations</label>
+               <!-- <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Test Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>-->
+                <field id="recipient_email" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Email Recipient</label>
+                    <validate>required-entry validate-email</validate>
+                </field>
+                <field id="send_test_mail" type="button" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Send Test Mail</button_label>
+                    <!--<comment>It will send email to test email recipient even test mode is disabled</comment>-->
+                    <frontend_model>Magedelight\Abandonedcart\Block\System\Config\SendTestMail</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

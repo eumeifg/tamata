@@ -1,0 +1,40 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $this \Magedelight\Vendor\Block\Profile */
+$vendor =  $this->getVendor();
+?>
+<div id="category-info-content" class="row signup-step-content profile-step-content no-display">
+    <div class="title">
+        <h3><span><?= __('Selling Categories') ?></span></h3>
+    </div>
+    <form name="category_information_form" id="category-information-form" enctype="multipart/form-data" method="post" action="">
+        <fieldset class="fieldset">
+            <div id="category-list">
+            <?= $this->getCategories(); ?>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery', /* jquery Library */
+        'Magedelight_Vendor/js/registration/selling-categories',
+        'jquery/ui', /* Jquery UI Library */
+        'jquery/validate', /* Jquery Validation Library */
+        'mage/mage',
+        'mage/translate' /* Magento text translate (Validation message translte as per language) */
+    ], function ($,sellingCategories) {
+        $(document).ready(function (e) {
+            sellingCategories()
+        });
+    });
+</script>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © MDC, All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="MDC\ProvinceCenter\Api\Data\AddressTypeDataInterface" type="MDC\ProvinceCenter\Model\Data\AddressTypeData" />
+    
+    <preference for="MDC\ProvinceCenter\Api\AddressTypeManageInterface" type="MDC\ProvinceCenter\Model\AddressTypeManage" />
+    
+</config>

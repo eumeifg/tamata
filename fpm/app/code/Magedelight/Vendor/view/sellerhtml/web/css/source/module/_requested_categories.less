@@ -1,0 +1,243 @@
+    // /**
+//  * Copyright � 2018 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@icon-minus-full: "\e91a";
+@icon-plus-full: "\e916";
+@color-green1: #8bc34a;
+@color-green2: #85d27a;
+@icon-checked: '\f00c';
+
+
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+//
+//    select category style start
+//--------------------------------------
+
+.product-selling-categories .category-ul [type="checkbox"]:indeterminate + label:before {
+    font-family: @icons__font-name;
+    content: "\e60f";
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: @color-green2 !important;
+    transition: all .2s;
+    border: 1px solid @color-green2;
+    font-weight: bold;
+}
+
+.product-selling-categories{
+	background-color: @color-white;
+	padding: 10px 20px;
+  border: 1px solid #e0e0e0;
+  border-bottom: 0;
+       ul.category-ul {
+          .lib-list-reset-styles();
+            .selectall-cat-toggle-btn{
+              display: inline-block;
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 30px;
+              text-align: center;
+              .lib-icon-font(
+                  @icon-minus-full,
+                  @_icon-font-size: 22px,
+                  @_icon-font-position: after,
+                  @_icon-font-color: @color-black,
+                  @_icon-font-color-hover: @color-blue2,
+               );
+            }
+
+          &.level-0 {
+            padding-left: 25px;
+          }
+          &.level-1 {
+            padding-left: 30px;
+          }
+          &.level0.submenu {
+            padding-left: 20px;
+          }
+
+          li.item {
+                margin:8px 0 8px 0;
+                padding:0px 0px 0px 5px;
+                position: relative;
+                &.level2{
+                	&.item{
+						padding:0px 0px 0px 25px;
+                	}
+                }
+                &.expand {
+                   > .selectall-cat-toggle-btn {
+                        &:after {
+                          content: @icon-plus-full; 
+                        }
+                   }
+                }
+                .label {
+                  &.selectall-subcat {
+                    display: block;
+                    margin-top: 5px;
+                    strong {
+                      font-weight: @font-weight__semibold;
+                      color: @color-blue2;
+                      text-decoration: underline;
+                      text-transform: uppercase;
+
+                      &:hover {
+                        text-decoration: none;
+                        color: @color-black; 
+                      }
+                    }
+                  }
+                }
+  
+              &.level0 {
+                  color: #333333;
+                  border-bottom: 1px solid @border-color__base;
+                  padding:0 0 @indent__s 0;
+                  > label {
+                    .lib-font-size(16);
+                     font-weight: @font-weight__bold;
+                     text-transform: uppercase;
+                     display: block;
+                     position: relative;
+                     padding: 5px 10px 5px 25px;  
+                     cursor: pointer;
+                    &:after{
+                      right: 0;
+                      top: 7px;
+                      position: absolute; 
+                    }
+                    &:before{
+                      top: 7px;
+                    }
+                    &:hover {
+                      background: @color-white-smoke;
+                    }
+                  &.selectall-subcat {
+                    margin-left: 10px;
+                  }
+                }
+              }
+
+              &.has-children:not(.level0.submenu) {
+                  border-bottom: 1px solid @border-color__base;
+                  padding:0 0 @indent__s 0;
+                  font-weight: @font-weight__semibold;
+                  &.sub-cat-parent {
+                      > label {
+                          &:first-child {
+                            .lib-icon-font(
+                                @icon-minus-full,
+                                @_icon-font-size: 16px,
+                                @_icon-font-position: after,
+                                @_icon-font-margin: -3px 0 0 6px,
+                                @_icon-font-color: @color-black,
+                                @_icon-font-color-hover: @color-blue2,
+                             );
+                            .lib-font-size(16);
+                             font-weight: @font-weight__semibold;
+                             text-transform: uppercase;
+                             display: block;
+                             position: relative;
+                             padding: 5px 10px 5px 10px; 
+                             cursor: pointer;
+                            &:after {
+                              right: 10px;
+                              top: 10px; 
+                              position: absolute; 
+                            }
+                            &:hover {
+                              background: @color-white-smoke;
+                            }
+                        }
+                        &.selectall-subcat {
+                          margin-left: 10px;
+                        }
+                      }
+
+                    &.expand {
+                       > label {
+                        &:first-child { 
+                          &:after {
+                              content: @icon-plus-full; 
+                            }
+                        }
+                       }
+                    }
+                  }
+                  &:first-child {
+                    + .label {
+                         font-weight: @font-weight__semibold;
+                    }
+                  }
+              }
+              &:not(.has-children) {
+                  display: inline-block;
+                  width: 48.5%;
+                  a {
+                    text-transform: none;
+                    font-weight: @font-weight__semibold;
+                  }
+                  input[type="checkbox"]:disabled {
+                     .lib-css(opacity, 0);
+                  }
+              }
+          }
+       }
+}
+
+#categories-form{  
+	.actions-toolbar{
+    border: 1px solid #e0e0e0;
+    background: #dbdbdb;
+    border-top: 0;
+    text-align: right;
+    padding: 15px;
+    .primary{
+      float: none;
+    }
+	}
+}
+
+  .rbpanel-heading-note{
+    border: 1px solid #e0e0e0;
+    background: #fafafa;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    .categories_note_left,
+    .categories_note{
+      display: inline-block;
+      vertical-align: top;
+      span{
+        display: block;
+        color: #00a2b1;
+      }
+    }
+    .categories_note_left{
+      padding-right: 15px;
+      span{
+        color: #333333;
+      }
+    }
+  }
+
+}
+
+
+//
+//    Mobile @screen__s
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {}
+
+
+//
+//    Mobile @screen__m
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {}

@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="page-products"/>
+
+        <!--blackbird content manager block-->
+        <referenceBlock name="search.content.result" remove="true"/>
+
+        <move element="search.result" destination="searchindex.result" as="catalogsearch_fulltext"/>
+        <referenceBlock name="search.result" display="false"/>
+        <referenceBlock name="layer.category.products" remove="true" />
+
+        <referenceContainer name="content">
+            <block class="Ktpl\ElasticSearch\Block\Result" name="searchindex.result" template="result.phtml">
+                <action method="setTemplate" ifconfig="layerednavigationajax/layerfiler_config/enabled">
+                    <argument name="template" xsi:type="string">result_filter.phtml</argument>
+                </action>
+
+                <block class="Ktpl\ElasticSearch\Block\Suggestion"
+                       ifconfig="search/advanced/show_related_terms"
+                       name="suggestion"
+                       template="suggestion.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Magento\Catalog\Category"
+                       name="magento_catalog_category"
+                       template="index/magento/catalog/category.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="magento_cms_page"
+                       template="index/magento/cms/page.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="external_wordpress_post"
+                       template="index/external/wordpress/post.phtml">
+
+                    <block class="Magento\Theme\Block\Html\Pager" name="pager" as="pager"
+                           cacheable="false"/>
+                </block>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="ktpl_blog_post"
+                       template="index/ktpl/blog/post.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="ktpl_kb_article"
+                       template="index/ktpl/kb/article.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="ktpl_gry_registry"
+                       template="index/ktpl/gry/registry.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="magefan_blog_post"
+                       template="index/magefan/blog/post.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="mageplaza_blog_post"
+                       template="index/mageplaza/blog/post.phtml"/>
+
+                <block class="Magento\Cms\Block\Block" name="search.no_results" as="search.no_results">
+                    <action method="setBlockId">
+                        <argument name="blockId" xsi:type="string">no-results</argument>
+                    </action>
+                </block>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="ves_blog_post"
+                       template="index/ves/blog/post.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="ves_brand_brand"
+                       template="index/ves/brand/brand.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="magento_catalog_attribute"
+                       template="index/magento/catalog/attribute.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="aheadworks_blog_post"
+                       template="index/aheadworks/blog/post.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="amasty_faq_question"
+                       template="index/amasty/faq/question.phtml"/>
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="amasty_blog_post"
+                       template="index/amasty/blog/post.phtml"/>
+
+                <block class="Ktpl\ElasticSearch\Block\Index\Base"
+                       name="blackbird_contentmanager_content"
+                       template="index/blackbird/contentmanager/content.phtml"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © 2016 Rocket Bazaar. All rights reserved.
+See COPYING.txt for license details
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Save Comment After Event -->
+    <preference for="Magento\Rma\Model\Rma\Status\History" type="Magedelight\Rma\Model\Rma\Status\History" />
+    <preference for="Magedelight\Rma\Api\MdRmaManagementInterface" type="Magedelight\Rma\Model\MdRmaManagement" />
+    
+    <preference for="Magedelight\Rma\Api\CommentManagementInterface" type="Magedelight\Rma\Model\Service\CommentManagement" />
+    <type name="Magento\Rma\Model\ResourceModel\Item">
+        <plugin name="validate_duration_for_rma_generation" type="Magedelight\Rma\Plugin\Model\ResourceModel\Item"/>
+    </type>
+
+    <preference for="Magento\Rma\Controller\Tracking\PackagePrint" type="Magedelight\Rma\Controller\Tracking\PackagePrint" />
+
+</config>

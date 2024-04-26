@@ -1,0 +1,299 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_VendorPromotion
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+/** @var $block Magedelight\Commissions\Block\Sellerhtml\Commission\Grid */
+$addNewActionUrl = $this->getUrl('*/*/new', ['_current' => true, '_use_rewrite' => true]);
+$session = $block->getVendorSession();
+$collection = $block->getCollection();
+$tab = $this->getRequest()->getParam('tab');
+?>
+<form method="get" action="<?php echo $block->getSubmitUrl() ?>" id="vendor_invoice_search" name="promotions_salesrule_grid">        
+    <div class="row cart-list">
+        <div class="row-gutter toolbar-wrapper mb10">
+            <div class="col-md-4">
+                <input type="hidden" name="tab" value="<?php echo $this->getRequest()->getParam('tab', '2,0') ?>">
+                <input id="sort-order" type="hidden" name="sort_order" value="<?php echo $this->getRequest()->getParam('sort_order', 'name') ?>">
+                <input id="sort-direction" type="hidden" name="dir" value="<?php echo $this->getRequest()->getParam('dir', 'DESC')
+?>">    
+                <div class="block block-search">
+                    <div class="content">
+                        <div class="field search-catalog">
+                            <div class="control">
+                                <input type="text" name="q" id="vendor_order_search" class="input-text vendor search-order-input" placeholder="<?php echo __('Search...') ?>"  value="<?php
+                                if ($this->getRequest()->getParam('q', '')) {
+                                    echo htmlspecialchars($this->getRequest()->getParam('q', ''));
+                                }
+                                ?>">
+                            </div>
+                            <div class="actions">
+                                <div class="vendor primary"><button type="submit" class="vendor action login primary"><span><?php echo __('Search') ?></span></button></div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>            
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-3 pt10">
+                        <a rel="new" href="javascript:void(0)" class="action-reset search"><?php echo __('Reset') ?></a>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="toolbar-filter-wrapper">
+                            <div class="data-grid-filters-action-wrap">
+                                <span class="clear-filters"><a rel="new" href="javascript:void(0)" class="action action-reset filter"><?php echo __('Clear') ?></a></span>
+                                <button class="action secondary action-default _active mr20" type="button" data-action="grid-filter-expand" title="Filters">
+                                    <span><?php echo __('Filters') ?></span>
+                                </button>
+                                <a href="<?php echo $addNewActionUrl; ?>/">
+                                    <button class="action primary" type="button" data-action="grid-filter-expand" title="Add New">
+                                        <span><?php echo __('Add New') ?></span>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-wrapper">    
+        <fieldset class="row fieldset">
+            <div class="row-gutter filter-row">
+                <div class="col-md-3">
+                    <fieldset class="fieldset field-full-width">
+                        <legend class="legend">
+                            <span class=""><?php echo __('Rule') ?></span>
+                        </legend>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input-text" type="text" name="name" id="name" value="<?php
+                                if ($this->getRequest()->getParam('name')) {
+                                    echo trim(htmlspecialchars($this->getRequest()->getParam('name')));
+                                }
+                                ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <?php
+                    $startDateValue = "";
+                    if ($this->getRequest()->getParam('start_date')) {
+                        $startDateValue = $this->getRequest()->getParam('start_date');
+                    }
+                ?>
+
+                <div class="col-md-3" id="start_end_date">
+                    <fieldset class="fieldset field-full-width mb5">
+                        <legend class="legend">
+                            <span class=""><?php echo __('Start Date') ?></span>
+                        </legend>
+                        <div class="field">
+                            <div class="control date-control date-field-container">
+                                <input class="input-text" type="text" name="start_date" placeholder="MM/DD/YYYY"
+                                   readonly="readonly" id="start_date" value="<?php echo $startDateValue; ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <?php
+                    $endDateValue = "";
+                    if ($this->getRequest()->getParam('end_date')) {
+                        $endDateValue = $this->getRequest()->getParam('end_date');
+                    }
+                    ?>
+                    <fieldset class="fieldset field-full-width">
+                        <legend class="legend">
+                            <span class=""><?php echo __('End Date') ?></span>
+                        </legend>
+                        <div class="field">
+                            <div class="control date-control date-field-container">
+                                <input class="input-text" type="text" name="end_date" placeholder="MM/DD/YYYY"
+                                   readonly="readonly" id="end_date" value="<?php echo $endDateValue; ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-3">
+                    <fieldset class="fieldset field-full-width">
+                        <legend class="legend">
+                            <span class=""><?php echo __('Status') ?></span>
+                        </legend>
+                        <div class="field">
+                            <div class="control">
+                                <select class="" name="status" id="status">
+                                    <option value="" 
+                                            <?php if ($this->getRequest()->getParam('status') == '') {
+                                                echo __('selected');
+                                            } ?>>
+                                            <?php echo __('--Please Select--'); ?>
+                                    </option>
+                                    <option value="1" 
+    <?php if ($this->getRequest()->getParam('status') == 1) {
+        echo __('selected');
+    } ?>>
+                                                    <?php echo __('Active'); ?>
+                                        </option>
+                                        <option value="0"
+    <?php if ($this->getRequest()->getParam('status') == '0') {
+        echo __('selected');
+    } ?>>
+    <?php echo __('Inactive'); ?>
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>                
+            </div>            
+        </fieldset>
+        <div class="row">
+            <div class="filters-footer col-md-12">
+                <div class="action-toolbar main-actions">
+                    <button class="action primary grid-filter-cancel cancel" type="reset" data-action="grid-filter-cancel" >
+                        <span><?php echo __('Cancel') ?></span>
+                    </button>
+                    <button class="action primary" type="submit" data-action="grid-filter-apply" >
+                        <span><?php echo __('Apply') ?></span>
+                    </button>
+                </div>
+            </div>
+        </div> 
+    </div>
+</form>
+<div class="table-wrapper rb-commision-invoice">
+    <table class="data table rb-table-commision-items  history" id="commision-table">
+        <thead>
+            <tr>
+                <th scope="col" sortorder="rule_id" class="col date sortable"><?php echo __('ID') ?></th>
+                <th scope="col" sortorder="name" class="col numeric sortable"><?php echo __('Rule') ?></th>
+                <th scope="col" sortorder="code" class="col amount sortable"><?php echo __('Coupon Code') ?></th>
+                <th scope="col" sortorder="from_date" class="col numeric sortable"><?php echo __('Start') ?></th>
+                <th scope="col" sortorder="to_date" class="col amount sortable"><?php echo __('End') ?></th>
+                <th scope="col" sortorder="is_active" class="col numeric sortable"><?php echo __('Status') ?></th>
+                <th scope="col" sortorder="rule_website" class="col"><?php echo __('Website') ?></th>
+                <th scope="col" sortorder="sort_order" class="col amount sortable"><?php echo __('Priority') ?></th>
+                <th scope="col" class="col action"><?php echo __('Action') ?></th>
+
+            </tr>
+        </thead>
+        <tbody> 
+<?php if ($collection->count()) { ?>
+    <?php foreach ($collection as $rule) { ?>
+                    <tr>
+                        <td class="col numeric"><?php echo $rule->getRuleId(); ?></td>
+                        <td class="col"><?php echo $rule->getName(); ?></td>
+                        <td class="col"><?php echo $rule->getCode() ?></td>
+                        <td class="col"><?php echo $rule->getFromDate() ?></td>
+                        <td class="col"><?php echo $rule->getToDate() ?></td>
+                        <td class="col"><?php if ($rule->getIsActive()) {
+                echo __('Active');
+            } else {
+                echo __('Inactive');
+            } ?></td>
+                        <td class="col"><?php echo $block->renderWebsite($rule->getWebsiteIds()) ?></td>
+                        <td class="col"><?php echo $rule->getSortOrder() ?></td>
+                        <td class="col data-grid-actions-cell action"><a href="<?php echo $block->getEditUrl($rule->getId()) ?>" class="action download-invoice"><?php echo __('Edit') ?></a></td>
+                    </tr>
+    <?php } ?>
+<?php } else { ?>
+                <tr><td colspan="9"> <div class="message info empty" id="commision-msg"></div></td></tr>
+<?php } ?>
+        </tbody>
+    </table>
+</div>
+<?php if ($block->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+<?php endif ?>
+<script type="text/javascript">
+    require(['jquery',
+        'mage/calendar', /* Calender widget */
+    ], function ($) {
+        $(".filter-wrapper").hide();
+        $(".action-default").click(function () {
+            $(".filter-wrapper").toggle(500);
+        });
+
+        $(".grid-filter-clear-all").click(function () {
+            $form = $(this).parents('form');
+            $(':input:not([type=hidden])', $form).val("");
+            $($form).submit();
+        });
+
+
+        $("#start_end_date").dateRange({
+            buttonText: "<?php echo __('Select Date') ?>",
+            showOn: "button",
+            from: {
+                id: "start_date"
+            },
+            to: {
+                id: "end_date"
+            }
+        });
+
+        $(document).ready(function () {
+            /*
+             * Sorting feature
+             */
+            $currentSortOrder = $('#sort-order').val();
+            $currentSortDir = $('#sort-direction').val();
+
+            if ($currentSortOrder != null && $currentSortOrder != '') {
+                $sortDirClass = ($currentSortDir == 'DESC') ? 'descend' : 'ascend';
+                $('th[sortorder="' + $currentSortOrder + '"]').addClass($sortDirClass);
+            }
+            $sortDir = 'ASC';
+
+            $('#commision-table .sortable').click(function ($e) {
+                $sortOrder = $(this).attr('sortorder');
+                if ($currentSortOrder == $sortOrder) {
+                    $sortDir = ($currentSortDir == 'DESC') ? 'ASC' : 'DESC';
+                }
+                $('#sort-order').val($sortOrder); /*for post */
+                $('#sort-direction').val($sortDir); /*for post */
+                $('#vendor_invoice_search').submit();
+            });
+
+            $(".grid-filter-cancel").click(function () {
+                $(this).parents('.filter-wrapper').toggle(500);
+            });
+
+            $(".action-reset").click(function () {
+                $form = $(this).parents('form');
+                if ($(this).hasClass('search')) {
+                    $parent = $('.block-search', $form);
+                } else {
+                    $parent = $('.filter-wrapper', $form);
+                }
+                $(':input:not([type=hidden])', $parent).val("");
+                jQuery('#session-clear-commision').val(1);
+                $($form).submit();
+            });
+
+            $value = "false";
+            $('input[type=text]').each(function () {
+                var text_value = $(this).val();
+                if (text_value != '')
+                {
+                    $value = "true";
+                }
+
+            });
+            if (jQuery('#vendor_order_search').val() != "" || $value == "true") {
+                jQuery('#commision-msg').html('<span>Your search result could not find</<span>');
+            } else {
+                jQuery('#commision-msg').html('<span>We couldn\'t find any records.</<span>');
+            }
+        });
+    });
+</script>                

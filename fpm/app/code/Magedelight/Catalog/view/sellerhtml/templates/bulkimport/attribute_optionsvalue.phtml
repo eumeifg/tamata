@@ -1,0 +1,65 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+$attributes = $this->getData('attribulteData');
+$excludedAttribute = $this->getAllowedAttributeOptions($attributes);
+
+?>
+
+<div class="popup-section-content-wrapper">
+    <div class="tray">
+    <div class="rbpanel bn">
+       <div class="rbpanel-body">
+       <div class="attribute-list" id="myModel">
+            <?php
+            foreach ($excludedAttribute as $key => $value) {
+                if ($key) {
+                    ?>
+                <ul class="category-ul category-wrapper-ul level-1">
+                <li class="item level-1">
+                    <div class="category-title">
+                        <?= __('Category Name') . " : " . $key; ?>
+                    </div>
+                    <?php
+                    if ($value) {
+                        foreach ($value as $options => $ovalue) {
+                            ?>
+                        <ul class="category-ul attribute-wrapper-ul level-2">
+                            <li class="item level-2">
+                                <div class="attribute-title">
+                                   <span><?= __('Attribute Name'); ?> : <strong><?= $options; ?></strong></span>
+                                </div>
+                                <?php  if ($options) {
+                                    asort($ovalue); ?>
+                                    <ul class="category-ul attribute-options level-3">
+                                    <?php foreach ($ovalue as $optionid => $optionvalue) { ?>
+                                            <?php if ($optionid === 0) { ?>
+                                                <li class="item level-3"><?= $optionvalue; ?></li>
+                                            <?php } elseif (!empty($optionid)) { ?>
+                                                <li class="item level-3"><?= $optionvalue; ?></li>
+                                            <?php } ?> 
+                                    <?php } ?>
+
+                                    </ul>
+                                <?php } ?>
+                            </li>
+                        </ul>
+                        <?php } ?>
+                    <?php } ?>
+                    </li>
+                </ul>
+                <?php } ?>
+            <?php } ?>
+       </div>
+       </div>
+    </div>
+    </div>
+</div>

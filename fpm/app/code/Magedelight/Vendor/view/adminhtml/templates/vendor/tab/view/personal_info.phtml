@@ -1,0 +1,74 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magedelight\Vendor\Model\Vendor;
+
+$isEnabledBankingInfo = $block->getConfigValue(Vendor::IS_ENABLED_BANKING_DETAILS_XML_PATH);
+$vendorData = $block->getVendorData();
+$allowedAddressHtmlTags = ['b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub', 'sup', 'ul'];
+?>
+<div class="fieldset-wrapper customer-information">
+    <div class="fieldset-wrapper-title">
+        <span class="title">
+            <?= $block->escapeHtml(__('Business')) ?>
+            <?php if ($isEnabledBankingInfo) { ?>
+                <?= $block->escapeHtml(__(' & Bank Information')) ?>
+            <?php } ?>
+        </span>
+    </div>
+    <table class="admin__table-secondary">
+        <tbody>
+        <tr>
+            <th><?= $block->escapeHtml(__('Vendor Name:')) ?></th>
+            <td><?= $block->escapeHtml($vendorData->getName()) ?></td>
+        </tr>
+        <tr>
+            <th><?= $block->escapeHtml(__('Vendor Email:')) ?></th>
+            <td><?= $block->escapeHtml($vendorData->getEmail()) ?></td>
+        </tr>
+        <tr>
+            <th><?= $block->escapeHtml(__('Vendor Mobile:')) ?></th>
+            <td><?= $block->escapeHtml($vendorData->getMobile()) ?></td>
+        </tr>
+        <tr>
+            <th><?= $block->escapeHtml(__('Business Name:')) ?></th>
+            <td><?= $block->escapeHtml($vendorData->getBusinessName()) ?></td>
+        </tr>
+        <?php if (!$block->isRemoved('vat', 'business')) { ?>
+        <tr>
+            <th><?= $block->escapeHtml(__('VAT:')) ?></th>
+            <td><?= $block->escapeHtml($vendorData->getVat()) ?></td>
+        </tr>
+        <?php } ?>
+        <?php if ($isEnabledBankingInfo) { ?>
+        <tr>
+            <th><?= $block->escapeHtml(__('Account Holder:')) ?></th>
+            <td><?= $block->escapeHtml($vendorData->getBankAccountName()) ?></td>
+        </tr>
+        <tr>
+            <th><?= $block->escapeHtml(__('Bank Account:')) ?></th>
+            <td><?= $block->escapeHtml($vendorData->getBankAccountNumber()) ?></td>
+        </tr>
+        <tr>
+            <th><?= $block->escapeHtml(__('Bank Name:')) ?></th>
+            <td><?= $block->escapeHtml($vendorData->getBankName()) ?></td>
+        </tr>
+        <tr>
+            <th><?= $block->escapeHtml(__('Bank IFSC:')) ?></th>
+            <td><?= $block->escapeHtml($vendorData->getIfsc()) ?></td>
+        </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+    <address>
+        <strong><?= $block->escapeHtml(__('Default Business Address')) ?></strong><br/>
+        <?= $block->escapeHtml($block->getBillingAddressHtml(), $allowedAddressHtmlTags) ?>
+    </address>
+
+    <address>
+        <strong><?= $block->escapeHtml(__('Vendor Pickup Address')) ?></strong><br/>
+        <?= $block->escapeHtml($block->getPickupAddressHtml(), $allowedAddressHtmlTags) ?>
+    </address>
+</div>

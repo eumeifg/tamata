@@ -1,0 +1,17 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_VendorPromotion
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php echo $this->getElement()->getLabelHtml(); ?>
+<div class="control<?php echo ($this->getElement()->getName() == 'from_date' || $this->getElement()->getName() == 'to_date') ? ' date-control date-field-container': '';?> ">
+
+<?php echo $this->getElementHtml() ?>
+</div>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <vendor_sales>
+            <order>
+                <auto_confirm>1</auto_confirm>
+                <vendor_auto_confirm>0</vendor_auto_confirm>
+                <display_main_order_status>0</display_main_order_status>
+            </order>
+            <payment_settings>
+                <payment_methods>free,checkmo,cashondelivery</payment_methods>
+                <allow_to_generate_invoice>1</allow_to_generate_invoice>
+            </payment_settings>
+        </vendor_sales>
+        
+        <rb>
+            <odetail>
+                <orderpage_enable>0</orderpage_enable>
+                <orderpage_shipping>0</orderpage_shipping>
+                <orderpage_billing>0</orderpage_billing>
+                <orderpage_shippingmethod>0</orderpage_shippingmethod>
+                <orderpage_paymentmethod>0</orderpage_paymentmethod>
+                <orderpage_itemslist>0</orderpage_itemslist>
+            </odetail>
+        </rb>
+        
+        <emailconfiguration>
+            <check_inventory>
+                <template>emailconfiguration_check_inventory_template</template>
+            </check_inventory>
+            <vendor_order>
+                <enabled>1</enabled>
+                <template>emailconfiguration_vendor_order_template</template>           
+            </vendor_order>
+            <customer_order_cancel>
+                <vendor_template>emailconfiguration_customer_order_cancel_vendor_template</vendor_template>
+                <admin_template>emailconfiguration_customer_order_cancel_admin_template</admin_template>
+                <item_cancel_customer_template>emailconfiguration_customer_order_cancel_item_cancel_customer_template</item_cancel_customer_template>
+                <item_cancel_vendor_template>emailconfiguration_customer_order_cancel_item_cancel_vendor_template</item_cancel_vendor_template>
+                <item_cancel_admin_template>emailconfiguration_customer_order_cancel_item_cancel_admin_template</item_cancel_admin_template>
+            </customer_order_cancel>
+        </emailconfiguration>
+    </default>
+</config>

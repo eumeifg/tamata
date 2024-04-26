@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ktpl_Pushnotification::pushnotifications"
+             resource="Ktpl_Pushnotification::pushnotifications"
+             module="Ktpl_Pushnotification"
+             parent="Ktpl_Core::menu"
+             sortOrder="9999"
+             title="Manage Push Notifications"/>
+
+        <add id="Ktpl_Pushnotification::ktpl_pushnotification_ktpl_pushnotifications"
+             resource="Ktpl_Pushnotification::ktpl_pushnotification_ktpl_pushnotifications"
+             module="Ktpl_Pushnotification"
+             parent="Ktpl_Pushnotification::pushnotifications"
+             sortOrder="10"
+             action="ktpl_pushnotification/ktplpushnotifications/index"
+             title="Push Notifications"/>
+
+        <add id="Ktpl_Pushnotification::ktpl_pushnotification_ktpl_devicetokens"
+             resource="Ktpl_Pushnotification::ktpl_pushnotification_ktpl_devicetokens"
+             module="Ktpl_Pushnotification"
+             parent="Ktpl_Pushnotification::pushnotifications"
+             sortOrder="20"
+             action="ktpl_pushnotification/ktpldevicetokens/index"
+             title="Device Tokens"/>
+
+        <add id="Ktpl_Pushnotification::pushnotifications_configuration"
+             resource="Ktpl_Pushnotification::pushnotifications_configuration"
+             module="Ktpl_Pushnotification"
+             parent="Ktpl_Pushnotification::pushnotifications"
+             sortOrder="30"
+             action="adminhtml/system_config/edit/section/pushnotification"
+             title="Configuration"/>
+    </menu>
+</config>

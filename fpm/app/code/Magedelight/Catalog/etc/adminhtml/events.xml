@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="vendor_product_list_after"> 
+        <observer name="vendorProductIndexerAfterList" instance="Magedelight\Catalog\Observer\VendorProductIndexerAfterList" /> 
+    </event>
+    <event name="vendor_product_unlist_after"> 
+        <observer name="vendorProductIndexerAfterUnlist" instance="Magedelight\Catalog\Observer\VendorProductIndexerAfterUnlist" /> 
+    </event>
+    <event name="vendor_product_mass_list_after"> 
+        <observer name="vendorProductIndexerAfterMassList" instance="Magedelight\Catalog\Observer\VendorProductIndexerAfterMassList" />
+        <observer name="vendorproductmasslistafter" instance="Magedelight\Catalog\Observer\VendorProductMassListAfter" />
+    </event>
+    <event name="vendor_product_mass_unlist_after">
+        <observer name="vendorProductIndexerAfterMassUnlist" instance="Magedelight\Catalog\Observer\VendorProductIndexerAfterMassUnlist" /> 
+    </event>
+    <event name="vendor_product_save_after">
+        <observer name="vendorProductIndexerAfterCatalogProductSaveAfter" instance="Magedelight\Catalog\Observer\VendorProductIndex" />
+    </event>
+    <event name="catalog_product_save_after">
+        <observer name="vendoe_productdetail_save" instance="Magedelight\Catalog\Observer\Product\Save"  />
+    </event>
+    <event name="catalog_product_attribute_update_before">
+        <observer name="vendorProductMassIndexerOnProductAttributeUpdateBefore" instance="Magedelight\Catalog\Observer\VendorProductMassIndexer" />
+    </event>
+    <event name="vendor_status_mass_save_after">
+        <observer name="vendorProductMassIndexerOnVendorStatusMassSaveAfter" instance="Magedelight\Catalog\Observer\VendorProductMassIndexer" />
+    </event>
+    <event name="catalog_entity_attribute_save_after">
+        <observer name="attribute_description" instance="Magedelight\Catalog\Observer\Tooltip\CatalogAttributeSaveAfterObserver" />
+        <observer name="update_attribute_custom_placeholder" instance="Magedelight\Catalog\Observer\Placeholder\CatalogAttributeSaveAfterObserver" />
+    </event>
+    
+    <event name="vendor_product_admin_status_change">
+        <observer name="vendorproductadminstatuschange" instance="Magedelight\Catalog\Observer\VendorProductAdminStatus" />
+    </event>
+    <event name="vendor_product_admin_delete">
+        <observer name="vendorproductadmindelete" instance="Magedelight\Catalog\Observer\VendorProductAdminDelete" />
+    </event>
+    <event name="vendor_product_admin_mass_delete">
+        <observer name="vendorproductadminmassdelete" instance="Magedelight\Catalog\Observer\VendorProductAdminMassDelete" />
+    </event>
+    <event name="vendor_product_admin_list">
+        <observer name="vendorproductadminlist" instance="Magedelight\Catalog\Observer\VendorProductAdminList" />
+    </event>
+    <event name="vendor_product_approve_delete">
+        <observer name="vendorproductapprovedelete" instance="Magedelight\Catalog\Observer\VendorProductApproveDelete" />
+    </event>
+    <event name="vendor_product_massdelete_after">
+        <observer name="vendorproductmassdeleteafter" instance="Magedelight\Catalog\Observer\VendorProductMassdeleteAfter" />
+    </event>
+    <event name="vendor_product_admin_unlist">
+        <observer name="vendorproductadminunlist" instance="Magedelight\Catalog\Observer\VendorProductAdminUnList" />
+    </event>
+</config>

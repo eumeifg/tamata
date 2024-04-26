@@ -1,0 +1,67 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var \Magedelight\Catalog\Block\Category $block
+ *
+ */
+?>
+<div class="sections download-category-template-sections signup-steps-sections profile-steps-sections">
+    <div class="panel download-category-template-panel signup-steps profile-steps mb20">
+        <div class="rb-container">
+            <div class="row signup-step-content profile-step-content download-category-template-list active">
+                <div class="col-md-12 col-lg-12 col-xl-12">
+                    <div class="rbpanel bn">
+                        <div class="rbpanel-heading p10">
+                            <span class="sub-title"><?= __("Download Category Template") ?></span>
+                        </div>
+                        <div class="rbpanel-body">
+                            <fieldset class="fieldset">
+                                <div class="category-list" id="category-list">
+                                    <?= $this->getCategories(); ?>
+                                </div>
+                            </fieldset>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery', /* jquery Library */
+        'jquery/ui', /* Jquery UI Library */
+        'jquery/validate', /* Jquery Validation Library */
+        'mage/mage',
+        'mage/translate', /* Magento text translate (Validation message translte as per language) */
+        'Magedelight_Catalog/js/jquery.fileupload',
+        'Magedelight_Catalog/js/jquery.ui.widget',
+        'Magedelight_Catalog/js/jquery.fileupload-validate',
+        'Magedelight_Catalog/js/jquery.fileupload-process'
+    ], function ($) {
+        $('#category-list .item .category-ul.level-3').css('display', 'none');
+        $('#category-list .item .category-ul.level-4').css('display', 'none');
+        $('.category-ul li :checkbox').parent('li').parent('ul').addClass('parent');
+        $('.category-ul.level-2').removeClass('parent');
+        $('.category-ul li.level-2').addClass('expand');
+        $(document).on('click', '.category-ul li.level-2 > label', function () {
+            ele = $(this);
+            $(ele).parent('li').toggleClass('expand');
+            $(ele).siblings('.category-ul').slideToggle(800);
+        });
+        $(document).on('click', '.category-ul li.level-3 > label', function () {
+            ele = $(this);
+            $(ele).parent('li').toggleClass('expand');
+            $(ele).siblings('.category-ul').slideToggle(800);
+        });
+    });
+</script>

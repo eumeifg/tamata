@@ -1,0 +1,7 @@
+/**
+ * Copyright © 2018 Krish Technolabs. All rights reserved.
+ * See COPYING.txt for license details
+ */
+#row_navlinks_before_menu_items .value, #row_navlinks_after_menu_items .value{
+    width:100%;
+}

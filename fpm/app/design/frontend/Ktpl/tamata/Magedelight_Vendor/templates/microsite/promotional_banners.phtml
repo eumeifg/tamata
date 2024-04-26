@@ -1,0 +1,65 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php
+$vendorData = $block->getVendorData();
+$mobilebanner1URL = $banner1URL = $mobilebanner2URL = $banner2URL='';
+if (empty($vendorData['vendor_id'])) {
+    $vendorData['vendor_id'] = $this->getRequest()->getParam('vid');
+}
+?>
+<div class="rb-wrap">
+    <div class="rb-left">
+        <?php
+            if (!empty($vendorData['promo_banner_1'])):
+                $banner1URL = $block->bannerResize($vendorData['promo_banner_1'], 759, 250);
+        ?>
+            <div class="microsite_top_content">
+                <div class="microsite_banner"><a href="<?= $vendorData['promo_banner_associate_url1']?>"><img src="<?php echo $banner1URL; ?>" alt="" title="" /></a></div>
+            </div>
+        <?php endif; ?>
+        <?php if (!empty($vendorData['mobile_promo_banner_1'])):
+            $mobilebanner1URL = $block->bannerResize($vendorData['mobile_promo_banner_1'], 759, 250); ?>
+            <div class="mobile_banner_container_1">
+                <div class="mobile_microsite_banner"><a href="<?= $vendorData['mobile_banner_associate_url'] ?>"><img src="<?php echo $mobilebanner1URL; ?>" alt="" title="" /></a></div>
+            </div>
+        <?php endif; ?>
+        <?php
+            if (!empty($vendorData['promo_banner_2'])):
+                $banner2URL = $block->bannerResize($vendorData['promo_banner_2'], 759, 250);
+        ?>
+            <div class="microsite_top_content">
+                <div class="microsite_banner"><a href="<?= $vendorData['promo_banner_associate_url2']?>"><img src="<?php echo $banner2URL; ?>" alt="" title="" /></a></div>
+            </div>
+        <?php endif; ?>
+        <?php
+        if (!empty($vendorData['mobile_promo_banner_2'])):
+            $mobilebanner2URL = $block->bannerResize($vendorData['mobile_promo_banner_2'], 759, 250); ?>
+            <div class="mobile_banner_container_2">
+                <div class="mobile_microsite_banner"><a href="<?= $vendorData['mobile_banner_associate_url2']?>"><img src="<?php echo $mobilebanner2URL; ?>" alt="" title="" /></a></div>
+            </div>
+            <?php endif; ?>
+    </div>
+    <div class="rb-right">
+        <?php
+            if (!empty($vendorData['promo_banner_3'])):
+                $banner3URL = $block->bannerResize($vendorData['promo_banner_1'], 760, 520);
+        ?>
+            <div class="microsite_top_content">
+                <div class="microsite_banner"><a href="<?= $vendorData['promo_banner_associate_url3']?>"><img src="<?php echo $block->getMediaUrl() .'microsite/promo_banners/'. $vendorData['promo_banner_3']; ?>" alt="" title="" /></a></div>
+            </div>
+        <?php endif; ?>
+            <div class="mobile_banner_container_3">
+                <div class="mobile_microsite_banner"><a href="<?= $vendorData['mobile_banner_associate_url3']?>"><img src="<?php echo $block->getMediaUrl() .'microsite/promo_banners/'. $vendorData['mobile_promo_banner_3']; ?>" alt="" title="" /></a></div>
+            </div>
+    </div>
+</div>

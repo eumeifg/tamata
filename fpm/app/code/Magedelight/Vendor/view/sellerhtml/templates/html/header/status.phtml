@@ -1,0 +1,57 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/* @codingStandardsIgnoreFile */
+
+/**
+ * @var \Magedelight\Vendor\Block\Account\Profile $block
+ */
+$vendor = $block->getVendor();
+$statusMassage = $block->getStatusMessage();
+?>
+<?php if (is_array($statusMassage) && isset($statusMassage['msg'])) { ?>
+    <div class="sticky-status-message status-<?= $block->getVendorStatusLabel() ?>"><?= $statusMassage['msg'] ?><span class="close">X</span></div>
+    <script type="text/javascript">
+        require([
+            'jquery' /* jquery Library */
+        ], function ($) {
+            $(document).ready(function () {
+                setTimeout(function () {
+                    logoutForced('<?= $block->getLogoutUrl(); ?>');
+                }, 8000);
+            });
+        });
+        function logoutForced(url)
+        {
+            window.location.href = url;
+        }
+    </script>
+<?php } elseif (is_object($statusMassage) && $statusMassage->getText() != '') { ?>
+    <div class="sticky-status-message status-<?= $block->getVendorStatusLabel() ?>"><?= $statusMassage ?><span class="close">X</span></div>
+    <script type="text/javascript">
+        require([
+            'jquery' /* jquery Library */
+        ], function ($) {
+            $(document).ready(function () {
+                $('.sticky-status-message .close').click(function () {
+                    hideStatusMessage($);
+                });
+                setTimeout(function () {
+                    hideStatusMessage($);
+                }, 8000);
+            });
+        });
+        function hideStatusMessage($)
+        {
+            $('.sticky-status-message').fadeOut(500);
+        }
+    </script>
+<?php } ?>

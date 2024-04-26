@@ -1,0 +1,49 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Backend
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+/** @var $block \Magedelight\Backend\Block\Widget\Form\Container */
+?>
+<?= /* @escapeNotVerified */ $block->getFormInitScripts() ?>
+<?php if ($block->getButtonsHtml('header')) : ?>
+    <div class="page-form-actions" <?= /* @escapeNotVerified */ $block->getUiId('content-header') ?>><?= $block->getButtonsHtml('header') ?></div>
+<?php endif; ?>
+<?= $block->getFormHtml() ?>
+<?php if ($block->hasFooterButtons()) : ?>
+    <div class="content-footer">
+        <p class="form-buttons"><?= $block->getButtonsHtml('footer') ?></p>
+    </div>
+<?php endif; ?>
+<script>
+require([
+    'jquery',
+    'mage/backend/form',
+    'mage/backend/validation'
+], function($){
+
+    $('#edit_form').form()
+        .validation({
+            validationUrl: '<?= /* @escapeNotVerified */ $block->getValidationUrl() ?>',
+            highlight: function(element) {
+                var detailsElement = $(element).closest('details');
+                if (detailsElement.length && detailsElement.is('.details')) {
+                    var summaryElement = detailsElement.find('summary');
+                    if (summaryElement.length && summaryElement.attr('aria-expanded') === "false") {
+                        summaryElement.trigger('click');
+                    }
+                }
+                $(element).trigger('highlight.validate');
+            }
+        });
+
+});
+</script>
+<?= /* @escapeNotVerified */ $block->getFormScripts() ?>

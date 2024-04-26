@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+    </head>
+    <update handle="seller_account"/>
+    <body>
+        <referenceContainer name="content">            
+            <block class="Magedelight\Catalog\Block\Sellerhtml\ProductRequest\Edit" name="vendor.add.new.listing" template="Magedelight_Catalog::create.phtml" cacheable="false">
+                <block class="Magedelight\Catalog\Block\Sellerhtml\ProductRequest\Vitalinfo" name="vendor.product.vital.info" as="vital" template="product/vital_info.phtml" group="vendor_detailed_info" cacheable="false">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Vital Info</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Catalog\Block\Sellerhtml\ProductRequest\Variants" name="vendor.product.variants" as="variants" template="product/variants.phtml" group="vendor_detailed_info" cacheable="false">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Variants</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Catalog\Block\Sellerhtml\ProductRequest\Offers" name="vendor.product.offers" as="offers" template="Magedelight_Catalog::product/offers.phtml" group="vendor_detailed_info" cacheable="false">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Offers</argument>
+                    </arguments>
+                </block>
+                
+                <block class="Magedelight\Catalog\Block\Sellerhtml\ProductRequest\Gallery" name="vendor.product.gallery" as="gallery" group="vendor_detailed_info" cacheable="false">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Images</argument>
+                        <argument name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Images</item>
+                            <item name="collapsible" xsi:type="boolean">true</item>
+                            <item name="opened" xsi:type="boolean">false</item>
+                            <item name="sortOrder" xsi:type="string">22</item>
+                            <item name="canShow" xsi:type="boolean">true</item>
+                            <item name="componentType" xsi:type="string">fieldset</item>
+                        </argument>
+                    </arguments>
+                    <block class="Magedelight\Catalog\Block\Sellerhtml\ProductRequest\Gallery\Content" as="content" cacheable="false" template="product/gallery.phtml">
+                        <arguments>
+                            <argument name="config" xsi:type="array">
+                                <item name="parentComponent" xsi:type="string">product_form.product_form.block_gallery.block_gallery</item>
+                            </argument>
+                        </arguments>
+                        <block class="Magedelight\Catalog\Block\Sellerhtml\ProductRequest\Gallery\Bulk" name="variants_gallery" cacheable="false">
+                            <arguments>
+                                <argument name="config" xsi:type="array">
+                                    <item name="form" xsi:type="string">product_form.product_form</item>
+                                    <item name="modal" xsi:type="string">configurableModal</item>
+                                    <item name="dataScope" xsi:type="string">productFormConfigurable</item>
+                                </argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Cms\Block\Block" name="product-image-guideline"> 
+                            <arguments> 
+                                <argument name="block_id" xsi:type="string">product-image-guideline</argument> 
+                            </arguments> 
+                        </block> 
+                    </block>
+                </block>
+                <block class="Magedelight\Catalog\Block\Sellerhtml\ProductRequest\Moreinfo" name="vendor.product.more.info" as="optionals" template="product/more_info.phtml" group="vendor_detailed_info" cacheable="false">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">More Info</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

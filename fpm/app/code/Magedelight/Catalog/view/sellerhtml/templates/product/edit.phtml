@@ -1,0 +1,431 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var \Magedelight\Catalog\Block\Product\Edit $block */
+?>
+
+<?php
+$queryParams = [
+    'p' => $this->getRequest()->getParam('p', 1),
+    'sfrm' => $this->getRequest()->getParam('sfrm', 'l'),
+    'limit' => $this->getRequest()->getParam('limit', 10),
+];
+if ($block->getVendorProduct()->getStatus() == \Magedelight\Catalog\Model\Product::STATUS_UNLISTED) {
+    $backUrl = $this->getUrl('rbcatalog/listing/index', ['tab' => '1,0', 'vpro'=> $this->getStatusTextForListing('1'), '_query' => $queryParams]);
+} else {
+    $backUrl = $this->getUrl('rbcatalog/listing/index', ['tab' => '1,0', '_query' => $queryParams]);
+}
+?>
+<?php
+if ($detailedInfoGroup = $block->getGroupChildNames('vendor_detailed_info', 'getChildHtml')):
+    ?>
+    <div class="row">
+        <div class="toolbar-wrapper mb10">
+            <div class="topbar-right col-md-4 pt10">
+                <div class="data-grid-filters-actions-wrap">
+                    <div class="data-grid-filters-action-wrap">
+                        <a href="<?= $backUrl; ?>">
+                            <button type="button" data-action="grid-filter-expand" title="Back" class="action button secondary back mrn" >
+                                <span><?= __('Back') ?></span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>            
+        </div>   
+        <div class="col-md-12">
+            <div class="rbpanel" data-mage-init='{"tabs":{"openedState":"active"}}'>
+                <?php $layout = $block->getLayout();
+                if ($this->getRequest()->getParam('store') != '') {
+                    $store = $this->getRequest()->getParam('store');
+                } else {
+                    $store = 'default';
+                }
+                ?>
+                <form name="product_request_info_form"
+                      id="product-request-info-form" 
+                      enctype="multipart/form-data" 
+                      method="post" 
+                      action="<?= $block->getEditPostActionUrl() ?>"
+                      data-hasrequired="<?= __('* Required Fields') ?>" 
+                      data-mage-init='{"validation":{}}'>
+                    <input type="hidden" name="offer[attribute_set_id]" value="<?= $block->getCategoryAttributeSetId() ?>"/>
+                    <input type="hidden" name="offer[main_category_id]" value="<?= $block->getLoadedCategory()->getId() ?>"/>
+                    <input type="hidden" name="offer[marketplace_product_id]" value="<?= $block->getProduct()->getId() ?>"/>
+                    <input type="hidden" name="offer[category_id]" value="<?= $block->getLoadedCategory()->getId() ?>"/>                
+                    <input type="hidden" name="offer[product_request_id]" value = "<?= $block->getAttributeValue('product_request_id') ?>"/>
+                    <input type="hidden" id="vendor-product-id" name="offer[vendor_product_id]" value = "<?= $this->getRequest()->getParam('id') ?>"/>
+                    <input type="hidden" name="store" value = "<?= $store; ?>"/>
+                    <input type="hidden" name="edit" value = "1"/>
+                    <div class="rbpanel-heading pn">
+                        <div class="product data items rbpanel-tabs">
+                            <?php foreach ($detailedInfoGroup as $name) { ?>
+                                <?php
+                                $html = $layout->renderElement($name);
+                                $alias = $layout->getElementAlias($name);
+                                /* if (!trim($html) || ($block->isProductEditMode() && ($alias !== 'offers' && $alias !== 'variants'))) {
+                                  continue;
+                                  } */
+
+                                if (!trim($html) || $block->isProductEditMode()) {
+                                    if ($block->getProduct()->getTypeId() == 'configurable' && ($alias == 'offers')) {
+                                        continue;
+                                    }
+                                }
+                                /* skip tab heading if no attributes found for selected categori's attribute set */
+                                /* if (is_null($block->getVariantAttributes()) && ($alias === 'variants')) {
+                                  continue;
+                                  }
+                                 */
+                                $label = $block->getChildData($alias, 'title');
+                                ?>
+                                <div class="data item title tab-title"
+                                     aria-labeledby="tab-label-<?= $alias; ?>-title"
+                                     data-role="collapsible" id="tab-label-<?= $alias; ?>">
+                                    <a class="data switch"
+                                       tabindex="-1"
+                                       data-toggle="switch"
+                                       href="#<?= $alias; ?>"
+                                       id="tab-label-<?= $alias; ?>-title">
+                                            <?= $label; ?>
+                                    </a>
+                                    <span class="vendor-nav-item-messages no-display" data-role="item-messages">
+                                        <span class="tab-validation-error">
+                                            <span class="vendor-page-nav-item-message-icon"></span>
+                                            <span class="vendor-page-nav-item-message-tooltip">
+                                                <?= __('This tab contains invalid data. Please resolve this before saving.') ?>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="rbpanel-body">
+                        <div class="rbpanel-body-top-container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <?= $block->getBreadCrumb() ?>                                    
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="actions-toolbar">
+                                        <div class="primary">
+                                            <button type="button"
+                                                    title="<?= __('Previous') ?>"
+                                                    class="prev-tab action button secondary button-s" disabled="disabled">
+                                                <span><?= __('Previous') ?></span>
+                                            </button>
+                                            <button type="button"
+                                                    title="<?= __('Next') ?>"
+                                                    class="next-tab action button secondary button-s ">
+                                                <span><?= __('Next') ?></span>
+                                            </button>
+                                            <button type="button" style="display:none;"
+                                                    title="<?= __('Scroll Down') ?>"
+                                                    class="scroll-down action button secondary button-s scrollers">
+                                                <span><?= __('Scroll Down') ?></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="variant-tab-content">
+                            <?php foreach ($detailedInfoGroup as $name): ?>
+                                <?php
+                                $html = $layout->renderElement($name);
+                                $alias = $layout->getElementAlias($name);
+                                /*
+                                  if (!trim($html) || ($block->isProductEditMode() && ($alias !== 'offers' && $alias !== 'variants'))) {
+                                  continue;
+                                  } */
+
+                                if (!trim($html) || $block->isProductEditMode()) {
+                                    if ($block->getProduct()->getTypeId() == 'configurable' && ($alias == 'offers')) {
+                                        continue;
+                                    }
+                                }
+                                /* skip tab content if no attributes found for selected categori's attribute set */
+                                /*
+                                  if (is_null($block->getVariantAttributes()) && ($alias === 'variants')) {
+                                  continue;
+                                  } */
+                                $label = $block->getChildData($alias, 'title');
+                                ?>
+                                <div class="data item content tab-content" id="<?= $alias; ?>" data-role="content"<?= ($alias != 'vital' && !$block->isProductEditMode()) ? ' style="display:none"' : ''; ?>>
+                                    <?= $html; ?>
+                                </div>
+                            <?php endforeach; ?>
+
+                            <div class="rbpanel-body-top-container rbpanel-body-bottombar-container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="actions-toolbar">
+                                            <div class="primary">
+                                                <button type="button"
+                                                        title="<?= __('Previous') ?>"
+                                                        class="prev-tab action button secondary button-s" disabled="disabled">
+                                                    <span><?= __('Previous') ?></span>
+                                                </button>
+                                                <button type="button"
+                                                        title="<?= __('Next') ?>"
+                                                        class="next-tab action button secondary button-s ">
+                                                    <span><?= __('Next') ?></span>
+                                                </button>
+                                                <button type="button" style="display:none;"
+                                                    title="<?= __('Scroll Up') ?>"
+                                                    class="scroll-up action button secondary button-s scrollers">
+                                                <span><?= __('Scroll Up') ?></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php if (!$block->isView()): ?>
+                            <div class="actions-toolbar pn">
+                                <div class="primary pn">
+                                    <button type="button"
+                                            title="<?= __('Save & Finish') ?>"
+                                            class="action button primary btn-submit">
+                                        <span><?= __('Save & Finish') ?></span>
+                                    </button>
+                                </div>
+                            </div>
+                        <?php endif;?>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'rbCommonMethods',
+            "mage/calendar",
+            'mage/translate',
+            'mage/mage',
+            'mage/validation'
+
+        ], function ($, rbCommonMethods) {
+                
+            $(document).ready(function () {
+
+              /* Tooltip code starts */
+              $(".field-tooltip").on('click', function (event) {
+                if($(this).hasClass('_active')){
+                  $(this).removeClass('_active');
+                  $(this).find('.field-tooltip-content').removeClass('_active');
+                } else {
+                  $(".field-tooltip").removeClass('_active');
+                  $(".field-tooltip-content").removeClass('_active');
+                  $(this).addClass('_active');
+                  $(this).find('.field-tooltip-content').addClass('_active');
+                }
+              });
+              /* Tooltip code ends */ 
+            });
+
+            var ignore = true;
+            productRequestForm = $('#product-request-info-form');
+            productRequestForm.mage('validation', {
+                ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+            }).find('input:text').attr('autocomplete', 'off');
+
+            $.validator.addMethod(
+                    'validate-less-than-price', function (v, elm) {
+                        $priceFieldId = $(elm).attr('id').toString().replace('special-', '');
+                        $price = $('#' + $priceFieldId).val();
+                        return ($.mage.isEmptyNoTrim(v) || parseFloat(v) < parseFloat($price))
+                    }, $.mage.__('Please enter special price less than price.'));
+
+            $("#special-price-date-range").dateRange({
+                buttonText: "<?= __('Select Date') ?>",
+                showOn: "button",
+                from: {
+                    id: "special-from-date"
+                },
+                to: {
+                    id: "special-to-date"
+                }
+            });
+            $("#additional-news_from_date").calendar({
+                showsTime: false,
+                hideIfNoPrevNext: true,
+                buttonText: "<?= __('Select Date'); ?>",
+                minDate: new Date(),
+                showOn: "button"
+            });
+            $("#additional-news_to_date").calendar({
+                showsTime: false,
+                hideIfNoPrevNext: true,
+                buttonText: "<?= __('Select Date'); ?>",
+                minDate: new Date(),
+                showOn: "button"
+            });
+            $(document).ready(function () {
+                $('button.btn-submit').click(function (e) {
+                    $('body').trigger('processStart');
+                    /*if (productRequestForm.valid()) {
+                     alert("Validation pass");
+                     return false;
+                     }*/
+                    ele = $(this);
+                    err = false;
+                    $parentId = '';
+
+                    $('.tab-title.has-errors').removeClass('has-errors');
+
+                    $(':input', productRequestForm).each(function () {
+                        elem = $(this);
+                        $currId = elem.parents('div.tab-content').attr('id');
+
+                        if (!($('#has-variants').val() == 1 && $currId == 'offers')) {
+
+
+                            if ((elem.attr('type') !== 'radio' && elem.attr('type') !== 'checkbox')) {
+                                if (!($currId == 'variants' && $(elem).parents('fieldset').hasClass('no-display'))) {
+
+                                    if (!($.validator.validateElement(elem))) {
+                                        if ($currId !== $parentId) {
+                                            $parentId = $currId;
+                                            $('#tab-label-' + $parentId).addClass('has-errors');
+                                        }
+                                        if (!err) {
+                                            err = true;
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                    });
+                    if ($('.gallery.ui-sortable div[data-role="image"]:not(.removed) ').length == 0) {
+                        err = true;
+                        $('#tab-label-gallery').addClass('has-errors');
+                    } else {
+                        $('#tab-label-gallery').removeClass('has-errors');
+                    }
+
+                    if ($('#has-variants').val() == 1) {                        
+                        if ($('#variantGrid #basicTable tbody tr').length == 0) {                            
+                            err = true;
+                            $('#tab-label-variants').addClass('has-errors');
+                        } else {
+                            if (checkDuplicatesVendorSku($)) {                               
+                                err = true;
+                                $('#tab-label-variants').addClass('has-errors');                            
+                            }                            
+                        }
+                    }
+                    if (!err) {
+                        productRequestForm.submit();
+                    }else{
+                        $('body').trigger('processStop');
+                    }
+
+                });
+            });
+            $('.next-tab').click(function (e) {
+                if ($('div.active', '.rbpanel-tabs').next().attr('id') != undefined) {
+                    if ($('div.active', '.rbpanel-tabs').next().css('display') == 'none') {
+                        $('div.active', '.rbpanel-tabs').next().next().click();
+                    } else {
+                        $('div.active', '.rbpanel-tabs').next().click();
+                    }
+                } else {
+                    $('.next-tab').prop('disabled', true);
+                }
+                $('.prev-tab').prop('disabled', false);
+            });
+            
+            $('.scroll-down').click(function (e) {
+                $('html, body').stop().animate({
+                    scrollTop: $('button.btn-submit').offset().top
+                }, 2000);
+            });
+            
+            $('.scroll-up').click(function (e) {
+                $('html, body').stop().animate({
+                    scrollTop: $('body').offset().top
+                }, 2000);
+            });
+            
+            $('.prev-tab').click(function (e) {
+
+                if ($('div.active', '.rbpanel-tabs').prev().attr('id') != undefined) {
+
+                    if ($('div.active', '.rbpanel-tabs').prev().css('display') == 'none') {
+                        $('div.active', '.rbpanel-tabs').prev().prev().click();
+                    } else {
+                        $('div.active', '.rbpanel-tabs').prev().click();
+                    }
+
+                } else {
+                    $('.prev-tab').prop('disabled', true);
+
+                }
+                $('.next-tab').prop('disabled', false);
+            });
+             $(".rbpanel-tabs").on("click", ".tab-title", function () {
+                if ($('div.active', '.rbpanel-tabs').prev().attr('id') == undefined) {
+                    $('.prev-tab').prop('disabled', true);
+                } else {
+                    $('.prev-tab').prop('disabled', false);
+                }
+                if ($('div.active', '.rbpanel-tabs').next().attr('id') == undefined) {
+                    $('.next-tab').prop('disabled', true);
+                    $('.scrollers').show();
+                } else {
+                    $('.scrollers').hide();
+                    $('.next-tab').prop('disabled', false);
+                }
+            });
+            $('.vendor-sku').each(function () {
+                $(this).on('blur', function () {
+                    if ($(this).val() != '') {
+                        rbCommonMethods({
+                            uniqueSkuCheckUrl: '<?= $block->getUniqueskuPostActionUrl() ?>',
+                            sellerSkuEle: this,
+                            isCheckuniqueSku: <?= $block->checkVendorSkuValidation() ?>
+
+                        });
+                    }
+                });
+            });
+        });       
+        
+        function checkDuplicatesVendorSku($) {
+            
+            /* we store the inputs value inside this array */
+            var values = [];
+            /* return this */
+            var isDuplicated = false;
+            /* loop through elements */
+            $('.vendor-sku').each(function () {
+                /*If value is empty then move to the next iteration. */
+                if (!this.value)
+                    return true;
+                /*If the stored array has this value, break from the each method */
+                if (values.indexOf(this.value) !== -1) {
+                    isDuplicated = true;
+                    return false;
+                }
+                /* store the value */
+                values.push(this.value);
+            });
+            return isDuplicated;
+        }
+    </script>
+<?php endif; ?>

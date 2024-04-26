@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Ktpl_Tookan::parent" title="Tookan" module="Ktpl_Tookan" sortOrder="100" resource="Ktpl_Tookan::parent" parent="Ktpl_Core::menu"/>
+        <add id="Ktpl_Tookan::orders_export" title="Orders Export" module="Ktpl_Tookan" sortOrder="10" action="tookan/index/orders" resource="Ktpl_Tookan::orders_export" parent="Ktpl_Tookan::parent"/>
+        <add id="Ktpl_Tookan::returns_export" title="Returns Export" module="Ktpl_Tookan" sortOrder="12" action="tookan/index/returns" resource="Ktpl_Tookan::returns_export" parent="Ktpl_Tookan::parent"/>
+        <add id="Ktpl_Tookan::import" title="Tookan Import" sortOrder="20" module="Ktpl_Tookan" parent="Ktpl_Tookan::parent" action="tookan/index/import" resource="Ktpl_Tookan::import"/>
+    </menu>
+</config>

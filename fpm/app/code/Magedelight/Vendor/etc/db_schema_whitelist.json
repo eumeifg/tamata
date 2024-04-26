@@ -1,0 +1,214 @@
+{
+    "md_vendor": {
+        "column": {
+            "vendor_id": true,
+            "email": true,
+            "mobile": true,
+            "password_hash": true,
+            "rp_token": true,
+            "rp_token_created_at": true,
+            "other_marketplace_profile": true,
+            "website_id": true,
+            "is_system": true,
+            "parent_vendor_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_EMAIL_WEBSITE_ID": true
+        }
+    },
+    "md_vendor_website_data": {
+        "column": {
+            "vendor_website_id": true,
+            "vendor_id": true,
+            "website_id": true,
+            "store_id": true,
+            "name": true,
+            "business_name": true,
+            "logo": true,
+            "vat": true,
+            "vat_doc": true,
+            "address1": true,
+            "address2": true,
+            "city": true,
+            "region_id": true,
+            "region": true,
+            "country_id": true,
+            "pincode": true,
+            "bank_name": true,
+            "bank_account_name": true,
+            "bank_account_number": true,
+            "ifsc": true,
+            "pickup_address1": true,
+            "pickup_address2": true,
+            "pickup_city": true,
+            "pickup_region_id": true,
+            "pickup_region": true,
+            "pickup_country_id": true,
+            "pickup_pincode": true,
+            "email_verification_code": true,
+            "email_verified": true,
+            "vacation_request_status": true,
+            "vacation_message": true,
+            "vacation_from_date": true,
+            "vacation_to_date": true,
+            "status_description": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "MD_VENDOR_WEBSITE_DATA_NAME_BUSINESS_NAME_ADDRESS1_ADDRESS2_CITY": true,
+            "MD_VENDOR_WEBSITE_DATA_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_WEBSITE_DATA_VENDOR_ID_MD_VENDOR_VENDOR_ID": true,
+            "MD_VENDOR_WEBSITE_DATA_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "MD_VENDOR_WEBSITE_DATA_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "md_vendor_category": {
+        "column": {
+            "vendor_id": true,
+            "category_id": true
+        },
+        "index": {
+            "MD_VENDOR_CATEGORY_VENDOR_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_CATEGORY_VENDOR_ID_MD_VENDOR_VENDOR_ID": true,
+            "MD_VENDOR_CATEGORY_CATEGORY_ID_CATALOG_CATEGORY_ENTITY_ENTITY_ID": true
+        }
+    },
+    "md_selling_categories_request": {
+        "column": {
+            "request_id": true,
+            "vendor_id": true,
+            "categories": true,
+            "store_id": true,
+            "status": true,
+            "status_description": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "MD_SELLING_CATEGORIES_REQUEST_VENDOR_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_SELLING_CATEGORIES_REQUEST_VENDOR_ID_MD_VENDOR_VENDOR_ID": true
+        }
+    },
+    "md_vendor_status_request": {
+        "column": {
+            "request_id": true,
+            "vendor_id": true,
+            "request_type": true,
+            "reason": true,
+            "requested_at": true,
+            "approved_at": true,
+            "status": true,
+            "vacation_from_date": true,
+            "vacation_to_date": true
+        },
+        "index": {
+            "MD_VENDOR_STATUS_REQUEST_VENDOR_ID_REQUEST_TYPE": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_STATUS_REQUEST_VENDOR_ID_MD_VENDOR_VENDOR_ID": true
+        }
+    },
+    "oauth_token": {
+        "column": {
+            "seller_id": true
+        },
+        "constraint": {
+            "OAUTH_TOKEN_SELLER_ID_MD_VENDOR_VENDOR_ID": true
+        }
+    },
+    "md_vendor_microsites": {
+        "column": {
+            "microsite_id": true,
+            "vendor_id": true,
+            "store_id": true,
+            "url_key": true,
+            "page_title": true,
+            "banner": true,
+            "meta_keyword": true,
+            "meta_description": true,
+            "google_analytics_account_number": true,
+            "short_description": true,
+            "twitter_page": true,
+            "google_page": true,
+            "customer_support_time_from": true,
+            "customer_support_time_to": true,
+            "facebook_page": true,
+            "tumbler_page": true,
+            "instagram_page": true,
+            "delivery_policy": true,
+            "return_policy": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_MICROSITES_VENDOR_ID_STORE_ID": true,
+            "MD_VENDOR_MICROSITES_URL_KEY_STORE_ID": true,
+            "MD_VENDOR_MICROSITES_VENDOR_ID_MD_VENDOR_VENDOR_ID": true,
+            "MD_VENDOR_MICROSITES_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "md_vendor_rating": {
+        "column": {
+            "vendor_rating_id": true,
+            "vendor_id": true,
+            "customer_id": true,
+            "comment": true,
+            "vendor_order_id": true,
+            "is_shared": true,
+            "shared_by": true,
+            "shared_at": true,
+            "store_id": true,
+            "created_at": true
+        },
+        "index": {
+            "MD_VENDOR_RATING_VENDOR_ID": true,
+            "MD_VENDOR_RATING_CUSTOMER_ID": true,
+            "MD_VENDOR_RATING_IS_SHARED": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_RATING_VENDOR_ID_MD_VENDOR_VENDOR_ID": true,
+            "MD_VENDOR_RATING_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "md_vendor_rating_rating_type": {
+        "column": {
+            "entity_id": true,
+            "vendor_rating_id": true,
+            "option_id": true,
+            "rating_value": true,
+            "rating_avg": true,
+            "store_id": true,
+            "created_at": true
+        },
+        "index": {
+            "MD_VENDOR_RATING_RATING_TYPE_VENDOR_RATING_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_2ADE8EE1CCD703D7EE7429BA8DD67907": true,
+            "MD_VENDOR_RATING_RATING_TYPE_STORE_ID_STORE_STORE_ID": true,
+            "MD_VENDOR_RATING_RATING_TYPE_OPTION_ID_RATING_OPTION_OPTION_ID": true
+        }
+    },
+    "rating": {
+        "constraint": {
+            "RATING_RATING_CODE": true,
+            "RATING_ENTITY_ID_RATING_CODE": true
+        }
+    }
+}

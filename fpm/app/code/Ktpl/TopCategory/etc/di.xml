@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Ktpl\TopCategory\Api\Data\TopCategoryInterface" type="Ktpl\TopCategory\Model\TopCategory"/>
+    <preference for="Ktpl\TopCategory\Api\TopCategoryRepositoryInterface" type="Ktpl\TopCategory\Model\TopCategoryRepository"/>
+    <preference for="Ktpl\TopCategory\Api\Data\TopCategorySearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+</config>

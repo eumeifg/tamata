@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Magedelight
+* Copyright (C) 2018 Magedelight <info@magedelight.com>
+*
+* NOTICE OF LICENSE
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+*
+* @category Magedelight
+* @package Magedelight_SocialLogin
+* @copyright Copyright (c) 2018 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        
+        <add id="Magedelight_SocialLogin::sociallogin_root"
+            title="Social Media Login"
+            module="Magedelight_SocialLogin"
+            sortOrder="50"
+            resource="Magedelight_SocialLogin::root"
+            toolTip="magedelight_base" />
+
+        <add id="Magedelight_SocialLogin::sociallogin_root_commonlyvisible"
+            title="Social Media Login"
+            module="Magedelight_SocialLogin"
+            sortOrder="200"
+            parent="Magedelight_Base::md_modules"
+            resource="Magedelight_SocialLogin::root" />    
+
+        <add id="Magedelight_SocialLogin::sociallogin_reports"
+            title="Social Login Reports"
+            module="Magedelight_SocialLogin"
+            sortOrder="100"
+            action="mdsocial/report_sociallogin/sociallogin" 
+            resource="Magedelight_SocialLogin::report_sociallogin"
+            parent="Magedelight_SocialLogin::sociallogin_root" />
+
+        <add id="Magedelight_SocialLogin::config_root"
+            title="Configuration"
+            module="Magedelight_SocialLogin"
+            sortOrder="200"
+            action="adminhtml/system_config/edit/section/sociallogin"
+            parent="Magedelight_SocialLogin::sociallogin_root"
+            resource="Magedelight_SocialLogin::config_root" />
+
+        <add id="Magedelight_SocialLogin::useful_links"
+            title="Useful Links"
+            module="Magedelight_SocialLogin"
+            sortOrder="999"
+            parent="Magedelight_SocialLogin::sociallogin_root"
+            resource="Magedelight_SocialLogin::root" />
+
+        <add id="Magedelight_SocialLogin::documentation"
+            title="Documentation"
+            module="Magedelight_SocialLogin"
+            sortOrder="10"
+            target="_blank"
+            parent="Magedelight_SocialLogin::useful_links"
+            resource="Magedelight_SocialLogin::root" />    
+    </menu>
+</config>

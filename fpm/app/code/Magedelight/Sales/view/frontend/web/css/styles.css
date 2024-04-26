@@ -1,0 +1,24 @@
+.checkout-success {
+	margin-bottom: 40px;
+}
+.order_before_text {
+	margin-bottom: 30px;
+}
+.title_info {
+	margin-top: 0;
+}
+.rp_order_shipping_adds table tr td, .rp_order_billing_adds table tr td {
+	padding: 0 !important;
+}
+.rp_order_itemdetail table tr td, .rp_order_itemdetail table tr th {
+	padding: 10px 0 !important;
+}
+#checkout-review-table tr.border-row {
+	border-bottom: 1px solid #d5d5d5;
+}
+.a-right, .total-col {
+	text-align: right;
+}
+.a-center {
+	text-align: center;
+}

@@ -1,0 +1,85 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ * 
+ * @var $block \Magedelight\Vendor\Block\Sellerhtml\Form\ContactAdmin
+ */
+
+/* @codingStandardsIgnoreFile */
+
+?>
+<form class="form contact"
+      action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <!--<legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Write Us') ?></span></legend><br />-->
+        <div class="field note no-label"><?php /* @escapeNotVerified */ echo __('Jot us a note and we’ll get back to you as quickly as possible.') ?></div>
+        <div class="field query required">
+            <label class="label" for="query"><span><?php /* @escapeNotVerified */ echo __('Query') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="query" id="query" title="<?php /* @escapeNotVerified */ echo __('Query Summary') ?>" value="" class="input-text" type="text" data-validate="{required:true}"/>
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Your Query') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field comment required">
+            <label class="label" for="message"><span><?php /* @escapeNotVerified */ echo __('Description') ?></span></label>
+            <div class="control _with-tooltip">
+                <textarea name="message" id="message" title="<?php /* @escapeNotVerified */ echo __('Query Description') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea><div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Query Description') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?= $block->getChildHtml('form.additional.info'); ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>" class="action submit primary">
+                <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+  require([
+        'jquery', /* jquery Library */
+        'jquery/ui', /* Jquery UI Library */
+        'jquery/validate', /* Jquery Validation Library */
+        'mage/mage',
+        'mage/translate' /* Magento text translate (Validation message translte as per language) */
+    ], function ($) {
+  $(document).ready(function () {
+              /* Tooltip code starts */
+              $(".field-tooltip").on('click', function (event) {
+                if($(this).hasClass('_active')){
+                  $(this).removeClass('_active');
+                  $(this).find('.field-tooltip-content').removeClass('_active');
+                } else {
+                  $(".field-tooltip").removeClass('_active');
+                  $(".field-tooltip-content").removeClass('_active');
+                  $(this).addClass('_active');
+                  $(this).find('.field-tooltip-content').addClass('_active');
+                }
+              });
+              /* Tooltip code ends */ 
+            });
+});
+</script>

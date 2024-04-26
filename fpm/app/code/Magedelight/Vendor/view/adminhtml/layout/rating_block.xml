@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>   
+        <referenceBlock name="adminhtml.rating.grid">
+                <arguments>
+                    <argument name="id" xsi:type="string">ratingsGrid</argument>
+                    <argument name="dataSource" xsi:type="object">Magedelight\Vendor\Model\ResourceModel\RatingTypes\Grid\Collection</argument>
+                    <argument name="default_sort" xsi:type="string">rating_code</argument>
+                    <argument name="default_dir" xsi:type="string">ASC</argument>
+                    <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+                </arguments>
+        </referenceBlock>     
+        <referenceBlock name="adminhtml.rating.grid.columnSet">
+            <block class="Magento\Backend\Block\Widget\Grid\Column" name="adminhtml.rating.grid.columnSet.entity_id" as="entity_id">
+                <arguments>
+                    <argument name="header" xsi:type="string" translate="true">Rating Type</argument>
+                    <argument name="index" xsi:type="string">entity_id</argument>
+                    <argument name="type" xsi:type="string">options</argument>
+                    <argument name="options" xsi:type="options" model="Magedelight\Vendor\Model\Source\RatingTypes"/>
+                </arguments>
+            </block>
+        </referenceBlock>          
+    </body>
+</page>

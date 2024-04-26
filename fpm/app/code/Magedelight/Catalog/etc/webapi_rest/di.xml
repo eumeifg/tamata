@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Model\Layer\FilterableAttributeListInterface" type="Magento\Catalog\Model\Layer\Category\FilterableAttributeList" />
+    <!-- Product detail -->
+    <type name="Magento\Catalog\Api\Data\ProductInterface">
+        <plugin name="MdExtensionAttrRest" type="Magedelight\Catalog\Plugin\ProductDataAppend" />
+        <plugin name="append_resized_product_images" type="Magedelight\Catalog\Plugin\ResizedProductImages" />
+    </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
+        <plugin name="add_stock_information" type="Magento\CatalogInventory\Model\AddStockStatusToCollection" />
+    </type>
+</config>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+ /**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_VendorCommissions
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">    
+    <preference for="Magedelight\Commissions\Model\Source\CommissionType" type="MDC\VendorCommissions\Model\Source\CommissionType" />
+    <preference for="Magedelight\Commissions\Model\Commission\Pdf\Invoice" type="MDC\VendorCommissions\Model\Commission\Pdf\Invoice" />
+    
+    <type name="Magedelight\Commissions\Model\Commission\Quote">
+        <plugin name="vendor_category_commission_quote" type="MDC\VendorCommissions\Model\Commission\Plugin\Quote" sortOrder="2" />
+    </type>
+    <type name="Magedelight\Commissions\Model\Commission\Payment">
+        <plugin name="vendor_category_commission_payment" type="MDC\VendorCommissions\Model\Commission\Plugin\Payment" sortOrder="2" />
+    </type>
+</config>

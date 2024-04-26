@@ -1,0 +1,18 @@
+{
+    "search_page": {
+        "column": {
+            "search_page_id": true,
+            "status": true,
+            "banner": true,
+            "additional_info": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "SEARCH_PAGE_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

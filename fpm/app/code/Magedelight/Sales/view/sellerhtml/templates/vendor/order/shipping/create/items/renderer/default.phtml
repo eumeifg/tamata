@@ -1,0 +1,72 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php
+/** @var  $block \Magedelight\Sales\Block\Vendor\Order\Item\Renderer\DefaultRenderer */
+?>
+<?php $_item = $block->getItem(); ?>
+<tr>
+    <td class="col product col-product"><?= $block->escapeHtml($_item->getName()) ?></td>
+    <td class="col sku col-sku"><?= $block->escapeHtml($_item->getSku()) ?></td>
+    <td class="col ordered-qty col-ordered-qty">
+        <ul class="items-qty">
+        <?php if ($block->getItemModel($_item)->getQtyOrdered() > 0) : ?>
+            <li class="item">
+                <span class="title"><?= __('Ordered'); ?></span>
+                <span class="content"><?= $block->getItemModel($_item)->getQtyOrdered() * 1 ?></span>
+            </li>
+        <?php endif; ?>
+        <?php if ($block->getItemModel($_item)->getQtyShipped() > 0) : ?>
+            <li class="item">
+                <span class="title"><?= __('Shipped'); ?></span>
+                <span class="content"><?= $block->getItemModel($_item)->getQtyShipped()*1 ?></span>
+            </li>
+        <?php endif; ?>
+        <?php if ($block->getItemModel($_item)->getQtyCanceled() > 0) : ?>
+            <li class="item">
+                <span class="title"><?= __('Canceled'); ?></span>
+                <span class="content"><?= $block->getItemModel($_item)->getQtyCanceled()*1 ?></span>
+            </li>
+        <?php endif; ?>
+        <?php if ($block->getItemModel($_item)->getQtyRefunded() > 0) : ?>
+            <li class="item">
+                <span class="title"><?= __('Refunded'); ?></span>
+                <span class="content"><?= $block->getItemModel($_item)->getQtyRefunded()*1 ?></span>
+            </li>
+        <?php endif; ?>
+        <?php if ($block->getItemModel($_item)->getQtyInvoiced() > 0) : ?>
+            <li class="item">
+                <span class="title"><?= __('Invoiced'); ?></span>
+                <span class="content"><?= $block->getItemModel($_item)->getQtyInvoiced()*1 ?></span>
+            </li>
+        <?php endif; ?>    
+        </ul>
+    </td>
+    <td class="col qty col-qty <?php if ($block->isShipmentRegular()) :
+        ?>last<?php
+                               endif; ?>">
+        <?php if ($block->canShipPartiallyItem()) : ?>
+            <input type="text"
+                   class="input-text admin__control-text qty-item"
+                   name="shipment[items][<?= /* @escapeNotVerified */ $_item->getOrderItemId() ?>]"
+                   value="<?= /* @escapeNotVerified */ $_item->getQty()*1 ?>" />
+        <?php else : ?>
+            <?= /* @escapeNotVerified */ $_item->getQty()*1 ?>
+        <?php endif; ?>
+    </td>
+    <?php if (!$block->canShipPartiallyItem()) : ?>
+    <td class="col ship col-ship last">
+        <input type="hidden" name="shipment[items][<?= $_item->getOrderItemId() ?>]" value="0" />
+        <input type="checkbox" name="shipment[items][<?= $_item->getOrderItemId() ?>]" value="<?= $_item->getQty()*1 ?>" checked />
+    </td>
+    <?php endif; ?>
+</tr>

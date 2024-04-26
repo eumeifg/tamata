@@ -1,0 +1,225 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//    Common
+//--------------------------------------
+
+& when (@media-common = true) {
+
+//
+//    Using buttons mixins
+//--------------------------------------
+button,
+a.action.primary {
+    .lib-css(border-radius, 0);
+}
+
+button {
+    &:active {
+        .lib-css(box-shadow, @button__shadow);
+    }
+}
+
+a.action.primary {
+    .lib-link-as-button();
+}
+
+.action.secondary, .action-primary  {
+    .lib-button();
+    .lib-button-revert-secondary-size();
+    .lib-css(color, @button__color);
+    .lib-css(text-transform, uppercase);
+    .lib-css(letter-spacing, 2px);
+    .lib-css(border-radius, 0);
+        box-shadow:0 0 0 0 #fff inset;
+        transition-duration :0.7s;
+        &:hover {
+          box-shadow:0 100px 0 0 #fff inset;
+        }
+
+}
+
+
+.action {
+      &.primary {
+        .lib-button-primary();
+        .lib-css(text-transform, uppercase);
+            box-shadow:0 0 0 0 #fff inset;
+            transition-duration :0.7s;
+            &:hover {
+               box-shadow:0 100px 0 0 #fff inset;
+            }
+      }
+      &.button-l {
+            .lib-button-l();
+      }
+      &.button-s {
+            .lib-button-s();
+      }
+      &.button-xs {
+             .lib-button();
+      }
+      &.back {
+        .lib-button(
+          @_button-icon-use: true,
+          @_button-font-content: @icon-arrow-left-thin,
+          @_button-icon-font-size: 18px,
+          @_button-icon-font-position: before,
+        );
+          .rbvt-font-icon;
+            .lib-button-as-link(
+              @_link-color: @primary__color;
+            );
+            box-shadow:none;
+            &:hover {
+              box-shadow:none;
+              text-decoration: none;
+            }
+            &:before {
+              padding-right: @indent__s;
+            }
+      }
+     &.cancel {
+           .lib-button(
+              @_button-background: @color-gray40,
+              @_button-border: 2px solid @color-gray40,
+              @_button-color: @color-white,
+              @_button-color-hover: @color-gray40,
+              @_button-background-hover: @color-white,
+              @_button-border-hover: 2px solid @color-gray40,
+              @_button-color-active: @color-white,
+              @_button-background-active: @color-gray40,
+              @_button-border-active: 2px solid @color-gray40,
+           );
+            box-shadow:0 0 0 0 @color-gray40 inset;
+            transition-duration :0.7s;
+           &:hover {
+              box-shadow:0 100px 0 0 #fff inset;
+           }
+
+     }
+
+    &.export {
+      .lib-button(
+        @_button-icon-use: true,
+        @_button-font-content: @icon-export,
+        @_button-icon-font-size:14px,
+        @_button-icon-font-margin: 0 @indent__s 0 0,
+        @_button-background: @color-gray,
+        @_button-border: 2px solid @color-gray,
+        @_button-color: @color-gray40,
+        @_button-color-hover: @color-gray,
+        @_button-background-hover: @color-gray,
+        @_button-border-hover: 2px solid @color-gray,
+      );
+      .lib-button-revert-secondary-size();
+      .lib-css(color, @button__color);
+      .lib-css(text-transform, none);
+      font-size: 14px;
+      padding: 3px 20px;
+      line-height: normal;
+      margin: 0 0 0 10px;
+      .lib-css(letter-spacing, 2px);
+      box-shadow:0 0 0 0 #fff inset;
+      transition-duration :0.7s;
+      &:hover {
+         box-shadow:0 100px 0 0 #fff inset;
+      }
+    }
+
+     &.import {
+      .lib-button(
+          @_button-icon-use: true,
+          @_button-font-content: @icon-import,
+          @_button-icon-font-size:14px,
+          @_button-icon-font-margin: 0 @indent__s 0 0,
+          @_button-background: @color-gray,
+          @_button-border: 2px solid @color-gray,
+          @_button-color: @color-gray40,
+          @_button-color-hover: @color-gray,
+          @_button-background-hover: @color-gray,
+          @_button-border-hover: 2px solid @color-gray,
+      );
+        .lib-css(color, @button__color);
+        .lib-css(text-transform, none);
+        font-size: 14px;
+        padding: 3px 20px;
+        line-height: normal;
+        margin: 0 0 0 10px;
+        .lib-css(letter-spacing, 2px);
+        box-shadow:0 0 0 0 #fff inset;
+        transition-duration :0.7s;
+        border-radius: 0;
+        vertical-align: top;
+        &:hover {
+           box-shadow:0 100px 0 0 #fff inset;
+        }
+     }
+}
+
+.toolbar-filter-wrapper {
+  float: right;
+  .data-grid-filters-actions-wrap {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 5px;
+    &:nth-child(3) {
+      float: left;
+      .data-grid-filters-action-wrap {
+        float: none;
+        padding-left: 0;
+      }
+    }
+    a.action.primary.export {
+      margin-left: 0;
+    } 
+  }  
+}
+
+
+
+html.rtl-layout { 
+  .action.back{
+    &:before  {
+      content: @icon-arrow-right-thin
+    }
+  }
+
+}
+}
+
+@media only screen and (min-width: 764px) and (max-width: 768px) {
+    .toolbar-filter-wrapper {
+      .topbar-left {
+        .actions {
+          .pt5 {
+            div {
+              margin-left: 8px;
+            }
+          }
+        }
+      }
+      .data-grid-filters-actions-wrap {
+        margin-left: 0px !important;
+        &:nth-child(3) {
+          float : right;
+          margin-left: 0 !important;
+        }
+      }  
+    }
+  
+}
+@media only screen and (max-width: 1024px) and (min-width: 1020px) {
+    .toolbar-filter-wrapper {
+      .data-grid-filters-actions-wrap {
+        &:nth-child(3) {
+          margin-left: 0 !important;
+          float: left;
+          margin-top: 5px;
+        }
+      }  
+    }
+}

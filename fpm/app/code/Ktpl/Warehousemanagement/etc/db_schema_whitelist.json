@@ -1,0 +1,28 @@
+{
+    "ktpl_warehousemanagement_warehousemanagement": {
+        "column": {
+            "warehousemanagement_id": true,
+            "main_order_id": true,
+            "sub_order_id": true,
+            "product_id": true,
+            "product_name": true,
+            "price": true,
+            "qty": true,
+            "main_order_status": true,
+            "sub_order_status": true,
+            "war_created_at": true,
+            "updated_at": true,
+            "user_id": true,
+            "ip_address": true,
+            "barcode_number": true,
+            "product_location": true,
+            "order_event": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        },
+        "index": {
+            "KTPL_WAREHOUSEMANAGEMENT_WAREHOUSEMANAGEMENT_PRODUCT_ID": true
+        }
+    }
+}

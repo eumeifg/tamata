@@ -1,0 +1,23 @@
+<?php
+/*
+ * Copyright © 2019 Krish Technolabs. All rights reserved.
+ * See COPYING.txt for license details
+ */
+
+/** @var $block \Ktpl\BannerManagement\Block\Adminhtml\Banner\Edit\Form */
+?>
+<div class="entry-edit form-inline" id="ktpl-bannerslider">
+    <?php echo $block->getFormHtml(); ?>
+</div>
+<?php echo $block->getChildHtml('form_after'); ?>
+
+<script type="text/x-magento-init">
+    {
+        "#ktpl-bannerslider": {
+            "Ktpl_BannerSlider/js/view/bannerslider":{
+                "templateHtml": "<?php echo $block->escapeJs($block->getTemplateHtml()); ?>",
+                "imgUrls": "<?php echo $block->escapeJs($block->getImageUrls()); ?>"
+            }
+        }
+    }
+</script>

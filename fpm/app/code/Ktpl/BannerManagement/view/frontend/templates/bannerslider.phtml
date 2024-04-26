@@ -1,0 +1,67 @@
+<?php
+/*
+ * Copyright © 2019 Krish Technolabs. All rights reserved.
+ * See COPYING.txt for license details
+ */
+$banners = $block->getBannerCollection();
+
+$blockObj= $block->getLayout()->createBlock('Ktpl\BannerManagement\Block\WysiwygBlock');
+
+if (!empty($banners)) :
+    $sliderId = $block->getSliderId() . '-' . uniqid();
+    $sliderOptions = $block->getBannerOptions();
+    ?>
+    <div class="carousel-container <?php echo $block->escapeHtml($block->getDeviceClass()); ?> homepage-main-banner bounce" style="margin-bottom:20px;">
+        <div id="banner-slider-carousel">
+            <?php $iterator = 1; ?>
+            <div id="bannerslider-list-items-<?php echo $block->escapeHtml($sliderId); ?>"
+                 class="owl-carousel owl-theme">
+                <?php foreach ($banners as $banner) : ?>
+                    <?php
+                    $bnType = $banner->getType();
+                    $bnTitle = $banner->getTitle();
+                    $bannerText = ($banner->getBannerText() ? $banner->getBannerText() : "");
+                    $bnUrl = $banner->getUrlBanner();
+                    $bnImg = $banner->getImageUrl();
+                    ?>
+
+                    <?php if ($bnType == \Ktpl\BannerManagement\Model\Config\Source\Type::VIDEO) : #video type?>
+                        <div class="item video-item  animated" data-merge="<?= $block->escapeHtml($iterator); ?>">
+                            <video class="video" width="1200" height="633" src="<?= $block->escapeHtml($bnImg); ?>" controls muted="muted"></video>
+                        </div>
+                    <?php elseif ($bnType == \Ktpl\BannerManagement\Model\Config\Source\Type::CONTENT) : #content type?>
+                        <div class="item content-item bounceInLeft animated" data-merge="<?= $block->escapeHtml($iterator); ?>">
+                            <?php echo $blockObj->filterOutputHtml($banner->getContent()); ?>
+                        </div>
+                    <?php else : #image type?>
+                        <div class="item-image">
+                            <?php if (!empty($bnUrl)) : ?>
+                                <img class="img-responsive" src="<?php echo $block->escapeHtml($bnImg) ?>" width="1200" height="633"/>
+                                <div class="banner-content">
+                                    <a class="owl-image"
+                                       href="<?php echo $block->escapeHtml($bnUrl) ?>" <?php echo ($banner->getNewtab() == 1) ? 'target="_blank"' : '' ?>>
+                                        <?php if (!empty($bnTitle)) : ?>
+                                            <div class="banner-title"><?php echo $block->escapeHtml($bnTitle) ?></div>
+                                        <?php endif; ?>
+                                    </a>
+                                </div>
+                            <?php else : ?>
+                                <img class="owl-image img-responsive" src="<?php echo $block->escapeHtml($bnImg) ?>"
+                                     title="<?php echo $block->escapeHtml($bnTitle) ?>" width="1200" height="633" />
+                            <?php endif; ?>
+                            <div class="banner-description-box">
+                                    <?php echo $bannerText; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        require(['jquery', 'ktpl/bannermanagement/owl.carousel'], function ($) {
+            alert("hii");
+        });
+    </script>
+<?php endif; ?>

@@ -1,0 +1,163 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="ai_recommend" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+            <label>AI Recommend</label>
+            <tab>cat</tab>
+            <resource>CAT_AIRecommend::config_ai_recommend</resource>
+            <group id="general" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>general</label>
+                <field id="limit" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Limit for products in sliders</label>
+                    <comment/>
+                </field>
+            </group>
+            <group id="eventbased" sortOrder="12" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Event Based</label>
+                <field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="appenable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>App enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="apiurl" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>API URL</label>
+                    <comment/>
+                </field>
+            </group>
+            <group id="itembased" sortOrder="12" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Item Based</label>
+                <field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="appenable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>App enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="apiurl" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>API URL</label>
+                    <comment/>
+                </field>
+                <field id="txtarabic" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Arabic Title</label>
+                    <comment/>
+                </field>
+                <field id="txteng" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>English Title</label>
+                    <comment/>
+                </field>
+            </group>
+            <group id="fashionbased" sortOrder="12" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Fashion Based</label>
+                <field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="appenable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>App enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="apiurl" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>API URL</label>
+                    <comment/>
+                </field>
+                <field id="txtarabic" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Arabic Title</label>
+                    <comment/>
+                </field>
+                <field id="txteng" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>English Title</label>
+                    <comment/>
+                </field>
+            </group>
+            <group id="userbased" sortOrder="13" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>User Based</label>
+                <field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="appenable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>App enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="apiurl" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>API URL</label>
+                    <comment/>
+                </field>
+                <field id="txtarabic" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Arabic Title</label>
+                    <comment/>
+                </field>
+                <field id="txteng" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>English Title</label>
+                    <comment/>
+                </field>
+            </group>
+            <group id="seasonbased" sortOrder="14" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Season Based</label>
+                <field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="appenable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>App enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="apiurl" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>API URL</label>
+                    <comment/>
+                </field>
+                <field id="Season" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Season</label>
+                    <comment>winter, summer, spring, autumn</comment>
+                </field>
+                <field id="txtarabic" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Arabic Title</label>
+                    <comment/>
+                </field>
+                <field id="txteng" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>English Title</label>
+                    <comment/>
+                </field>
+            </group>
+            <group id="marketbased" sortOrder="15" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Market Basket Based</label>
+                <field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="appenable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>App enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="apiurl" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>API URL</label>
+                    <comment/>
+                </field>
+                <field id="txtarabic" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Arabic Title</label>
+                    <comment/>
+                </field>
+                <field id="txteng" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>English Title</label>
+                    <comment/>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,42 @@
+<?php
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+?>
+
+<?php
+//@codingStandardsIgnoreFile
+/** @var $block \Ktpl\ElasticSearch\Block\Index\Magento\Catalog\Category */
+
+$collection = $this->getCollection();
+?>
+<div class="ktpl-search__index ktpl-search__index-magento-catalog-category">
+    <ul>
+        <?php foreach ($collection as $item): ?>
+            <?php $path = $block->getFullPath($item->getId()); ?>
+            <li>
+                <div class="ktpl-search__index-image">
+                    <a href="<?= $item->getUrl() ?>"><?= $this->getCategoryImage($item) ?></a>
+                </div>
+
+                <div class="ktpl-search__index-title">
+                    <?php foreach ($path as $parent): ?>
+                        <a href="<?= $parent->getUrl() ?>"><?= $parent->getName() ?></a>
+                        <span>&nbsp;›&nbsp;</span>
+                    <?php endforeach ?>
+
+                    <a href="<?= $item->getUrl() ?>"><?= $item->getName() ?></a>
+                </div>
+            </li>
+        <?php endforeach ?>
+    </ul>
+</div>

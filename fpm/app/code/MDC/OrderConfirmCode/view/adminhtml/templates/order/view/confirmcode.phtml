@@ -1,0 +1,16 @@
+<?php
+    $confirmationCode = $block->getOrderConfirmationCode();
+    ?>
+	
+ <?php if ( !is_null($confirmationCode )) : ?>
+
+ 	 <section class="admin__page-section um-ordercomment">
+        <div class="admin__page-section-title">
+            <span class="title"><?= /* @noEscape */ __('Order Confirmation Code') ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <?= /* @noEscape */ $confirmationCode;?>
+        </div>
+    </section>
+
+<?php endif; ?>

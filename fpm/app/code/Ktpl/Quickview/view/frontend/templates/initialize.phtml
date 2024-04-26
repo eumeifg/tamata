@@ -1,0 +1,20 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block \Ktpl\Quickview\Block\Initialize */
+?>
+<script>
+    requirejs(['jquery', 'ktpl_quickview' ],
+        function ($, quickview) {
+            $(document).ready(function() {
+                $('.ktpl-quickview').bind('click', function() {
+                    var prodUrl = $(this).attr('data-quickview-url');
+                    if (prodUrl.length) {
+                        quickview.displayContent(prodUrl);
+                    }
+                });
+            });
+        });
+
+    window.ktpl_quickview = <?php /* @escapeNotVerified */ echo \Zend_Json::encode($block->getConfig()); ?>;
+</script>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.main">
+        	<container name="only.few.left" htmlTag="div" htmlClass="detail-only-few-lefts" after="product.info.price">
+	            	
+            	<block class="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable" name="product.info.configurable" as="product_type_data" template="Magento_Catalog::product/view/type/default.phtml"/>
+	            <container name="product.info.configurable.extra" after="product.info.configurable" as="product_type_data_extra" label="Product Extra Info">
+	                <block class="Magento\ConfigurableProduct\Block\Stockqty\Type\Configurable" name="product.info.configurable.extra.catalog_inventory_stockqty_composite" template="Magento_CatalogInventory::stockqty/composite.phtml"/>
+	            </container>
+
+        	</container>
+        </referenceBlock>
+    </body>
+</page>

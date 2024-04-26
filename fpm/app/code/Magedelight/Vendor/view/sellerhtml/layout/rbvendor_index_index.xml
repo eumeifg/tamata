@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Sell Online on Rocket Bazaar | Grow your business with the leader in Indian e-commerce</title>
+        <link src="Magedelight_Theme::js/iframsolver.js"/>
+    </head>
+    <body>
+        <!-- Removed Content starts. -->
+        <referenceContainer name="header.container" remove="true"/>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <!-- Removed Content ends. -->
+        
+        <move element="copyright" destination="footer.panel.wrapper.content" after="vendor-footer-links"/>
+        <referenceContainer name="content">
+            <container name="vendor.index.login.form" before="-" htmlTag="div" htmlClass="login-form" label="vendor index login form">
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Form\Login" name="vendor_login_and_signup"  template="Magedelight_Vendor::form/login.phtml" cacheable="false" >
+                    <block class="Magento\Framework\View\Element\Template" name="additional_content_before_login"  template="Magedelight_Vendor::form/additional_content.phtml">
+                        <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Header\Logo" name="vendor_general_logo">
+                            <arguments>
+                                <argument name="logo_file" xsi:type="string">images/logo.png</argument>
+                                <argument name="logo_img_width" xsi:type="number">189</argument>
+                                <argument name="logo_img_height" xsi:type="number">64</argument>
+                            </arguments>
+                        </block>
+                    </block>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

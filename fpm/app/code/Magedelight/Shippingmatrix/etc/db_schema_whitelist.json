@@ -1,0 +1,61 @@
+{
+    "md_shipping_matrixrate": {
+        "column": {
+            "pk": true,
+            "website_id": true,
+            "dest_country_id": true,
+            "dest_region_id": true,
+            "dest_city": true,
+            "dest_zip": true,
+            "dest_zip_to": true,
+            "condition_name": true,
+            "condition_from_value": true,
+            "condition_to_value": true,
+            "price": true,
+            "cost": true,
+            "shipping_method": true,
+            "vendor_id": true,
+            "single_item_shipping_price": true,
+            "multi_item_shipping_price": true,
+            "delivery_days": true,
+            "province_city": true,
+            "customer_group_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "UNQ_D9B2F7AB9EC05207A71461C6E9E8F1EB": true,
+            "UNQ_913F2F1B274A8ED38C2E32F05A4DEEFD": true
+        }
+    },
+    "md_shipping_methods": {
+        "column": {
+            "shipping_method_id": true,
+            "shipping_method": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "quote_item": {
+        "column": {
+            "shipping_amount": true
+        }
+    },
+    "sales_order_item": {
+        "column": {
+            "shipping_amount": true
+        }
+    },
+    "quote": {
+        "column": {
+            "vendor_shipping_data": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "vendor_shipping_data": true
+        }
+    }
+}

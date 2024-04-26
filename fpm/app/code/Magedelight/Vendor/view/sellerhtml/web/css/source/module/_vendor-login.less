@@ -1,0 +1,446 @@
+// /**
+//  * Copyright � 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+
+.rbvendor-index-index {
+  background: @color-light-black;
+  .login-form {
+    background: @color-light-black;
+    padding: 100px 0;
+    .logmod {
+      max-width: 45rem;
+      margin: 0 auto;
+    }
+  }
+  .page-footer {
+    margin: 0;
+  }
+  .footer {
+    background: none;
+    width: 100%;
+    .footer-links-container {
+      .panel {
+        margin: 0;
+        color: @color-white;
+        background: @color-light-black;
+        border: none;
+        .footer-links {
+          display: inline-block;
+          width: 100%;
+          text-align: center;
+          float: none;
+          margin-bottom: @indent__s;
+          ul {
+            li {
+              a {
+                &:hover {
+                  color: @color-blue2;
+                }
+              }
+            }
+          }
+        }
+        .copyright {
+          display: inline-block;
+          width: 100%;
+          text-align: center;
+          float: none;
+        }
+      }
+    }
+  }
+  .flag-container {
+    position: absolute;
+    top: 40px !important;
+    z-index: 1;
+    cursor: pointer;
+    .selected-flag {
+      margin: 1px;
+      padding: 6px 6px 6px 6px;
+      height: auto;
+      width:60px;
+      .selected-dial-code {
+        width: 35px;
+      }
+      .iti-arrow {
+        top: 14px;
+        position: absolute;
+        left: auto;
+        right: 15px;
+        width: 4px;
+        height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid black;
+      }
+    }
+    .country-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      z-index: 1;
+      overflow-y: auto;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+      background-color: white;
+      border: 1px solid #cccccc;
+      position: absolute;
+      top: 29px;
+      width: 330px;
+      max-height: 200px;
+      .divider {
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #cccccc;
+      }
+      .country {
+        line-height: 16px;
+        padding: 4px 10px;
+      }
+    }
+  }
+  .intl-tel-input {
+    input {
+      padding-left: 60px !important;
+    }
+  }
+}
+       
+.logmod {
+  .logo {
+    display: block;
+    width: 100%;
+    margin: @indent__l auto;
+    box-shadow: 0px 6px 15px -3px rgba(0, 0, 0, 0.2);
+    padding: 0px 0 @indent__l;
+    text-align: center;
+  }
+}
+
+.forgot-password-form {
+  .logo {
+    float: left;
+    display: block;
+    width: 100%;
+    margin: 30px auto;
+    box-shadow: 0px 6px 10px -3px rgba(0,0,0,0.2);
+    padding: 0px 0 30px;
+    text-align: center;
+  }
+}
+
+.logmod {
+  /*display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 1;
+  z-index: 1;*/
+  &:after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+  &__wrapper {
+    display: block;
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 0 20px 100px rgba(0,0,0,.5);
+    background: @color-white;
+  }
+  &__close {
+    display: block;
+    position: absolute;
+    right: 50%;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    top: -72px;
+    margin-right: -24px;
+    width: 48px;
+    height: 48px;
+  }
+  &__container {
+    overflow: hidden;
+    width: 100%;
+    &:after {
+      clear: both;
+      content: "";
+      display: table;
+    }
+  }
+  &__tab {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    &.show {
+      opacity: 1;
+      height: 100%;
+      visibility: visible;
+    }
+  }
+  &__tab-wrapper {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  &__tabs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    &:after {
+      clear: both;
+      content: "";
+      display: table;
+    }
+    li {
+      &.current {
+        a {
+          background: @color-gray;
+          color: @color-white;
+          opacity: 1;
+          &:after {
+            position: absolute;
+            content: '';
+            height: 0;
+            width: 0;
+            top: 100%;
+            left: 50%;
+            border-top:9px solid @color-gray;
+            border-right:9px solid transparent;
+            border-bottom:9px solid transparent;
+            border-left:9px solid transparent;
+            margin-left:-9px;
+          }
+        }
+      }
+      a {
+        width: 50%;
+        position: relative;
+        float: left;
+        text-align: center;
+        background: @color-gray;
+        opacity: 0.5;
+        line-height: 50px;
+        height: 50px;
+        text-decoration: none;
+        color: @color-white;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+  }
+  &__heading {
+    text-align: center;
+    padding: 12px 0 12px 0;
+  }
+  &__heading-subtitle {
+    display: block;
+    font-weight: 400;
+    font-size: 15px;
+    color: #888;
+    line-height: 48px;
+  }
+  &__form {
+    margin: @indent__base + @indent__xs 0;
+  }
+  &__alter {
+    display: block;
+    position: relative;
+    margin-top: 7px;
+    &:after {
+      clear: both;
+      content: "";
+      display: table;
+    }
+  }
+}
+
+.simform {
+  position: relative;
+  &__actions {
+    padding: 15px;
+    font-size: 14px;
+    &:after {
+      clear: both;
+      content: "";
+      display: table;
+    }
+    .sumbit {
+      .lib-button(
+        @_button-background: @color-gray,
+        @_button-border: 2px solid @color-gray,
+        @_button-border-hover: 2px solid @color-gray,
+        @_button-background-hover: @color-white,
+        @_button-color-hover: @color-gray,
+        @_button-padding: @indent__s @indent__s + @indent__xs
+      );
+      border-radius: 4px;
+      text-align: center;
+      text-transform: uppercase;
+      width: auto;
+      float: right;
+    }
+    &-sidetext {
+      float: left;
+      padding: 0 10px;
+      margin: 9px 0 0 0;
+      color: #8C979E;
+      text-align: center;
+      line-height: 24px;
+      &:after {
+        clear: both;
+        content: "";
+        display: table;
+      }
+    }
+  }
+}
+
+
+.sminputs {
+  border-bottom: 1px solid #E5E5E5;
+  &:after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+  .input {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: @indent__s 15px;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: none;
+    float: left;
+    background-color: #FFF;
+    border-radius: 0;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    &.active {
+      background: #eee;
+      .hide-password {
+        background: #eee;
+      }
+    }
+    &.full {
+      width: 100%;
+    }
+    label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
+      width: 100%;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      padding: 0px 0px 5px;
+      text-align: left;
+    }
+    input {
+      postion: relative;
+      display: inline-block;
+      height: 42px;
+      font-size: 15px;
+      line-height: 42PX;
+      border-radius: 4px;
+      vertical-align: middle;
+      box-shadow: none;
+      box-sizing: border-box;
+      width: 100%;
+      height: auto;
+      border: none;
+      padding: 0 10px;
+      cursor: pointer;
+      background: transparent !important;
+      color: rgba(75, 89, 102, 0.85) !important;
+    }
+  }
+  .hide-password {
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    padding: 0 10px;
+    font-size: 14px;
+    overflow: hidden;
+    color: #444;
+    cursor: pointer;
+    margin-top: 12px;
+    line-height: 48px;
+  }
+}
+
+
+}
+
+//
+//    Mobile @screen__s
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+  .rbvendor-index-index {
+    .page-main {
+      background: @color-light-black;
+    }
+    .login-form {
+      padding: @indent__s + @indent__xs 0;
+    }
+    .nav-toggle {
+      display: none;
+    }
+  }
+
+  .logmod {
+    .logo {
+      margin: @indent__base 0 0 0;
+    }
+  }
+
+}
+
+
+//
+//    Mobile @screen__m
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+  .rbvendor-index-index {
+    .page-main {
+      background: @color-light-black;
+    }
+    .login-form {
+      padding: @indent__xl 0;
+    }
+  }
+
+  .logmod {
+    .logo {
+      margin: @indent__base 0 0 0;
+    }
+  }
+
+}
+
+
+
+

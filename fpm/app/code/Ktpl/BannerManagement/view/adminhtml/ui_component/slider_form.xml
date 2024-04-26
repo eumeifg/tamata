@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">slider_form.bannermanagement_slider_listing_data_source</item>
+            <item name="deps" xsi:type="string">slider_form.bannermanagement_slider_listing_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="label" translate="true" xsi:type="string">Slider Information</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Ktpl\BannerManagement\Block\Adminhtml\Block\Edit\BackButton</item>
+            <item name="save_and_continue" xsi:type="string">Ktpl\BannerManagement\Block\Adminhtml\Block\Edit\SaveAndContinueButton</item>
+            <item name="save" xsi:type="string">Ktpl\BannerManagement\Block\Adminhtml\Block\Edit\SaveButton</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">slider_form</item>
+        </item>
+    </argument>
+    <dataSource name="bannermanagement_slider_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Ktpl\BannerManagement\Model\SliderDataProvider</argument>
+            <argument name="name" xsi:type="string">bannermanagement_slider_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">slider_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" path="bannermanagement/slider/save" xsi:type="url"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="label" translate="true" xsi:type="string">Slider Information</item>
+            </item>
+        </argument>
+        <field name="slider_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">contact</item>
+                </item>
+            </argument>
+        </field>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Name</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Enabledisable</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Status</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">status</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="store_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\BannerManagement\Ui\Component\Listing\Column\StoresOptions</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Store View</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">block</item>
+                    <item name="dataScope" xsi:type="string">store_ids</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="customer_group_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\BannerManagement\Model\Config\Source\CustomerGroups</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Customer Groups</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">block</item>
+                    <item name="dataScope" xsi:type="string">customer_group_ids</item>
+                    <item name="notice" translate="true" xsi:type="string">Select customer group(s) to display the slider to</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="visible_devices">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\BannerManagement\Model\Config\Source\VisibleDevices</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Devices</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">block</item>
+                    <item name="dataScope" xsi:type="string">visible_devices</item>
+                    <item name="notice" translate="true" xsi:type="string">Select Device to display the slider</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="from_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" translate="true" xsi:type="string">Display from</item>
+                    <item name="source" xsi:type="string">block</item>
+                    <item name="dataScope" xsi:type="string">from_date</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="to_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" translate="true" xsi:type="string">Display to</item>
+                    <item name="source" xsi:type="string">block</item>
+                    <item name="dataScope" xsi:type="string">to_date</item>
+                    <item name="options" xsi:type="array">
+                        <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="priority">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Priority</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">priority</item>
+                    <item name="notice" translate="true" xsi:type="string">Enter a number to set priority for the slider. A lower number represents a higher priority.</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="banners">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="label" translate="true" xsi:type="string">Banners</item>
+            </item>
+        </argument>
+        <insertListing name="slider_banner_listing">
+            <settings>
+                <dataLinks>
+                    <exports>false</exports>
+                    <imports>true</imports>
+                </dataLinks>
+                <externalProvider>slider_banner_listing.bannersmanagement_banner_listing_data_source</externalProvider>
+                <selectionsProvider>slider_banner_listing.slider_banner_listing.bannermanagement_banner_columns.ids</selectionsProvider>
+                <autoRender>true</autoRender>
+                <dataScope>slider_banner_listing</dataScope>
+                <ns>slider_banner_listing</ns>
+            </settings>
+        </insertListing>
+    </fieldset>
+    <fieldset name="design">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="label" translate="true" xsi:type="string">Design</item>
+            </item>
+        </argument>
+        <field name="effect">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\BannerManagement\Model\Config\Source\Effect</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Animation Effect</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">effect</item>
+                </item>
+            </argument>
+        </field>
+        <field name="design">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\BannerManagement\Model\Config\Source\DesignOptions</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Manually Design</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">design</item>
+                </item>
+            </argument>
+            <settings>
+                <switcherConfig>
+                    <rules>
+                        <rule name="0">
+                            <value>0</value>
+                            <actions>
+                                <action name="0">
+                                    <target>slider_form.slider_form.design.is_responsive</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="1">
+                                    <target>slider_form.slider_form.design.responsive_items</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="2">
+                                    <target>slider_form.slider_form.design.autoWidth</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="3">
+                                    <target>slider_form.slider_form.design.autoHeight</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="4">
+                                    <target>slider_form.slider_form.design.loop</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="5">
+                                    <target>slider_form.slider_form.design.nav</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="6">
+                                    <target>slider_form.slider_form.design.dots</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="7">
+                                    <target>slider_form.slider_form.design.lazyload</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="8">
+                                    <target>slider_form.slider_form.design.autoplay</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="9">
+                                    <target>slider_form.slider_form.design.autoplayTimeout</target>
+                                    <callback>hide</callback>
+                                </action>
+                                <action name="10">
+                                    <target>slider_form.slider_form.design.autoplayHoverPause</target>
+                                    <callback>hide</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                        <rule name="1">
+                            <value>1</value>
+                            <actions>
+                                <action name="0">
+                                    <target>slider_form.slider_form.design.is_responsive</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="1">
+                                    <target>slider_form.slider_form.design.responsive_items</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="2">
+                                    <target>slider_form.slider_form.design.autoWidth</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="3">
+                                    <target>slider_form.slider_form.design.autoHeight</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="4">
+                                    <target>slider_form.slider_form.design.loop</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="5">
+                                    <target>slider_form.slider_form.design.nav</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="6">
+                                    <target>slider_form.slider_form.design.dots</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="7">
+                                    <target>slider_form.slider_form.design.lazyload</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="8">
+                                    <target>slider_form.slider_form.design.autoplay</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="9">
+                                    <target>slider_form.slider_form.design.autoplayTimeout</target>
+                                    <callback>show</callback>
+                                </action>
+                                <action name="10">
+                                    <target>slider_form.slider_form.design.autoplayHoverPause</target>
+                                    <callback>show</callback>
+                                </action>
+                            </actions>
+                        </rule>
+                    </rules>
+                    <enabled>true</enabled>
+                </switcherConfig>
+            </settings>
+        </field>
+        <field name="is_responsive">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Is Responsive</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">is_responsive</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="responsive_items">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Max Items Slider</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">responsive_items</item>
+                </item>
+            </argument>
+        </field>
+        <field name="autoWidth">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Auto Width</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">autowidth</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="autoHeight">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Auto Height</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">autoheight</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="loop">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Infinity Loop</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">loop</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="nav">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Show Next/Prev Buttons</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">nav</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="dots">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Show Dots Navigation</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">dots</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="lazyload">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Lazy Loading Images</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">lazyload</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="autoplay">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Enable Autoplay</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">autoplay</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="autoplayTimeout">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Autoplay Time-Out</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">autoplaytimeout</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="autoplayHoverPause">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" translate="true" xsi:type="string">Auto Play Hover Pause</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">autoplayhoverpause</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

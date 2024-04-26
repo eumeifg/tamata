@@ -1,0 +1,59 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php
+$vendorData = $block->getVendorData();
+if (empty($vendorData['vendor_id'])) {
+    $vendorData['vendor_id'] = $this->getRequest()->getParam('vid');
+}
+$vendor = $block->getVendor($vendorData['vendor_id']);
+?>
+
+<?php if (!empty($vendorData['banner'])) : ?>
+    <div class="microsite_top_content">
+        <div class="microsite_banner"><a href="<?= $vendorData['banner_associate_url']?>"><img src="<?php echo $block->getMediaUrl() .'microsite/'. $vendorData['banner']; ?>" alt="<?php echo $vendorData['page_title']; ?>" title="<?php echo $vendorData['page_title']; ?>" /></a></div>
+    </div>
+<?php endif; ?>
+
+<?php /* ?>
+<div class="microsite-seller-box">
+    <div class="seller_profile_box">
+    <div class="seller-info-container">
+        <div class="seller_profile">
+            <?php if ($vendor['logo'] && $resizedImage = $block->resize($vendor['logo'], null, 200)) : ?>
+                <div class="seller_logo">
+                    <img src="<?php echo $resizedImage; ?>" />
+                </div>
+            <?php else :?>
+                <img src="<?php echo $this->getViewFileUrl('Magedelight_Vendor::images/small_image.jpg');?>" />
+            <?php endif;?>
+            <!-- end of seller_logo -->
+            
+            <div class="seller_information">
+                <?php if (!empty($vendor['business_name'])) : ?>
+                    <h3>
+                        <a href="<?php echo $this->getVendorHomeUrl(); ?>">
+                            <?php echo $vendor['business_name']; ?>
+                        </a>
+                    </h3>
+                <?php endif; ?>
+                <?php if ((!empty($vendor['city']) || !empty($vendor['country_id']))) : ?>
+                    <div class="seller_location">
+                        <?php echo $vendor['city']; ?>,<?php echo $vendor['country_id']; ?> 
+                    </div>  <!-- end of seller_location -->
+                <?php endif; ?>                
+            </div>  <!-- end of seller_information -->
+        </div>  <!-- end of seller_profile -->
+    </div>   <!-- end of seller_profile_box -->
+    </div>   <!-- end of seller_profile_box -->
+</div>
+<?php */ ?>

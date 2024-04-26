@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_VendorCommissions
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="commission">
+            <group id="payout_commission">
+                <field id="precedence_5" translate="label" type="select" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Commission Precedence 5</label>
+                    <source_model>MDC\VendorCommissions\Model\Source\CommissionType</source_model>
+                    <comment><![CDATA[Commission of marketplace subscription to be paid as per the precedence configured]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

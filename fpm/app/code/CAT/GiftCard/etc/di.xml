@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="giftcardrule_rules_listing_data_source" xsi:type="string">CAT\GiftCard\Model\ResourceModel\GiftCardRule\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="CAT\GiftCard\Model\ResourceModel\GiftCardRule\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">giftcard_rule</argument>
+            <argument name="resourceModel" xsi:type="string">CAT\GiftCard\Model\ResourceModel\GiftCardRule</argument>
+        </arguments>
+    </virtualType>
+    <!--<preference for="Magento\GiftCardAccount\Controller\Customer\Index" type="CAT\GiftCard\Rewrite\Customer\IndexRewrite" />-->
+
+    <!--<type name="Magento\GiftCardAccount\Controller\Cart\QuickCheck">
+        <plugin name="customer_gift_card_quick_check" type="CAT\GiftCard\Plugin\Customer\QuickCheckPlugin" sortOrder="10" disabled="false"  />
+    </type>-->
+</config>

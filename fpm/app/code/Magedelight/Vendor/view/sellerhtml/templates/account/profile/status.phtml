@@ -1,0 +1,338 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $this \Magedelight\Vendor\Block\Profile */
+$vendor = $this->getVendor();
+$allowVacationRequest = true;
+$checkEnable = $this->helper('Magedelight\Vendor\Helper\Data')->isEnabledVendorVacationMode();
+?>
+<div id="status-info-content" class="row signup-step-content profile-step-content no-display">
+    <div class="title">
+        <h3><span><?= __('Status') ?></span></h3>
+        <?php if ($this->isVendorActive()) { ?>
+            <?php if ($checkEnable) { ?>
+                <span class="edit-link">Edit</span>
+            <?php }
+        }
+        ?>
+    </div>
+    <form name="status_information_form" id="status-information-form" enctype="multipart/form-data" method="post"
+          action="<?= $this->getPostActionUrl('statusinfo') ?>">
+        <fieldset class="fieldset">
+            <div class="field status-info">
+                <label class="label"><span><?= __('Current Status') ?></span></label>
+                <div class="info">
+                    <span><?= $this->getVendorStatusLabel(); ?></span>
+                </div>
+            </div>
+            <div class="field show-on-edit-field vendor-status required">
+                <label class="label" for="vendor-status-request">
+                    <span><?= __('Request For'); ?></span>
+                </label>
+                <div class="control vendor-status-request _with-tooltip">
+                        <?php $options = $this->getRequestList(); ?>
+                    <select id="status-request" name="request_type" class="required-entry">
+                        <option value="">Select</option>
+                        <?php foreach ($options as $value) { ?>
+                            <option id="status-request-value" value="<?= $value['value']; ?>"><?= $value['label']; ?></option>
+                        <?php } ?>
+                    </select>
+                    <div class="field-tooltip toggle">
+                                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden">
+
+                                        </span>
+                                        <div class="field-tooltip-content">
+                                            <span><?= __('Select Vacation Request For') ?></span>
+                                        </div>
+                                    </div>
+                </div>
+            </div>
+            <?php
+            if ($this->isVendorActive()) {
+                if ($checkEnable) {
+                    ?>
+                    <div class="field show-on-edit-field vacation-date-range required" data-role="status-information-form"
+                         id="vacation_date_range">
+                        <label class="label"><span><?= __('Go to Vacation') ?></span></label>
+                        <div class="control info date-control _with-tooltip">
+                            <div class="vacation-from-date date-field">
+                                <label for="vacation-from-date "><span><?= __('From') ?>:</span></label>
+                                <div class="date-field-container">
+                                    <input class="input-text required-entry fromdate"
+                                           type="text"
+                                           id="vacation-from-date"
+                                           name="vacation_from_date"
+                                           placeholder="MM/DD/YYYY"
+                                           />
+
+                                    <span id="from-date-error"></span>
+                                    <span id="date_from_advice"></span>
+                                </div>
+                            </div>
+                            <div class="vacation-to-date date-field">
+                                <label for="vacation-to-date"><span><?= __('To') ?>:</span></label>
+                                <div class="date-field-container">
+                                    <input class="input-text required-entry todate"
+                                           type="text"
+                                           id="vacation-to-date"
+                                           name="vacation_to_date"
+                                           placeholder="MM/DD/YYYY"
+                                           />
+                                    <span id="to-date-error"></span>
+                                    <div class="field-tooltip toggle">
+                                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden">
+
+                                        </span>
+                                        <div class="field-tooltip-content">
+                                            <span><?= __('Enter Vacation Date ') ?></span>
+                                        </div>
+                                    </div>
+                                    <span id="date_to_advice"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field show-on-edit-field vacation-message required">
+                        <label class="label"
+                               for="vacation-message"><span><?= __('Reason') ?></span></label>
+                        <div class="control _with-tooltip">
+                            <textarea id="vacation-message" name="vacation_message" placeholder="Vacation Reason"
+                                      class="required-entry validate-status"><?= $vendor->getVacationReason(); ?></textarea>
+                            <div class="field-tooltip toggle">
+                                <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                <div class="field-tooltip-content">
+                                    <span><?= __('Enter Vacation Reason') ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php }
+            }
+            ?>
+<?php if (!$this->isVendorOnVacation()) { ?>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button type="submit" value="status-information-form" title="<?= __('Save') ?>"
+                                class="action button primary btn-reset">
+                            <span><?= __('Save') ?></span>
+                        </button>
+                        <button type="reset" title="<?= __('Cancel') ?>" class="action button primary btn-reset">
+                            <span><?= __('Cancel') ?></span>
+                        </button>
+                    </div>
+                </div>
+<?php } ?>
+        </fieldset>
+    </form>
+    <div class="status-history-container p20">
+        <form method="get" action="<?= $block->getSubmitUrl() ?>" id="vendorstatushistory"
+      name="vendorstatushistory">
+                <input id="sort-order" type="hidden" name="sort_order"
+                       value="<?= $this->getRequest()->getParam('sort_order', 'request_id') ?>">
+                <input id="sort-direction" type="hidden" name="dir"
+                       value="<?= $this->getRequest()->getParam('dir', 'DESC') ?>">
+                </form>
+        <div class="table-wrapper status-history">
+            <table class="data table status-history-table" id="status-history-table">
+                <thead>
+                    <tr>
+                        <th scope="col" sortorder="request_id"
+                            class="col data-grid-id-cell request_id sortable"><?= __('ID'); ?></th>
+                        <th scope="col" sortorder="reason"
+                            class="col data-grid-date-cell reason sortable"><?= __('Reason'); ?></th>
+                        <th scope="col" sortorder="vacation_from_date"
+                            class="col col-price vacation_from_date sortable"><?= __('Request From'); ?></th>
+                        <th scope="col" sortorder="vacation_to_date" class="col col-price vacation_to_date sortable"><?= __('Request To'); ?></th>
+                        <th scope="col" sortorder="requested_at" class="col col-price requested_at sortable"><?= __('Request At'); ?></th>
+                        <th scope="col" sortorder="request_type" class="col data-grid-date-cell request_type sortable"><?= __('Request Type'); ?></th>
+                        <th scope="col" sortorder="vendorstatus" class="col col-qty status sortable"><?= __('Status'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $vendorVacationList = $block->getVendorVacationList();
+                    
+                    if ($vendorVacationList && count($vendorVacationList)) {
+                        foreach ($vendorVacationList as $vendor) {
+                            ?>
+                            <tr>
+                                <td data-th="ID #" class="col data-grid-id-cell"><?= $vendor->getRequestId(); ?></td>
+                                <td data-th="Reason" class="col data-grid-name-cell reason"><?= $vendor->getReason(); ?></td>
+                                <td data-th="Vacationfromdate" class="col data-grid-price-cell vacation_from_date"><?php $fromDate = $vendor->getVacationFromDate(); ?>
+                                    <?= empty($fromDate) ? __('--') : $fromDate; ?></td>
+                                  <td data-th="Vacationtodate" class="col data-grid-price-cell vacation_to_date"><?php $toDate = $vendor->getVacationToDate(); ?>
+                                    <?= empty($toDate) ? __('--') : $toDate; ?></td>
+                                <td data-th="Requestedat" class="col data-grid-price-cell requested_at"><?php $requestTo = date('Y-m-d', strtotime($vendor->getRequestedAt())); ?>
+                                     <?= empty($requestTo) ? __('--') : $requestTo; ?></td>
+                                <td data-th="Requestype" class="col data-grid-id-cell request_type"><?= $this->getRequestType($vendor->getRequestType()); ?></td>
+                                <td data-th="Status" class="col data-grid-qty-cell status"><?= $block->getVendorVacationStatus($vendor->getStatus()); ?></td>
+                            </tr>
+                        <?php }
+                    } else {
+                        ?>
+                        <tr>
+                            <td colspan="7">
+                                <div class="message info empty" id="deallist-msg"><?= __('We are unable to find any records'); ?></div>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+<?php if ($block->getPagerHtml()) : ?>
+                <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+<?php endif ?>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery', /* jquery Library */
+        'jquery/ui', /* Jquery UI Library */
+        'mage/mage',
+        "mage/calendar", /* Calender widget */
+        'mage/translate', /* Magento text translate (Validation message translte as per language) */
+        'datatable'
+    ], function ($) {
+        loginForm = $('#status-information-form');
+        loginForm.mage('validation', {
+            ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+        }).find('input:text').attr('autocomplete', 'off');
+        startDate = new Date();
+        $("#vacation_date_range").dateRange({
+            buttonText: "<?= __('Select Date') ?>",
+            minDate: startDate,
+            showOn: "button",
+            disabled: true,
+            from: {
+                id: "vacation-from-date"
+            },
+            to: {
+                id: "vacation-to-date"
+            }
+        });
+        
+        $("#status-request").on("change", function () {
+
+            var selectedVal = $(this).find(':selected').val();
+            var selectedText = $(this).find(':selected').text();
+            if (selectedText === 'Vacation') {
+                $('#vacation_date_range').show();
+            } else if (selectedText === 'Close') {
+                $('#vacation_date_range').hide();
+            }
+        });
+
+        $.validator.addMethod(
+            'validate-status',
+            function (v) {
+                return /(^.{1,255}$)/.test(v);
+            },
+            $.mage.__('Please enter less than 255 character.')
+        );
+
+        $('form').submit(function (event) {
+             $('.fromdate').removeClass("valid");
+             $('.todate').removeClass("valid");
+            var fromdate = $.trim($('#vacation-from-date').val());
+            var todate = $.trim($('#vacation-to-date').val());
+            var todayDate = new Date();
+            var todayMonth = todayDate.getMonth() + 1;
+            var todayDay = todayDate.getDate();
+            var todayYear = todayDate.getFullYear();
+            var todayDateText = todayMonth + "/" + todayDay + "/" + todayYear;
+            var inputFromText = fromdate;
+            var inputToText = todate;
+            var inputFromDate = Date.parse(inputFromText);
+            var todayToDate = Date.parse(todayDateText);
+            var inputToDate = Date.parse(inputToText);
+           
+             if (isDate(fromdate)) {
+                 if(inputFromDate > todayToDate || inputFromDate == todayToDate){
+                     return true;
+                 }else{
+                    
+                     $('.fromdate').css('border-color', 'red');
+                     $('#from-date-error').css('color','red');
+                     $('#from-date-error').html('Invalid Date');   
+                     return false;
+                 }
+             }else{
+                  $('.fromdate').removeClass("valid").addClass("mage-error");
+                  return true;
+             }
+
+             if(isDate(todate)) {
+                 if(inputToDate > todayToDate || inputToDate == todayToDate){
+                   return true;
+                 }
+                 else{
+                    $('.todate').css('border-color', 'red');
+                    $('#to-date-error').css('color','red');
+                    $('#to-date-error').html('Invalid Date');
+                    return false;
+                 }
+             }else{
+                   $('.todate').removeClass("valid").addClass("mage-error");
+                   return false;
+             }
+            return false;
+        });
+        
+        $(document).ready(function () {
+           
+            <?php if (count($vendorVacationList)) { ?> 
+                 
+            $('#status-history-table').DataTable({
+                "order": [[6, "desc"]],
+                "lengthMenu": [5, 10, 20],
+                "searching": false,
+                "dom": '<"top">rt<"bottom"ilp><"clear">'
+            });
+            <?php } ?>
+        });
+
+    });
+
+    function isDate(txtDate)
+    {
+
+        var currVal = txtDate;
+        if (currVal == '')
+            return false;
+        var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+        var dtArray = currVal.match(rxDatePattern); 
+
+        if (dtArray == null)
+            return false;
+
+        dtMonth = dtArray[1];
+        dtDay = dtArray[3];
+        dtYear = dtArray[5];
+
+        if (dtMonth < 1 || dtMonth > 12)
+            return false;
+
+        else if (dtDay < 1 || dtDay > 31)
+            return false;
+
+        else if ((dtMonth == 4 || dtMonth == 6 || dtMonth == 9 || dtMonth == 11) && dtDay == 31)
+            return false;
+
+        else if (dtMonth == 2)
+        {
+            var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
+            if (dtDay > 29 || (dtDay == 29 && !isleap))
+                return false;
+
+        }
+        return true;
+     }
+</script>

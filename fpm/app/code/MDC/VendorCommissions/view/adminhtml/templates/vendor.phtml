@@ -1,0 +1,91 @@
+<div id="main" style="display:none">
+<div class="admin__data-grid-header-row row">
+    <div class="col-xs-9"><strong>Vendor Name : <span id="vendorname"></span></strong></div>
+    <div class="col-xs-2"><button id="export-category">Export CSV</button></div>
+    <div class="col-xs-1"><button id="save-category" class="primary">Save</button></div>
+</div>
+<div class="clear">&nbsp;</div>
+<div id="response-html" style="color:red; font-size:10px">
+    <ul>
+        <li> By filling parent records child records will be automatically saved. </li>
+        <li> Already filled records will be not updated by parent category. </li>
+        <li> Leave textbox blank to delete commission. (Blank parent records will not delete anything) </li>
+    </ul>
+</div>
+<form id="category-commission" method="post" action="<?= $block->getUrl('commissionsadmin/vendorCategoryCommission/save'); ?>">
+<?php echo $block->getBlockHtml('formkey')?>
+<input type="hidden" name="vendorid" id="vendorid" value="" />
+<table class="data-grid" id="test-data-table" width="100%">
+    <thead>
+    <tr>
+        <th width="25%" class="data-grid-th">Category</th>
+        <th width="5%" class="data-grid-th">Commission</th>
+        <th width="10%" class="data-grid-th">Commission Calculation Type</th>
+        <th width="5%" class="data-grid-th">Marketplace Fee Commission</th>
+        <th width="10%" class="data-grid-th">Marketplace Fee Commission Type</th>
+        <th width="5%" class="data-grid-th">Cancellation Fee Commission</th>
+        <th width="10%" class="data-grid-th">Cancellation Fee Commission Type</th>
+        <th width="5%" class="data-grid-th">Status</th>
+    </tr>
+    </thead>
+    <tbody id="category-rows">
+
+    </tbody>
+</table>
+</form>
+</div>
+<script type="text/javascript">
+    require([
+    'jquery',
+    'mage/template',
+    'mage/url',
+    'customselect',
+    'jquery/ui',
+    'mage/translate',
+
+],
+function($, mageTemplate, urlBuilder) {
+
+   window.loadGrid = function() {
+       var param = 'vendorid='+$('#offers_vendor_id').val();
+       $('#vendorid').val($('#offers_vendor_id').val());
+       if($('#offers_vendor_id').val() != '') {
+           $.ajax({
+               url: "<?= $block->getUrl('commissionsadmin/vendorCategoryCommission/categoryHtml'); ?>",
+               data: param,
+               showLoader:true,
+               success: function(data){
+                   $('#vendorname').html($("#offers_vendor_id option:selected").html());
+                   $('#main').show();
+                   $('#category-rows').html(data);
+               }
+           });
+       }
+   };
+   $('#load-category').click(function(event){
+       loadGrid();
+   })
+
+    $('#save-category').click(function(event){
+        // $('#category-commission').submit();
+        $.ajax({
+            url: "<?= $block->getUrl('commissionsadmin/vendorCategoryCommission/save'); ?>",
+            type : 'POST',
+            data: jQuery('#category-commission').serialize(),
+            showLoader:true,
+            success: function(data){
+                loadGrid();
+            }
+        });
+    })
+
+    $('#export-category').click(function(event){
+        // $('#category-commission').submit();
+        var Eurl = urlBuilder.build("<?= $block->getUrl('commissionsadmin/vendorCategoryCommission/export/vendorid/VID'); ?>");
+        var Eurl = Eurl.replace("VID", $('#offers_vendor_id').val());
+        window.open(Eurl, "_blank");
+    })
+
+}
+);
+</script>

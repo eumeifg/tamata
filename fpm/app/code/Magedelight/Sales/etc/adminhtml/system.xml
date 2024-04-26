@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="vendor_sales" translate="label" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sales Settings</label>
+            <tab>rbsettings</tab>
+            <resource>Magedelight_Theme::config</resource>
+            <group id="order" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Order Settings</label>
+                <field id="auto_confirm" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Auto confirm marketplace orders</label>
+                    <comment>
+                        Orders will be auto confirmed on behalf of Admin if Yes. Orders might take time about 5 minutes to be reflected in vendor panel.
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="auto_confirm_delay" translate="label" type="multiselect" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Statuses to delay auto confirm</label>
+                    <comment>Auto confirm feature will be disabled for selected statuses.</comment>
+                    <source_model>Magedelight\Vendor\Model\Config\Source\Order\Status</source_model>
+                    <depends>
+                        <field id="auto_confirm">1</field>
+                    </depends>
+                </field>
+                
+                <field id="vendor_auto_confirm" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Auto confirm vendor orders</label>
+                    <comment>Orders will be auto confirmed on behalf of vendor if Yes.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+                <field id="is_manual_shipment" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Is Shipment done manually</label>
+                    <comment>If 'Yes', order status can be set In Transit/Delivered manually by vendor.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+                <field id="display_main_order_status" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Display Magento Order status</label>
+                    <comment>If 'Yes', main order status will be displayed to customer, vendor and admin.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+
+            <group id="cancel_order" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Customer Cancel Order</label>
+                <field id="module_enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>If enable, Cancel Order option will be visible on "Order details" section.</comment>
+                </field>
+                <!-- Add Dynamic Reasons -->
+                <field id="order_cancel_reasons_customer" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Cancel Reasons For Customer</label>
+                    <frontend_model>Magedelight\Sales\Block\Adminhtml\Form\Field\OrderCancelReason</frontend_model>
+                    <backend_model>Magedelight\Sales\Block\Adminhtml\Config\Backend\OrderCancelReasons</backend_model>
+                    <depends>
+                        <field id="module_enable">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="payment_settings" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Invoice Settings</label>
+                <field id="allow_to_generate_invoice" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Vendor to generate Invoice</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="payment_methods" translate="label" type="multiselect" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Select Payment Methods</label>
+                    <comment>Select payment methods for which a vendor can generate invoice. Its recommended to only select offline payment methods.</comment>
+                    <source_model>Magedelight\Sales\Model\Sales\PaymentMethods</source_model>
+                    <depends>
+                        <field id="allow_to_generate_invoice">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+        
+        <section id="rb" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label><![CDATA[Custom Order Detail Page]]></label>
+            <tab>rbsettings</tab>
+            <resource>Magedelight_Sales::system_config</resource>
+            <group id="odetail" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="orderpage_enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+        
+        <section id="emailconfiguration">
+            <group id="vendor_order" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Order Email</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="customer_order_cancel" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Customer Cancel Order Email</label>
+                <field id="vendor_template" translate="label" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Vendor Order Cancel Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="admin_template" translate="label" sortOrder="50" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin Order Cancel Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="item_cancel_customer_template" translate="label" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Item Cancel Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="item_cancel_vendor_template" translate="label" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Supplier Item Cancel Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="item_cancel_admin_template" translate="label" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin Item Cancel Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_order_cancel" translate="label" type="text" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Order Cancel</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="admin_template" translate="label" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>     
+            </group>
+            
+            <group id="admin_order_cancel" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Admin Cancel Order Email Template</label>
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+             <group id="vendor_order_status_complete" translate="label" type="text" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Customer Order Status Complete</label>
+                 <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                     <label>Enable</label>
+                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                 </field>
+                 <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="check_inventory" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Check Inventory</label>
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

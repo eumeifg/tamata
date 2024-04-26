@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="theme">
+        <field name="vendor_theme_theme_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magedelight\Backend\Model\View\Design\Theme\Label</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Applied Vendor Theme</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataScope" xsi:type="string">vendor_theme_theme_id</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="notice" xsi:type="string" translate="true">If no value is specified, the system default is used. The system default may be modified by third party extensions.</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

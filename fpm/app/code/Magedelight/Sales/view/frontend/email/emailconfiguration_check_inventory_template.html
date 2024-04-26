@@ -1,0 +1,9 @@
+<!--@subject Vendor Product Reorder Level Notification@-->
+<!--@subject {{var store.getFrontendName()}} Welcome to {{var store.getFrontendName()}} Marketplace @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Hello"}} {{var vendorEmail}},</p>
+<p>{{trans "Your product " }} {{var vendorProductName}} {{trans "has been reached to reorder level please update quantity."}}</p>
+
+{{template config_path="design/email/footer_template"}}

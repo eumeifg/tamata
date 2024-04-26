@@ -1,0 +1,15 @@
+<?php
+    if(!$block->isLoggedIn()) {
+?>
+	<div class="header-track-link">
+            <a href="<?php echo $block->getUrl('sales/guest/form'); ?>"><?php echo __('Track Order'); ?></a>   
+	</div>
+<?php    
+    } else {
+?>
+	<div class="header-track-link">
+            <a href="<?php echo $block->getURL('sales/order/history'); ?>"><?php echo __('Track Order'); ?></a>
+	</div>
+<?php
+    }
+?>

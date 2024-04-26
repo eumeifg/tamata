@@ -1,0 +1,12 @@
+<?php
+$rmaHelper = $this->helper('MDC\Rma\Helper\Data');
+$_item = $this->getParentBlock()->getParentBlock()->getItem();
+//echo $rmaHelper->checkOrderComplete($_item);die;
+?>
+<?php  if ($rmaHelper->isReturnAllowed($_item) && $rmaHelper->checkTookanOrderComplete($_item)) : ?>
+<?php  //if ($rmaHelper->checkTookanOrderComplete($_item) ) : ?>
+    <a href="<?= $rmaHelper->getReturnCreateUrl($_item->getOrder(), $_item->getVendorId()); ?>" 
+       class="action return">
+       <span><?= __('Return') ?></span>
+    </a>
+<?php endif; ?>

@@ -1,0 +1,96 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+$vendors = $block->getVendorCollection();
+$sortOrder = $block->getRequest()->getParam('sortorder');
+if (!$sortOrder) {
+    $sortOrder = 'asc';
+}
+?>
+<?php if (count($vendors)>0) :?>
+    <div class="toolbar toolbar-products">
+        <div class="toolbar-sorter sorter">
+            <label class="sorter-label" for="sorter"><?= /* @escapeNotVerified */ __('Sort By'); ?></label>
+            <select id="sorter" class="sorter-options">
+                <option value="asc" <?php if ($sortOrder == 'asc') {
+                    ?> <?= "selected='selected'"; ?> <?php
+                                    }?>
+                        data-url="<?= /* @escapeNotVerified */ $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true, 'sortorder' => 'asc']);?>">
+                        <?= /* @escapeNotVerified */ __('Ascending');?>
+                </option>
+                <option value="desc" <?php if ($sortOrder == 'desc') {
+                    ?> <?= "selected='selected'"; ?> <?php
+                                     }?>
+                    data-url="<?= /* @escapeNotVerified */ $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true, 'sortorder' => 'desc']);?>">
+                        <?= /* @escapeNotVerified */ __('Descending ');?>
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="sellerdirectory-container">
+        <div class="products wrapper grid products-grid">
+        <ol class="products list items product-items">
+            <?php foreach ($vendors as $vendor) : ?>        
+                <li class="item product product-item">
+                    <div class="product-item-info">
+                        <a class="product photo product-item-photo" target="_blank" href="<?= /* @escapeNotVerified */ $block->getVendorMicrositeUrl($vendor->getVendorId());?>">
+                            <?php if ($vendor->getLogo() && $resizedImage = $block->resize($vendor->getLogo(), 200, 200)) : ?>
+                               <img src="<?= /* @escapeNotVerified */ $resizedImage ?>" />
+                            <?php else :?>
+                                <img src="<?= /* @escapeNotVerified */ $block->getViewFileUrl('Magedelight_Vendor::images/small_image.jpg');?>" />
+                            <?php endif;?>
+                        </a>
+                        <div class="product details product-item-details">
+                             <a href="<?= /* @escapeNotVerified */ $block->getVendorMicrositeUrl($vendor->getVendorId()); ?>">
+                                 <strong class="product name product-item-name"><?= /* @escapeNotVerified */ $vendor->getVendorBusinessName();?></strong>
+                             </a>
+                            <div class="product-reviews-summary short"></div>
+                             <div class="review_ratings">
+                                 <?php if ($block->getRatingAvg($vendor->getVendorId()) == 0) { ?>
+                                    <div class="rating-summary">
+                                         <div class="rating-result" title="0%">
+                                             <span style="width:0%">
+                                                 <span>
+                                                     <span itemprop="ratingValue">50</span>% of <span itemprop="bestRating">100</span>
+                                                 </span>
+                                             </span>
+                                         </div>
+                                    </div>
+                                    <?php } else { ?>
+                                  <div class="rating-summary">
+                                    <div class="rating-result">
+                                        <span style="width:<?= /* @escapeNotVerified */ $block->getRatingAvg($vendor->getVendorId()); ?>%"><span><span itemprop="ratingValue"><?= /* @escapeNotVerified */ $block->getRatingAvg($vendor->getVendorId()); ?></span>% of <span itemprop="bestRating">100</span></span></span>
+                                    </div>
+                                 </div>
+                                 <?php } ?>
+                             </div>
+                            <a class="action primary go-shop" target="_blank" href="<?= /* @escapeNotVerified */ $block->getVendorMicrositeUrl($vendor->getVendorId());?>">
+                                <?= /* @escapeNotVerified */ __('Go To Shop');?>
+                            </a>
+                        </div>
+                    </div>                    
+                </li>
+            <?php endforeach;?>
+        </ol>
+        </div>
+    </div>
+<?php endif;?>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        $('#sorter').change(function() {
+            var option = $(this).find('option:selected');
+            window.location.href = option.data("url");
+        });
+    });
+</script>

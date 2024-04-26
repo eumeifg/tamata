@@ -1,0 +1,52 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var Magedelight\Vendor\Block\Dashboard\Products\LowStock $block */
+$collection = $block->getLowInventoryProducts();
+?>
+<div class="table-wrapper orders-history table-bg-red">
+    <div class="table-caption-heading">
+        <span class="table-heading fleft"><?= __('Low Inventory Products') ?></span>
+    </div>
+    <table class="data table table-low-inventory-products summary-table" id="low-inventory-products">
+        <thead>
+            <tr>
+                <th scope="col" class="col product-sku"><?= __('SKU') ?></th>
+                <th scope="col" class="col product-name"><?= __('Product Name') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (count($collection) > 0) {
+                $i=0;
+                foreach ($collection as $item) {
+                    ?>
+                    <tr>
+                        <td data-th="" class="col product-sku"><?= $item->getVendorSku() ?></td>
+                        <td data-th="" class="col product-name"><?= $item->getProductName() ?></td>
+                    </tr>
+                    <?php
+                    $i++;
+                    if ($i==5) {
+                        break;
+                    }
+                }
+            } else {
+                ?>
+                <tr>
+                    <td colspan="2"><?= __('No products with low inventory.') ?></td>
+                </tr>
+                <?php
+            }
+            ?>
+        </tbody>
+    </table>
+</div>

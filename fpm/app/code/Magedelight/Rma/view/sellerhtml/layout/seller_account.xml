@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Shippingmatrix
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="vendorMenus">
+            <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="vendorReturns" group="vendorReturnsInfo">
+                <arguments>
+                    <argument name="icon_class" xsi:type="string" translate="true">rbvt-icon rbvt-icon-returns</argument>
+                    <argument name="label" xsi:type="string" translate="true">Returns</argument>
+                    <argument name="is_vendor_enabled" xsi:type="string">carriers/rbmatrixrate/is_active_for_vendor</argument>
+                    <argument name="child_id" xsi:type="string" translate="true">rma_returns</argument>
+                    <argument name="vendor_group" xsi:type="string">rma_returns</argument>
+                    <argument name="path" xsi:type="string">#</argument>
+                    <argument name="accordion_toggle" xsi:type="string">accordion-toggle</argument>
+                    <argument name="resource_id" xsi:type="string">Magedelight_Vendor::rma</argument>
+                    <argument name="sort_order" xsi:type="string">170</argument>
+                </arguments>
+            </block>
+            <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="vendorReturnRequest" group="vendorReturnsInfo">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Returns Request</argument>
+                    <argument name="parent_id" xsi:type="string" translate="true">rma_returns</argument>
+                    <argument name="child_id" xsi:type="string" translate="true">rma_returns</argument>
+                    <argument name="path" xsi:type="string">mdrma/vendorrequest/index</argument>
+                    <argument name="vendor_group" xsi:type="string">rma_returns</argument>
+                    <argument name="accordion_toggle" xsi:type="string">accordion-toggle</argument>
+                    <argument name="sort_order" xsi:type="string">10</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

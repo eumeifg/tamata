@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- DELETE customer account -->
+    <route url="/V1/customers/mine/account/delete/:customerId" method="DELETE">
+        <service class="Magento\Customer\Api\CustomerRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+</routes>

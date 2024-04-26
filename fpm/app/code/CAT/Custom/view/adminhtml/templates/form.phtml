@@ -1,0 +1,124 @@
+<?php
+    /** @var CAT\Custom\Block\Adminhtml\Automation\View $block */
+    $options = $block->getImportOptions();
+    $websites = $block->getWebsiteOptions();
+    $vendorListUrl = $block->getVendorListUrl();
+?>
+
+<div class="entry-edit form-inline">
+    <form id="edit_form" action="<?= $block->getUrl('catcustom/automation/save')?>" method="post"
+          enctype="multipart/form-data"
+          novalidate="novalidate" data-mage-init='{"validation":{}}'>
+        <div>
+            <input name="form_key" type="hidden" value="<?php echo $block->escapeHtml($block->getFormKey()) ?>" />
+        </div>
+        <fieldset class="fieldset admin__fieldset " id="base_fieldset">
+            <legend class="admin__legend legend">
+                <span><?= $block->getFormTitle(); ?></span>
+            </legend><br>
+            <div class="messages"></div>
+            <div class="admin__field field field-entity  with-addon required _required" data-ui-id="import-form-container-form-fieldset-element-form-field-entity">
+                <label class="label admin__field-label" for="entity" data-ui-id="import-form-container-form-fieldset-element-select-entity-label">
+                    <span>Entity Type</span>
+                </label>
+                <div class="admin__field-control control">
+                    <div class="admin__field">
+                        <select id="entity" name="entity" title="Entity Type" class=" required-entry _required select admin__control-select" data-ui-id="import-form-container-form-fieldset-element-select-entity" aria-required="true">
+                            <?php foreach ($options as $code => $value): ?>
+                                <option value="<?= $code; ?>"><?= $value; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <label class="addafter" for="entity">
+                            <span id="sample-file-span" class="no-display"><a id="sample-file-link" href="#" download>Download Sample File</a></span>
+                        </label>
+                    </div>
+                    <div class="admin__field no-display" id="offer_website_id">
+                        <select id="offers_website_id" name="website_id" title="Website ID" class=" required-entry _required select admin__control-select" data-ui-id="import-form-container-form-fieldset-element-select-entity" aria-required="true">
+                            <?php foreach ($websites as $key => $value): ?>
+                                <option value="<?= $value['value']; ?>"><?= $value['label']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="admin__field no-display" id="offer_vendor_id">
+                        <select id="offers_vendor_id" name="vendor_id" title="Vendor ID" class=" required-entry _required select admin__control-select" data-ui-id="import-form-container-form-fieldset-element-select-entity" aria-required="true">
+                            <?php foreach ($options as $code => $value): ?>
+                                <option value="<?= $code; ?>"><?= $value; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="fieldset admin__fieldset" id="upload_file_fieldset">
+            <legend class="admin__legend legend">
+                <span>File to Import</span>
+            </legend><br>
+            <div class="messages"></div>
+            <div class="admin__field field field-import_file  required _required with-note" data-ui-id="import-form-container-form-fieldset-element-form-field-import-file">
+                <label class="label admin__field-label" for="import_file" data-ui-id="import-form-container-form-fieldset-element-file-import-file-label">
+                    <span>Select File to Import</span>
+                </label>
+                <div class="admin__field-control control">
+                    <input id="import_file" name="import_file" data-ui-id="import-form-container-form-fieldset-element-file-import-file" value="" title="Select File to Import" class="input-file required-entry _required" type="file" aria-required="true">
+                    <div class="note admin__field-note" id="import_file-note">File must be saved in UTF-8 encoding for proper import</div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="fieldset admin__fieldset" id="form_save_button">
+            <div class="admin__field-control control">
+                <div class="admin__field">
+                    <button class="action-primary" type="submit">Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<script>
+    require(['jquery'], function ($) {
+        $('#entity').on('change', function() {
+            if (this.value) {
+                var file_path = '<?php echo $block->getSampleFilePath() ?>' + '/' + this.value + '.csv';
+                $("#sample-file-link").attr("href", file_path);
+                $( "#sample-file-span" ).removeClass('no-display');
+                 if(this.value == 'product_offer') {
+                    $("#offer_website_id").removeClass('no-display');
+                     $("#offer_vendor_id").removeClass('no-display');
+                     $("#offers_website_id").addClass('required-entry _required');
+                     $("#offers_vendor_id").addClass('required-entry _required');
+                } else {
+                     $("#offer_website_id").addClass('no-display');
+                     $("#offer_vendor_id").addClass('no-display');
+                     $("#offers_website_id").removeClass('required-entry _required');
+                     $("#offers_vendor_id").removeClass('required-entry _required');
+                }
+            } else {
+                $( "#sample-file-span" ).addClass('no-display');
+                $(".curation").hide();
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'mage/template',
+        'jquery/ui',
+        'mage/translate'
+    ],
+    function($, mageTemplate) {
+       $('#edit_form').on('change', '#offers_website_id', function(event){
+           var url = "<?php echo $vendorListUrl . 'website/'?>" + $('#offers_website_id').val();
+           console.log(url);
+          $.ajax({
+                url : url,
+                type: 'get',
+                dataType: 'json',
+                showLoader:true,
+                success: function(data){
+                    $('#offers_vendor_id').html(data.htmlcontent);
+                }
+          });
+       })
+    });
+</script>

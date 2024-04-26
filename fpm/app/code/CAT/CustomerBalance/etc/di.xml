@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="catcustomerbalance_import_listing_data_source" xsi:type="string">CAT\CustomerBalance\Model\ResourceModel\BulkImport\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="CAT\CustomerBalance\Model\ResourceModel\BulkImport\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">cat_customerbalance</argument>
+            <argument name="resourceModel" xsi:type="string">CAT\CustomerBalance\Model\ResourceModel\BulkImport</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Console\CommandList">
+       <arguments>
+           <argument name="commands" xsi:type="array">
+               <item name="update_bulk_store_credit" xsi:type="object">CAT\CustomerBalance\Console\UpdateBulkStoreCredit</item>
+           </argument>
+       </arguments>
+   </type>
+</config>

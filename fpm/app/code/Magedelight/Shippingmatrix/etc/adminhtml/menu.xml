@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Copyright © 2017 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>
+
+    <!-- Added Vendor Payment Root Menu -->
+    <add id="Magedelight_Shippingmatrix::shipping_methods_root"
+         title="Shipping Matrix"
+         module="Magedelight_Shippingmatrix"
+         sortOrder="50"
+         resource="Magedelight_Shippingmatrix::shippingmethod"
+         toolTip="magedelight_base" />
+
+    <add id="Magedelight_Shippingmatrix::shipping_methods_root_commonlyvisible"
+         title="Shipping Matrix"
+         module="Magedelight_Shippingmatrix"
+         sortOrder="10"
+         action="rbshippingmatrixrate/shippingmethod/index"
+         parent="Magedelight_Theme::md_modules"
+         resource="Magedelight_Shippingmatrix::shippingmethod" />
+
+    <add id="Magedelight_Shippingmatrix::shipping_method_list" resource="Magedelight_Shippingmatrix::shippingmethod" sortOrder="40" module="Magedelight_Shippingmatrix" title="Manage Shipping Methods" action="rbshippingmatrixrate/shippingmethod/index" parent="Magedelight_Shippingmatrix::shipping_methods_root"/>
+    <add id="Magedelight_Shippingmatrix::configuration" resource="Magedelight_Shippingmatrix::shippingmethod" sortOrder="50" module="Magedelight_Shippingmatrix" title="Settings" action="adminhtml/system_config/edit/section/carriers" parent="Magedelight_Shippingmatrix::shipping_methods_root"/>
+  </menu>
+</config>

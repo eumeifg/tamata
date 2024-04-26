@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+       <section id="open_in_app" translate="label" type="text" sortOrder="3500" showInDefault="1">
+
+         <label><![CDATA[Open Product In App]]></label>
+            <tab>ktpl_tabs</tab>
+            <resource>MDC_Catalog::system_config</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" >
+                <label>General</label>
+                <field id="firebase_web_api_key" translate="label" type="text" sortOrder="10" showInDefault="1">
+                    <label>Firebase Web API Key </label>
+                </field>
+                <field id="cron_frequency" translate="label" type="text" sortOrder="10" showInDefault="1">
+                    <label>Cron Frequency</label>
+                </field>
+                <field id="number" translate="label" type="text" sortOrder="10" showInDefault="1">
+                    <label>No of products to pick</label>
+                </field>
+            </group>
+       </section>
+    </system>
+</config>

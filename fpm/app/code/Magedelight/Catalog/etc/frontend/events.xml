@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="catalog_controller_product_init_after">
+        <observer name="setVendorPriceToProduct" instance="Magedelight\Catalog\Observer\SetProductPriceObserver" shared="true" />
+    </event>
+    <event name="catalog_product_load_after">
+        <observer name="cartExtraOption" instance="Magedelight\Catalog\Observer\CatalogProductLoadAfter"/>
+    </event>
+<!--    set custom price for item, is not supporting for excluding price display in cart-->
+    <event name="checkout_cart_product_add_after">
+        <observer name="marketplace_quote_item_set_sellerid" instance="Magedelight\Catalog\Observer\BindVendorPriceToCart" shared="true" />
+    </event>
+    <event name="checkout_cart_update_items_before">
+        <observer name="update_check_availability" instance="Magedelight\Catalog\Observer\CheckUpdateAvailability" shared="true" />
+    </event>
+    <event name="sales_quote_load_after">
+        <observer name="check_sale_price_is_available" instance="Magedelight\Catalog\Observer\CheckSalePriceIsAvailable" shared="true" />
+    </event>
+    <!-- To display vendor name while line-item wise reorder on cart page -->
+    <event name="sales_quote_item_set_product">
+        <observer name="add_vendor_sku_in_quote_item" instance="Magedelight\Catalog\Observer\Cart\AddVendorSkuInQuoteItem" shared="true" />
+    </event>
+    <event name="checkout_cart_product_add_before">
+        <observer name="quote_item_configure_offer_details" instance="Magedelight\Catalog\Observer\Cart\BeforeAddProductToCart" shared="true" />
+    </event>
+</config>

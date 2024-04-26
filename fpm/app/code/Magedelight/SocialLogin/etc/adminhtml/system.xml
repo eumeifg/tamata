@@ -1,0 +1,960 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* Magedelight
+* Copyright (C) 2018 Magedelight <info@magedelight.com>
+*
+* NOTICE OF LICENSE
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+*
+* @category Magedelight
+* @package Magedelight_SocialLogin
+* @copyright Copyright (c) 2018 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+   <system>
+      <section id="sociallogin" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+         <class>md_section_sociallogin</class>
+         <label>Social Login</label>
+         <tab>magedelight</tab>
+         <resource>Magedelight_SocialLogin::config</resource>
+         <group id="general" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>General Settings</label>
+            <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable Module</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="redirection" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Redirect To After Login</label>
+               <source_model>Magedelight\SocialLogin\Model\Config\Source\Direction</source_model>
+            </field>
+            <field id="displayposition" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Display Position</label>
+               <source_model>Magedelight\SocialLogin\Model\Config\Source\DisplayPosition</source_model>
+               <comment>The selected option will be responsible for the display positions of the social login buttons inside the popup.</comment>
+            </field>
+            <field id="maxallow" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Visible Buttons Count</label>
+               <frontend_class>validate-greater-than-zero integer</frontend_class>
+               <comment>The number of buttons shown in frontend, other enabled login buttons will be displayed only when user clicks on "Show More"</comment>
+            </field>
+            <field id="welcome" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Send Welcome Email</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>Welcome Email will be only send to customer after registration with any of the enabled sociallogin if the social website returns the user Email</comment>
+            </field>
+            <field id="welcome_email_template" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Welcome Email Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <depends>
+                        <field id="welcome">1</field>
+                    </depends>
+            </field>
+            <field id="custom_style" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Custom Style</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            </field>
+            <field id="custom_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Popup Header and Button Bg Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+                 <depends>
+                     <field id="custom_style">1</field>
+                 </depends>
+            </field>
+            <field id="custom_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Popup Header and Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+                 <depends>
+                     <field id="custom_style">1</field>
+                 </depends>
+            </field>
+            <field id="custom_css" translate="label" type="textarea" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Custom CSS</label>
+                 <depends>
+                     <field id="custom_style">1</field>
+                 </depends>
+                 <comment>Do not add style tags while adding your custom css</comment>
+            </field>
+         </group>
+         <group id="facebook" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Facebook</label>
+            <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="http://developers.facebook.com/setup/" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>App Id</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>App Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Valid OAuth Redirect URIs</label>
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Facebook\Redirect</frontend_model>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="twitter" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Twitter</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="http://twitter.com/apps/new" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Consumer Key</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Consumer Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="redirect_url" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Twitter\Redirect</frontend_model>
+               <label>Callback URL</label>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="google" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Google</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="https://cloud.google.com/console" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client ID</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Google\Redirect</frontend_model>
+               <label>Redirect URIs</label>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="instagram" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Instagram</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="http://instagram.com/developer/" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client ID</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Instagram\Redirect</frontend_model>
+               <label>Redirect URIs</label>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="linkedin" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>LinkedIn</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="https://www.linkedin.com/secure/developer" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>API Key</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Key</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Authorized Redirect URLs</label>
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Linkedin\Redirect</frontend_model>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="yahoo" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Yahoo</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="https://developer.apps.yahoo.com/dashboard/createKey.html" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client ID</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="windows" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Windows Live</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="https://account.live.com/developers/applications/create" target="_blank">Register here!</a>]]>
+               </comment>
+          </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client ID</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Redirect URIs</label>
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Windows\Redirect</frontend_model>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="foursquare" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Foursquare</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="https://foursquare.com/login?continue=%2Fdevelopers%2Fapps" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client ID</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Redirect URIs</label>
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Foursquare\Redirect</frontend_model>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="amazon" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Amazon</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="https://login.amazon.com/website" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client ID</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Allowed Return URLs</label>
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Amazon\Redirect</frontend_model>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="reddit" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Reddit</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="https://www.reddit.com/register/" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Web App</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Redirect URIs</label>
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Reddit\Redirect</frontend_model>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="flickr" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Flickr</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="https://www.flickr.com/services/api/keys/apply/" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Api Key</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Api Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Callback URL</label>
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Flickr\Redirect</frontend_model>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="vimeo" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Vimeo</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="https://developer.vimeo.com/apps/new" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Id</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>App Callback URL</label>
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Reddit\Redirect</frontend_model>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="tumblr" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Tumblr</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="https://api.tumblr.com/console/calls/user/info" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Consumer Key</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Consumer Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>App Callback URL</label>
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Reddit\Redirect</frontend_model>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="soundcloud" translate="label" type="text" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Soundcloud</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="http://soundcloud.com/you/apps/new" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Id</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Redirect URIs</label>
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Soundcloud\Redirect</frontend_model>
+            </field>            
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+         <group id="dropbox" translate="label" type="text" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Dropbox</label>
+            <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Enable</label>
+               <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               <comment>
+                    <![CDATA[<a href="https://www.dropbox.com/developers/apps/create" target="_blank">Register here!</a>]]>
+               </comment>
+            </field>
+            <field id="consumerid" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Id</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="consumersecret" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Client Secret</label>
+               <depends>
+                  <field id="enable">1</field>
+               </depends>
+               <validate>required-entry</validate>
+            </field>
+            <field id="sort_order" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Sort Order</label>
+               <frontend_class>validate-number</frontend_class>
+            </field>
+            <field id="redirect_url" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Redirect URIs</label>
+               <frontend_model>Magedelight\SocialLogin\Block\System\Config\Form\Field\Dropbox\Redirect</frontend_model>
+            </field>
+            <field id="button_bg_color" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="button_font_color" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Button Font Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_color" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="icon_bg_color" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Icon Background Color</label>
+                 <frontend_class>color</frontend_class>
+                 <validate>jscolor{hash:true,refine:false}</validate>
+            </field>
+            <field id="font_code" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+               <label>Font Class</label>
+               <comment>
+                    <![CDATA[<a href="http://fontawesome.io/icons/#brand" target="_blank">Find your font class here!</a>]]>
+               </comment>
+            </field>
+         </group>
+      </section>
+   </system>
+</config>

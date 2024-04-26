@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="frontend_vendor_product_mass_list_after"> 
+        <observer name="rbVendorProductIndexerAfterMassList" instance="Magedelight\Catalog\Observer\VendorProductIndexerAfterMassList" /> 
+    </event>
+    <event name="frontend_vendor_product_mass_unlist_after">
+        <observer name="rbvendorProductIndexerAfterMassUnlist" instance="Magedelight\Catalog\Observer\VendorProductIndexerAfterMassUnlist" /> 
+    </event>
+    <event name="frontend_vendor_product_save_after">
+        <observer name="rbvendorProductIndexerProductSaveAfter" instance="Magedelight\Catalog\Observer\VendorProductIndexAfterProductEdit" />
+    </event>
+    <event name="frontend_vendor_product_offer_upload_after">
+        <observer name="vendorProductIndexerAfterOfferUpload" instance="Magedelight\Catalog\Observer\vendorProductIndexerAfterOfferUpload" />
+    </event>
+</config>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    
+    <table name="customer_pickup_points" resource="default" engine="innodb" comment="Defined list of package pickup points for customers">
+		<column xsi:type="int" name="pickup_point_id" padding="10" unsigned="false" nullable="false" identity="true" comment="Increment ID" />		
+		
+		<column xsi:type="varchar" name="pickup_point_name" length="255" nullable="true" comment="Pickup point Name" />
+		 
+		<column xsi:type="text" name="pickup_address" nullable="true" comment="Pickup point address line" />	
+		<column xsi:type="varchar" name="pickup_city" length="255" nullable="true" comment="Pickup city" />	
+		<column xsi:type="varchar" name="pickup_country" length="255" nullable="true" comment="Pickup country" />	
+
+		<column xsi:type="varchar" name="pickup_point_lat" length="255" nullable="true" comment="Pickup point latitude" />		
+
+		<column xsi:type="varchar" name="pickup_point_long" length="255" nullable="true" comment="Pickup point longitude" />		
+
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="pickup_point_id" />
+		</constraint>
+		
+	</table>
+    
+</schema>

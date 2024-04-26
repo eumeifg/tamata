@@ -1,0 +1,28 @@
+{
+    "md_vendor_product": {
+        "index": {
+            "MD_VENDOR_PRODUCT_TYPE_ID": true,
+            "MD_VENDOR_PRODUCT_PARENT_ID": true
+        }
+    },
+    "md_vendor_product_website": {
+        "index": {
+            "MD_VENDOR_PRODUCT_WEBSITE_STATUS": true
+        },
+        "column": {
+            "cost_price_iqd": true,
+            "cost_price_usd": true
+        }
+    },
+    "md_vendor_product_store": {
+        "index": {
+            "MD_VENDOR_PRODUCT_STORE_VENDOR_PRODUCT_ID_STORE_ID": true
+        }
+    },
+    "md_vendor_product_request_website": {
+        "column": {
+            "cost_price_iqd": true,
+            "cost_price_usd": true
+        }
+    }
+}

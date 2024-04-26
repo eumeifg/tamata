@@ -1,0 +1,103 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var $block \Magento\Backend\Block\Widget\Form\Container
+ */
+?>
+<?= $block->getFormInitScripts() ?>
+<div class="vendor-offer-wrapper" data-role = "vendor-offer-form">
+   <div class="page-actions attribute-popup-actions" data-ui-id="offer-edit-tabs-content-header">
+       <div class="page-actions-inner" data-title="">
+            <div class="page-actions-buttons">
+                <button id="save_offer_btn" title="<?= __('Save') ?>" type="button" class="action-default scalable primary ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" data-ui-id="offer-edit-tabs-save-button" role="button" aria-disabled="false"><span class="ui-button-text">
+                    <span><?= __('Save') ?></span>
+                    </span>
+                </button>
+            </div>
+       </div>
+   </div>
+
+    <form id="edit_form" class="admin__scope-old edit-form" action="<?= $block->escapeHtml($block->getSaveUrl()) ?>" method="post">
+        <input name="form_key" type="hidden" value="<?= $block->escapeHtml($block->getFormKey()) ?>" />
+        <?= $block->getChildHtml('form') ?>
+    </form>
+</div>
+
+
+<script>
+require(['jquery',"mage/mage",'customselect','jquery/validate','mage/translate'], function($){
+    
+    var content_start_tags = '<?= $block->offerHelper->getContentStartTags() ?>';
+    var header = '<?= $block->offerHelper->getHeaderRowHtml() ?>';
+    var content_end_tags = '<?= $block->offerHelper->getContentEndTags() ?>';
+
+    var field_start_tags = "<?= $block->offerHelper->getFieldStartTags('text') ?>";
+    var input_text_start = "<input class='admin__control-text' type='text' data-form-part='product_form' " ;
+    var input_hidden_start = "<input class='admin__control-text' type='hidden' data-form-part='product_form' " ;
+    var input_text_end = " />";
+    var field_end_tags = "<?= $block->offerHelper->getFieldEndTags('text') ?>";
+    var deleteBtn = "<?= $block->offerHelper->getDeleteBtnHtml() ?>";
+    
+
+    $(document).on("click", "#save_offer_btn" , function() {
+        
+        if($('#edit_form').valid()){
+            var vendor_product_id = '';
+            var vendor_product_store_id = '';
+            var vendor_product_website_id = '';
+            
+            var ind_qty  = field_start_tags + input_text_start + " value = '"+ $("#vendor_offer_ind_qty").val() +"' name = 'vip-offer[ind_qty]' " + input_text_end + field_end_tags;
+            var global_qty  = field_start_tags + input_text_start + " value = '"+ $("#vendor_offer_global_qty").val() +"' name = 'vip-offer[global_qty]' " + input_text_end + field_end_tags;
+            var discount  = field_start_tags + input_text_start + " value = '"+ $("#vendor_offer_discount").val() +"' name = 'vip-offer[discount]' " + input_text_end + field_end_tags;
+            var seller  = field_start_tags + input_hidden_start + " name= 'vip-offer[vendor_id]' value='"+$("#vendor_offer_vendor_id :selected").val()+"' " + input_text_end + "<label>"+ $("#vendor_offer_vendor_id :selected").text() +"</label>" + field_end_tags;
+            var discount_type  = field_start_tags + input_hidden_start + " name= 'vip-offer[discount_type]' value='"+$("#vendor_offer_discount_type :selected").val()+"' " + input_text_end + "<label>"+ $("#vendor_offer_discount_type :selected").text() +"</label>" + field_end_tags;
+            var global_valcus = '';
+            var global_textcus = '';
+            $("#vendor_offer_customer_group :selected").each(function () {
+                if(global_valcus != ''){
+                   global_valcus = global_valcus + ',' +$(this).val();
+                   global_textcus = global_textcus + ', ' +$(this).text();
+                }
+                else{
+                    global_valcus =  $(this).val();
+                    global_textcus = $(this).text();
+                }
+               
+            });
+            var customer_group  = field_start_tags + input_hidden_start + " name= 'vip-offer[customer_group]' value='"+global_valcus+"' " + input_text_end + "<label>"+ global_textcus +"</label>" + field_end_tags;
+            
+            <?php if ($this->getRequest()->getParam('id')) {
+                ?>
+                var vendor_product_id = input_hidden_start + " name = 'vip-offer[vendor_product_id]' value='<?= $this->getRequest()->getParam('id'); ?>' " + input_text_end;
+                <?php
+            } ?>
+                
+            /* Tier price elements */
+
+            var offer_data = customer_group+ind_qty + global_qty + discount + seller + discount_type +deleteBtn;
+            var html = content_start_tags + header + offer_data + content_end_tags + vendor_product_id + vendor_product_store_id + vendor_product_website_id;
+
+            $( ".modal-header > .action-close" ,parent.document).trigger( "click" );
+
+            if($("#vip_offer_data" ,parent.document).length > 0){
+                $("vip_offer_data" ,parent.document).html(html);
+            }else{
+                $("#vip_offer_content" ,parent.document).parent().after('<div id="vip_offer_data"></div>');
+                $("#vip_offer_data" ,parent.document).html(html);
+            }
+        }
+    });
+    $("#vendor_offer_is_new").customselect();
+
+});
+</script>
+<?= $block->getFormScripts() ?>

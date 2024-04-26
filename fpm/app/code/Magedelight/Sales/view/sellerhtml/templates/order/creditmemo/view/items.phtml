@@ -1,0 +1,46 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php $_items = $block->getCreditmemo()->getAllItems() ?>
+<div class="front__page-section">
+    <div class="front__page-section-title">
+        <span class="title"><?= /* @escapeNotVerified */ __('Items Refunded') ?></span>
+    </div>
+    <div class="front__page-section-content">
+        <div class="table-wrapper front__table-wrapper">
+            <table class="data table data-table front__table-primary order-creditmemo-tables">
+                <thead>
+                    <tr class="headings">
+                        <th class="col-product"><span><?= /* @escapeNotVerified */ __('Product') ?></span></th>
+                        <th class="col-price"><span><?= /* @escapeNotVerified */ __('Price') ?></span></th>
+                        <th class="col-qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></th>
+                        <th class="col-subtotal"><span><?= /* @escapeNotVerified */ __('Subtotal') ?></span></th>
+                        <th class="col-tax"><span><?= /* @escapeNotVerified */ __('Tax Amount') ?></span></th>
+                        <th class="col-discount"><span><?= /* @escapeNotVerified */ __('Discount Amount') ?></span></th>
+                        <th class="col-total last"><span><?= /* @escapeNotVerified */ __('Row Total') ?></span></th>
+                    </tr>
+                </thead>
+                <?php $i = 0; foreach ($_items as $_item) : ?>
+                    <?php if ($_item->getOrderItem()->getParentItem()) {
+                        continue;
+                    } else {
+                        $i++;
+                    } ?>
+                    <tbody class="<?= /* @escapeNotVerified */ $i%2 ? 'even' : 'odd' ?>">
+                        <?= $block->getItemHtml($_item) ?>
+                        <?= $block->getItemExtraInfoHtml($_item->getOrderItem()) ?>
+                    </tbody>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+</div>

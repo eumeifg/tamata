@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="giftcard_rule" resource="default" engine="innodb" comment="Gift Card Rules">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Rule Id"/>
+        <column xsi:type="varchar" name="rule_name" nullable="false" length="255" comment="Rule Name"/>
+        <column xsi:type="varchar" name="description" nullable="true" length="255" comment="Description"/>
+        <column xsi:type="datetime" name="from_date" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="From Date"/>
+        <column xsi:type="datetime" name="to_date" on_update="false" nullable="true" comment="To Date" />
+        <column xsi:type="smallint" name="is_active" padding="5" unsigned="true" comment="Is Active" default="0" nullable="true"/>
+        <column xsi:type="smallint" name="uses_per_coupon" padding="5" unsigned="true" comment="Uses Per Coupon" nullable="true"/>
+        <column xsi:type="smallint" name="uses_per_customer" padding="5" unsigned="true" comment="Uses Per Customer" nullable="true"/>
+        <column xsi:type="decimal" name="discount_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Discount Amount"/>
+        <column xsi:type="int" name="times_used" padding="10" unsigned="true" comment="Times Used" default="0" nullable="true"/>
+        <column xsi:type="smallint" name="use_auto_generation" padding="5" unsigned="true" comment="Use Auto Generation" default="0" nullable="true"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="datetime" name="updated_at" on_update="true" nullable="true" comment="Updated At" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+        </constraint>
+    </table>
+    <table name="giftcard_coupon" resource="default" engine="innodb" comment="Gift Card Coupon">
+        <column xsi:type="int" name="coupon_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Coupon Id"/>
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" comment="Rule ID"/>
+        <column xsi:type="varchar" name="code" nullable="true" length="255" comment="Coupon Code"/>
+        <column xsi:type="int" name="usage_limit" padding="10" unsigned="true" comment="Usage ID"/>
+        <column xsi:type="int" name="usage_per_customer" padding="10" unsigned="true" comment="Usage Per Customer"/>
+        <column xsi:type="int" name="times_used" padding="10" unsigned="true" comment="Times Used"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="int" name="type" padding="10" unsigned="true" comment="Coupon Code Type"/>
+        <column xsi:type="smallint" name="is_primary" padding="5" unsigned="true" nullable="true" identity="false" comment="Is Primary"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="coupon_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_GIFT_CARD_COUPON_RULE_ID" table="giftcard_coupon" column="rule_id" referenceTable="giftcard_rule" referenceColumn="rule_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="GIFT_CARD_CODE">
+            <column name="code"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="GIFTCARD_COUPON_RULE_ID_IS_PRIMARY">
+            <column name="rule_id"/>
+            <column name="is_primary"/>
+        </constraint>
+        <index referenceId="GIFTCARD_COUPON_RULE_ID" indexType="btree">
+            <column name="rule_id"/>
+        </index>
+    </table>
+    <table name="giftcard_coupon_usage" resource="default" engine="innodb" comment="Gift Card Coupon Usage">
+        <column xsi:type="int" name="coupon_id" padding="10" unsigned="true" nullable="false" comment="Coupon Id"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" comment="Customer ID"/>
+        <column xsi:type="int" name="times_used" padding="10" unsigned="true" comment="Times Used" default="0" nullable="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="coupon_id"/>
+            <column name="customer_id"/>
+        </constraint>
+        <index referenceId="GIFT_CARD_COUPON_USAGE_CUSTOMER_ID" indexType="btree">
+            <column name="customer_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="GIFTCARD_COUPON_USAGE_COUPON_ID" table="giftcard_coupon_usage" column="coupon_id" referenceTable="giftcard_coupon" referenceColumn="coupon_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="GIFTCARD_COUPON_USAGE_CUSTOMER_ID" table="giftcard_coupon_usage" column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+    <table name="giftcard_customer" resource="default" engine="innodb" comment="Gift Card Customer">
+        <column xsi:type="int" name="rule_customer_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Rule Customer ID"/>
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Rule ID"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Customer ID"/>
+        <column xsi:type="smallint" name="times_used" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Times Used"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_customer_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="GIFTCARD_CUSTOMER_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID" table="giftcard_customer" column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="GIFTCARD_CUSTOMER_RULE_ID_GIFTCARD_RULE_ID" table="giftcard_customer" column="rule_id" referenceTable="giftcard_rule" referenceColumn="rule_id" onDelete="CASCADE"/>
+        <index referenceId="GIFTCARD_CUSTOMER_RULE_ID_CUSTOMER_ID" indexType="btree">
+            <column name="rule_id"/>
+            <column name="customer_id"/>
+        </index>
+        <index referenceId="GIFTCARD_CUSTOMER_CUSTOMER_ID_RULE_ID" indexType="btree">
+            <column name="customer_id"/>
+            <column name="rule_id"/>
+        </index>
+    </table>
+</schema>

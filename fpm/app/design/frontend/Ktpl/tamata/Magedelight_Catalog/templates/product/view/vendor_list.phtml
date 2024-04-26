@@ -1,0 +1,163 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+ /** @var $block \Magedelight\Catalog\Block\Product\View\ProductVendor */
+?>
+<?php $vendorData = $block->getAvailableVendorsForProduct(); ?>
+<?php $showHideRowsNo = 2; ?>
+<?php  $prices = [];
+if ($block->getHelper()->isEnabled()) {
+    $productSize = $vendorData->count()-1;
+    ?>
+<?php if ($vendorData && $vendorData->count() > 1 && $block->showSoldByVendorList()) { ?>
+    <div class="row vendor-list-wrapper mln mrn" id="vendorlistcontainer">
+        <div class="page-title-wrapper vendor">
+            <h2 class="page-title text-left">
+                <span class="base">
+
+                    <?php $counter = 1;
+                    foreach ($vendorData as $data) : ?>
+                        <?php
+                        if (!$this->getRequest()->getParam('v', false)) {
+                            if ($counter == 1) {
+                                $counter++;
+                                continue;
+                            }
+                        } else if($this->getRequest()->getParam('v', false) == $data->getVendorId())
+                        {
+                            continue;
+                        }
+                         $prices[] = $data->getSpecialPrice();                        
+                        ?>
+                    <?php endforeach; ?>
+                    <?php  $helper = $this->helper('MDC\Catalog\Helper\Listing\Data'); ?>
+                    <!-- <?= $block->escapeHtml(__('View more vendors (%1)', $productSize)); ?> -->
+                    <?= $block->escapeHtml(__('%1 other offers from', $productSize)); ?> <span><?php echo $helper->getMinVendorOfferedPrice($prices); ?></span>
+                </span>
+            </h2>
+
+            <a class="view-more-sellers" href="#"> <?= $block->escapeHtml(__('View more sellers')); ?> </a>
+        </div>
+        <div class="vendor table-wrapper">
+            <table id="vendorlist" class="vendor-list items tablesorter data table">
+                <thead>
+                    <tr>
+                        <th class="col vendor-name sortable"><?= __('Vendor') ?></th>
+                        <th class="col vendor-name sortable"><?= __('Condition') ?></th>
+                        <th class="col vendor-rating sortable"><?= __('Rating') ?></th>
+                        <th class="col vendor-price sortable"><?= __('Price') ?></th>
+                        <th class="col vendor-action">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody class="vendor-list item">
+                    <?php $counter = 1;
+                    foreach ($vendorData as $data) : ?>
+                        <?php
+                        if (!$this->getRequest()->getParam('v', false)) {
+                            if ($counter == 1) {
+                                $counter++;
+                                continue;
+                            }
+                        } else if($this->getRequest()->getParam('v', false) == $data->getVendorId())
+                        {
+                            continue;
+                        }
+                        ?>
+
+                        <tr class="item-info">
+                            <td class="col vendor-name" data-th="<?= __('Vendor') ?>">
+                                <?= $data->getBusinessName(); ?>
+                            </td>
+                            <td class="col item-condition"><?= $block->getConditionOptionText($data->getCondition()) ?></td>
+                            <?php if ($data->getRatingAvg() == 0) : ?>
+                                <td class="col vendor-rating" data-th="<?= __('Rating') ?>">
+                                    <div class="rating-summary">
+                                         <div class="rating-result" title="0%">
+                                             <span style="width:0%">
+                                                 <span>
+                                                     <span itemprop="ratingValue">0</span>% of <span itemprop="bestRating">100</span>
+                                                 </span>
+                                             </span>
+                                         </div>
+                                    </div>
+                                </td>
+                            <?php else : ?>
+                                <?php $ratImage = $data->getRatingAvg() ?>
+                                <td class="col vendor-rating" data-th="<?= __('Rating') ?>">
+                                    <div class="rating-summary">
+                                         <div class="rating-result" title="<?= $block->escapeHtml($data->getRatingAvg()); ?>%">
+                                             <span style="width:<?= $block->escapeHtml($data->getRatingAvg()); ?>">
+                                                 <span>
+                                                     <span itemprop="ratingValue"><?= $block->escapeHtml($data->getRatingAvg()); ?></span>% of <span itemprop="bestRating">100</span>
+                                                 </span>
+                                             </span>
+                                         </div>
+                                    </div>
+                                </td>
+                            <?php endif; ?>
+
+                            <td class="col vendor-price" data-th="<?= __('Price') ?>">
+                                <?= $block->getPriceHtml($data); ?>
+                            </td>
+                            <td class="col vendor-action">
+                                <button data-url="<?= $block->getCurrentProductUrl() . '?v=' . $data->getVendorId(); ?>" type="button" title="<?= __('Select Vendor') ?>" class="action button primary product-view">
+                                    <span><?= __('Select Vendor') ?></span>
+                                </button>
+                            </td>
+                        </tr>
+
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php if ($productSize > $showHideRowsNo) : ?>
+                <div class="action-toolbar view-sellers">
+                    <button type="button" id="view_all_sellers"
+                            name="view_all_sellers"
+                            class="action view-all-sellers">
+                        <span><?= __('View All (%1) Vendors', $productSize); ?></span>
+                    </button>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <script>
+        require(['jquery', 'tablesorter'], function ($) {
+            $("#vendorlist").tablesorter({
+                sortList: [[2, 0]]
+            });
+            $('.product-view').click(function () {
+                window.location.href = $(this).attr('data-url');
+            });
+
+            $("#vendorlist tr:gt(<?= $showHideRowsNo ?>)").hide();
+
+            $("#view_all_sellers").click(function () {
+                $('#vendorlist tr:gt(<?= $showHideRowsNo ?>)').toggle(500, function () {
+                    if ($(this).is(':visible')) {
+                        $("#view_all_sellers").text('Hide (' +<?= ($productSize - $showHideRowsNo ) ?> + ') Sellers');
+                    } else {
+                        $("#view_all_sellers").text('View All (' +<?= $productSize ?> + ') Sellers');
+                    }
+                });
+            });
+            
+            $(document).ready(function(){
+              $(".view-more-sellers").click(function(){
+                $(".vendor.table-wrapper").slideToggle();
+              });
+            });
+
+        });
+    </script>
+<?php } else { ?>
+    <div class="row vendor-list-wrapper mln mrn" id="vendorlistcontainer"></div>
+<?php } ?>
+<?php } ?>

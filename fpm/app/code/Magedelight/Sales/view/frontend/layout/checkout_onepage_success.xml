@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Success Page</title>
+        <css src="Magedelight_Sales::css/styles.css"/>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <block class="Magento\Checkout\Block\Onepage\Success" name="checkout.success.print.button" template="button.phtml"/>
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Thank you for your purchase!</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="checkout.success" template="Magedelight_Sales::order_detail_page/success.phtml">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magedelight_Sales::order_detail_page/success.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="order_totals" template="Magedelight_Sales::order_detail_page/order/totals.phtml">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magedelight_Sales::order_detail_page/order/totals.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

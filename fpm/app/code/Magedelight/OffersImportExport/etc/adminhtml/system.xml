@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_OffersImportExport
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+<system>
+        <section id="vendoroffers" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Vendor Offers</label>
+            <tab>rbsettings</tab>
+            <resource>RB_Common::config</resource>
+            <group id="license" translate="label" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Licence Detail</label>
+                <field id="serial_key" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Serial Key</label>
+                </field>
+                <field id="activation_key" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Activation Key</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

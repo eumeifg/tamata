@@ -1,0 +1,327 @@
+<?php
+$imageUrl = $block->getData('barcodeimageUrl');
+$shipment = $block->getData('shipmentData');
+$order = $block->getData('orderData');
+$invoiceLogo = $block->getData('invoiceLogo');
+$vendorOrder = $block->getData('vendorOrder');
+$arabicTextHelper = $this->helper('Ktpl\BarcodeGenerator\Helper\convertToArabic');
+?>
+<div class="custom_shipment_container">
+	<div class="top-box">
+		<div class="img-box">
+			<img src="<?php echo $imageUrl; ?>">
+		</div>
+		<div class="main-name">
+			<h1><?= __("Hello"); ?></h1>
+			<h2><?= __("I'm your receipt"); ?></h2>
+		</div>
+	</div>
+	<div class="thank-you-msge-name">
+		<p><?= __("Thank you for shopping with Tamata"); ?></p>
+		<strong><?= __($order->getCustomerName()); ?></strong>
+	</div>
+	<div class="shipment_info">
+		<div class="shipment-id">
+			<span><?= __("Shipment ID #"); ?></span>
+			<span><?= __($shipment->getIncrementId()); ?></span>
+		</div>
+		<div class="order-date">
+			<span><?= __("Order Date"); ?></span>
+			<span><?php
+				$date = strtotime($order->getCreatedAt());
+			 	$finalOrderDate = date("d-m-Y",$date);
+			 	echo $finalOrderDate;
+			?>
+			</span>
+		</div>
+	</div>
+		<div class="shipment-item-box">
+			<div class="order_item_container">
+				<strong><?= __("Item/s"); ?></strong>
+				<table class="data-item table-item">
+					<tr>
+						<th style="background-color:#ededed;"><?= __("Qty"); ?></th>
+						<th><?= __("Products"); ?></th>
+						<th><?= __("SKU"); ?></th>
+					</tr>
+					<?php
+						$orderItemsCollection = $vendorOrder->getItems();
+						foreach ($orderItemsCollection as $itemData) {
+						//if($itemData->getVendorProduct()->getVendorId() != $shipment->getVendorId())
+						if($itemData->getParentItemId())
+					 	{
+							continue;
+						}
+					?>
+					<tr>
+						<td><?php echo (int)$itemData->getQtyOrdered(); ?></td>
+						<td>
+							<?php $productName = $itemData->getProduct()->getName(); ?>
+							<p <?php if ($arabicTextHelper->is_arabic($productName)) { ?> class="right_align" <?php } ?> >
+							<?php echo $productName; ?>
+							<br/>
+							<?php
+							$options = $itemData->getProductOptions();
+							if (isset($options['attributes_info']) && !empty($options['attributes_info'])) {
+								foreach ($options['attributes_info'] as $option) {
+									echo "<b>".$option['label']. ":</b>" . $option['value'].'<br />';
+								}
+							}
+							?>
+							</p>
+						</td>
+						<td><?php echo $itemData->getSku(); ?></td>
+					</tr>
+					<?php } ?>
+				</table>
+			</div>
+			<?php
+			 $vendorItemsCollection = $vendorOrder->getAllVendorItems();
+	         $allLineItemSubtotal = 0;
+	         $tempData = $vendorOrder->getData();
+	         //foreach($tempData as $_items) {
+	        	//$allLineItemSubtotal += $_items->getrowTotal();
+	            //$allLineItemSubtotal += $tempData['subtotal'];
+	            $allLineItemSubtotal = $vendorOrder->getSubTotal();
+	         //}
+
+	        $vendorItemsCollection = $vendorOrder->getItems();
+	        $allLineItemSubtotal = $discountAmount = 0;
+	        foreach($vendorItemsCollection as $_items) {
+	            $allLineItemSubtotal += $_items->getrowTotal();
+	            $discountAmount += $_items->getDiscountAmount();
+	        }
+	        $discountAmount = -$discountAmount;
+
+			 $currencyCode = $order->getorderCurrencyCode();
+			 $shippingNHandlingCharges = round($vendorOrder->getshippingAmount(), 2);
+			 $discountAmount = $discountAmount;
+			 $totalPaidAmount = $allLineItemSubtotal + $shippingNHandlingCharges + $discountAmount;
+			 $couponCode = $order->getCouponCode();
+			?>
+			<?php $orderItemsCollection = $shipment->getOrder(); ?>
+			<div class="order_total_info_section">
+				<p><span><?= __("Subtotal:") ?></span><?= $currencyCode." ".round($allLineItemSubtotal, 2) ?></p>
+				<!-- <p><span><?php //echo __("Shipping fee:") ?></span><?php //echo $currencyCode." ".$shippingNHandlingCharges ?></p> -->
+				<?php if($couponCode) : ?>
+					<p><span><?= __("Discount (%1): ",$couponCode) ?></span><?= $currencyCode." ".$discountAmount ?></p>
+				<?php else: ?>
+					<p><span><?= __("Discount : ") ?></span><?= "0" ?></p>
+				<?php endif; ?>
+				<p><strong><span><?= __("Total:") ?></span><span><?= $currencyCode." ".$totalPaidAmount ?></span></strong></p>
+			</div>
+			<div class="address_container">
+				<h3><?= __("Shipping address:"); ?></h3>
+				<p>
+					<?php
+						$shippingAddress = $order->getShippingAddress()->getData();
+						echo $shippingAddress['firstname']."".$shippingAddress['lastname']."<br/>";
+						echo $shippingAddress['street']."<br/>";
+						echo $shippingAddress['city'].", ";
+						echo $shippingAddress['region']."<br/>";
+						//echo $shippingAddress['country_id']."<br/>";
+						echo "T: ".$shippingAddress['telephone']."<br/>";
+					?>
+				</p>
+			</div>
+
+			<div class="address_container shipping_method_container">
+				<h3><?= __("Shipping Method:"); ?></h3>
+				<p>
+					<?php echo $order->getShippingDescription(); ?>
+					<br/>
+					<?= __("(Total Shipping Charges %1)",$order->formatPriceTxt($order->getShippingAmount())); ?>
+				</p>
+			</div>
+
+	</div>
+	<div class="shipment_html_footer_section">
+		<p><?= __("This shipment completes your order"); ?></p>
+		<img src="<?= $invoiceLogo ?>">
+	</div>
+</div>
+
+<style type="text/css">
+
+	@import url('https://fonts.googleapis.com/css?family=Cairo:400,700&display=swap');
+
+	html {
+		 background: #525659;
+		 text-align:center;
+	}
+	body {
+	font-family: 'Cairo', sans-serif;
+	/*width: 385px;*/
+	width:450px;
+	margin: 15px auto;
+	background: #fff;
+	padding: 10px;
+	box-sizing: border-box;
+	border: 1px solid #222;
+	/*min-height: 576px;*/
+	min-height:620px;
+	max-height: 100vh;
+	display: inline-block;
+	text-align: left;
+	}
+	img {
+	max-width:100%;
+	}
+	.top-box {
+	display: inline-block;
+	width: 100%;
+    margin:0;
+	}
+	.top-box .main-name {
+	display: inline-block;
+	vertical-align: top;
+	margin:5px 0 5px;
+	}
+	.top-box .main-name h1 {
+	font-size: 30px;
+	line-height: 30px;
+	display: inline-block;
+	margin: 0px 0px 3px;
+	}
+	.shipment-item-box {
+		min-height: 350px;
+	}
+	.top-box .main-name h2 {
+	margin: 0;
+	font-size: 15px;
+	line-height: 18px;
+	}
+	.img-box {
+	display: inline-block;
+	width: 100%;
+	margin:0;
+	vertical-align: middle;
+	float: right;
+	}
+	.thank-you-msge-name p {
+	margin: 0;
+	font-size: 11px;
+	line-height: 14px;
+	}
+	.shipment_info {
+	display: table;
+	width: 100%;
+	}
+	.shipment_info .shipment-id,
+	.shipment_info .order-date {
+	display: table-cell;
+	}
+	.shipment_info .shipment-id span,
+	.shipment_info .order-date span {
+	display: block;
+	margin: 0;
+	line-height: 15px;
+	font-size: 11px;
+	}
+	.order_item_container tr td {
+	font-size: 11px;
+	line-height: 13px;
+	vertical-align: top;
+	}
+	.order_item_container tr td:first-child {
+	text-align: center;
+	}
+	.order_item_container tr th {
+	background: #ededed;
+	text-align: center;
+	font-size: 11px;
+	padding: 2px 5px;
+	line-height: 18px;
+	}
+	.thank-you-msge-name strong {
+	font-size: 13px;
+	line-height: 14px;
+	margin: 3px 0 2px;
+	display: block;
+	}
+	.order_item_container strong {
+	font-size: 12px;
+	line-height: 12px;
+	margin: 3px 0 2px;
+	display: block;
+	}
+	.order_item_container {
+	margin: 5px 0;
+ 	min-height: 110px;
+	}
+	.order_total_info_section {
+		display: inline-block;
+		width: 96%;
+		font-size: 14px;
+		line-height: 20px;
+		margin: 0 0 20px;
+		vertical-align: top;
+		text-align: right;
+
+	}
+	.address_container {
+	display: inline-block;
+	width: 49%;
+	vertical-align: top;
+	font-size: 12px;
+	line-height: 15px;
+	}
+	.address_container h3 {
+	font-size: 15px;
+	margin: 0 0 0;
+	line-height:28px;
+	}
+	.order_total_info_section span {
+	display: block;
+	}
+	.shipment_html_footer_section {
+	line-height: normal;
+	margin: 2px 0 0 0;
+	padding: 5px 0 5px;
+	border-top: 1px solid #ededed;
+	display: inline-block;
+	width: 100%;
+	}
+	.shipment_html_footer_section p {
+	margin: 10px 0 0 0;
+	width: auto;
+	line-height: 14px;
+	font-weight: 400;
+	font-size: 12px;
+	display: inline-block;
+	float: left;
+	}
+ .shipment_html_footer_section img {
+	display: inline-block;
+	width: 100px;
+	float: right;
+	margin: 3px 10px 0 0;
+	}
+	.order_item_container tr td p {
+	margin: 0;
+	}
+	.address_container p {
+	font-size: 13px;
+	margin: 0 0 0;
+	line-height:20px;
+	}
+	.order_total_info_section span {
+	display: inline-block;
+	margin-right: 5px;
+	vertical-align: top;
+	}
+	.order_total_info_section p {
+	margin: 0 0 3px;
+	}
+	table.data-item.table-item {
+	width: 100%;
+	}
+	.order_total_info_section strong span {
+	line-height: 23px;
+	}
+	.right_align
+	{
+	direction: rtl;
+	}
+</style>
+

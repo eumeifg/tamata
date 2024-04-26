@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route method="GET" url="/V1/bannermanagement/banner/getlist">
+		<service class="Ktpl\BannerManagement\Api\BannerRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/bannermanagement/banner/getbanner/:bannerId">
+		<service class="Ktpl\BannerManagement\Api\BannerRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/bannermanagement/slider/getlist">
+		<service class="Ktpl\BannerManagement\Api\SliderRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/bannermanagement/slider/getslider/:sliderId">
+		<service class="Ktpl\BannerManagement\Api\SliderRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<!-- <route method="POST" url="/V1/bannermanagement/banner/save">
+		<service class="Ktpl\BannerManagement\Api\BannerRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+        <data>
+            <parameter name="name" force="true">%name%</parameter>
+        </data>
+	</route>
+	<route method="PUT" url="/V1/bannermanagement/banner/updatebanner/:bannerId">
+		<service class="Ktpl\BannerManagement\Api\BannerRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/bannermanagement/banner/deletebanner/:bannerId">
+		<service class="Ktpl\BannerManagement\Api\BannerRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route> -->
+</routes>

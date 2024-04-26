@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<logging xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Logging:etc/logging.xsd">
+    <groups>
+        <group name="rb_catalog_requested">
+            <label translate="true">RB Product Requested</label>
+            <expected_models>
+                <expected_model class="Magedelight\Catalog\Model\ProductRequest"/>
+                <expected_model class="Magedelight\Catalog\Model\ProductRequestStore"/>
+                <expected_model class="Magedelight\Catalog\Model\ProductRequestWebsite"/>
+            </expected_models>
+            <events>
+                <event controller_action="rbcatalog_productrequest_index" action_alias="view"/>
+                <event controller_action="rbcatalog_productrequest_edit" action_alias="edit"/>
+                <event controller_action="rbcatalog_productrequest_save" action_alias="save"/>
+                <event controller_action="rbcatalog_productrequest_delete" action_alias="delete"/>
+            </events>
+        </group>
+        <group name="rb_catalog">
+            <label translate="true">RB Product Approved/Listed</label>
+            <expected_models>
+                <expected_model class="Magedelight\Catalog\Model\Product"/>
+                <expected_model class="Magedelight\Catalog\Model\ProductStore"/>
+                <expected_model class="Magedelight\Catalog\Model\ProductWebsite"/>
+            </expected_models>
+            <events>
+                <event controller_action="rbcatalog_product_index" action_alias="view"/>
+                <event controller_action="rbcatalog_product_edit" action_alias="edit"/>
+                <event controller_action="rbcatalog_product_save" action_alias="save"/>
+                <event controller_action="rbcatalog_product_delete" action_alias="delete"/>
+                <event controller_action="rbcatalog_product_massDelete" action_alias="massDelete"
+                       post_dispatch="Magedelight\Catalog\Model\Logging::postDispatchProductMassDelete"/>
+                <event controller_action="rbcatalog_product_massUnList" action_alias="massUnList"
+                       post_dispatch="Magedelight\Catalog\Model\Logging::postDispatchProductMassUnList"/>
+                <event controller_action="rbcatalog_product_massList" action_alias="massList"
+                       post_dispatch="Magedelight\Catalog\Model\Logging::postDispatchProductMassList"/>
+                <event controller_action="rbcatalog_product_listproduct" action_alias="listProduct"
+                       post_dispatch="Magedelight\Catalog\Model\Logging::postDispatchListProduct"/>
+                <event controller_action="rbcatalog_product_unlistproduct" action_alias="unListProduct"
+                       post_dispatch="Magedelight\Catalog\Model\Logging::postDispatchUnListProduct"/>
+            </events>
+        </group>
+    </groups>
+</logging>

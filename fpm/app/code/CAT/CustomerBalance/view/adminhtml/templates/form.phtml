@@ -1,0 +1,44 @@
+<?php /** @var CAT\CustomerBalance\Block\Adminhtml\Import\View $block */
+?>
+
+<div class="entry-edit form-inline">
+    <form id="edit_form" action="<?= $block->getUrl('catcustomerbalance/import/save')?>" method="post"
+          enctype="multipart/form-data"
+          novalidate="novalidate" data-mage-init='{"validation":{}}'>
+        <div>
+            <input name="form_key" type="hidden" value="<?php echo $block->escapeHtml($block->getFormKey()) ?>" />
+        </div>
+        <fieldset class="fieldset admin__fieldset " id="base_fieldset">
+            <legend class="admin__legend legend">
+                <span><?= $block->getFormTitle(); ?></span>
+            </legend>
+        </fieldset>
+        <fieldset class="fieldset admin__fieldset" id="upload_file_fieldset">
+            <legend class="admin__legend legend">
+                <span>File to Import</span>
+            </legend><br>
+            <div class="messages"></div>
+            <div class="admin__field field field-import_file  required _required with-note" data-ui-id="import-form-container-form-fieldset-element-form-field-import-file">
+                <label class="label admin__field-label" for="import_file" data-ui-id="import-form-container-form-fieldset-element-file-import-file-label">
+                    <span>Select File to Import</span>
+                </label>
+                <div class="admin__field-control control">
+                    <input id="import_file" name="import_file" data-ui-id="import-form-container-form-fieldset-element-file-import-file" value="" title="Select File to Import" class="input-file required-entry _required" type="file" aria-required="true">
+                    <div class="note admin__field-note" id="import_file-note">File must be saved in UTF-8 encoding for proper import</div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="fieldset admin__fieldset" id="form_save_button">
+            <div class="admin__field-control control">
+                <div class="admin__field">
+                    <button class="action-primary" type="submit">Submit</button>
+                </div>
+            </div>
+            <div class="admin__field-control control">
+                <div class="admin__field">
+                    <a href="<?= $block->getUrl('catcustomerbalance/import/index')?>"><button class="action-primary" type="button">Back</button></a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

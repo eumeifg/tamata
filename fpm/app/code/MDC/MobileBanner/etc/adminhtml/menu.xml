@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="MDC::top_level" resource="MDC_MobileBanner::mobile" module="Magedelight_OffersImportExport" title="Mobile Banner" parent="Magedelight_Theme::addons"/>
+		<add action="mdc_mobilebanner/banner/index"
+			 id="MDC_MobileBanner::index_index"
+			 module="MDC_MobileBanner"
+			 parent="MDC::top_level"
+			 resource="MDC_MobileBanner::index_index"
+			 sortOrder="9999"
+			 title="Mobile Banner"/>
+	</menu>
+</config>

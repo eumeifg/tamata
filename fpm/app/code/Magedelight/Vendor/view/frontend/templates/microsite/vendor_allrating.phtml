@@ -1,0 +1,98 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php $vRating = $block->getCollection(); ?>
+<?php $sort = $this->getRequest()->getParam('sort'); ?>
+<div class="rb-product-reviews-wrapper">
+    <div class="rb-product-reviews-container">
+    <div class="block-title"><strong><?= /* @escapeNotVerified */ __('Customer Reviews') ?></strong></div>
+
+    <div class="toolbar">
+        <?php if (count($vRating)) : ?>
+            <div class="microsite-total-review-count"><strong><?= __('Total') ?> <?= count($block->getAllcollection()); ?> <?= __('Reviews') ?></strong></div>
+            <?= $block->getPagerHtml(); ?>
+            <div class="microsite-sorting">
+                <p class="sory-by"><strong><?= __('Sort By:') ?></strong>&nbsp;      
+                    <select class="sort-select" name="sort_rating" id="sortque">
+                        <?php if ($sort == "new") : ?>
+                            <option value="new" selected="selected"><?= __('Newest First') ?></option>
+                        <?php else : ?>
+                            <option value="new"><?= __('Newest First') ?></option>
+                        <?php endif; ?>
+                        <?php if ($sort == 'old') : ?>
+                            <option value="old" selected="selected"><?= __('Oldest First') ?></option>
+                        <?php else : ?>
+                            <option value="old"><?= __('Oldest First') ?></option>
+                        <?php endif; ?>    
+                        <?php if ($sort == 'high_rate') : ?>
+                            <option value="high_rate" selected="selected"><?= __('Highest Rated') ?></option>
+                        <?php else : ?>
+                            <option value="high_rate"><?= __('Highest Rated') ?></option>
+                        <?php endif; ?>
+                        <?php if ($sort == 'low_rate') : ?>
+                            <option value="low_rate" selected="selected"><?= __('Lowest Rated') ?></option>
+                        <?php else : ?>
+                            <option value="low_rate"><?= __('Lowest Rated') ?></option>
+                        <?php endif; ?>     
+                    </select>
+                </p>
+            </div>
+        </div>
+   
+            <?php foreach ($vRating as $collection) : ?>    
+    <div class="customer_reviews_box">
+        <div class="customer_photo">
+                <?php $string =  $collection->getCustomerName(); ?>
+            <span class="customer-circle alpha-<?= strtolower($string[0]); ?>">
+                <?= strtoupper($string[0]); ?>
+            </span>
+        </div>      <!-- end of customer_photo -->
+        <div class="review_description">
+            <div class="review_ratings">
+               <div class="rating-summary">
+                                    <div class="rating-result">
+                                        <span style="width:<?= $collection->getRatingAvg(); ?>%"><span><span itemprop="ratingValue"><?= $collection->getRatingAvg(); ?></span>% of <span itemprop="bestRating">100</span></span></span>
+                                    </div>
+                </div>
+            </div>
+            <div class="review_title">
+                <?= $block->getRatingText($collection->getRatingAvg()); ?>
+            </div>
+            <div class="reviews_date">
+                    <?= __('by') ?> <?= $collection->getCustomerName(); ?> <?= __('on') ?> <?= $block->getDateFromate($collection->getCreatedAt()); ?>
+            </div>
+            <div class="reviews_content">
+                <p><?= $collection->getComment(); ?></p>
+            </div>
+        </div>   <!-- end of review_description -->
+
+    </div>  <!-- end of customer_reviews_box -->
+            <?php endforeach; ?>
+        <?php else : ?>
+        <div class="message info empty"><div><?= /* @escapeNotVerified */ __('Customer Reviews not available.') ?></div></div>
+        <?php endif; ?>
+    
+    </div>
+</div>
+<script>
+require([
+    'jquery'
+], function($){
+    var currentUrl = '<?= $block->getCurrentUrl();?>'
+    $("#sortque").change(function(){
+        var sort = $('#sortque').val();
+        window.location = currentUrl + "?sort=" + sort;
+        
+        
+    });
+});
+</script>

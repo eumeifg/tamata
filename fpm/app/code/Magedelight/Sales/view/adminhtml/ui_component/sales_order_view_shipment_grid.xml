@@ -1,0 +1,17 @@
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_shipment_columns">
+
+        <column name="suborder_id" class="Magedelight\Sales\Ui\Component\Listing\Column\ShipmentSubOrderId">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Sub Order Id</item>
+                    <item name="sortOrder" xsi:type="number">120</item>
+                    <item name="indexField" xsi:type="string">increment_id</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Review
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magedelight\Review\Api\ReviewInterface" type="Magedelight\Review\Model\Review" />
+    <preference for="Magedelight\Review\Api\Data\ReviewDataInterface" type="Magedelight\Review\Model\ReviewData" />
+    <preference for="Magedelight\Review\Api\Data\ReviewCollectionInterface" type="Magedelight\Review\Model\ReviewCollection" />
+        <preference for="Magedelight\Review\Api\Data\RatingDataInterface" type="Magedelight\Review\Model\RatingData" />
+</config>

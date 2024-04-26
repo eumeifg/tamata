@@ -1,0 +1,37 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2017 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Abandonedcart
+ * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+$items = $block->getItems();
+$imageHelper = \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Catalog\Helper\Image::class);
+$small_image = $imageHelper->getDefaultPlaceholderUrl('thumbnail');
+
+if (!empty($items)) {
+    foreach ($items as $item) {
+            $thumbnail_url = $item['thumbnail_url'];
+        if ($item['thumbnail_url'] == 1) {
+            $thumbnail_url = $small_image;
+        }
+        ?>
+        <tr>
+            <td valign="top">
+                <a style="float: left; margin: 0 5px 5px 0;" href="<?= /* @noEscape */ $item['product_url']; ?>">
+                <img src="<?= /* @noEscape */ $thumbnail_url; ?>" /></a>
+                <a style="float: left; color: #1979c3; text-decoration: none; width: 60%; margin-top: 5px;"
+                   href="<?= /* @noEscape */ $item['product_url']; ?>">
+                <?= /* @noEscape */ $item['product_name']; ?></a>
+            </td>
+            <td><?= /* @noEscape */ $item['qty']; ?></td>
+            <td><?= /* @noEscape */ $item['price']; ?></td>
+        </tr>
+    <?php }
+}
+?>

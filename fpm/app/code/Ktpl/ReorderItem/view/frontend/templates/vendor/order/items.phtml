@@ -1,0 +1,113 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block Magedelight\Sales\Block\Vendor\Order\Items */
+?>
+<?php
+$helper = $this->helper('Magedelight\Vendor\Helper\Data');
+$_giftMessage = null;
+$_order = $block->getOrder();
+$_vendorItems = array();
+foreach ($_order->getItemsCollection() as $item) {
+    $_vendorItems[$item->getVendorId()][] = $item;
+}
+?>
+<div class="table-wrapper order-items rb-order-items">
+    <table class="data table table-order-items rb-table-order-items" id="my-orders-table" summary="<?php  echo __('Items Ordered') ?>">
+        <tbody>
+            <tr>
+                <td colspan="5">
+                    <?php foreach ($_vendorItems as $vendorId => $_items) { ?>
+                        <?php
+                        if ($vendorId == null || $vendorId == 0 || $vendorId == '') {
+                            continue;
+                        }
+                        ?>
+                        <div class="items-container">
+                            <div class="vendor-order-info">
+                                <span class="vendor-info vendor-name">
+                                    <?php echo __($helper->getVendorNameById($vendorId)); ?>
+                                </span>
+                            </div>
+                            <table class="data table rb-table-vendor-individual-order-items" id="my-orders-table-<?php echo $vendorId; ?>" summary="<?php  echo __('Vendor Items Ordered') ?>">
+                                <thead>
+                                    <tr>
+                                        <th class="col name"><?php  echo __('Product Name') ?></th>
+                                        <th class="col sku"><?php  echo __('SKU') ?></th>
+                                        <th class="col price"><?php  echo __('Price') ?></th>
+                                        <th class="col qty"><?php  echo __('Qty') ?></th>
+                                        <th class="col subtotal"><?php  echo __('Subtotal') ?></th>
+                                        <th class="col status"><?php  echo __('Status') ?></th>
+                                        <th class="col action"><?php echo __('Action') ?></th>
+                                    </tr>
+                                </thead>
+                                <?php $_index = 0; ?>
+                                <?php $_count = count($_items); ?>
+                                <?php $_giftMessage = '' ?>
+                                <?php foreach ($_items as $_item): ?>
+                                    <?php
+                                    if ($_item->getParentItem()) {
+                                        continue;
+                                    }
+                                    ?>
+                                    <tbody>
+        <?php echo $block->getItemHtml($_item) ?>
+        <?php if ($this->helper('Magento\GiftMessage\Helper\Message')->isMessagesAllowed('order_item', $_item) && $_item->getGiftMessageId()): ?>
+            <?php $_giftMessage = $this->helper('Magento\GiftMessage\Helper\Message')->getGiftMessageForEntity($_item); ?>
+                                            <tr>
+                                                <td class="col options" colspan="5">
+                                                    <a href="#"
+                                                       id="order-item-gift-message-link-<?php  echo $_item->getId() ?>"
+                                                       class="action show"
+                                                       aria-controls="order-item-gift-message-<?php  echo $_item->getId() ?>"
+                                                       data-item-id="<?php  echo $_item->getId() ?>">
+            <?php  echo __('Gift Message') ?>
+                                                    </a>
+            <?php $_giftMessage = $this->helper('Magento\GiftMessage\Helper\Message')->getGiftMessageForEntity($_item); ?>
+                                                    <div class="order-gift-message" id="order-item-gift-message-<?php  echo $_item->getId() ?>" role="region" aria-expanded="false" tabindex="-1">
+                                                        <a href="#"
+                                                           title="<?php  echo __('Close') ?>"
+                                                           aria-controls="order-item-gift-message-<?php  echo $_item->getId() ?>"
+                                                           data-item-id="<?php  echo $_item->getId() ?>"
+                                                           class="action close">
+            <?php  echo __('Close') ?>
+                                                        </a>
+                                                        <dl class="item-options">
+                                                            <dt class="item-sender"><strong class="label"><?php  echo __('From') ?></strong><?php echo $block->escapeHtml($_giftMessage->getSender()) ?></dt>
+                                                            <dt class="item-recipient"><strong class="label"><?php  echo __('To') ?></strong><?php echo $block->escapeHtml($_giftMessage->getRecipient()) ?></dt>
+                                                            <dd class="item-message"><?php  echo $this->helper('Magento\GiftMessage\Helper\Message')->getEscapedGiftMessage($_item) ?></dd>
+                                                        </dl>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                            <?php endif ?>
+                                    </tbody>
+    <?php endforeach; ?>
+                            </table>
+                        </div>
+            <?php } ?>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+<?= $block->getChildHtml('order_totals'); ?>
+        </tfoot>
+    </table>
+</div>
+<?php if ($_giftMessage) : ?>
+    <script type="text/x-magento-init">
+        {
+        "a.action.show, a.action.close": {
+        "giftMessage": {}
+        }
+        }
+    </script>
+<?php endif; ?>

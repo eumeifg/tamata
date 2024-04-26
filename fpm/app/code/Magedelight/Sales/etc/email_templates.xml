@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magedelight_Backend:etc/email_templates.xsd">
+  <template id="emailconfiguration_admin_order_cancel_template" label="Admin Order cancel" file="emailconfiguration_admin_order_cancel_template.html" type="html" area="frontend" module="Magedelight_Sales"/>
+  <template id="emailconfiguration_vendor_order_cancel_template" label="Vendor Order cancel" file="emailconfiguration_vendor_order_cancel_template.html" type="html" area="frontend" module="Magedelight_Sales"/>
+  <template id="emailconfiguration_vendor_order_cancel_admin_template" label="Vendor Order cancel-Admin Template" file="emailconfiguration_vendor_order_cancel_admin_template.html" type="html" area="frontend" module="Magedelight_Sales"/>
+  <template id="emailconfiguration_vendor_order_template" label="Vendor Order Notification" file="emailconfiguration_vendor_order_template.html" type="html" area="frontend" module="Magedelight_Sales"/>
+  <template id="sales_email_invoice_template" label="Invoice Order Status Complete" file="invoice_new.html" type="html" area="adminhtml" module="Magedelight_Sales"/>
+  <template id="emailconfiguration_vendor_order_status_complete_template" label="Customer Order Status Complete" file="emailconfiguration_vendor_order_status_complete_template.html" type="html" area="frontend" module="Magedelight_Sales"/>
+  <template id="emailconfiguration_check_inventory_template" label="Vendor Product Check Inventory" file="emailconfiguration_check_inventory_template.html" type="html" area="frontend" module="Magedelight_Sales"/>
+
+  <!-- Order Cancel By Customer -->
+  <template id="emailconfiguration_customer_order_cancel_vendor_template" label="Customer Cancel Order Supplier Template"  file="emailconfiguration_customer_order_cancel_vendor_template.html" type="html" area="frontend" module="Magedelight_Sales"/>
+  <template id="emailconfiguration_customer_order_cancel_admin_template" label="Customer Cancel Order Admin Template" file="emailconfiguration_customer_order_cancel_admin_template.html" type="html" area="frontend" module="Magedelight_Sales"/>
+
+
+  <!-- Order Item Cancel By Customer -->
+  <template id="emailconfiguration_customer_order_cancel_item_cancel_customer_template" label="Customer Cancel Order Item Template"  file="emailconfiguration_customer_order_cancel_item_cancel_customer_template.html" type="html" area="frontend" module="Magedelight_Sales"/>
+  <template id="emailconfiguration_customer_order_cancel_item_cancel_vendor_template" label="Supplier Cancel Order Item Template"  file="emailconfiguration_customer_order_cancel_item_cancel_vendor_template.html" type="html" area="frontend" module="Magedelight_Sales"/>
+  <template id="emailconfiguration_customer_order_cancel_item_cancel_admin_template" label="Admin Cancel Order Item Template"  file="emailconfiguration_customer_order_cancel_item_cancel_admin_template.html" type="html" area="frontend" module="Magedelight_Sales"/>
+</config>

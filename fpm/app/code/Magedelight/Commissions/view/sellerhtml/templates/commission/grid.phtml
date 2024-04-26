@@ -1,0 +1,358 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Commissions
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block Magedelight\Commissions\Block\Commission\Grid */
+$om = \Magento\Framework\App\ObjectManager::getInstance();
+$session = $om->get(\Magento\Customer\Model\Session::class);
+$gridsession = $session->getGridSession();
+$financial_commision_invoice = $gridsession['grid_session']['financial_commision_invoice'];
+$collection = $block->getCollection();
+?>
+<form method="get" action="<?= /* @noEscape */  $block->getSubmitUrl() ?>"
+      id="vendor_invoice_search" name="vendor_invoice_search">
+    <div class="row commission-list">
+        <div class="row-gutter toolbar-wrapper mb10">
+            <div class="col-xs-4">
+                <input type="hidden" name="tab" value="<?= /* @noEscape */  $this->getRequest()->getParam(
+                    'tab',
+                    '2,0'
+                ) ?>">
+                <input id="sort-order" type="hidden" name="sort_order"
+                       value="<?= /* @noEscape */ $this->getRequest()->getParam(
+                           'sort_order',
+                           'paid_at'
+                       ) ?>">
+                <input id="sort-direction" type="hidden" name="dir"
+                       value="<?= /* @noEscape */ $this->getRequest()->getParam(
+                           'dir',
+                           'DESC'
+                       ) ?>">
+                <div class="block block-search">
+                    <div class="content">
+                        <div class="field search-catalog">
+                            <div class="control">
+                                <input placeholder="<?= /* @noEscape */  __('Search...') ?>" type="text" value="<?php
+                                if ($this->getRequest()->getParam('q', '')) {
+                                    ?>
+                                    <?= /* @noEscape */ $this->getRequest()->getParam('q', ''); ?>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <?= /* @noEscape */ $financial_commision_invoice['q']; ?>
+                                    <?php
+                                }
+                                ?>" name="q" id="vendor_order_search" class="input-text vendor search-order-input">
+                            </div>
+                            <div class="actions">
+                                <div class="vendor primary"><button type="submit" class="vendor action login primary">
+                                        <span><?= /* @noEscape */ __('Search') ?></span></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <div class="row">
+                     <div class="col-xs-3 pt10">
+                            <a rel="new" href="javascript:void(0)" class="action-reset search">
+                                <?= /* @noEscape */ __('Reset') ?></a>
+                     </div>
+                      <div class="col-xs-9">
+                           <div class="toolbar-filter-wrapper">
+                                <div class="data-grid-filters-action-wrap">
+                                    <span class="clear-filters">
+                                        <a rel="new" href="javascript:void(0)" class="action action-reset filter">
+                                            <?= /* @noEscape */ __('Clear') ?></a></span>
+                                    <button class="action secondary action-default _active" type="button"
+                                            data-action="grid-filter-expand"
+                                            title="<?= /* @noEscape */  __('Filters') ?>">
+                                        <span><?= /* @noEscape */ __('Filters') ?></span>
+                                    </button>
+                                </div>
+                            </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-wrapper">    
+        <fieldset class="row fieldset">
+            <div class="row-gutter filter-row">
+                <div class="col-md-4 col-lg-4 filter-section">
+                    <fieldset class="fieldset" id="paid_date_range">
+                        <legend class="legend">
+                            <span class=""><?= /* @noEscape */ __('Invoice Generate Date') ?></span>
+                        </legend>
+                        <div class="field">
+                            <label class="label" for="paid_at_from">
+                                <span><?= /* @noEscape */ __('from') ?></span>
+                            </label>
+                            <div class="control date-control date-field-container">
+                                <input class="input-text" 
+                                       type="text"  
+                                       name="paid_at[from]"  
+                                       placeholder="MM/DD/YYYY"
+                                       readonly="readonly"
+                                       id="paid_at_from" 
+                                       value="<?php
+                                        if ($this->getRequest()->getParam('paid_at')['from']) {
+                                            ?>
+                                            <?= /* @noEscape */ $this->getRequest()->getParam('paid_at')['from']; ?>
+                                            <?php
+                                        } elseif ($financial_commision_invoice['invoice_genereated_date[from]']) {
+                                            ?>
+                                            <?= /* @noEscape */
+                                            $financial_commision_invoice['invoice_genereated_date[from]']; ?>
+                                            <?php
+                                        }
+                                        ?>">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="paid_at_to">
+                                <span><?= /* @noEscape */ __('to') ?></span>
+                            </label>
+                            <div class="control date-control date-field-container">
+                                <input class="input-text" 
+                                       type="text"  
+                                       name="paid_at[to]"  
+                                       placeholder="MM/DD/YYYY"
+                                       readonly="readonly"
+                                       id="paid_at_to" 
+                                       value="<?php
+                                        if ($this->getRequest()->getParam('paid_at')['to']) {
+                                            ?>
+                                            <?= /* @noEscape */ $this->getRequest()->getParam('paid_at')['to']; ?>
+                                            <?php
+                                        } elseif ($financial_commision_invoice['invoice_genereated_date[to]']) {
+                                            ?>
+                                            <?= /* @noEscape */
+                                            $financial_commision_invoice['invoice_genereated_date[to]']; ?>
+                                            <?php
+                                        }
+                                        ?>">
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+                <div class="col-md-4 col-lg-4 filter-section">
+                    <fieldset class="fieldset field-full-width">
+                        <legend class="legend">
+                            <span class=""><?= /* @noEscape */ __('Consollidated Invoice Number') ?></span>
+                        </legend>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input-text" type="text" name="invoice_number" id="invoice_number" value="<?php
+                                if ($this->getRequest()->getParam('invoice_number')) {
+                                    ?>
+                                    <?= /* @noEscape */ trim($this->getRequest()->getParam('invoice_number')); ?>
+                                    <?php
+                                } elseif ($financial_commision_invoice['consolidation_invoice_number']) {
+                                    ?>
+                                    <?= /* @noEscape */ $financial_commision_invoice['consolidation_invoice_number']; ?>
+                                    <?php
+                                }
+                                ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-4 col-lg-4 filter-section">
+                    <fieldset class="fieldset">
+                        <legend class="legend">
+                            <span class=""><?= /* @noEscape */ __('Total Fees Amount') ?></span>
+                        </legend>
+                        <div class="field">
+                            <label class="label" for="total_commission_from">
+                                <span><?= /* @noEscape */ __('from') ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text"
+                                       type="text"
+                                       name="total_commission[from]"
+                                       id="total_commission_from"
+                                       value="<?php
+                                        if ($this->getRequest()->getParam('total_commission')['from']) {
+                                            ?>
+                                            <?= /* @noEscape */
+                                            $this->getRequest()->getParam('total_commission')['from']; ?>
+                                            <?php
+                                        } elseif ($financial_commision_invoice['total_fees_amount[from]']) {
+                                            ?>
+                                            <?= /* @noEscape */
+                                            $financial_commision_invoice['total_fees_amount[from]']; ?>
+                                            <?php
+                                        }
+                                        ?>">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="total_commission_to">
+                                <span><?= /* @noEscape */ __('to') ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text"
+                                       type="text"
+                                       name="total_commission[to]"
+                                       id="total_commission_to"
+                                       value="<?php
+                                        if ($this->getRequest()->getParam('total_commission')['to']) {
+                                            ?>
+                                            <?= /* @noEscape */
+                                            $this->getRequest()->getParam('total_commission')['to']; ?>
+                                            <?php
+                                        } elseif ($financial_commision_invoice['total_fees_amount[to]']) {
+                                            ?>
+                                            <?= /* @noEscape */
+                                            $financial_commision_invoice['total_fees_amount[to]']; ?>
+                                            <?php
+                                        }
+                                        ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row">
+        <div class="row-gutter">
+            <div class="filters-footer col-md-12">
+                <div class="action-toolbar main-actions">
+                    <button class="action primary grid-filter-cancel cancel" type="reset"
+                            data-action="grid-filter-cancel" >
+                        <span><?= /* @noEscape */ __('Cancel') ?></span>
+                    </button>
+                    <button class="action primary" type="submit" data-action="grid-filter-apply" >
+                        <span><?= /* @noEscape */ __('Apply') ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <input type="hidden" name="session-clear-commision" id="session-clear-commision" value="0"/>
+</form>
+<div class="table-wrapper rb-commision-invoice">
+    <table class="data table rb-table-commision-items  history" id="commision-table">
+        <thead>
+            <tr>
+                <th scope="col" sortorder="paid_at"
+                    class="col date sortable"><?= /* @noEscape */ __('Invoice Generation Date') ?></th>
+                <th scope="col" sortorder="commission_invoice_id"
+                    class="col numeric sortable"><?= /* @noEscape */ __('Consollidated Invoice Number') ?></th>
+                <th scope="col" sortorder="total_commission"
+                    class="col amount sortable"><?= /* @noEscape */ __('Total Fees Amount') ?></th>
+                <th scope="col" class="col action"><?= /* @noEscape */ __('Action') ?></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <?php if ($collection->count()) {
+                ?>
+                <?php foreach ($collection as $_item) {
+                    ?>
+                    <tr>
+                        <td class="col data-grid-date-cell date"><?= /* @noEscape */
+                        $block->dateFormat($_item->getPaidAt()) ?></td>
+                        <td class="col numeric"><?= /* @noEscape */ $_item->getCommissionInvoiceId() ?></td>
+                        <td class="col data-grid-price-cell amount"><?= /* @noEscape */
+                        $block->formatAmount($_item->getTotalFees(), $_item->getOrderCurrencyCode()) ?></td>
+                        <td class="col data-grid-actions-cell action"><a href="<?= /* @noEscape */
+                        $block->getInvoiceUrl($_item->getId()) ?>" class="action download-invoice">
+                                <?= /* @noEscape */ __('Download Invoice') ?></a></td>
+                    </tr>
+                    <?php
+                } ?>
+                <?php
+            } else {
+                ?>
+                <tr><td colspan="4"> <div class="message info empty" id="commision-msg">
+
+<span><?= /* @noEscape */ __("We couldn't find any records."); ?></span>
+</div></td></tr>
+                <?php
+            } ?>
+        </tbody>
+    </table>
+</div>
+<?php if ($block->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom"><?= /* @noEscape */ $block->getPagerHtml(); ?></div>
+<?php endif ?>
+<script type="text/javascript">
+    require(['jquery',
+        'mage/calendar', /* Calender widget */
+    ], function ($) {
+        $(".filter-wrapper").hide();
+        $(".action-default").click(function () {
+            $(".filter-wrapper").toggle(500);
+        });
+
+        $(".grid-filter-clear-all").click(function () {
+            $form = $(this).parents('form');
+            $(':input:not([type=hidden])', $form).val("");
+            $($form).submit();
+        });
+
+
+        $("#paid_date_range").dateRange({
+            buttonText: "<?= /* @noEscape */ __('Select Date') ?>",
+            showOn: "button",
+            from: {
+                id: "paid_at_from"
+            },
+            to: {
+                id: "paid_at_to"
+            }
+        });
+
+        $(document).ready(function () {
+            /*
+             * Sorting feature
+             */
+            $currentSortOrder = $('#sort-order').val();
+            $currentSortDir = $('#sort-direction').val();
+
+            if ($currentSortOrder != null && $currentSortOrder != '') {
+                $sortDirClass = ($currentSortDir == 'DESC') ? 'descend' : 'ascend';
+                $('th[sortorder="' + $currentSortOrder + '"]').addClass($sortDirClass);
+            }
+            $sortDir = 'ASC';
+
+            $('#commision-table .sortable').click(function ($e) {
+                $sortOrder = $(this).attr('sortorder');
+                if ($currentSortOrder == $sortOrder) {
+                    $sortDir = ($currentSortDir == 'DESC') ? 'ASC' : 'DESC';
+                }
+                $('#sort-order').val($sortOrder); /*for post */
+                $('#sort-direction').val($sortDir); /*for post */
+                $('#vendor_invoice_search').submit();
+            });
+
+            $(".grid-filter-cancel").click(function () {
+                $(this).parents('.filter-wrapper').toggle(500);
+            });
+
+            $(".action-reset").click(function () {
+                $form = $(this).parents('form');
+                if ($(this).hasClass('search')) {
+                    $parent = $('.block-search', $form);
+                } else {
+                    $parent = $('.filter-wrapper', $form);
+                }
+                $(':input:not([type=hidden])', $parent).val("");
+                jQuery('#session-clear-commision').val(1);
+                $($form).submit();
+            });
+        });
+
+    });
+</script>                

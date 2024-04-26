@@ -1,0 +1,13 @@
+<?php
+$_item = $this->getParentBlock()->getParentBlock()->getItem();
+?>
+<!-- line-item wise reorder column start-->
+<?php if ($_item->getOrder()->canReorder()) : ?>
+    <a href="#" data-post='<?= 
+    $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
+        ->getPostData($block->getReorderItemUrl($_item->getOrder(), $_item->getId()))
+    ?>' class="action order">
+        <span><?= /* @escapeNotVerified */ __('Reorder Item') ?></span>
+    </a>
+<?php endif ?>
+<!-- line-item wise reorder column end-->

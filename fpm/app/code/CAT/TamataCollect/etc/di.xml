@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="add_extension_tamatacollect_attributes" type="CAT\TamataCollect\Plugin\Quote\TotalsPlugin"/>
+    </type>
+    <type name="Magento\Sales\Api\Data\OrderInterface">
+        <plugin name="add_tamata_collect" type="CAT\TamataCollect\Plugin\Order\AddTamataCollect"/>
+    </type>
+    <preference for="Magento\Quote\Model\Quote\Address" type="CAT\TamataCollect\Model\Quote\Address"/>
+    <preference for="Magento\Quote\Model\ShippingMethodManagement"
+                type="CAT\TamataCollect\Model\ShippingMethodManagement"/>
+    <preference for="Magedelight\Shippingmatrix\Model\Carrier\Matrixrate"
+                type="CAT\TamataCollect\Model\Carrier\Matrixrate"/>
+</config>

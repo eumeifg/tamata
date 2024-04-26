@@ -1,0 +1,39 @@
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<!--@subject Vendor profile waiting for action@-->
+
+{{template config_path="vendor_design/email/header_template"}}
+<!-- Begin wrapper table -->
+<table class="wrapper" width="100%">
+    <tr>
+        <td class="wrapper-inner" align="center">
+            <table class="main" align="center">
+                <tr>
+                    <td class="main-content">
+                        {{trans "A vendor ("}} {{var name}} {{trans "::"}} {{var business_name}} {{trans ")"}}
+                        {{trans "has completed account setup at "}} {{trans "%store_name" store_name=$store.getFrontendName()}}
+                        {{trans "and waiting for next action by administrator."}}<br/>   
+                        {{trans "Please log into admin panel and review the details submitted by the vendor."}}             
+                    </td>
+                </tr>
+                <tr>
+                    <td class="footer">
+                        <p class="closing">{{trans "Thank you, %store_name" store_name=$store.getFrontendName()}}!</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- End wrapper table -->
+{{template config_path="vendor_design/email/footer_template"}}

@@ -1,0 +1,30 @@
+<?php
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+?>
+
+<?php
+/** @var \Ktpl\ElasticSearch\Block\Suggestion $block */
+
+$suggestedData = $block->getSuggestedTerms();
+$terms = [];
+foreach ($suggestedData as $suggestedTerm) {
+    array_push($terms, '<a href="' . $block->getUrl('catalogsearch/result', ['_query' => ['q' => $suggestedTerm->getQueryText()]]) . '" >' . $suggestedTerm->getQueryText() . '</a>');
+}
+if (empty($terms)) {
+    return;
+}
+?>
+<p class="suggested">
+    <?= __('Suggested search terms: %1', implode(', ', $terms)) ?>
+</p>

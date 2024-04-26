@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magedelight_Catalog::vendor_products_root"
+             title="Product"
+             module="Magedelight_Catalog"
+             sortOrder="50"
+             resource="Magedelight_Catalog::vendor_products"
+             toolTip="magedelight_base" />
+
+        <add id="Magedelight_Catalog::vendor_products_root_commonlyvisible"
+             title="Product"
+             module="Magedelight_Catalog"
+             sortOrder="10"
+             action="rbcatalog/product/index/status/1"
+             parent="Magedelight_Theme::md_modules"
+             resource="Magedelight_Catalog::vendor_products" />
+
+        <add id="Magedelight_Catalog::vendor_products_listed" title="Live" module="Magedelight_Catalog" parent="Magedelight_Catalog::vendor_products_root" sortOrder="10"  action="rbcatalog/product/index/status/1" resource="Magedelight_Catalog::vendor_products_listed"/>
+        <add id="Magedelight_Catalog::vendor_products_approved" title="Approved" module="Magedelight_Catalog" parent="Magedelight_Catalog::vendor_products_root" sortOrder="30"  action="rbcatalog/product/index/status/0" resource="Magedelight_Catalog::vendor_products_approved"/>
+        <add id="Magedelight_Catalog::product_request_new" title="New" module="Magedelight_Catalog" sortOrder="20" parent="Magedelight_Catalog::vendor_products_root" action="rbcatalog/productrequest/" resource="Magedelight_Catalog::product_request_new"/>
+        <add id="Magedelight_Catalog::vendor_products_disapproved" title="Disapproved" module="Magedelight_Catalog" sortOrder="50" parent="Magedelight_Catalog::vendor_products_root" action="rbcatalog/productrequest/index/status/2" resource="Magedelight_Catalog::vendor_products_disapproved"/>
+        <add id="Magedelight_Catalog::product_request_existing" title="Existing" module="Magedelight_Catalog" sortOrder="40" parent="Magedelight_Catalog::vendor_products_root" action="rbcatalog/productrequest/index/existing/1" resource="Magedelight_Catalog::product_request_existing"/>
+    </menu>
+</config>

@@ -1,0 +1,12 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+		<head>
+		<css src="Ktpl_SocialShare/css/font-awesome.min.css" />
+		<css src="Ktpl_SocialShare/css/ept-social-share.css" />
+	</head>
+	<body>
+		<referenceContainer name="product.info.addto">
+			<block class="Ktpl\SocialShare\Block\Socialshare" name="product.socialshare" template="Ktpl_SocialShare::socialshare.phtml" after="-" />
+		</referenceContainer>
+		<referenceBlock name="socialshare" remove="true"/>
+	</body>
+</page>

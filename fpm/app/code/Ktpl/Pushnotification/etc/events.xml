@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- <event name="sales_order_place_after">
+        <observer name="push_notification_order_place_after" instance="Ktpl\Pushnotification\Observer\NotificationOrderPlaceAfter" />
+    </event> -->
+    <event name="checkout_submit_all_after">
+        <observer name="push_notification_order_place_after" instance="Ktpl\Pushnotification\Observer\NotificationOrderPlaceAfter" />
+    </event>
+    
+     <!-- <event name="sales_order_shipment_save_after">
+        <observer name="sales_order_shipment_after" instance="Ktpl\Pushnotification\Observer\NotificationShipmentAfter" />
+    </event> -->
+
+    <!-- changed from default shipping event(sales_order_shipment_save_after) to custom 'cz while doing warhouse process shipment event was triggering -->
+     <event name="sales_order_shipment_save_after_pushnotification">
+        <observer name="sales_order_shipment_after" instance="Ktpl\Pushnotification\Observer\NotificationShipmentAfter" />
+    </event>
+    <event name="sales_order_invoice_save_after">
+        <observer name="sales_order_invoice_after" instance="Ktpl\Pushnotification\Observer\NotificationInvoiceSaveAfter" />
+    </event>
+     <event name="ktpl_pushnotification_recently_view">
+        <observer name="catalog_recently_view_product" instance="Ktpl\Pushnotification\Observer\RecentlyViewProductObserver" />
+    </event>
+</config>

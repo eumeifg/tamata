@@ -1,0 +1,20 @@
+<?php
+/** @var \CAT\Address\Block\Checkout\Cities $block */
+?>
+
+<script>
+    require(
+        [
+            'jquery'
+        ],
+        function($) {
+            $eaCitiesJson = <?=  $block->citiesJson()?>;
+        });
+</script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "CAT_Address/js/city-update": {}
+        }
+    }
+</script>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="CAT_Custom::menu" title="Bulk Automation" module="CAT_Custom" translate="title" sortOrder="9999"
+             resource="CAT_Custom::menu" parent="Ktpl_Core::menu"
+             dependsOnConfig="automation/general/automation_enable"/>
+        <add id="CAT_Custom::manage_bulk_automation" title="Manage Bulk Automation" module="CAT_Custom"
+             sortOrder="55" parent="CAT_Custom::menu" action="catcustom/automation/index"
+             resource="CAT_Custom::manage_bulk_automation" dependsOnConfig="automation/general/automation_enable"/>
+    </menu>
+</config>

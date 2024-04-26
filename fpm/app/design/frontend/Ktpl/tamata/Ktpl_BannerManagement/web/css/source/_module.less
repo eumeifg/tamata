@@ -1,0 +1,229 @@
+/*
+ * Copyright © 2019 Krish Technolabs. All rights reserved.
+ * See COPYING.txt for license details
+ */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    #banner-slider-carousel .owl-dots {
+        position: absolute;
+        bottom: 45px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 3;
+        height: 0;
+    }
+
+    #banner-slider-carousel .owl-dots .owl-dot,
+    #banner-slider-carousel .owl-dots button {
+       width: 36px;
+       height: 4px;
+       background: rgba(0,0,0,0.2);
+       padding: 0;
+       border:0;
+       margin: 0 6px;
+       border-radius: 0;
+       display: inline-block;
+       box-shadow: none;
+    }
+
+    #banner-slider-carousel .owl-dots .owl-dot.active,
+    #banner-slider-carousel .owl-dots button.active {
+        width: 60px;
+        background: rgba(0,0,0,0.5);
+    }
+
+    #banner-slider-carousel .owl-item img {
+        transform-style: unset;
+        height: auto;
+        width: auto;
+    }
+
+    #banner-slider-carousel .item-video {
+        height: 450px;
+    }
+
+    .homepage-main-banner {
+        .banner-description-box {
+            position: absolute;
+            top: 50%;
+            max-width: 560px;
+            width: 100%;
+            left: 43px;
+            z-index: 3;
+            padding: 0 54px;
+            text-align: center;
+             transform: translateY(-50%);
+
+            h2 {
+                font-size: 48px;
+                color: @color-gray20;
+                line-height: 58px;
+                text-transform: uppercase;
+                font-weight: 700;
+                margin: 0 0 20px 0;
+
+                span {
+                    color: @color-orange;
+                }
+            }
+
+            h3 {
+                font-size: 40px;
+                line-height: 60px;
+                font-weight: 400;
+                margin: 0 0 26px -6px;
+                color: @color-gray20;
+
+                span {
+                    font-size: 60px;
+                    font-weight: 700;
+                    line-height: 60px;
+                    color: @color-orange;
+                }
+            }
+
+            p {
+                margin: 0 0 12px 0;
+            }
+
+            .action.primary {
+               padding: 11px 46px;
+               letter-spacing: 1.5px;
+            }
+        }
+    }
+
+    .homepage-main-banner {
+        margin-bottom: 25px;
+
+        &.mobile {
+            display: none;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+@media screen and (max-width: 1022px) {
+    .homepage-main-banner {
+        &.mobile {
+            display: block;
+            margin-bottom: 20px;
+
+            .banner-description-box {
+                max-width: 340px;
+                left: 20px;
+            }
+        }
+
+        &.desktop {
+            display: none;
+        }
+    }
+
+    #banner-slider-carousel .owl-dots .owl-dot,
+    #banner-slider-carousel .owl-dots button {
+        width: 30px;
+        margin: 0 5px;
+    }
+
+    #banner-slider-carousel .owl-dots .owl-dot.active,
+    #banner-slider-carousel .owl-dots button.active {
+        width: 50px;
+    }
+
+    #banner-slider-carousel .owl-dots {
+        bottom: 26px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .homepage-main-banner {
+        &.mobile {
+            .banner-description-box {
+                max-width: 230px;
+                left: 20px;
+
+                h2 {
+                    font-size: 18px;
+                    line-height: 24px;
+                    margin: 0 0 16px 0;
+                }
+
+                h3 {
+                    font-size: 17px;
+                    line-height: 25px;
+                    margin: 0 0 16px 0;
+
+                    span {
+                        font-size: 24px;
+                        line-height: 24px;
+                    }
+                }
+
+                .action.primary {
+                   padding: 5px 15px;
+                   font-size: 14px;
+                   font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .homepage-main-banner {
+        &.mobile {
+            .banner-description-box {
+                max-width: 210px;
+                left: 5px;
+
+                h2 {
+                    margin: 0 0 3px 0;
+                }
+
+                h3 {
+                    margin: 0 0 13px 0;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .homepage-main-banner {
+        .banner-description-box {
+            max-width: 378px;
+            padding: 0;
+
+            h2 {
+                font-size: 34px;
+                line-height: 44px;
+            }
+
+            h3 {
+                font-size: 33px;
+                line-height: 45px;
+
+                span {
+                    font-size: 40px;
+                    line-height: 40px;
+                }
+            }
+
+            .action.primary {
+               padding: 8px 40px;
+            }
+        }
+    }
+
+}
+

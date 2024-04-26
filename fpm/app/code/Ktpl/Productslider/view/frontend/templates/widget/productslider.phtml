@@ -1,0 +1,110 @@
+<?php
+/**
+ * Ktpl
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the KrishTechnolabs.com license that is
+ * available through the world-wide-web at this URL:
+ * https://https://www.KrishTechnolabs.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Ktpl
+ * @package     Ktpl_Productslider
+ * @copyright   Copyright (c) Ktpl (https://https://www.KrishTechnolabs.com//)
+ * @license     https://https://www.KrishTechnolabs.com/LICENSE.txt
+ */
+
+use Ktpl\Productslider\Block\AbstractSlider;
+
+/** @var AbstractSlider $block */
+
+$mode = 'grid';
+$title = $block->getTitle();
+$id = $block->getData('page_var_name') . uniqid('', false);
+if ($items = $block->getProductCollection()) : ?>
+    <div class="ktpl-product-slider-block block widget block-products-list <?= $mode; ?>">
+        <h2 class="ktpl-product-slider-title"><?= $block->getTitle(); ?></h2>
+        <p class="ktpl-ps-info"><?= $block->getDescription(); ?></p>
+    </div>
+    <div class="block-content">
+        <div class="products-<?= $mode; ?> <?= $mode; ?>">
+            <ol class="product-items widget-viewed-grid">
+                <?php $iterator = 1; ?>
+                <div id="ktpl-list-items-<?= $id ?>"
+                     class="owl-carousel owl-theme">
+                    <?php foreach ($items as $_item) : ?>
+                        <?= ($iterator++ == 1) ? '<li class="product-item product-slider"">' : '</li><li class="product-item product-slider"">' ?>
+                        <div class="slider-product-item-info">
+                            <a href="<?= $block->getProductUrl($_item) ?>"
+                               class="product photo slider-product-item-photo">
+                                <?= $block->getImage($_item, 'recently_viewed_products_grid_content_widget')->toHtml(); ?>
+                            </a>
+                            <div class="product details slider-product-item-details">
+                                <strong class="product name product-item-name">
+                                    <a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?= $block->getProductUrl($_item) ?>">
+                                        <?= $block->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
+
+                                <?php if ($block->canShowReview()) : ?>
+                                    <?= $block->getReviewsSummaryHtml($_item, 'short', true) ?>
+                                <?php endif; ?>
+
+                                <?php if ($block->canShowPrice()) : ?>
+                                    <?= $block->getProductPrice($_item); ?>
+                                <?php endif; ?>
+
+                                <div class="product actions slider-product-item-actions">
+                                    <?php if ($block->canShowAddToCart()) : ?>
+                                        <div class="actions-primary">
+                                            <?php if ($_item->isSaleable()) : ?>
+                                                <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)) : ?>
+                                                    <button class="action tocart primary ktpl-product-slider-button"
+                                                            data-mage-init='{"redirectUrl": {"url": "<?= $block->getAddToCartUrl($_item) ?>"}}'
+                                                            type="button" title="<?= __('Add to Cart') ?>">
+                                                        <span><?= __('Add to Cart') ?></span>
+                                                    </button>
+                                                <?php else : ?>
+                                                    <?php
+                                                    $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                                                    $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
+                                                    ?>
+                                                    <button class="action tocart primary ktpl-product-slider-button"
+                                                            data-post='<?= $postData; ?>'
+                                                            type="button" title="<?= __('Add to Cart') ?>">
+                                                        <span><?= __('Add to Cart') ?></span>
+                                                    </button>
+                                                <?php endif; ?>
+                                            <?php else : ?>
+                                                <?php if ($_item->getIsSalable()) : ?>
+                                                    <div class="stock available">
+                                                        <span><?= __('In stock') ?></span></div>
+                                                <?php else : ?>
+                                                    <div class="stock unavailable">
+                                                        <span><?= __('Out of stock') ?></span></div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?= ($iterator === count($items) + 1) ? '</li>' : '' ?>
+                    <?php endforeach ?>
+                </div>
+            </ol>
+        </div>
+        <?= $block->getPagerHtml() ?>
+    </div>
+    <script>
+        require(['jquery', 'ktpl/productslider/owl.carousel'], function ($) {
+            $('#ktpl-list-items-<?= $id; ?>').owlCarousel(<?= $block->getAllOptions() ?>);
+        });
+    </script>
+<?php endif; ?>

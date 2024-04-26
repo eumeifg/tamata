@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="sales_order_transactions_grid_block"/>
+    <head>
+        <link src="Magento_Sales::js/bootstrap/order-create-index.js"/>
+        <link src="Magento_Sales::js/bootstrap/order-post-action.js"/>
+    </head>
+    <update handle="sales_order_item_price"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magedelight\Sales\Block\Adminhtml\Order\View" name="sales_order_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Magento\Sales\Block\Adminhtml\Order\View\Tabs" name="sales_order_tabs">
+               <block class="Magento\Sales\Block\Adminhtml\Order\View\Tab\Info" name="vendor_order_tab_info" template="Magedelight_Sales::vendor/order/view/tab/info.phtml" >
+                   <block class="Magento\Sales\Block\Adminhtml\Order\View\Messages" name="order_messages"/>
+                   <block class="Magedelight\Sales\Block\Adminhtml\Sales\Order\View\Info" name="order_info" template="Magedelight_Sales::vendor/order/view/info.phtml"/>
+                   <block class="Magedelight\Sales\Block\Adminhtml\Order\View\Items" name="order_items" template="Magedelight_Sales::vendor/order/view/items.phtml">
+                        <block class="Magento\Sales\Block\Adminhtml\Order\View\Items\Renderer\DefaultRenderer" as="default" template="order/view/items/renderer/default.phtml"/>
+                        <block class="Magento\Sales\Block\Adminhtml\Items\Column\Qty" name="column_qty" template="items/column/qty.phtml" group="column"/>
+                        <block class="Magento\Sales\Block\Adminhtml\Items\Column\Name" name="column_name" template="items/column/name.phtml" group="column"/>
+                        <block class="Magento\Framework\View\Element\Text\ListText" name="order_item_extra_info"/>
+                   </block>    
+                   <container name="payment_additional_info" htmlTag="div" htmlClass="order-payment-additional" />
+                   <block class="Magento\Sales\Block\Adminhtml\Order\Payment" name="order_payment"/>
+                   <block class="Magento\Backend\Block\Template" name="gift_options" template="Magento_Sales::order/giftoptions.phtml">
+                        <block class="Magento\Sales\Block\Adminhtml\Order\View\Giftmessage" name="order_giftmessage" template="order/view/giftmessage.phtml"/>
+                    </block> 
+                    <block class="Magedelight\Sales\Block\Adminhtml\Order\Totals" name="order_totals" template="Magento_Sales::order/totals.phtml">
+                        <block class="Magento\Sales\Block\Adminhtml\Order\Totals\Tax" name="tax" template="Magedelight_Sales::vendor/order/totals/tax.phtml"/>
+                    </block>
+               </block>     
+               <action method="addTab">
+                    <argument name="name" xsi:type="string">vendor_order_info</argument>
+                    <argument name="block" xsi:type="string">vendor_order_tab_info</argument>
+                </action>
+               <block class="Magento\Sales\Block\Adminhtml\Order\View\Tab\Invoices" name="vendor_order_invoice.grid.container"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">vendor_order_invoices</argument>
+                    <argument name="block" xsi:type="string">vendor_order_invoice.grid.container</argument>
+                </action>
+                <block class="Magento\Sales\Block\Adminhtml\Order\View\Tab\Shipments" name="vendor_order_shipment.grid.container"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">vendor_order_shipments</argument>
+                    <argument name="block" xsi:type="string">vendor_order_shipment.grid.container</argument>
+                </action>
+                <!--<block class="Magedelight\Sales\Block\Adminhtml\Order\View\Tab\History" name="order_history" template="Magedelight_Sales::vendor/order/view/tab/history.phtml" /> 
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">order_history</argument>
+                    <argument name="block" xsi:type="string">Magedelight\Sales\Block\Adminhtml\Order\View\Tab\History</argument>
+                </action>
+                -->
+            </block>  
+        </referenceContainer> 
+         <referenceBlock name="vendor_order_invoice.grid.container">
+            <block class="Magedelight\Sales\Block\Adminhtml\Order\Invoice\Grid" name="vendor_order_view_invoice_grid"/>
+
+        </referenceBlock>
+         <referenceBlock name="vendor_order_shipment.grid.container">
+            <block class="Magedelight\Sales\Block\Adminhtml\Order\Shipment\Grid" name="vendor_order_view_shipment_grid"/>
+
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,67 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+/** @var $block Magedelight\Vendor\Block\Review\Seller\Listreview */
+?>
+<?php if ($block->getReviews() && count($block->getReviews())) :
+    $helper = $this->helper('Magedelight\Vendor\Helper\Data');?>
+<div class="table-wrapper reviews">
+        <table class="data table table-reviews" id="my-reviews-table">
+            <thead>
+                <tr>
+                    <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Created') ?></th>
+                    <th scope="col" class="col item"><?= /* @escapeNotVerified */ __('Order Id') ?></th>
+                    <th scope="col" class="col summary"><?= /* @escapeNotVerified */ __('Vendor Name') ?></th>
+                    <th scope="col" class="col comment"><?= /* @escapeNotVerified */ __('Comment') ?></th>
+                    <th scope="col" class="col description"><?= /* @escapeNotVerified */ __('Rating Avg') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($block->getReviews() as $_review) : ?>
+                <tr>
+                    <td data-th="<?= $block->escapeHtml(__('Created')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->dateFormat($_review->getCreatedAt()); ?></td>
+                    <td data-th="<?= $block->escapeHtml(__('Order Id')) ?>" class="col item">
+                        <?= $block->getIncrementId($_review->getVendorOrderId()); ?>
+                    </td>
+                    <td data-th="<?= $block->escapeHtml(__('Vendor Name')) ?>" class="col summary">
+                        <?= $helper->getVendorNameById($_review->getVendorId()); ?>
+                    </td>
+                    <td data-th="<?= $block->escapeHtml(__('Comment')) ?>" class="col comment">
+                        <?= $block->escapeHtml($_review->getComment()); ?>
+                    </td>
+                        <?php if ($block->getReviewData($_review->getVendorRatingId()) == 0) :
+                            ?><?php $ratImage = 0; ?><?php
+                        else :
+                            ?><?php $ratImage = $block->getReviewData($_review->getVendorRatingId()); ?><?php
+                        endif; ?>
+                <td data-th="<?= $block->escapeHtml(__('Rating Avg')) ?>" class="col vendor-rating">
+                    <div class="rating-summary vender-display-list">
+
+                    <div class="rating-result" title="<?= $ratImage; ?>%">  <span style="width:<?= $ratImage; ?>%"><span><span itemprop="ratingValue"><?= $ratImage; ?></span>% of <span itemprop="bestRating">100</span></span></span></div></div>
+                </td>
+
+
+
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getToolbarHtml()) : ?>
+    <div class="toolbar products-reviews-toolbar bottom">
+        <?= $block->getToolbarHtml() ?>
+    </div>
+    <?php endif; ?>
+<?php else : ?>
+    <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have submitted no reviews.') ?></span></div>
+<?php endif; ?>
+

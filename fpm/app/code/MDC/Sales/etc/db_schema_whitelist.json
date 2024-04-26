@@ -1,0 +1,74 @@
+{
+    "md_vendor_order_log": {
+        "column": {
+            "id": true,
+            "order_id": true,
+            "vendor_id": true,
+            "vendor_order_id": true,
+            "inc_order_id": true,
+            "inc_vendor_order_id": true,
+            "current_status": true,
+            "status_change_to": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        },
+        "index": {
+            "MD_VENDOR_ORDER_LOG_INC_VENDOR_ORDER_ID": true
+        }
+    },
+    "md_vendor_order": {
+        "column": {
+            "pickup_status": true,
+            "barcode_number": true,
+            "vendor_order_with_classification": true,
+            "is_packed": true,
+            "ready_to_ship": true,
+            "is_received": true,
+            "is_picked_up": true,
+            "is_sorted": true,
+            "in_transit": true,
+            "is_picked_up_timestamp": true,
+            "is_sorted_timestamp": true,
+            "is_packed_timestamp": true,
+            "ready_to_ship_timestamp": true,
+            "out_of_warehouse_timestamp": true,
+            "item_commission": true
+        }
+    },
+    "sales_suborder_bulk_invoice_shipment": {
+        "column": {
+            "bulk_import_id": true,
+            "file_name": true,
+            "created_at": true,
+            "status": true,
+            "report_url": true,
+            "processed_at": true,
+            "process_status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "order_gender": true,
+            "in_box_status": true,
+            "item_counter": true,
+            "shelf_number": true,
+            "shipping_history": true,
+            "sorting_history": true,
+            "ready_to_ship": true,
+            "is_loaded": true,
+            "is_shelved_timestamp": true,
+            "ready_to_ship_timestamp": true,
+            "container_type": true
+        }
+    },
+    "sales_shipment_item": {
+        "index": {
+            "SALES_SHIPMENT_ITEM_ORDER_ITEM_ID": true
+        }
+    }
+}

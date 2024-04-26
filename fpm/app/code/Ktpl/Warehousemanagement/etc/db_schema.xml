@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="ktpl_warehousemanagement_warehousemanagement Table" engine="innodb" name="ktpl_warehousemanagement_warehousemanagement" resource="default">
+		<column comment="Entity Id" identity="true" name="warehousemanagement_id" nullable="false" padding="10" unsigned="false" xsi:type="int"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="warehousemanagement_id"/>
+		</constraint>
+		<column length="255" name="main_order_id" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="sub_order_id" nullable="true" xsi:type="varchar"/>
+		<column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="true" identity="false"
+				comment="Product Id"/>
+		<column length="255" name="product_name" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="price" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="qty" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="main_order_status" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="sub_order_status" nullable="true" xsi:type="varchar"/>
+		<column xsi:type="timestamp" name="war_created_at" onCreate="migrateDataFrom(created_at)" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
+
+		<column name="updated_at" nullable="true" xsi:type="timestamp" default="CURRENT_TIMESTAMP" on_update="true" />
+		<column length="255" name="user_id" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="ip_address" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="barcode_number" nullable="true" xsi:type="varchar"/>
+		<column name="product_location" nullable="true" xsi:type="text"/>
+		<column name="order_event" nullable="true" xsi:type="text"/>
+
+		<!-- Added -->
+        <index referenceId="KTPL_WAREHOUSEMANAGEMENT_WAREHOUSEMANAGEMENT_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+		<!--
+		<index referenceId="KTPL_PRODUCT_LOCATION" indexType="btree">
+			<column name="product_location"/>
+		</index>
+
+		<index referenceId="KTPL_PRODUCT_ID_PRODUCT_LOCATION" indexType="btree">
+			<column name="product_id"/>
+			<column name="product_location"/>
+		</index>
+
+		<index referenceId="KTPL_UPDATED_AT" indexType="btree">
+			<column name="updated_at"/>
+		</index>-->
+	</table>
+</schema>

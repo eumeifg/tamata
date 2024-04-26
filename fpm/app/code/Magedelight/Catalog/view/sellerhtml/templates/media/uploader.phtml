@@ -1,0 +1,144 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block \Magedelight\Catalog\Block\Media\Uploader */
+?>
+
+<div id="<?= $block->getHtmlId() ?>" class="uploader">
+    <div class="fileinput-button form-buttons button">
+        <span><?= __('Browse Files...') ?></span>
+        <input id="fileupload" type="file" name="<?= $block->getConfig()->getFileField() ?>"
+               data-url="<?= $block->getConfig()->getUrl() ?>" multiple="multiple"/>
+    </div>
+    <div class="clear"></div>
+    <script id="<?= $block->getHtmlId() ?>-template" type="text/x-magento-template">
+        <div id="<%- data.id %>" class="file-row">
+            <span class="file-info"><%- data.name %> (<%- data.size %>)</span>
+            <div class="progressbar-container">
+                <div class="progressbar upload-progress" style="width: 0%;"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </script>
+</div>
+
+<script>
+    require([
+        "jquery",
+        'mage/template',
+        'Magento_Ui/js/modal/alert',
+        "mage/translate",
+        "jquery/file-uploader"
+    ], function ($, mageTemplate, alert) {
+        
+        $('#fileupload').fileupload({
+            dataType: 'json',
+            dropZone: '[data-tab-panel=image-management]',
+            sequentialUploads: true,
+            acceptFileTypes: /(\.|\/)(jpe?g|png)$/i,
+            maxFileSize: <?= $block->getFileSizeService()->getMaxFileSize() ?> ,
+            add: function (e, data) {
+                var progressTmpl = mageTemplate('#<?= $block->getHtmlId(); ?>-template'),
+                    fileSize,
+                    tmpl;
+
+                $.each(data.files, function (index, file) {
+                    fileSize = typeof file.size == "undefined" ?
+                        $.mage.__('We could not detect a size.') :
+                        byteConvert(file.size);
+
+                    data.fileId = Math.random().toString(33).substr(2, 18);
+
+                    tmpl = progressTmpl({
+                        data: {
+                            name: file.name,
+                            size: fileSize,
+                            id: data.fileId
+                        }
+                    });
+                    $(tmpl).appendTo('#<?= $block->getHtmlId() ?>');
+                });
+
+                $(this).fileupload('process', data).done(function () {
+                    data.submit();
+                });
+            },
+            done: function (e, data) {
+                
+                if (data.result && data.result.type == 'image/gif') {
+                    $('#' + data.fileId)
+                        .delay(2000)
+                        .hide('highlight');
+                    alert({
+                        content: $.mage.__('We don\'t support this file extension type!')
+                    });
+                    $('#' + data.fileId).remove();
+                    return false;
+                    
+                }
+
+                if (data.result && !data.result.error) {
+                    $('#<?= $block->getParentBlock()->getHtmlId() ?>').trigger('addItem', data.result);
+                }
+                else if (data.result && data.result.error) {
+                    $('#' + data.fileId)
+                        .delay(2000)
+                        .hide('highlight');
+                    alert({
+                        content: data.result.error
+                    });
+                }
+                $('#' + data.fileId).remove();
+            },
+            progress: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                var progressSelector = '#' + data.fileId + ' .progressbar-container .progressbar';
+                $(progressSelector).css('width', progress + '%');
+            },
+            fail: function (e, data) {
+                var progressSelector = '#' + data.fileId;
+                $(progressSelector).removeClass('upload-progress').addClass('upload-failure')
+                    .delay(2000)
+                    .hide('highlight')
+                    .remove();
+            }
+        });
+        $('#fileupload').fileupload('option', {
+            process: [{
+                action: 'load',
+                fileTypes: /^image\/(jpeg|png)$/
+            }, {
+                action: 'resize',
+                maxWidth: <?= \Magento\Framework\File\Uploader::MAX_IMAGE_WIDTH ?> ,
+                maxHeight: <?= \Magento\Framework\File\Uploader::MAX_IMAGE_HEIGHT ?>
+            }, {
+                action: 'save'
+            }]
+        });
+        var byteConvert = function (bytes) {
+            if (isNaN(bytes)) {
+                return '';
+            }
+            var symbols = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+            var exp = Math.floor(Math.log(bytes) / Math.log(2));
+            if (exp < 1) {
+                exp = 0;
+            }
+            var i = Math.floor(exp / 10);
+            bytes = bytes / Math.pow(2, 10 * i);
+
+            if (bytes.toString().length > bytes.toFixed(2).toString().length) {
+                bytes = bytes.toFixed(2);
+            }
+            return bytes + ' ' + symbols[i];
+        };
+    });
+</script>

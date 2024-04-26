@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Mirasvit_Helpdesk::js/view/contacts/schedule/status.js"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Mirasvit\Helpdesk\Block\Contacts\Schedule" name="helpdeskSchedule"
+                   template="Mirasvit_Helpdesk::contacts/schedule.phtml" before="contactForm">
+            </block>
+
+
+            <block class="Magento\Cms\Block\Block" name="Contact-Address">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">contact-address</argument>
+                </arguments>
+            </block>
+
+        </referenceContainer>
+    </body>
+</page>

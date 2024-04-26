@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Magedelight
+* Copyright (C) 2018 Magedelight <info@magedelight.com>
+*
+* @category Magedelight
+* @package Magedelight_Abandonedcart
+* @copyright Copyright (c) 2018 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">abandonedcart_rule_form.abandonedcart_rule_form_data_source</item>
+            <item name="deps" xsi:type="string">abandonedcart_rule_form.abandonedcart_rule_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Rule Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">abandonedcart_rule_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="layout" xsi:type="array">
+            <item name="navContainerName" xsi:type="string">left</item>
+            <item name="type" xsi:type="string">tabs</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Magedelight\Abandonedcart\Block\Adminhtml\Rule\Edit\BackButton</item>
+            <item name="delete" xsi:type="string">Magedelight\Abandonedcart\Block\Adminhtml\Rule\Edit\DeleteButton</item>
+            <item name="reset" xsi:type="string">Magedelight\Abandonedcart\Block\Adminhtml\Rule\Edit\ResetButton</item>
+            <item name="save" xsi:type="string">Magedelight\Abandonedcart\Block\Adminhtml\Rule\Edit\SaveButton</item>
+            <item name="save_and_continue" xsi:type="string">Magedelight\Abandonedcart\Block\Adminhtml\Rule\Edit\SaveAndContinueButton</item>
+        </item>
+	</argument>
+	<dataSource name="abandonedcart_rule_form_data_source">
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Magedelight\Abandonedcart\Model\Rule\DataProvider</argument>
+			<argument name="name" xsi:type="string">abandonedcart_rule_form_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">abandoned_cart_rule_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="abandonedcart/rule/save"/>
+                </item>
+            </argument>
+		</argument>
+		<argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+	</dataSource>
+	<fieldset name="rule_info">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Abandoned Cart Rule Information</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">1</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="abandoned_cart_rule_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Rule ID</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">data</item>
+                    <item name="dataScope" xsi:type="string">abandoned_cart_rule_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="rule_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Rule Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">data</item>
+                    <item name="dataScope" xsi:type="string">rule_name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="priority">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Rule Priority</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">data</item>
+                    <item name="dataScope" xsi:type="string">priority</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="status">
+        	<argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                	<item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Enable Rule</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">block</item>
+                    <item name="dataScope" xsi:type="string">status</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+        </field>
+        <field name="cancel_condition">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magedelight\Abandonedcart\Model\Rule\Source\Cancelcondition</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="label" xsi:type="string" translate="true">Cancel Rule If</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">data</item>
+                    <item name="dataScope" xsi:type="string">cancel_condition</item>
+                </item>
+            </argument>
+        </field>
+        <field name="store_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">data</item>
+                    <item name="dataScope" xsi:type="string">store_ids</item>
+                    <item name="sortOrder" xsi:type="number">110</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <!-- <field name="customer_groups">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\CatalogRule\Model\Rule\CustomerGroupsOptionsProvider</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Customer Groups</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">data</item>
+                    <item name="dataScope" xsi:type="string">customer_groups</item>
+                    <item name="sortOrder" xsi:type="number">110</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field> -->
+        <field name="customers_group_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magedelight\Abandonedcart\Model\Rule\Source\CustomerGroupIds</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Customer Groups</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="source" xsi:type="string">magedelight_abandonedcart</item>
+                    <item name="dataScope" xsi:type="string">customers_group_ids</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+
+    <fieldset name="rule_schedule">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Scheduled Email</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <dynamicRows name="scheduled_email">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">dynamicRows</item>
+                    <item name="addButtonLabel" xsi:type="string" translate="true">Add Schedule</item>
+                    <item name="additionalClasses" xsi:type="array">
+                        <item name="admin__field-wide" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <container name="record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="component" xsi:type="string">Magento_Ui/js/dynamic-rows/record</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                        <item name="dataScope" xsi:type="string"/>
+                    </item>
+                </argument>
+                <field name="schedule_id">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="visible" xsi:type="boolean">false</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="source" xsi:type="string">data</item>
+                            <item name="dataScope" xsi:type="string">schedule_id</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="email_template_id">
+                    <argument name="data" xsi:type="array">
+                        <item name="options" xsi:type="object">Magedelight\Abandonedcart\Model\Rule\Source\EmailTemplate</item>
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">int</item>
+                            <item name="label" xsi:type="string" translate="true">Email Template</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="source" xsi:type="string">data</item>
+                            <item name="dataScope" xsi:type="string">email_template_id</item>
+                            <item name="sortOrder" xsi:type="number">111</item>
+                            <item name="validation" xsi:type="array">
+                                <item name="required-entry" xsi:type="boolean">true</item>
+                            </item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="schedule_hours">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="label" xsi:type="string" translate="true">Hour</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="source" xsi:type="string">data</item>
+                            <item name="dataScope" xsi:type="string">schedule_hours</item>
+                            <item name="sortOrder" xsi:type="string">112</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="schedule_minute">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="label" xsi:type="string" translate="true">Minutes</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="source" xsi:type="string">data</item>
+                            <item name="dataScope" xsi:type="string">schedule_minute</item>
+                            <item name="sortOrder" xsi:type="string">113</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="schedule_sec">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="label" xsi:type="string" translate="true">Second</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="source" xsi:type="string">data</item>
+                            <item name="dataScope" xsi:type="string">schedule_sec</item>
+                            <item name="sortOrder" xsi:type="string">114</item>
+                        </item>
+                    </argument>
+                </field>
+
+                <!-- <field name="field1">
+                    <argument name="data" xsi:type="array">
+                        <item name="options" xsi:type="object">Magedelight\Abandonedcart\Model\Config\Source\CouponOptions</item>
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Parent Option</item>
+                            <item name="component" xsi:type="string">Magedelight_Abandonedcart/js/form/element/cart_options</item>
+                            <item name="visible" xsi:type="boolean">true</item>
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="source" xsi:type="string">item</item>
+                            <item name="dataScope" xsi:type="string">field1</item>
+                            <item name="sortOrder" xsi:type="number">210</item>
+                            <item name="validation" xsi:type="array">
+                                <item name="required-entry" xsi:type="boolean">true</item>
+                            </item>
+                        </item>
+                    </argument>
+                </field>
+
+                <field name="field2Depend1">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string">Field 1</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="source" xsi:type="string">item</item>
+                            <item name="sortOrder" xsi:type="number">220</item>
+                            <item name="breakLine" xsi:type="boolean">true</item>
+                            <item name="visibleValue" xsi:type="string">2</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="field3Depend1">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string">Field 2</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="source" xsi:type="string">item</item>
+                            <item name="sortOrder" xsi:type="number">230</item>
+                            <item name="breakLine" xsi:type="boolean">true</item>
+                            <item name="visibleValue" xsi:type="string">0</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                </field> -->
+                <field name="send_coupon">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">boolean</item>
+                            <item name="label" xsi:type="string" translate="true">Send Coupon</item>
+                            <!-- <item name="component" xsi:type="string">Magedelight_Abandonedcart/js/form/element/options</item> -->
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="source" xsi:type="string">data</item>
+                            <item name="dataScope" xsi:type="string">send_coupon</item>
+                            <item name="options" xsi:type="array">
+                                <item name="no" xsi:type="array">
+                                    <item name="value" xsi:type="string">0</item>
+                                    <item name="label" xsi:type="string" translate="true">No</item>
+                                </item>
+                                <item name="yes" xsi:type="array">
+                                    <item name="value" xsi:type="string">1</item>
+                                    <item name="label" xsi:type="string" translate="true">Yes</item>
+                                </item>
+                            </item>
+                            <item name="default" xsi:type="number">0</item>
+                            <item name="sortOrder" xsi:type="string">115</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="cartprice_rule_id">
+                    <argument name="data" xsi:type="array">
+                        <item name="options" xsi:type="object">Magedelight\Abandonedcart\Model\Config\Source\CouponOptions</item>
+                        <item name="config" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Select Rule To Send Coupon</item>
+                            <item name="visible" xsi:type="boolean">true</item>
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="source" xsi:type="string">item</item>
+                            <item name="dataScope" xsi:type="string">cartprice_rule_id</item>
+                            <item name="sortOrder" xsi:type="number">116</item>
+                            <item name="notice" xsi:type="string" translate="true">Cart Price Rules created with Coupon type - Specific Coupon and if mark 'Use Auto Generation' checkbox would be available here.</item>
+                        </item>
+                    </argument>
+                </field>
+                <actionDelete>
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="componentType" xsi:type="string">actionDelete</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="label" xsi:type="string">Actions</item>
+                            <item name="sortOrder" xsi:type="string">118</item>
+                        </item>
+                    </argument>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+
+    
+    <!--<fieldset name="conditions1" sortOrder="20">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Conditions</label>
+        </settings>
+        <container name="conditions_apply_to" sortOrder="10">
+            <htmlContent name="html_content">
+                <block name="conditions_apply_to" class="Magedelight\Abandonedcart\Block\Adminhtml\Block\Rule\Edit\Conditions" />
+            </htmlContent>
+        </container>
+    </fieldset> -->
+    <!-- <fieldset name="conditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Conditions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <container name="conditions_apply_to" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Magedelight\Abandonedcart\Block\Adminhtml\Block\Rule\Edit\Conditions</argument>
+            </htmlContent>
+        </container>
+    </fieldset> -->
+    <fieldset name="conditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="label" xsi:type="string" translate="true">Rule apply for this condition</item>
+                <item name="sortOrder" xsi:type="number">30</item>
+            </item>
+        </argument>
+        <container name="conditions_apply_to">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Magedelight\Abandonedcart\Block\Adminhtml\Rule\Edit\Tab\Conditions</argument>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="sortOrder" xsi:type="number">10</item>
+                        <item name="visible" xsi:type="boolean">true</item>
+                        <item name="breakLine" xsi:type="boolean">true</item>
+                        <item name="visibleValue" xsi:type="string">1</item>
+                    </item>
+                </argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+</form>

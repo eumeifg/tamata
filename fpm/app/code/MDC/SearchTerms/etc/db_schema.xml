@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+	<table name="search_query" resource="default" engine="innodb">
+			<column xsi:type="int" name="redirect_id" padding="10" unsigned="true" nullable="true" comment="Id of redirection"/>
+			<column xsi:type="varchar" name="redirection_type" nullable="true" length="50" comment="Type of redirection"/>
+	</table>
+
+</schema>

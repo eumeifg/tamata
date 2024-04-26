@@ -1,0 +1,16 @@
+{
+    "name": "mdc/module-customersegment",
+    "description": "This module extends functionality to Magedelight CustomerSegment module",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MDC\\CustomerSegment\\": ""
+        }
+    }
+}

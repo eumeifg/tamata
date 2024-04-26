@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    
+    <type name="Magento\Catalog\Block\Adminhtml\Category\Tree">
+        <plugin name="addWebsiteFilterToCategories" type="Magedelight\Catalog\Plugin\Block\Adminhtml\Category\Tree"/>
+    </type>
+    
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="modulename" xsi:type="array">
+                    <item name="class" xsi:type="string">Magedelight\Catalog\Ui\DataProvider\Product\Modifier\VendorOffers</item>
+                    <item name="sortOrder" xsi:type="number">200</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magedelight\Catalog\Ui\DataProvider\Product\Modifier\VendorOffers">
+        <arguments>
+            <argument name="formName" xsi:type="string">product_form</argument>
+            <argument name="dataScopeName" xsi:type="string">product_form.product_form</argument>
+            <argument name="dataSourceName" xsi:type="string">product_form.product_form_data_source</argument>
+        </arguments>
+    </type>
+    
+    <virtualType name="Magedelight\Catalog\CategoryImageUpload" type="Magento\Catalog\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">catalog/tmp/category</argument>
+            <argument name="basePath" xsi:type="string">catalog/category</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="svg" xsi:type="string">svg</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    
+    <type name="Magedelight\Catalog\Controller\Adminhtml\Category\Thumbnailimage\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Magedelight\Catalog\CategoryImageUpload</argument>
+        </arguments>
+    </type>
+
+    <type name="Magedelight\Catalog\Controller\Adminhtml\Category\SmallImage\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Magedelight\Catalog\CategoryImageUpload</argument>
+        </arguments>
+    </type>
+    
+    <type name="Magento\Config\Model\Config">
+        <plugin name="reindex_vendorproducts_on_precedence_change" type="Magedelight\Catalog\Plugin\Model\Config" sortOrder="20"/>
+    </type>
+
+    <type name="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider">
+        <arguments>
+            <argument name="addFilterStrategies" xsi:type="array">
+                <item name="vendors" xsi:type="object">Magedelight\Catalog\Ui\DataProvider\Product\AddVendorFilterToCollection</item>
+                <item name="related_sellers_count" xsi:type="object">Magedelight\Catalog\Ui\DataProvider\Product\AddRelatedSellersCountFilterToCollection</item>
+            </argument>
+            <argument name="addFieldStrategies" xsi:type="array">
+                <item name="related_sellers_count" xsi:type="object">Magedelight\Catalog\Ui\DataProvider\Product\AddRelatedSellersCountFieldToCollection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

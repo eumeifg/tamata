@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+        <add id="Ktpl_ElasticSearch::search" title="Search Management" module="Ktpl_ElasticSearch" sortOrder="50" parent="Ktpl_Core::menu" resource="Ktpl_ElasticSearch::search"/>
+
+        <add id="Ktpl_ElasticSearch::search_index" title="Search Indexes" module="Ktpl_ElasticSearch" sortOrder="10" parent="Ktpl_ElasticSearch::search" action="search/index" resource="Ktpl_ElasticSearch::search_index"/>
+
+        <add id="Ktpl_ElasticSearch::search_score_rule" title="Score Boost Rules" module="Ktpl_ElasticSearch" sortOrder="15" parent="Ktpl_ElasticSearch::search" action="search/scoreRule" resource="Ktpl_ElasticSearch::search_score_rule"/>
+
+        <add id="Ktpl_ElasticSearch::search_synonym" title="Manage Synonyms" module="Ktpl_ElasticSearch" sortOrder="20" parent="Ktpl_ElasticSearch::search" action="search/synonym" resource="Ktpl_ElasticSearch::search_synonym"/>
+
+        <add id="Ktpl_ElasticSearch::search_stopword" title="Manage Stopwords" module="Ktpl_ElasticSearch" sortOrder="30" parent="Ktpl_ElasticSearch::search" action="search/stopword" resource="Ktpl_ElasticSearch::search_synonym"/>
+
+        <add id="Ktpl_ElasticSearch::validator" title="Validator" module="Ktpl_ElasticSearch" sortOrder="95" parent="Ktpl_ElasticSearch::search" action="search/validator" resource="Ktpl_ElasticSearch::search"/>
+
+        <add id="Ktpl_ElasticSearch::search_config" title="Settings" module="Ktpl_ElasticSearch" sortOrder="100" parent="Ktpl_ElasticSearch::search" action="adminhtml/system_config/edit/section/search" resource="Ktpl_ElasticSearch::search_config"/>
+
+    </menu>
+</config>

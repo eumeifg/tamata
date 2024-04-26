@@ -1,0 +1,23 @@
+<div class="addtobag-buynow-box">
+<button type="button"
+        title="Add to Cart"
+        class="action primary tocart addtobagbtn"
+        id="product-addtobag-button">
+        <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+</button>
+
+<a class="action primary buynow">
+    <span><?= /* @escapeNotVerified */ __('Buy Now') ?></span>
+</a>
+
+</div>
+
+<script type="text/javascript">
+         require(["jquery"],function($) {
+            $(document).ready(function () {
+                $(".addtobagbtn").click(function() {
+                $( "#product-addtocart-button" ).trigger( "click" );
+            });
+    });
+});
+</script>

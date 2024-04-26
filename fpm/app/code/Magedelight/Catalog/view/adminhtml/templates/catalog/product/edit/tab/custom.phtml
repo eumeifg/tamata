@@ -1,0 +1,58 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<div class="<?= /* @noEscape */ $block->getData('config/dataScope') ?>" data-role="step-wizard-dialog" data-bind="scope: '<?= /* @noEscape */ $block->getForm() ?>.<?= /* @noEscape */ $block->getModal() ?>'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<div class="<?= /* @noEscape */ $block->getData('config/dataScope') ?>" id="vendor-offers-matrix" data-role="vendor-offers-matrix">
+    <div data-bind="scope: 'configurableVariations'"></div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "<?= /* @noEscape */ $block->getData('config/form') ?>.<?= /* @noEscape */ $block->getModal() ?>": {
+                        "component": "Magedelight_Catalog/js/components/modal-custommodule",
+                        "options": {"type": "slide", "title": "<?= $block->escapeHtml(__('Manage Vendor Offers')); ?>"},
+                        "formName": "<?= /* @noEscape */ $block->getForm() ?>",
+                        "isTemplate": false,
+                        "stepWizard": "<?= /* @noEscape */ $block->getData('config/nameStepWizard') ?>",
+                        "children": {
+                            "wizard": {
+                                "url": "<?= /* @noEscape */ $block->getUrl($block->getData('config/urlWizard'), ['id' => $block->getProduct()->getId(),'store'=>$this->getRequest()->getParam('store')]) ?>",
+                                "component": "Magento_Ui/js/form/components/html"
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+</script>
+
+<script>
+    require(['jquery', 'mage/apply/main'], function ($, main) {
+        main.apply();
+        
+        /* Remove vendor offer row */
+        $('body').on('click','.action-delete',function(){
+            $('#vendor_offer_data').remove();
+        });
+        /* Remove vendor offer row */
+
+        /* $('.<?= /* @noEscape */ $block->getData('config/dataScope') ?>[data-role=step-wizard-dialog]').applyBindings(); */
+        /* $('.<?= /* @noEscape */ $block->getData('config/dataScope') ?>[data-role=vendor-offers-matrix]').applyBindings(); */
+
+    })
+</script>

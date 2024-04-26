@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <vendor_product>
+            <request>
+                <email_identity>general</email_identity>
+                <new_email_notification_admin_template>vendor_product_request_new_email_notification_admin_template</new_email_notification_admin_template>
+            </request>
+            <vital_info>
+                <attributes>
+                    88,90,104,105,109,110,115,116,117,123,127,98,99,130,128,84,162,102,136,149,147,161,160,78,111,97,100,72,114,103,138,140,169,151,134,143,135,158,106,165,157,124,126,80,113,132,87,83,82,81,95,168,141,156,101,148,139,74,118,112,125,91,92,119,159,152,71,146,85,107,75,76,77,94,133,131,144,145,155,150,129,86,108,89,153,154,122,96,79,284,282,283,90
+                </attributes>
+                <attributeset>4</attributeset>
+            </vital_info>
+            <validation>
+                <vendor_sku>1</vendor_sku>
+                <allow_variants>1</allow_variants>
+                <image_width>1000</image_width>
+                <image_height>1000</image_height>
+                <image_size>2000</image_size>
+            </validation>
+            <precedence>
+                <default_precedence>highest_rating</default_precedence>
+            </precedence>
+        </vendor_product>
+        <md_bulkimport>
+            <general>
+                <enable>1</enable>
+            </general>
+            <cleanup>
+                <enable>0</enable>
+            </cleanup>
+        </md_bulkimport>
+        <sellexisting>
+            <general>
+                <enable>1</enable>
+            </general>
+        </sellexisting>
+        
+        <emailconfiguration>
+            <vendor_product_status>
+                <enabled>1</enabled>
+                <template>emailconfiguration_vendor_product_status_template</template>           
+            </vendor_product_status>
+            <vendor_product_delete>
+                <enabled>1</enabled>
+                <template>emailconfiguration_vendor_product_delete_template</template>           
+            </vendor_product_delete>
+            <vendor_product_massdelete>
+                <enabled>1</enabled>
+                <template>emailconfiguration_vendor_product_massdelete_template</template>           
+            </vendor_product_massdelete>
+            <vendor_product_list>
+                <enabled>1</enabled>
+                <template>emailconfiguration_vendor_product_list_template</template>           
+            </vendor_product_list>
+             <vendor_product_bulklist>
+                <enabled>1</enabled>
+                <template>emailconfiguration_vendor_product_bulklist_template</template>           
+            </vendor_product_bulklist>
+            <vendor_product_approve_delete>
+                <enabled>1</enabled>
+                <template>emailconfiguration_vendor_product_approve_delete_template</template>           
+            </vendor_product_approve_delete>
+            <vendor_product_masslist>
+                <enabled>1</enabled>
+                <template>emailconfiguration_vendor_product_masslist_template</template>           
+            </vendor_product_masslist>
+            <vendor_product_approve_massdelete>
+                <enabled>1</enabled>
+                <template>emailconfiguration_vendor_product_approve_massdelete_template</template>           
+            </vendor_product_approve_massdelete>
+            <vendor_product_unlist>
+                <enabled>1</enabled>
+                <template>emailconfiguration_vendor_product_unlist_template</template>           
+            </vendor_product_unlist>
+        </emailconfiguration>
+    </default>
+</config>

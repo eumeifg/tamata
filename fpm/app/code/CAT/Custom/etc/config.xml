@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <automation>
+            <general>
+                <automation_enable>1</automation_enable>
+            </general>
+            <store_credit_config>
+                <enable>1</enable>
+            </store_credit_config>
+            <vendor_payment_config>
+                <enable>1</enable>
+            </vendor_payment_config>
+            <invoice_shipment_config>
+                <enable>1</enable>
+            </invoice_shipment_config>
+        </automation>
+    </default>
+</config>

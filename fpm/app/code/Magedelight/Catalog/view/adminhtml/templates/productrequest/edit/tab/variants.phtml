@@ -1,0 +1,79 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+ /** @var $block Magedelight\Catalog\Block\Adminhtml\ProductRequest\Edit\Tab\Variants */
+?>
+<?php if (count($block->getVariantsData())) { ?> 
+    <div id="up_sell_product_grid">
+        <div class="admin__data-grid-wrap admin__data-grid-wrap-static">
+            <table class="data-grid">                        
+                <thead>
+                    <tr>
+                        <?php foreach ($block->getVariantColumns() as $label) { ?>
+                            <th class="data-grid-th"><?= $label ?></th>
+                        <?php } ?>                                
+                    </tr>                        
+                </thead>           
+                <tbody>
+                    <?php $variantsData = $block->getVariantsData();
+                    if ($variantsData) {
+                        foreach ($variantsData as $_item) { ?>
+                        <tr>
+                            <?php foreach ($block->getVariantColumns() as $label) { ?>
+                                <td class="">
+                                    <?php if (array_key_exists($block->getFieldName($label), $_item)) { ?>
+                                        <?= $block->renderField($block->getFieldName($label), $_item[$block->getFieldName($label)]) ?>                                    
+                                    <?php } ?>
+                                </td>
+                            <?php } ?>                                
+                        </tr>
+                        <?php } ?>  
+                    <?php } ?>  
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <input type="hidden" name="product[variants]" value='<?= htmlspecialchars($block->getEncodedVariantsData(), ENT_QUOTES) ?>'>
+    <?php $i = 0; ?>
+    <?php $variantsData = $block->getVariantsData();
+    if ($variantsData) {
+        foreach ($variantsData as $_item) { ?>
+            <?php
+            $entityId = (isset($_item['marketplace_product_id'])) ? $_item['marketplace_product_id'] : 'null';
+            $url = $block->getUrl('catalog/product/edit', ['id' => $entityId]); ?>
+<input type="hidden" name="configurable-matrix[<?= $i ?>][product_link]" value="<?= $url ?>">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][name]" value="<?= $block->getProductRequestData()->getName() ?>">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][sku]" value="<?= $_item['vendor_sku'] ?>">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][status]" value="1">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][price]" value="<?= $_item['price'] ?>">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][price_currency]" value="<?= $block->getCurrencySymbol() ?>">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][price_string]" value="<?=  $block->getPriceString($_item['price']) ?>">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][weight]" value="<?php if (isset($_item['weight'])) { ?> <?= $_item['weight'] ?> <?php } ?>">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][qty]" value="<?= $_item['qty']?>">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][variationKey]" value="<?php $block->getVariationKey() ?>">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][configurable_attribute]" value="<?php ?>">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][attributes]" value="<?php ?>">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][canEdit]" value="1">
+<input type="hidden" name="configurable-matrix[<?= $i ?>][newProduct]" value="1">
+<!--<input type="hidden" name="configurable-matrix[<?= $i ?>][record_id]" value="1">-->
+            <?php $i++;?>
+        <?php } ?>  
+    <?php } ?>  
+<?php } else { ?> 
+    <div class="entry-edit form-inline">
+        <fieldset class="fieldset admin__fieldset " id="productrequest_offer_fieldset">
+            <legend class="admin__legend legend">
+                <span><?= $block->getTabTitle() ?></span>
+            </legend><br>
+            <div class="messages"><?= __('No Variants found.') ?></div>            
+        </fieldset>
+    </div>    
+<?php } ?>

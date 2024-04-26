@@ -1,0 +1,92 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var \Magedelight\Vendor\Api\Data\VendorInterface $vendor
+ * @var \Magedelight\Catalog\Block\Category $block
+ */
+?>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="rbpanel">
+            <div class="rbpanel-heading">
+                <span class="panel-title"><?= __('Select Category') ?></span>
+            </div>
+            <div class="rbpanel-body">
+                <div class="row mb25">
+                    <div class="col-md-12">
+                    <?php if (!$this->helper('Magedelight\Catalog\Helper\Data')->isMultiWebsiteOptionEnabled()) {  ?>
+                    <!-- <p class=""><?= __('Note')?>: <?= __($block->getCategoryNotes());?></p> -->
+                    <?php } ?>
+
+                        <div class="breadcrumbs cat-selection-breadcrumbs">
+                            <div class="page-main">
+                                <ul class="items">
+                                    <li class="item home">
+                                        <?= __('Root Catalog') ?>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="browse_category_picker" class="a-box">
+                    <div class="a-box-inner">
+                        <!--<div id="bread_crumbs" class="breadcrumbs">
+                              <a data-level="1" data-label="All Product Categories"> All Product Categories </a>
+                        </div>-->
+                        <div id="browse_category_carousel" class="a-section carousel-wrapper">
+                            <div id="category_browse" class="a-section slider-wrapper">
+                                <div id="category_browse_card_slider" class="a-section no-container">
+                                    <input type="hidden" id="data-url" name="data-url" value="<?= $block->getSubcategoriesUrl() ?>">
+                                    <?= $block->getCategories(); ?>
+
+                                </div>
+                            </div>
+                            <?php /*
+                            <div class="cat-controls-direction">
+                                <a class="ctrl-prev disabled" id="prev" href="#"><?= __('Prev')?></a>
+                                <a class="ctrl-next disabled" id="next" href="#"><?= __('Next')?></a>
+                            </div>
+                             *
+                             */?>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="actions-toolbar text-center">
+                            <div class="primary text-center fnone mt20">
+                                <button type="button"
+                                        title="<?= __('Reset') ?>"
+                                        class="action button secondary"
+                                        id="btn-reset">
+                                    <span><?= __('Reset') ?></span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+    ], function ($) {
+        $(document).on('click', '#btn-reset', function () {
+            location.reload();
+        });
+    });
+</script>

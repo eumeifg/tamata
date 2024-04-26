@@ -1,0 +1,33 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/* @codingStandardsIgnoreFile */
+
+/**
+ * @var \Magedelight\Vendor\Block\Account\Dashboard $block
+ */
+
+$accountDashboard = $block->getVendorDashboard();
+$amountBalanceTransations = $amountBalance = 0;
+/* Number of transations */
+if (isset($accountDashboard['getAmountBalanceTransaction'])){
+    $amountBalanceTransations = $accountDashboard['getAmountBalanceTransaction'];
+}
+/* Total Amount Of Balance */
+if (isset($accountDashboard['getAmountBalance'])){
+    $amountBalance = $accountDashboard['getAmountBalance'];
+}
+?>
+<div class="col-xs-12 col-md-6 col-lg-6 vendor-sales-notification">
+    <strong><?= $amountBalanceTransations; ?></strong>
+        <?= __('Transaction(s) With Total Payable Amount')?>
+    <strong><?= $amountBalance; ?></strong>
+</div>

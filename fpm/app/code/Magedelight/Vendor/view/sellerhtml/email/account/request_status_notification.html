@@ -1,0 +1,41 @@
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<!--@subject Vendor profile status request notification.@-->
+<!--@vars {
+"var this.getUrl($store, 'rbvendor/account/register/', [_query:[rbhash:$vendor.email_verification_code, key:$vendor.confirmation]])":"Account Confirmation URL",
+"var vendor.email":"Vendor Email",
+"var vendor.vendor_status":"Vendor Status",
+"var vendor.request_status":"Vendor Request Status",
+"var vendor.request_type":"Vendor Request Type"
+} @-->
+
+{{template config_path="vendor_design/email/header_template"}}
+
+<p>{{trans "Hello"}} {{var vendor.business_name}}</p>
+<p>{{trans "Your vacation request from"}} {{var vendor.vacation_from_date}} {{trans "to"}} {{var vendor.vacation_to_date}} {{trans "has been approved."}}</p>
+<p>{{trans "Account status has been changed to"}} {{var vendor.request_type}}<p>
+<p>{{trans "You will be able to operate the vendor panel however your products will inactive on the marketplace."}}
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <table class="inner-wrapper" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tr>
+                    <td align="center"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="vendor_design/email/footer_template"}}

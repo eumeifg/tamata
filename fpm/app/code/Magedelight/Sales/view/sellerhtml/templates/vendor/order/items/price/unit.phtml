@@ -1,0 +1,19 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var \Magento\Sales\Block\Order\Item\Renderer\DefaultRenderer $block */
+$_item = $block->getItem();
+?>
+<span class="price-excluding-tax" data-label="<?= $block->escapeHtml(__('Excl. Tax')); ?>">
+    <span class="cart-price">
+        <?= /* @escapeNotVerified */ $block->getOrder()->formatPrice($block->getItem()->getPrice()) ?>
+    </span>
+</span>

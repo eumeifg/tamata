@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="seller_account"/>
+    <update handle = "sales_vendor_order_item_price" />
+    <body>        
+        <referenceContainer name="content">            
+            <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\View" name="vendor.order.view" template="Magedelight_Sales::vendor/order/view.phtml" cacheable="false">
+                <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Vendor\Items" name="order_items" template="Magedelight_Sales::vendor/order/vendor/items.phtml" cacheable="false">
+                    <block class="Magento\Framework\View\Element\RendererList" name="sales.order.items.renderers" as="renderer.list"/>
+                    <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Totals" name="order_totals" template="Magedelight_Sales::vendor/order/totals.phtml" cacheable="false">
+                        <arguments>
+                            <argument name="label_properties" xsi:type="string">colspan="8" class="mark"</argument>
+                            <argument name="value_properties" xsi:type="string">class="amount"</argument>
+                        </arguments>
+                        <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Totals\Tax" name="tax" template="Magedelight_Sales::vendor/order/totals/tax.phtml" cacheable="false"/>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="sales.order.items.renderers">
+            <block class="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Item\Renderer\DefaultRenderer" as="default" template="Magedelight_Sales::vendor/order/items/renderer/default.phtml" cacheable="false"/>
+        </referenceBlock>
+    </body>
+</page>

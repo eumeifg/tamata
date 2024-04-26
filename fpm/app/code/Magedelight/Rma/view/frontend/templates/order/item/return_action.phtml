@@ -1,0 +1,10 @@
+<?php
+$rmaHelper = $this->helper('Magedelight\Rma\Helper\Data');
+$_item = $this->getParentBlock()->getParentBlock()->getItem();
+?>
+<?php  if ($rmaHelper->isReturnAllowed($_item)) : ?>
+    <a href="<?= $rmaHelper->getReturnCreateUrl($_item->getOrder(), $_item->getVendorId()); ?>" 
+       class="action return">
+       <span><?= __('Return') ?></span>
+    </a>
+<?php endif; ?>

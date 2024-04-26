@@ -1,0 +1,58 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Theme\Block\Html\Title
+ */
+$cssClass = $block->getCssClass() ? ' ' . $block->getCssClass() : '';
+$title = '';
+if (trim($block->getPageHeading())) {
+    $title = '<span class="base" data-ui-id="page-title-wrapper" ' .  $block->getAddBaseAttribute() . '>'
+        . $block->escapeHtml($block->getPageHeading()) . '</span>';
+}
+/*$listProductBlock= $block->getLayout()->createBlock('Magento\Catalog\Block\Product\ListProduct');
+$productListCount = $listProductBlock->getLoadedProductCollection();*/
+?>
+<?php if ($title): ?>
+<div class="page-title-wrapper<?= /* @escapeNotVerified */ $cssClass ?>">
+    <h1 class="page-title"
+        <?php if ($block->getId()): ?> id="<?= /* @escapeNotVerified */ $block->getId() ?>" <?php endif; ?>
+        <?php if ($block->getAddBaseAttributeAria()): ?>
+            aria-labelledby="<?= /* @escapeNotVerified */ $block->getAddBaseAttributeAria() ?>"
+        <?php endif; ?>>
+        <?= /* @escapeNotVerified */ $title; ?>
+        <div class="custom_product_list_count"></div>
+    </h1>
+    <?= $block->getChildHtml() ?>
+</div>
+<?php endif; ?>
+
+<script type="text/javascript">
+    require(['jquery'],function($){
+
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 80) {
+           $('body').addClass('tamata-sticky-menu');
+        } else {
+           $('body').removeClass('tamata-sticky-menu');
+        }
+    });
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 120) {
+           $('body').addClass('tamata-sticky-menu-effect');
+        } else {
+           $('body').removeClass('tamata-sticky-menu-effect');
+        }
+    });
+
+});
+</script>
+
+<style type="text/css">
+    
+</style>

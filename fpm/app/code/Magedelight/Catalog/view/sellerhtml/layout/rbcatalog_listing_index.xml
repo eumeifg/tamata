@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Magedelight_Catalog::css/jquery.fancybox.css"/>
+    </head>
+    <update handle="seller_account"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magedelight\Catalog\Block\Sellerhtml\Listing\Product" name="vendorListProduct" template="Magedelight_Catalog::listing/product.phtml" cacheable="false">
+                <block class="Magedelight\Catalog\Block\Sellerhtml\Listing\Live" name="vendorlive" template="Magedelight_Catalog::listing/live.phtml" group="vendor_product_list_info">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Live</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Catalog\Block\Sellerhtml\Listing\Nonlive" name="vendornonlive" template="Magedelight_Catalog::listing/nonlive.phtml" group="vendor_product_list_info">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Non Live</argument>
+                    </arguments>
+                    <block class="Magedelight\Catalog\Block\Sellerhtml\Listing\Nonlive\Approved" name="nonlive.approved" template="Magedelight_Catalog::listing/nonlive/approved.phtml" />
+                    <block class="Magedelight\Catalog\Block\Sellerhtml\Listing\Nonlive\Pending" name="nonlive.pending" template="Magedelight_Catalog::listing/nonlive/pending.phtml" />
+                    <block class="Magedelight\Catalog\Block\Sellerhtml\Listing\Nonlive\Disapproved" name="nonlive.disapproved" template="Magedelight_Catalog::listing/nonlive/disapproved.phtml" />
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

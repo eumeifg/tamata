@@ -1,0 +1,16 @@
+{
+    "name": "ktpl/module-tookan",
+    "description": "This module allows to import export order details with Tookan app.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Ktpl\\Tookan\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

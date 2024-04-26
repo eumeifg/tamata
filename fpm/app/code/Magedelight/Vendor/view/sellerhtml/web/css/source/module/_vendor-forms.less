@@ -1,0 +1,643 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@import 'controls/_checkbox-radio.less';
+
+
+@form-field__vertical-indent__desktop: 20px;
+@form-field__max-width: 730px;
+@form-calendar-icon__color: @primary__color;
+
+
+
+//
+//    Common
+//--------------------------------------
+
+& when (@media-common = true) {
+
+.fieldset {
+    .lib-form-fieldset();
+    &:last-child {
+        margin-bottom: 0px;
+    }
+    > .field,
+    > .fields > .field {
+      text-align: left;
+
+        &.no-label {
+            > .label {
+                &:extend(.abs-visually-hidden all);
+            }
+        }
+        &.choice {
+            .label {
+                display: inline;
+                font-weight: normal;
+            }
+        }
+        &.terms-accept {
+          padding-left: @indent__base;
+          .checkbox{
+            + .label{
+              padding-left: 0;
+              &:before{
+                margin-left: 0;
+              }
+            }
+          }
+        }
+        &.status-info {
+              .info {
+                  span {
+                    .lib-css(color, #8bc34a);
+                    .lib-css(font-weight, @font-weight__semibold);
+                  }
+              }
+            }
+       &.special-price {
+            .special-price-date-range {
+              width: 100%;
+              float:left;
+              label {
+                margin-top: 35px;
+              }
+        }
+       }
+
+        .label {
+            .column:not(.main) & {
+                font-weight: normal;
+            }
+        }
+        .field.choice {
+            margin-bottom: @indent__s; 
+            &:last-child {
+
+            }
+        }
+
+
+
+
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;  
+    z-index: -1;
+}
+
+.inputfile + label,
+.image-upload label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    text-transform:uppercase;
+    letter-spacing: 1px;
+    /* 10px 20px */
+}
+
+.no-js .inputfile + label {
+    display: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+    /* pointer-events: none; */
+    /* in case of FastClick lib use */
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+}
+
+/* style 1 */
+
+.inputfile-1 + label {
+    color: @color-white;
+    background-color: @color-gray40;
+}
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+    background-color: @color-gray40;
+}
+
+.image-upload {
+    label {
+      color: @color-white;
+      background-color: @color-gray40;
+  }
+}
+
+
+
+        input {
+            &::-moz-placeholder {
+              .lib-css(color, @form-element-input-placeholder__color);
+
+            }
+            &::-webkit-input-placeholder {
+              .lib-css(color, @form-element-input-placeholder__color);
+            }
+            &:-ms-input-placeholder {
+              .lib-css(color, @form-element-input-placeholder__color);
+            }
+
+        }
+
+    }
+
+    input,
+    select,
+    textarea {
+      &:focus {
+            box-shadow: none;
+            outline: 0;
+        }
+    }
+}
+
+.select-styling() {
+    .lib-css(appearance, none, 1);
+    appearance: none;
+    border: 1px solid @border-color__base;
+    height: 40px;
+    background: @select__background url('../images/select-bg.svg') no-repeat 100% 45%;
+    background-size: 30px 60px;
+    padding-right: 40px;
+    text-indent: .01em;
+    text-overflow: '';
+    &::-ms-expand{
+        display:none;
+    }
+    .lt-ie10 & {
+        background-image: none;
+        padding-right: 4px;
+    }
+}
+
+select {
+    .select-styling();
+
+    &.multiple {
+      min-height: 150px;
+      height: auto;
+      max-height: 250px;
+    max-width: 100%;
+    min-width: 15rem;
+    overflow: auto;
+    resize: both;
+    vertical-align: baseline;
+    background: none;
+    }
+
+}
+
+
+
+
+
+
+
+.legend + .fieldset,
+.legend + div {
+    clear: both;
+}
+.legend {
+    strong {
+        margin-left: @indent__xs;
+    }
+}
+fieldset.field {
+    border: 0;
+    padding: 0;
+}
+.field {
+    &.date {
+        &:extend(.abs-field-date all);
+        .time-picker {
+            display: inline-block;
+            margin-top: @indent__s;
+            white-space: nowrap;
+        }
+    }
+    .message {
+        &.warning {
+            margin-top: @indent__s;
+        }
+    }
+}
+div.mage-error[generated] {
+    margin-top: 7px;
+}
+.field .tooltip {
+    .lib-tooltip(right);
+    .tooltip-content {
+        min-width: 200px;
+        white-space: normal;
+    }
+}
+input:focus ~ .tooltip .tooltip-content,
+select:focus ~ .tooltip .tooltip-content {
+    display: block;
+}
+ .date-field-container {
+   .lib-css(position, relative);
+      .hasDatepicker,
+      ._has-datepicker,
+      .mage-error {
+        .lib-css(padding-left, 40px) !important;
+          + .ui-datepicker-trigger {
+                position: absolute;
+                left: 1px;
+                top: 1px;
+              .lib-button-reset();
+              .lib-icon-font(
+              @_icon-font-content: @icon-calendar,
+              @_icon-font-color: @primary__color__lighter,
+              @_icon-font-size: @icon-calendar__font-size,
+              @_icon-font-line-height: @icon-calendar__font-size,
+              @_icon-font-color-hover: @color-black,
+              @_icon-font-display: block,
+              @_icon-font-text-hide: true,
+              ) !important;
+              font-size: 0;
+              display: inline-block;
+              vertical-align: middle;
+              &:before {
+                height: 40px;
+                line-height: 40px !important;
+                padding: 0 5px;
+                background: #f4f4f4;
+                border-right: 1px solid @border-color__base;
+              }
+
+              &:focus {
+                  box-shadow: none;
+                  outline: 0;
+              }
+          }
+    input[type="text"]:disabled {
+      border:1px solid @form-element-input__disabled__border !important;
+    }
+
+      }
+   &:disabled {
+          border:1px solid @form-element-input__disabled__border !important;
+        }
+
+        .field-tooltip {
+          margin-right: -15px;
+        }
+}
+
+ .date-field-container {
+  .hasDatepicker,
+  ._has-datepicker,{
+    width: 84%;
+  }
+}
+
+
+//
+//    Sidebar forms
+//--------------------------------------
+.sidebar {
+    .fieldset {
+        margin: 0;
+        > .field:not(.choice) >,
+        .fields > .field {
+            &:not(:last-child) {
+                margin: 0 0 @form-field__vertical-indent;
+            }
+            .label {
+                margin: 0 0 4px;
+                padding: 0 0 @indent__xs;
+                text-align: left;
+                width: 100%;
+            }
+            .control {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.form.contact {
+    .actions-toolbar {
+        max-width: 730px;
+        float: left;
+        margin-left: 183px !important;
+        .primary {
+          float: right;
+          .action:last-child {
+            margin-right: 0;
+          }
+
+        }
+
+    }
+
+}
+
+html.rtl-layout {
+  .fieldset {
+    > .field,
+    > .fields > .field  {
+      text-align: right;
+
+    }
+  }
+
+    /* Base for label styling */
+    [type="checkbox"]:not(:checked),
+    [type="checkbox"]:checked {
+      right: -9999px;
+      left: auto;
+    }
+    [type="checkbox"]:not(:checked) + label,
+    [type="checkbox"]:checked + label {
+      padding-left: 0;
+      padding-right: 25px;
+    }
+
+    /* checkbox aspect */
+    [type="checkbox"]:not(:checked) + label:before,
+    [type="checkbox"]:checked + label:before {
+      right:0;
+      left:auto;
+    }
+    /* checked mark aspect */
+    [type="checkbox"]:not(:checked) + label:after,
+    [type="checkbox"]:checked + label:after {
+
+      left: auto;
+      right: 0px;
+    }
+
+
+
+}
+
+.category-list .category-ul [type="checkbox"]:indeterminate + label:before {
+  content: "\e60f";
+  font-family: 'RB-Vendor-Theme-Icons';
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: @color-green2 !important;
+  transition: all .2s;
+  border: 1px solid @color-green2;
+  font-weight: bold;
+}
+
+.sections{
+  .signup-steps{
+    .rb-container{
+      #vendor-info-content,
+      #business-info-content,
+      #login-info-content,
+      #status-info-content,
+      #category-info-content,
+      #shipping-info-content,
+      #bank-info-content{
+        &.signup-step-content{
+          .fieldset{
+            > .actions-toolbar{
+              .lib-css(margin, 0);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+}
+
+//
+//    Desktop
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .fieldset {
+        .legend {
+            .lib-css(margin, 0px 0 15px 0px);
+            .lib-css(padding, @indent__s + 3);
+            .lib-font-size(@font-size__m + 4);
+            font-weight: @font-weight__semibold;
+            color: @color-black;
+            border-bottom: 1px solid @border-color__base;
+            border-top: 1px solid @border-color__base;
+            text-align: left;
+        &.legend-modify {
+          .lib-css(padding-top, 10px);
+           border-top: 1px dashed @border-color__base;
+        }
+
+        }
+        > .field {
+            .lib-form-field-type-revert();
+            margin: 0 0 @form-field__vertical-indent__desktop;
+            .lib-css(max-width, @form-field__max-width);
+             &:extend(.abs-add-clearfix-desktop all);
+             &:not(.choice) {
+                .label {
+                    color:@secondary__color;
+                    font-weight:@font-weight__semibold;
+                    float: left;
+                    margin: 0 0 0px;
+                    padding: 12px @indent__base 12px 0 ;
+                    text-align: right;
+                    width: 25%;
+                }
+
+                .control, .info {
+                    float: left;
+                    width: 55%;
+                }
+                .info {
+                  span {
+                    .lib-css(padding, 12px 18px 12px 0px);
+                    .lib-css(display, inline-block);
+
+                    &.active,
+                    &.vacation{
+                       .lib-icon-font(
+                        @_icon-font-content: @icon-ok-full,
+                        @_icon-font-color: @color-green1,
+                        @_icon-font-size: 16px,
+                        @_icon-font-display: block,
+                        @_icon-font-text-hide: true,
+                        @_icon-font-position: after,
+                        @_icon-font-margin: -3px 0 0 5px,
+
+                        );
+                    }
+
+                  }
+
+                .vacation-from-date, .vacation-to-date, .from-date, .to-date {
+                    .lib-css(float, left);
+                    .lib-css(width, 48%);
+                    .lib-css(margin-right, 4%);
+                    position: relative;
+
+                    &.date-field {
+
+
+                    }
+
+                    label {
+                      span {
+                       .lib-css(padding, 12px 0px 5px 0);
+                      }
+
+
+                    }
+
+                    #date_from_advice, #date_to_advice {
+                      .lib-css(display, none);
+                    }
+
+                }
+                .vacation-to-date, .to-date {
+                  .lib-css(margin-right, 0);
+
+                }
+
+                }
+
+
+             }
+
+          .field-advice {
+                .lib-font-size(@font-size__xs);
+                .lib-css(color, @color-gray60);
+          }
+
+
+        }
+        .actions-toolbar {
+          .lib-css(max-width, @form-field__max-width);
+        }
+    }
+    .brand-form-container{
+      .fieldset{
+        .field{
+          max-width: 100%;
+        }
+      }
+    }
+    .brand-brand-index{
+      #brandModal{
+        .brand-name{
+          .control{
+            padding: 12px 0 0;
+          }
+        }
+      }
+    }
+
+html.rtl-layout { 
+  .fieldset {
+    .legend {
+      text-align: right;
+    }
+
+        > .field {
+            .lib-form-field-type-revert();
+            margin: 0 0 @form-field__vertical-indent__desktop;
+            .lib-css(max-width, @form-field__max-width);
+             &:extend(.abs-add-clearfix-desktop all);
+             &:not(.choice) {
+                .label {
+                    float: right;
+                    padding: 12px 0 12px @indent__base;
+                    text-align: left;
+                }
+
+                .control, .info {
+                    float: right;
+                }
+                .info {
+                  span {
+                    .lib-css(padding, 12px 0px 12px 18px);
+
+                    &.active,
+                    &.vacation{
+                       .lib-icon-font(
+                        @_icon-font-content: @icon-ok-full,
+                        @_icon-font-color: @color-green1,
+                        @_icon-font-size: 16px,
+                        @_icon-font-display: block,
+                        @_icon-font-text-hide: true,
+                        @_icon-font-position: after,
+                        @_icon-font-margin: -3px 5px 0 0,
+
+                        );
+                    }
+
+                  }
+
+                .vacation-from-date, .vacation-to-date, .from-date, .to-date {
+                    .lib-css(float, right);
+                    .lib-css(margin-right, 0);
+                    .lib-css(margin-left, 4%);
+
+                }
+                
+
+                }
+
+
+             }
+
+
+
+        }
+
+
+  }
+
+}
+
+
+}
+.microsite-microsite-index{
+  #microsite-information-form{
+    .actions-toolbar{
+      .primary{
+        button.btn-reset{
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}

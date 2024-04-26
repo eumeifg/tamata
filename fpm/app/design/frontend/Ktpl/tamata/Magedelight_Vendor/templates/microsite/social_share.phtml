@@ -1,0 +1,65 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php
+$vendorData = $block->getVendorData();
+if (empty($vendorData['vendor_id'])) {
+    $vendorData['vendor_id'] = $this->getRequest()->getParam('vid');
+}
+$facebookUrl = $twitterUrl = $instagramUrl =  $googleUrl = '#';
+
+if (!empty($vendorData->getFacebookPage())) {
+    $facebookUrl = $vendorData->getFacebookPage();
+}
+
+if (!empty($vendorData->getTwitterPage())) {
+    $twitterUrl = $vendorData->getTwitterPage();
+}
+
+if (!empty($vendorData->getGooglePage())) {
+    $googleUrl = $vendorData->getGooglePage();
+}
+
+if (!empty($vendorData->getInstagramPage())) {
+    $instagramUrl = $vendorData->getInstagramPage();
+}
+
+?>
+
+<div class="microsite-social-share">
+    <ul>
+        <li>
+            <a href="<?php echo $facebookUrl;?>" target="_blank">
+
+                <img src="<?php echo $this->getViewFileUrl('Magedelight_Vendor::images/facebook_icon.png'); ?>" />
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo $twitterUrl;?>" target="_blank">
+
+                <img src="<?php echo $this->getViewFileUrl('Magedelight_Vendor::images/twitter_icon.png'); ?>" />
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo $instagramUrl;?>" target="_blank">
+
+                <img src="<?php echo $this->getViewFileUrl('Magedelight_Vendor::images/instagram.png'); ?>" />
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo $googleUrl;?>" target="_blank">
+
+                <img src="<?php echo $this->getViewFileUrl('Magedelight_Vendor::images/googleplus_icon.png'); ?>" />
+            </a>
+        </li>
+    </ul>
+</div>

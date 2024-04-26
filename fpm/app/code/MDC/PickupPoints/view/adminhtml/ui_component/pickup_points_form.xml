@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+   <argument name="data" xsi:type="array">
+      <item name="js_config" xsi:type="array">
+         <item name="provider" xsi:type="string">pickup_points_form.pickup_points_form_data_source</item>
+         <item name="deps" xsi:type="string">pickup_points_form.pickup_points_form_data_source</item>
+      </item>
+      <item name="label" xsi:type="string" translate="true">Pickup Point Detail</item>
+      <item name="config" xsi:type="array">
+         <item name="dataScope" xsi:type="string">data</item>
+         <item name="namespace" xsi:type="string">pickup_points_form</item>
+      </item>
+      <item name="spinner" xsi:type="string">general_information</item>
+      <item name="buttons" xsi:type="array">
+         <item name="back" xsi:type="string">MDC\PickupPoints\Block\Adminhtml\Index\Edit\Button\Back</item>
+         <item name="delete" xsi:type="string">MDC\PickupPoints\Block\Adminhtml\Index\Edit\Button\Delete</item>         
+         <item name="save" xsi:type="string">MDC\PickupPoints\Block\Adminhtml\Index\Edit\Button\Save</item>
+      </item>
+      <item name="template" xsi:type="string">templates/form/collapsible</item>
+   </argument>
+   <dataSource name="pickup_points_form_data_source">
+      <argument name="dataProvider" xsi:type="configurableObject">
+         <argument name="class" xsi:type="string">MDC\PickupPoints\Model\DataProvider</argument>
+         <argument name="name" xsi:type="string">pickup_points_form_data_source</argument>
+         <argument name="primaryFieldName" xsi:type="string">pickup_point_id</argument>
+         <argument name="requestFieldName" xsi:type="string">pickup_point_id</argument>
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="submit_url" xsi:type="url" path="pickuppoints/index/save" />
+            </item>
+         </argument>
+      </argument>
+      <argument name="data" xsi:type="array">
+         <item name="js_config" xsi:type="array">
+            <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+         </item>
+      </argument>
+   </dataSource>
+   <fieldset name="general_information">
+
+      <argument name="data" xsi:type="array">
+         <item name="config" xsi:type="array">
+            <item name="collapsible" xsi:type="boolean">false</item>
+            <item name="label" xsi:type="string" translate="true">Information</item>
+            <item name="sortOrder" xsi:type="number">20</item>
+         </item>
+      </argument>
+   
+      <field name="pickup_point_name">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="dataType" xsi:type="string">text</item>
+               <item name="label" xsi:type="string" translate="true">Pickup Point Name</item>
+               <item name="formElement" xsi:type="string">input</item>
+               <item name="source" xsi:type="string">pickup_point_name</item>
+               <item name="dataScope" xsi:type="string">pickup_point_name</item>
+               <item name="validation" xsi:type="array">                        
+                        <item name="required-entry" xsi:type="boolean">true</item>
+               </item>
+            </item>
+         </argument>
+      </field>
+      <field name="pickup_address">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="dataType" xsi:type="string">text</item>
+               <item name="label" xsi:type="string" translate="true">Pickup Address Line</item>
+               <item name="formElement" xsi:type="string">input</item>
+               <item name="source" xsi:type="string">pickup_address</item>
+               <item name="dataScope" xsi:type="string">pickup_address</item>
+               <item name="validation" xsi:type="array">                        
+                        <item name="required-entry" xsi:type="boolean">true</item>
+               </item>
+            </item>
+         </argument>
+      </field>
+
+      <field name="pickup_city">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="dataType" xsi:type="string">text</item>
+               <item name="label" xsi:type="string" translate="true">Pickup City</item>
+               <item name="formElement" xsi:type="string">input</item>
+               <item name="source" xsi:type="string">pickup_city</item>
+               <item name="dataScope" xsi:type="string">pickup_city</item>
+               <item name="validation" xsi:type="array">                        
+                        <item name="required-entry" xsi:type="boolean">true</item>
+               </item>
+            </item>
+         </argument>
+      </field>
+
+      <field name="pickup_country">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="dataType" xsi:type="string">text</item>
+               <item name="label" xsi:type="string" translate="true">Pickup Country (Code)</item>
+               <item name="formElement" xsi:type="string">input</item>
+               <item name="source" xsi:type="string">pickup_country</item>
+               <item name="dataScope" xsi:type="string">pickup_country</item>
+               <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+               </item>
+            </item>
+         </argument>
+      </field>
+
+      <field name="pickup_point_lat">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="dataType" xsi:type="string">text</item>
+               <item name="label" xsi:type="string" translate="true">Pickup Latitude</item>
+               <item name="formElement" xsi:type="string">input</item>
+               <item name="source" xsi:type="string">pickup_point_lat</item>
+               <item name="dataScope" xsi:type="string">pickup_point_lat</item>
+               <item name="validation" xsi:type="array">                        
+                        <item name="required-entry" xsi:type="boolean">true</item>
+               </item>
+            </item>
+         </argument>
+      </field>
+
+      <field name="pickup_point_long">
+         <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+               <item name="dataType" xsi:type="string">text</item>
+               <item name="label" xsi:type="string" translate="true">Pickup Longitude</item>
+               <item name="formElement" xsi:type="string">input</item>
+               <item name="source" xsi:type="string"> pickup_point_long</item>
+               <item name="dataScope" xsi:type="string"> pickup_point_long</item>
+               <item name="validation" xsi:type="array">                        
+                        <item name="required-entry" xsi:type="boolean">true</item>
+               </item>
+            </item>
+         </argument>
+      </field>
+
+   </fieldset>
+</form>

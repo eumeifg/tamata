@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_controller_salesrule_prepare_save">
+        <observer name="cminds_coupon_error_admin_form_save" instance="Cminds\Coupon\Observer\AdminCouponErrorMessageFormSave" />
+    </event>
+</config>

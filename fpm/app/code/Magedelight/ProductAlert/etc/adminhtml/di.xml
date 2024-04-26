@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_ProductAlert
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Block\Adminhtml\Product\Edit\Tab\Alerts\Price"
+                type="Magedelight\ProductAlert\Block\Adminhtml\Catalog\Product\Edit\Tab\Alerts\Price"/>
+    <preference for="Magento\Catalog\Block\Adminhtml\Product\Edit\Tab\Alerts\Stock"
+                type="Magedelight\ProductAlert\Block\Adminhtml\Catalog\Product\Edit\Tab\Alerts\Stock"/>
+
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="product_alerts" xsi:type="array">
+                    <item name="class" xsi:type="string">Magedelight\ProductAlert\Ui\DataProvider\Product\Form\Modifier\Alerts</item>
+                    <item name="sortOrder" xsi:type="number">130</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

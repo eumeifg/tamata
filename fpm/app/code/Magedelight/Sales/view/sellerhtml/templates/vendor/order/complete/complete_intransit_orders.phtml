@@ -1,0 +1,77 @@
+<?php if ($detailedInfoGroup = $block->getGroupChildNames(
+    'complete_intransit_order_list',
+    'getChildHtml'
+)) : ?>
+    <?php $layout = $block->getLayout(); ?>
+    <?php
+    if ($this->getRequest()->getParam('sfrm', false) == 'closed') {
+        $activeAlias = "vendor-order-closed";
+        $defultTab = 1;
+    } else {
+        $activeAlias = "vendor.order.complete.custom";
+        $defultTab = 0;
+    }
+    ?> 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="rbpanel" data-mage-init='{"tabs":{"active":<?= $defultTab; ?>,"openedState":"active"}}'>
+                <div class="rbpanel-heading pn">
+                    <div class="product data items rbpanel-tabs">
+                        <?php foreach ($detailedInfoGroup as $name) : ?>
+                            <?php
+                            $html = $layout->renderElement($name);
+                            $alias = $layout->getElementAlias($name);
+                            $label = $block->getChildData($alias, 'title');
+                            ?>
+                            <div class="data item title tab-title"
+                                 aria-labeledby="tab-label-<?= /* @escapeNotVerified */ $alias; ?>-title"
+                                 data-role="collapsible" id="tab-label-<?= /* @escapeNotVerified */ $alias; ?>">
+                                <a class="data switch"
+                                   tabindex="-1"
+                                   data-toggle="switch"
+                                   href="#<?= /* @escapeNotVerified */ $alias; ?>"
+                                   id="tab-label-<?= /* @escapeNotVerified */ $alias; ?>-title">
+                                       <?= /* @escapeNotVerified */ $label; ?>
+                                </a>
+                                <span class="vendor-nav-item-messages no-display" data-role="item-messages">
+                                    <span class="tab-validation-error">
+                                        <span class="vendor-page-nav-item-message-icon"></span>
+                                        <span class="vendor-page-nav-item-message-tooltip">
+                                            This tab contains invalid data. Please resolve this before saving.                           
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="rbpanel-body">   
+                    <div class="order-tab-content">
+                        <?php foreach ($detailedInfoGroup as $name) : ?>
+                            <?php
+                            $html = $layout->renderElement($name);
+                            $alias = $layout->getElementAlias($name); ?>
+                            <div class="data item content tab-content" id="<?= /* @escapeNotVerified */ $alias; ?>" data-role="content" <?= ($alias != $activeAlias) ? ' style="display:none"' : ''; ?>>
+                                <?= /* @escapeNotVerified */ $html; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+            </div> 
+        </div>
+    </div>
+    <script type="text/javascript">
+        require(['jquery',
+            'mage/calendar', // Calender widget
+        ], function ($) {
+            $(".action-default").click(function () {
+                $(this).parents('.row').next('.filter-wrapper').toggle(500);
+            });
+
+             $(".grid-filter-cancel").click(function () {
+                $(this).parents('.filter-wrapper').toggle(500);
+            });
+        });
+    </script>
+<?php endif; ?>

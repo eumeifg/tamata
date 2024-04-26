@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ProductLabel
+ * @author    Kirti Nariya <kirti.nariya@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">ktpl_productlabel_productlabel_listing.ktpl_productlabel_productlabel_listing_data_source</item>
+        </item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/edit"/>
+                <class>primary</class>
+                <label translate="true">Add New Label</label>
+            </button>
+        </buttons>
+        <spinner>ktpl_productlabel_productlabel_columns</spinner>
+        <deps>
+            <dep>ktpl_productlabel_productlabel_listing.ktpl_productlabel_productlabel_listing_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="ktpl_productlabel_productlabel_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Ktpl_ProductLabel::manage</aclResource>
+        <dataProvider
+                class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
+                name="ktpl_productlabel_productlabel_listing_data_source">
+            <settings>
+                <requestFieldName>product_label_id</requestFieldName>
+                <primaryFieldName>product_label_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+
+            <filterSelect sortOrder="10" name="store_id" provider="${ $.parentName }">
+                <settings>
+                    <captionValue>0</captionValue>
+                    <options class="Ktpl\ProductLabel\Ui\Component\Source\Store\Options"/>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_id</dataScope>
+                    <imports>
+                        <link name="visible">componentType = column, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+        </filters>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="*/*/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+            <action name="status">
+                <settings>
+                    <type>status</type>
+                    <label translate="true">Change status</label>
+                    <actions>
+                        <action name="0">
+                            <type>enable</type>
+                            <label translate="true">Active</label>
+                            <url path="*/*/massStatus">
+                                <param name="is_active">1</param>
+                            </url>
+                        </action>
+                        <action name="1">
+                            <type>disable</type>
+                            <label translate="true">Inactive</label>
+                            <url path="*/*/massStatus">
+                                <param name="is_active">0</param>
+                            </url>
+                        </action>
+                    </actions>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+
+    <columns name="ktpl_productlabel_productlabel_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">ktpl_productlabel_productlabel_listing.ktpl_productlabel_productlabel_listing.ktpl_productlabel_productlabel_columns.actions</item>
+                        <item name="target" xsi:type="string">applyAction</item>
+                        <item name="params" xsi:type="array">
+                            <item name="0" xsi:type="string">edit</item>
+                            <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>product_label_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="product_label_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column sortOrder="20" name="image" class="Ktpl\ProductLabel\Ui\Component\Listing\Column\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="align" xsi:type="string">left</item>
+                </item>
+            </argument>
+            <settings>
+                <altField>name</altField>
+                <hasPreview>1</hasPreview>
+                <label translate="true">Image</label>
+                <sortable>false</sortable>
+                <resizeDefaultWidth>150</resizeDefaultWidth>
+            </settings>
+        </column>
+        <column name="name" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+
+        <column name="frontend_label" sortOrder="40">
+            <settings>
+                <label translate="true">Attribute</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+
+        <column name="option_label" sortOrder="50">
+            <settings>
+                <label translate="true">Value</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+
+        <column name="is_active" sortOrder="60" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options>
+                    <option name="active" xsi:type="array">
+                        <item name="value" xsi:type="string">1</item>
+                        <item name="label" xsi:type="string" translate="true">Active</item>
+                    </option>
+                    <option name="inactive" xsi:type="array">
+                        <item name="value" xsi:type="string">0</item>
+                        <item name="label" xsi:type="string" translate="true">Inactive</item>
+                    </option>
+                </options>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+
+        <column name="labeltype" sortOrder="70">
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>select</editorType>
+                </editor>
+                <label translate="true">Label Type</label>
+            </settings>
+        </column>
+
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store" sortOrder="80">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+
+        <actionsColumn sortOrder="90" name="actions" class="Ktpl\ProductLabel\Ui\Component\Listing\Column\AttributeActions">
+            <settings>
+                <indexField>product_label_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

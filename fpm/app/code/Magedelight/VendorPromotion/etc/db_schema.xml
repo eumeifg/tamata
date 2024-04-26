@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- salesrule table starts. -->
+    <table name="salesrule" resource="default">
+        <column xsi:type="text" name="vendor_id" nullable="true" comment="Vendor Id - Comma separated values" />
+        <column xsi:type="boolean" name="created_by" default="1" comment="Rule Created By - 1 = Admin, 2 = Vendor" />
+    </table>
+    <!-- salesrule table ends. -->
+</schema>

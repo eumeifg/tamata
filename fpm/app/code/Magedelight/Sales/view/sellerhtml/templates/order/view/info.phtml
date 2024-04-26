@@ -1,0 +1,255 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php /** @var $block \Magedelight\Sales\Block\Order\View\Info */ ?>
+<?php $_order = $block->getOrder() ?>
+<?php
+$orderFrontendDate = $block->formatDate(
+    $block->getOrderFrontendDate($_order->getCreatedAt()),
+    \IntlDateFormatter::MEDIUM,
+    true
+);
+$orderStoreDate = $block->formatDate(
+    $_order->getCreatedAt(),
+    \IntlDateFormatter::MEDIUM,
+    true,
+    $block->getTimezoneForStore($_order->getStore())
+);
+?>
+    <div class="rbpanel-heading heading-l">
+            <span class="title"><?= /* @escapeNotVerified */ __('Order & Account Information') ?></span>
+    </div>
+    <div class="rbpanel-body mb">
+        <div class="row row-gutter order-date-status credit-memo-order-account mb5">
+             <div class="col-md-6">
+                <?php /* Order Information */?>
+                <?php if ($_order->getEmailSent()) :
+                    $_email = __('The order confirmation email was sent');
+                else :
+                    $_email = __('The order confirmation email is not sent');
+                endif; ?>
+
+                <div class="front__page-section-item-title">
+                    <span class="title">
+                        <?php if ($block->getNoUseOrderLink()) : ?>
+                            <?= /* @escapeNotVerified */ __('Order # %1', $_order->getRealOrderId()) ?> (<span><?= /* @escapeNotVerified */ $_email ?></span>)
+                        <?php else : ?>
+                            <a href="<?= /* @escapeNotVerified */ $block->getUrl('rbsales/order/view', ['id'=>$block->getVendorOrderId()]) ?>"><?= /* @escapeNotVerified */ __('Order # %1', $_order->getRealOrderId()) ?></a>
+                            <span>(<?= /* @escapeNotVerified */ $_email ?>)</span>
+                        <?php endif; ?>
+                    </span>
+                </div>
+                
+                <div class="field date">
+                    <div class="info-detail">
+                        <label class="label"><span><?= /* @escapeNotVerified */ __('Order Date:') ?></span></label>
+                        <label class="label value"><span><?= /* @escapeNotVerified */ $orderFrontendDate ?></span></label>
+                    </div>
+                </div>
+
+                <?php if ($orderFrontendDate != $orderStoreDate) :?>
+                    <div class="field date">
+                        <div class="info-detail">
+                            <label class="label"><span><?= /* @escapeNotVerified */ __('Order Date (%1)', $block->getTimezoneForStore($_order->getStore())) ?></span></label>
+                            <label class="label value"><span><?= /* @escapeNotVerified */ $orderStoreDate ?></span></label>
+                        </div>
+                    </div>
+                <?php endif;?>
+
+                <div class="field status">
+                    <div class="info-detail">
+                        <label class="label"><span><?= /* @escapeNotVerified */ __('Order Status:') ?></span></label>
+                        <label class="label value"><span  id="order_status"><?= /* @escapeNotVerified */ $_order->getStatusLabel() ?></span></label>
+                    </div>
+                </div>
+
+                <div>
+                    <?= $block->getChildHtml(); ?>
+                </div>
+
+                <?php if ($block->isSingleStoreMode() == false) :?>
+                    <div class="field status">
+                        <div class="info-detail">
+                            <label class="label"><span><?= /* @escapeNotVerified */ __('Purchased From:') ?></span></label>
+                            <label class="label value"><span><?= /* @escapeNotVerified */ $block->getOrderStoreName() ?></span></label>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                
+                <?php if ($_order->getRelationChildId()) : ?>
+                    <div class="field status">
+                        <div class="info-detail">
+                            <label class="label"><span><?= /* @escapeNotVerified */ __('Link to the New Order:') ?></span></label>
+                            <label class="label value"><a href="<?= /* @escapeNotVerified */ $block->getViewUrl($_order->getRelationChildId()) ?>">
+                                    <?= /* @escapeNotVerified */ $_order->getRelationChildRealId() ?>
+                                </a></label>
+
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($_order->getRelationParentId()) : ?>
+                    <div class="field status">
+                        <div class="info-detail">
+                            <label class="label"><span><?= /* @escapeNotVerified */ __('Link to the Previous Order:') ?></span></label>
+                            <label class="label value"><a href="<?= /* @escapeNotVerified */ $block->getViewUrl($_order->getRelationParentId()) ?>">
+                                <?= /* @escapeNotVerified */ $_order->getRelationParentRealId() ?>
+                            </a></label>
+
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($_order->getRemoteIp() && $block->shouldDisplayCustomerIp()) : ?>
+                    <div class="field status">
+                        <div class="info-detail">
+                            <label class="label"><span><?= /* @escapeNotVerified */ __('Placed from IP:') ?></span></label>
+                            <label class="label value"><?= /* @escapeNotVerified */ $_order->getRemoteIp(); ?> <?= ($_order->getXForwardedFor()) ? ' (' . $block->escapeHtml($_order->getXForwardedFor()) . ')' : ''; ?></label>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($_order->getGlobalCurrencyCode() != $_order->getBaseCurrencyCode()) : ?>
+                    <div class="field status">
+                        <div class="info-detail">
+                            <label class="label"><span><?= /* @escapeNotVerified */ __('%1 / %2 rate:', $_order->getGlobalCurrencyCode(), $_order->getBaseCurrencyCode()) ?></span></label>
+                            <label class="label value"><?= /* @escapeNotVerified */ $_order->getBaseToGlobalRate() ?></label>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($_order->getBaseCurrencyCode() != $_order->getOrderCurrencyCode()) : ?>
+                    <div class="field status">
+                        <div class="info-detail">
+                            <label class="label"><span><?= /* @escapeNotVerified */ __('%1 / %2 rate:', $_order->getOrderCurrencyCode(), $_order->getBaseCurrencyCode()) ?></span></label>
+                            <label class="label value"><?= /* @escapeNotVerified */ $_order->getBaseToOrderRate() ?></label>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+            </div>
+
+            <div class="col-md-6">
+                <?php /* Account Information */?>
+                <div class="front__page-section-item-title">
+                    <span class="title"><?= /* @escapeNotVerified */ __('Account Information') ?></span>
+                    <div class="actions"><?= /* @escapeNotVerified */ $block->getAccountEditLink()?></div>
+                </div>
+                <div class="field date">
+                    <div class="info-detail">
+                        <label class="label"><span><?= /* @escapeNotVerified */ __('Customer Name') ?></span></label>
+                        <label class="label value">
+                            <span>
+                                <?php if ($_customerUrl = $block->getCustomerViewUrl()) : ?>
+                                    <?= $block->escapeHtml($_order->getCustomerName()) ?>
+                                <?php else : ?>
+                                    <?= $block->escapeHtml($_order->getCustomerName()) ?>
+                                <?php endif; ?>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field date">
+                    <div class="info-detail">
+                        <label class="label">
+                            <span>
+                                <?= /* @escapeNotVerified */ __('Email') ?>
+                            </span>
+                        </label>
+                        <label class="label value">
+                            <span>
+                                <?= $block->escapeHtml($_order->getCustomerEmail()) ?>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <?php if ($_groupName = $block->getCustomerGroupName()) : ?>
+                    <div class="field date">
+                        <div class="info-detail">
+                            <label class="label">
+                                <span>
+                                    <?= /* @escapeNotVerified */ __('Customer Group') ?>
+                                </span>
+                            </label>
+                            <label class="label value">
+                                <span>
+                                    <?= /* @escapeNotVerified */ $_groupName ?>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php foreach ($block->getCustomerAccountData() as $data) :?>
+                    <div class="field date">
+                        <div class="info-detail">
+
+                            <label class="label">
+                                <span>
+                                    <?= /* @escapeNotVerified */ $data['label'] ?>
+                                </span>
+                            </label>
+                            <label class="label value">
+                                <span>
+                                    <?= /* @escapeNotVerified */ $data['value'] ?>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                <?php endforeach;?>
+
+             </div>
+
+        </div>
+    </div>
+    
+
+ <div class="rbpanel-heading heading-l">
+            <span class="title"><?= /* @escapeNotVerified */ __('Address Information') ?></span>
+</div>
+<div class="rbpanel-body mb">
+    <div class="row row-gutter order-date-status credit-memo-order-account mb5">
+
+
+    <?php /*Shipping Information*/?>
+    <div class="col-md-3">
+        <div class="rbpanel">
+        <?php /* Billing Address */?>
+            <div class="rbpanel-heading p10"><?= /* @escapeNotVerified */ __('Billing Address') ?></div>
+                <div class="rbpanel-body minh175">
+                    <div class="actions">
+                        <?= /* @escapeNotVerified */ $block->getAddressEditLink($_order->getBillingAddress()); ?>
+                    </div>
+                    <address class="front__page-section-item-content"><?= /* @escapeNotVerified */ $block->getFormattedAddress($_order->getBillingAddress()); ?></address>
+                </div>
+        </div>
+    </div>
+
+    <?php if (!$block->getOrder()->getIsVirtual()) : ?>
+        <?php /* Shipping Address */ ?>
+        <div class="col-md-3">
+            <div class="rbpanel">
+            <?php /* Billing Address */?>
+                <div class="rbpanel-heading p10"><?= /* @escapeNotVerified */ __('Shipping Address') ?></div>
+                    <div class="rbpanel-body minh175">
+                        <div class="actions">
+                            <?= /* @escapeNotVerified */ $block->getAddressEditLink($_order->getShippingAddress()); ?>
+                        </div>
+                        <address class="front__page-section-item-content"><?= /* @escapeNotVerified */ $block->getFormattedAddress($_order->getShippingAddress()); ?></address>
+                    </div>
+            </div>
+        </div>
+    <?php endif;?>
+    </div>
+    </div>

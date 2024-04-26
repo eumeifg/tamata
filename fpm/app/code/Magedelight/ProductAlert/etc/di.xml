@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_ProductAlert
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\ProductAlert\Block\Product\View\Stock">
+        <plugin name="Magedelight_ProductAlert::observe-alert-block" type="Magedelight\ProductAlert\Plugins\Productalert\View"/>
+    </type>
+
+    <preference for="Magento\ProductAlert\Model\ResourceModel\Stock\Customer\Collection"
+                type="Magedelight\ProductAlert\Model\ResourceModel\Stock\Customer\Collection"/>
+    <preference for="Magento\ProductAlert\Model\ResourceModel\Price\Customer\Collection"
+                type="Magedelight\ProductAlert\Model\ResourceModel\Price\Customer\Collection"/>
+
+    <preference for="Magento\ConfigurableProduct\Helper\Data"
+                type="Magedelight\ProductAlert\Plugins\ConfigurableProduct\Data"/>
+
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="xnotifConfigurable" type="Magedelight\ProductAlert\Block\Product\View\Type\Configurable"/>
+    </type>
+    <type name="Magento\Swatches\Block\Product\Renderer\Configurable">
+        <plugin name="Magedelight_ProductAlert::Configurable" type="Magedelight\ProductAlert\Block\Product\View\Type\Configurable"/>
+    </type>
+    <type name="Magento\ProductAlert\Controller\Unsubscribe\Price">
+        <plugin name="xnotifUnsubscribePrice" type="Magedelight\ProductAlert\Plugins\Unsubscribe"/>
+    </type>
+    <type name="Magento\ProductAlert\Controller\Unsubscribe\PriceAll">
+        <plugin name="xnotifUnsubscribeAllPrice" type="Magedelight\ProductAlert\Plugins\Unsubscribe"/>
+    </type>
+    <type name="Magento\ProductAlert\Controller\Unsubscribe\Stock">
+        <plugin name="xnotifUnsubscribeStock" type="Magedelight\ProductAlert\Plugins\Unsubscribe"/>
+    </type>
+    <type name="Magento\ProductAlert\Controller\Unsubscribe\StockAll">
+        <plugin name="xnotifUnsubscribeAllStock" type="Magedelight\ProductAlert\Plugins\Unsubscribe"/>
+    </type>
+
+    <type name="Magento\ProductAlert\Block\Email\Price">
+        <plugin name="xnotifGetUnsubscribeUrlPrice" type="Magedelight\ProductAlert\Plugins\Url"/>
+    </type>
+    <type name="Magento\ProductAlert\Block\Email\Stock">
+        <plugin name="xnotifGetUnsubscribeUrlStock" type="Magedelight\ProductAlert\Plugins\Url"/>
+    </type>
+
+    <preference for="Magento\ProductAlert\Model\Observer" type="Magedelight\ProductAlert\Model\Observer"/>
+
+    <preference for="Magento\Bundle\Model\ResourceModel\Selection\Collection"
+                type="Magedelight\ProductAlert\Model\ResourceModel\Bundle\Selection\Collection"/>
+
+    <!--type name="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option">
+        <plugin name="Magedelight_ProductAlert::addOutOfStockNotice" type="Magedelight\ProductAlert\Plugins\Bundle\Option"/>
+    </type-->
+
+    <type name="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle">
+        <plugin name="Magedelight_ProductAlert::bundle-json-config" type="Magedelight\ProductAlert\Block\Product\View\Type\Bundle"/>
+    </type>
+    <type name="Magento\GroupedProduct\Block\Product\View\Type\Grouped">
+        <plugin name="Magedelight_ProductAlert::grouped-change-template" type="Magedelight\ProductAlert\Block\Product\View\Type\Grouped"/>
+    </type>
+
+    <preference for="Magento\Catalog\Model\ResourceModel\Product\Link\Product\Collection"
+                type="Magedelight\ProductAlert\Model\ResourceModel\Product\Link\Product\Collection"/>
+</config>

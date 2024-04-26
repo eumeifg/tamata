@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<!-- md_vendor_product_request table starts. -->
+	<table name="md_vendor_product_request" resource="default" engine="innodb" comment="Information Of Product Requests By Vendors.">
+		<column xsi:type="int" name="product_request_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Vendor product request ID" />
+		<column xsi:type="int" name="marketplace_product_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Map with existing product entity ID if the product is an existing one" />
+		<column xsi:type="int" name="vendor_product_id" padding="10" unsigned="true" nullable="true" comment="Vendor product request ID, if request created for approved product" />
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Vendor ID" />
+		<column xsi:type="varchar" name="vendor_sku" length="64" nullable="false" comment="SKU specified by Vendor for internal use" />
+		<column xsi:type="varchar" name="type_id" nullable="false" length="32" default="simple" comment="Type ID" />
+		<column xsi:type="decimal" name="qty" scale="4" precision="12" unsigned="false" nullable="true" comment="Product Quantity" />
+		<column xsi:type="varchar" name="website_ids" length="50" nullable="true" comment="Website IDs" />
+		<column xsi:type="smallint" name="attribute_set_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Attribute set id associated with category and product" />
+		<column xsi:type="int" name="main_category_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Main Category Id" />
+		<column xsi:type="boolean" name="has_variants" default="0" comment="Equivalent to has_options in Magento DB, 0=No 1=Yes" />
+		<column xsi:type="varchar" name="disapprove_message" length="255" nullable="true" comment="Message for Vendor in case of disapproval" />
+		<column xsi:type="varchar" name="used_product_attribute_ids" length="255" nullable="true" comment="used_product_attribute_ids" />
+		<column xsi:type="varchar" name="configurable_attributes" length="255" nullable="true" comment="configurable_attributes" />
+		<column xsi:type="varchar" name="configurable_attribute_codes" length="255" nullable="true" comment="configurable_attribute_codes" />
+		<column xsi:type="varchar" name="configurable_attributes_data" length="255" nullable="true" comment="configurable_attributes_data" />
+		<column xsi:type="text" name="images" nullable="true" comment="Image names - serialized format" />
+		<column xsi:type="varchar" name="base_image" length="255" nullable="true" comment="Base Image name" />
+		<column xsi:type="boolean" name="is_requested_for_edit" default="0" nullable="false" comment="Requested for Edit, 0=No 1=Yes" />
+		<column xsi:type="boolean" name="is_offered" default="0" comment="Is Offered Product or Not, 0 = No(Main Product) 1 = Yes(Offered Product) 2 = Vendor Offer Update" />
+		<column xsi:type="boolean" name="status" default="0" comment="Status of request - 0=Pending, 1=Approved, 2=Disapproved" />
+		<column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time" />
+		<column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="product_request_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="MD_VENDOR_PRODUCT_REQUEST_VENDOR_ID_VENDOR_SKU">
+			<column name="vendor_id" />
+			<column name="vendor_sku" />
+		</constraint>
+		<index referenceId="MD_VENDOR_PRODUCT_REQUEST_MARKETPLACE_PRODUCT_ID" indexType="btree">
+			<column name="marketplace_product_id" />
+		</index>
+		<index referenceId="MD_VENDOR_PRODUCT_REQUEST_STATUS" indexType="btree">
+			<column name="status" />
+		</index>
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PRODUCT_REQUEST_VENDOR_ID_VENDOR_VENDOR_ID" table="md_vendor_product_request" column="vendor_id" referenceTable="md_vendor" referenceColumn="vendor_id" onDelete="CASCADE" />
+	</table>
+	<!-- md_vendor_product_request table ends. -->
+	<!-- md_vendor_product_request_website table starts. -->
+	<table name="md_vendor_product_request_website" resource="default" engine="innodb" comment="Website Level Information Of Product Requests.">
+		<column xsi:type="int" name="row_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Increment ID" />
+		<column xsi:type="int" name="product_request_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Product Request ID" />
+		<column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Website ID" />
+		<column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Category Id" />
+		<column xsi:type="decimal" name="price" scale="4" precision="12" unsigned="false" nullable="true" comment="Price" />
+		<column xsi:type="decimal" name="special_price" scale="4" precision="12" unsigned="false" nullable="true" comment="Special Price" />
+		<column xsi:type="date" name="special_from_date" nullable="true" comment="Promotional Sale Start Date" />
+		<column xsi:type="date" name="special_to_date" nullable="true" comment="Promotional Sale End Date" />
+		<column xsi:type="decimal" name="reorder_level" precision="12" scale="4" nullable="false" default="1" comment="Threshold when to notify vendor about the low stock of the product" />
+		<column xsi:type="boolean" name="condition" default="1" comment="0=Used, 1=New, 2=Rental" />
+		<column xsi:type="boolean" name="warranty_type" comment="Warranty Type, e.g. Manufacturer, Seller, etc." />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="row_id" />
+		</constraint>
+		<index referenceId="MD_VEN_PROD_REQ_WEB_PROD_REQ_ID" indexType="btree">
+			<column name="product_request_id" />
+		</index>
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PRODUCT_REQUEST_WEBSITE_PRODUCT_REQUEST_ID_MD_VENDOR_PRODUCT_REQUEST_PRODUCT_REQUEST_ID" table="md_vendor_product_request_website" column="product_request_id" referenceTable="md_vendor_product_request" referenceColumn="product_request_id" onDelete="CASCADE" />
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PROD_REQ_WEB_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID" table="md_vendor_product_request_website" column="website_id" referenceTable="store_website" referenceColumn="website_id" onDelete="CASCADE" />
+	</table>
+	<!-- md_vendor_product_request_website table ends -->
+	<!-- md_vendor_product_request_store table starts. -->
+	<table name="md_vendor_product_request_store" resource="default" engine="innodb" comment="Store Level Information Of Product Requests.">
+		<column xsi:type="int" name="row_id" padding="10" unsigned="false" nullable="false" identity="true" comment="Increment ID" />
+		<column xsi:type="int" name="product_request_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Product Request ID" />
+		<column xsi:type="smallint" name="store_id" padding="5" unsigned="true" default="0" identity="false" comment="Store ID" />
+		<column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Website ID" />
+		<column xsi:type="varchar" name="name" length="255" nullable="true" comment="Product Name" />
+		<column xsi:type="text" name="condition_note" nullable="true" comment="Condition Note" />
+		<column xsi:type="text" name="warranty_description" nullable="true" comment="Warranty Description" />
+		<column xsi:type="text" name="attributes" nullable="true" comment="All of the applicable attributes which were filled in - Serialize format" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="row_id" />
+		</constraint>
+		<index referenceId="MD_VEN_PROD_REQ_STORE_PROD_REQ_ID" indexType="btree">
+			<column name="product_request_id" />
+		</index>
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PRODUCT_REQUEST_STORE_PRODUCT_REQUEST_ID_MD_VENDOR_PRODUCT_REQUEST_PRODUCT_REQUEST_ID" table="md_vendor_product_request_store" column="product_request_id" referenceTable="md_vendor_product_request" referenceColumn="product_request_id" onDelete="CASCADE" />
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PROD_REQ_STORE_STORE_ID_STORE_STORE_ID" table="md_vendor_product_request_store" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE" />
+	</table>
+	<!-- md_vendor_product_request_store table ends. -->
+	<!-- md_vendor_product_request_super_link table starts - used for configurable products. -->
+	<table name="md_vendor_product_request_super_link" resource="default" engine="innodb" comment="Product Request Super Link Table">
+		<column xsi:type="int" name="link_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Link ID" />
+		<column xsi:type="int" name="product_request_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Product Request ID" />
+		<column xsi:type="int" name="parent_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Parent ID" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="link_id" />
+		</constraint>
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PROD_REQ_SPR_LNK_PRD_REQ_ID_MD_VENDOR_PROD_REQ_PRD_REQ_ID" table="md_vendor_product_request_super_link" column="product_request_id" referenceTable="md_vendor_product_request" referenceColumn="product_request_id" onDelete="CASCADE" />
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PROD_REQ_SPR_LNK_PARENT_ID_MD_VENDOR_PROD_REQ_PRD_REQ_ID" table="md_vendor_product_request_super_link" column="parent_id" referenceTable="md_vendor_product_request" referenceColumn="product_request_id" onDelete="CASCADE" />
+		<constraint xsi:type="unique" referenceId="MD_VENDOR_PROD_REQ_SPR_LNK_PRODUCT_REQUEST_ID_PARENT_ID">
+			<column name="product_request_id" />
+			<column name="parent_id" />
+		</constraint>
+		<index referenceId="MD_VENDOR_PROD_REQ_SPR_LNK_PARENT_ID" indexType="btree">
+			<column name="parent_id" />
+		</index>
+	</table>
+	<!-- md_vendor_product_request_super_link table ends. -->
+	<!-- md_eav_attribute_placeholder table starts. -->
+	<table name="md_eav_attribute_placeholder" resource="default" engine="innodb" comment="Eav Attribute Placeholder">
+		<column xsi:type="int" name="attribute_placeholder_id" unsigned="true" nullable="false" comment="Attribute Placeholder ID" />
+		<column xsi:type="smallint" name="attribute_id" default="0" unsigned="true" nullable="false" comment="Attribute ID" />
+		<column xsi:type="smallint" name="store_id" default="0" unsigned="true" nullable="false" comment="Store ID" />
+		<column xsi:type="varchar" name="value" length="255" nullable="true" comment="Value" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="attribute_placeholder_id" />
+		</constraint>
+		<index referenceId="MD_EAV_ATTRIBUTE_PLACEHOLDER_STORE_ID" indexType="btree">
+			<column name="store_id" />
+		</index>
+		<index referenceId="MD_EAV_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE_ID_STORE_ID" indexType="btree">
+			<column name="attribute_id" />
+			<column name="store_id" />
+		</index>
+		<constraint xsi:type="foreign" referenceId="MD_EAV_ATTRIBUTE_PLACEHOLDER_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="md_eav_attribute_placeholder" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="CASCADE" />
+		<constraint xsi:type="foreign" referenceId="MD_EAV_ATTRIBUTE_PLACEHOLDER_STORE_ID_STORE_STORE_ID" table="md_eav_attribute_placeholder" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE" />
+	</table>
+	<!-- md_eav_attribute_placeholder table ends. -->
+	<!-- md_eav_attribute_tooltip table starts. -->
+	<table name="md_eav_attribute_tooltip" resource="default" engine="innodb" comment="Eav Attribute Tooltip">
+		<column xsi:type="int" name="attribute_tooltip_id" unsigned="true" nullable="false" identity="true" comment="Attribute Tooltip ID" />
+		<column xsi:type="smallint" name="attribute_id" default="0" unsigned="true" nullable="false" comment="Attribute ID" />
+		<column xsi:type="smallint" name="store_id" default="0" unsigned="true" nullable="false" comment="Store ID" />
+		<column xsi:type="varchar" name="value" length="255" nullable="true" comment="Value" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="attribute_tooltip_id" />
+		</constraint>
+		<index referenceId="MD_EAV_ATTRIBUTE_TOOLTIP_STORE_ID" indexType="btree">
+			<column name="store_id" />
+		</index>
+		<index referenceId="MD_EAV_ATTRIBUTE_TOOLTIP_ATTRIBUTE_ID_STORE_ID" indexType="btree">
+			<column name="attribute_id" />
+			<column name="store_id" />
+		</index>
+		<constraint xsi:type="foreign" referenceId="MD_EAV_ATTRIBUTE_TOOLTIP_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="md_eav_attribute_tooltip" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="CASCADE" />
+		<constraint xsi:type="foreign" referenceId="MD_EAV_ATTRIBUTE_TOOLTIP_STORE_ID_STORE_STORE_ID" table="md_eav_attribute_tooltip" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE" />
+	</table>
+	<!-- md_eav_attribute_tooltip table ends. -->
+	<!-- catalog_product_index_price_final_idx table starts. -->
+	<table name="catalog_product_index_price_final_idx" resource="default">
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="true" comment="Vendor ID" />
+		<column xsi:type="decimal" name="special_price" scale="4" precision="12" unsigned="true" nullable="true" comment="Vendor Special Price" />
+		<column xsi:type="date" name="special_from_date" nullable="true" comment="Special From Date" />
+		<column xsi:type="date" name="special_to_date" nullable="true" comment="Special To Date" />
+	</table>
+	<!-- catalog_product_index_price_final_idx table ends. -->
+	<!-- catalog_product_index_price_final_tmp table starts. -->
+	<table name="catalog_product_index_price_final_tmp" resource="default">
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="true" comment="Vendor ID" />
+		<column xsi:type="decimal" name="special_price" scale="4" precision="12" unsigned="true" nullable="true" comment="Vendor Special Price" />
+		<column xsi:type="date" name="special_from_date" nullable="true" comment="Special From Date" />
+		<column xsi:type="date" name="special_to_date" nullable="true" comment="Special To Date" />
+	</table>
+	<!-- catalog_product_index_price_final_tmp table ends. -->
+	<!-- catalog_product_index_price_idx table starts. -->
+	<table name="catalog_product_index_price_idx" resource="default">
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="true" comment="Vendor ID" />
+		<column xsi:type="decimal" name="special_price" scale="4" precision="12" unsigned="true" nullable="true" comment="Vendor Special Price" />
+		<column xsi:type="date" name="special_from_date" nullable="true" comment="Special From Date" />
+		<column xsi:type="date" name="special_to_date" nullable="true" comment="Special To Date" />
+	</table>
+	<!-- catalog_product_index_price_idx table ends. -->
+	<!-- catalog_product_index_price table starts. -->
+	<table name="catalog_product_index_price" resource="default">
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="true" comment="Vendor ID" />
+		<column xsi:type="decimal" name="special_price" scale="4" precision="12" unsigned="true" nullable="true" comment="Vendor Special Price" />
+		<column xsi:type="date" name="special_from_date" nullable="true" comment="Special From Date" />
+		<column xsi:type="date" name="special_to_date" nullable="true" comment="Special To Date" />
+	</table>
+	<!-- catalog_product_index_price table ends. -->
+	<!-- catalog_product_index_price_tmp table starts. -->
+	<table name="catalog_product_index_price_tmp" resource="default">
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="true" comment="Vendor ID" />
+		<column xsi:type="decimal" name="special_price" scale="4" precision="12" unsigned="true" nullable="true" comment="Vendor Special Price" />
+		<column xsi:type="date" name="special_from_date" nullable="true" comment="Special From Date" />
+		<column xsi:type="date" name="special_to_date" nullable="true" comment="Special To Date" />
+	</table>
+	<!-- catalog_product_index_price_tmp table ends. -->
+	<!-- catalog_product_index_price_replica table starts. -->
+	<table name="catalog_product_index_price_replica" resource="default">
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="true" comment="Vendor ID" />
+		<column xsi:type="decimal" name="special_price" scale="4" precision="12" unsigned="true" nullable="true" comment="Vendor Special Price" />
+		<column xsi:type="date" name="special_from_date" nullable="true" comment="Special From Date" />
+		<column xsi:type="date" name="special_to_date" nullable="true" comment="Special To Date" />
+	</table>
+	<!-- catalog_product_index_price_replica table ends. -->
+	<!-- catalog_product_index_price_bundle_tmp table starts. -->
+	<table name="catalog_product_index_price_bundle_tmp" resource="default">
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="true" comment="Vendor ID" />
+		<column xsi:type="decimal" name="special_price" scale="4" precision="12" unsigned="true" nullable="true" comment="Vendor Special Price" />
+		<column xsi:type="date" name="special_from_date" nullable="true" comment="Special From Date" />
+		<column xsi:type="date" name="special_to_date" nullable="true" comment="Special To Date" />
+	</table>
+	<!-- catalog_product_index_price_bundle_tmp table ends. -->
+	<!-- md_vendor_product_listing_idx table starts. -->
+	<table name="md_vendor_product_listing_idx" resource="default" engine="innodb" comment="Vendor Product Index Table">
+		<column xsi:type="int" name="marketplace_product_id" unsigned="true" nullable="false" padding="10" comment="Mapped with product entity_id" />
+		<column xsi:type="int" name="parent_id" padding="10" unsigned="true" nullable="true" comment="Parent Id, if it is not null then it is associated with super product." />
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="false" comment="Vendor ID" />
+		<column xsi:type="smallint" name="website_id" unsigned="true" nullable="false" padding="5" comment="Website ID" />
+		<column xsi:type="decimal" name="price" scale="4" precision="12" comment="Regular selling price of the product" />
+		<column xsi:type="decimal" name="special_price" scale="4" precision="12" comment="Promotional price of the product" />
+		<column xsi:type="date" name="special_from_date" nullable="true" comment="Special From Date" />
+		<column xsi:type="date" name="special_to_date" nullable="true" comment="Special To Date" />
+		<column xsi:type="decimal" name="qty" scale="4" precision="12" nullable="true" comment="Product Quantity" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="marketplace_product_id" />
+			<column name="website_id" />
+		</constraint>
+	</table>
+	<!-- md_vendor_product_listing_idx table ends. -->
+	<!-- md_vendor_product table starts. -->
+	<table name="md_vendor_product" resource="default" engine="innodb" comment="Table stores information of approved products of vendors mapped with system catalog product">
+		<column xsi:type="int" name="vendor_product_id" unsigned="true" nullable="false" identity="true" padding="10" comment="Vendor Product ID" />
+		<column xsi:type="int" name="marketplace_product_id" padding="10" unsigned="true" nullable="true" comment="Mapped with product entity_id" />
+		<column xsi:type="int" name="parent_id" unsigned="true" nullable="true" padding="10" comment="Parent Id, if it is not null then it is associated with super product." />
+		<column xsi:type="varchar" name="type_id" nullable="false" default="simple" length="32" comment="Type ID" />
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="false" comment="Vendor ID" />
+		<column xsi:type="varchar" name="external_id" length="13" nullable="true" comment="EAN or UPC" />
+		<column xsi:type="boolean" name="is_deleted" nullable="false" default="0" comment="Describes whether product offer is deleted or not." />
+		<column xsi:type="varchar" name="vendor_sku" length="64" nullable="false" comment="SKU specified by Vendor for internal use" />
+		<column xsi:type="decimal" name="qty" scale="4" precision="12" nullable="true" comment="Product Quantity" />
+		<column xsi:type="boolean" name="is_offered" nullable="false" default="0" comment="Is Offered Product or Not, 0 = No(Main Product) 1 = Yes(Offered Product)" />
+		<column xsi:type="timestamp" name="approved_at" nullable="true" default="CURRENT_TIMESTAMP" on_update="false" comment="Approval date and time" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="vendor_product_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="MD_VENDOR_PRODUCT_VENDOR_ID_VENDOR_SKU">
+			<column name="vendor_id" />
+			<column name="vendor_sku" />
+		</constraint>
+		<index referenceId="MD_VENDOR_PRODUCT_MARKETPLACE_PRODUCT_ID" indexType="btree">
+			<column name="marketplace_product_id" />
+		</index>
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PRODUCT_VENDOR_ID_MD_VENDOR_VENDOR_ID" table="md_vendor_product" column="vendor_id" referenceTable="md_vendor" referenceColumn="vendor_id" onDelete="CASCADE" />
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PRODUCT_MARKETPLACE_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID" table="md_vendor_product" column="marketplace_product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE" />
+	</table>
+	<!-- md_vendor_product table ends. -->
+	<!-- md_vendor_product_website table starts. -->
+	<table name="md_vendor_product_website" resource="default" engine="innodb" comment="Table stores information of vendor offer website data">
+		<column xsi:type="int" name="row_id" unsigned="true" nullable="false" identity="true" padding="10" comment="Increment ID" />
+		<column xsi:type="int" name="vendor_product_id" padding="10" unsigned="true" nullable="false" comment="Vendor Product ID" />
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="false" comment="Vendor ID" />
+		<column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="false" comment="Category ID" />
+		<column xsi:type="decimal" name="price" scale="4" precision="12" nullable="true" comment="Regular selling price of the product" />
+		<column xsi:type="decimal" name="special_price" scale="4" precision="12" nullable="true" comment="Promotional price of the product" />
+		<column xsi:type="date" name="special_from_date" nullable="true" comment="Promotional sale start date" />
+		<column xsi:type="date" name="special_to_date" nullable="true" comment="Promotional sale end date" />
+		<column xsi:type="boolean" name="condition" nullable="false" default="1" comment="0=Used, 1=New, 2=Rental" />
+		<column xsi:type="boolean" name="warranty_type" nullable="true" comment="Warranty Type, e.g. Manufacturer, Seller, etc." />
+		<column xsi:type="decimal" name="reorder_level" scale="4" precision="12" nullable="false" default="1" comment="Threshold when to notify vendor about the low stock of the product" />
+		<column xsi:type="boolean" name="status" nullable="false" default="0" comment="Status of listing - 0=Approved but not live, 1=Live" />
+		<column xsi:type="smallint" name="website_id" padding="5" nullable="true" unsigned="true" comment="Website ID" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="row_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="MD_VENDOR_PRODUCT_WEBSITE_VENDOR_PRODUCT_ID_WEBSITE_ID">
+			<column name="vendor_product_id" />
+			<column name="website_id" />
+		</constraint>
+		<index referenceId="MD_VENDOR_PRODUCT_WEBSITE_VENDOR_PRODUCT_ID" indexType="btree">
+			<column name="vendor_product_id" />
+		</index>
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PRODUCT_WEBSITE_VENDOR_PRODUCT_ID_MD_VENDOR_PRODUCT_VENDOR_PRODUCT_ID" table="md_vendor_product_website" column="vendor_product_id" referenceTable="md_vendor_product" referenceColumn="vendor_product_id" onDelete="CASCADE" />
+	</table>
+	<!-- md_vendor_product_website table ends. -->
+	<!-- md_vendor_product_store table starts. -->
+	<table name="md_vendor_product_store" resource="default" engine="innodb" comment="Table stores information of vendor offer store data">
+		<column xsi:type="int" name="row_id" unsigned="true" nullable="false" identity="true" padding="10" comment="Increment ID" />
+		<column xsi:type="int" name="vendor_product_id" padding="10" unsigned="true" nullable="false" comment="Vendor Product ID" />
+		<column xsi:type="text" name="condition_note" nullable="true" comment="Condition Note" />
+		<column xsi:type="text" name="warranty_description" nullable="true" comment="Warranty description" />
+		<column xsi:type="smallint" name="store_id" padding="5" nullable="true" unsigned="true" comment="Store ID" />
+		<column xsi:type="smallint" name="website_id" padding="5" nullable="true" unsigned="true" comment="Website ID" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="row_id" />
+		</constraint>
+		<constraint xsi:type="unique" referenceId="MD_VENDOR_PRODUCT_STORE_VENDOR_PRODUCT_ID_WEBSITE_ID_STORE_ID">
+			<column name="vendor_product_id" />
+			<column name="website_id" />
+			<column name="store_id" />
+		</constraint>
+		<index referenceId="MD_VENDOR_PRODUCT_STORE_VENDOR_PRODUCT_ID" indexType="btree">
+			<column name="vendor_product_id" />
+		</index>
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PRODUCT_STORE_VENDOR_PRODUCT_ID_MD_VENDOR_PRODUCT_VENDOR_PRODUCT_ID" table="md_vendor_product_store" column="vendor_product_id" referenceTable="md_vendor_product" referenceColumn="vendor_product_id" onDelete="CASCADE" />
+	</table>
+	<!-- md_vendor_product_store table ends. -->
+	<!-- md_vendor_product_bulk_request table starts. -->
+	<table name="md_vendor_product_bulk_request" resource="default" engine="innodb" comment="Table stores information of vendor offer store data">
+		<column xsi:type="int" name="vendor_product_bulk_request_id" unsigned="true" nullable="false" identity="true" padding="10" comment="Vendor product ID" />
+		<column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="false" comment="Vendor ID" />
+		<column xsi:type="varchar" name="file_name" length="10" nullable="false" comment="CSV file name" />
+		<column xsi:type="int" name="category_id" padding="10" nullable="false" unsigned="true" comment="Category ID" />
+		<column xsi:type="timestamp" name="uploaded_at" default="CURRENT_TIMESTAMP" nullable="true" comment="Uploaded date and time" />
+		<column xsi:type="boolean" name="status" nullable="false" default="0" comment="0=Pending QC, 1=Partially Approved, 2=Approved" />
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="vendor_product_bulk_request_id" />
+		</constraint>
+		<index referenceId="MD_VENDOR_PRODUCT_BULK_REQUEST_VENDOR_ID" indexType="btree">
+			<column name="vendor_id" />
+		</index>
+		<constraint xsi:type="foreign" referenceId="MD_VENDOR_PRODUCT_BULK_REQUEST_VENDOR_ID_MD_VENDOR_VENDOR_ID" table="md_vendor_product_bulk_request" column="vendor_id" referenceTable="md_vendor" referenceColumn="vendor_id" onDelete="CASCADE" />
+	</table>
+	<!-- md_vendor_product_bulk_request table ends. -->
+</schema>

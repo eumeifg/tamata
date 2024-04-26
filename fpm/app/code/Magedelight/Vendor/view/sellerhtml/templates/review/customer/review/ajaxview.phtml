@@ -1,0 +1,52 @@
+<?php $ratlable = $block->getRatingLables() ?>
+<?php $ratvalue = $block->getRatingValue() ?>
+<div class="rbpanel bn">
+<div class="rbpanel-heading">
+    <?= __('Feedback summary')?>
+
+</div>
+<div class="rbpanel-body">
+<div class="table-wrapper  review-summary-table-wrapper">
+    
+<table class="data table review-summary-table">
+<tbody>
+    <tr>
+        <th><?= __('Customer Name')?></th>
+        <td><?= $block->getCustomName() ?></td>
+    </tr>
+    <tr>
+        <th><?= __('Order No#') ?></th>
+        <td><?= $block->getIncrementId($block->getVendorOrderId()); ?></td>
+    </tr>
+    <?php if (!empty($ratvalue)) { ?>
+        <?php foreach ($ratlable as $key => $label) : ?>
+            <?php
+            if (!array_key_exists($key, $ratvalue)) {
+                continue;
+            }
+            ?>
+            <?php $value = $ratvalue[$key] ?>
+            <tr>
+                <th><?= $label; ?></th>
+                <td><div class="rating-summary vender-display-list">
+                                       <div class="rating-result" >
+                                        <span style="width:<?= $value * 20; ?>%">
+                                            <span>
+                                                <span itemprop="ratingValue"><?= $value * 20; ?></span>% of <span itemprop="bestRating">100</span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div></td>
+            </tr>
+        <?php endforeach; ?>
+    <?php } ?>
+    <tr>
+    <th><?= __('Review Message') ?></th>
+        <td><?= $block->getComment() ?></td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+

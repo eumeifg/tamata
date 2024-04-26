@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="bulk_invoice_shipment" instance="MDC\Sales\Cron\BulkInvoiceShipment" method="createBulkInvoiceShipment">
+            <config_path>sales/cron_config/job_frequency</config_path>
+        </job>
+        <job name="delete_bulk_import" instance="MDC\Sales\Cron\DeleteBulkImport" method="deleteOldRecords">
+            <config_path>sales/cron_config/bulk_delete_frequency</config_path>
+        </job>
+    </group>
+</config>

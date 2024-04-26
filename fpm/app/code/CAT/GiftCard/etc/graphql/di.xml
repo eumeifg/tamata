@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Override Redeem Gift Card graphQL API
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\GiftCardAccountGraphQl\Model\Resolver\RedeemGiftCard" type="CAT\GiftCard\Model\GraphQl\Resolver\RedeemGiftCard" />
+    <preference for="Magento\GiftCardAccountGraphQl\Model\DataProvider\GiftCardAccount" type="CAT\GiftCard\Model\DataProvider\GiftCardAccount" />
+</config>

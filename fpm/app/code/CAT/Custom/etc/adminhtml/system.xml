@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="automation_tab" translate="label" sortOrder="300000">
+            <label>Automation</label>
+        </tab>
+        <section id="automation" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Automation Configuration</label>
+            <tab>automation_tab</tab>
+            <resource>CAT_Custom::automation_config</resource>
+            <group id="general" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1">
+                <label>General Configuration</label>
+                <field id="automation_enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Automation Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <!--<group id="vendor_payment_config" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1">
+                <label>Vendor Payment Status Configuration</label>
+                <depends>
+                    <field id="automation/general/automation_enable">1</field>
+                </depends>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Vendor Payment Automation Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_frequency" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Frequency</label>
+                    <comment>E.g. (* * * * *)</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="delete_in_days" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Delete old records in days</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>-->
+            <group id="store_credit_config" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1">
+                <label>Store Credit Configuration</label>
+                <depends>
+                    <field id="automation/general/automation_enable">1</field>
+                </depends>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Bulk Store Credit Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_frequency" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Frequency</label>
+                    <comment>E.g. (* * * * *)</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="delete_in_days" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Delete old records in days</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="offer_update_config" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1">
+                <label>Offer Update Configuration</label>
+                <depends>
+                    <field id="automation/general/automation_enable">1</field>
+                </depends>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Bulk Offer Update Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_frequency" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Frequency</label>
+                    <comment>E.g. (* * * * *)</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="indexer_cron" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Indexer Cron</label>
+                    <comment>E.g. (* * * * *)</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="batch_limit" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Batch Limit to process at once</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="sku_update_config" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1">
+                <label>SKU Update Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Sku Update Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_frequency" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Frequency</label>
+                    <comment>E.g. (* * * * *)</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="batch_limit" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Batch Limit to process at once</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <!--<group id="invoice_shipment_config" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1">
+                <label>Invoice/Shipment Configuration</label>
+                <depends>
+                    <field id="automation/general/automation_enable">1</field>
+                </depends>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Bulk Invoice/Shipment Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_frequency" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Frequency</label>
+                    <comment>E.g. (* * * * *)</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="delete_in_days" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Delete old records in days</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>-->
+            <group id="auto_invoice" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1">
+                <label>Background Order Flow Configuration</label>
+                <field id="cron_frequency" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Frequency</label>
+                    <comment>E.g. (* * * * *)</comment>
+                </field>
+            </group>
+            <group id="autosearch_general" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1">
+                <label>AutoSearch API Configuration</label>
+                <field id="is_active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>New API Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="vendor_qty_update_config" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="1">
+                <label>Vendor Qty Update Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_frequency" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Frequency</label>
+                    <comment>E.g. (* * * * *)</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="batch_limit" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Batch Limit to process at once</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

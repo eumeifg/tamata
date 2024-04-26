@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Krish TechnoLabs, All rights reserved.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/promocallouts/vendors/" method="GET">
+        <service class="Ktpl\PromoCallouts\Api\PromoCalloutsManagementInterface" method="getPromoVendors"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+    </route>
+</routes>

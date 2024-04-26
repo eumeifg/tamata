@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magedelight_Theme::vendor">
+                    <resource id="Magedelight_Vendor::vendor_manage" title="Vendor Management" sortOrder="10">
+                        <resource id="Magedelight_Vendor::grid_vendor" title="Grid" sortOrder="5"/>
+                        <resource id="Magedelight_Vendor::view_detail_vendor" title="View Detail" sortOrder="10"/>
+                        <resource id="Magedelight_Vendor::edit_vendor" title="Add / Edit" sortOrder="20"/>
+                        <resource id="Magedelight_Vendor::delete_vendor" title="Delete" sortOrder="30"/>
+                        <resource id="Magedelight_Vendor::request_manage" title="Manage Vendor Request" sortOrder="40">
+                            <resource id="Magedelight_Vendor::view_detail_request" title="View Detail" sortOrder="10" />
+                            <resource id="Magedelight_Vendor::edit_request" title="Add / Edit" sortOrder="20" />
+                            <resource id="Magedelight_Vendor::delete_request" title="Delete" sortOrder="30" />
+                        </resource>
+                        <resource id="Magedelight_Vendor::requested_categories" title="Manage Categroy Request" translate="title" sortOrder="50">
+                            <resource id="Magedelight_Vendor::view_category_request" title="View Detail" translate="title" sortOrder="10" />
+                            <resource id="Magedelight_Vendor::save_category_request" title="Add / Edit" translate="title" sortOrder="20" />
+                            <resource id="Magedelight_Vendor::delete_category_request" title="Delete" translate="title" sortOrder="30" />
+                        </resource>
+                        <resource id="Magedelight_Vendor::microsite_manage" title="Manage Microsite" sortOrder="60">
+                            <resource id="Magedelight_Vendor::view_microsite" title="View Detail" translate="title" sortOrder="10" />
+                            <resource id="Magedelight_Vendor::save_microsite" title="Add / Edit" translate="title" sortOrder="20" />
+                            <resource id="Magedelight_Vendor::delete_microsite" title="Delete" translate="title" sortOrder="30" />
+                        </resource>
+                        <resource id="Magedelight_Vendor::vendorrating" title="Manage Vendor Ratings" sortOrder="70">
+                            <resource id="Magedelight_Vendor::view_vendorrating" title="View Detail" translate="title" sortOrder="10" />
+                            <resource id="Magedelight_Vendor::edit_vendorrating" title="Add / Edit" translate="title" sortOrder="20" />
+                            <resource id="Magedelight_Vendor::delete_vendorrating" title="Delete" translate="title" sortOrder="30" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+            <resource id="Magedelight_Vendor::main" title="Main Vendor" translate="title" sortOrder="40">
+                <resource id="Magedelight_Vendor::account_dashboard" title="Vendor Dashboard"></resource>
+                <resource id="Magedelight_Vendor::account" title="Vendor Profile"></resource>
+                <resource id="Magedelight_Vendor::services" title="Vendor Services"></resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

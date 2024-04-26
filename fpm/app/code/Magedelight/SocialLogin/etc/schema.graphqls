@@ -1,0 +1,17 @@
+# Copyright © Magento, Inc. All rights reserved.
+# See COPYING.txt for license details.
+type Mutation {
+    authenticateCustomerWithSocialLogin(input: CustomerInput!): AuthenticateCustomerWithSocialLogin @resolver(class: "\\Magedelight\\SocialLogin\\Model\\Resolver\\AuthenticateCustomerWithSocialLogin") @doc(description:"Authenticate Customer With SocialLogin")
+}
+
+input CustomerInput {
+    firstname: String @doc(description: "The customer's first name")
+    lastname: String @doc(description: "The customer's family name")
+    email: String @doc(description: "The customer's email address")
+    socialId: String @doc(description: "The customer Social Id. Required")
+    socialLoginType: String @doc(description: "The customer Social Login Type. Required")
+}
+
+type AuthenticateCustomerWithSocialLogin {
+    token: String @doc (description: "Token")
+}

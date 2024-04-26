@@ -1,0 +1,51 @@
+& when (@media-common =true) {
+
+	html[lang=ar] {
+		.login-container {
+			.block.block-new-customer {
+		    	float: left;
+			}
+		}
+		.account.magento_giftregistry-index-index .actions-toolbar, 
+		.account.magento_giftregistry-index-addselect .actions-toolbar, 
+		.account.magento_giftregistry-index-edit .actions-toolbar {
+			float: right;
+		}
+		#registrant-container .fieldset {
+		    clear: both;
+    		padding: 20px 0 0 0;
+		}
+	}
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+
+}
+
+//
+//  Mobile
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
+	html[lang=ar] {
+		.page-wrapper .form.form-orders-search .actions-toolbar > .primary {
+			text-align: right;
+		}
+	} 
+}
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__s) {
+
+
+}
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__xs) {
+
+
+}

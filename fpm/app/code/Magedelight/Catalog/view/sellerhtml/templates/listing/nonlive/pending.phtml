@@ -1,0 +1,188 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+ /** @var $block \Magedelight\Catalog\Block\Product\Nonlive */
+?>
+<?php
+$session = $block->getSessionForGrid();
+$gridsession = $session->getGridSession();
+$collection = $block->getCollection();
+$storeId = $this->getCurrentStoreId();
+?>
+<?php $helper = $this->helper('Magedelight\Catalog\Helper\Listing\Data');
+      $jsonHelper = $this->helper('\Magento\Framework\Json\Helper\Data');
+?>
+<?php
+$product_nonlive = $gridsession['grid_session']['product_nonlive_pending'];
+$diffColparm = 0;
+$reqParams = $this->getRequest()->getParams();
+if (array_key_exists('sfrm', $reqParams)) {
+    unset($reqParams['p']);
+    if ($reqParams['sfrm'] == 'l') {
+        unset($reqParams['limit']);
+        unset($reqParams['sort_order']);
+        unset($reqParams['dir']);
+    }
+}
+$reqParams['sfrm'] = 'nl';
+$reqParams['p'] = '1';
+if (!array_key_exists('vpro', $reqParams)) {
+    $reqParams['vpro'] = 'approve';
+}
+$sortOrderData = $block->getSortOrderData($reqParams);
+?>
+
+    <form method="get" enctype='multipart/form-data' action="<?= $helper->getLiveMasslist() ?>" id="mass_list_form">
+        <?php if (count($collection) != 0): ?>
+        <div class="row mb20">
+            <div class="row-gutter">
+                <div class="control col-xs-4">
+                    <select   name="masslive_list_id" placeholder="" class="select mass-list-live">
+                        <option value=""><?= __('Action') ?></option>
+                        <option value="mass_action_delete"><?= __('Delete') ?></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        
+        <div class="table-wrapper mylisting-main">
+            <table class="data table table-mylisting" id="my-mylisting-table-nl">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col mass-action mass_list_nonlive">
+                            <input class="checkbox vendor_mass_list_th" id="vendor_mass_list_checkall" type="checkbox">
+                            <label for="vendor_mass_list_checkall"><span></span></label></th>
+                        <th scope="col" class="col product-thumb"><?= __('Image') ?></th>
+                        <?php foreach ($sortOrderData as $field) { ?>
+                            <?php if ($field['sort_params']['sort_order'] == 'marketplace_sku' || $field['sort_params']['sort_order'] == 'marketplace_product_id') {
+                                continue;
+                            } ?>
+                            <th scope="col" class="col sort-order-field <?=
+                            str_replace(" ", "-", strtolower($field['label'])); ?> sort-dir-arrow<?= $field['sort_dir_class']; ?>" title="<?= $field['sort_dir_title']; ?>">
+                                <a href="<?= $block->getUrl('rbcatalog/listing', ['_query' => $field['sort_params']]); ?>">
+                                       <?= $field['label'] ?>
+                                </a>
+                            </th>
+                        <?php } ?>                                                
+                        <th scope="col" class="col action"><?= __('Requested for Edit') ?></th>
+                        <th scope="col" class="col action"><?= __('Action') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php if (count($collection) != 0): ?>
+                    <?php
+                    foreach ($collection as $item):?>
+                        <?php $id = $item['product_request_id']; ?>
+                        <?php
+                           
+                            $storeData =  $currentWebData = $websiteData = $price = $specialPrice = $specialFromDate = $specialToDate = '';
+                            $price = $item->getPrice();
+                                $specialPrice = $item->getSpecialPrice();
+
+                        if ($item['website_data'] != '') {
+                            $websiteData = $jsonHelper->jsonDecode($item['website_data']);
+                            $currentWebsiteID = $block->getCurrentWebsite();
+
+                            if (array_key_exists($currentWebsiteID, $websiteData)) {
+                                $currentWebData = $websiteData[$currentWebsiteID];
+                            } else {
+                                $currentWebsiteID = 'default';
+                                $currentWebData = $websiteData[$currentWebsiteID];
+                            }
+                            $price = (array_key_exists('price', $currentWebData)) ? $currentWebData['price'] : "--";
+                            $specialPrice = (array_key_exists('special_price', $currentWebData)) ? $currentWebData['special_price'] : "--";
+                        }
+                        if ($item['store_data'] != '') {
+                            $storeProductData = $jsonHelper->jsonDecode($item['store_data']);
+                            if (array_key_exists($storeId, $storeProductData)) {
+                                $currentStoreData = $storeProductData[$storeId];
+                            } else {
+                                $currentStoreID = 'default';
+                                $currentStoreData = $storeProductData[$currentStoreID];
+                            }
+                        }
+                        ?>
+                        <tr>
+                            <td class="col data-grid-checkbox-cell">
+                                <input class="checkbox vendor_mass_list" id="vendor_mass_list-<?= $id; ?>" type="checkbox" name="product_list[]" value="<?= $id; ?>">
+                                <label for="vendor_mass_list-<?= $id; ?>"><span></span></label>
+                            </td>
+                            
+                            <td data-th="productimage" class="col data-grid-thumbnail-cell">
+                                <img height="100" width="100" src="<?= $item->getBaseImageUrl() ?>"  class=""/>
+                            </td>
+                            
+                            <td data-th="productsku" class="col data-grid-sku-cell">
+                                <div class="data-grid-cell-content"><?= $item->getVendorSku(); ?></div>
+                            </td>
+                            
+                            <td data-th="productname" class="col product-name">
+                                <div class="data-grid-cell-content">
+                                    <?= $item->getName(); ?>
+                                   <?php
+                                    if ($item->getHasVariants()) { ?>
+                                        <?= $block->getVariants($item); ?>
+                                    <?php }
+                                    ?>
+                                </div>
+                            </td>
+                            
+                            <?php if ($item->getHasVariants()) { ?>
+                                <td data-th="productprice" class="col data-grid-price-cell">-</td>
+                                <td data-th="productspprice" class="col data-grid-price-cell data-grid-special-price-cell">-</td>
+                                <td data-th="productqty" class="col data-grid-qty-cell">-</td>
+                            <?php } else { ?>
+                                <td data-th="productprice" class="col data-grid-price-cell"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($price); ?></td>
+                                <td data-th="productspprice" class="col data-grid-price-cell data-grid-special-price-cell">
+                                    <?php if ($specialPrice) { ?>
+                                            <?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($specialPrice); ?>
+                                    <?php } ?>
+                                </td>
+                                <td data-th="productqty" class="col data-grid-qty-cell"><?= number_format($item->getQty(), 2); ?></td>
+                            <?php } ?>
+                                
+                            <td class="col data-grid-actions-cell"><?= ($item->getIsRequestedForEdit()) ? __('Yes') : __('No') ?></td>
+                            
+                            <td data-th="action" class="col data-grid-actions-cell data-grid-action-edit">
+                                <div class="product-edit" data-bind="collapsible">
+                                    <ul class="product-edit-dropdown" data-bind="css: {_active: $collapsible.opened}">
+                                        <?php if ($item->getIsRequestedForEdit()) {  ?>
+                                            <li class="list-item">
+                                               <a class="action" title="<?= __('Edit') ?>" href="<?= $block->getEditUrlWithStore($item, $storeId,$this->getRequest()->getParam('p',1),$this->getRequest()->getParam('sfrm','l'),$this->getRequest()->getParam('limit',10)) ?>" ><?= __('Edit'); ?></a>
+                                            </li>
+                                        <?php } elseif (!$item->getHasVariants()) { ?>
+                                            <li class="list-item">
+                                                <a class="action" title="<?= __('Edit') ?>" href="<?= $block->getResumitUrlWithStore($item, $storeId,$this->getRequest()->getParam('p',1),$this->getRequest()->getParam('sfrm','l'),$this->getRequest()->getParam('limit',10)) ?>" > <?= __('Edit'); ?></a>
+                                            </li>
+                                        <?php } else { ?>
+                                            <li class="list-item"><a class="action" title="<?= __('Edit') ?>" href="<?= $block->getEditUrlWithStore($item, $storeId,$this->getRequest()->getParam('p',1),$this->getRequest()->getParam('sfrm','l'),$this->getRequest()->getParam('limit',10)) ?>" > <?= __('Edit'); ?></a></li>
+                                        <?php } ?>
+                                        <li class="list-item"><a class="action" title="<?= __('View') ?>" href="<?= $block->getEditUrlWithStore($item, $storeId,$this->getRequest()->getParam('p',1),$this->getRequest()->getParam('sfrm','l'),$this->getRequest()->getParam('limit',10), true) ?>" > <?= __('View'); ?></a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="9">
+                            <div class="message info empty nonliveprod-msg" id="nonliveprod-msg"><span><?= __("We couldn't find any records."); ?></span></div>
+                        </td>
+                    </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="tickets-events-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+        <?php endif ?>
+    </form>

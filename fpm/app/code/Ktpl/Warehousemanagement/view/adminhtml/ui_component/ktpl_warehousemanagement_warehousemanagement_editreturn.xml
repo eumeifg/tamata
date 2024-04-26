@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">ktpl_warehousemanagement_warehousemanagement_editreturn.warehousemanagement_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button class="Ktpl\Warehousemanagement\Block\Adminhtml\Warehousemanagement\Edit\BackButton" name="back"/>
+			<button class="Ktpl\Warehousemanagement\Block\Adminhtml\Warehousemanagement\Edit\DeleteButton" name="delete"/>
+		</buttons>
+		<namespace>ktpl_warehousemanagement_warehousemanagement_editreturn</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>ktpl_warehousemanagement_warehousemanagement_editreturn.warehousemanagement_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="warehousemanagement_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider class="Ktpl\Warehousemanagement\Model\Warehousemanagement\DataProvider" name="warehousemanagement_form_data_source">
+			<settings>
+				<requestFieldName>warehousemanagement_id</requestFieldName>
+				<primaryFieldName>warehousemanagement_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label/>
+		</settings>
+		<field formElement="input" name="barcode" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Warehousemanagement</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Barcode</label>
+				<dataScope>barcode</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+	</fieldset>
+	<fieldset name="grid_banner">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">List of Scanned Products</item>
+            </item>
+        </argument>
+		<container name="product_list_container" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Ktpl\Warehousemanagement\Block\Adminhtml\Warehousemanagement\Edit\CustomReturnHtml</argument>
+            </htmlContent>
+        </container>
+	</fieldset>
+</form>

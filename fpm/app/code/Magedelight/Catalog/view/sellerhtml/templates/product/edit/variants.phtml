@@ -1,0 +1,401 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+ /** @var $block Magedelight\Catalog\Block\Product\Edit\Variants */
+?>
+<div class="col-md-12">
+    <div id="product-variants-content" class="product-variants-content">        
+        <fieldset class="fieldset">
+            <?php if ($this->getRequest()->getParam('pid', false)) { ?>
+                <input type="hidden" id="has-variants" name="has_variants" value="1">
+            <?php } else { ?>
+                <?php if ($block->isAllowVariants()) { ?>
+                <div class="field has-variants">
+                    <label class="label">
+                        <span><?= __('Does this product have variants') ?></span>
+                    </label>
+                    <div class="control select _with-tooltip">
+                        <?= $block->getYesNoDropdown() ?>
+                        <div class="field-tooltip toggle"><span class="field-tooltip-action action-help" tabindex="0"></span><div class="field-tooltip-content"><span><?= __('Does this product have variants.') ?></span></div></div>
+                    </div>
+                </div> 
+                <?php } else { ?>
+                <input type="hidden" id="has-variants" name="has_variants" value="<?= $block->hasVariants() ?>">
+                <?php } ?>
+            <?php } ?>
+        </fieldset>
+        <fieldset class="fieldset">
+            <?php if (($this->getRequest()->getParam('pid', false == false) && ($block->getProduct()->getTypeId() != 'configurable'))) { ?>
+                <?= $block->getDropdownAttributesHtml(); ?>
+            <?php } ?>
+        </fieldset>        
+        <?php if ($block->getProduct()->getTypeId() == 'configurable') { ?>
+            <?php if ($block->getAttributesHtml()) { ?>
+                <div class="fieldset">                
+                    <?= $block->getAttributesHtml(); ?>                
+                    <div class="row">
+                        <div class="col-md-8 "></div>
+                        <div class="col-md-12 show-hide-fields text-right mb12 mt10">
+                            <a id="show_hide_fields" class="button no-display" href="javascript:void(0)"><?= __('Show All Fields') ?></a>
+                        </div>
+                    </div>  
+                    <div class="row"></div>
+                    <div class="table-wrapper">
+                        <div id="variantGrid" class="table-cotainer">                     
+                            <?php if ($block->isProductEditMode()) { ?>
+                                <?php $i = 0; ?>
+                                <table id="basicTable" class="data table variant-table-grid">
+                                    <thead>
+                                        <tr>
+                                            <?php foreach ($block->getVariantColumns() as $label) { ?>
+                                            <th class="<?= $block->getFieldNameWithDashSeperator($label) ?>"><?= ucwords(__($label)); ?></th>
+                                            <?php } ?>                                
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($block->getVariantsData() as $_item) {
+                                            $_item['weight'] = $this->getChildProductWeight($_item['marketplace_product_id']); ?>
+                                            <tr>
+                                                <?php foreach ($block->getVariantColumns() as $label) { ?>
+                                                    <td class="col col-<?= $block->getFieldNameWithDashSeperator($label) ?>">                                                
+                                                        <?php
+                                                        if (in_array($label, $block->getUsedProductAttributeIds())) {
+                                                            $element = $_item['marketplace_product_id'];
+                                                        } else {
+                                                            if (isset($_item[$block->getFieldName($label)])) {
+                                                                $element = ($block->getFieldName($label) == 'action') ? 'action' : $_item[$block->getFieldName($label)];
+                                                            }
+                                                        } ?>
+                                                        <?= $block->renderField($block->getFieldName($label), $element, $i, $_item)
+                                                        ?>
+                                                    </td>
+                                                <?php } ?>
+                                            </tr>
+                                            <?php $i++; ?>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        require([
+                            'jquery',
+                            'mage/calendar',
+                            'mage/translate',
+                            'rbCommonMethods'
+                        ], function ($, calendar, $t, rbCommonMethods) {
+                            $('document').ready(function () {
+                            /* show/hide Variant Attributes & Option secion*/
+                            $('#has-variants').change(function (e) {
+                                var toggler = $(this);
+                                var field1 = toggler.parents('.fieldset').next();
+                                var field = toggler.parents('.fieldset').next().next();
+                                if (toggler.val() == 1) {
+                                    $('#tab-label-offers').hide();
+                                    $('#offers #seller-sku').removeClass('required-entry').attr('data-validate', ' ');
+                                    ;
+                                    $('#offers #condition').attr('data-validate', ' ');
+                                    $('#offers #vendor-price').removeClass('required-entry');
+                                    field.removeClass('no-display');
+                                    field1.addClass('no-display');
+                                } else {
+                                    $('#tab-label-offers').show();
+                                    $('#offers #seller-sku').addClass('required-entry').attr('data-validate', '{required:true}');
+                                    $('#offers #condition').attr('data-validate', '{required:true}');
+                                    $('#offers #vendor-price').addClass('required-entry');
+                                    field.addClass('no-display');
+                                    field1.removeClass('no-display');
+                                }
+                            });
+
+                            /**********************/
+                            function createArr() {
+                                /*retrived configurable attributes code*/                               
+                                var variantFields = $.extend({}, $('#variantsAttributeCodes').val().split(','));
+                                var totalAttrs = Object.keys(variantFields).length;
+
+                                var variantLabel = new Array(totalAttrs);
+                                var variantVal = new Array(totalAttrs);
+
+                                for (i = 0; i < totalAttrs; i++) {
+
+                                    variantLabel[i] = new Array();
+                                    variantVal[i] = new Array();
+                                    $('input[name="' + variantFields[i] + '[]"]:checked').each(function () {
+                                        variantLabel[i].push($(this).siblings('label').html());
+                                        variantVal[i].push($(this).val());
+                                    });
+                                }
+
+                                return {'label': getCartesianArray(variantLabel), 'value': getCartesianArray(variantVal)};
+                            }
+
+                            function getCartesianArray(a) { /* a = array of array */
+                                var i, j, l, m, a1, o = [];
+                                if (!a || a.length == 0)
+                                    return a;
+
+                                a1 = a.splice(0, 1);
+                                a = getCartesianArray(a);
+                                for (i = 0, l = a1[0].length; i < l; i++) {
+                                    if (a && a.length)
+                                        for (j = 0, m = a.length; j < m; j++)
+                                            o.push([a1[0][i]].concat(a[j]));
+                                    else
+                                        o.push([a1[0][i]]);
+                                }
+                                return o;
+                            }
+
+                            /**********************/
+                            $('#createGrid').click(function (e) {
+
+                                createTable(createArr());
+
+                                $(".btn").click(function (e) {
+                                    $(this).parent().parent().remove();
+                                    if ($('#basicTable tr').length == 1) {
+                                        $('#basicTable').find('thead').remove();
+                                        $('#show_hide_fields').hide();
+                                    }
+                                });
+                                $('#show_hide_fields').show();
+                                showHideFields(1);
+
+                            });
+
+                            /*retrived configurable attributes code*/
+                            var variantFields = $.extend({}, $('#variantsAttributeCodes').val().split(','));
+
+                            var totalAttrs = Object.keys(variantFields).length;
+
+                            var variantOptions = {};
+
+                            var attrColOffset = 2;
+
+                            function createTable(variantOpt) {
+
+                                mytable = $('<table></table>').attr({id: "basicTable", class: "data table variant-table-grid"});
+                                $('#variantGrid').html('');
+                                <?php $offerFields = $block->getVariantColumns(true);
+                                $offerFields[] = __('Action');
+                                ?>
+                                var thMain = [];
+                                var th = [];
+                                <?php foreach ($offerFields as $field) { ?>
+                                    thMain.push('<?= __($field) ?>');
+                                    th.push('<?= $field ?>');
+                                <?php } ?>
+                                
+                                
+                                for (i in variantFields) {
+                                    th.splice((Number(i) + Number(attrColOffset)), 0, variantFields[i].toUpperCase());
+                                    thMain.splice((Number(i) + Number(attrColOffset)), 0, variantFields[i].toUpperCase());
+                                }
+
+                                var rowHead = $('<tr></tr>').attr({class: ["col"].join(' ')}).appendTo(mytable);
+
+                                for (var j = 0; j < th.length; j++) {
+                                    attributeName = th[j].replace(/\s+/g, '_').toLowerCase();
+                                    $th = $('<th></th>').attr({class: attributeName.split('_').join('-')}).text(thMain[j]);
+                                    $th.appendTo(rowHead);
+                                }
+                                mytable.prepend('<thead></thead>');
+                                mytable.find('thead').append(mytable.find("tr:eq(0)"));
+
+                                var cols = new Number(th.length);
+
+                                /** Create matrix of col_row with attribute label and value **/
+
+                                var repeat_times = 1;
+
+                                for (var p = 0; p < totalAttrs; p++) {
+                                    repeat_times *= $('input[name="' + variantFields[p] + '[]"]:checked').length;
+                                }
+                                if (repeat_times < 1) {
+                                    alert("<?= __('Please select atleast one option from') ?> " + $('#variantsAttributeLabels').val().replace(/,([^,]*)$/, ' & ' + '$1') + '.');
+                                    return false;
+                                }
+                                var i = 0;
+                                c = 0;
+                                k = 0;
+
+                                for (x = 0; x < repeat_times; x++)
+                                {
+                                    var lastWorked = 0;
+                                    var row = $('<tr></tr>').appendTo(mytable);
+                                    for (var j = 0; j < cols; j++) {
+
+                                        attributeName = attributeNameToLowerCaseWithSeparator(th[j]);
+
+                                        eleId = x + "_" + attributeName;
+                                        eleName = "variants_data[" + x + "][" + attributeName + "]";
+                                        eleValue = variantOpt.label[x][j - attrColOffset];
+                                        eleValueId = variantOpt.value[x][j - attrColOffset];
+
+                                        $('<td class="col col-' + attributeNameToClassNameFormat(th[j]) + '"></td>').html(getRender(attributeName, eleId, eleName, eleValue, eleValueId)).appendTo(row);
+
+                                    }
+                                }
+
+                                mytable.appendTo("#variantGrid");
+
+                                $('#variantGrid tr').each(function () {
+                                    $row = $(this);
+                                    $fromId = $(".date-from", $row).attr('id');
+                                    $toId = $(".date-to", $row).attr('id');
+                                    $row.dateRange({
+                                        buttonText: "<?= __('Select Date') ?>",
+                                        showOn: "button",
+                                        from: {
+                                            id: $fromId
+                                        },
+                                        to: {
+                                            id: $toId
+                                        }
+                                    });
+
+                                });
+                                <?php if ($block->checkVendorSkuValidation()) { ?>
+                                $('.vendor-sku').each( function () {
+                                    $(this).on('blur', function () {
+                                        if ($(this).val() != '') {
+                                        rbCommonMethods({
+                                            uniqueSkuCheckUrl: '<?= $block->getUniqueskuPostActionUrl() ?>',
+                                            sellerSkuEle: this,
+                                            isCheckuniqueSku: <?= $block->checkVendorSkuValidation() ?>
+                                        });
+                                        }
+                                    });
+                                });
+                                <?php } ?>
+                            }
+
+                            function getRender(attributeName, $eleId, eleName, eleValue, eleValueId) {
+                                selectFlag = false;
+                                eleId = $eleId.toString().replace(/_/g, '-');
+                                for (i in variantFields)
+                                {
+                                    if (variantFields[i] == attributeName) {
+                                        selectFlag = true;
+                                        break;
+                                    }
+                                }
+
+                                if (selectFlag) {
+                                    html = "<label>" + eleValue + "</label> \n\
+                                         <input type='hidden' id='" + eleId + "' name='" + eleName + "' value='" + eleValueId + "' />";
+                                } else if (attributeName == 'condition') {                                    
+                                    html = "<select id='" + eleId + "' name='" + eleName + "' ><option value='0'><?= __('Used');?></option><option value='1'><?= __('New');?></option><option value='2'><?= __('Rental');?></option></select>";
+                                } else if (attributeName == 'warranty_type') {
+                                    html = "<select id='" + eleId + "' name='" + eleName + "' ><option value='1'><?= __('Manufacturer');?></option><option value='2'><?= __('Vendor');?></option></select>";
+                                } else if (attributeName == 'special_from_date') {
+                                    html = "<div class='control date-field-container'><input class='date-from' type='text' id='date_" + eleId + "' name='" + eleName + "' /></div>";
+                                } else if (attributeName == 'special_to_date') {
+                                    html = "<div class='control date-field-container'><input class='date-to' type='text' id='date_" + eleId + "' name='" + eleName + "' /></div>";
+                                } else if (attributeName == 'action') {                                    
+                                    html = "<button type='button' title='<?= __('Remove');?>' class='action button secondary remove-row btn'><span><?= __('Remove');?></span></button>";
+                                } else if ($.inArray(attributeName, ["vendor_sku"]) > -1) {
+                                    html = "<input type='text' class='input-text required-entry vendor-sku' id='" + eleId + "' name='" + eleName + "' />";
+                                } else if ($.inArray(attributeName, ["qty"]) > -1) {
+                                    html = "<input type='text' class='input-text required-entry vendor-qty' id='" + eleId + "' name='" + eleName + "' />";                                
+                                } else if ($.inArray(attributeName, ["manufacturer_sku"]) > -1) {
+                                    html = "<input type='text' class='input-text required-entry manufacturer-sku manufacturer_sku' id='" + eleId + "' name='" + eleName + "' />";
+                                } else if (attributeName == 'price') {
+                                    html = "<input type='text' class='input-text required-entry price-update' id='" + eleId + "' name='" + eleName + "' data-validate=\"{required:true, 'validate-greater-than-zero':true, 'validate-number': true}\"/>";
+                                } else if (attributeName == 'special_price') {
+                                    html = "<input type='text' class='price-update' id='" + eleId + "' name='" + eleName + "' data-validate=\"{'validate-greater-than-zero':true, 'validate-number': true, 'validate-less-than-price':true}\"/>";
+                                } else if ($.inArray(attributeName, ["condition_note", "warranty_description"]) > -1) {
+                                    html = "<textarea class='input-text textarea' id='" + eleId + "' name='" + eleName + "'></textarea>";
+                                } else {
+                                    html = "<input type='text' id='" + eleId + "' name='" + eleName + "' >";
+                                }
+                                return html;
+                            }
+
+                            function attributeNameToClassNameFormat(attributeName) {
+                                var str = attributeNameToLowerCaseWithSeparator(attributeName);
+                                return str.split('_').join('-');
+
+                            }
+
+                            function attributeNameToLowerCaseWithSeparator(str) {
+                                return str.replace(/\s+/g, '_').toLowerCase();
+                            }
+
+                            function showHideFields(str) {
+                                var hideFields = ['Special Price', 'Special From Date', 'Special To Date'];
+                                $.each(hideFields, function (index, value) {
+                                    var thindex = $('.' + attributeNameToClassNameFormat(value)).index();
+                                    if (str) {
+                                        $("#basicTable th:nth-child(" + (thindex + 1) + ")").hide();
+                                        $("#basicTable td:nth-child(" + (thindex + 1) + ")").hide();
+                                    } else {
+                                        $("#basicTable th:nth-child(" + (thindex + 1) + ")").show();
+                                        $("#basicTable td:nth-child(" + (thindex + 1) + ")").show();
+                                    }
+                                });
+                            }
+
+                            $('#show_hide_fields').click(function (e) {
+                                if ($(this).text() == "<?= __('Show All Fields')?>") {
+                                    $text = "<?= __('Show Minimal Fields')?>";
+                                    str = 0;
+                                } else {
+                                    $text = "<?= __('Show All Fields')?>";
+                                    str = 1;
+                                }
+                                $(this).text($text);
+                                showHideFields(str);
+                            });
+
+                            $('#variantGrid tr').each(function () {
+                                $row = $(this);
+                                $fromId = $(".date-from", $row).attr('id');
+                                $toId = $(".date-to", $row).attr('id');
+                                $row.dateRange({
+                                    buttonText: "<?= __('Select Date') ?>",
+                                    showOn: "button",
+                                    from: {
+                                        id: $fromId
+                                    },
+                                    to: {
+                                        id: $toId
+                                    }
+                                });
+                            });
+
+                            $(".btn").click(function (e) {
+                                $(this).parent().parent().remove();
+                                if ($('#basicTable tr').length == 1) {
+                                    $('#basicTable').find('thead').remove();
+                                    $('#show_hide_fields').hide();
+
+                                }
+                            });
+
+                        <?php if ($block->isRequestResubmitted()) { ?>
+                                $('document').ready(function () {
+                                    $('html, body').animate({
+                                        scrollTop: $("#variantGrid").offset().top - 100
+                                    }, 2000);
+                                });
+                        <?php } ?>
+                        });
+                    </script>
+                </div>
+            <?php } else { ?>
+                <?= __('Sorry, No variant attributes found for selected category.'); ?>
+            <?php } ?>
+        <?php } ?>
+    </div>
+</div>

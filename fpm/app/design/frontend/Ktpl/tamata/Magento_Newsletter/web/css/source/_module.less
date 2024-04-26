@@ -1,0 +1,144 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //  Newsletter subscription
+
+    .block.newsletter {
+        .title {
+           margin-bottom: 17px;
+        }
+
+        .form.subscribe {
+            display: table;
+            width: 100%;
+            max-width: 320px;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+
+            div.mage-error[generated] {
+                position: absolute;
+                color: @color-red;
+                margin-top: 18px;
+            }
+        }
+
+        .fieldset {
+            display: table-cell;
+            margin: 0;
+            padding: 0;
+            vertical-align: top;
+        }
+
+        .field {
+            margin: 0;
+
+            .control {
+                display: block;
+                padding: 15px 0;
+            }
+        }
+
+        input {
+            padding: 0 20px;
+            border: 0;
+            height: 20px;
+            font-size: 13px;
+            color: #999999;
+            background: none;
+        }
+
+        .label {
+            &:extend(.abs-visually-hidden all);
+        }
+
+        .actions {
+            display: table-cell;
+            vertical-align: top;
+            width: 1%;
+        }
+
+        .action.subscribe {
+            border:0;
+            padding: 0 20px;
+            margin: 0;
+            background: none;
+            color: #333;
+            font-size: 13px;
+            height: 50px;
+            font-weight: 700;
+
+            &:hover {
+                color: @color-red;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .block.newsletter {
+        width: 25%;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .block {
+        &.newsletter {
+            input {
+                font-size: 12px;
+            }
+
+            .field {
+                .control:before {
+                    font-size: 13px;
+                }
+            }
+            .form.subscribe {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .block.newsletter {
+        margin-bottom: 30px;
+
+        .title {
+            margin-bottom: 4px;
+
+            h3 {
+                border-top: 0 !important;
+                padding-top: 0 !important;
+            }
+        }
+
+        .form.subscribe {
+            max-width: 100%;
+        }
+    }
+}
+
+
+@media (min-width: 1023px) and (max-width: 1280px) { 
+
+        .block.newsletter input { padding: 0 0 0 10px; }
+        .block.newsletter .action.subscribe { padding: 0 10px 0 10px;  font-size: 13px;  }
+
+}

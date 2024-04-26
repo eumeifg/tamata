@@ -1,0 +1,16 @@
+{
+    "name": "ktpl/module-reorderitem",
+    "description": "This module allows to reorder at item level.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Ktpl\\ReorderItem\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

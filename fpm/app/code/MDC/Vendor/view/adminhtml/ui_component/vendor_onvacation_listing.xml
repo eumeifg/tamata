@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_Vendor
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <container name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="enable_microsite">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">enable_microsite</item>
+                        <item name="label" xsi:type="string" translate="true">Enable Microsite</item>
+                    </item>
+                </argument>
+                <argument name="actions" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="type" xsi:type="string">enable</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                        <item name="url" xsi:type="url" path="vendor/index/massStatusMicrosite">
+                            <param name="enable_microsite">1</param>
+                        </item>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Enable Microsite(s)</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure to enable microsite for selected vendors?</item>
+                        </item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="type" xsi:type="string">disable</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                        <item name="url" xsi:type="url" path="vendor/index/massStatusMicrosite">
+                            <param name="enable_microsite">0</param>
+                        </item>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Disable Microsite(s)</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure to disable microsite for selected vendors?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+    </container>
+    <columns name="vendor_columns">
+        <column name="enable_microsite">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Microsite Enabled</item>
+                    <item name="sortOrder" xsi:type="number">130</item>
+                </item>
+            </argument>
+        </column>
+    </columns>    
+</listing>

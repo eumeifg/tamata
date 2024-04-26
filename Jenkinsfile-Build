@@ -1,0 +1,78 @@
+pipeline {
+    agent {
+        kubernetes {
+            cloud 'eks-tamata-staging'
+            yamlFile '.jenkins/default-pod-template.yaml'
+            inheritFrom 'jenkins-tamata-staging'
+            workspaceVolume dynamicPVC(accessModes: 'ReadWriteOnce', requestsSize: '4Gi', storageClassName: 'ebs-sc')
+        }
+    }
+    environment {
+        PATH = "/kaniko:/busybox:$PATH"
+        ECR_REPOSITORY = '310830963532.dkr.ecr.eu-central-1.amazonaws.com'
+        SCANNER_HOME = tool 'sonar'
+        PROJECT_NAME = "creativeadvtech:tamata"
+    }
+    options {
+        ansiColor('xterm')
+        parallelsAlwaysFailFast()
+    }
+    stages {
+        stage('Make version') {
+            steps {
+                script {
+                    env.shaVersion = sh(returnStdout: true, script: "git rev-parse --short=7 HEAD").trim()
+                    currentBuild.description = "fpm-${env.shaVersion} and web-${env.shaVersion}"
+                }
+            }
+        }
+	stage('Static code analysis') {
+	    tools {
+		nodejs 'Nodejs'
+	    }
+	    steps{
+		withSonarQubeEnv('sonarqube'){
+		    sh '''
+			$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=$PROJECT_NAME
+		    '''
+		}
+	    }
+	}
+        stage('Build') {
+            parallel {
+                stage('Build FPM image') {
+                    agent {
+                        kubernetes {
+                            cloud 'eks-tamata-staging'
+                            yamlFile '.jenkins/build-pod-template.yaml'
+                            workspaceVolume dynamicPVC(accessModes: 'ReadWriteOnce', requestsSize: '10Gi', storageClassName: 'ebs-sc')
+                        }
+                    }
+                    steps {
+                        container(name: 'builder', shell: '/busybox/sh') {
+                            sh '''
+                                /kaniko/executor --dockerfile fpm/Dockerfile-fpm --context ./fpm --destination=${ECR_REPOSITORY}/tamata-magento:fpm-${GIT_COMMIT:0:7}
+                            '''
+                        }
+                    }
+                }
+                stage('Build WEB image') {
+                    agent {
+                        kubernetes {
+                            cloud 'eks-tamata-staging'
+                            yamlFile '.jenkins/build-pod-template.yaml'
+                            workspaceVolume dynamicPVC(accessModes: 'ReadWriteOnce', requestsSize: '10Gi', storageClassName: 'ebs-sc')
+                        }
+                    }
+                    steps {
+                        container(name: 'builder', shell: '/busybox/sh') {
+                            sh '''
+                                /kaniko/executor --dockerfile fpm/Dockerfile-web --context ./fpm --destination=${ECR_REPOSITORY}/tamata-magento:web-${GIT_COMMIT:0:7}
+                            '''
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

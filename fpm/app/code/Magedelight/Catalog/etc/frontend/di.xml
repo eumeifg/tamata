@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Controller\Cart\Add">
+        <plugin name="addProductToShoppingCartBefore" type="\Magedelight\Catalog\Controller\Cart\Plugin\BeforeAddProductToCart" sortOrder="1" />
+    </type>
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="getAllowProductsAfter" type="\Magedelight\Catalog\Plugin\Block\Product\View\Type\Configurable" sortOrder="1" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="catalogrbToolbar" type="Magedelight\Catalog\Block\Catalog\Product\ProductList\Toolbar"/>
+    </type>
+    <type name="Magento\Catalog\Helper\Product\Compare">
+        <plugin name="bindVendorToComparedProducts" type="Magedelight\Catalog\Plugin\Helper\Product\Compare"/>
+    </type>
+    <type name="Magento\CatalogWidget\Block\Product\ProductsList">
+        <plugin name="bindVendorToCatalogWidgetProducts" type="Magedelight\Catalog\Plugin\Block\Product\ProductsList"/>
+    </type>
+    <type name="Magento\Checkout\Helper\Cart">
+        <plugin name="bindVendorToCartUrl" type="Magedelight\Catalog\Plugin\Helper\Cart"/>
+    </type>
+    
+    <!--Append vendor_id to category listing collection.--> 
+    <type name="Magento\CatalogSearch\Model\Layer\Category\ItemCollectionProvider">
+        <plugin name="addVendorToCategoryListing" type="Magedelight\Catalog\Plugin\Model\Layer\Category\AddVendorToCategoryListing"/>
+    </type>
+    <type name="Magento\Catalog\Model\Layer\Search\ItemCollectionProvider">
+        <plugin name="addVendorToSearchListing" type="Magedelight\Catalog\Plugin\Model\Layer\Search\AddVendorToSearchListing"/>
+    </type>
+    <!--Append vendor_id to category listing collection.--> 
+
+    <!-- product Listing & Detail -->
+    <type name="Magento\Catalog\Api\Data\ProductInterface">
+        <plugin name="MdExtensionAttr" type="Magedelight\Catalog\Plugin\ProductDataAppend" />
+    </type>
+</config>

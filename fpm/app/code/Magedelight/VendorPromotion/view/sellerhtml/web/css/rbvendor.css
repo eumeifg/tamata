@@ -1,0 +1,34 @@
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_VendorPromotion
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+/* Price Rules */
+.rule-tree                    { line-height: 32px; }
+.rule-tree li                    {margin: 0 0 12px 0; }
+.rule-tree ul                   { padding-left:16px !important; border-left:dotted 1px #888; }
+.rule-tree .x-tree ul           { padding-left:0 !important; border-left:none !important; }
+.rule-param .label              { font-weight:bold; color:black; }
+.rule-param .label:hover        { font-weight:bold; color:blue; }
+.rule-param .label-disabled     { color:black; cursor:default; text-decoration:none; }
+.rule-param .label-disabled:hover { color:black;}
+.rule-param .element            { display:none; }
+.rule-param input,
+.rule-param select              { width:auto !important; min-width:170px; }
+.rule-param select.multiselect  { vertical-align:top; }
+.rule-param-edit .label         { display:none; }
+.rule-param-edit .element       { display:inline; }
+.rule-param-add                 { font-weight:normal; color:green; text-decoration:none; }
+.rule-param-add:hover           { font-weight:normal; color:blue; text-decoration:none; }
+.rule-param-apply               { font-weight:normal; color:green; text-decoration:none; }
+.rule-param-apply:hover         { font-weight:normal; color:blue; text-decoration:none; }
+.rule-param-remove              { font-weight:normal; color:red; text-decoration:none; }
+.rule-param-remove:hover        { font-weight:normal; color:blue; text-decoration:none; }
+.rule-chooser                   {  margin:5px; display:none; }
+.rule-param-wait                { padding-left:20px; background-image:url(../images/rule-ajax-loader.gif); background-repeat:no-repeat; background-position:0 50%; }

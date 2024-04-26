@@ -1,0 +1,62 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php $_orders = $block->getCollection(); ?>
+
+<?php if ($_orders && count($_orders)) : ?>
+
+    <div class="table-wrapper orders-history">
+        
+        <table class="data table table-order-items history" id="new-orders-table">
+            
+            <caption class="table-caption"><?= __('Orders') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?= __('ID #') ?></th>
+                    <th scope="col" class="col date"><?= __('Purchase Date') ?></th>
+                    <th scope="col" class="col billing"><?= __('Bill-to Name') ?></th>
+                    <th scope="col" class="col shipping"><?= __('Ship-to Name') ?></th>
+                    <th scope="col" class="col dispatch"><?= __('Dispatch By') ?></th>
+                    <th scope="col" class="col total"><?= __('Grand Total') ?></th>
+                    <th scope="col" class="col status"><?= __('Status') ?></th>
+                    <th scope="col" class="col actions"><?= __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <?php  foreach ($_orders as $_order) : ?>
+                    <tr>
+                        <td data-th="<?= $block->escapeHtml(__('ID #')) ?>" class="col id"><?= $_order->getIncrementId() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Purchase Date')) ?>" class="col data-grid-date-cell"><?= $block->formatDate($_order->getCreatedAt()) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Bill-to Name')) ?>" class="col billing"><?= $_order->getBillingAddress() ? $block->escapeHtml($_order->getBillingAddress()->getName()) : '&nbsp;' ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Ship-to Name')) ?>" class="col shipping"><?= $_order->getShippingAddress() ? $block->escapeHtml($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Dispatch By')) ?>" class="col dispatch">To do</td>
+                        <td data-th="<?= $block->escapeHtml(__('Grand Total')) ?>" class="col data-grid-price-cell"><?= $_order->formatPrice($_order->getGrandTotal()) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col data-grid-status-cell"><?= $_order->getStatusLabel() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col data-grid-actions-cell">
+                            <a href="<?= $block->getEditUrl($_order) ?>" class="action view">
+                                <span><?= __('Edit') ?></span>
+                            </a>                            
+                        </td>
+                    </tr>
+                <?php endforeach;  ?>
+                    
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()) : ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+<?php else : ?>
+    <div class="message info empty"><span><?= __('No orders found.'); ?></span></div>
+<?php endif ?>
+

@@ -1,0 +1,11 @@
+{
+    "ktpl_productslider_slider": {
+        "column": {
+            "sort_order": true,
+            "brand_vendor": true,
+            "new_items_banner": true,
+            "page_type": true,
+            "data_id": true
+        }
+    }
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_ConfigurableProduct
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Catalog\Api\Data\ProductInterface">
+        <attribute code="configurable_data" type="Magedelight\ConfigurableProduct\Api\Data\ConfigurableDataInterface"/>
+    </extension_attributes>
+
+    <extension_attributes for="Magedelight\Catalog\Api\Data\ProductRequestInterface">
+        <attribute code="configurable_product_links" type="int[]"/>
+        <attribute code="configurable_product_options" type="Magedelight\ConfigurableProduct\Api\Data\ConfigurableAttributeDataInterface[]"/>
+        <attribute code="configurable_child_items" type="Magedelight\Catalog\Api\Data\ProductRequestInterface[]"/>
+    </extension_attributes>
+</config>

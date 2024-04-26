@@ -1,0 +1,189 @@
+<?php if ($this->helper('Magedelight\Sales\Helper\Data')->getConfig('rb/odetail/orderpage_enable') == 1) { ?>
+    <div class="custom-actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?= $block->getUrl() ?>">
+                <span>
+                    <?= __('Continue Shopping') ?>
+                </span>
+            </a>
+        </div>
+    </div>
+    <?php
+    $order_id = $block->getOrderId();
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $order = $objectManager->get('Magento\Sales\Model\Order');
+    $registry = $objectManager->get('Magento\Framework\Registry');
+    $order_information = $order->loadByIncrementId($order_id);
+    $registry->register('current_order', $order_information);
+    $billing_address = $objectManager->get('Magento\Sales\Model\Order\Address')->load($order_information->getBillingAddressId());
+    $shipping_address = $objectManager->get('Magento\Sales\Model\Order\Address')->load($order_information->getShippingAddressId());
+    $orderItems = $order_information->getItemsCollection()->addAttributeToSelect('*')->load();
+    ?>
+    <?php
+    $date = explode(" ", $order_information->getCreatedAt());
+    $source = $date[0];
+    $date = new DateTime($source);
+    $orderdate = $date->format('F d, Y');
+    ?>
+
+<div class="order-success-wrapper">
+    <h2 class="title-info"><?= __('Order Information') ?></h2>
+    <div class="order-info-header mbn bbn pbn">
+        <div class="order-info-summary">
+            <div class="col-md-6">
+                <div class="item order-id"><span class="item-lable">Order ID:</span><span class="item-label-value"><?= $block->escapeHtml($block->getOrderId()); ?></span></div>
+                <div class="item order-date"><span class="item-lable">Order Date:</span><span class="item-label-value"> <?= $orderdate; ?></span></div>
+            </div>
+            <div class="col-md-6">
+                <div class="item rder-shipping-method"><span class="item-lable">Shipping Method:</span><span class="item-label-value"><?= $order_information->getShippingDescription(); ?></span></div>
+                <div class="item order-payment-method"><span class="item-lable">Payment Method:</span><span class="item-label-value"><?= $order_information->getPayment()->getMethodInstance()->getTitle(); ?></span></div>
+            </div>
+        </div>
+        <?php if ($orderItems->getFirstItem()->getProductType() != 'virtual') : ?>
+        <div class="order-address-summary">
+            <div class="col-md-6 order-address">
+                <h4>Shipping To:</h4>
+                <address>
+                    <?= $shipping_address->getFirstname() . " " . $shipping_address->getLastname() ?><br />
+                    <?php $street = $shipping_address->getStreet() ?>
+                    <?= (isset($street[0]) ? $street[0] : "") . " " . (isset($street[1]) ? $street[1] : ""); ?><br />
+                    <?= (!empty($shipping_address->getRegion())) ?  $shipping_address->getCity() . "," . $shipping_address->getRegion() . "," . $shipping_address->getPostcode() : ''; ?><br />
+                    <?= (!empty($shipping_address->getCountryId())) ? $objectManager->get('Magento\Directory\Model\country')->loadByCode($shipping_address->getCountryId())->getName(): ''; ?>
+                    <br />
+                    <?= __("T: ") . $shipping_address->getTelephone() ?>
+                </address>
+            </div>
+            <div class="col-md-6 order-address">
+                <h4>Billing To:</h4>
+                <address>
+                    <?= $billing_address->getFirstname() . " " . $billing_address->getLastname() ?><br />
+                    <?php $street = $billing_address->getStreet() ?>
+                    <?= (isset($street[0]) ? $street[0] : "") . " " . (isset($street[1]) ? $street[1] : ""); ?><br />
+                    <?= (!empty($shipping_address->getRegion())) ? $billing_address->getCity() . "," . $billing_address->getRegion() . "," . $billing_address->getPostcode() : ''; ?><br />
+                    <?= (!empty($shipping_address->getCountryId())) ? $objectManager->get('Magento\Directory\Model\country')->loadByCode($billing_address->getCountryId())->getName() : '';
+                    ?> <br />
+                    <?= __("T: ") . $billing_address->getTelephone() ?>
+                </address>
+            </div>
+        </div>
+        <?php endif;?>
+    </div>
+
+    <div class="order-info-body">
+        <div class="table-wrapper orders-history rb-qr-orders-history">
+            <table id="checkout-review-table" class="data table table-order-items">
+                <thead>
+                    <tr class="first last border-row">
+                        <th><?= __('Product Name'); ?></th>
+                        <th><?= __('Price'); ?></th>
+                        <th><?= __('Qty'); ?></th>
+                        <th><?= __('Subtotal'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                $count = 0;
+                $class = "";
+                foreach ($orderItems as $sItem) {
+                    if ($sItem->getParentItem()) {
+                        continue;
+                    }
+                    $productId = $sItem->getProductId();
+                    if ($sItem->getParentItemId() == "") {
+                        $count++;
+                        $class = ($count % 2 == 0) ? "even" : "odd";
+                    }
+                    ?>
+                    <tr class="first last <?= $class; ?> border-row">
+                        <td data-th="Name" class="col name">
+                            <?= $sItem->getName(); ?>
+                                <?php
+                                $options = $sItem->getProductOptions();
+                                if (isset($options) && isset($options["attributes_info"]) && count($options["attributes_info"]) > 0) :
+                                    $attributeOption = $options["attributes_info"];
+                                    ?>
+                                    <dl class="item-options">
+                                        <?php foreach ($attributeOption as $ops) : ?>
+                                            <dt><?= $ops['label'] ?></dt>
+                                            <dd><?= $ops['value'] ?></dd>
+                                        <?php endforeach; ?>
+                                    </dl>
+                                <?php endif; ?>
+                                <?php
+                                if (isset($options) && isset($options["bundle_options"]) && count($options["bundle_options"]) > 0) :
+                                    $attributeOption = $options["bundle_options"];
+                                    ?>
+                                    <dl class="item-options">
+                                        <?php foreach ($attributeOption as $ops) : ?>
+                                            <dt><?= $ops['label'] ?></dt>
+                                            <dd>
+                                                <?php
+                                                $bundleValue = $ops['value'];
+                                                if (count($bundleValue) > 0) :
+                                                    foreach ($bundleValue as $bvalue) : ?>
+                                                        <?= $bvalue["qty"] . "x" . $bvalue["title"]; ?>
+                                                    <?php endforeach;
+                                                endif;
+                                                ?>
+                                            </dd>
+                                        <?php endforeach; ?>
+                                    </dl>
+                                <?php endif; ?>
+                        </td>
+
+                        <td data-th="Price" class="col total">
+                            <span class="cart-price">
+                                <span class="price">
+                                    <?php if ($sItem->getParentItemId() == "") { ?>
+                                        <?= round($sItem->getPrice(), 2); ?>
+                                    <?php } ?>
+                                </span> 
+                            </span>
+                        </td>
+
+                        <td data-th="Qty" class="col Qty">
+                            <?php if ($sItem->getParentItemId() == "") { ?>
+                                <?= __('Ordered') .': '. intval($sItem->getQtyOrdered()); ?>
+                            <?php } ?>
+                        </td>
+
+                        <td data-th="Subtotal" class="col total">
+                            <span class="cart-price">
+                                <span class="price">
+                                    <?php if ($sItem->getParentItemId() == "") { ?>
+                                        <?= round($sItem->getPrice() * $sItem->getQtyOrdered(), 2); ?>
+                                    <?php } ?>
+                                </span>
+                            </span>
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+                <tfoot>
+                    <?= $block->getChildHtml('order_totals'); ?>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+<?php } else { ?>
+    <div class="checkout-success">
+    <?php if ($block->getOrderId()) :?>
+        <?php if ($block->getCanViewOrder()) :?>
+            <p><?= __('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeHtml($block->getViewOrderUrl()), $block->escapeHtml($block->getOrderId()))) ?></p>
+        <?php  else :?>
+            <p><?= __('Your order # is: <span>%1</span>.', $block->escapeHtml($block->getOrderId())) ?></p>
+        <?php endif;?>
+            <p><?= __('We\'ll email you an order confirmation with details and tracking info.') ?></p>
+    <?php endif;?>
+
+    <?= $block->getAdditionalInfoHtml() ?>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?= $block->getUrl() ?>"><span><?= __('Continue Shopping') ?></span></a>
+        </div>
+    </div>
+</div>
+<?php } ?>

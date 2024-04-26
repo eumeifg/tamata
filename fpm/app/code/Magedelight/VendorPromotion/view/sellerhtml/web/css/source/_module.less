@@ -1,0 +1,113 @@
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_VendorPromotion
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+
+
+@section-tray-panel__background: @color-white;
+@section-tray-panel-heading__background: #fafafa;
+
+@rbvp-icons__font-path: '@{baseDir}../../fonts/RB-Vendor-Promotion';
+@rbvp-icons__font-name: 'RB-Vendor-Promotion'; 
+
+.lib-font-face(
+@family-name:@rbvp-icons__font-name, 
+@font-path: @rbvp-icons__font-path, 
+@font-weight: normal,
+@font-style: normal  
+);
+
+
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+ .generic-box {
+            .lib-css(background, @section-tray-panel__background);
+            .lib-css(border, 1px solid @border-color__base);
+            .lib-css(margin-bottom, @indent__l );
+            .lib-clearer();
+
+        .box-head {
+          .lib-css(border-bottom, 1px solid @border-color__base);
+          .lib-css(background, @section-tray-panel-heading__background);
+          .lib-css(padding, @indent__s @indent__base);
+          .lib-css(font-weight, @font-weight__semibold); 
+           h3 {
+              .lib-font-size(14);
+              .lib-css(margin, 0 0 0 0);
+
+           }
+        }
+        .generic-box-body {
+           .lib-css(padding, @indent__base);
+           ul, li {
+             list-style: none;
+           }
+
+        }
+        .fieldset > .field {
+          .lib-css(margin, 0 0 0 0);
+          .lib-css(padding, @indent__s);
+
+        &:nth-child(odd) {
+          .lib-css(background, #f2f2f2);
+        }
+
+        }
+
+
+      }
+
+.rule-tree {
+  .lib-font-size(15);
+}
+.generic-box-body {
+  .rule-tree {
+    .rule-param-children {
+      .x-tree ul {
+        padding-left: 16px !important;
+        border-left: dotted 1px #888 !important;
+        line-height: normal;
+        li {
+          margin: 12px 0 0 0;
+        }
+      }
+      .rule-param-edit {
+        .element {
+          .addafter {
+            padding-left: 10px;
+            padding-right: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+}
+
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {}
+
+//
+//    Desktop
+//--------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {}
+
+//
+//    Desktop
+//--------------------------------------
+
+
+

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Ktpl\MegaMenu\Block\Html\Topmenu">
+        <plugin name="navLinksTopmenu" type="Ktpl\NavLinks\Plugin\Block\TopmenuPlugin" sortOrder="9999" />
+    </type>
+</config>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Commissions
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="commission" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="0">
+            <class>separator-top</class>
+            <label>Commission and Payments</label>
+            <tab>rbsettings</tab>
+            <resource>Magedelight_Theme::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Commission</label>
+                <field id="commission_calc_type" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Commission Calculation Type</label>
+                    <source_model>Magedelight\Commissions\Model\Source\CalculationType</source_model>
+                    <comment><![CDATA[Selected calculation type is considered for commission calculation.]]></comment>
+                </field>
+                <field id="commission_value" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Commission Rate</label>
+                    <comment><![CDATA[Default commission rate.]]></comment>
+                    <comment><![CDATA[Commission rate to be paid by the vendor to Marketplace Admin.]]></comment>
+                </field>
+                <field id="marketplace_fee_calc_type" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Marketplace Fee Calculation Type</label>
+                    <source_model>Magedelight\Commissions\Model\Source\CalculationType</source_model>
+                    <comment><![CDATA[Selected calculation type is considered for commission calculation.]]></comment>
+                </field>
+                <field id="marketplace_fee" translate="label" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Marketplace Fee</label>
+                    <comment><![CDATA[Calculation of the Marketplace fee to be paid either in percentage or flat as per the selection.]]></comment>
+                </field>
+                <field id="cancellation_fee_calc_type" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Cancellation Fee Calculation Type</label>
+                    <source_model>Magedelight\Commissions\Model\Source\CalculationType</source_model>
+                    <comment><![CDATA[Selected calculation type is considered for cancellation calculation.]]></comment>
+                </field>
+                <field id="cancellation_fee" translate="label" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Cancellation Fee</label>
+                    <comment><![CDATA[Calculation of the Cancellation fee considered for vendor payout.]]></comment>
+                </field>
+                <field id="service_tax" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Service Tax</label>
+                    <comment><![CDATA[Service tax percentage(%) levied on commission and marketplace fee.]]></comment>
+                </field>
+            </group>
+            <group id="payout" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Payout</label>
+                <field id="shipping_liability" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Shipping Liability</label>
+                    <source_model>Magedelight\Commissions\Model\Source\Actor</source_model>
+                    <comment><![CDATA[Selected entity will be liable to ship the order.]]></comment>
+                </field>
+                <field id="tax_liability" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Tax Liability</label>
+                    <source_model>Magedelight\Commissions\Model\Source\Actor</source_model>
+                    <comment><![CDATA[Selected entity will be liable to pay the tax to the market place.]]></comment>
+                </field>
+                <field id="adjustment_liability" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Adjustment Liability</label>
+                    <source_model>Magedelight\Commissions\Model\Source\Actor</source_model>
+                    <comment><![CDATA[Selected entity will be liable for adjustment of refunds/adjustment amounts.]]></comment>
+                </field>
+                <field id="discount_liability" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Discount Liability</label>
+                    <source_model>Magedelight\Commissions\Model\Source\Actor</source_model>
+                    <comment><![CDATA[Selected entity will be liable for discount amounts. Auto - Liability will determin the who beared the discount and PO will settled accordingly. ]]></comment>
+                </field>
+                <field id="duration" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Generate payout after order completes</label>
+                    <comment><![CDATA[Payout entry with calculated commission will be generated for the completed orders after the specified days elapsed.]]></comment>
+                </field>
+            </group> 
+            <group id="payout_commission" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Vendor Commission Precedence Settings</label>
+                <field id="precedence_1" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Commission Precedence 1</label>
+                    <source_model>Magedelight\Commissions\Model\Source\CommissionType</source_model>
+                    <comment><![CDATA[Commission of marketplace subscription to be paid as per the precedence configured]]></comment>
+                </field>
+                <field id="precedence_2" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Commission Precedence 2</label>
+                    <source_model>Magedelight\Commissions\Model\Source\CommissionType</source_model>
+                    <comment><![CDATA[Commission of marketplace subscription to be paid as per the precedence configured]]></comment>
+                </field>
+                <field id="precedence_3" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Commission Precedence 3</label>
+                    <source_model>Magedelight\Commissions\Model\Source\CommissionType</source_model>
+                    <comment><![CDATA[Commission of marketplace subscription to be paid as per the precedence configured]]></comment>
+                </field>
+            </group>
+        </section>
+        
+        <section id="emailconfiguration">
+            <group id="vendor_comm" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Commission</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_commission_new" translate="label" type="text" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Commission New</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_catcommission_new" translate="label" type="text" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Category Commission New</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_commission_change" translate="label" type="text" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Commission Change</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="global_commission_change" translate="label" type="text" sortOrder="245" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Global Commission Change</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_catcommission_change" translate="label" type="text" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Category Commission Change</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_product_commission_change" translate="label" type="text" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Product Commission Change</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

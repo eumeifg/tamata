@@ -1,0 +1,31 @@
+<div class="header-link-right">
+    <a href="#">Login for existing sellers</a>
+</div>
+
+
+
+<script >
+ require([
+    'jquery',
+ 	'Magento_Ui/js/modal/modal'
+], function($,modal){
+
+	var options = {
+        type: 'popup',
+        responsive: true,
+        innerScroll: true,
+        buttons: false,
+        modalClass: 'login-popup',
+        title: 'Login'
+    };
+ 	var popup = modal(options, $('#login-popup-box'));
+    $(".header-link-right a").on('click',function(){        	
+            $("#login-popup-box").modal("openModal");
+    });
+    
+    $(".field.login-here a").on('click',function(){            
+            $("#login-popup-box").modal("openModal");
+    });
+ 
+});
+</script>

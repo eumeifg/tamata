@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<page layout="admin-1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="notifications" remove="true"/>
+    <referenceBlock name="locale.switcher" remove="true"/>
+    <referenceContainer name="legal" remove="true"/>
+    <head>
+        <css src="CAT_VIP::css/jquery-customselect.css" />
+    </head>
+    <referenceContainer name="header" remove="true"/>
+    <referenceContainer name="page.menu" remove="true"/>
+    <referenceContainer name="page.breadcrumbs" remove="true"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="CAT\VIP\Block\Adminhtml\Offer\Edit" name="offer_edit_tabs" template = "CAT_VIP::catalog/product/form.phtml">
+                <container name="form">
+                    <block class="CAT\VIP\Block\Adminhtml\Offer\Edit\Main" name="vipoffer_main" />
+                </container>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

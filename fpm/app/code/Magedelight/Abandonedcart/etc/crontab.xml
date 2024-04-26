@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Magedelight
+* Copyright (C) 2018 Magedelight <info@magedelight.com>
+*
+* @category Magedelight
+* @package Magedelight_Abandonedcart
+* @copyright Copyright (c) 2018 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="md_cronabandoned">
+        <job name="md_abandonedcart_generatequeue" instance="Magedelight\Abandonedcart\Cron\GenerateQueue" method="execute">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+        <job name="md_abandonedcart_sendqueue" instance="Magedelight\Abandonedcart\Cron\SendQueue" method="execute">
+            <schedule>*/10 * * * *</schedule>
+        </job>
+        <job name="md_abandonedcart_clearhistory" instance="Magedelight\Abandonedcart\Cron\ClearHistory" method="execute">
+            <schedule>0 */3 * * *</schedule>
+        </job>
+    </group>
+</config>

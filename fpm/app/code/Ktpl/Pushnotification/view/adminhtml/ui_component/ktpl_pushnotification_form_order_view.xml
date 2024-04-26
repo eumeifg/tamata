@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">ktpl_pushnotification_form_order_view.ktpl_pushnotifications_form_data_source</item>
+		</item>
+		 
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<!-- <buttons>
+			<button class="Ktpl\Pushnotification\Block\Adminhtml\Pushnotifications\Edit\BackButton" name="back"/>
+			<button class="Ktpl\Pushnotification\Block\Adminhtml\Pushnotifications\Edit\DeleteButton" name="delete"/>
+			<button class="Ktpl\Pushnotification\Block\Adminhtml\Pushnotifications\Edit\SaveButton" name="save"/>
+			 
+		</buttons> -->
+		<namespace>ktpl_pushnotification_form_order_view</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>ktpl_pushnotification_form_order_view.ktpl_pushnotifications_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="ktpl_pushnotifications_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider class="Ktpl\Pushnotification\Model\Ktplpushnotifications\DataProvider" name="ktpl_pushnotifications_form_data_source">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>Send Push Notification</label>
+		</settings>
+		<field formElement="input" name="title" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">ktpl_pushnotifications</item>
+					<item name="notice" xsi:type="string" translate="true">You may use following variables in field.
+                        {{first_name}}, {{last_name}}, {{order_id}}</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Title</label>
+				<dataScope>title</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="textarea" name="description" sortOrder="30">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">ktpl_pushnotifications</item>
+					<item name="cols" xsi:type="number">15</item>
+                    <item name="rows" xsi:type="number">5</item>
+                    <item name="notice" xsi:type="string" translate="true">You may use following variables in field.
+                        {{first_name}}, {{last_name}}, {{order_id}}</item>
+                   <item name="validation" xsi:type="array">
+                    	<item name="custom-validation-title" xsi:type="boolean">true</item>
+                	</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Description</label>
+				<dataScope>description</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="image_url" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Upload Image</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                     <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Ktpl_Pushnotification/image-preview</item>
+                    <item name="hasPreview" xsi:type="string">false</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="ktpl_pushnotification/ktplpushnotifications/upload"/>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        
+        <field name="send_to_order" formElement="textarea">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">ktpl_pushnotifications</item>
+                    <item name="cols" xsi:type="number">15</item>
+                    <item name="rows" xsi:type="number">5</item>
+                    <item name="notice" xsi:type="string" translate="true">Please use comma (,) separated value</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Send to order</label>
+				<dataScope>send_to_order</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="type_promotion">
+		    <argument name="data" xsi:type="array">
+		        <item name="options" xsi:type="object">Ktpl\Pushnotification\Model\Config\Source\TypePromotion</item>
+		        <item name="config" xsi:type="array">
+		            <item name="dataType" xsi:type="string">text</item>
+		            <item name="label" xsi:type="string" translate="true">Promotion Type</item>
+		            <item name="formElement" xsi:type="string">select</item>
+		            <item name="source" xsi:type="string">ktpl_pushnotifications</item>
+		            <item name="dataScope" xsi:type="string">type_promotion</item>
+		            <item name="default" xsi:type="string">0</item>
+		            <item name="validation" xsi:type="array">
+		                <item name="required-entry" xsi:type="boolean">true</item>
+		            </item>
+		        </item>
+		    </argument>
+		</field> 
+		<field name="promotion_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">promotion Id</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">ktpl_pushnotifications</item>
+                    <item name="dataScope" xsi:type="string">promotion_id</item>
+                    <item name="notice" xsi:type="string" translate="true">if you select promotion type product then add product id.</item>
+                </item>
+            </argument>
+        </field> 
+      </fieldset>    
+</form>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ktpl_quickview>
+            <general>
+                <button_style>v2</button_style>
+                <close_quickview>5</close_quickview>
+                <custom_css></custom_css>
+                <enable_goto_product_button>1</enable_goto_product_button>
+                <enable_product_listing>1</enable_product_listing>
+                <enable_shopping_checkout_product_buttons>1</enable_shopping_checkout_product_buttons>
+                <display_availability>1</display_availability>
+                <display_reviews>1</display_reviews>
+                <display_goto_product_button>1</display_goto_product_button>
+                <display_product_image>1</display_product_image>
+                <display_product_image_thumbnail>1</display_product_image_thumbnail>
+                <display_qty_selector>1</display_qty_selector>
+                <display_short_description>0</display_short_description>
+                <display_sku>1</display_sku>
+                <scroll_to_top>1</scroll_to_top>
+                <enable_zoom>true</enable_zoom>
+                <zoom_eventtype>hover</zoom_eventtype>
+            </general>
+        </ktpl_quickview>
+    </default>
+</config>

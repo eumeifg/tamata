@@ -1,0 +1,236 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block \Magedelight\Catalog\Block\Product\Edit\Offers */
+$vendorProduct = $block->getVendorProduct();
+?>
+<div id="product-offers-content" class="product-offers-content">
+    <fieldset class="fieldset">
+        <div class="field vendor-sku required">
+            <label class="label" for="vendor-sku">
+                <span><?= __('Vendor Sku') ?></span>
+            </label>
+            <div class="control">
+                <input class="input-text required-entry"
+                       type="text"
+                       id="seller-sku"
+                       name="offer[vendor_sku]"
+                       value = "<?= $vendorProduct->getVendorSku() ?>"
+                       data-validate="{required:true}"
+                       placeholder="<?= __('Vendor Sku'); ?>"
+                        <?= $block->isView()? 'disabled' : '' ?>/>
+                <input type="hidden" id="hidden-seller-sku" value="<?= $vendorProduct->getVendorSku() ?>">
+            </div>
+        </div>
+        <div class="field item-condition required">
+            <label class="label">
+                <span><?= __('Condition') ?></span>
+            </label>
+            <div class="control select">
+                <?php
+                $isNew = $vendorProduct->getCondition();
+                if ($isNew == '' || $isNew == null) {
+                    $isNew = 1;
+                }
+                ?>
+                <select name="offer[condition]" id="condition" data-validate="{required:true}" <?= $block->isView()? 'disabled' : '' ?>>
+                    <?php foreach ($block->getProductConditionOption() as $_option) { ?>
+                        <option value="<?= $_option['value'] ?>" <?= ($_option['value'] == $isNew ) ? 'selected="selected"' : ''; ?>><?= $_option['label'] ?></option>                            
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+        <div class="field item-condition-note">
+            <label class="label" for="item-condition-note">
+                <span><?= __('Condition Note') ?></span>
+            </label>
+            <div class="control">
+                <textarea class="input-text"
+                          id="item-condition-note"
+                          name="offer[condition_note]"
+                          placeholder="<?= __('Condition Note'); ?>"
+                            <?= $block->isView()? 'disabled' : '' ?> ><?= $vendorProduct->getConditionNote() ?></textarea>
+            </div>
+        </div>
+        <div class="field price required">
+            <label class="label" for="price">
+                <span><?= __('Your Price') ?></span>
+            </label>
+            <div class="control">
+                <input class="input-text required-entry price-update"
+                       type="number"
+                       id="price"
+                       name="offer[price]"
+                       data-validate="{required:true, 'validate-greater-than-zero':true, 'validate-number': true}"
+                       value="<?= (floatval($vendorProduct->getPrice()) != 0 ) ? floatval($vendorProduct->getPrice()) : ''; ?>"
+                       placeholder="<?= __('Your Price'); ?>"
+                    <?= $block->isView()? 'disabled' : '' ?>/>
+            </div>
+            <?php if ($this->getChildBlock('multi.currency.description')) { ?>
+                      <?= $this->getChildBlockHtml('multi.currency.description');
+            }?>
+        </div>
+        <div class="field special-price">
+            <label class="label" for="special-price"><span><?= __('Special Price') ?></span></label>
+            <div class="control special-price">
+                <input class="input-text price-update"
+                       type="number"
+                       id="special-price"
+                       name="offer[special_price]"
+                       value="<?= (floatval($vendorProduct->getSpecialPrice()) != 0 ) ? floatval($vendorProduct->getSpecialPrice()) : ''; ?>"
+                       data-validate="{'validate-greater-than-zero':true, 'validate-number': true, 'validate-less-than-price':true}"
+                       placeholder="<?= __('Special Price') ?>"
+                    <?= $block->isView()? 'disabled' : '' ?>
+                       />
+            </div>
+            <div class="field special-price-date-range" data-role="product-offers-form" id="special-price-date-range">
+                <label class="label" for="date"><span><?= __('Date') ?></span></label>
+                <div class="control info date-control">
+                    <div class="from-date special-from-date">
+                        <label for="special-from-date"><span><?= __('Sale Start Date') ?>:</span></label>
+                        <div class="date-field-container">
+                            <input class="input-text"
+                                   type="text"
+                                   title="<?= __('Sale Start Date') ?>"
+                                   id="special-from-date"
+                                   name="offer[special_from_date]"
+                                   data-validate="{'validate-date': true}"
+                                   value="<?= $block->getFormateDate($vendorProduct->getSpecialFromDate()) ?>"
+                                   placeholder="<?= __('MM/DD/YYYY') ?>"
+                                <?= $block->isView()? 'disabled' : '' ?>
+                                   />
+                            <span id="date_from_advice"></span>
+                        </div>
+                    </div>
+                    <div class="to-date special-to-date">
+                        <label for="special-to-date"><span><?= __('Sale End Date') ?>:</span></label>
+                        <div class="date-field-container">
+                            <input class="input-text"
+                                   type="text"
+                                   id="special-to-date"
+                                   title="<?= __('Sale End Date') ?>"
+                                   name="offer[special_to_date]"
+                                   data-validate="{'validate-date': true}"
+                                   value="<?= $block->getFormateDate($vendorProduct->getSpecialToDate()) ?>"
+                                   placeholder="<?= __('MM/DD/YYYY') ?>"
+                                <?= $block->isView()? 'disabled' : '' ?>
+                                   />
+                            <span id="date_to_advice"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field vendor-quantity">
+            <label class="label" for="vendor-quantity">
+                <span><?= __('Your Quantity') ?></span>
+            </label>
+            <div class="control">
+                <input class="input-text"
+                       type="text"
+                       id="vendor-quantity"
+                       name="offer[qty]"
+                       value="<?= (intval($vendorProduct->getQty()) != 0 ) ? intval($vendorProduct->getQty()) : ''; ?>"
+                       placeholder="<?= __('Your Quantity'); ?>"
+                    <?= $block->isView()? 'disabled' : '' ?>
+                />
+            </div>
+        </div>
+        <div class="field reorder-level">
+            <label class="label" for="reorder-level">
+                <span><?= __('Reorder Level') ?></span>
+            </label>
+            <div class="control">
+                <input class="input-text"
+                       type="text"
+                       id="reorder-level"
+                       name="offer[reorder_level]"
+                       value="<?= (intval($vendorProduct->getReorderLevel()) != 0 ) ? intval($vendorProduct->getReorderLevel()) : ''; ?>"
+                       data-validate="{'validate-digits':true}"
+                       placeholder="<?= __('Reorder Level'); ?>"
+                    <?= $block->isView()? 'disabled' : '' ?>
+                />
+            </div>
+        </div>
+        <div class="field warranty-type">
+            <label class="label" for="warranty-type">
+                <span><?= __('Warranty Type') ?></span>
+            </label>
+            <div class="control">
+                <?php
+                $warrantyType = $vendorProduct->getWarrantyType();
+                ?>
+                <select name="offer[warranty_type]" id="warranty-type" class="select" <?= $block->isView()? 'disabled' : '' ?>>
+                    <option value="1"<?= $warrantyType == 1 ? ' selected="selected"' : '' ?>><?= __('Manufacturer') ?></option>
+                    <option value="2"<?= $warrantyType == 2 ? ' selected="selected"' : '' ?>><?= __('Vendor') ?></option>
+                </select>
+            </div>
+        </div>
+        <div class="field warranty-description">
+            <label class="label" for="warranty-description">
+                <span><?= __('Warranty Description') ?></span>
+            </label>
+            <div class="control">
+                <textarea id="warranty-description" 
+                          name="offer[warranty_description]" 
+                          placeholder="<?= __('Warranty Description') ?>"
+                        <?= $block->isView()? 'disabled' : '' ?>><?= $vendorProduct->getWarrantyDescription() ?></textarea>
+                <span class="field-advice"> <?= __('Example: 3 year parts and labor warranty is non-transferable and valid for 1 year from the original date of purchase.') ?></span>
+            </div>
+        </div>
+        <?= $block->getChildHtml(); ?>
+    </fieldset>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+        "mage/calendar",
+        'mage/translate',
+        'rbCommonMethods'
+    ], function ($, calendar, $t, rbCommonMethods) {
+
+        $("#special-price-date-range").dateRange({
+            buttonText: $t('Select Date'),
+            showOn: "button",
+            from: {
+                id: "special-from-date"
+            },
+            to: {
+                id: "special-to-date"
+            }
+        });
+        <?php if ($block->checkVendorSkuValidation()) { ?>
+            $(document).ready(function () {
+                $("#seller-sku").on('blur', function () {
+                    if ($("#vendor-product-id").val() > 0) {
+                        if ($(this).val() != '' && $(this).val() != $("#hidden-seller-sku").val()) {
+                            rbCommonMethods({
+                                uniqueSkuCheckUrl: '<?= $block->getUniqueskuPostActionUrl() ?>',
+                                sellerSkuEle: this,
+                                isCheckuniqueSku: <?= $block->checkVendorSkuValidation() ?>
+                            });
+
+                        }
+                    } else {
+                        if ($(this).val() != '') {
+                            rbCommonMethods({
+                                uniqueSkuCheckUrl: '<?= $block->getUniqueskuPostActionUrl() ?>',
+                                sellerSkuEle: this,
+                                isCheckuniqueSku: <?= $block->checkVendorSkuValidation() ?>
+
+                            });
+                        }
+                    }
+                });
+            });
+        <?php } ?>
+    });
+</script>

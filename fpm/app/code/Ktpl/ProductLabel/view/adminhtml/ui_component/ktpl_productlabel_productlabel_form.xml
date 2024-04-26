@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ProductLabel
+ * @author    Kirti Nariya <kirti.nariya@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">ktpl_productlabel_productlabel_form.ktpl_productlabel_productlabel_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Product Label Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">ktpl_productlabel_productlabel_form</item>
+        </item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item>
+    </argument>
+
+    <settings>
+        <reloadItem>general.attribute_id:value</reloadItem>
+        <buttons>
+            <button name="back" class="Ktpl\ProductLabel\Block\Adminhtml\ProductLabel\Edit\BackButton" />
+            <button name="delete" class="Ktpl\ProductLabel\Block\Adminhtml\ProductLabel\Edit\DeleteButton" />
+            <button name="reset" class="Ktpl\ProductLabel\Block\Adminhtml\ProductLabel\Edit\ResetButton" />
+            <button name="save_and_continue" class="Ktpl\ProductLabel\Block\Adminhtml\ProductLabel\Edit\SaveAndContinueButton" />
+            <button name="save" class="Ktpl\ProductLabel\Block\Adminhtml\ProductLabel\Edit\SaveButton" />
+        </buttons>
+        <deps>
+            <dep>ktpl_productlabel_productlabel_form.ktpl_productlabel_productlabel_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="ktpl_productlabel_productlabel_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Ktpl\ProductLabel\Ui\Component\ProductLabel\Form\DataProvider</argument>
+            <argument name="name" xsi:type="string">ktpl_productlabel_productlabel_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">product_label_id</argument>
+            <argument name="requestFieldName" xsi:type="string">product_label_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="ktpl_productlabel/productlabel/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string"/>
+            </item>
+        </argument>
+
+        <settings>
+            <label translate="true">Product Label Information</label>
+        </settings>
+
+        <field name="product_label_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">product_label</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>product_label_id</dataScope>
+            </settings>
+        </field>
+
+        <field name="is_active" formElement="checkbox" sortOrder="5">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">productlabel</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <visible>true</visible>
+                <label translate="true">Enable Product Label</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
+        <field name="name" formElement="input" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">name</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <visible>true</visible>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+
+        <field name="attribute_id" formElement="select" component="Magento_Ui/js/form/element/ui-select" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <imports>
+                    <link name="visible">true</link>
+                </imports>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Attribute</label>
+                <dataScope>attribute_id</dataScope>
+                <componentType>field</componentType>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Ktpl\ProductLabel\Ui\Component\Source\Attribute\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="attribute_label" formElement="select" sortOrder="31">
+            <settings>
+                <disabled>true</disabled>
+                <imports>
+                    <link name="visible">true</link>
+                </imports>
+                <dataType>int</dataType>
+                <label translate="true">Attribute</label>
+                <componentType>field</componentType>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Ktpl\ProductLabel\Ui\Component\Source\Attribute\Options"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="option_id" formElement="select" component="Magento_Ui/js/form/element/ui-select" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Option</label>
+                <dataScope>option_id</dataScope>
+                <componentType>field</componentType>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+            </settings>
+        </field>
+
+        <field name="option_label" formElement="select" sortOrder="41">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>int</dataType>
+                <label translate="true">Option</label>
+                <dataScope>option_id</dataScope>
+                <componentType>field</componentType>
+            </settings>
+        </field>
+
+        <field name="storeviews" formElement="multiselect" sortOrder="45">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">productlabel</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Store View</label>
+                <dataScope>store_id</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Ktpl\ProductLabel\Ui\Component\Source\Store\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+
+        <field name="labeltype">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\ProductLabel\Ui\Component\Source\LabelType\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Product Label Type</item>
+                    <item name="component" xsi:type="string">Ktpl_ProductLabel/js/form/element/options</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="sortOrder" xsi:type="number">48</item>
+                    <item name="dataScope" xsi:type="string">labeltype</item>
+                    <item name="notice" xsi:type="string" translate="true">Note: If Product Label Type select Text then Text will be consider as a Name</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="textcolorpicker">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Ktpl_ProductLabel/js/form/element/color-select</item>
+                    <item name="template" xsi:type="string">ui/form/field</item>
+                    <item name="elementTmpl" xsi:type="string">Ktpl_ProductLabel/form/element/color-select</item>
+                    <item name="label" xsi:type="string">Text Color Picker</item>
+                    <item name="labelVisible" xsi:type="boolean">true</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">49</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">textcolorpicker</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="productlabeltext" formElement="input" sortOrder="49">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">productlabeltext</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="image" formElement="imageUploader" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">image</item>
+                     <item name="required" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">Product Label Image</label>
+                <!-- <visible>true</visible> -->
+                <dataScope>image</dataScope>
+                <componentType>imageUploader</componentType>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <uploaderConfig>
+                            <param xsi:type="string" name="url">ktpl_productlabel/imagelabel/image</param>
+                        </uploaderConfig>
+                        <previewTmpl>Magento_Catalog/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <initialMediaGalleryOpenSubpath>ktpl_productlabel/imagelabel</initialMediaGalleryOpenSubpath>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+
+        <field name="position_category_list" formElement="select" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\ProductLabel\Ui\Component\Source\Location\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Image location in listing mode</label>
+                <dataScope>position_category_list</dataScope>
+                <componentType>field</componentType>
+            </settings>
+        </field>
+
+        <field name="position_product_view" formElement="select" sortOrder="70">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\ProductLabel\Ui\Component\Source\Location\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Location of the image on product view</label>
+                <dataScope>position_product_view</dataScope>
+                <componentType>field</componentType>
+            </settings>
+        </field>
+
+        <field name="display_on" formElement="multiselect" sortOrder="80">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">productlabel</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Display on</label>
+                <dataScope>display_on</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Ktpl\ProductLabel\Ui\Component\Source\Location\View"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+
+        <field name="alt" formElement="input" sortOrder="90">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">alt</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Alternative text for this label</label>
+                <visible>true</visible>
+                <dataScope>alt</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+
+</form>

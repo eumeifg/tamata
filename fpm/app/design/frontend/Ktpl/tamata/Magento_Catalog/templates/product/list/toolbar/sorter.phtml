@@ -1,0 +1,49 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php
+
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+?>
+<div class="toolbar-sorter sorter" onclick="void(0);">
+    <label class="sorter-label"><?= /* @escapeNotVerified */ __('Sort By') ?></label>
+    <select id="sorter" data-role="sorter" class="sorter-options">
+        <?php foreach ($block->getAvailableOrders() as $_key => $_order): ?>
+                    <option value="<?= /* @escapeNotVerified */ $_key ?>"
+                        <?php if ($block->isOrderCurrent($_key)): ?>
+                            selected="selected"
+                        <?php endif; ?>
+                        >
+                        <?= $block->escapeHtml(__($_order)) ?>
+                    </option>
+        <?php endforeach; ?>
+    </select>
+    <ul class="sorter-data">
+            <?php foreach ($block->getAvailableOrders() as $_key => $_order): ?>
+                     <li>
+                        <a href="<?php echo $this->getUrl('*/*/*', array('_current' => true, '_use_rewrite' => true, '_query' => array('product_list_order' => $_key))); ?>"
+                           class="<?php echo $_key;  if ($block->isOrderCurrent($_key)): ?> selected_sorted_option<?php endif; ?>"><?= $block->escapeHtml(__($_order)) ?></a>
+                    </li>
+            <?php endforeach; ?>
+    </ul>
+
+    <?php  if ($block->getCurrentDirection() == 'desc'): ?>
+        <a title="<?=  __('Set Ascending Direction') ?>" href="#" class="action sorter-action sort-desc" data-role="direction-switcher" data-value="asc">
+            <span><?=  __('Set Ascending Direction') ?></span>
+        </a>
+    <?php else: ?>
+        <a title="<?=  __('Set Descending Direction') ?>" href="#" class="action sorter-action sort-asc" data-role="direction-switcher" data-value="desc">
+            <span><?=  __('Set Descending Direction') ?></span>
+        </a>
+    <?php endif; ?>
+</div>
+
+<div class="filter-overlay">&nbsp;</div>

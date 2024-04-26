@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="reorder_item" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label">
+			<label>Reorder Item</label>
+			<tab>ktpl</tab>
+			<resource>Ktpl_ReorderItem::config_ktpl_reorderitem</resource>
+			<group id="general" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label">
+				<label>General Settings</label>
+				<field id="enabled" showInDefault="1" showInStore="0" showInWebsite="0" sortOrder="10" translate="label" type="select">
+					<label>Enabled</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

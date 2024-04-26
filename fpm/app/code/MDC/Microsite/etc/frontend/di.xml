@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   
+   <!-- customized to display vendor products in microsite page even though vendor has not microsite enabled -->
+   <preference for="Magedelight\Catalog\Block\Product\View\ProductVendor" type="MDC\Microsite\Block\Product\View\ProductVendor" />
+
+    <preference for="Magedelight\ConfigurableProduct\Block\Product\View\Type\Renderer\Configurable" type="MDC\Microsite\Block\Product\View\Type\Renderer\Configurable" />
+    
+</config>

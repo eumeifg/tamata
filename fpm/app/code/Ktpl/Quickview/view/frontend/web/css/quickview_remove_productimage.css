@@ -1,0 +1,6 @@
+@media (min-width: 768px) {
+    .ktpl-quickview-catalog-product-view.page-layout-1column .product-info-main,
+    .ktpl_quickview-catalog_product-view.page-layout-1column .product-info-main {
+        width: 100%;
+    }
+}

@@ -1,0 +1,29 @@
+<?php
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+?>
+<?php
+//@codingStandardsIgnoreFile
+/** @var \Ktpl\ElasticSearch\Block\Index\Base $block */
+
+/** @var \Aheadworks\Blog\Block\PostList $list */
+$list = $this->getLayout()->createBlock('Aheadworks\Blog\Block\PostList');
+?>
+<div class="ktpl-search__index ktpl-search__index-aheadworks-blog-post">
+    <div class="blog-posts">
+        <?php /** @var \Aheadworks\Blog\Model\Post $post */ ?>
+        <?php foreach ($block->getCollection() as $post): ?>
+            <?= $list->getItemHtml($post); ?>
+        <?php endforeach ?>
+    </div>
+</div>

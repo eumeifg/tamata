@@ -1,0 +1,8 @@
+{
+    "search_query": {
+        "column": {
+            "redirect_id": true,
+            "redirection_type": true
+        }
+    }
+}

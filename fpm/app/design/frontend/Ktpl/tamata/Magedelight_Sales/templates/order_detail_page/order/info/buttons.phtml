@@ -1,0 +1,97 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+$_order = $block->getOrder();
+$isEnable = $block->isEnabledCustomerCancelOrder();
+$cancelOrderReasonArray = $block->getCustomerCancelOrderReason();
+$label = __("Cancel Order");
+$notice = __('Note: Customer can only cancel order if the order status is pending/ordered');
+if (($_order->getstatus() == "canceled") && (trim($_order->getOrderCancelReason()) !== "")){
+    ?>
+    <div class="cancel-order-reason">
+        <span> <?php echo sprintf(__('Your Order Is Cancel Due to %s'), $_order->getOrderCancelReason()) ?> </span>
+    </div>
+    <?php
+}
+
+?>
+
+<div class="actions">
+    <a class="action print"
+       href="<?= $block->getPrintUrl($_order) ?>"
+       onclick="this.target='_blank';">
+        <span><?= __('Print Order') ?></span>
+    </a>
+
+    <?php
+    if ($isEnable == 1 && $_order->getStatus() == 'pending') : ?>
+        <a class="cancel" href="javascript:void(0);" style="display:none;">
+            <span><?php  echo __($label) ?></span>
+        </a>
+        <div class="popup-form">
+            <form class="form cancel-order" action="<?php echo $block->getCancelFormActionUrl($_order); ?>" id="cancellation-form" method="post">
+                <fieldset class="fieldset">
+                    <div class="field note no-label order-q">
+                        <?php  echo __('Are you sure to cancel selected order?') ?><br>
+                        <span class="order-id">
+                    <?php  echo __('Order #:') ?> <?php  echo $_order->getRealOrderId() ?></span>
+                    </div>
+                    <div class="field select-reason">
+                        <label class="label" for="select-reason">
+                            <span><?php  echo __('Select Any Reason') ?></span>
+                        </label>
+                        <div class="control">
+                            <select id="select-reason" name="order_cancel_reason" >
+                                <?php foreach($cancelOrderReasonArray as $cancelOrderReason){ ?>
+                                    <option value="<?php echo $cancelOrderReason->order_cancel_reasons; ?>">
+                                        <?php echo $cancelOrderReason->order_cancel_reasons; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field comment">
+                        <label class="label" for="comment"><span><?php  echo __('Any cancellation comment ?') ?></span></label>
+                        <div class="control">
+                            <textarea name="comment" id="comment" title="<?php  echo __('Any cancellation comment ?') ?>" placeholder="<?php  echo __('Why do you want to cancel this order?') ?>" class="input-text" cols="5" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <span class="order-notice"><?php  echo __($notice) ?></span>
+                </fieldset>
+            </form>
+        </div>
+        <script type = 'text/javascript'>
+            require(['jquery', 'Magento_Ui/js/modal/modal'],
+                function ($, modal)
+                {
+                    var options = {
+                        type: 'popup',
+                        buttons: [{text: $.mage.__('Yes'), class: 'btn-yes',
+                            click: function () {
+                                $('.cancel-order').submit();
+                            }
+                        }, {
+                            text: $.mage.__('No'), class: 'btn-no',
+                            click: function () {
+                                this.closeModal();
+                            }
+                        }]
+                    };
+
+                    var popup = modal(options, $('.popup-form'));
+                    $(".cancel").on('click', function () {
+                        $(".popup-form").modal("openModal");
+                    });
+                }
+            );
+        </script>
+    <?php endif ?>
+    <?= $block->getChildHtml() ?>
+</div>
+
+

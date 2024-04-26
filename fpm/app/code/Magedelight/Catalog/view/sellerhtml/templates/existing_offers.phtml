@@ -1,0 +1,55 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block Magedelight\Catalog\Block\Sellerhtml\Listing\Live */
+$collection = $block->getProductOffers($block->getPId());
+$helper = $this->helper('Magedelight\Catalog\Helper\Listing\Data');
+$imageSize = 50;
+$imageWidth = 50;
+?>
+<?php if ($collection->count()) {?>
+<div class="table-wrapper mylisting-main">
+    <h3><?= __('Already added offers') ?></h3>
+        <table class="data table table-mylisting" id="my-mylisting-table">
+            <thead>
+                <tr>
+                    <th scope="col" class="col "><?= __('Image') ?></th>                
+                    <th scope="col" class="col "><?= __('Product Name')?></th> 
+                    <th scope="col" class="col "><?= __('SKU')?></th>
+                    <th scope="col" class="col "><?= __('Price')?></th>                
+                    <th scope="col" class="col "><?= __('Special Price')?></th>                
+                    <th scope="col" class="col "><?= __('Qty')?></th>
+                    <th scope="col" class="col "><?= __('Weight')?></th>
+                    <th scope="col" class="col "><?= __('Size')?></th>
+                    <th scope="col" class="col "><?= __('Color')?></th>                
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($collection as $item): ?>
+                    <tr>
+                        <?php $product = $block->getProduct($item->getMarketplaceProductId()); ?>                        
+                        <?php $_imagehelper = $this->helper('Magento\Catalog\Helper\Image'); ?>
+                        <?php $productImage = $_imagehelper->init($product, 'category_page_list', ['height' => $imageSize, 'width' => $imageWidth])->getUrl(); ?>  
+                        <td data-th="productimage" class="col product-thumb"><img height="50" width="50" src="<?=  $productImage ?>"  class=""/></td>                        
+                        <td data-th="productname" class="col product-name"><?=  $item->getName(); ?></td>
+                        <td data-th="productsku" class="col sku"><?=  $item->getVendorSku(); ?></td>
+                        <td data-th="productprice" class="col price"><?=  $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($item->getPrice()); ?></td>
+                        <td data-th="productspprice" class="col special-price"></td>
+                        <td data-th="productqty" class="col qty"><?=  $item->getQty(); ?></td>
+                        <td data-th="action" class="col "><?php ?></td>                        
+                        <td data-th="action" class="col "><?= $block->getAttributeText('size', $product->getSize()) ?></td>
+                        <td data-th="action" class="col "><?= $block->getAttributeText('color', $product->getColor()) ?></td>
+                    </tr>
+                <?php  endforeach; ?>
+            </tbody>
+        </table>   
+    </div>
+<?php } ?>

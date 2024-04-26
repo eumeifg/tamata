@@ -1,0 +1,45 @@
+<?php
+ /**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   Ktpl_ProductLabel
+  * @author    Kirti Nariya <kirti.nariya@krishtechnolabs.com>
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+
+?>
+<?php $productLabels = $block->getProductLabels(); ?>
+<span class="product-image-container"
+      style="width:<?= /* @escapeNotVerified */ $block->getWidth() ?>px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: <?= /* @escapeNotVerified */ ($block->getRatio() * 100) ?>%;">
+
+        <?php $enableProductLabel = $this->helper('Ktpl\ProductLabel\Helper\Data')->getConfig('customktplproductlabel/productlabel/enable');
+        if ($enableProductLabel) { ?>
+            <?php if ($productLabels) : ?>
+                <?php foreach ($productLabels as $class => $labels) :?>
+                <div class="<?php echo $class; ?>">
+                    <?php foreach ($labels as $label) : ?>
+                        <?php if ($label['labeltype'] == 'image' && @GetImageSize($label['image'])) { ?>
+                                <img src="<?php echo $label['image']; ?>"  alt="<?php echo $label['alt'] ?? ''; ?>" title="<?php echo $label['alt'] ?? ''; ?>"/>
+                        <?php } else { ?>
+                                <span class="labeltype-text" style="background-color: <?php echo $label['textcolorpicker']; ?>" title="<?php echo $label['alt'] ?? ''; ?>"><?php echo $label['name']; ?></span>
+                        <?php } ?>
+                    <?php endforeach ;?>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        <?php } ?>
+        <img class="product-image-photo"
+            <?= /* @escapeNotVerified */ $block->getCustomAttributes() ?>
+            src="<?= /* @escapeNotVerified */ $block->getImageUrl() ?>"
+             max-width="<?= /* @escapeNotVerified */ $block->getWidth() ?>"
+             max-height="<?= /* @escapeNotVerified */ $block->getHeight() ?>"
+             alt="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(), null, true) ?>"/>
+    </span>
+</span>

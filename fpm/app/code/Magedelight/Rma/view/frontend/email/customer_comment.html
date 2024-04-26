@@ -1,0 +1,24 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "%store_name: New customer comment" store_name=$store.getFrontendName()}} @-->
+<!--@vars {
+"var comment":"Order Comment",
+"var store.getFrontendName()":"Store Name"
+} @-->
+{{template config_path="design/email/header_template"}}
+
+<h1>{{trans "New Comment for RMA #%increment_id" increment_id=$rma.getIncrementId()}}</h1>
+
+{{if isVendor}}
+<p>{{trans "Supplier %name has left a new comment:" name=$rma.getVendorName()}}</p>
+{{else}}
+<p>{{trans "Customer %name has left a new comment:" name=$order.getCustomerName()}}</p>
+{{/if}}
+
+<p><em>{{var comment}}</em></p>
+
+{{template config_path="design/email/footer_template"}}

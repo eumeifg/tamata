@@ -1,0 +1,24 @@
+<?php
+    /** @var CAT\OfferPage\Block\OfferPageView $block */
+    $singleData = $block->getSingleData();
+    $mediaUrl = $block->getMediaUrl();
+    if ($singleData) {
+?>
+    <div class="main-content">
+        <?php if (!empty($singleData->getAdditionalInfo())):
+            $additionalInfo = json_decode($singleData->getAdditionalInfo()); ?>
+            <?php foreach ($additionalInfo as $key => $info): ?>
+                <a href="<?= $info->url; ?>" >
+                    <img class="offer-content" src="<?= $mediaUrl.'cat/offerpage/'.$info->image[0]->file;?>" />
+                </a>
+            <?php endforeach;?>
+        <?php endif;?>
+    </div>
+<?php } else { ?>
+<div>No Record found.</div>
+<?php } ?>
+<style>
+    .offer-content {
+        border: 1px solid #bfbfbf;
+    }
+</style>

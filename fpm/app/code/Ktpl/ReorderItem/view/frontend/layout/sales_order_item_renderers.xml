@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceBlock name="additional_sales_order_item_actions">
+        <block class="Ktpl\ReorderItem\Block\Order\Item\Renderer\DefaultRenderer" name="sales_order_item_return_action" template="Ktpl_ReorderItem::order/item/reorder_action.phtml"/>
+    </referenceBlock>
+</page>

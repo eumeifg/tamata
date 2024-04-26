@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Commissions
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="vendorMenus">
+            <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="vendorOrders" group="vendorOrdersInfo">
+                <arguments>
+                    <argument name="icon_class" xsi:type="string" translate="true">rbvt-icon rbvt-icon-tag</argument>
+                    <argument name="label" xsi:type="string" translate="true">Orders</argument>
+                    <argument name="vendor_group" xsi:type="string">orders</argument>
+                    <argument name="child_id" xsi:type="string" translate="true">orders</argument>
+                    <argument name="path" xsi:type="string">#</argument>
+                    <argument name="accordion_toggle" xsi:type="string">accordion-toggle</argument>
+                    <argument name="resource_id" xsi:type="string">Magedelight_Sales::manage_orders</argument>
+                    <argument name="sort_order" xsi:type="string">60</argument>
+                </arguments>
+            </block>
+            <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="vendorOrderCreditmemos" group="vendorOrdersInfo">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Credit Memos</argument>
+                    <argument name="child_id" xsi:type="string" translate="true">orders</argument>
+                    <argument name="vendor_group" xsi:type="string">orders</argument>
+                    <argument name="parent_id" xsi:type="string" translate="true">orders</argument>
+                    <argument name="path" xsi:type="string">rbsales/order_creditmemo/index</argument>
+                    <argument name="accordion_toggle" xsi:type="string">accordion-toggle</argument>
+                    <argument name="path_tab" xsi:type="string">2,3</argument>
+                    <argument name="sort_order" xsi:type="string">100</argument>
+                </arguments>
+            </block>
+            <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="vendorActiveOrders" group="vendorOrdersInfo">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Active</argument>
+                    <argument name="child_id" xsi:type="string" translate="true">orders</argument>
+                    <argument name="parent_id" xsi:type="string" translate="true">orders</argument>
+                    <argument name="vendor_group" xsi:type="string">orders</argument>
+                    <argument name="path" xsi:type="string">rbsales/order/index</argument>
+                    <argument name="accordion_toggle" xsi:type="string">accordion-toggle</argument>
+                    <argument name="path_tab" xsi:type="string">2,0</argument>
+                    <argument name="sort_order" xsi:type="string">70</argument>
+                </arguments>
+            </block>
+            <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="vendorCancelOrders" group="vendorOrdersInfo">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Cancelled</argument>
+                    <argument name="child_id" xsi:type="string" translate="true">orders</argument>
+                    <argument name="parent_id" xsi:type="string" translate="true">orders</argument>
+                    <argument name="vendor_group" xsi:type="string">orders</argument>
+                    <argument name="path" xsi:type="string">rbsales/order/cancelgrid</argument>
+                    <argument name="accordion_toggle" xsi:type="string">accordion-toggle</argument>
+                    <argument name="path_tab" xsi:type="string">2,1</argument>
+                    <argument name="sort_order" xsi:type="string">80</argument>
+                </arguments>
+            </block>
+            <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="vendorCompleteOrders" group="vendorOrdersInfo">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Completed</argument>
+                    <argument name="child_id" xsi:type="string" translate="true">orders</argument>
+                    <argument name="vendor_group" xsi:type="string">orders</argument>
+                    <argument name="parent_id" xsi:type="string" translate="true">orders</argument>
+                    <argument name="path" xsi:type="string">rbsales/order/complete</argument>
+                    <argument name="accordion_toggle" xsi:type="string">accordion-toggle</argument>
+                    <argument name="path_tab" xsi:type="string">2,2</argument>
+                    <argument name="sort_order" xsi:type="string">90</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

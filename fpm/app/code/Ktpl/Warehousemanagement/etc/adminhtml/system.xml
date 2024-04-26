@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ktpl" translate="label" sortOrder="250" class="ktpl-extensions">
+            <label><![CDATA[<span class="ktpl-logo">KTPL Extensions</span>]]></label>
+        </tab>
+        <section id="warehousemanagement" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Warehouse Management Settings</label>
+            <tab>ktpl</tab>
+            <resource>Ktpl_Warehousemanagement::config_ktpl_warehousemanagement</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Barcode General Settings</label>
+                <field id="scanlimit" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of scan limit</label>
+                    <validate>number</validate>
+                    <comment>It will set scan limit for barcode scanner</comment>
+                </field>
+            </group>
+            <group id="deliverystatus" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Warehouse delivery status settings</label>
+                <field id="vendortowarehouse" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Vendor to warehouse status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                </field>
+                <field id="warehousetocustomer" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Warehouse to customer status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                </field>
+            </group>
+            <group id="returnsstatus" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Warehouse return status settings</label>
+                <field id="vendortowarehouse" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer to warehouse status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                </field>
+                <field id="warehousetocustomer" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Warehouse to vendor status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

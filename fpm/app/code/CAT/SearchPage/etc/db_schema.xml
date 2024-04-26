@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="search_page" resource="default" engine="innodb" comment="Search Page">
+        <column xsi:type="int" name="search_page_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Search Page Id"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" comment="Status" default="0"
+                nullable="true"/>
+        <column xsi:type="varchar" name="banner" nullable="true" length="255" comment="banner Image"/>
+        <column xsi:type="text" name="additional_info" nullable="true" comment="Additional Info"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="datetime" name="updated_at" on_update="true" nullable="true" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="search_page_id"/>
+        </constraint>
+        <index referenceId="SEARCH_PAGE_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+    </table>
+</schema>

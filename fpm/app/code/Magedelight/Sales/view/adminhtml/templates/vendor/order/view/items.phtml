@@ -1,0 +1,93 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php $collection = $block->getItemsCollection();
+$vendorOrder = $block->getVendorOrder();
+?>
+<div class="admin__table-wrapper table-wrapper order-items rb-order-items">
+    <table class="data table table-order-items rb-table-order-items data-table admin__table-primary edit-order-table">
+        <thead>
+            <tr class="headings">
+                <th class="col product col-product"><span><?= /* @escapeNotVerified */ __('Product') ?></span></th>
+                <?php /*<th class="col status col-status"><span><?php  echo __('Item Status') ?></span></th>
+                 <th class="col original-price col-price-original"><span><?php  echo __('Original Price') ?></span></th> */?>
+                <th class="col price col-price"><span><?= /* @escapeNotVerified */ __('Price') ?></span></th>
+                <th class="col qty col-ordered-qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></th>
+                <th class="col subtotal col-subtotal"><span><?= /* @escapeNotVerified */ __('Subtotal') ?></span></th>
+                <th class="col tax-amount col-tax-amount"><span><?= /* @escapeNotVerified */ __('Tax Amount') ?></span></th>
+                <th class="col tax-percent col-tax-percent"><span><?= /* @escapeNotVerified */ __('Tax Percent') ?></span></th>
+                <th class="col discount-amount col-discont"><span><?= /* @escapeNotVerified */ __('Discount Amount') ?></span></th>
+                <th class="col row-total col-total last"><span><?= /* @escapeNotVerified */ __('Row Total') ?></span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php /* loop tr */ ?>
+            <?php $i = 0; foreach ($block->getItemsCollection() as $item) {
+                $vendorId = $item->getData('vendor_id');
+                if ($vendorId == null || $vendorId == '' || $vendorId == 0 ||
+                    $item->getData('vendor_order_id') != $vendorOrder->getData('vendor_order_id')) {
+                    continue;
+                }
+                ?>
+
+                <?php if ($item->getParentItem()) {
+                    continue;
+                } else {
+                    $i++;
+                }?>
+            <tr>
+                <td class="col product col-product">
+                        <div id="order_item_120">
+                            <div id="order_item_120_title" class="product-title"><?= $item->getName(); ?></div>
+                            <div class="product-sku-block">
+                                <span><?= __('SKU:') ?></span> <?= $item->getSku(); ?>
+                            </div>
+                           <?php $productOptions = $item->getProductOptions(); ?>
+                           <?php   if (isset($productOptions['attributes_info'])) { ?>
+                            <dl class="item-options">
+                                <?php  foreach ($productOptions['attributes_info'] as $productOption) { ?>
+                                 <dt><?= $label = $productOption['label']; ?></dt>
+                                <dd><?= $value = $productOption['value']; ?></dd>
+                                <?php } ?> 
+                            </dl>
+                            <?php } ?>
+                        </div>
+                </td>
+                <td class="col price col-price">
+                        <div class="price-incl-tax">
+                            <span class="price"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($item->getPriceInclTax()); ?></span>
+                        </div>
+                </td>
+                <td class="col qty col-ordered-qty">
+                    <table class="data table qty-table">
+                        <tbody><tr>
+                                <th><?= /* @escapeNotVerified */ __('Ordered') ?></th>
+                                <td><?= number_format($item->getQtyOrdered()); ?></td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td class="col subtotal col-subtotal">
+                        <div class="price-incl-tax">
+                            <span class="price"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($item->getPriceInclTax()); ?></span>
+                        </div>
+                </td>
+                <td class="col tax-amount col-tax-amount"><span class="price"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($item->getTaxAmount()); ?></span></td>
+                <td class="col tax-percent col-tax-percent"><?= number_format($item->getTaxPercent(), 2); ?>%</td>
+                <td class="col discount-amount col-discont"><span class="price"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($item->getDiscountAmount()); ?></span></td>
+                <td class="col row-total col-total last"><span class="price"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($item->getTotalAmount()); ?></span></td>
+            </tr>
+                <?php $i++;
+            } ?>
+        </tbody>
+    </table>
+</div>

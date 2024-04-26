@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Model\Layer\FilterableAttributeListInterface" type="Magento\Catalog\Model\Layer\Category\FilterableAttributeList" />
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="MdOrderDetailRest" type="Magedelight\Sales\Plugin\OrderDataAppend" />
+    </type>
+    <type name="Magento\Sales\Api\Data\InvoiceInterface">
+        <plugin name="MdVendorInInvoiceRest" type="Magedelight\Sales\Plugin\AddVendorInInvoice" />
+    </type>
+</config>

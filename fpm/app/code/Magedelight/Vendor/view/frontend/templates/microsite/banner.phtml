@@ -1,0 +1,328 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php
+/** @var  $block Magedelight\VendorContact\Block\Microsite\Html\Header */
+$vendorData = $block->getVendorData();
+if (empty($vendorData['vendor_id'])) {
+    $vendorData['vendor_id'] = $block->getRequest()->getParam('vid');
+}
+$vendor = $block->getVendor($vendorData['vendor_id']);
+
+$facebookUrl = $twitterUrl = $instagramUrl =  $googleUrl = '#';
+
+if (!empty($vendorData->getFacebookPage())) {
+    $facebookUrl = $vendorData->getFacebookPage();
+}
+
+if (!empty($vendorData->getTwitterPage())) {
+    $twitterUrl = $vendorData->getTwitterPage();
+}
+
+if (!empty($vendorData->getGooglePage())) {
+    $googleUrl = $vendorData->getGooglePage();
+}
+
+if (!empty($vendorData->getInstagramPage())) {
+    $instagramUrl = $vendorData->getInstagramPage();
+}
+
+$reviewsCollection = $block->getVendorReviewsCollection();
+$totalReviews = count($reviewsCollection);
+$oneStar = $twoStar = $threeStar = $fourStar = $fiveStar = 0;
+$negativeReviewsCount = $neutralReviewsCount = $positiveReviewsCount = 0;
+
+if ($totalReviews > 0) {
+    foreach ($reviewsCollection as $review) {
+        $avg_rating = $review['rating_avg'];
+        if (!empty($avg_rating)) {
+            if ($avg_rating >= 20 && $avg_rating < 40) {
+                $oneStar++;
+            } elseif ($avg_rating >= 40 && $avg_rating < 60) {
+                $twoStar++;
+            } elseif ($avg_rating >= 60 && $avg_rating < 80) {
+                $threeStar++;
+            } elseif ($avg_rating >= 80 && $avg_rating < 100) {
+                $fourStar++;
+            } elseif ($avg_rating == 100) {
+                $fiveStar++;
+            }
+
+            if ($avg_rating >= 0 && $avg_rating <= 33) {
+                $negativeReviewsCount++;
+            } elseif ($avg_rating > 33 && $avg_rating <= 66) {
+                $neutralReviewsCount++;
+            } elseif ($avg_rating > 66 && $avg_rating <= 100) {
+                $positiveReviewsCount++;
+            }
+        }
+    }
+}
+?>
+
+<?php if (!empty($vendorData['banner'])) : ?>
+    <div class="microsite_top_content">
+        <div class="microsite_banner"><img src="<?= $block->getMediaUrl() .'microsite/'. $vendorData['banner']; ?>" alt="<?= $vendorData['page_title']; ?>" title="<?= $vendorData['page_title']; ?>" /></div>
+    </div>
+<?php endif; ?>
+
+<div class="microsite-seller-box">
+    <div class="seller_profile_box">
+    <div class="seller-info-container">
+        <div class="seller_profile">
+            <?php if ($vendor['logo'] && $resizedImage = $block->resize($vendor['logo'], null, 200)) : ?>
+                <div class="seller_logo">
+                    <img src="<?= $resizedImage; ?>" />
+                </div>
+            <?php else :?>
+                <img src="<?= $block->getViewFileUrl('Magedelight_Vendor::images/small_image.jpg');?>" />
+            <?php endif;?>
+            <!-- end of seller_logo -->
+            
+            <div class="seller_information">
+                <?php if (!empty($vendor['business_name'])) : ?>
+                    <h3>
+                        <a href="<?= $block->getVendorHomeUrl(); ?>">
+                            <?= $vendor['business_name']; ?>
+                        </a>
+                    </h3>
+                <?php endif; ?>
+                <?php if ((!empty($vendor['city']) || !empty($vendor['country_id']))) : ?>
+                    <div class="seller_location">
+                        <?= $vendor['city']; ?>,<?= $vendor['country_id']; ?>
+                    </div>  <!-- end of seller_location -->
+                <?php endif; ?>
+                <ul>
+                    <li>
+                        <a href="<?= $facebookUrl;?>" target="_blank">
+
+                            <img src="<?= $block->getViewFileUrl('Magedelight_Vendor::images/facebook_icon.png'); ?>" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= $twitterUrl;?>" target="_blank">
+
+                            <img src="<?= $block->getViewFileUrl('Magedelight_Vendor::images/twitter_icon.png'); ?>" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= $instagramUrl;?>" target="_blank">
+
+                            <img src="<?= $block->getViewFileUrl('Magedelight_Vendor::images/instagram.png'); ?>" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= $googleUrl;?>" target="_blank">
+
+                            <img src="<?= $block->getViewFileUrl('Magedelight_Vendor::images/googleplus_icon.png'); ?>" />
+                        </a>
+                    </li>
+                </ul>
+                <!--                    <div class="seller_collection">
+                                        <a href="<?/*= $block->getVendorProductCollnUrl(); */?> ">
+                                            Seller's collection(1200)
+                                        </a>
+                                    </div>       end of seller_collection -->
+            </div>  <!-- end of seller_information -->
+        </div>  <!-- end of seller_profile -->
+        <div class="seller_desc">
+            <ul class="seller_links">
+                <?php if (!empty($vendorData['return_policy'])) : ?>
+                <li>
+                    <a id="microsite_returns" href="javascript:void(0)">
+                        <?= __('Returns'); ?>
+                    </a>
+                </li>
+                <?php endif?>
+                <?php if (!empty($vendorData['delivery_policy'])) : ?>
+                <li>
+                    <a id="microsite_shipping" href="javascript:void(0)">
+                        <?= __('Shipping'); ?>
+                    </a>
+                </li>
+                <?php endif;?>
+                <?php if (!empty($vendor['email'])) : ?>
+                    <li>
+                        <a id="microsite_contact_seller" href="mailto:<?= $vendor['email']; ?>">
+                            <span><?= __('Contact: '); ?></span> <strong><?= $vendor['business_name']; ?></strong>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+            <?= $vendorData['short_description']; ?>
+        </div><!-- end of seller_desc -->
+    </div>   <!-- end of seller_profile_box -->
+    </div>   <!-- end of seller_profile_box -->
+    <div class="review_box">
+        <div class="review_slider">
+            <div class="review_desc">
+                <div class="review_content">
+                    <span>
+                        <img src="<?= $block->getViewFileUrl('Magedelight_Vendor::images/rating1.png'); ?>" />
+                    </span>
+                    "the years, sometimes by accident"
+                </div>
+                <div class="review_date">
+                    By amon on January 25,2017
+                </div>
+            </div>
+        </div>   <!-- end of review_slieder -->
+        <div class="review_count">
+            <ul>
+                <li>
+                    <span class="icon">
+                        <img src="<?= $block->getViewFileUrl('Magedelight_Vendor::images/rating1.png'); ?>" />
+
+                    </span>
+                    <span class="value">
+                         <?= __('Positive') ?>
+                    </span>
+                    <span class="count">
+                        <?= $positiveReviewsCount; ?>
+                    </span>
+                </li>
+                <li>
+                    <span class="icon">
+                        <img src="<?= $block->getViewFileUrl('Magedelight_Vendor::images/rating2.png'); ?>" />
+
+                    </span>
+                    <span class="value">
+                        <?= __('Neutral') ?>
+                    </span>
+                    <span class="count">
+                        <?= $neutralReviewsCount; ?>
+                    </span>
+                </li>
+                <li>
+                    <span class="icon">
+                        <img src="<?= $block->getViewFileUrl('Magedelight_Vendor::images/rating3.png'); ?>" />
+
+                    </span>
+                    <span class="value">
+                        <?= __('Negative') ?>
+                    </span>
+                    <span class="count">
+                        <?= $negativeReviewsCount; ?>
+                    </span>
+                </li>
+            </ul>
+            <div class="review_result">
+                <p><a href=""><?= ($totalReviews > 0) ? ($positiveReviewsCount / $totalReviews) * 100 : 0; ?>%</a><?= __('Positive') ?></p>
+                <p><?= __('Based on') ?> <span><?= $totalReviews; ?></span> <?= __('ratings') ?></p>
+            </div><!-- end of review_result -->
+        </div><!-- end of review_count -->
+        <div class="allreview_box">
+            <a href="<?= $block->getVendorRatingsUrl(); ?>">
+                See reviews
+            </a>
+            <div class="five_stars review_progress">
+                <span>
+                   <?= __('5 Star') ?>
+                </span>
+                <div class="meter blue">
+                    <span class="positive" style="width:<?= ($totalReviews > 0) ? ($fiveStar / $totalReviews) * 100 : 0; ?>%;"></span>
+                </div>
+                <span>
+                    <?= $fiveStar; ?>
+                </span>
+            </div>
+            <div class="fourth_stars review_progress">
+                <span>
+                    <?= __('4 Star') ?>
+                </span>
+                <div class="meter blue">
+                    <span class="positive" style="width:<?= ($totalReviews > 0) ? ($fourStar / $totalReviews) * 100 : 0; ?>%;"></span>
+                </div>
+                <span>
+                    <?= $fourStar; ?>
+                </span>
+            </div>
+            <div class="three_stars review_progress">
+                <span>
+                    <?= __('3 Star') ?>
+                </span>
+                <div class="meter blue">
+                    <span class="natural" style="width:<?= ($totalReviews > 0) ? ($threeStar / $totalReviews) * 100 : 0; ?>%;"></span>
+                </div>
+                <span>
+                    <?= $threeStar; ?>
+                </span>
+            </div>
+            <div class="two_stars review_progress">
+                <span>
+                    <?= __('2 Star') ?>
+                </span>
+                <div class="meter blue">
+                    <span class="negative" style="width:<?= ($totalReviews > 0) ? ($twoStar / $totalReviews) * 100 : 0; ?>%;"></span>
+                </div>
+                <span>
+                    <?= $twoStar; ?>
+                </span>
+            </div>
+            <div class="one_stars review_progress">
+                <span>
+                    <?= __('1 Star') ?>
+                </span>
+                <div class="meter blue">
+                    <span class="negative" style="width:<?= ($totalReviews > 0) ? ($oneStar / $totalReviews) * 100 : 0; ?>%;"></span>
+                </div>
+                <span>
+                    <?= $oneStar; ?>
+                </span>
+            </div>
+
+        </div>
+    </div>    <!-- end of review_box -->
+</div>
+<div id="microsite_returns_content" style="display:none;"><?= $vendorData['return_policy']; ?></div>
+<div id="microsite_shipping_content" style="display:none;"><?= $vendorData['delivery_policy']; ?></div>
+<div id="microsite-popup-modal" style="display:none;"> </div>
+<script>
+    require(
+            [
+                'jquery',
+                'Magento_Ui/js/modal/modal'
+            ],
+            function ($, modal) {
+                $(function () {
+                    var options = {
+                        type: 'popup',
+                        responsive: true,
+                        innerScroll: true,
+                        title: 'Microsite',
+                        buttons: [{
+                                text: $.mage.__('Close'),
+                                class: '',
+                                click: function () {
+                                    this.closeModal();
+                                }
+                            }]
+                    };
+                    var popup = modal(options, $('#microsite-popup-modal'));
+
+                    $('#microsite_returns').click(function (event) {
+
+                        $('.modal-title').html('Returns');
+                        $('#microsite-popup-modal').html($('#microsite_returns_content').html());
+                        $('#microsite-popup-modal').modal('openModal');
+                    });
+
+                    $('#microsite_shipping').click(function (event) {
+                        $('.modal-title').html('Shipping');
+                        $('#microsite-popup-modal').html($('#microsite_shipping_content').html());
+                        $('#microsite-popup-modal').modal('openModal');
+                    });
+                });
+
+            }
+    );
+</script>

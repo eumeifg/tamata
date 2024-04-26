@@ -1,0 +1,75 @@
+<?php
+$emailPreviewData=$block->emailPreviewData();
+$productDecodeJson=json_decode($emailPreviewData->getVariables(), true);
+$productData=$productDecodeJson['quote_items'];
+$imageHelper = \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Catalog\Helper\Image::class);
+$small_image = $imageHelper->getDefaultPlaceholderUrl('thumbnail');
+?>
+<div class="popup-modal">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="">
+    <tr>
+        <td colspan="3">
+            <h2 style="margin-top: 0;"> Dear <?= /* @noEscape */ $emailPreviewData->getFirstName()?></h2>
+            <p style="line-height: 24px; margin-bottom: 20px;">It seems you added below listed item(s) in your cart,
+             but didn’t finish your purchase. You can pick up where you left off.</p>
+        </td>
+    </tr>
+    <tr>
+        <th style="padding:6px 0;font-size: 18px;" align="left">
+            <strong>Item in your cart</strong>
+        </th>
+        <th style="padding:6px 0;font-size: 18px;" align="left">
+            <strong>Type</strong>
+        </th>
+        <th style="padding:6px 0;font-size: 18px;" align="left">
+            <strong>Qty</strong>
+        </th>
+        <th style="padding:6px 0;font-size: 18px;" align="left">
+            <strong>Price</strong>
+        </th>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding:6px 0;">
+        <?php
+        if (!empty($productData)) {
+            foreach ($productData as $item) {
+                $thumbnail_url = $item['thumbnail_url'];
+                if ($item['thumbnail_url'] == 1) {
+                    $thumbnail_url = $small_image;
+                }
+                ?>
+    <tr>
+        <td valign="top">
+            <a style="float: left; margin: 0 5px 5px 0;" href="<?= /* @noEscape */ $item['product_url']; ?>">
+                <img src="<?= /* @noEscape */ $thumbnail_url; ?>" /></a>
+            <a style="float: left; color: #1979c3; text-decoration: none; width: 60%; margin-top: 5px;"
+               href="<?= /* @noEscape */ $item['product_url']; ?>">
+                <?= /* @noEscape */ $item['product_name']; ?></a>
+        </td>
+        <td><?= /* @noEscape */ $item['product_type']; ?></td>
+        <td><?= /* @noEscape */ $item['qty']; ?></td>
+        <td><?= /* @noEscape */ $item['price']; ?></td>
+    </tr>
+        <?php }
+        } ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td style="padding:6px 0; font-size: 20px; font-style: bold;" align="left">
+            Subtotal :
+        </td>
+        <td align="left" style="padding:6px 0; font-size: 20px;  font-style: bold;">
+            <?= /* @noEscape */ $productDecodeJson['quote_subtotal']?>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">You can complete your purchase.</td>
+    </tr>
+</table>
+</div>

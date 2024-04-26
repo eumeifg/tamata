@@ -1,0 +1,107 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@checkout-sidebar-shipping-information__padding: @indent__l;
+@checkout-sidebar-shipping-information__line-height: @checkout-billing-address-details__line-height;
+
+@checkout-sidebar-shipping-information-edit-icon__color: @minicart-icons-color;
+@checkout-sidebar-shipping-information-edit-icon__content: @icon-settings;
+@checkout-sidebar-shipping-information-edit-icon__font-size: 28px;
+@checkout-sidebar-shipping-information-edit-icon__line-height: 28px;
+@checkout-sidebar-shipping-information-edit-icon__top: 2px;
+@checkout-sidebar-shipping-information-edit-icon__hover__color: @primary__color;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //
+    //  Shipping Information
+    //  ---------------------------------------------
+
+    .opc-block-shipping-information {
+        .lib-css(padding, 28px 30px 10px);
+        
+        .shipping-information-title {
+            position: relative;
+            font-size: 16px;
+            > span {
+                color: #000;
+                font-weight: @font-weight__bold;
+            }
+
+            .action-edit {
+                &:extend(.abs-action-button-as-link all);
+                margin: 0;
+                position: absolute;
+                right: 0;
+                color: #56a4d8;
+                text-transform: capitalize;
+                font-size: 14px;
+            }
+        }
+
+        .shipping-information-content {
+            .lib-css(line-height, 24px);
+            font-size: 14px;
+            color: #666;
+            font-weight: 500; 
+        }
+
+        .ship-to,
+        .ship-via {
+            margin: 0 0 20px;
+            width: 48.46%;
+            box-sizing: border-box;
+            border: 1px solid #eeeeee;
+            border-radius: 2px;
+            -webkit-border-radius: 2px;
+            display: inline-block;
+            vertical-align: top;
+            padding: 20px;
+            min-height: 160px;
+        }
+        .ship-to {
+            .shipping-information-content {
+                /*line-height: 9px;*/
+                &:first-line {
+                    font-weight: bold;
+                    color: #000;
+                    font-size: 16px; 
+                    text-transform: capitalize;
+                }
+                br {
+                    line-height: 1px;
+                }
+                .actions-toolbar {
+                    margin-left: 0;
+                }
+            }
+            .shipping-information-title {
+                > span {
+                    display: none;
+                }
+            }
+        }
+        .ship-via {
+            float: right;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .opc-block-shipping-information .ship-to, .opc-block-shipping-information .ship-via {
+        width: 100%;
+    }
+    .opc-block-shipping-information {
+        padding: 15px 15px 0px;
+    }
+}

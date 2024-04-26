@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+     <preference for="Magedelight\ConfigurableProduct\Plugin\ConfigurablePriceResolver" type="CAT\VIP\Plugin\ConfigurablePriceResolver"/>
+     <preference for="MDC\Microsite\Block\Product\View\Type\Renderer\Configurable" type="CAT\VIP\Block\Product\View\Type\Renderer\Configurable"/>
+     <preference for="Magedelight\Catalog\Model\ConfigurableAttributeData" type="CAT\VIP\Model\ConfigurableAttributeData"/>
+     <preference for="Magedelight\Catalog\Plugin\ProductDataAppend" type="CAT\VIP\Plugin\ProductDataAppend"/>
+     <preference for="Magedelight\Catalog\Model\PriceProcessor" type="CAT\VIP\Model\PriceProcessorOld"/>
+     <preference for="MDC\Catalog\Model\PriceProcessor" type="CAT\VIP\Model\PriceProcessor"/>
+     <preference for="Magedelight\Catalog\Helper\Data" type="CAT\VIP\Helper\UpdatesData"/>
+     <preference for="Magento\SalesRule\Model\Rule\Action\Discount\ByPercent" type="CAT\VIP\Model\Rule\Action\Discount\ByPercent"/>
+     <preference for="Magento\SalesRule\Model\Rule\Action\Discount\ByFixed" type="CAT\VIP\Model\Rule\Action\Discount\ByFixed"/>
+     <preference for="Magento\SalesRule\Model\Rule\Action\Discount\CartFixed" type="CAT\VIP\Model\Rule\Action\Discount\CartFixed"/>
+     <type name="Magento\Catalog\Model\Product">
+        <plugin name="updatevip_product" type="CAT\VIP\Plugin\Product" sortOrder="1"/>
+      </type>
+      <type name="Magento\Catalog\Pricing\Price\FinalPrice">
+        <plugin name="updatevip_Magento_Catalog_Pricing_Price_FinalPrice" type="CAT\VIP\Plugin\Product" sortOrder="10" disabled="false"/>
+    </type>
+    <!-- VIP Logs Grid Collection Starts -->
+    <virtualType name="CAT\VIP\Model\ResourceModel\VipLogs\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">cat_vip_logs</argument>
+            <argument name="resourceModel" xsi:type="string">CAT\VIP\Model\ResourceModel\VipLogs</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="vip_logs_listing_data_source" xsi:type="string">CAT\VIP\Model\ResourceModel\VipLogs\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- VIP Logs Grid Collection Ends -->
+    <preference for="CAT\VIP\Api\VipCustomerInterface" type="CAT\VIP\Model\VipCustomer"/>
+    <preference for="CAT\VIP\Api\Data\VipCustomerDataInterface" type="CAT\VIP\Model\Data\VipCustomerData"/>
+
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Magedelight\Vendor\Api\Data\Microsite\ProductInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="vip_price" xsi:type="string">CAT\VIP\Model\MicroSite\VipDetails\ReadHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,175 @@
+<?php /** @var $block Magedelight\Sales\Block\Vendor\Order\View */ ?>
+<?php
+/** @var $_order \Magedelight\Sales\Model\Order */
+use Magedelight\Sales\Model\Order as VendorOrder;
+use MDC\Sales\Model\Source\Order\PickupStatus;
+
+$_order = $block->getOrderData();
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="actions-toolbar top-bar-action mb10">
+            <div class="primary fright">
+                <button type="button" title="<?= __('Back') ?>" id="actionBack" data-url="<?= $block->getBackUrl() ?>" class="action button secondary back mrn" >
+                    <span><?= __('Back') ?></span>
+                </button>
+            <?php if (!$_order->getIsConfirmed() && $_order->canCancel()): ?>
+                <button id="order-view-cancel-button" title="<?= __('Cancel') ?>" type="button" data-url="<?= $block->getOrderCancelUrl() ?>" class="action button secondary cancel mrn confirm-msg" style="display: none">
+                    <span><?= __('Cancel') ?></span>
+                </button>
+                <button type="button" title="<?= __('Confirm') ?>" data-url="<?= $block->getOrderConfirmUrl() ?>" class="action button primary confirm-msg">
+                    <span><?= __('Confirm') ?></span>
+                </button>
+            <?php endif; ?>
+            <?php if ($_order->getStatus() != 'canceled' && $_order->getIsConfirmed()) : ?>
+                <?php if ($_order->canShip()) : ?>
+                    <button type="button" title="<?= __('Generate Shipment') ?>" data-url="<?= $block->getShipmentUrl() ?>" class="action button primary btn-shipment">
+                        <span><?= __('Generate Shipment') ?></span>
+                    </button>
+                <?php endif; ?>
+            <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="rbpanel">
+            <div class="rbpanel-heading">
+                <div class="rbpanel-title">
+                    <?= __('Order # %1', $_order->getIncrementId()) ?>
+                </div>
+            </div>
+            <div class="rbpanel-body">
+                <div class="row order-date-status mb5">
+                    <div class="col-md-3">
+                        <div class="field date">
+                            <div class="info-detail">
+                                <label class="label"><span><?= __('Date') ?>:</span></label>
+                                <label class="label value"><span><?= $block->formatDate($_order->getCreatedAt(), \IntlDateFormatter::MEDIUM,
+                                                                                                true) ?></span></label>
+                            </div>
+                        </div>
+                        <div class="field status">
+                            <div class="info-detail">
+                                <label class="label"><span><?= __('Status') ?>:</span></label>
+                                <label class="label value">
+                                    <span>
+                                        <?= $block->getOrderStatusLabel($_order->getStatus()) ?>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="field status">
+                            <div class="info-detail">
+                                <label class="label"><span><?= __('Pickup Status') ?>:</span></label>
+                                <label class="label value"><?= $block->getPickupStatusModel()->getPickupStatus($_order->getPickupStatus()) ?></span></label>
+                            </div>
+                        </div>
+                        <div class="field status">
+                            <div class="info-detail">
+                                <label class="label"><span><?= __('Is Confirmed') ?>:</span></label>
+                                <label class="label value"><span><?= ($_order->getIsConfirmed()) ? __('Yes') : __('No') ?></span></label>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-gutter order-addresses mb20">
+                    <div class="col-md-3">
+                        <div class="rbpanel">
+                            <div class="rbpanel-heading p10"><?= __('Payment Information') ?></div>
+                            <div class="rbpanel-body minh200">
+                                <?= $block->getPaymentInfoHtml() ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="rbpanel">
+                            <div class="rbpanel-heading p10"><?= __('Shipping & Handling Information') ?></div>
+                            <div class="rbpanel-body minh200">
+                                <?php if ($_order->getShippingDescription()): ?>
+                                    <?= __($block->escapeHtml($_order->getShippingDescription())) ?>
+                                    <?php if (floatval($_order->getShippingAmount())) { ?>
+                                        <br/>
+                                        <?= $_order->formatValue($_order->getShippingAmount()); ?>
+                                    <?php } ?>
+                                <?php else: ?>
+                                    <?php /* @escapeNotVerified */ echo __('No shipping information available'); ?>
+<?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row order-details-items mbn pbn bbn">
+                    <div class="col-md-12">
+                        <div class="table-wrapper orders-history mbn">
+<?= $block->getChildHtml('order_items') ?>
+                        </div>
+                    </div>
+                </div>
+                <?php /* if ($_order->getIsConfirmed()) : ?>
+                  <div class="row order-shipment-list-table" >
+                  <div class="col-md-12">
+                  <div class="table-wrapper order-shipment">
+                  <?= $block->getChildHtml('order_shipment_list') ?>
+                  </div>
+                  </div>
+                  </div>
+                  <?php endif; */ ?>
+                <?php /* if ($_order->getIsConfirmed()) : ?>
+                  <div class="row no-display order-shipment-table" >
+                  <div class="col-md-12">
+                  <div class="table-wrapper order-shipment">
+                  <?= $block->getChildHtml('order_shipment') ?>
+                  </div>
+                  </div>
+                  </div>
+                  <?php endif; */ ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    require(['jquery', 'Magento_Ui/js/modal/confirm'], function ($, confirmation) {
+        $('.action.button').click(function (e) {
+            $ele = $(this);
+            if ($($ele).hasClass('confirm-msg')) {
+                confirmation({
+                    title: '',
+                    content: 'Are you sure to ' + $($ele).attr('title').toLowerCase() + ' this order?',
+                    actions: {
+                        confirm: function () {
+                            location.href = $($ele).attr('data-url');
+                        },
+                        cancel: function () {
+                            /* to do on cancel*/
+                        }
+                    },
+                    buttons: [{
+                            text: $.mage.__('OK'),
+                            class: 'action secondary action-accept',
+                            /**
+                             * Click handler.
+                             */
+                            click: function (event) {
+                                this.closeModal(event, true);
+                            }
+                        },
+                        {
+                            text: $.mage.__('Cancel'),
+                            class: 'action secondary action-dismiss',
+                            /**
+                             * Click handler.
+                             */
+                            click: function (event) {
+                                this.closeModal(event);
+                            }
+                        }
+                    ]
+                });
+            } else {
+                location.href = $($ele).attr('data-url');
+            }
+        });
+    });
+</script>

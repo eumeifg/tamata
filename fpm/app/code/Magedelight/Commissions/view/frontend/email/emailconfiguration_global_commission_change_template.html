@@ -1,0 +1,32 @@
+<!--@subject Vendor Commission Change@-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Hello %vendor_name" vendor_name=$vendor_name}}</p>
+<p>{{trans "This is to inform you that the commission rate has been changed."}}</p>
+
+{{depend cur_comm }}
+<p>{{trans "Current commission : %old_commission_rate" old_commission_rate=$old_comm}}</p>
+<p>{{trans "New commission : %new_commission_rate" new_commission_rate=$cur_comm}}</p>
+{{/depend}}
+
+{{depend cur_mp_fee }}
+<p>{{trans "Current Marketplace Fee : %old_mp_rate" old_mp_rate=$old_mp_fee}}</p>
+<p>{{trans "New Marketplace Fee : %new_mp_rate" new_mp_rate=$cur_mp_fee}}</p>
+{{/depend}}
+
+{{depend cur_can_fee }}
+<p>{{trans "Current Cancellation Fee : %old_can_rate" old_can_rate=$old_can_fee}}</p>
+<p>{{trans "New Cancellation Fee : %new_can_rate" new_can_rate=$cur_can_fee}}</p>
+{{/depend}}
+
+{{depend cur_service_tax }}
+<p>{{trans "Current Service Tax : %old_service_tax" old_service_tax=$old_service_tax}}</p>
+<p>{{trans "New Service Tax : %cur_service_tax" cur_service_tax=$cur_service_tax}}</p>
+{{/depend}}
+
+<p>{{trans "This new commission will be charged from now onwards."}}</p>
+<p>{{trans "In case of any queries, kindly contact %store_email" store_email=$store_email}}</p>
+<p>{{trans  "Thank you."}}</p>
+{{template config_path="design/email/footer_template"}}
+

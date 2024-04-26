@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="cat_customerbalance" resource="default" engine="innodb" comment="Enterprise Customerbalance">
+        <column xsi:type="int" name="import_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Import Id"/>
+        <column xsi:type="varchar" name="file_name" nullable="false" length="255" comment="File Name"/>
+        <column xsi:type="varchar" name="report_url" nullable="true" length="255" comment="Report File Name"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Imported At"/>
+        <column xsi:type="datetime" name="processed_at" on_update="false" nullable="true" comment="Processed At" />
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" comment="File Status" default="0" nullable="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="import_id"/>
+        </constraint>
+    </table>
+</schema>

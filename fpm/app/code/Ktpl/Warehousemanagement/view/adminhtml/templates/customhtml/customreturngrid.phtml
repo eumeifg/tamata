@@ -1,0 +1,179 @@
+<div class="scan_product_container admin__fieldset-wrapper-content">
+<?php
+    $deliverytype = $block->getRequest()->getParam('deliverytype');
+    $returntype = $block->getRequest()->getParam('returntype');
+    $scanLimit = $block->getScanLimit();
+?>
+
+<div class="page-main-actions">
+    <div class="page-actions floating-header">
+        <button id="back" title="Back" type="button" class="action- scalable back" onclick="location.href = '<?= $block->getUrl('ktpl_warehousemanagement/warehousemanagement/indexreturn', ['form_key' => $block->getFormKey()])?>';">
+            <span>Back</span>
+        </button>
+    </div>
+</div>
+<div class="fieldset-wrapper">
+    <div class="admin__fieldset-wrapper-content _hide">
+        <fieldset class="admin__fieldset">
+            <div class="admin__field _required">
+                <div class="admin__field-label">
+                    <label><span><?= __("Barcode"); ?></span></label>
+                </div>
+                <div class="admin__field-control">
+                    <input class="admin__control-text" type="text" name="barcode">
+
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="fieldset-wrapper-title">
+    <strong class="title">
+        <span><?= __("List of scanned line items"); ?></span>
+    </strong>
+</div>
+<div class="admin__fieldset">
+    <form id="customer-to-warehouse" method="post">
+       <table class="data-grid data-grid-draggable">
+        <thead>
+            <tr>
+                <th class="data-grid-th"><?= __("Main Order ID"); ?></th>
+                <th class="data-grid-th"><?= __("Sub Order ID"); ?></th>
+                <th class="data-grid-th"><?= __("Product Name"); ?></th>
+                <th class="data-grid-th"><?= __("Price"); ?></th>
+                <th class="data-grid-th"><?= __("Qty"); ?></th>
+                <th class="data-grid-th"><?= __("Main Order Status"); ?></th>
+                <th class="data-grid-th"><?= __("Sub Order Status"); ?></th>
+            </tr>
+        </thead>
+        <tbody id="rowcontainer">
+            <tr class="data-grid-tr-no-data noDataraw">
+                <td colspan="7"><?= __("We couldn't find any records."); ?></td>
+            </tr>
+        </tbody>
+       </table>
+       <button type="button" name="Submit" class="primary initSaveData" onclick="sendReturnData()" style="margin-top: 10px;"><?= __("Submit"); ?></button>
+    </form>
+</div>
+</div>
+
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'mage/url',
+        'Magento_Ui/js/modal/alert'
+    ], function ($, url, dialog) {
+
+        /*..Initialize global array for scanned barcodenumber and basic settings..*/
+        var listBarcode = [];
+        $('.initSaveData').hide();
+        $('.noDataraw').show();
+
+        $("input[name=barcode]").live('blur',function() {
+          var scannedbarcode = $('input[name=barcode]').attr('value');
+          /*..Check for limited/duplicate barcode scan ..*/
+          if(scannedbarcode == "") {
+            return false;
+          } else if($.inArray(scannedbarcode, listBarcode) !== -1) {
+            dialog({
+                title: $.mage.__('Notice!!!'),
+                content: $.mage.__('You scanned duplicate barcode number, please scan new barcode.')
+            });
+            $('input[name=barcode]').val("");
+            $( "input[name=barcode]" ).focus();
+            return false;
+          } else if(listBarcode.length > <?= $scanLimit - 1 ?>) {
+            dialog({
+                title: $.mage.__('Notice!!!'),
+                content: $.mage.__('You have to Submit first <?= $scanLimit; ?> line items.')
+            });
+            $('input[name=barcode]').val("");
+            $( "input[name=barcode]" ).focus();
+            return false;
+          } else {
+            listBarcode.push(scannedbarcode);
+          }
+
+          /*..Scan Barcode blur event ajax call..*/
+          if(scannedbarcode != "") {
+              var action = "<?= $block->getUrl('ktpl_warehousemanagement/warehousemanagement/fetchreturnproduct', ['form_key' => $block->getFormKey()]) ?>";
+              var codevalue = {'scannedbarcode' : scannedbarcode };
+              $.ajax({
+                    url: action,
+                    showLoader: true,
+                    type: 'POST',
+                    data: {
+                        scannedbarcode: scannedbarcode,
+                        deliverytype: <?= $deliverytype; ?>,
+                        returntype: <?= $returntype; ?>
+                    },
+                complete: function(response) {
+                        $('.noDataraw').hide();
+                        $('#rowcontainer').append(response.responseJSON.output);
+                        $('.loading-mask').hide();
+                        $('input[name=barcode]').val("");
+                        $( "input[name=barcode]").focus();
+                        $('.initSaveData').show();
+                    },
+                error: function(response) {
+                    $('.loading-mask').hide();
+                    listBarcode.pop(scannedbarcode);
+                    dialog({
+                        title: $.mage.__('Notice!!!'),
+                        content: $.mage.__('Scanned Record not found!'),
+                        actions: {
+                            always: function(){
+                                $('input[name=barcode]').val("");
+                                $( "input[name=barcode]").focus();
+                            }
+                        }
+                    });
+
+                }
+                });
+            } else {
+                return false;
+            }
+        });
+
+        /*..Submit Line item data..*/
+        this.sendReturnData = function() {
+            var customurl = "<?= $block->getUrl('ktpl_warehousemanagement/warehousemanagement/savereturn', ['form_key' => $block->getFormKey()])?>";
+            $.ajax({
+                url : customurl,
+                type : 'POST',
+                showLoader: true,
+                data: {
+                        deliverytype: <?= $deliverytype; ?>,
+                        returntype: <?= $returntype; ?>
+                    },
+                data : $('#customer-to-warehouse').serialize(),
+                success: function(msg){
+                    if(msg['duplicateInDb'] == 0) {
+                        dialog({
+                            title: $.mage.__('Error!!!'),
+                            content: $.mage.__('Your scanned line item already saved.'),
+                            actions: {
+                                always: function(){
+                                    window.location.reload();
+                                }
+                            }
+                        });
+                    } else {
+                        dialog({
+                            title: $.mage.__('Success!!!'),
+                            content: $.mage.__('Your record has been saved successfully.'),
+                            actions: {
+                                always: function(){
+                                    window.location.reload();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        return this;
+    });
+</script>

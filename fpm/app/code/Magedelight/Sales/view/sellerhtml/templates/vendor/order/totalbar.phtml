@@ -1,0 +1,27 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+$totals = $block->getTotals();
+?>
+<?php if ($totals && count($totals) > 0) : ?>
+    <table class="items-to-invoice">
+        <tr>
+            <?php foreach ($totals as $total) : ?>
+                <td <?php if ($total['grand']) :
+                    ?>class="grand-total"<?php
+                    endif; ?>>
+                    <?= $block->escapeHtml($total['label']) ?><br />
+                    <?= $block->escapeHtml($total['value']) ?>
+                </td>
+            <?php endforeach; ?>
+        </tr>
+    </table>
+<?php endif; ?>

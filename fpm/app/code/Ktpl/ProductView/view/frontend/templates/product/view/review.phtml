@@ -1,0 +1,53 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ 
+   /* $url = $block->getReviewsUrl() . '#reviews';
+    $urlForm = $block->getReviewsUrl() . '#review-form';*/
+?>
+ <div class="product details slider-product-item-details">
+    <?php
+        $_helper = $this->helper('Ktpl\ProductView\Helper\Data');
+        $productId = $block->getProduct()->getId();
+        $url = $_helper->getReviewsUrl(false,$productId) . '#customer-reviews';
+        $urlForm = $_helper->getReviewsUrl(false,$productId) . '#review-form';
+        $ratingData = $_helper->getReviewSummary($productId);
+        $ratingSummary = $ratingData['ratingSummary'];
+        $ratingSummaryCount = ((5*$ratingSummary)/100);
+        $reviewCount = $ratingData['reviewCount'];
+    ?>
+    <?php if ($ratingSummary) { ?>
+    <div class="product-reviews-summary short">
+        <div class="rating-summary">
+            <div title="<?php echo (int)$ratingSummary; ?>%" class="rating-result">
+                <span style="width:<?php echo (int)$ratingSummary; ?>%"><span><?php echo (int)$ratingSummary; ?>%</span></span>
+            </div>
+        </div>
+        <div class="reviews-actions">
+            <?php echo number_format($ratingSummaryCount, 1); ?>
+        </div>
+    </div>
+    <?php  } else { ?>
+    <div class="short empty">
+        <div class="reviews-actions">
+            <a class="action add" href="<?= $block->getProduct()->getProductUrl().'#review-form' ?>">
+                <?= $block->escapeHtml(__('Write a Review')) ?>
+            </a>
+        </div>
+    </div>    
+    <?php } ?>
+</div>
+<?php if ($ratingSummary) { ?>
+<div class="reviews-actions">
+    <a class="action view" href="<?= $block->escapeUrl($url) ?>">
+        <span itemprop="reviewCount"><?= $block->escapeHtml($_helper->getReviewCount($productId)) ?></span>&nbsp;
+        <span><?= ($_helper->getReviewCount($productId) == 1) ? $block->escapeHtml(__('Review')) : $block->escapeHtml(__('Reviews')) ?></span>
+    </a>
+    <a class="action add" href="<?= $block->escapeUrl($urlForm) ?>"><?= $block->escapeHtml(__('Write a Review')) ?></a>
+</div>
+ <?php  } ?>

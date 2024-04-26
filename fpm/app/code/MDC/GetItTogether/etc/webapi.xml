@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magedelight, All rights reserved.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    
+    <route url="/V1/carts/mine/set-order-getittogether" method="PUT">
+        <service class="MDC\GetItTogether\Api\OrderGetItTogetherManagementInterface" method="saveOrderGetItTogether"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/carts/mine/get-order-getittogether" method="GET">
+        <service class="MDC\GetItTogether\Api\OrderGetItTogetherManagementInterface" method="getOrderGetItTogether"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+</routes>

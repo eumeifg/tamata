@@ -1,0 +1,162 @@
+// /**
+//  * Copyright � 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@menu__width: 230px;
+
+@menu__z-index: @z-index-7;
+
+@menu-wrapper__z-index: @menu__z-index - 1;
+
+@menu__background-color: #263238;
+
+@menu-logo__padding-bottom:20px;
+@menu-logo__outer-size: @menu-logo__padding-top + @menu-logo-img__height + @menu-logo__padding-bottom;
+@menu-logo__padding-top: 20px;
+@menu-logo__padding-left: 40px;
+@menu-logo-img__height: 32px;
+@menu-logo-img__width: 166px;
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+
+    .sticky-status-message {
+          background: @color-yellow-light2;
+          border:none;
+          position: fixed;
+          text-align: center;
+          left: 0;
+          right: 0;
+          padding: 21px 40px 21px @menu__width + 20;
+          font-weight: bold;
+          top: 0px;
+          color: @primary__color;
+/*          @_shadow: 0 5px 5px 0 rgba(0, 0, 0, .30);
+          .lib-css(box-shadow, @_shadow, 1); */
+          z-index: 100;
+          margin: 0px auto;
+
+
+
+
+          .close {
+            .lib-font-size(0);
+            cursor:pointer;
+                .lib-icon-font (
+                    @icon-remove,
+                    @_icon-font-size: 18px,
+                    @_icon-font-margin: 0px 0px 0 0,
+                    @_icon-font-position: before,
+                    @_icon-font-text-hide:true,
+                    );
+                    &:before {
+                      position: absolute;
+                      top: 10px;
+                      right: 10px;
+                    }
+
+          }
+
+        }
+
+ .page-layout-vendor-1column,
+ .page-layout-vendor-2columns-left {
+   .page-wrapper {
+/*    width: ~'calc(100% - @{menu__width})';
+     margin-left: @menu__width;*/
+     background-color: @page__main-background-color !important;
+     .page-header {
+
+     }
+    .page-main {
+
+    }
+    .vendor-main-content-wrapper {
+        padding: @indent__base + 5;
+        .lib-css(margin-left, 230px);
+
+        .columns {
+          width: 100%;
+        }
+
+ .page-title-wrapper {
+       padding:0px;
+       .page-title {
+         .lib-css(margin, 0 0 @indent__base 0);
+       }
+     }
+    }
+
+
+       .lib-clearer();
+   }
+ .page-footer {
+   .lib-clearer();
+   background-color: @color-white;
+   margin-left:   @menu__width;
+
+ }
+
+ }
+ .vendor-content-top {
+  margin:@indent__l 0 @indent__l 0;
+  &:after{
+    content:'';
+    clear:both;
+    display: table;
+  }
+ }
+
+
+  html.rtl-layout { 
+    .page-layout-vendor-1column,
+    .page-layout-vendor-2columns-left {
+
+      .page-wrapper {
+          .vendor-main-content-wrapper {
+            margin-left: 0;
+            margin-right: @menu__width;
+          }
+
+      }
+    .page-footer {
+        margin-left: 0;
+        margin-right: @menu__width;
+    }
+
+    }
+
+  }
+
+
+}
+
+//
+//    max 1023px
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+
+.page-layout-vendor-1column,
+ .page-layout-vendor-2columns-left {
+   .page-wrapper {
+    .vendor-main-content-wrapper {
+        padding: @indent__s + 5;
+     .page-title-wrapper {
+           .page-title {
+             .lib-font-size(24);
+           }
+         }
+    }
+   }
+
+
+ }
+
+}
+
+
+
+
+

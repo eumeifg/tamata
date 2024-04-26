@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Backend
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Email\Block\Adminhtml\Template\Preview" type="Magedelight\Backend\Block\Adminhtml\Template\Preview" />
+    <preference for="Magento\Email\Block\Adminhtml\Template\Edit" type="Magedelight\Backend\Block\Adminhtml\Template\Edit" />
+    <type name="Magento\Email\ViewModel\Template\Preview\Form">
+        <plugin name="add_preview_template_code_to_post_data" type="Magedelight\Backend\Plugin\ViewModel\Template\Preview\AddPreviewTemplateCode" sortOrder="1" />
+    </type>
+</config>

@@ -1,0 +1,173 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php $vendorData = $block->getVendor($this->getRequest()->getParam('vid'));
+      $vendorMicrosite = $block->getMicrositeData();
+      $vendorRating = $block->getAllcollection();
+?>
+<div class="microsite-seller-box">
+      <div class="seller_profile_box">
+           <div class="seller_profile">
+               <div class="seller_logo">
+
+                    <?php if ($block->getVendorLogo()) : ?>
+                       <div class="vendor-logo">
+                           <img src="<?= $block->getVendorLogo(); ?>" alt="">
+                       </div>
+                    <?php endif; ?>
+               </div>   <!-- end of seller_logo -->
+                <div class="seller_information">
+                    <h3>
+                        <?php if (isset($vendorData['business_name'])) : ?>
+                            <?= $vendorData['business_name']; ?>
+                        <?php endif; ?>
+                    </h3>
+                    <div class="seller_location">
+                        <?php if (isset($vendorData['city'])) : ?>
+                            <?= $vendorData['city']; ?>
+                        <?php endif; ?>,
+                        <?php if (isset($vendorData['region'])) : ?>
+                            <?= $vendorData['region']; ?>
+                        <?php endif; ?>
+                    </div>  <!-- end of seller_location -->
+                    <ul>
+                        <?php if (!empty($vendorMicrosite['facebook_page'])) : ?>
+                        <li>
+                            <a href="<?= $vendorMicrosite['facebook_page']; ?>" target="_blank">
+                                 <img src="<?= $this->getViewFileUrl('Magedelight_Vendor::images/facebook_icon.png'); ?>" />
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (!empty($vendorMicrosite['twitter_page'])) : ?>
+                        <li>
+                            <a href="<?= $vendorMicrosite['twitter_page'];  ?>" target="_blank">
+                                <img src="<?= $this->getViewFileUrl('Magedelight_Vendor::images/twitter_icon.png'); ?>" />
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                        <?php if (!empty($vendorMicrosite['instagram_page'])) : ?>
+                        <li>
+                            <a href="<?= $vendorMicrosite['instagram_page'];  ?>" target="_blank">
+                               <img src="<?= $this->getViewFileUrl('Magedelight_Vendor::images/googleplus_icon.png'); ?>" />
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                    </ul>
+                </div>  <!-- end of seller_information -->
+           </div>  <!-- end of seller_profile -->
+           <!-- end of seller_desc -->
+           <div class="review_count">
+                 <ul>
+                    <li>
+                         <span class="icon">
+                             <img src="<?= $this->getViewFileUrl('Magedelight_Vendor::images/rating1.png'); ?>" />
+
+                         </span>
+                         <span class="value">
+                              <?= __('Positive') ?>
+                         </span>
+                         <span class="count">
+                            513
+                         </span>
+                    </li>
+                     <li>
+                        <span class="icon">
+                            <img src="<?= $this->getViewFileUrl('Magedelight_Vendor::images/rating2.png'); ?>" />
+
+                         </span>
+                         <span class="value">
+                             <?= __('Neutral') ?>
+                         </span>
+                          <span class="count">
+                            13
+                         </span>
+                    </li>
+                     <li>
+                        <span class="icon">
+                             <img src="<?= $this->getViewFileUrl('Magedelight_Vendor::images/rating3.png'); ?>" />
+
+                         </span>
+                         <span class="value">
+                             <?= __('Negative') ?> 
+                         </span>
+                          <span class="count">
+                            15
+                         </span>
+                    </li>
+                 </ul>
+                 <div class="review_result">
+                         <p><a href="">77%</a><?= __('Positive') ?></p>
+                         <p><?= __('Based on') ?><span><?= count($vendorRating); ?></span> <?= __('ratings') ?></p>
+                 </div><!-- end of review_result -->
+            </div>
+            <div class="allreview_box">
+                  <a href="<?= $block->getCurrentUrl(); ?>?limit=all"><?= __('See all reviews') ?></a>
+                  <div class="five_stars review_progress">
+                       <span>
+                         <?= __('5 Star') ?>
+                       </span>
+                    <div class="meter blue">
+                            <span style="width: 80%"></span>
+                        </div>
+                       <span>
+                        20222
+                       </span>
+                  </div>
+                  <div class="fourth_stars review_progress">
+                         <span>
+                          <?= __('4 Star') ?>
+                       </span>
+                    <div class="meter blue">
+                            <span style="width: 80%"></span>
+                        </div>
+                       <span>
+                        20222
+                       </span>
+                  </div>
+                  <div class="three_stars review_progress">
+                         <span>
+                          <?= __('3 Star') ?>
+                       </span>
+                    <div class="meter blue">
+                            <span style="width: 80%"></span>
+                        </div>
+                       <span>
+                        20222
+                       </span>
+                  </div>
+                  <div class="two_stars review_progress">
+                           <span>
+                          <?= __('2 Star') ?>
+                       </span>
+                    <div class="meter blue">
+                            <span style="width: 80%"></span>
+                        </div>
+                       <span>
+                        20222
+                       </span>
+                  </div>
+                  <div class="one_stars review_progress">
+                         <span>
+                          <?= __('1 Star') ?>
+                       </span>
+                    <div class="meter blue">
+                            <span style="width: 80%"></span>
+                        </div>
+                       <span>
+                        20222
+                       </span>
+                  </div>
+
+            </div>
+      </div>   <!-- end of seller_profile_box -->
+          <!-- end of review_box -->
+</div>

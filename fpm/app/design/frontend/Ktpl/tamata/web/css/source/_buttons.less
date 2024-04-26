@@ -1,0 +1,60 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //  Using buttons mixins
+    button,
+    a.action.primary {
+        .lib-css(border-radius, 2px);
+        text-transform:  uppercase;
+    }
+
+    button {
+        &:not(.primary) {
+            .lib-css(box-shadow, none);
+
+            &:active {
+                .lib-css(box-shadow, none);
+            }
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            background: @color-gray20;
+            color: @color-white;
+        }
+    }
+
+    body {
+        &:not(._keyfocus) {
+            button {
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    a.action.primary {
+        .lib-link-as-button();
+    }
+
+    .action.primary {
+        .lib-button-primary();
+
+        &:hover,
+        &:focus,
+        &:active {
+            background: @color-gray20;
+            color: @color-white;
+        }
+    }
+}

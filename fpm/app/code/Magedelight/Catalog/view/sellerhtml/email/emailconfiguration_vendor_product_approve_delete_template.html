@@ -1,0 +1,10 @@
+<!--@subject Vendor Approve Product Delete@-->
+
+{{template config_path="vendor_design/email/header_template"}}
+
+<p>{{trans "Hello %vendor_name" vendor_name=$vendor_name}}</p>
+<p>{{trans "We would like to inform you that your offer with SKU %offer_sku has been deleted." offer_sku=$offer_sku}}</p>
+<p>{{trans "In case of any queries, kindly contact %store_name" store_name=$store_name}}</p>
+
+
+{{template config_path="vendor_design/email/footer_template"}}

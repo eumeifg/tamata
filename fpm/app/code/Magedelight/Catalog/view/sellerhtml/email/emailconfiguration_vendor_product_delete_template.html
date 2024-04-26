@@ -1,0 +1,11 @@
+<!--@subject Vendor Product Delete - {{var product_name}}@-->
+{{template config_path="vendor_design/email/header_template"}}
+
+
+<p>{{trans "Hello %vendor_name" vendor_name=$vendor_name}}</p>
+<p>{{trans "We regret to inform that your product %product_name has been deleted." product_name=$product_name}}</p>
+<p>{{trans "You will no longer be able to view this product."}}</p>
+<p>{{trans "In case of any queries, kindly contact %store_name" store_name=$store_name}}</p>
+
+{{template config_path="vendor_design/email/footer_template"}}
+

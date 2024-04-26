@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="MDC_MobileBanner::mdc_mobilebanner" sortOrder="10" title="mdc mobilebanner">
+					<resource id="MDC_MobileBanner::index_index" sortOrder="10" title="index index"/>
+				</resource>
+				<resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="MDC_MobileBanner::config_mdc_mobilebanner" title="mobilebanner"/>
+						</resource>
+					</resource>
+				</resource>
+				<resource id="MDC_MobileBanner::banner" sortOrder="10" title="banner">
+					<resource id="MDC_MobileBanner::banner_save" sortOrder="10" title="Save banner"/>
+					<resource id="MDC_MobileBanner::banner_delete" sortOrder="20" title="Delete banner"/>
+					<resource id="MDC_MobileBanner::banner_update" sortOrder="30" title="Update banner"/>
+					<resource id="MDC_MobileBanner::banner_view" sortOrder="40" title="View banner"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

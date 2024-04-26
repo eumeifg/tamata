@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_SearchAutocomplete
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+ -->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- Auto-suggestion API -->
+    <route url="/V1/autosearch/" method="GET">
+        <service class="Magedelight\SearchAutocomplete\Api\AutocompleteInterface" method="getItems"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <!-- Auto-suggestion API New Endpoint -->
+    <route url="/V1/autonewsearch/" method="GET">
+        <service class="Magedelight\SearchAutocomplete\Api\AutocompleteInterface" method="getAutoItems"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <route url="/V1/mdsearch/" method="GET">
+        <service class="Magedelight\SearchAutocomplete\Api\SearchInterface" method="search"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>

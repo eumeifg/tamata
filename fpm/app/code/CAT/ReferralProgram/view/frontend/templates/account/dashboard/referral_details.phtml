@@ -1,0 +1,29 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \CAT\ReferralProgram\Block\Account\Dashboard\ReferralDetails $block */
+?>
+<?php if ($block->isReferralModuleEnable()) : ?>
+<div class="block block-dashboard-info">
+    <div class="block-title"><strong><?= $block->escapeHtml(__('Referral Details')) ?></strong></div>
+    <div class="block-content">
+        <div class="box box-referral">
+            <strong class="box-title">
+                <span><?= $block->escapeHtml(__('Referral Code')) ?></span>
+            </strong>
+            <div class="box-content">
+                <p>
+                    <?php if ($block->getReferralCoupon()) : ?>
+                        <?= $block->getReferralCoupon() ?>
+                    <?php else : ?>
+                        <?= $block->escapeHtml(__('No referral coupon found.')) ?>
+                    <?php endif; ?>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

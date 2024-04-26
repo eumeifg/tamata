@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="vendor_product" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>seperator-top</class>
+            <label>Product Configurations</label>
+            <tab>rbsettings</tab>
+            <resource>Magedelight_Theme::config</resource>
+            <group id="vital_info" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Manage Attributes</label>
+                <field id="attributes" translate="label" type="multiselect" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude Attributes</label>
+                    <comment>Selected attributes will not display in Vital Info section of vendor new product listing form.</comment>
+                    <source_model>Magedelight\Catalog\Model\Source\Attributes</source_model>
+                </field>
+                <field id="attributeset" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Attribute Set For Category</label>
+                    <source_model>Magento\Catalog\Model\Product\AttributeSet\Options</source_model>
+                </field>
+            </group>
+            <group id="request" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Request Settings</label>
+                <field id="email_identity" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="email_recipient" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Receiver</label>
+                    <comment>Email address to receive vendor notifications for new product request.</comment>
+                </field>
+                <field id="new_email_notification_admin_template" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin Notification Email Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="authorised_category" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category Display Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Authorised Categories Only</label>
+                    <comment>Display authorised categories only when list new product if Yes.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="counts_enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Category Counts</label>
+                    <comment>Display category counts if Yes.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="validation" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Validation Settings</label>
+                <field id="vendor_sku" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Check Vendor SKU</label>                    
+                    <comment>Accept only unique vendor sku if Yes.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="allow_variants" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Variants</label>                    
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="image_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                    <label>Image Width</label>
+                </field>
+                <field id="image_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                    <label>Image Height</label>
+                </field>
+                <field id="image_size" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                    <label>Image Size</label>
+                    <comment>Enter image size in KB. Blank field will consider size as 0 KB.</comment>
+                </field>
+            </group>
+            
+            <group id="precedence" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Default Vendor Criteria Settings</label>
+                <field id="precedence_1" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Precedence 1</label>
+                    <source_model>Magedelight\Catalog\Model\Config\Source\DefaultVendor\Criteria</source_model>
+                    <comment><![CDATA[Default vendor of a product is determined based on the precedence configured]]></comment>
+                </field>
+                <field id="precedence_2" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Precedence 2</label>
+                    <source_model>Magedelight\Catalog\Model\Config\Source\DefaultVendor\Criteria</source_model>
+                    <comment><![CDATA[Default vendor of a product is determined based on the precedence configured]]></comment>
+                </field>
+                <field id="precedence_3" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Precedence 3</label>
+                    <source_model>Magedelight\Catalog\Model\Config\Source\DefaultVendor\Criteria</source_model>
+                    <comment><![CDATA[Default vendor of a product is determined based on the precedence configured]]></comment>
+                </field>
+                <field id="default_precedence" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Precedence</label>
+                    <source_model>Magedelight\Catalog\Model\Config\Source\DefaultVendor\DefaultCriteria</source_model>
+                    <comment><![CDATA[If none of the above precedence is selected, 
+                        default precedence is used to determine default vendor of a product]]></comment>
+                </field>
+            </group>
+        </section>
+        <section id="md_bulkimport" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Bulk Import</label>
+            <tab>rbsettings</tab>
+            <resource>Magedelight_Theme::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="email_enable" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="static_width" translate="label comment" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Admin Email</label>
+                    <depends>
+                        <field id="menu_type">Yes</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="cleanup" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Scheduled Cleanup Settings For Uploaded Images By Bulk Upload</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Scheduled Cleanup</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="time" translate="label" type="time" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cleanup Start Time</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="frequency" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cleanup Frequency</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
+                    <backend_model>Magedelight\Catalog\Model\Config\Backend\Cron</backend_model>
+                </field>
+            </group>
+        </section>
+        
+        <section id="sellexisting" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Select and sell</label>
+            <tab>rbsettings</tab>
+            <resource>Magedelight_Theme::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                <label>General Options</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+
+        <!-- RBOS-369 removed configurtion as development not comeplted -->
+<!--        <section id="rbsort" translate="label" type="text" sortOrder="56" showInDefault="1" showInWebsite="1"-->
+<!--                 showInStore="1">-->
+<!--            <label>Sorting</label>-->
+<!--            <tab>rbsettings</tab>-->
+<!--            <resource>Magedelight_Catalog::sorting</resource>-->
+<!--            <group id="bestsellers" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0"-->
+<!--                   showInStore="0">-->
+<!--                <label>Bestsellers</label>-->
+<!--                <field id="best_period" translate="label comment" type="text" sortOrder="15" showInDefault="1"-->
+<!--                       showInWebsite="1" showInStore="1">-->
+<!--                    <label>Bestsellers Period (days)</label>-->
+<!--                    <comment>-->
+<!--                        <![CDATA[Leave empty for life-time statistics.]]>-->
+<!--                    </comment>-->
+<!--                </field>-->
+<!--                <field id="exclude" translate="label comment" type="multiselect" sortOrder="25" showInDefault="1"-->
+<!--                       showInWebsite="1" showInStore="1">-->
+<!--                    <label>Exclude Orders Status</label>-->
+<!--                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>-->
+<!--                    <can_be_empty>1</can_be_empty>-->
+<!--                    <comment>-->
+<!--                        <![CDATA[Products from orders with selected states will not be used in the Bestsellers]]>-->
+<!--                    </comment>-->
+<!--                </field>-->
+<!--            </group>           -->
+<!--        </section>-->
+        
+        <section id="emailconfiguration">
+            <group id="vendor_product_status" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Product Status</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_product_delete" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Product Delete</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_product_massdelete" translate="label" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Product Mass Delete</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_product_list" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Product List</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+           
+            <group id="vendor_product_approve_delete" translate="label" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Approve Product Delete</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="vendor_product_masslist" translate="label" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Approve Product Mass List</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_product_approve_massdelete" translate="label" type="text" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Approve Product Mass Delete</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            
+            <group id="vendor_product_unlist" translate="label" type="text" sortOrder="330" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vendor Product UnList</label>    
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="template" translate="label" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

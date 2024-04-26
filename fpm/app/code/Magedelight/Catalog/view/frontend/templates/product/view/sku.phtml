@@ -1,0 +1,32 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var \Magedelight\Vendor\Api\Data\VendorInterface $vendor
+ * @var \Magedelight\Catalog\Block\Product $block
+ *
+ */
+?>
+<?php if ($block->checkifIsVendorLoggedIn()): ?>    
+    <div class="mp-vendor-product-info">       
+        <div data-role="content">
+            <div class="vendor-product-info">
+                <span class="label"><?= __('MP SKU') ?></span>
+                <span class="label-value"><?= $block->getProduct()->getSku() ?></span>
+            </div>
+            <div class="vendor-product-info">
+                <span class="label"><?= __('MPID') ?></span>
+                <span class="label-value"><?= $block->getProduct()->getID() ?></span>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+

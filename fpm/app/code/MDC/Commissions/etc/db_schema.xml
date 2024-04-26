@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+/**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_Commissions
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    
+    <!-- md_vendor_group_commission table starts. -->
+    <table name="md_vendor_group_commission" resource="default" engine="innodb"
+           comment="Information Of Vendor Group Commission.">
+        
+        <column xsi:type="int" name="vendor_group_commission_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Commission ID"/>
+        
+        <column xsi:type="smallint" name="vendor_group_id" padding="5" unsigned="true" nullable="false" identity="false"
+                 comment="0 - General Group, 1 - VIP Group"/>
+        
+        <column xsi:type="smallint" name="calculation_type" padding="5" unsigned="true" nullable="false" identity="false"
+                 comment="1 - Flat, 2 - Percentage"/>
+        
+        <column xsi:type="decimal" name="commission_value" scale="4" precision="12" unsigned="false" nullable="true"
+                 comment="Commission Value"/>
+        
+        <column xsi:type="smallint" name="marketplace_fee_type" padding="5" unsigned="true" nullable="false" identity="false"
+                 comment="1 - Flat, 2 - Percentage"/>
+        
+        <column xsi:type="decimal" name="marketplace_fee" scale="4" precision="12" unsigned="false" nullable="true"
+                 comment="Marketplace Fee for product listing"/>
+        
+        <column xsi:type="smallint" name="cancellation_calculation_type" padding="5" unsigned="true" nullable="false" identity="false"
+                 comment="1 - Flat, 2 - Percentage"/>
+        
+        <column xsi:type="decimal" name="cancellation_commission_value" scale="4" precision="12" unsigned="false" nullable="true"
+                 comment="Cancellation Commission Value"/>
+        
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" default="0"
+                 comment="0 - Disabled, 1 - Enabled"/>
+        
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false"
+                 comment="Website ID"/>
+        
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="vendor_group_commission_id"/>
+        </constraint>
+        
+        <constraint xsi:type="unique" referenceId="MD_VENDOR_GROUP_COMM_WEBSITE_ID_VENDOR_GROUP_ID">
+            <column name="website_id"/>
+            <column name="vendor_group_id"/>
+        </constraint>
+        
+        <constraint xsi:type="foreign" referenceId="MD_VENDOR_GROUP_COMM_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID"
+                    table="md_vendor_group_commission" column="website_id" referenceTable="store_website"
+                    referenceColumn="website_id" onDelete="CASCADE"/>
+    </table>
+    <!-- md_vendor_group_commission table ends. -->
+
+    <!-- md_vendor_website_data table starts. -->
+    <table name="md_vendor_website_data">
+        <column xsi:type="tinyint" name="vendor_group" nullable="false" padding="2" default="0" comment="0 - General, 1 - VIP"/>
+    </table>
+    <!-- md_vendor_website_data table ends. -->
+</schema>

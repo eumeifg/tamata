@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="md_vendor_product" resource="default" engine="innodb" comment="Table stores information of approved products of vendors mapped with system catalog product">
+        <!-- Added -->
+        <index referenceId="MD_VENDOR_PRODUCT_TYPE_ID" indexType="btree">
+            <column name="type_id" />
+        </index>
+        <index referenceId="MD_VENDOR_PRODUCT_PARENT_ID" indexType="btree">
+            <column name="parent_id" />
+        </index>
+    </table>
+    <table name="md_vendor_product_website" resource="default" engine="innodb" comment="Table stores information of vendor offer website data">
+        <!-- Added -->
+        <column xsi:type="decimal" name="cost_price_iqd" scale="4" precision="12" unsigned="false" nullable="true" comment="Cost Price IQD" />
+        <column xsi:type="decimal" name="cost_price_usd" scale="4" precision="12" unsigned="false" nullable="true" comment="Cost Price USD" />
+        <index referenceId="MD_VENDOR_PRODUCT_WEBSITE_STATUS" indexType="btree">
+            <column name="status" />
+        </index>
+    </table>
+    <table name="md_vendor_product_store" resource="default" engine="innodb" comment="Table stores information of vendor offer store data">
+        <index referenceId="MD_VENDOR_PRODUCT_STORE_VENDOR_PRODUCT_ID_STORE_ID" indexType="btree">
+            <column name="vendor_product_id" />
+            <column name="store_id" />
+        </index>
+    </table>
+
+    <table name="md_vendor_product_request_website" resource="default" engine="innodb" comment="Table stores information of vendor offer website data">
+        <!-- Added -->
+        <column xsi:type="decimal" name="cost_price_iqd" scale="4" precision="12" unsigned="false" nullable="true" comment="Cost Price IQD" />
+        <column xsi:type="decimal" name="cost_price_usd" scale="4" precision="12" unsigned="false" nullable="true" comment="Cost Price USD" />
+    </table>
+</schema>

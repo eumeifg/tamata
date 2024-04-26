@@ -1,0 +1,112 @@
+Country,بلد
+Region/State,المنطقة / الدولة
+City,مدينة
+Zip/Postal Code From,/ الرمز البريدي من
+Zip/Postal Code To,/ الرمز البريدي ل
+>=,> =
+<=,<=
+Shipping Price,سعر الشحن
+Shipping Method,طريقة الشحن
+Vendor,بائع
+Export CSV,تصدير CSV
+Guidelines - Shipping Method,المبادئ التوجيهية - طريقة شحن
+Add New Matrix Rate,إضافة جديد السعر مصفوفة
+The Item has been deleted.,تم حذف البند.
+We can't find a Item to delete.,لم نتمكن من العثور على البند لحذف.
+Country Code,الرقم الدولي
+State/Region Code,الدولة / منطقة رمز
+condition_from,condition_from
+condition_to,condition_to
+No file has been selected. Please select file.,وقد تم اختيار أي ملف. الرجاء تحديد الملف.
+Csv Field not match.,CSV وليس مباراة.
+You saved this matrix rates.,يمكنك حفظ هذه المعدلات المصفوفة.
+Invalid file formate. Upload only csv file.,فورمات ملف غير صالح. تحميل ملف CSV الوحيد.
+Duplicate Row #%1 (Country "%2" and City "%3"),تكرار صف # 1٪ (البلد "٪ 2" ومدينة "٪ 3")
+Something went wrong while saving the matrix rates.,حدث خطأ ما أثناء إنقاذ معدلات المصفوفة.
+Shipping Rates,أسعار الشحن
+"Duplicate (Country ""%1"", City ""%2"", Category Id ""%3"" and Price ""%4"")",تكرار (البلد "٪ 1"، المدينة "٪ 2"، الفئة رقم "3٪" والأسعار "4٪")
+"Duplicate (Country ""%1"", City ""%2"", and Price ""%3"")",تكرار (البلد "٪ 1"، المدينة "٪ 2"، والأسعار "٪ 3")
+Free,حر
+Weight vs. Destination,الوزن مقابل الوجهة
+Order Subtotal vs. Destination,ترتيب المجموع الفرعي مقابل الوجهة
+# of Items vs. Destination,# من الأصناف مقابل الوجهة
+Weight,وزن
+Order Subtotal,ترتيب المجموع الفرعي
+# of Items,# من العناصر
+Please correct Matrix Rate code type: %1.,يرجى تصحيح مصفوفة تقييم نوع كود:٪ 1.
+Please correct Matrix Rate code for type %1: %2.,يرجى تصحيح كود مصفوفة السعر لنوع٪ 1:٪ 2.
+Please correct Matrix Rates File Format.,يرجى تصحيح مصفوفة الاسعار تنسيق الملف.
+Something went wrong while importing matrix rates.,حدث خطأ ما أثناء استيراد معدلات المصفوفة.
+We couldn't import this file because of these errors: %1,لم نتمكن من استيراد هذا الملف لأنه من هذه الأخطاء:٪ 1
+Please correct Matrix Rates format in Row #%1. Invalid Number of Rows,يرجى تصحيح شكل مصفوفة الاسعار في صف # 1٪. عدد غير صالح من الصفوف
+Please correct Country "%1" in Row #%2.,يرجى تصحيح البلد "٪ 1" في صف #٪ 2.
+Please correct Region/State "%1" in Row #%2.,يرجى تصحيح المنطقة / الدولة "٪ 1" في صف #٪ 2.
+Please correct %1 From "%2" in Row #%3.,يرجى تصحيح٪ 1 من "٪ 2" في صف # 3٪.
+Please correct %1 To "%2" in Row #%3.,يرجى تصحيح٪ 1 ل"٪ 2" في صف # 3٪.
+Please correct Shipping Price "%1" in Row #%2.,يرجى تصحيح سعر الشحن "٪ 1" في صف #٪ 2.
+Please correct Shipping Method "%1" in Row #%2.,يرجى تصحيح أسلوب الشحن "٪ 1" في صف #٪ 2.
+"Duplicate Row #%1 (Country ""%2"", Region/State ""%3"", City ""%4"", Zip from ""%5"", Zip to ""%6"", From Value ""%7"", To Value ""%8"", Shipping Method ""%9"", and Vendor Id ""%10"")",تكرار صف #٪ 1 (البلد "٪ 2"، المنطقة / الدولة "٪ 3"، المدينة "4٪"، الرمز البريدي من "5٪"، الرمز البريدي إلى "٪ 6"، من القيمة "٪ 7"، إلى القيمة " 8٪ "، طريقة شحن" 9٪ "، والبائع رقم" 10٪ ")
+* Required Fields,* الحقول المطلوبة
+Region,منطقة
+Zipcode From,الرمز البريدي من
+Zipcode To,الرمز البريدي ل
+Condition From,حالة من
+Condition To,حالة ل
+Price,السعر
+Cost,كلفة
+Save,حفظ
+Export,تصدير
+Help,مساعدة
+Only .CSV can upload,كسف فقط يمكن تحميل
+Import Csv,استيراد CSV
+Matrix Rates,أسعار مصفوفة
+Zipcode From *,الرمز البريدي من *
+Zipcode To *,الرمز البريدي ل*
+Action,عمل
+All,الكل
+From,من عند
+To,إلى
+Add,إضافة
+Cancel,إلغاء
+ID #,هوية شخصية #
+(' . . '),( '.')
+shipping_method,طريقة الشحن
+Actions,أفعال
+Edit,تصحيح
+Delete,حذف
+Fields Description,حقول الوصف
+Country :,بلد :
+Region :,منطقة :
+City :,مدينة :
+Zipcode From :,الرمز البريدي من:
+Zipcode To :,الرمز البريدي ل:
+Order Subtotal From :,ترتيب المجموع الفرعي من:
+Order Subtotal To :,ترتيب المجموع الفرعي إلى:
+Weight From :,الوزن من:
+Weight To :,الوزن إلى:
+# of Items From :,# من العناصر من:
+# of Items To :,# من العناصر إلى:
+Price :,السعر :
+Please enter only numbers in Price.,الرجاء إدخال أرقام فقط في الأسعار.
+Order Subtotal To value always higher than Order Subtotal From value.,ترتيب المجموع الفرعي لقيمة دائما أعلى من مجموع فرعي ترتيب من القيمة.
+OK,حسنا
+Field ,حقل
+ is required.,مطلوب.
+RB Shipping Matrix,RB شحن مصفوفة
+Enabled,تمكين
+Available to Vendor,متاح للبائع
+ Allow Anyhow,على أية حال سماح
+Title,عنوان
+Condition,شرط
+Include Virtual Products in Price Calculation,تشمل المنتجات الظاهرية في أسعار حساب
+Import,استيراد
+Use Numeric Zipcode Ranges,استخدام الرقمي الرمز البريدي للميادين
+Calculate Handling Fee,حساب رسوم المناولة
+Handling Fee,رسوم المعالجة
+Ship to Applicable Countries,سفينة للبلدان قابل للتطبيق
+Ship to Specific Countries,سفينة إلى دول معينة
+Show Method if Not Applicable,مشاهدة الطريقة إذا غير قابل للتطبيق
+Displayed Error Message,رسالة خطأ عرض
+Sort Order,امر ترتيب
+Guidelines,القواعد الارشادية
+Shipping & Handling (%1),التوصيل

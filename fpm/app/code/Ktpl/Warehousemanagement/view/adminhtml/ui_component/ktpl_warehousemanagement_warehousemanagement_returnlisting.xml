@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<settings>
+		<buttons>
+			<button name="customertowarehouse">
+				<url path="*/*/newreturn/returntype/3/deliverytype/0"/>
+				<class>primary</class>
+				<label translate="true">Customer to Warehouse</label>
+			</button>
+			<button name="warehousetovendor">
+				<url path="*/*/newreturn/returntype/3/deliverytype/1"/>
+				<class>primary</class>
+				<label translate="true">Warehouse to Vendor</label>
+			</button>
+		</buttons>
+	</settings>
+</listing>

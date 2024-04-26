@@ -1,0 +1,14 @@
+<?php
+/**
+ * @var $block \RB\Catalog\Block\Product\View\ProductVendor
+ */
+?>
+<?php if ($vendorProduct = $block->getProductDefaultVendor()) { ?>
+<div class="prod-conditon" id="product_condition">
+    <?php if ($vendorProduct->getCondition()) { ?>
+<label><?= __('Condition'); ?> : </label>
+        <?= $this->getConditionOptionText($vendorProduct->getCondition()); ?>
+<?php } ?>
+</div>
+<?php } ?>
+   

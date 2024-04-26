@@ -1,0 +1,48 @@
+<?php
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+?>
+
+<?php
+//@codingStandardsIgnoreFile
+/** @var \Ktpl\ElasticSearch\Block\Index\Base $block */
+
+/** @var \Magento\Cms\Helper\Page $pageHelper */
+$pageHelper = $this->helper('Magento\Cms\Helper\Page');
+$filterProvider = $block->getObjectManager()->create('Magento\Cms\Model\Template\FilterProvider');
+?>
+<div class="ktpl-search__index ktpl-search__index-magento-cms-page">
+    <?= $block->getPager() ?>
+    <ul>
+        <?php /** @var \Magento\Cms\Api\Data\PageInterface $page */ ?>
+        <?php foreach ($block->getCollection() as $page) : ?>
+            <li>
+                <div class="ktpl-search__index-title">
+                    <a href="<?= $pageHelper->getPageUrl($page->getIdentifier()) ?>">
+                        <?= $page->getTitle() ?>
+                    </a>
+                </div>
+                <div class="ktpl-search__index-content">
+                    <?= $block->truncate(
+                        $block->stripTags(
+                            $filterProvider->getPageFilter()->filter(
+                                $page->getContent()
+                            )
+                        )
+                    ) ?>
+                </div>
+            </li>
+        <?php endforeach ?>
+    </ul>
+    <?= $block->getPager() ?>
+</div>

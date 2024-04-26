@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <warehousemanagement>
+            <general>
+                <scanlimit>5</scanlimit>
+            </general>
+	        <deliverystatus>
+	        	<vendortowarehouse>In warehouse</vendortowarehouse>
+	        	<warehousetocustomer>Out of warehouse</warehousetocustomer>
+	        </deliverystatus>
+	        <returnsstatus>
+	        	<vendortowarehouse>Customer Delivery</vendortowarehouse>
+	        	<warehousetocustomer>As part of Product Return</warehousetocustomer>
+	        </returnsstatus>
+        </warehousemanagement>
+    </default>
+</config>

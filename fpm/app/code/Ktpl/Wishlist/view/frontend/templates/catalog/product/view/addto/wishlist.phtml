@@ -1,0 +1,22 @@
+<?php if ($block->isWishListAllowed()): ?>
+	<?php $productId = $block->getProduct()->getId(); ?>
+	<div id="wishlist_<?php echo $productId; ?>" class="action" data-bind="scope:'wishlist_<?php echo $productId; ?>'">
+	    <!-- ko template: getTemplate() --><!-- /ko -->
+	</div>
+	<script type="text/x-magento-init">
+        {
+            "#wishlist_<?php echo $productId; ?>": {
+	            "Magento_Ui/js/core/app": {
+	               "components": {
+	                    "wishlist_<?php echo $productId; ?>": {
+	                        "component": "Ktpl_Wishlist/js/wishlist",
+	                        "template" : "Ktpl_Wishlist/wishlist",
+	                        "productId": <?= /* @escapeNotVerified */ $productId ?>,
+	                        "loginUrl": "<?= /* @escapeNotVerified */ $this->getUrl('customer/account/login') ?>"
+	                    }
+	                }
+	            }
+	        }
+        }
+    </script>
+<?php endif; ?>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MDC_Sales::sales_order" title="Bulk Invoice/Shipment List" translate="title" module="MDC_Sales" sortOrder="100" parent="Magento_Sales::sales_operation" action="rbsales/bulkinvoiceshipment/index" resource="Magento_Sales::sales_order"/>
+    </menu>
+</config>

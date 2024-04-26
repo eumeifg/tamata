@@ -1,0 +1,28 @@
+{
+    "name": "RB\/Wishlist",
+    "description": "",
+    "require": {
+        "php": "~5.6.0|~7.0.0"
+    },
+    "type": "magento2-module",
+    "version": "1.0.2",
+    "license": [
+        "Proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "RB\\Wishlist\\": ""
+        }
+    },
+    "extra": {
+        "map": [
+            [
+                "*",
+                "RB\/Wishlist"
+            ]
+        ]
+    }
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+     <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <pushnotification>
+            <template>
+                <new_order>Hi {{first_name}}, Your Order {{order_id}} is successfully placed. Please check your email for further details.</new_order>
+                <new_invoice>Hi {{first_name}}, Your Invoice {{invoice_id}} for Order {{order_id}} is generated. Please check your email for further details.</new_invoice>
+                <new_shipping>Hi {{first_name}}, Your Shipping {{shipping_id}} for Order {{order_id}} is generated. Please check your email for further details.</new_shipping>
+                <order_status_change>Hi {{first_name}}, Your Order {{order_id}} status has been changed. Please check your email for further details.</order_status_change>
+                 <recently_view_product>You have recently checked {{product_name}}
+                 </recently_view_product>
+                 <abandoned_carts>You have added {{cart_id}}.Please complete checkout process</abandoned_carts>                
+            </template>
+            <log>
+                <enable>1</enable>
+                <filename>ktpl_pushnotification</filename>
+            </log>
+        </pushnotification>
+    </default>
+</config>

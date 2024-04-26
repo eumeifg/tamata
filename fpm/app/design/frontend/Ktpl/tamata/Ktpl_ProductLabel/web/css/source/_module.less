@@ -1,0 +1,195 @@
+ /**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   Ktpl_ProductLabel
+  * @author    Kirti Nariya <kirti.nariya@krishtechnolabs.com>
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+
+.product-image-wrapper {
+    .top_left {
+        position: absolute;
+        top: 50px;
+        z-index: 2;
+        left: 0px;  
+        max-width: 25%;
+        span + img {
+            margin-top: 5px;   
+        }
+    }
+
+    .top_right {
+        position: absolute;
+        top: 60px;
+        z-index: 2;
+        right: 20px;
+        max-width: 25%; 
+        span + img {
+            margin-top: 5px;
+        }
+    }
+
+    .lower_left {
+        position: absolute;
+        bottom: 60px;
+        z-index: 2;
+        left: 0;
+        max-width: 25%;
+        span + img {
+            margin-top: 5px;
+        }
+    }
+
+    .lower_right {
+        position: absolute;
+        bottom: 60px;
+        z-index: 2;
+        right: 0;
+        max-width: 25%;
+        span + img {
+            margin-top: 5px;
+        }
+    }
+}
+
+.page-products {
+    .product-item {
+        .labeltype-text {
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .product-image-wrapper .category {
+            right: 5px;
+        }
+    }
+}
+
+.product {
+    &.media {
+
+        position: relative;
+
+        .top_left {
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            left: 0;
+            max-width: 10%;
+            margin-top: 20px;
+            .labeltype-text {
+                display: inline-block;
+            }
+            span + img {
+                margin-top: 5px;
+            }
+        }
+
+        .top_right {
+            position: absolute;
+            top: 0px;
+            z-index: 2;
+            right: 20px;
+            max-width: 10%;
+            margin-top: 60px;
+            .labeltype-text {
+                display: inline-block;
+            }
+            span + img {
+                margin-top: 5px;
+            }
+        }
+
+        .lower_left {
+            position: absolute;
+            bottom: 110px;
+            z-index: 2;
+            left: 0;
+            max-width: 10%;
+            .labeltype-text {
+                display: inline-block;
+            }
+            span + img {
+                margin-top: 5px;
+            }
+        }
+
+        .lower_right {
+            position: absolute;
+            bottom: 110px;
+            z-index: 2;
+            right: 0;
+            max-width: 10%;
+            .labeltype-text {
+                display: inline-block;
+            }
+            span + img {
+                margin-top: 5px;
+            }
+        }
+
+        .labeltype-text{
+            text-transform: uppercase;
+            padding: 15px;
+            border-radius: 10px;
+        }
+    }
+}
+
+
+.catalog-product-view {
+    .product.media {
+        .top_left  {
+            position: absolute;
+            top: 40px;
+            z-index: 2;
+            right: 20px;
+            max-width: 10%;
+            margin-top: 20px;
+            left: inherit;
+        }
+    }
+}
+
+
+.block.related .block-content .owl-item .product-item .product-image-wrapper .top_right, 
+.block.upsell .block-content .owl-item .product-item .product-image-wrapper .top_right {
+    top: 20px;
+}
+@media screen and (max-width: 1023px) {
+    .product.media .top_left {
+        left: 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .product-image-wrapper {
+        .top_left {
+            top: 30px;
+            max-width: 30%;
+            left: 0;
+            width: 30px;
+            span.labeltype-text {
+                display: block;
+                text-align: center;
+            }
+        }
+        .top_right {
+            top: 30px;
+        }
+        .lower_left {
+            bottom: 40px;
+        }
+        .lower_right {
+            bottom: 40px;
+        }
+    }
+    .product.media .top_left {
+        left: 20px;
+    }
+}

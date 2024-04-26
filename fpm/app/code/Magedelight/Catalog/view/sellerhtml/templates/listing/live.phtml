@@ -1,0 +1,268 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+ /** @var $block \Magedelight\Catalog\Block\Sellerhtml\Listing\Live */
+?>
+<?php
+$session = $block->getSessionForGrid();
+$gridsession = $session->getGridSession();
+$product_live = $gridsession['grid_session']['product_live'];
+$vendorProductCollection = $block->getCollection();
+$storeId = $this->getCurrentStoreId();
+?>
+<?php $helper = $this->helper('Magedelight\Catalog\Helper\Listing\Data'); ?>
+<?php $ostock = intval($block->getRequest()->getParam('ostock', 0)); ?>
+<?php $canSetSearchValue = ($this->getRequest()->getParam('sfrm') == 'l') ? true : false; ?>
+<?php
+$reqParams = $this->getRequest()->getParams();
+if (!is_array($reqParams)) {
+    $reqParams = [];
+}
+unset($reqParams['vpro']);
+if (array_key_exists('sfrm', $reqParams)) {
+    unset($reqParams['p']);
+    if ($reqParams['sfrm'] == 'nl') {
+        unset($reqParams['sort_order']);
+        unset($reqParams['dir']);
+    }
+}
+
+$reqParams['sfrm'] = 'l';
+$reqParams['p'] = '1';
+$sortOrderData = $block->getSortOrderData($reqParams);
+?>
+<div id="live-search-form-row" class="row live">
+    <div class="row-gutter toolbar-wrapper mb10">
+        <div class="col-xs-4">
+            <form
+                method="get"
+                id ="live-search-form"
+                enctype='multipart/form-data'
+                action="<?= $helper->getResultUrl() ?>"
+                data-hasrequired="<?= __('* Required Fields') ?>"
+                data-mage-init='{"validation":{}}'
+                >
+                    <?php foreach ($reqParams as $pKey => $pvalue) { ?>
+                        <?php
+                        if ($pKey == 'ostock' || $pKey == 'q') {
+                            continue;
+                        }
+                        ?>
+                    <input type="hidden" name="<?= $pKey; ?>" value="<?= $pvalue; ?>"/>
+                    <?php } ?>
+                <input id="ostock-filter" type="hidden" name="ostock" value="<?= $ostock; ?>"/>
+                <div class="block block-search">
+                    <div class="content">
+                        <div class="field search-catalog">
+                            <div class="control">
+                                <?php 
+                                if ($product_live['q']) {
+                                      $value = $product_live['q'];
+                                 } else {
+                                      $value = $canSetSearchValue ? $helper->searchText() : ''; 
+                                }
+                                 ?>
+                                <input placeholder="<?= __('Product Name, Vendor SKU...') ?>" type="text" value="<?= htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); ?>" name="<?= $helper->getQueryParamName() ?>" id="vendor_search_catalog" class="input-text vendor search-catalog-input" />
+                            </div>
+                            <div class="actions">
+                                <div class="vendor primary"><button type="submit" class="vendor action login primary"><span><?= __('Search') ?></span></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="session-clear-product-live" id="session-clear-product-live" value="0"/>
+            </form>
+        </div>
+        <div class="col-xs-8">
+            <div class="row">
+                <div class="col-xs-3 pt10">
+                    <a rel="l" href="javascript:void(0)" class="action-default reset-live"><?= __('Reset') ?></a>
+                </div>
+                <div class="col-xs-9">
+                    <div class="toolbar-filter-wrapper">
+                        <div class="topbar-left col-lg-12 pt5 text-right">
+                            <div class="actions">
+                                <div class="primary pt5">
+                                    <div><input type="checkbox" class="checkbox vendor_ostock" name="vender_outofstock" id="vendor_ostock"<?= $ostock ? ' checked="checked"' : '' ?>/><label for="vendor_ostock"><span class="pl10"><?= __('View Only Out Of Stock') ?></span></label></div>
+                                </div>
+                            </div>
+                            <div class="data-grid-filters-actions-wrap ml10">
+                                <div class="data-grid-filters-action-wrap">
+                                    <a class="action primary export" href="<?= $block->getUrl('*/*/exportLiveProducts', ['_current' => true])
+                                    ?>"><?= __('Export') ?></a>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+<?php if (count($vendorProductCollection) != 0): ?>
+    <form method="get" enctype='multipart/form-data' action="<?= $helper->getLiveMassUnlist() ?>" id="mass_unlist_form">
+         <div class="row mb20">
+            <div class="row-gutter">
+                <div class="control col-md-4">
+                    <select name="masslive_unlist_id" class="select mass-unlist-live">
+                        <option value=""><?= __('Action') ?></option>
+                        <option value="mass_action"><?= __('Unlist') ?></option>
+                    </select>
+                </div>
+            </div>
+        </div> 
+        <div class="table-wrapper mylisting-main">
+            <table class="data table table-mylisting" id="my-mylisting-table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col mass-action mass_unlist">
+                            <input class="checkbox vendor_mass_unlist_th" id="vendor_mass_unlist_checkall" type="checkbox">
+                            <label for="vendor_mass_unlist_checkall"><span></span></label></th>
+                        <th scope="col" class="col product-thumb"><?= __('Product Image') ?></th>
+                        <?php foreach ($sortOrderData as $field) { ?>
+                            <th scope="col" class="col sort-order-field <?=
+                            str_replace(" ", "-", strtolower($field['label']));
+                            ?> sort-dir-arrow<?= $field['sort_dir_class']; ?>" title="<?= $field['sort_dir_title']; ?>">
+                                <a href="<?=
+                                $block->getUrl('rbcatalog/listing', ['_query' => $field['sort_params']]);
+                                ?>">
+                                        <?= $field['label'] ?>
+                                </a>
+                            </th>
+                        <?php } ?>
+                        <th scope="col" class="col action">
+                            <?= __('Action') ?>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($vendorProductCollection as $vendorProduct): ?>
+                        <?php
+                        ?>
+                        <tr>
+                            <td class="col data-grid-checkbox-cell">
+                                <input class="checkbox vendor_mass_unlist" id="vendor_mass_unlist-<?= $vendorProduct->getVendorProductId() ?>" type="checkbox" name="product_unlist[]" value="<?= $vendorProduct->getVendorProductId() ?>">
+                                <label for="vendor_mass_unlist-<?= $vendorProduct->getVendorProductId() ?>"><span></span></label>
+                            </td>
+                            <td data-th="productimage" class="col data-grid-thumbnail-cell">
+                                <?= $block->getImage($vendorProduct, 'product_listing_thumbnail')->toHtml() ?>
+                            </td>
+                            <td data-th="productsku" class="col data-grid-sku-cell">
+                                <div class="data-grid-cell-content"><?= $vendorProduct->getVendorSku(); ?></div>
+                            </td>
+                            <td data-th="productname" class="col product-name">
+                                <div class="data-grid-cell-content">
+                                    <?php if (false === strpos($block->getProductUrl($vendorProduct, $vendorProduct->getParentId()), 'catalog/product')) { ?>
+                                        <a class="product-item-link" href="<?= $block->getProductUrl($vendorProduct, $vendorProduct->getParentId()); ?>" target="_blank"><?= ($vendorProduct->getName())?$vendorProduct->getName():$vendorProduct->getDefaultProductName(); ?></a>
+                                    <?php } else { ?>
+                                            <?= ($vendorProduct->getName())?$vendorProduct->getName():$vendorProduct->getDefaultProductName(); ?>
+                                    <?php } ?>
+                                </div>
+                            </td>
+                            <td data-th="productprice" class="col data-grid-price-cell"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($vendorProduct->getPrice()); ?></td>
+                            <td data-th="productspprice" class="col data-grid-price-cell data-grid-special-price-cell">
+                                <?php if ($vendorProduct->getData('special_price')): ?>
+                                    <?= $this->helper('Magento\Framework\Pricing\Helper\Data')
+                                    ->currency($vendorProduct->getData('special_price')); ?>
+                                <?php endif; ?>
+                            </td>
+                            <td data-th="productqty" class="col data-grid-qty-cell"><?= number_format($vendorProduct->getQty(), 2); ?></td>
+                            <td data-th="action" class="col data-grid-actions-cell data-grid-action-edit">
+                              
+                                <div class="product-edit" data-bind="collapsible">
+                                    <ul class="product-edit-dropdown" data-bind="css: {_active: $collapsible.opened}">
+                                    <li class="list-item quick-edit">
+                                        <a title="<?= __('Quick edit Offer and Inventory') ?>" class="action quick-edit fancybox-listing-quick-edit" href="<?= $block->getAjaxEditUrl() ?>?id=<?= $vendorProduct->getVendorProductId(); ?>" > <?= __('Quick Edit') ?></a>
+                                    </li>
+                                    <?php if (!$vendorProduct->getIsOffered()) { ?>
+                                        <li class="list-item">
+                                            <a class="action" title="<?= __('Edit') ?>" href="<?= $block->getEditUrlWithStore($vendorProduct, $storeId,$this->getRequest()->getParam('p',1),$this->getRequest()->getParam('sfrm','l'),$this->getRequest()->getParam('limit',10)) ?>" > <?= __('Edit'); ?></a>
+                                        </li>
+                                        <li class="list-item">
+                                            <a class="action" title="<?= __('View') ?>" href="<?= $block->getEditUrlWithStore($vendorProduct, $storeId,$this->getRequest()->getParam('p',1),$this->getRequest()->getParam('sfrm','l'),$this->getRequest()->getParam('limit',10), true) ?>" > <?= __('View'); ?></a>
+                                        </li>
+                                    <?php } else { ?>
+                                        <li class="list-item quick-edit">
+                                            <a title="<?= __('Quick edit Offer and Inventory') ?>" class="action quick-edit fancybox-listing-quick-edit" href="<?= $block->getAjaxEditUrl() ?>?id=<?= $vendorProduct->getVendorProductId(); ?>&view=1" > <?= __('View') ?></a>
+                                        </li>
+                                    <?php } ?>
+                                    </ul>
+                                </div>
+                               
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="tickets-events-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+        <?php endif ?>
+    </form>
+<?php else: ?>
+    <div class="table-wrapper mylisting-main">
+        <table class="data table table-mylisting" id="my-mylisting-table">
+            <thead>
+                <tr>
+                    <th scope="col" class="col mass-action mass_unlist">
+                        <input class="checkbox vendor_mass_unlist_th" id="vendor_mass_unlist_checkall" type="checkbox">
+                        <label for="vendor_mass_unlist_checkall"><span></span></label></th>
+                    <th scope="col" class="col product-thumb"><?= __('Product Image') ?></th>
+                    <?php foreach ($sortOrderData as $field) { ?>
+                        <th scope="col" class="col <?=
+                        str_replace(" ", "-", strtolower($field['label']));
+                        ?>">
+                                <?= $field['label'] ?>
+                        </th>
+                    <?php } ?>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="8">
+                        <div class="message info empty" id="liveprod-msg"><span></span></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>
+<script>
+    require(['jquery'], function ($) {
+
+        $(document).ready(function () {
+            /*  debugger; */
+            $value = "false";
+            $('input[type=text]').each(function () {
+                var text_value = $(this).val();
+                if (text_value != '')
+                {
+                    $value = "true";
+                }
+
+            })
+            if (jQuery('#vendor_search_catalog')[0].value != "" || $value == "true") {
+                jQuery('#liveprod-msg span').html("<?= __("We couldn't find any records."); ?>");
+            } else {
+                jQuery('#liveprod-msg span').html("<?= __("We couldn't find any records."); ?>");
+            }
+
+        });
+        $('#vendor_ostock').change(function () {
+            if ($('#vendor_ostock').is(':checked') == true) {
+                $('#ostock-filter').val("1");
+            } else {
+                $('#ostock-filter').val("0");
+            }
+            $('#live-search-form').submit();
+        });
+    });
+</script>

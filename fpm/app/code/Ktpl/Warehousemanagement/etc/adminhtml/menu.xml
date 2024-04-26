@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ktpl_Warehousemanagement::warehouse"
+             title="Warehouse Management"
+             module="Ktpl_Warehousemanagement"
+             sortOrder="300"
+             resource="Ktpl_Warehousemanagement::warehouse"
+             parent="Ktpl_Core::menu"/>
+
+        <add action="ktpl_warehousemanagement/warehousemanagement/index"
+             id="Ktpl_Warehousemanagement::delivery"
+             module="Ktpl_Warehousemanagement"
+             parent="Ktpl_Warehousemanagement::warehouse"
+             resource="Ktpl_Warehousemanagement::delivery"
+             sortOrder="10" title="Delivery"/>
+
+        <add action="ktpl_warehousemanagement/warehousemanagement/indexreturn"
+             id="Ktpl_Warehousemanagement::return"
+             module="Ktpl_Warehousemanagement"
+             parent="Ktpl_Warehousemanagement::warehouse"
+             resource="Ktpl_Warehousemanagement::return"
+             sortOrder="20" title="Return"/>
+
+        <add action="ktpl_warehousemanagement/warehousemanagement/trackrecord"
+             id="Ktpl_Warehousemanagement::ktpl_warehousemanagement_trackrecord"
+             module="Ktpl_Warehousemanagement"
+             parent="Ktpl_Warehousemanagement::warehouse"
+             resource="Magento_Backend::content"
+             sortOrder="9999" title="Track Record"/>
+
+        <add action="ktpl_warehousemanagement/warehousemanagement/producttrackreport"
+             id="Ktpl_Warehousemanagement::ktpl_warehousemanagement_producttrackreport"
+             module="Ktpl_Warehousemanagement" parent="Ktpl_Warehousemanagement::warehouse"
+             resource="Magento_Backend::content" sortOrder="9999" title="Reports"/>
+    </menu>
+</config>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Backend
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Framework\App\Action\Context" type="Magedelight\Backend\App\Action\Context" />
+    <preference for="Magedelight\Backend\Model\Auth\StorageInterface" type="Magedelight\Backend\Model\Auth\Session" />
+    <preference for="Magento\Framework\UrlInterface" type="Magedelight\Backend\Model\UrlInterface" />
+    <preference for="Magedelight\Backend\Block\Widget\Button\ToolbarInterface" type="Magedelight\Backend\Block\Widget\Button\Toolbar" />
+    
+    <preference for="Magento\Framework\App\DefaultPathInterface" type="Magedelight\Backend\App\DefaultPath" />
+    
+    <preference for="Magento\Framework\View\Layout\GeneratorPool" type="Magedelight\Backend\Model\View\Layout\GeneratorPool" />
+    <type name="Magento\Framework\View\Result\Page">
+        <arguments>
+            <argument name="layoutReaderPool" xsi:type="object">pageConfigRenderPool</argument>
+            <argument name="generatorPool" xsi:type="object">Magedelight\Backend\Model\View\Layout\GeneratorPool</argument>
+            <argument name="template" xsi:type="string">Magento_Theme::root.phtml</argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Framework\View\Layout\Reader\Block" type="Magedelight\Backend\Model\View\Layout\Reader\Block" />
+    <preference for="Magento\Framework\Model\ActionValidator\RemoveAction" type="Magento\Framework\Model\ActionValidator\RemoveAction\Allowed" />
+    <preference for="Magento\Framework\Session\Config\ConfigInterface" type="Magedelight\Backend\Model\Session\SellerConfig" />
+    <type name="Magedelight\Backend\App\Action\Context">
+        <arguments>
+            <argument name="helper" xsi:type="object">Magedelight\Backend\Helper\Data</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Backend\Model\Auth\Session">
+        <arguments>
+            <argument name="sellerPanelUrl" xsi:type="object">Magedelight\Backend\Model\UrlInterface\Proxy</argument>
+        </arguments>
+    </type>
+    
+    <type name="Magento\Framework\View\Layout">
+        <arguments>
+            <argument name="area" xsi:type="string">sellerhtml</argument>
+        </arguments>
+    </type>
+     <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="seller" xsi:type="array">
+                    <item name="class" xsi:type="string">Magedelight\Backend\App\Router</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">40</item>
+                </item>
+                <item name="default" xsi:type="array">
+                    <item name="class" xsi:type="string">Magento\Framework\App\Router\DefaultRouter</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">100</item>
+                </item>
+            </argument>
+        </arguments>
+    </type> 
+    <type name="Magedelight\Backend\App\AbstractAction">
+        <plugin name="sellerAuthentication" type="Magedelight\Backend\App\Action\Plugin\Authentication" sortOrder="100" />
+        <plugin name="sellerMassactionKey" type="Magedelight\Backend\App\Action\Plugin\MassactionKey" sortOrder="11" />
+    </type>
+    <type name="Magento\Store\App\Response\Redirect">
+        <arguments>
+            <argument name="canUseSessionIdInParam" xsi:type="boolean">false</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\App\Action\Action">
+        <plugin name="storeCheck" disabled="true" />
+    </type>
+    <type name="Magento\Framework\Message\Manager">
+        <arguments>
+            <argument name="defaultGroup" xsi:type="string">seller</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Backend\Model\Session\SellerConfig">
+        <arguments>
+            <argument name="lifetimePath" xsi:type="const">Magedelight\Backend\Model\Auth\Session::XML_PATH_SESSION_LIFETIME</argument>
+            <argument name="sessionName" xsi:type="const">Magedelight\Backend\Model\Session\SellerConfig::SESSION_NAME_SELLER</argument>
+        </arguments>
+    </type>    
+    <type name="Magento\Framework\Controller\ResultFactory">
+        <arguments>
+            <argument name="typeMap" xsi:type="array">
+                <item name="redirect" xsi:type="array">
+                    <item name="type" xsi:type="const">Magento\Framework\Controller\ResultFactory::TYPE_REDIRECT</item>
+                    <item name="class" xsi:type="string">Magedelight\Backend\Model\View\Result\Redirect</item>
+                </item>
+                <item name="page" xsi:type="array">
+                    <item name="type" xsi:type="const">Magento\Framework\Controller\ResultFactory::TYPE_PAGE</item>
+                    <item name="class" xsi:type="string">Magedelight\Backend\Model\View\Result\Page</item>
+                </item>
+                <item name="forward" xsi:type="array">
+                    <item name="type" xsi:type="const">Magento\Framework\Controller\ResultFactory::TYPE_FORWARD</item>
+                    <item name="class" xsi:type="string">Magedelight\Backend\Model\View\Result\Forward</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <type name="Magento\Framework\View\Layout\BuilderFactory">
+        <arguments>
+            <argument name="typeMap" xsi:type="array">
+                <item name="page" xsi:type="array">
+                    <item name="type" xsi:type="const">Magento\Framework\View\Layout\BuilderFactory::TYPE_PAGE</item>
+                    <item name="class" xsi:type="string">Magedelight\Backend\Model\View\Page\Builder</item>
+                </item>
+                <item name="layout" xsi:type="array">
+                    <item name="type" xsi:type="const">Magento\Framework\View\Layout\BuilderFactory::TYPE_LAYOUT</item>
+                    <item name="class" xsi:type="string">Magedelight\Backend\Model\View\Layout\Builder</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="CsrfRequestValidator" type="Magedelight\Backend\App\Request\BackendValidator" />
+</config>

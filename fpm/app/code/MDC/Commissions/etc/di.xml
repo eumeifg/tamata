@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+ /**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_Commissions
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MDC\Commissions\Model\ResourceModel\VendorGroupCommission\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">md_vendor_group_commission</argument>
+            <argument name="eventPrefix" xsi:type="string">vendor_group_commission_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">commissions_vendor_group_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">MDC\Commissions\Model\ResourceModel\VendorGroupCommission</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="vendorgroupcommission_listing_data_source" xsi:type="string">MDC\Commissions\Model\ResourceModel\VendorGroupCommission\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <preference for="Magedelight\Commissions\Model\Source\CommissionType" type="MDC\Commissions\Model\Source\CommissionType" />
+    <preference for="Magedelight\Commissions\Model\Commission\Pdf\Invoice" type="MDC\Commissions\Model\Commission\Pdf\Invoice" />
+    
+    <type name="Magedelight\Commissions\Model\Commission\Quote">
+        <plugin name="vendor_group_commission_quote" type="MDC\Commissions\Model\Commission\Plugin\Quote" sortOrder="2" />
+    </type>
+    <type name="Magedelight\Commissions\Model\Commission\Payment">
+        <plugin name="vendor_group_commission_payment" type="MDC\Commissions\Model\Commission\Plugin\Payment" sortOrder="2" />
+    </type>
+</config>

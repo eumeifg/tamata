@@ -1,0 +1,27 @@
+<?php
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+?>
+<?php
+/** @var \Magento\Backend\Block\Page\RequireJs $block */
+?>
+
+<script>
+    // we disabled mutation observers that used in ui/../lib/dom-observer.js for prevent slow rendering if we have many attributes
+    window.MutationObserver = function () {
+        this.observe = function () {
+        }
+    };
+</script>
+
+<?= $block->getChildHtml() ?>

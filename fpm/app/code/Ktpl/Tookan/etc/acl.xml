@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="Ktpl_Tookan::config_ktpl_tookan" title="Tookan Settings"/>
+						</resource>
+					</resource>
+				</resource>
+                <resource id="Ktpl_Core::menu">
+                    <resource id="Ktpl_Tookan::parent" sortOrder="10" title="Tookan Import/Export">
+                        <resource id="Ktpl_Tookan::orders_export" sortOrder="10" title="Tookan Order Export">
+                            <resource id="Ktpl_Tookan::export" title="Order Export Listing" sortOrder="1"/>
+                        </resource>
+                        <resource id="Ktpl_Tookan::returns_export" sortOrder="10" title="Tookan Returns Export"/>
+                        <resource id="Ktpl_Tookan::import" sortOrder="20" title="Tookan Import"/>
+                    </resource>
+                </resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

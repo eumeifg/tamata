@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="CAT\Custom\Api\ProductRepositoryInterface" type="CAT\Custom\Model\WebApi\ProductRepository" />
+    <preference for="CAT\Custom\Api\OrderUpdateInterface" type="CAT\Custom\Model\WebApi\OrderUpdate"/>
+    <preference for="CAT\Custom\Api\SortOrderInterface" type="CAT\Custom\Model\WebApi\SortOrder"/>
+    <preference for="CAT\Custom\Api\AccountingInterface" type="CAT\Custom\Model\WebApi\Accounting"/>
+</config>

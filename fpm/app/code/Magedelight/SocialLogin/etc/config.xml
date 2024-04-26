@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* Magedelight
+* Copyright (C) 2018 Magedelight <info@magedelight.com>
+*
+* NOTICE OF LICENSE
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+*
+* @category Magedelight
+* @package Magedelight_SocialLogin
+* @copyright Copyright (c) 2018 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+   <default>
+      <sociallogin>
+         <general>
+            <displayposition>right</displayposition>
+            <custom_color>e7e7e7</custom_color>
+            <custom_font_color>fff</custom_font_color>
+         </general>
+        <facebook> 
+        	<button_bg_color>2d78bd</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>296fae</icon_bg_color>
+        	<font_code>fa-facebook</font_code>
+        </facebook>
+		<twitter> 
+			<button_bg_color>28bceb</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>1da6d1</icon_bg_color>
+			<font_code>fa-twitter</font_code>
+		</twitter>
+		<google> 
+			<button_bg_color>ff0000</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>cb3f32</icon_bg_color>
+			<font_code>fa-google</font_code>
+		</google>
+		<instagram> 
+			<button_bg_color>7a5d4d</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>634d40</icon_bg_color>
+			<font_code>fa-instagram</font_code>
+		</instagram>
+		<linkedin> 
+			<button_bg_color>0f89c3</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>0e76a8</icon_bg_color>
+			<font_code>fa-linkedin</font_code>
+		</linkedin>
+		<yahoo> 
+			<button_bg_color>8617b7</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>720e9e</icon_bg_color>
+			<font_code>fa-yahoo</font_code>
+		</yahoo>
+		<windows> 
+			<button_bg_color>47a1e5</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>308ace</icon_bg_color>
+			<font_code>fa-windows</font_code>
+		</windows>
+		<foursquare>
+			<button_bg_color>3bb5de</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>25a0ca</icon_bg_color>
+		 	<font_code>fa-foursquare</font_code>
+		</foursquare>
+		<amazon>
+			<button_bg_color>ff954b</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>ff8028</icon_bg_color>
+		 	<font_code>fa-amazon</font_code>
+		</amazon>
+		<reddit>
+			<button_bg_color>467db4</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>336699</icon_bg_color>
+		 	<font_code>fa-reddit-alien</font_code>
+		</reddit>
+		<flickr>
+			<button_bg_color>ff50aa</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>ff0083</icon_bg_color>
+			<font_code>fa-flickr</font_code>
+		</flickr>
+		<vimeo>
+			<button_bg_color>86c9ef</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>51a5d5</icon_bg_color>
+			<font_code>fa-vimeo</font_code>
+		</vimeo>
+		<tumblr> 
+			<button_bg_color>62809c</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>4a6278</icon_bg_color>
+			<font_code>fa-tumblr</font_code>
+		</tumblr>
+		<soundcloud> 
+			<button_bg_color>ff993f</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>ff7700</icon_bg_color>
+			<font_code>fa-soundcloud</font_code>
+		</soundcloud>
+		<dropbox> 
+			<button_bg_color>65bffa</button_bg_color>
+			<button_font_color>fff</button_font_color>
+			<icon_color>fff</icon_color>
+			<icon_bg_color>4aaced</icon_bg_color>
+			<font_code>fa-dropbox</font_code>
+		</dropbox>
+      </sociallogin>
+   </default>
+</config>

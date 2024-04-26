@@ -1,0 +1,121 @@
+<?php
+//$blockObj     = $block->getData('viewModel');
+$categoryData = $block->getTopCategoryData();
+$mode = 'grid';
+$imageHelper = $this->helper('Magedelight\Catalog\Helper\Image');
+$imageHelper->setFolderPath('catalog/category/');
+$currentLocal = $block->getCurrentLocale();
+?>
+<div>
+	<?php if($categoryData->count()) : ?>
+		<div class="block-content">
+	        <div class="products-<?= $mode; ?> <?= $mode; ?> carousel-container">
+	                <div id="deals" class="owl-carousel owl-theme">
+					<?php foreach($categoryData as $key => $category) : ?>
+						 <div class="item">
+		                   <div class="prod-img-box">
+							<a id="<?= $category->getId()?>" name="<?= $category->getName()?>" data-toggle="tab" href="<?= $category->getUrl()?>">
+								<?php
+								$_outputhelper = $this->helper('Magento\Catalog\Helper\Output');
+								$_imgHtml = '';
+								if ($_imgUrl = $block->getThumbnailImagePath($category->getDealzoneImage())) {
+									$_imgHtml = '<img src="' . $imageHelper->resize($category->getDealzoneImage(), 240, null) . '" />';
+								}
+								?>
+                                                                <?= $_imgHtml; ?>
+							</a>
+							</div>
+							<div class="product-item-details">
+	                            <strong class="category name category-item-name">
+	                            	<a title="<?= $block->escapeHtmlAttr(__($category->getName())) ?>" href="<?= $block->escapeHtmlAttr(__($category->getUrl())) ?>">
+	                            		<?= $block->escapeHtmlAttr(__($category->getName())) ?>
+									</a>
+								</strong>
+								<?= $category->getDiscountLabel() ?>
+	                        </div>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+</div>
+<?php if ($currentLocal == "ar") { ?>
+<script type="text/javascript">
+         require(["jquery","owlcarousel"],function($) {
+           $(document).ready(function () {
+                $("#deals").owlCarousel({
+                autoPlay: 3000, //3000 Set AutoPlay to 3 seconds
+                margin:0,
+                items : 6,
+                navigation : false,
+                nav: true,
+                loop:false,
+                rtl:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    580:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    800:{
+                        items:3
+                    },
+                    1000:{
+                        items:5
+                    },
+                    1500:{
+                        items:5
+                    },
+                    1600:{
+                        items:6
+                    }
+                }
+          });
+    });
+});
+</script>
+<?php } else  { ?>
+<script type="text/javascript">
+         require(["jquery","owlcarousel"],function($) {
+           $(document).ready(function () {
+                $("#deals").owlCarousel({
+                autoPlay: 3000, //3000 Set AutoPlay to 3 seconds
+                margin:0,
+                items : 6,
+                navigation : false,
+                nav: true,
+                loop:false,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    580:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    800:{
+                        items:3
+                    },
+                    1000:{
+                        items:5
+                    },
+                    1500:{
+                        items:5
+                    },
+                    1600:{
+                        items:6
+                    }
+                }
+          });
+    });
+});
+</script>
+<?php } ?>
+

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <referenceBlock name="page.main.title" remove="true" />
+	<referenceBlock name="vendorproduct.front" remove="true" />
+   	 <move element="breadcrumbs" destination="content" before="-" />
+        <referenceContainer name="content">
+
+            <block class="Magedelight\Vendor\Block\Microsite\Html\VendorProductAll" name="vendor.front.products" template="Magedelight_Vendor::microsite/vendor_product_list.phtml">
+               <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Ktpl_Ajaxscroll::product/list/toolbar.phtml">
+	                <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+	            </block>
+                <action method="setToolbarBlockName">
+                    <argument name="name" xsi:type="string">product_list_toolbar</argument>
+                </action>
+            </block>
+
+            <block class="MDC\Microsite\Block\Products" name="vendor.front.promo.banners" />
+
+        </referenceContainer>
+
+</page>

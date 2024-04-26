@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <head>
+        <link src="Magedelight_Catalog::js/editor-input.js"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magedelight\Catalog\Block\Adminhtml\ProductRequest\Edit" name="productrequest_edit"/>
+        </referenceContainer>
+        <referenceContainer name="page.main.actions">
+            <block class="Magento\Backend\Block\Store\Switcher" name="store_switcher">
+                <action method="setUseConfirm">
+                    <argument name="params" xsi:type="string">1</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Magedelight\Catalog\Block\Adminhtml\ProductRequest\Edit\Tabs" name="productrequest_edit_tabs">
+                <block class="Magedelight\Catalog\Block\Adminhtml\ProductRequest\Edit\Tab\Images" name="tab_images">                    
+                    <block name="tab_gallery" class="Magedelight\Catalog\Block\Adminhtml\ProductRequest\Helper\Form\Gallery">
+                        <arguments>
+                            <argument name="config" xsi:type="array">
+                                <item name="label" xsi:type="string" translate="true">Images</item>
+                                <item name="collapsible" xsi:type="boolean">true</item>
+                                <item name="opened" xsi:type="boolean">false</item>
+                                <item name="sortOrder" xsi:type="string">22</item>
+                                <item name="canShow" xsi:type="boolean">true</item>
+                                <item name="componentType" xsi:type="string">fieldset</item>
+                            </argument>
+                        </arguments>
+                        <block class="Magedelight\Catalog\Block\Adminhtml\ProductRequest\Helper\Form\Gallery\Content" as="content">
+                            <arguments>
+                                <argument name="config" xsi:type="array">
+                                    <item name="parentComponent" xsi:type="string">edit_form.edit_form.block_gallery.block_gallery</item>
+                                </argument>
+                            </arguments>                        
+                        </block>
+                    </block>
+                </block>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">Images</argument>
+                    <argument name="block" xsi:type="string">tab_images</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

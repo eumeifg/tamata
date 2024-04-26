@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Ktpl_Core::menu">
+                    <resource id="Ktpl_Warehousemanagement::warehouse" sortOrder="10"
+                              title="Warehouse Management">
+                        <resource id="Ktpl_Warehousemanagement::delivery" sortOrder="10"
+                                  title="Delivery">
+                            <resource id="Ktpl_Warehousemanagement::top_level" title="Warehouse Permission" sortOrder="1"/>
+                        </resource>
+                        <resource id="Ktpl_Warehousemanagement::return" sortOrder="20"
+                                  title="Return"/>
+                        <resource id="Ktpl_Warehousemanagement::ktpl_warehousemanagement_trackrecord" sortOrder="30"
+                                  title="Track Record"/>
+                        <resource id="Ktpl_Warehousemanagement::ktpl_warehousemanagement_producttrackreport"
+                                  sortOrder="40"
+                                  title="Reports"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

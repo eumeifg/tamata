@@ -1,0 +1,22 @@
+{
+    "name": "cat/module-patches",
+    "description": "Patches for HelpDesk and Magedelight Error",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ashwinder Singh",
+            "email": "asingh@creativeadvtech.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "CAT\\Patches\\": ""
+        }
+    }
+}

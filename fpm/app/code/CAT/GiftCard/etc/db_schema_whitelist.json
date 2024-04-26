@@ -1,0 +1,76 @@
+{
+    "giftcard_rule": {
+        "column": {
+            "rule_id": true,
+            "rule_name": true,
+            "description": true,
+            "from_date": true,
+            "to_date": true,
+            "is_active": true,
+            "uses_per_coupon": true,
+            "uses_per_customer": true,
+            "discount_amount": true,
+            "times_used": true,
+            "use_auto_generation": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "giftcard_coupon": {
+        "column": {
+            "coupon_id": true,
+            "rule_id": true,
+            "code": true,
+            "usage_limit": true,
+            "usage_per_customer": true,
+            "times_used": true,
+            "created_at": true,
+            "type": true,
+            "is_primary": true
+        },
+        "index": {
+            "GIFTCARD_COUPON_RULE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "GIFTCARD_COUPON_RULE_ID_GIFTCARD_RULE_RULE_ID": true,
+            "GIFTCARD_COUPON_CODE": true,
+            "GIFTCARD_COUPON_RULE_ID_IS_PRIMARY": true
+        }
+    },
+    "giftcard_coupon_usage": {
+        "column": {
+            "coupon_id": true,
+            "customer_id": true,
+            "times_used": true
+        },
+        "index": {
+            "GIFTCARD_COUPON_USAGE_CUSTOMER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "GIFTCARD_COUPON_USAGE_COUPON_ID_GIFTCARD_COUPON_COUPON_ID": true,
+            "GIFTCARD_COUPON_USAGE_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    },
+    "giftcard_customer": {
+        "column": {
+            "rule_customer_id": true,
+            "rule_id": true,
+            "customer_id": true,
+            "times_used": true
+        },
+        "index": {
+            "GIFTCARD_CUSTOMER_RULE_ID_CUSTOMER_ID": true,
+            "GIFTCARD_CUSTOMER_CUSTOMER_ID_RULE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "GIFTCARD_CUSTOMER_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true,
+            "GIFTCARD_CUSTOMER_RULE_ID_GIFTCARD_RULE_RULE_ID": true
+        }
+    }
+}

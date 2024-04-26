@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="reindex_product_price">
+        <observer name="reindexProductPrice" instance="Magedelight\Catalog\Observer\ReindexProductPrice" />
+    </event>
+    <event name="remove_from_wishlist_delete_product_after">
+        <observer name="remove_product_from_wishlist" instance="Magedelight\Catalog\Observer\RemoveFromWishlist" 
+            shared="true" /> 
+    </event>
+</config>

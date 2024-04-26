@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_Sales
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magedelight\Sales\Model\Sales\Order\Pdf\Shipment" type="MDC\Sales\Model\Sales\Order\Pdf\Shipment" />
+    <preference for="Magedelight\Sales\Model\Sales\Order\Pdf\Invoice" type="MDC\Sales\Model\Sales\Order\Pdf\Invoice" />
+    <preference for="Magedelight\Sales\Controller\Sellerhtml\Order\ExportPost" type="MDC\Sales\Controller\Sellerhtml\Order\ExportPost" />
+    <type name="Magento\Sales\Api\Data\OrderInterface">
+        <plugin name="add_order_item_images" type="MDC\Sales\Plugin\OrderItemImages" />
+    </type>
+    <preference for="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\SummarizedDetails" type="MDC\Sales\Block\Sellerhtml\Vendor\Order\SummarizedDetails" />
+    <preference for="Magedelight\Sales\Controller\Adminhtml\Order\Shipment\Save" type="MDC\Sales\Controller\Adminhtml\Order\Shipment\Save" />
+    <preference for="Magedelight\Sales\Controller\Adminhtml\Order\Intransit" type="MDC\Sales\Controller\Adminhtml\Order\Intransit" />
+    <preference for="Magedelight\Sales\Controller\Adminhtml\Order\Delivered" type="MDC\Sales\Controller\Adminhtml\Order\Delivered" />
+    <preference for="Magedelight\Sales\Controller\Adminhtml\Order\Confirm\Save" type="MDC\Sales\Controller\Adminhtml\Order\Confirm\Save" />
+    <preference for="MDC\Sales\Api\PickupStatusManagerInterface" type="MDC\Sales\Model\PickupStatusManagement" />
+    <preference for="Magedelight\Sales\Model\OrderRepository" type="MDC\Sales\Model\OrderRepository" />
+    <type name="Magedelight\Sales\Model\OrderRepository">
+        <plugin name="add_pickup_status_to_suborder" type="MDC\Sales\Plugin\AddPickupStatus" />
+    </type>
+    <preference for="Magedelight\Sales\Model\Plugin\Quote\Item\Processor" type="MDC\Sales\Model\Plugin\Quote\Item\Processor" />
+    <preference for="Magedelight\Sales\Observer\ValidateCartBeforeCheckout" type="MDC\Sales\Observer\ValidateCartBeforeCheckout" />
+    <preference for="Magedelight\Sales\Model\ValidationRules\OfferQtyValidationRule" type="MDC\Sales\Model\ValidationRules\OfferQtyValidationRule" />
+
+    <preference for="Magedelight\Sales\Controller\Order\CustomerCancelOrderItem" type="MDC\Sales\Controller\Order\CustomerCancelOrderItem" />
+    <preference for="Magedelight\Sales\Model\Order" type="MDC\Sales\Model\Order" />
+    <preference for="Magedelight\Sales\Plugin\Order\Config" type="MDC\Sales\Plugin\Order\Config" />
+    <preference for="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Intransit" type="MDC\Sales\Block\Sellerhtml\Vendor\Order\Intransit" />
+
+    <preference for="Magedelight\Sales\Plugin\VendorOrderItemImages" type="MDC\Sales\Plugin\VendorOrderItemImages" />
+
+    <preference for="Magedelight\Sales\Observer\VendorOrderStatusComplete" type="MDC\Sales\Observer\VendorOrderStatusComplete" />
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="get_order_custom_data" type="MDC\Sales\Plugin\OrderCustomDataGet"/>
+    </type>
+    <preference for="Magedelight\Sales\Model\Order\Listing" type="MDC\Sales\Plugin\Model\Order\Listing" />
+
+    <!--<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="bulkinvoiceshipment_import_listing_data_source" xsi:type="string">MDC\Sales\Model\ResourceModel\BulkInvoiceShip\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="MDC\Sales\Model\ResourceModel\BulkInvoiceShip\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sales_suborder_bulk_invoice_shipment</argument>
+            <argument name="resourceModel" xsi:type="string">MDC\Sales\Model\ResourceModel\BulkInvoiceShip</argument>
+        </arguments>
+    </virtualType>-->
+    <virtualType name="MDC\Sales\Model\ResourceModel\BulkInvoiceShip\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sales_suborder_bulk_invoice_shipment</argument>
+            <argument name="resourceModel" xsi:type="string">MDC\Sales\Model\ResourceModel\BulkInvoiceShip</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="bulkinvoiceshipment_import_listing_data_source" xsi:type="string">MDC\Sales\Model\ResourceModel\BulkInvoiceShip\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Sales\Block\Adminhtml\Order\View">
+        <plugin name="CreateConfirmOrderButton" type="MDC\Sales\Plugin\ConfirmOrder"/>
+    </type>
+
+    <!-- Overriding the Invoice Service File -->
+    <preference for="Magedelight\Sales\Model\Sales\Service\InvoiceService"
+                type="MDC\Sales\Model\Sales\Service\InvoiceService" />
+</config>

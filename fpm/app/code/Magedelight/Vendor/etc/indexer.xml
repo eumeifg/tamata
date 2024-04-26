@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
+    <indexer id="md_microsite_url_rewrite" view_id="md_microsite_url_rewrite" class="Magedelight\Vendor\Model\Indexer\Micorsite">
+        <title translate="true">Microsite Url Rewrite</title>
+        <description translate="true">Map Url by Bussiness Name</description>
+    </indexer>
+</config>

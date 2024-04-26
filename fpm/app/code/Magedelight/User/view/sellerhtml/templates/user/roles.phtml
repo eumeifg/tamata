@@ -1,0 +1,39 @@
+<?php
+/** @var $block \Magedelight\User\Block\User\Edit */
+?>
+<div class="field">
+    <label class="label" for="">
+        <span><?php echo __('User Role') ?></span>
+    </label>
+    <div class="control _with-tooltip">
+        <table class="data table user-role-table" id="permissionsUserRolesGrid_table">
+            <thead>
+                <tr>
+                    <th><?php echo __('Assigned') ?></th>
+                    <th><?php echo __('Role') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (count($block->getCollection())) {
+                    foreach ($block->getCollection() as $role) {
+                        $checked = ($this->getSelectedRoles() == $role->getId()) ? 'checked=checked' : '';
+                        ?>
+                        <tr>
+                            <td>
+                                <input <?=$checked ?> type="radio" name="roles[]" value="<?php echo $role->getId() ?>" class="radio"><label></label></td>
+                            <td><?php echo $role->getRoleName() ?></td>
+                        </tr>                                                    
+                    <?php } ?>
+                <?php } ?>
+            </tbody>
+        </table>
+        <div for="roles" generated="true" class="mage-error" id="roles-error"></div>
+        <div class="field-tooltip toggle">
+            <span class="field-tooltip-action action-help" tabindex="0"></span>
+            <div class="field-tooltip-content">
+                <span><?php echo __('Select User Role') ?></span>
+            </div>
+        </div>
+    </div>
+</div>

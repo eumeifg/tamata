@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">        
+    <preference for="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection" type="Magedelight\Catalog\Model\ResourceModel\Fulltext\Collection" />    
+    <preference for="Magento\Catalog\Model\ResourceModel\Product\Collection" type="Magedelight\Catalog\Model\ResourceModel\Product\Core\Collection" />
+    
+    <preference for="Magento\Catalog\Model\ResourceModel\Product\Indexer\Price\DefaultPrice" type="Magedelight\Catalog\Model\ResourceModel\Product\Indexer\Price\DefaultPrice" />
+    <preference for="Magento\Catalog\Model\ResourceModel\Product\Indexer\Price\SimpleProductPrice" type="Magedelight\Catalog\Model\ResourceModel\Product\Indexer\Price\SimpleProductPrice" />
+    <preference for="Magento\Bundle\Model\ResourceModel\Indexer\Price" type="Magedelight\Catalog\Model\ResourceModel\Product\Indexer\Price\Bundle" />
+    <preference for="Magento\GroupedProduct\Model\ResourceModel\Product\Indexer\Price\Grouped" type="Magedelight\Catalog\Model\ResourceModel\Product\Indexer\Price\Grouped" />
+    <preference for="Magento\Downloadable\Model\ResourceModel\Indexer\Price" type="Magedelight\Catalog\Model\ResourceModel\Product\Indexer\Price\Downloadable" />
+    <preference for="Magento\GiftCard\Model\ResourceModel\Indexer\Price" type="Magedelight\Catalog\Model\ResourceModel\Product\Indexer\Price\GiftCard" />
+    
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Indexer\Price\Query\BaseFinalPrice">
+        <!-- Used in indexing. -->
+        <plugin name="add_vendor_details_in_price" type="Magedelight\Catalog\Plugin\Model\ResourceModel\Product\Indexer\Price\Query\BaseFinalPrice" sortOrder="1"/>
+    </type>
+    
+    <type name="Magento\Catalog\Pricing\Price\RegularPrice">
+        <plugin name="change_simple_regular_price" type="Magedelight\Catalog\Plugin\RegularPrice" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Catalog\Pricing\Price\SpecialPrice">
+        <plugin name="change_simple_special_price" type="Magedelight\Catalog\Plugin\SpecialPrice" sortOrder="1"/>
+    </type>
+    
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="getSpecialPriceAfter" type="\Magedelight\Catalog\Model\Plugin\Product" sortOrder="1" />
+    </type>
+    <type name="Magento\Indexer\Model\Config">
+        <plugin name="reOrderIndexes" type="\Magedelight\Catalog\Plugin\Indexer\Config" sortOrder="1" />
+    </type>
+    <preference for="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" type="Magedelight\Catalog\Block\Cart\Item\Renderer\Actions\Edit"/>
+    <preference for="Magedelight\Catalog\Api\ProductRequestRepositoryInterface" type="Magedelight\Catalog\Model\ProductRequestRepository"/>
+    <preference for="Magedelight\Catalog\Api\Data\ProductRequestInterface" type="Magedelight\Catalog\Model\ProductRequest"/>
+    <preference for="Magedelight\Catalog\Api\Data\ProductRequestSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Magedelight\Catalog\Api\VendorProductRepositoryInterface" type="Magedelight\Catalog\Model\VendorProductRepository"/>
+    <preference for="Magedelight\Catalog\Api\Data\VendorProductInterface" type="Magedelight\Catalog\Model\VendorProduct"/>
+    <preference for="Magedelight\Catalog\Api\Data\VendorProductSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Magedelight\Catalog\Api\ProductWebsiteRepositoryInterface" type="Magedelight\Catalog\Model\ProductWebsiteRepository"/>
+    <preference for="Magedelight\Catalog\Api\Data\ProductWebsiteInterface" type="Magedelight\Catalog\Model\ProductWebsite"/>
+    <preference for="Magedelight\Catalog\Api\Data\ProductWebsiteSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Magedelight\Catalog\Api\ProductStoreRepositoryInterface" type="Magedelight\Catalog\Model\ProductStoreRepository"/>
+    <preference for="Magedelight\Catalog\Api\Data\ProductStoreInterface" type="Magedelight\Catalog\Model\ProductStore"/>
+    <preference for="Magedelight\Catalog\Api\Data\ProductStoreSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Magedelight\Catalog\Api\SubCategoryInterface" type="Magedelight\Catalog\Model\Category" />
+    
+    <preference for="Magedelight\Catalog\Api\CatalogGalleryInterface" type="Magedelight\Catalog\Model\Gallery\Upload" />
+    <preference for="Magedelight\Catalog\Api\CatalogCsvInterface" type="Magedelight\Catalog\Model\Csv\Upload" />
+    <preference for="Magedelight\Catalog\Api\CatalogOffersInterface" type="Magedelight\Catalog\Model\Offers\Upload" />
+
+    <type name="Magedelight\Catalog\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Catalog\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">catalougeupload</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Magedelight\Catalog\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <type name="Magento\Ui\Component\MassAction\Filter">
+        <plugin name="preventVendorProductDeletion" type="Magedelight\Catalog\Plugin\MassAction\Filter" sortOrder="0" />
+    </type>
+    
+    <preference for="Magento\Catalog\Model\Category\DataProvider" type="Magedelight\Catalog\Model\Category\DataProvider" />
+    
+    <type name="Magento\Catalog\Model\Config">
+        <plugin name="catalogrbConfig" type="Magedelight\Catalog\Model\Plugin\Config"/>
+    </type>
+    
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="update_marketplace_stock" xsi:type="object">Magedelight\Catalog\Console\Command\UpdateMarketplaceStock</item>
+                <item name="refresh_marketplace_stock" xsi:type="object">Magedelight\Catalog\Console\Command\RefreshMarketplaceStock</item>
+                <item name="clear_vendor_product_index_table" xsi:type="object">Magedelight\Catalog\Console\Command\ClearVendorProductIndexTable</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Related Products -->
+    <!--type name="Magento\Catalog\Api\ProductRepositoryInterface">
+        <plugin name="MdRelatedProduct" type="Magedelight\Catalog\Plugin\RelatedDataAppend" />
+    </type-->
+    <!-- Mobile API related Interfaces -->
+    <preference for="Magedelight\Catalog\Api\CategoryProductRepositoryInterface" type="Magedelight\Catalog\Model\CategoryProductRepository" />
+    <preference for="Magedelight\Catalog\Api\Data\ProductRenderSearchResultsInterface" type="Magedelight\Catalog\Model\ProductRenderSearchResults"/>
+    <preference for="Magedelight\Catalog\Api\Data\SortOrderInterface" type="Magedelight\Catalog\Model\SortOrderData"/>
+    <preference for="Magedelight\Catalog\Api\ProductRepositoryInterface" type="Magedelight\Catalog\Model\ProductRepository" />
+    <preference for="Magedelight\Catalog\Api\Data\ProductDataInterface" type="Magedelight\Catalog\Model\ProductData" />
+    <preference for="Magedelight\Catalog\Api\Data\ProductAdditionalAttributeDataInterface" type="Magedelight\Catalog\Model\AppendedData\ProductAdditionalAttributeData" />
+    <preference for="Magedelight\Catalog\Api\Data\ProductVendorDataInterface" type="Magedelight\Catalog\Model\Product" />
+    <preference for="Magedelight\Catalog\Api\ProductManagementInterface" type="Magedelight\Catalog\Model\ProductManagement" />
+    <!-- for enterprise edition to fetch related product data based on created rule -->
+    <preference for="Magedelight\Catalog\Api\Data\RelatedDataInterface" type="Magedelight\Catalog\Model\RelatedData" />
+    <type name="Magento\Variable\Model\Source\Variables">
+        <arguments>
+            <argument name="configPaths" xsi:type="array">
+                <item name="vendor_product/validation" xsi:type="array">
+                    <item name="vendor_product/validation/image_height" xsi:type="string">1</item>
+                    <item name="vendor_product/validation/image_width" xsi:type="string">1</item>
+                    <item name="vendor_product/validation/image_size" xsi:type="string">1</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magedelight\Catalog\Model\CategoryProductRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Magento\Catalog\Model\Api\SearchCriteria\ProductCollectionProcessor</argument>
+        </arguments>
+    </type>
+
+    <type name="Magedelight\Catalog\Model\Product\View\Gallery">
+        <arguments>
+            <argument name="galleryImagesConfig" xsi:type="array">
+                <item name="small_image" xsi:type="array">
+                    <item name="image_id" xsi:type="string">detail_page_image_small</item>
+                    <item name="data_object_key" xsi:type="string">small_image_url</item>
+                    <item name="json_object_key" xsi:type="string">thumb</item>
+                </item>
+                <item name="medium_image" xsi:type="array">
+                    <item name="image_id" xsi:type="string">detail_page_image_medium</item>
+                    <item name="data_object_key" xsi:type="string">medium_image_url</item>
+                    <item name="json_object_key" xsi:type="string">img</item>
+                </item>
+                <item name="large_image" xsi:type="array">
+                    <item name="image_id" xsi:type="string">detail_page_image_large</item>
+                    <item name="data_object_key" xsi:type="string">large_image_url</item>
+                    <item name="json_object_key" xsi:type="string">full</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

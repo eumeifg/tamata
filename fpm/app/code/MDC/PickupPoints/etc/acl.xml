@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Ktpl_Core::menu">
+                    <resource id="MDC_PickupPoints::pickupspoints" sortOrder="10" title="Manage Pickup Points">
+                        <resource id="MDC_PickupPoints::addpickups" sortOrder="10" title="Pickup Points"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

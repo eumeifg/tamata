@@ -1,0 +1,49 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Review\Block\Product\Review $block */
+?>
+<!-- <div class="combine_reviews_form">
+	<div class="append_reviews"> </div>
+	<div class="append_review_form"> </div>
+</div> -->
+
+<div id="product-review-container" data-role="product-review"></div>
+<?= $block->getChildHtml() ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Review/js/process-reviews": {
+                "productReviewUrl": "<?= $block->escapeJs($block->escapeUrl($block->getProductReviewUrl())) ?>",
+                "reviewsTabSelector": "#tab-label-reviews"
+            }
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
+    require(['jquery'], function($){
+        $(document).ready(function () {
+            $(".reviews-actions a.action.view").click(function() {
+                 showCollapsible();              
+            });
+
+            $(".reviews-actions a.action.add").click(function() {
+                 showCollapsible();
+                $(".block-content.form-review").show();
+            });
+
+            function showCollapsible() {
+                $(".amrev-title-block.amreview-customer-review.pages.allow").addClass("active");
+                $(".amrev-title-block.amreview-customer-review.pages.allow").attr("aria-selected","true");
+                $(".amrev-title-block.amreview-customer-review.pages.allow").attr("aria-expanded","true");
+                $("#customer-reviews").attr("aria-hidden","false");
+                $("#customer-reviews").css("display","inline-block");
+            }
+		 });
+    });
+</script>

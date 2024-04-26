@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/helpdesk/tickets/create" method="GET">
+        <service class="Ktpl\Helpdesk\Api\TicketManagementInterface" method="createTicket" />
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/helpdesk/tickets" method="POST">
+        <service class="Ktpl\Helpdesk\Api\TicketManagementInterface" method="submitTicket" />
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <route url="/V1/helpdesk/tickets" method="GET">
+        <service class="Ktpl\Helpdesk\Api\TicketManagementInterface" method="getList" />
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/helpdesk/tickets/:ticketId" method="GET">
+        <service class="Ktpl\Helpdesk\Api\TicketManagementInterface" method="getById" />
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/helpdesk/tickets/message" method="POST">
+        <service class="Ktpl\Helpdesk\Api\TicketManagementInterface" method="submitMessage" />
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+</routes>

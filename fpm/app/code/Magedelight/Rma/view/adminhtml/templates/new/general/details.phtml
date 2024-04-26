@@ -1,0 +1,59 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+$customerLink = $block->getCustomerLink();
+$vendorId = $block->getVendorId();
+?>
+<div class="admin__page-section-item">
+    <div class="admin__page-section-item-title">
+        <span class="title"><?= /* @escapeNotVerified */ __('Request Details') ?></span>
+    </div>
+    <div class="admin__page-section-item-content">
+        <table class="admin__table-secondary">
+            <tr>
+                <th><?= /* @escapeNotVerified */ __('Order ID') ?></th>
+                <td><a href="<?= /* @escapeNotVerified */ $block->getOrderLink() ?>"><?= /* @escapeNotVerified */ __('#') . $block->getOrderIncrementId() ?></a></td>
+            </tr>
+            <tr>
+                <th><?= /* @escapeNotVerified */ __('Customer Name') ?></th>
+                <td>
+                    <?php
+                    if ($customerLink) {
+                        /* @escapeNotVerified */ echo '<a href="' . $customerLink . '">';
+                    }
+                    /* @escapeNotVerified */ echo $block->getCustomerName();
+                    if ($customerLink) {
+                        echo '</a>';
+                    }
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <th><?= /* @escapeNotVerified */ __('Email Address') ?></th>
+                <td><a href="mailto:<?= /* @escapeNotVerified */ $block->getCustomerEmail() ?>"><?= /* @escapeNotVerified */ $block->getCustomerEmail() ?></a></td>
+            </tr>
+            <tr>
+                <th><?= /* @escapeNotVerified */ __('Contact Email Address') ?></th>
+                <td>
+                    <input type="text"
+                           class="input-text admin__control-text validate-email"
+                           name="contact_email"
+                           id="contact_email"/>
+                </td>
+            </tr>
+            <tr>
+                <th><?= /* @escapeNotVerified */ __('Supplier Name') ?></th>
+                <td><?php echo $block->getVendorName(); ?></td>
+            </tr>
+            <input type="hidden" name="do_as_vendor" value="<?php echo $vendorId ?>">
+            <input type="hidden" name="vendor_name" value="<?php echo $block->getVendorName() ?>">
+        </table>
+    </div>
+</div>

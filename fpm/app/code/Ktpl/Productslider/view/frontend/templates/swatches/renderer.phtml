@@ -1,0 +1,22 @@
+<?php
+/**
+ * Copyright © Ulmod. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+?>
+<?php /** @var $block \Magento\Swatches\Block\Product\Renderer\Configurable */ ?>
+<div class="swatch-opt-<?php /* @noEscape */ echo $block->getProduct()->getId().$block->getSliderId() ?>"></div>
+<script>
+    require(["jquery", "jquery/ui", "Magento_Swatches/js/swatch-renderer"],
+    function ($) {
+    $('.swatch-opt-<?php /* @noEscape */ echo $block->getProduct()->getId().$block->getSliderId() ?>').SwatchRenderer({
+        selectorProduct: '.product-item-details',
+        onlySwatches: true,
+        enableControlLabel: false,
+        numberToShow: <?php /* @noEscape */ echo $block->getNumberSwatchesPerProduct(); ?>,
+        jsonConfig: <?php /* @noEscape */ echo $block->getJsonConfig(); ?>,
+        jsonSwatchConfig: <?php /* @noEscape */ echo $block->getJsonSwatchConfig(); ?>,
+        mediaCallback: '<?php /* @noEscape */ echo $block->getMediaCallback() ?>'
+    });
+    });
+</script>

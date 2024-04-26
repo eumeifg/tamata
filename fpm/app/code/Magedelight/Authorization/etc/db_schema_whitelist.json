@@ -1,0 +1,45 @@
+{
+    "md_vendor_authorization_role": {
+        "column": {
+            "role_id": true,
+            "sort_order": true,
+            "role_name": true,
+            "vendor_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "md_vendor_authorization_rule": {
+        "column": {
+            "rule_id": true,
+            "role_id": true,
+            "resource_id": true,
+            "privileges": true,
+            "permission": true
+        },
+        "index": {
+            "MD_VENDOR_AUTHORIZATION_RULE_RESOURCE_ID_ROLE_ID": true,
+            "MD_VENDOR_AUTHORIZATION_RULE_ROLE_ID_RESOURCE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_AUTHORIZATION_RULE_ROLE_ID_AUTHORIZATION_ROLE_ROLE_ID": true,
+            "FK_2D541488757409496F8361B2C017F2F6": true
+        }
+    },
+    "md_vendor_user_link": {
+        "column": {
+            "row_id": true,
+            "vendor_id": true,
+            "parent_id": true,
+            "role_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_USER_LINK_VENDOR_ID_ROLE_ID": true,
+            "MD_VENDOR_USER_LINK_VENDOR_ID_MD_VENDOR_VENDOR_ID": true,
+            "MD_VENDOR_USER_LINK_ROLE_ID_MD_VENDOR_AUTHORIZATION_ROLE_ROLE_ID": true
+        }
+    }
+}

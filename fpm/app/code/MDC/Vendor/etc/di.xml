@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_Vendor
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magedelight\Vendor\Helper\Microsite\Data">
+        <plugin name="validate_microsite_url" type="MDC\Vendor\Plugin\Helper\ValidateMicrositeUrl" sortOrder="0"/>
+    </type>
+    <preference for="Magedelight\Vendor\Plugin\HtmlAttribute" type="MDC\Vendor\Plugin\HtmlAttribute" />
+    <preference for="Magedelight\Vendor\Block\Microsite\Html\Header" type="MDC\Vendor\Block\Microsite\Html\Header" />
+    <preference for="Magedelight\Vendor\Block\Microsite\Sellerdirectory\Seller" type="MDC\Vendor\Block\Microsite\Sellerdirectory\Seller" />
+    
+    <type name="Magedelight\Vendor\Model\Config\Fields">
+        <arguments>
+            <argument name="removeDataFields" xsi:type="array">
+                <item name="vat" xsi:type="string">VAT</item>
+                <item name="vat_doc" xsi:type="string">VAT Document</item>
+                <item name="region" xsi:type="string">State/Region</item>
+                <item name="pickup_region" xsi:type="string">State/Region</item>
+                <item name="pincode" xsi:type="string">Postal Code</item>
+                <item name="pickup_pincode" xsi:type="string">Postal Code</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

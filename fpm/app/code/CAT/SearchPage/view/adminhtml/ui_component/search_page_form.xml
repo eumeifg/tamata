@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">search_page_form.search_page_listing_data_source</item>
+            <item name="deps" xsi:type="string">search_page_form.search_page_listing_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="label" translate="true" xsi:type="string">Slider Information</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">CAT\SearchPage\Block\Adminhtml\Items\Edit\BackButton</item>
+            <item name="delete" xsi:type="string">CAT\SearchPage\Block\Adminhtml\Items\Edit\DeleteButton</item>
+            <item name="save" xsi:type="string">CAT\SearchPage\Block\Adminhtml\Items\Edit\SaveButton</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">search_page_form</item>
+        </item>
+    </argument>
+    <dataSource name="search_page_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">CAT\SearchPage\Model\SearchPageDataProvider</argument>
+            <argument name="name" xsi:type="string">search_page_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">search_page_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" path="*/items/save" xsi:type="url"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="label" translate="true" xsi:type="string">Search Page Information</item>
+            </item>
+        </argument>
+        <field name="search_page_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">contact</item>
+                </item>
+            </argument>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">category</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="string">1</item>
+                        <item name="false" xsi:type="string">0</item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="default" xsi:type="string">1</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="tab4">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Images</item>
+            </item>
+        </argument>
+        <dynamicRows name="dynamic_rows">
+            <settings>
+                <addButtonLabel translate="true">Add Rows</addButtonLabel>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <componentType>dynamicRows</componentType>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                    </item>
+                </argument>
+                <field name="banner" formElement="imageUploader">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="source" xsi:type="string">general</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                        <notice translate="true">Some notice.</notice>
+                        <label translate="true">Image Uploader</label>
+                        <!--<componentType>imageUploader</componentType>-->
+                        <required>false</required>
+                    </settings>
+                    <formElements>
+                        <imageUploader>
+                            <settings>
+                                <isMultipleFiles>true</isMultipleFiles>
+                                <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                                <maxFileSize>2097152</maxFileSize>
+                                <uploaderConfig>
+                                    <param xsi:type="string" name="url">search_page/image/uploader</param>
+                                </uploaderConfig>
+                            </settings>
+                        </imageUploader>
+                    </formElements>
+                </field>
+                <field name="title" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                            <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                        </validation>
+                        <dataType>text</dataType>
+                        <label>Banner Title</label>
+                    </settings>
+                </field>
+                <field name="page_type" formElement="select">
+                    <settings>
+                        <dataType>text</dataType>
+                        <label translate="true">Page Type</label>
+                        <dataScope>page_type</dataScope>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <options>
+                                    <option name="product" xsi:type="array">
+                                        <item name="value" xsi:type="string">product</item>
+                                        <item name="label" xsi:type="string">Product</item>
+                                    </option>
+                                    <option name="category" xsi:type="array">
+                                        <item name="value" xsi:type="string">category</item>
+                                        <item name="label" xsi:type="string">Category</item>
+                                    </option>
+                                    <option name="microsite" xsi:type="array">
+                                        <item name="value" xsi:type="string">microsite</item>
+                                        <item name="label" xsi:type="string">Microsite</item>
+                                    </option>
+                                    <option name="offerpage" xsi:type="array">
+                                        <item name="value" xsi:type="string">offerpage</item>
+                                        <item name="label" xsi:type="string">offer page</item>
+                                    </option>
+                                </options>
+                                <caption translate="true">-- Please Select --</caption>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <field name="data_id" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <validation>
+                            <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                        </validation>
+                        <dataType>text</dataType>
+                        <label>Data ID</label>
+                    </settings>
+                </field>
+
+                <field name="best_seller" formElement="select">
+                    <settings>
+                        <dataType>text</dataType>
+                        <label translate="true">Best Seller</label>
+                        <dataScope>best_seller</dataScope>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <options>
+                                    <option name="1" xsi:type="array">
+                                        <item name="value" xsi:type="string">1</item>
+                                        <item name="label" xsi:type="string">Yes</item>
+                                    </option>
+                                    <option name="0" xsi:type="array">
+                                        <item name="value" xsi:type="string">0</item>
+                                        <item name="label" xsi:type="string">No</item>
+                                    </option>
+                                </options>
+                                <caption translate="true">-- Please Select --</caption>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <field name="best_seller_id" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <validation>
+                            <rule name="validate-no-html-tags" xsi:type="boolean">false</rule>
+                        </validation>
+                        <dataType>text</dataType>
+                        <label>Data ID</label>
+                    </settings>
+                </field>
+                <actionDelete template="Magento_Backend/dynamic-rows/cells/action-delete">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <additionalClasses>
+                            <class name="some-class">true</class>
+                        </additionalClasses>
+                        <dataType>text</dataType>
+                        <label>Actions</label>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+</form>

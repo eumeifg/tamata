@@ -1,0 +1,31 @@
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<!--@subject Vendor's Request for product @-->
+<!--@vars {
+"var product_request.name":"Proposed product name by Vendor",
+"var vendor.name":"Vendor Name",
+"var vendor.business_name":"Vendor Business Name",
+"var vendor.email":"Vendor Email"
+} @-->
+
+{{template config_path="vendor_design/email/header_template"}}
+
+<p class="greeting">{{var store.getFrontendName()}}</p>
+
+<p>Vendor has generated a offer request with product name <b>{{var product_request.name}}</b> and is waiting for your approval. Kindly do the needful.</p>
+
+<p>Thanks in advance,</p>
+<p>{{var vendor.name}}</p>
+<p>{{var vendor.business_name}}</p>
+
+{{template config_path="vendor_design/email/footer_template"}}

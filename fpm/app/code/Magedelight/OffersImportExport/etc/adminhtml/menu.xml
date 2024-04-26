@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_OffersImportExport
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>    
+    <add id="Magedelight_OffersImportExport::vendor_offers" resource="Magedelight_OffersImportExport::vendor_offers" module="Magedelight_OffersImportExport" title="Vendor Offers" parent="Magedelight_Theme::addons"/>
+    	<add id="Magedelight_OffersImportExport::add_offers" resource="Magedelight_OffersImportExport::add_offers" module="Magedelight_OffersImportExport" title="Add Offers" action="vendoroffers/offers/add" parent="Magedelight_OffersImportExport::vendor_offers"/>
+    	<!-- Add Tab for export vendor offer-->
+    	<add id="Magedelight_OffersImportExport::export_offers" resource="Magedelight_OffersImportExport::export_offers" module="Magedelight_OffersImportExport" title="Export Offers" action="vendoroffers/offers/export" parent="Magedelight_OffersImportExport::vendor_offers"/>
+
+    	<!-- Add Tab for update vendor offer-->
+    	<add id="Magedelight_OffersImportExport::update_offers" resource="Magedelight_OffersImportExport::update_offers" module="Magedelight_OffersImportExport" title="Update Offers" action="vendoroffers/offers/update" parent="Magedelight_OffersImportExport::vendor_offers"/>
+  </menu>
+</config>

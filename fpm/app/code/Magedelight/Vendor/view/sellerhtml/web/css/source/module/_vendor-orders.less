@@ -1,0 +1,383 @@
+// /**
+//  * Copyright � 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+@table-caption__hide: true;
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+.vendor-content-top {
+    .order-summary-wrapper {
+        color: @secondary__color;
+        font-weight: @font-weight__semibold;
+        text-transform:uppercase;
+        h2, div {
+          text-align: center;
+        }
+        h2 {
+          .lib-font-size(20);
+            margin:0 0 0 0;
+            font-weight: @font-weight__semibold;
+        }
+        .text-muted {
+           .lib-font-size(11);
+           margin:0 0 @indent__xs 0;
+        }
+        .status {
+           .lib-font-size(11);
+        }
+
+  }
+}
+.order-date-status {
+    .field {
+        > .info-detail {
+            .lib-css(margin-bottom, @indent__xs);
+             label {
+               &.value {
+                  .lib-css(padding-left, 3px);
+                  .lib-css(font-weight, @font-weight__semibold);
+               }
+
+             }
+
+         }
+    }
+
+}
+
+.filter-wrapper {
+  .lib-css(border, 1px solid @border-color__base);
+  .lib-css(padding, @indent__base);
+  .lib-css(margin-bottom, @indent__base);
+
+    .filter-row {
+      .lib-clearer();
+      .lib-clearfix(); 
+      .lib-css(margin-bottom, @indent__base);
+      &:last-child {
+         .lib-css(margin-bottom, 0);
+      }
+       .legend {
+         .lib-css(border, none);
+         .lib-css(padding, 0);
+         .lib-css(margin-bottom, @indent__s);
+          color: #666666;
+          .lib-font-size(13);
+          text-transform: capitalize;
+       }
+       .fieldset {
+            > .field:not(.choice) {
+              .lib-css(margin-bottom, @indent__s);
+               label {
+                text-align: left;
+                width: 20%;
+                text-transform: capitalize;
+
+                }
+                .control {
+                   width: 80%;
+
+                   &.date-control {
+                        position: relative;
+/*                      .lib-icon-font(
+                      @_icon-font-content: @icon-calendar,
+                      @_icon-font-color: @primary__color__lighter,
+                      @_icon-font-size: 24px,
+                      @_icon-font-line-height: @icon-calendar__font-size,
+                      @_icon-font-display: block,
+                      @_icon-font-text-hide: true,
+                      @_icon-font-position: after
+                      );
+                       &:after {
+                         position: absolute;
+                         bottom:6px;
+                         right:10px;
+                       }*/
+                       input.hasDatepicker {
+                         .lib-css(padding, 0 9px 0 40px);
+                       }
+
+                                 }
+
+                }
+              &.full-width-field:not(.choice) {
+                 .control {
+                   width: 100%;
+                }
+             }
+
+            }
+        &.field-full-width {
+            > .field:not(.choice) {
+                 label, .control {
+                   width: 100%;
+                 }
+                 label {
+                   .lib-css(padding, 0 0 5px 0);
+                 }
+
+            }
+        }
+
+       }
+
+    }
+
+}
+.filters-footer {
+  text-align: right;
+}
+.rb-table-order-items {
+    > tbody > tr > td {
+        .price {
+          .lib-css(font-weight, @font-weight__regular);
+          .lib-font-size(13);
+        }
+
+    }
+
+    > tfoot {
+        > tr > th {
+            .lib-css(text-align, right);
+            .lib-css(color, inherit);
+        }
+        > tr > td {
+            &.subtotal,
+            &.amount {
+                .lib-css(text-align, left);
+            }
+
+        }
+
+    }
+}
+
+.rb-order-items {
+      .table.rb-table-order-items {
+           .lib-table();
+           .lib-table-resize(
+              @_td-padding-top: 10px,
+              @_td-padding-right: 10px,
+              @_td-padding-bottom: 10px,
+              @_td-padding-left: 10px,
+              @_th-padding-top: 10px,
+              @_th-padding-right: 10px,
+              @_th-padding-bottom: 10px,
+              @_th-padding-left: 10px
+          );
+
+               > thead {
+                 > tr {
+                   > th {
+                        &.col {
+                          .lib-css(text-align, left);
+                        }
+                   }
+                 }
+               }
+               > tbody {
+                 > tr {
+                   > td {
+                        &.col {
+                          .lib-css(text-align, left);
+                        }
+                    }
+                  }
+                }
+
+            .items-container {
+              .lib-css(border, 1px dashed #ccc);
+              .lib-css(margin-bottom, 25px);
+
+                &:last-child {
+                  .lib-css(margin-bottom, 0);
+                }
+
+                  .vendor-order-info{
+                    .lib-css(padding, 10px);
+                    .lib-css(border-bottom, 1px dashed #ccc);
+                    .lib-css(background, #f4f4f4);
+                        a
+                        {
+                           width: 16%;
+                          display: inline-block;
+                          color: @color-blue1;
+                          text-decoration: underline;
+                        }
+
+                        .vendor-info {
+                           width: 27%;
+                           display: inline-block;
+                            font-weight: @font-weight__semibold;
+                            &.vendor-order-status {
+                              text-align: right;
+                              float: right;
+                            }
+                            &.vendor-order-id {
+                               text-align: center;
+                            }
+
+                        }
+
+                  }
+
+            }
+
+          .table.rb-table-vendor-individual-order-items {
+              .lib-table();
+               > thead {
+                 > tr {
+                   > th {
+                      &.subtotal {
+                        text-align: left;
+
+                      }
+                      &.price {
+                      font-weight: @font-weight__bold;
+
+                      }
+
+                   }
+
+                 }
+
+               }
+
+
+          }
+          > tfoot {
+                > tr {
+                   > th {
+                  .lib-css(text-align, right);
+                }
+                }
+          }
+
+
+         }
+          table.rb-order-shipment-table {
+            > tbody {
+              > tr {
+                > td {
+                  &.col-sku {
+                      width: 18rem;
+                  }
+                  &.col-ordered-qty {
+                    width: 13rem;
+                  }
+                  &.col-qty {
+                    width: 10rem;
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+   }
+          table.rb-shipping-details {
+            > tbody {
+              > tr {
+                > th {
+                    width: 20rem;
+
+                }
+
+              }
+
+            }
+
+          }
+
+//
+//    Shipments, invoice, item ordered topbar
+//--------------------------------------
+ .page-title-wrapper   {
+    .order-status {
+          margin: 0;
+    }
+    div.order-date {
+      margin-top: 0;
+       .label {
+         font-weight: @font-weight__semibold;
+       }
+
+    }
+  }
+
+
+.order-addresses {
+  .payment-method {
+    .table  {
+      border: none;   
+
+      > tbody > tr > td, 
+      > tbody > tr > th {
+        display: block;
+        border: none;
+        padding: 0;
+        background: none; 
+        width: auto; 
+      }
+      > tbody > tr > td {
+
+      }
+
+    }
+     
+}
+
+}
+
+
+html.rtl-layout {  
+
+.filter-wrapper {
+  .filter-row {
+    .fieldset {
+      > .field:not(.choice) {
+        label {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+
+.filters-footer {
+    text-align: left;
+}
+
+}
+
+
+}
+
+//
+//    Mobile @screen__s
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+//
+//    Mobile @screen__m
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//    Desktop
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+
+

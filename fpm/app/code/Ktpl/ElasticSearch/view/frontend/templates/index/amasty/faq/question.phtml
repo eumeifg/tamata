@@ -1,0 +1,37 @@
+<?php
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+?>
+
+<?php
+//@codingStandardsIgnoreFile
+/** @var \Ktpl\ElasticSearch\Block\Index\Base $block */
+
+/** @var \Amasty\Faq\Block\Lists\QuestionsList $list */
+$list = $this->getLayout()->createBlock('Amasty\Faq\Block\Lists\QuestionsList');
+?>
+<div class="ktpl-search__index ktpl-search__index-amasty-faq-question">
+    <ul>
+        <?php /** @var \Amasty\Faq\Model\Question $q */ ?>
+        <?php foreach ($block->getCollection() as $q): ?>
+            <li>
+                <div class="ktpl-search__index-title">
+                    <a href="<?= $list->getQuestionLink($q) ?>">
+                        <?= $q->getTitle() ?></a>
+                </div>
+                <div class="ktpl-search__index-content">
+                    <?= $this->truncate($q->getShortAnswer()) ?>
+                </div>
+            </li>
+        <?php endforeach ?>
+</div>

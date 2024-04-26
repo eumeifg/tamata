@@ -1,0 +1,232 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    html[lang="ar"] {
+        .cms-no-route {
+            .column.main {
+                dl {
+                    dd {
+                        ul {
+                            li {
+                                padding: 0 20px 3px 0;
+                                &:before {
+                                        transform: rotate(90deg);
+                                        -moz-transform: rotate(90deg);
+                                        -ms-transform: rotate(90deg);
+                                        -o-transform: rotate(90deg);
+                                        -webkit-transform: rotate(90deg);
+                                        left: auto;
+                                        right: 0;
+                                        top: 11px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }    
+    }
+
+	
+	.cms-no-route {
+        .page-main {
+             > .page-title-wrapper {
+                 .page-title {
+                    .lib-css(margin, @indent__l 0 @indent__s 0);
+                    span {
+                        .lib-font-size(25px);
+                    }
+                 }    
+             }
+        }
+        .column.main {
+            background-image: url('../images/not-found-page.jpg');
+            border: 1px solid #e7e7e7;
+            padding: @indent__l @indent__base @indent__xl;
+            margin: @indent__base 0 @indent__xl;
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center center;
+            dl {
+                .lib-css(padding, @indent__base);
+                .lib-css(margin, 0 0 1px 0);
+                dd {
+                    margin: 0px;
+                    ul {
+                        .lib-css(list-style-image, none);
+                        .lib-css(list-style, none);
+                        .lib-css(margin, 0);
+                        .lib-css(padding, 0);
+                        
+                        li {
+                            .lib-css(list-style-image, none);
+                            .lib-css(list-style, none);
+                            .lib-css(margin, 0);
+                            line-height: @indent__l;
+                            padding: 0 0 3px @indent__base;
+                            position: relative;
+                            &:before {
+                                .lib-css(position, absolute);
+                                .lib-css(left, 0);
+                                top: @indent__s;
+                                content: "\e607";
+                                transform: rotate(-90deg);
+                                -webkit-transform: rotate(-90deg);
+                                -moz-transform: rotate(-90deg);
+                                -ms-transform: rotate(-90deg);
+                                -o-transform: rotate(-90deg);
+                                font-weight: @font-weight__bold;
+                                font-family: 'luma-icons';
+                                .lib-font-size(@indent__s);
+                                .lib-css(line-height, normal);
+
+                            }
+                            a {
+                                color: @color-blue3;
+                                text-shadow: 0px 0px 0px;
+                                &:hover {
+                                    color: @color-black;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .cms-page-view {
+    	&.cms-recently-viewed {
+    		.page-main {
+    			padding:0px; 
+    		}
+    		.page-wrapper {
+    			> .breadcrumbs {
+    				padding:0px; 
+    			}
+    		}
+    		[data-content-type='row'][data-appearance='contained'] {
+    			> div {
+    				padding:0 !important;  
+    			}
+    		}
+    	}
+    	.block.widget {
+    		&.block-viewed-products-grid {
+    			.block-title {
+    				strong {
+						color: #45434a;
+						font-size: 25px;
+						font-weight:@font-weight__bold;
+    				}
+    			}
+    		}
+    		.block-content {
+    			.products-grid {
+    				background-color:@color-white;
+					box-shadow: 0px 2px 5px 0px rgba(0,0,0,.07000000000000001);
+					-webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,.07000000000000001);
+					border-radius: 3px;
+    				li.product-item {
+						padding: 20px 30px 10px;
+						width: 20%;
+						margin:0px;
+						.product-item-info {
+							.product-item-name {
+					            height: 44px;
+					            overflow: hidden;
+					            line-height: 20px;
+					        }
+						}
+						.product-item-actions,
+						.product-item-description {
+							display: none;
+						}
+						.product-item-name {
+							a {
+								font-size: 14px;
+								color: #45434a;
+								line-height: @indent__base;
+							}
+						}
+    				}
+    			}
+    		}
+    	}
+    }
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+	.cms-recently-viewed {
+      	&.cms-page-view {
+	        .block {
+	          &.block-viewed-products-grid {
+	            .block-title {
+	              margin:15px;
+	            }
+	          }
+        	}
+      	}
+  	}
+	.cms-page-view {
+		.page-wrapper {
+			.block.widget {
+				.block-content {
+					.products-grid {
+						li.product-item {
+							width:33.33%; 
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .cms-no-route .column.main { background-image: none !important; }
+
+    .cms-page-view {
+    	.block.widget {
+    		&.block-viewed-products-grid {
+				display: block;
+				margin: 0 15px;
+    		}
+    	}
+		.page-wrapper {
+			.block.widget {
+				.block-content {
+					.products-grid {
+						li.product-item {
+							width:50% !important;
+							padding:@indent__s 15px @indent__s !important; 
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+
+}

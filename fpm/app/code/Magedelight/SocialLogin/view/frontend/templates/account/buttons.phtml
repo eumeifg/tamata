@@ -1,0 +1,132 @@
+<?php
+$sociallogins = $block->getSortedLoginList();
+$block_count = $block->getDisplayCount();
+$social_count = count($sociallogins);
+$isloggedin = $block->isloggedin();
+$customHelper = $this->helper('Magedelight\SocialLogin\Helper\Data');
+$socialLoginIsEnabled = $customHelper->getConfig('sociallogin/general/enable');
+if ($social_count > 0 && !$isloggedin && $socialLoginIsEnabled == 1) :
+    ?><div id="md-login-social" style="display: block;">
+        <h3 class="md-login-h3"><?php /* @noEscape */ echo __('Sign in with'); ?></h3>
+        <ul class="md-login-social" id="myList"><?php
+            $count = 1;
+            foreach ($sociallogins as $loginvalue => $socialsite) :
+                $fontawesome = $block->getFontawesome($loginvalue);
+                $buttonbgcolor = $block->getButtonBgColor($loginvalue);
+                $buttonfontcolor = $block->getButtonFontColor($loginvalue);
+                $iconcolor = $block->getIconColor($loginvalue);
+                $iconbgcolor = $block->getIconBgColor($loginvalue);
+
+                if ($count <= $block_count || empty($block_count)) {
+                    if ($block->isActive($loginvalue)) { ?>
+                        <li class="button popup">
+                            <?php $fontawesome = $block->getFontawesome($loginvalue); ?>
+
+                            <button class="action md_social_btn btn_social_md"
+                                    data-url="<?php /* @noEscape */
+                                    echo $block->getLoginUrl($loginvalue) ?>"
+                                    title="<?php /* @noEscape */
+                                    echo __('Login By ' . ucfirst($loginvalue)) ?>"
+                                    data-text="<?php /* @noEscape */
+                                    echo __('Login By ' . ucfirst($loginvalue)) ?>"
+                                    id="<?php /* @noEscape */
+                                    echo $loginvalue . '_btn' ?>" type="button"
+                                    style="color:<?php echo '#' . $buttonfontcolor ?>; background: <?php echo '#' . $buttonbgcolor; ?>">
+                                <span>
+                                    <i class="fa <?php echo $fontawesome; ?>" aria-hidden="true"
+                                       style="color:<?php echo '#' . $iconcolor ?>; background: <?php echo '#' . $iconbgcolor; ?>"></i>
+                                    <span><?php /* @noEscape */ echo __(ucfirst($loginvalue)) ?></span>
+                                </span>
+                            </button>
+                        </li><?php
+                    }
+                }
+                elseif ($block_count + 1 == $count) {
+
+                    ?></ul>
+
+                    <ul class="md-login-social-all" id="md-all-button" style="display:none">
+                        <?php if ($block->isActive($loginvalue)) { ?>
+                            <li class="button popup">
+                                <button class="action md_social_btn btn_social_md"
+                                        data-url="<?php /* @noEscape */
+                                        echo $block->getLoginUrl($loginvalue) ?>"
+                                        title="<?php /* @noEscape */
+                                        echo __('Login By ' . ucfirst($loginvalue)) ?>"
+                                        data-text="<?php /* @noEscape */
+                                        echo __('Login By ' . ucfirst($loginvalue)) ?>"
+                                        id="<?php /* @noEscape */
+                                        echo $loginvalue . '_btn' ?>" type="button"
+                                                style="color:<?php echo '#' . $buttonfontcolor ?>; background: <?php echo '#' . $buttonbgcolor; ?>">
+                                    <span>
+                                        <i class="fa <?php echo $fontawesome; ?>" aria-hidden="true"
+                                           style="color:<?php echo '#' . $iconcolor ?>; background: <?php echo '#' . $iconbgcolor; ?>"></i>
+                                        <span><?php /* @noEscape */ echo __(ucfirst($loginvalue)) ?></span>
+                                    </span>
+                                </button>
+                            </li><?php
+                        }
+                }
+                else {
+                    if ($block->isActive($loginvalue)) { ?>
+                        <li class="button popup">
+                            <button class="action md_social_btn btn_social_md"
+                                    data-url="<?php /* @noEscape */
+                                    echo $block->getLoginUrl($loginvalue) ?>"
+                                    title="<?php /* @noEscape */
+                                    echo __('Login By ' . ucfirst($loginvalue)) ?>"
+                                    data-text="<?php /* @noEscape */
+                                    echo __('Login By ' . ucfirst($loginvalue)) ?>"
+                                    id="<?php /* @noEscape */
+                                    echo $loginvalue . '_btn' ?>" type="button"
+                                    style="color:<?php echo '#' . $buttonfontcolor ?>; background: <?php echo '#' . $buttonbgcolor; ?>">
+                                    <span>
+                                        <i class="fa <?php echo $fontawesome; ?>" aria-hidden="true"
+                                           style="color:<?php echo '#' . $iconcolor ?>; background: <?php echo '#' . $iconbgcolor; ?>"></i>
+                                        <span><?php /* @noEscape */
+                                            echo __(ucfirst($loginvalue)) ?></span>
+                                    </span>
+                            </button>
+                        </li><?php
+                    }
+                }
+                $count++;
+            endforeach;
+        ?></ul>
+        <?php if ($block_count > 0 && $block_count <= 15 && $social_count > $block_count) : ?>
+            <div id="md-more-less" class="plus md-more-less-button"><?php /* @noEscape */
+                echo __('Show more') ?></div>
+        <?php endif; ?>
+    </div>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'Magedelight_SocialLogin/js/popup',
+            'mage/translate'
+        ], function (jQuery, Popup) {
+            //Show less more social login buttons
+            jQuery('.md-more-less-button').unbind().click(function () {
+                jQuery(this).toggleClass("minus");
+                jQuery('#md-all-button').toggle(function () {
+                    jQuery('.md-more-less-button').text(jQuery(this).is(':visible') ? jQuery.mage.__("Show less") : jQuery.mage.__("Show more"));
+                });
+            });
+
+            //Popup function for social login buttons
+            jQuery('.btn_social_md').each(function (index) {
+                jQuery(this).on('click', function (e) {
+                    var mdSocialPopup = new Popup();
+                    mdSocialPopup.openPopup(jQuery(this).attr('data-url'), jQuery(this).attr('data-text'), 'height=500,width=300');
+                });
+            });
+        });
+    </script>
+<?php else : ?>
+    <style type="text/css">
+        .md-social-popup #md_popup #md-login-form {
+            width: 100% !important;
+            border-right: 0 !important;
+        }
+    </style>
+
+<?php endif; ?>

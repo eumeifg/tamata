@@ -1,0 +1,200 @@
+<?php
+/**
+ * Copyright © 2016 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details
+ */
+/* @codingStandardsIgnoreFile */
+
+/**
+ * @var \Magedelight\Vendor\Block\Account\Profile $block
+ */
+
+$vendor = $block->getVendor();
+$companyLogoWidth =   $block->getVendorLogoWidth();
+$companyLogoHeight =  $block->getVendorLogoHeight();
+?>
+<button class="navbar-toggler sidebar-toggler" type="button">
+    <span class="navbar-toggler-icon rbvt-icon-menu"></span>
+</button>
+<div class="navbar-nav-wrapper">
+    <ul class="nav navbar-nav">
+        <li>
+            <a href="<?= $block->getUrl('rbvendor/account/contact') ?>">
+                <span class="rbvt-icon rbvt-icon-help"></span>
+            </a>
+        </li>
+       <li><a id="avatar" class="avatarimg">
+                <img class="avatar"
+                     alt="avatar"
+                     height="42"
+                     width="42"
+                     src="<?= $block->getLogoUrl($block->getVendor()->getLogo()); ?>"
+                     /></a>
+        </li>
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle profile" href="javascript:void(0)">
+                    <?= ucwords($block->getLoggedUserName()); ?>
+                    <span class="rbvt-icon rbvt-icon-pointer-down"></span>
+                </a>
+            <ul role="menu" class="dropdown-menu list-group dropdown-persist w250">
+                <?php $links = $block->getGroupChildNames('vendor_header_links', 'getChildHtml'); ?>
+                <?php if($links){ ?>
+                <?php $layout = $block->getLayout(); ?>
+                <?php   foreach ($links as $link) {
+                    $order = ($block->getChildData($layout->getElementAlias($link), 'sort_order'))?$block->getChildData($layout->getElementAlias($link), 'sort_order'):0;
+                            $sortedLinks[$order] = $link;
+                        }
+                        ksort($sortedLinks);
+                ?>
+                <?php foreach ($sortedLinks as $index => $sortedLink) { ?>
+                    <?php $alias = $layout->getElementAlias($sortedLink); ?>
+                        <li class="dropdown-footer">
+                            <a class="" href="<?= $this->getUrl($block->getChildBlock($alias)->getLinkData('action_url', $alias)); ?>">
+                                <span class="rbvt-icon <?= $block->getChildBlock($alias)->getLinkData('icon_class', $alias); ?> pr10"></span>
+                                <?php
+
+                                if($alias == 'vendor.profile'){
+                                    echo __($block->getChildBlock($alias)->getLinkData('title', $alias)). ' (ID: ' . $vendor->getId() .')';
+                                }else{
+                                    echo __($block->getChildBlock($alias)->getLinkData('title', $alias));
+                                }
+
+                                ?>
+                            </a>
+                        </li>
+                <?php } ?>
+                <?php } ?>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div id="avatarModal" style="display:none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <fieldset class="fieldset">
+                    <div class="field">
+                        <label class="label"></label>
+                        <div class="control">
+                            <strong class="error text-danger"></strong>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">
+                            <span><?= __('Logo') ?></span>
+                        </label>
+                        <div class="control">
+                            <img class="avatar" alt="avatar" height="42" width="42" src="<?= $block->getLogoUrl($block->getVendor()->getLogo()); ?>" />
+                        </div>
+                    </div> 
+                    <div class="field">
+                        <label class="label">
+                            <span><?= __('Add New Logo') ?></span>
+                        </label>
+                        <div class="control">
+                             <input data-validate="{required:true}" id="businesslogo" type="file" name="businesslogo" accept="image/x-png,image/jpeg">
+                             <span class="note"><?= __('Size %1px x %2px, Allowed File Types :(JPG,JPEG,PNG), Max Size:512KB',$companyLogoWidth,$companyLogoHeight)?></span>
+                             <div id="progress" class="progress">
+                                                <div class="progress-bar progress-bar-success"></div>
+                             </div>
+                             <div id="files" class="files"></div>
+                        </div>
+                    </div> 
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        $(document).ready(function () {
+            $(document).mouseup(function (e) {
+                var popup = $(".page-header .navbar-nav li.dropdown");
+                var openpopup = $(".page-header .navbar-nav li.dropdown.open");
+                if (openpopup.hasClass('open') && !popup.is(e.target) && popup.has(e.target).length === 0) {
+                    openpopup.removeClass('open')
+                }
+            });
+            $('.page-header .navbar-nav li.dropdown').click(function ($e) {
+                $isAlreadyOpen = $(this).hasClass('open');
+                $('.page-header .navbar-nav li.dropdown').removeClass('open');
+                if (!$isAlreadyOpen) {
+                    $(this).addClass('open');
+                }
+            });
+        });
+    });
+</script>
+<script>
+require(['jquery'], function(){
+    jQuery(document).ready(function() {
+
+        jQuery('.navbar-toggler').on('click', function(e) {
+          jQuery('body').addClass('menu_open');
+          e.stopPropagation();
+        });
+
+        jQuery('html').on('click', '.menu_open', function() {
+          jQuery('body.menu_open').removeClass('menu_open');
+        });
+    });
+});
+</script>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/modal',
+        'jquery/ui', /* Jquery UI Library */
+        'jquery/validate', /* Jquery Validation Library */
+        'mage/mage',
+        'mage/translate', /* Magento text translate (Validation message translte as per language) */
+        'Magedelight_Catalog/js/jquery.fileupload',
+        'Magedelight_Catalog/js/jquery.ui.widget'
+    ], function ($, modal) {
+        var options = {
+            type: 'popup',
+            responsive: true,
+            buttons: false,
+        };
+
+        var avatarimg = modal(options, $('#avatarModal'));
+
+        $(document).on('click', '.avatarimg', function () {
+            $("#businesslogo").removeAttr("disabled")
+            $("#avatarModal").modal('openModal');
+            $('#logostring').val('');
+            $('.error').html('');
+        });
+
+        var uploadUrl = '<?= $this->getUrl('rbvendor/account/logoupload'); ?>';
+        var filesUploadedCount = 0;
+        var selectedFiles = 0;
+        $('#businesslogo').fileupload({
+            url: uploadUrl,
+            dataType: 'json',
+            acceptFileTypes: /^image\/(gif|jpeg|png|jpg\+xml)$/,
+            maxFileSize: 524288,
+            done: function (e, responseData) {
+                $('.error').html(responseData.result.error);
+                if(responseData.result.file_upload_error){
+                    $('.error').html(responseData.result.errormessage);
+                    return false;
+                }
+
+                if(responseData.result.url != ''){
+                    $(".avatar").attr('src', responseData.result.url);
+                    $("#avatarModal").modal('closeModal');
+                }
+
+            },
+           processfail: function (e, data) {
+                //alert(data.files[data.index].name + "\n" + data.files[data.index].error);
+                $('.error').html(data.files[data.index].error);
+             }
+        }).prop('disabled', !$.support.fileInput)
+            .parent().addClass($.support.fileInput ? undefined : 'disabled');
+    });
+ 
+</script>

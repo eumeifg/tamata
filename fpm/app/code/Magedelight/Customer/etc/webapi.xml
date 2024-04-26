@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/mdorders" method="GET">
+        <service class="Magento\Sales\Api\OrderRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/mddashboard" method="GET">
+        <service class="Magedelight\Customer\Api\MobileDashboardInterface" method="getMobileDashboard"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <route url="/V1/customers/mine/address" method="POST">
+        <service class="Magento\Customer\Api\AddressRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+    <!-- fetch dynamic form attributes for customer address -->
+    <route url="/V1/customerAddress/form/:formCode" method="GET">
+        <service class="Magento\Customer\Api\AddressMetadataInterface" method="getAttributes"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <!-- DELETE customer address -->
+    <route url="/V1/customers/mine/addresses/:addressId" method="DELETE">
+        <service class="Magento\Customer\Api\AddressRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+</routes>

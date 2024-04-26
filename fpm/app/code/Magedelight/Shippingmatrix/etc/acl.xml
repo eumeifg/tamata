@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright © 2016 Rocket Bazaar. All rights reserved.
+See COPYING.txt for license details
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magedelight_Theme::vendor">
+                    <resource id="Magedelight_Shippingmatrix::shippingmethod" title="Shipping Matrix" sortOrder="60">
+                        <resource id="Magedelight_Shippingmatrix::view_detail" title="View Detail" sortOrder="10" />
+                        <resource id="Magedelight_Shippingmatrix::add_edit" title="Add / Edit" sortOrder="20" />
+                        <resource id="Magedelight_Shippingmatrix::delete" title="Delete" sortOrder="30" />
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

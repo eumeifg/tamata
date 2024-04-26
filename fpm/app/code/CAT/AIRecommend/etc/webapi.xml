@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route method="GET" url="/V1/item-recommender">
+        <service class="CAT\AIRecommend\Api\RecommenderBuilderInterface" method="itembase"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/fashion-recommender">
+        <service class="CAT\AIRecommend\Api\RecommenderBuilderInterface" method="fashionbase"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route method="GET" url="/V1/market-recommender">
+        <service class="CAT\AIRecommend\Api\RecommenderBuilderInterface" method="marketbase"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route method="GET" url="/V1/user-recommender">
+        <service class="CAT\AIRecommend\Api\RecommenderBuilderInterface" method="userbase"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route method="GET" url="/V1/event-recommender">
+        <service class="CAT\AIRecommend\Api\RecommenderBuilderInterface" method="eventbase"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+</routes>

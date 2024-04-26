@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+ /**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ProductLabel
+ * @author    Kirti Nariya <kirti.nariya@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+            id="ProductLabel::products"
+            title="Ktpl Product Label"
+            translate="title"
+            module="Ktpl_ProductLabel"
+            sortOrder="50"
+            parent="Magento_Catalog::inventory"
+            action="ktpl_productlabel/productlabel/index"
+            resource="Ktpl_ProductLabel::manage"/>
+    </menu>
+</config>

@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\Sales\Model\ResourceModel\Order\Item\Collection" type="Magedelight\Sales\Model\ResourceModel\Core\Order\Item\Collection"/>
+    <preference for="Magento\Sales\Model\Order" type="Magedelight\Sales\Model\Core\Order"/>
+    <preference for="Magento\Sales\Model\Order\Item" type="Magedelight\Sales\Model\Core\Order\Item"/>
+    <preference for="Magento\Sales\Model\Order\Pdf\Shipment" type="Magedelight\Sales\Model\Sales\Order\Pdf\Shipment"/>
+    <preference for="Magento\Sales\Model\Order\Payment\Operations\CaptureOperation" type="Magedelight\Sales\Model\Sales\Order\Payment\Operations\CaptureOperation"/>
+    <preference for="Magento\Sales\Api\CreditmemoManagementInterface" type="Magedelight\Sales\Model\Sales\Service\CreditmemoService"/>
+    <preference for="Magento\Tax\Model\Sales\Quote\ItemDetails" type="Magedelight\Sales\Model\Sales\Quote\ItemDetails"/>
+    <preference for="Magento\Tax\Model\Calculation" type="Magedelight\Sales\Model\Calculation"/>
+    <preference for="Magento\Tax\Model\TaxCalculation" type="Magedelight\Sales\Model\TaxCalculation"/>
+    <preference for="Magento\Tax\Model\Calculation\TotalBaseCalculator" type="Magedelight\Sales\Model\Calculation\TotalBaseCalculator"/>
+    <preference for="Magedelight\Sales\Api\OrderRepositoryInterface" type="Magedelight\Sales\Model\OrderRepository" />
+    <preference for="Magedelight\Sales\Api\OrderManagementInterface" type="Magedelight\Sales\Model\OrderManagement" />
+    <preference for="Magedelight\Sales\Api\Data\CustomMessageInterface" type="Magedelight\Sales\Model\CustomMessage" />
+    <preference for="Magedelight\Sales\Api\Data\VendorOrderInterface" type="Magedelight\Sales\Model\Order"/>
+    <preference for="Magedelight\Sales\Api\ShippingManagementInterface" type="Magedelight\Sales\Model\ShippingManagement" />
+    <preference for="Magedelight\Sales\Api\Data\ShipmentDataInterface" type="Magedelight\Sales\Model\ShipmentData"/>
+    <preference for="Magedelight\Sales\Api\ShippingBuilderInterface" type="Magedelight\Sales\Model\ShippingBuilder"/>
+    <preference for="Magedelight\Sales\Api\Data\InvoiceDataInterface" type="Magedelight\Sales\Model\InvoiceData"/>
+    <preference for="Magedelight\Sales\Api\InvoiceBuilderInterface" type="Magedelight\Sales\Model\InvoiceBuilder"/>
+    <preference for="Magedelight\Sales\Api\Data\OrderItemAttributeInfoInterface" type="Magedelight\Sales\Model\Order\Item\OrderItemAttributeInfo"/>
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="is_confirmed" xsi:type="string">sales_order.is_confirmed</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="vendor_order_view_invoice_grid_data_source" xsi:type="string">Magento\Sales\Model\ResourceModel\Order\Invoice\Orders\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="quote_to_order_item" type="Magedelight\Sales\Model\Plugin\Quote\Item\ToOrderItem" sortOrder="1" />
+    </type>
+    <type name="Magento\Quote\Model\Quote\Item\Updater">
+        <plugin name="orderupdate" type="Magedelight\Sales\Model\Plugin\Quote\Item\Updater" sortOrder="1" />
+    </type>
+    <type name="Magento\Quote\Model\Quote\Item\Processor">
+        <plugin name="orderadd" type="Magedelight\Sales\Model\Plugin\Quote\Item\Processor" sortOrder="2" />
+    </type>
+    <type name="Magento\Sales\Model\Order\Config">
+        <plugin name="status_label_updater" type="Magedelight\Sales\Plugin\Order\Config" sortOrder="2" />
+    </type>
+    <type name="Magento\Tax\Model\Sales\Total\Quote\CommonTaxCollector">
+        <plugin name="addVendorToItem" type="Magedelight\Sales\Model\Plugin\Sales\Total\Quote\CommonTaxCollector" sortOrder="0" />
+    </type>
+
+    <preference for="Magedelight\Sales\Api\Data\OrderItemImageInterface" type="Magedelight\Sales\Model\OrderItemImageData"/>
+    <type name="Magento\Sales\Api\Data\OrderInterface">
+        <plugin name="add_order_item_images" type="Magedelight\Sales\Plugin\OrderItemImages" />
+    </type>
+    <type name="Magedelight\Sales\Api\Data\VendorOrderInterface">
+        <plugin name="add_vendor_order_item_images" type="Magedelight\Sales\Plugin\VendorOrderItemImages" />
+    </type>
+    <!-- file download interface -->
+    <preference for="Magedelight\Sales\Api\Data\FileDownloadInterface" type="Magedelight\Sales\Model\FileDownload"/>
+    <!-- adding vendor data in order item -->
+    <preference for="Magedelight\Sales\Api\Data\OrderDataInterface" type="Magedelight\Sales\Model\OrderData"/>
+    <preference for="Magedelight\Sales\Api\Data\SubOrdersInterface" type="Magedelight\Sales\Model\SubOrders"/>
+    <type name="Magento\Sales\Api\Data\OrderInterface">
+        <plugin name="add_vendor_orders" type="Magedelight\Sales\Plugin\AddVendorOrdersToMainOrder" />
+    </type>
+    <type name="Magento\Sales\Model\Order\ShipmentDocumentFactory">
+        <plugin name="add_sub_order_detatils_to_shipment" type="Magedelight\Sales\Plugin\Model\Order\AddSubOrderDetailsToShipment" sortOrder="1" />
+    </type>
+    <type name="Magento\Sales\Model\Order\InvoiceDocumentFactory">
+        <plugin name="add_sub_order_detatils_to_invoice" type="Magedelight\Sales\Plugin\Model\Order\AddSubOrderDetailsToInvoice" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Sales\Api\Data\OrderInterface">
+        <plugin name="add_order_item_attribute_info" type="Magedelight\Sales\Plugin\OrderItemAttributeInfo" />
+    </type>
+    <type name="Magedelight\Sales\Api\Data\VendorOrderInterface">
+        <plugin name="add_vendor_order_item_attribute_info" type="Magedelight\Sales\Plugin\VendorOrderItemAttributeInfo" />
+    </type>
+    <preference for="Magedelight\Sales\Api\Data\VendorOrderSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <type name="Magento\Quote\Model\ValidationRules\QuoteValidationComposite">
+        <arguments>
+            <argument name="validationRules" xsi:type="array">
+                <item name="OfferQtyValidationRule" xsi:type="object">Magedelight\Sales\Model\ValidationRules\OfferQtyValidationRule</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Shipping\Model\ShipmentProviderInterface" type="Magento\Shipping\Model\ShipmentProvider" />
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Invoice\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="vendor_order_id" xsi:type="string">sales_invoice.vendor_order_id</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ShipmentGridAggregator">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="vendor_order_id" xsi:type="string">sales_shipment.vendor_order_id</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

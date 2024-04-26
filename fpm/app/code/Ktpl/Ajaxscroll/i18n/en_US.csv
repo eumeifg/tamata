@@ -1,0 +1,32 @@
+Slow,Slow
+Fast,Fast
+Left,Left
+Right,Right
+"Items %1","Items %1"
+"Ajax Scroll","Ajax Scroll"
+General,General
+Enabled,Enabled
+"Loading Icon","Loading Icon"
+"Use Previous","Use Previous"
+"Show load more button pages","Show load more button pages"
+"Go To Top","Go To Top"
+"Use Go To Top","Use Go To Top"
+Trigger,Trigger
+"Location Offset","Location Offset"
+"Bottom Offset","Bottom Offset"
+"Container Size","Container Size"
+"Container Radius","Container Radius"
+"Hide Under Width","Hide Under Width"
+"Container Color","Container Color"
+"Arrow Color","Arrow Color"
+"A text to show on the button mouse hover","A text to show on the button mouse hover"
+zIndex,zIndex
+"Always Visible","Always Visible"
+Location,Location
+"Go Up Speed","Go Up Speed"
+"Button Load More","Button Load More"
+"Text Button Load More","Text Button Load More"
+"Text Button Load Previous","Text Button Load Previous"
+"Text No More","Text No More"
+"Background Button Load More","Background Button Load More"
+"Color Button Load More","Color Button Load More"

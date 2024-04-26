@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_User
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    
+    <!-- md_vendor_website_data table starts. -->
+    <table name="md_vendor_website_data" resource="default">
+        <column xsi:type="tinyint" name="is_user" nullable="false" padding="2" default="0" comment="Describes whether it is main vendor or user(0 - Main Vendor, 1= Sub User)"/>
+    </table>
+    <!-- md_vendor_website_data table ends. -->
+</schema>

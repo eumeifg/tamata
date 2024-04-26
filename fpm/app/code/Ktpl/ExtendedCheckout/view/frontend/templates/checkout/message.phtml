@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+$allCartitems = $block->getQuote()->getAllItems();
+//echo "<pre>";print_r(get_class_methods($block->getQuote()));die;
+$currencyRate = $block->getQuote()->getData('base_to_quote_rate');
+$quoteCurrencyCode = $block->getQuote()->getData('quote_currency_code');
+$allDiscountedAmount = 0;
+$regularPrice = 0;
+$specialPrice = 0;
+$offerFromDate = null;
+
+foreach ($allCartitems as $cartItem) {
+
+	$productId = $cartItem->getProductId();
+
+	if ($cartItem->getParentItemId()) {
+		continue;
+	}
+
+	/*....To check quote item is simple/configurable....*/
+	if ($cartItem->getProductType()=="configurable") {
+		$productId = $cartItem->getBuyRequest()->getSimpleProduct();
+	}
+
+	$itemQty 	= $cartItem->getQty();
+
+	/*....To get simple product regular price....*/
+	$vendorProductItem = $block->getSimpleProductVendorPriceOnCart($cartItem->getBuyRequest()->getVendorId(), $productId);
+
+	if ($vendorProductItem) {
+		$regularPrice = $vendorProductItem->getPrice();
+
+		/*....To get simple product special price....*/
+		$specialPrice = $cartItem->getPrice();
+
+		$offerFromDate = $vendorProductItem->getSpecialFromDate();
+
+		$discountedPrice = $regularPrice - $specialPrice;
+		$allDiscountedAmount = $allDiscountedAmount + $discountedPrice * $itemQty;
+	}
+	
+}
+	$allDiscountedAmount = $allDiscountedAmount * $currencyRate;
+?>
+
+<?php if ($regularPrice != $specialPrice && isset($offerFromDate)) { ?>
+<div class="custom_offer_msg"><?= /* @escapeNotVerified */ __('You will save %1 %2 on this order',$quoteCurrencyCode, $allDiscountedAmount); ?></div>
+<?php } ?>

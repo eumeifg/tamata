@@ -1,0 +1,16 @@
+{
+    "name": "mdc/module-sales",
+    "description": "This module extends functionality to Magedelight Sales module",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MDC\\Sales\\": ""
+        }
+    }
+}

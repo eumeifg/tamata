@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>My Profile</title>
+        <css src="Magedelight_Vendor::css/component.css"/>
+        <link src="Magedelight_Vendor::js/custom-file-input.js"/>
+        <link src="Magedelight_Vendor::js/registration/validation/vendor-validation.js"/>
+    </head>
+    <update handle="seller_account"/>
+    <referenceBlock name="store_language" remove="true"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">My Profile</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="vendor_account_navigation" before="-" template="Magedelight_Vendor::account/navigation.phtml"/>
+            <block class="Magedelight\Vendor\Block\Sellerhtml\Account\Profile" name="vendorProfile" template="Magedelight_Vendor::account/profile.phtml" cacheable="false">
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Account\Profile" name="vendorInfo" template="Magedelight_Vendor::account/profile/vendorinfo.phtml" cacheable="false"/>
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Account\Profile" name="businessInfo" template="Magedelight_Vendor::account/profile/businessinfo.phtml" cacheable="false"/>
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Account\Profile" name="loginInfo" template="Magedelight_Vendor::account/profile/logininfo.phtml" cacheable="false"/>
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Account\Profile" name="statusInfo" template="Magedelight_Vendor::account/profile/status.phtml" cacheable="false"/>
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Account\Profile" name="categoryInfo" template="Magedelight_Vendor::account/profile/categoryinfo.phtml" cacheable="false"/>
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Account\Profile" name="shippingInfo" template="Magedelight_Vendor::account/profile/shippinginfo.phtml" cacheable="false"/>
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Account\Profile" name="bankInfo" template="Magedelight_Vendor::account/profile/bankinfo.phtml" cacheable="false"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

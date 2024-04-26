@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magedelight_Backend:etc/email_templates.xsd">
+    <!-- Product Request Email Templates starts -->
+    <template id="vendor_product_request_new_email_notification_admin_template" label="Vendor New Product Status Request Notification" file="product/request_notification_admin.html" type="html" module="Magedelight_Catalog" area="sellerhtml"/>
+    <!-- Product Request Email Templates ends -->
+    <template id="vendor_product_bulklist_admin_template" label="Bulk Product Request Admin Notification" file="bulkimport/vendor_product_bulklist.html" type="html" module="Magedelight_Catalog" area="sellerhtml"/>
+    <template id="emailconfiguration_vendor_product_status_template" label="Vendor Product Status Notification" file="emailconfiguration_vendor_product_status_template.html" type="html" area="sellerhtml" module="Magedelight_Catalog"/>
+    <template id="emailconfiguration_vendor_product_delete_template" label="Vendor Product Delete Notification" file="emailconfiguration_vendor_product_delete_template.html" type="html" area="adminhtml" module="Magedelight_Catalog"/>
+    <template id="emailconfiguration_vendor_product_approve_delete_template" label="Vendor Approve Product Delete" file="emailconfiguration_vendor_product_approve_delete_template.html" type="html" area="sellerhtml" module="Magedelight_Catalog"/>
+    <template id="emailconfiguration_vendor_product_massdelete_template" label="Vendor Product Mass Delete Notification" file="emailconfiguration_vendor_product_massdelete_template.html" type="html" area="sellerhtml" module="Magedelight_Catalog"/>
+    <template id="emailconfiguration_vendor_product_approve_massdelete_template" label="Vendor Approve Product Mass Delete" file="emailconfiguration_vendor_product_approve_massdelete_template.html" type="html" area="sellerhtml" module="Magedelight_Catalog"/>
+    <template id="emailconfiguration_vendor_product_masslist_template" label="Vendor Approve Product Mass List" file="emailconfiguration_vendor_product_masslist_template.html" type="html" area="sellerhtml" module="Magedelight_Catalog"/>
+    <template id="emailconfiguration_vendor_product_list_template" label="Vendor Product List" file="emailconfiguration_vendor_product_list_template.html" type="html" area="sellerhtml" module="Magedelight_Catalog"/> 
+    <template id="emailconfiguration_vendor_product_bulklist_template" label="Vendor Product Bulk List" file="emailconfiguration_vendor_product_bulklist_template.html" type="html" area="sellerhtml" module="Magedelight_Catalog"/>
+    <template id="emailconfiguration_vendor_product_unlist_template" label="Vendor Product UnList" file="emailconfiguration_vendor_product_unlist_template.html" type="html" area="sellerhtml" module="Magedelight_Catalog"/> 
+</config>

@@ -1,0 +1,43 @@
+interface ProductInterface @typeResolver(class: "Magento\\CatalogGraphQl\\Model\\ProductInterfaceTypeResolverComposite") @doc(description: "The ProductInterface contains attributes that are common to all types of products. Note that descriptions may not be available for custom and EAV attributes.") {	
+    reviews: Float @doc(description: "An array of Reviews objects") @resolver(class: "Magedelight\\CatalogGraphQl\\Model\\Resolver\\Product\\Reviews")
+    added_to_wishlist: Boolean @doc(description: "Flag indicating if product is wish list or not.")  @resolver(class: "Magedelight\\CatalogGraphQl\\Model\\Resolver\\Product\\WishList")
+    sale_offer_url: String @doc(description: "String of sale img icon path if product is on sale.")  @resolver(class: "Magedelight\\CatalogGraphQl\\Model\\Resolver\\Product\\SaleOffer")
+    only_x_left: String @doc(description: "An array of Reviews objects") @resolver(class: "Magedelight\\CatalogGraphQl\\Model\\Resolver\\Product\\OnlyXLeft")
+}
+
+input ProductFilterInput {
+    new: FilterTypeInput @doc(description: "The label assigned to a product image")
+    color: FilterTypeInput @doc(description: "The label assigned to a product image")
+    clothing_size: FilterTypeInput @doc(description: "The label assigned to a product image")
+    material: FilterTypeInput @doc(description: "The label assigned to a product image")
+    style_general: FilterTypeInput @doc(description: "The label assigned to a product image")
+}
+
+input ProductAttributeFilterInput @doc(description: "ProductAttributeFilterInput defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for.") {
+    category_id: FilterEqualTypeInput @doc(description: "Filter product by category id")
+    department: FilterEqualTypeInput @doc(description: "Filter product by department")
+    shoe_size: FilterEqualTypeInput @doc(description: "Filter product by shoes size")
+}
+
+type Products {
+	items: [ProductInterface] @doc(description: "An array of products that match the specified search criteria.")
+    page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query.")
+    total_count: Int @doc(description: "The number of products returned.")
+    filters: [LayerFilter] @resolver(class: "Magento\\CatalogGraphQl\\Model\\Resolver\\LayerFilters") @doc(description: "Layered navigation filters array.") @deprecated(reason: "Use aggregations instead")
+    aggregations: [Aggregation] @doc(description: "Layered navigation aggregations.") @resolver(class: "Magento\\CatalogGraphQl\\Model\\Resolver\\Aggregations")
+    sort_fields: SortFields @doc(description: "An object that includes the default sort field and all available sort fields.") @resolver(class: "Magedelight\\CatalogGraphQl\\Model\\Resolver\\Category\\SortFields")
+    min_price: String @doc(description: "minimum price of product collection")
+    max_price: String @doc(description: "maximum price of product collection")
+}
+
+input ProductAttributeSortInput @doc(description: "ProductAttributeSortInput specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. It's possible to sort products using searchable attributes with enabled 'Use in Filter Options' option")
+{
+    relevance: SortEnum @doc(description: "Sort by the search relevance score (default).")
+    position: SortEnum @doc(description: "Sort by the position assigned to each product.")
+    most_viewed: SortEnum @doc(description: "Sort by the most viewed")
+    random: SortEnum @doc(description: "Sort by the random")
+}
+
+interface MediaGalleryInterface @doc(description: "Contains basic information about a product image or video.") @typeResolver(class: "Magento\\CatalogGraphQl\\Model\\MediaGalleryTypeResolver") {
+    resized_url(width: Int, height: Int): String @doc(description: "The URL of the product image or video.") @resolver(class: "Magedelight\\CatalogGraphQl\\Model\\Resolver\\Product\\MediaGallery\\Url")
+}

@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Backend
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- <type name="Magedelight\Backend\Helper\Data">
+        <plugin name="magedelight_backend_helper_checklicense" type="Magedelight\Backend\Plugin\Helper\Data"/>
+    </type> -->
+    <preference for="Magedelight\Backend\Model\Auth\StorageInterface" type="Magedelight\Backend\Model\Auth\Session" />
+    <preference for="Magedelight\Backend\Model\Auth\Credential\StorageInterface" type="Magedelight\Vendor\Model\Vendor" />
+    <preference for="Magedelight\Backend\Model\UrlInterface" type="Magedelight\Backend\Model\Url" />
+    <preference for="Magedelight\Backend\App\ConfigInterface" type="Magedelight\Backend\App\Config" />
+    <preference for="Magedelight\Backend\Log\LoggerInterface" type="Magedelight\Backend\Log\Logger" />
+    <type name="Magento\Framework\App\AreaList">
+        <arguments>
+            <argument name="areas" xsi:type="array">
+                    <item name="sellerhtml" xsi:type="array">
+                    <item name="frontNameResolver" xsi:type="string">Magedelight\Backend\App\Area\FrontNameResolver</item>
+                    <item name="router" xsi:type="string">seller</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    
+    <type name="Magento\Email\Model\Template">
+        <plugin name="getVendorAreaUrlInEmailTemplates" type="Magedelight\Backend\Plugin\Model\Email\Template" sortOrder="1" />
+    </type>
+    
+    <preference for="Magento\Email\Model\Template\Config\SchemaLocator" type="Magedelight\Backend\Model\Config\SchemaLocator" />
+    
+    <type name="Magedelight\Backend\App\Router">
+        <arguments>
+            <argument name="routerId" xsi:type="string">seller</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Theme\Model\View\Design">
+        <arguments>
+            <argument name="themes" xsi:type="array">
+                <item name="sellerhtml" xsi:type="string">Rocketbazaar/vendor</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Backend\Helper\Data">
+        <arguments>
+            <argument name="vendorUrl" xsi:type="object">Magedelight\Backend\Model\UrlInterface\Proxy</argument>
+            <argument name="auth" xsi:type="object">Magedelight\Backend\Model\Auth\Proxy</argument>
+            <argument name="locale" xsi:type="object">Magedelight\Backend\Model\Locale\Resolver\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\App\Router\NoRouteHandlerList">
+        <arguments>
+            <argument name="handlerClassesList" xsi:type="array">
+                <item name="seller" xsi:type="array">
+                    <item name="class" xsi:type="string">Magedelight\Backend\App\Router\NoRouteHandler</item>
+                    <item name="sortOrder" xsi:type="string">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Backend\Model\Url\ScopeResolver">
+        <arguments>
+            <argument name="areaCode" xsi:type="string">sellerhtml</argument>
+        </arguments>
+    </type>
+    <virtualType name="Magedelight\Backend\Model\Auth\Session\Storage" type="Magento\Framework\Session\Storage">
+        <arguments>
+            <argument name="namespace" xsi:type="string">seller</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magedelight\Backend\Model\Auth\Session">
+        <arguments>
+            <argument name="aclBuilder" xsi:type="object">Magento\Framework\Acl\Builder\Proxy</argument>
+            <argument name="storage" xsi:type="object">Magedelight\Backend\Model\Auth\Session\Storage</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Backend\Model\Url">
+        <arguments>
+            <argument name="scopeResolver" xsi:type="object">Magedelight\Backend\Model\Url\ScopeResolver</argument>
+            <argument name="authSession" xsi:type="object">Magedelight\Backend\Model\Auth\Session\Proxy</argument>
+            <argument name="formKey" xsi:type="object">Magento\Framework\Data\Form\FormKey\Proxy</argument>
+            <argument name="scopeType" xsi:type="const">Magento\Store\Model\ScopeInterface::SCOPE_STORE</argument>
+            <argument name="backendHelper" xsi:type="object">Magedelight\Backend\Helper\Data\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\App\Response\HeaderManager">
+        <arguments>
+            <argument name="headerProviderList" xsi:type="array">
+                <item name="x-frame-options" xsi:type="object">Magento\Framework\App\Response\HeaderProvider\XFrameOptions</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

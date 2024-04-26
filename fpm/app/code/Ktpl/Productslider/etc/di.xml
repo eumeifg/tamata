@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Ktpl
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Ktpl.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.ktpl.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Ktpl
+ * @package     Ktpl_Productslider
+ * @copyright   Copyright (c) Ktpl (https://www.ktpl.com/)
+ * @license     https://www.ktpl.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="ktplproductslider_slider_listing_data_source" xsi:type="string">Ktpl\Productslider\Model\ResourceModel\Slider\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Ktpl\Productslider\Model\ResourceModel\Slider\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ktpl_productslider_slider</argument>
+            <argument name="resourceModel" xsi:type="string">Ktpl\Productslider\Model\ResourceModel\Slider</argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="Ktpl\Productslider\Api\Data\ProductSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Ktpl\Productslider\Api\ProductRepositoryInterface" type="Ktpl\Productslider\Model\ProductRepository" />
+    <preference for="Ktpl\Productslider\Api\Data\ProductInterface" type="Magento\Catalog\Model\Product" />
+    <type name="Magento\Catalog\Pricing\Render\FinalPriceBox">
+        <plugin name="Ktpl_Productslider::add_label_to_final_price_box" type="Ktpl\Productslider\Plugin\AddLabelToFinalPriceBox" />
+    </type>
+    <preference for="Ktpl\Productslider\Api\ProductsliderRepositoryInterface" type="Ktpl\Productslider\Model\ProductsliderRepository"/>
+    <preference for="Ktpl\Productslider\Api\Data\ProductsliderInterface" type="Ktpl\Productslider\Model\Data\Productslider"/>
+    <preference for="Ktpl\Productslider\Api\ProductsliderManagementInterface" type="Ktpl\Productslider\Model\ProductsliderManagement"/>
+    <preference for="Ktpl\Productslider\Api\Data\ProductsliderSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Ktpl\Productslider\Api\Data\HomePage\ProductSliderInterface" type="Ktpl\Productslider\Model\Data\HomePage\ProductSlider"/>
+    <preference for="Ktpl\Productslider\Api\Data\HomePage\SliderCategoryInterface" type="Ktpl\Productslider\Model\Data\HomePage\SliderCategory"/>
+    <preference for="Ktpl\Productslider\Api\Data\HomePage\NewItemsBannerInterface" type="Ktpl\Productslider\Model\Data\HomePage\NewItemsBanner"/>
+    <preference for="Ktpl\Productslider\Api\Data\HomePage\BrandsInterface" type="Ktpl\Productslider\Model\Data\HomePage\Brands"/>
+</config>

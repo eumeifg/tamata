@@ -1,0 +1,210 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php
+$reviewsCollection = $this->getVendorReviewsCollection();
+$totalReviews = count($reviewsCollection);
+$oneStar = $twoStar = $threeStar = $fourStar = $fiveStar = 0;
+$negativeReviewsCount = $neutralReviewsCount = $positiveReviewsCount = 0;
+
+if ($totalReviews > 0) {
+    foreach ($reviewsCollection as $review) {
+        $avg_rating = $review['rating_avg'];
+        if (!empty($avg_rating)) {
+            if ($avg_rating >= 20 && $avg_rating < 40) {
+                $oneStar++;
+            } elseif ($avg_rating >= 40 && $avg_rating < 60) {
+                $twoStar++;
+            } elseif ($avg_rating >= 60 && $avg_rating < 80) {
+                $threeStar++;
+            } elseif ($avg_rating >= 80 && $avg_rating < 100) {
+                $fourStar++;
+            } elseif ($avg_rating == 100) {
+                $fiveStar++;
+            }
+
+            if ($avg_rating >= 0 && $avg_rating <= 40) {
+                $negativeReviewsCount++;
+            } elseif ($avg_rating > 41 && $avg_rating <= 70) {
+                $neutralReviewsCount++;
+            } elseif ($avg_rating > 71 && $avg_rating <= 100) {
+                $positiveReviewsCount++;
+            }
+        }
+    }
+}
+?>
+
+<div class="review_box">
+    
+
+
+    <div class="review_count">
+        <h3 class="heading"><?php echo __('Reviews') ?></h3>
+        <div class="review_result">
+            <p><span class="total-review"><?php echo ($totalReviews > 0) ? ($positiveReviewsCount / $totalReviews) * 100 : 0; ?>%</span><?= __('Positive') ?></p>
+            <p><?= __('Based on') ?> <strong><?php echo $totalReviews; ?> <?= __('ratings') ?></strong></p>
+        </div><!-- end of review_result -->
+        <ul>
+            <li class="positive">
+                <span class="icon">
+                    <img src="<?php echo $this->getViewFileUrl('Magedelight_Vendor::images/rating1.svg'); ?>" />
+
+                </span>
+                <span class="value">
+                    <?= __('Positive') ?>
+                </span>
+                <span class="count">
+                    <?php echo $positiveReviewsCount; ?>
+                </span>
+            </li>
+            <li class="neutral">
+                <span class="icon">
+                    <img src="<?php echo $this->getViewFileUrl('Magedelight_Vendor::images/rating2.svg'); ?>" />
+
+                </span>
+                <span class="value">
+                    <?= __('Neutral') ?>
+                </span>
+                <span class="count">
+                    <?php echo $neutralReviewsCount; ?>
+                </span>
+            </li>
+            <li class="nagetive">
+                <span class="icon">
+                    <img src="<?php echo $this->getViewFileUrl('Magedelight_Vendor::images/rating3.svg'); ?>" />
+
+                </span>
+                <span class="value">
+                    <?= __('Negative') ?>
+                </span>
+                <span class="count">
+                    <?php echo $negativeReviewsCount; ?>
+                </span>
+            </li>
+        </ul>
+       
+    </div><!-- end of review_count -->
+
+
+    <div class="allreview_box">
+        <h3 class="heading"><?php echo __('Ratings') ?></h3>
+        <?php /* ?><a href="<?php echo $this->getVendorRatingsUrl(); ?>">
+            See reviews
+        </a><?php */ ?>
+        <div class="rb-rv-wrap">
+            <div class="five_stars review_progress">
+                <span class="label">
+                    <?= __('5 Star') ?> 
+                </span>
+                <div class="meter blue">
+                    <span class="positive" style="width:<?php echo ($totalReviews > 0) ? ($fiveStar / $totalReviews) * 100 : 0; ?>%;"></span>
+                </div>
+                <span class="bold">
+                    <?php echo $fiveStar; ?>
+                </span>
+            </div>
+            <div class="fourth_stars review_progress">
+                <span>
+                    <?= __('4 Star') ?> 
+                </span>
+                <div class="meter blue">
+                    <span class="positive" style="width:<?php echo ($totalReviews > 0) ? ($fourStar / $totalReviews) * 100 : 0; ?>%;"></span>
+                </div>
+                <span class="bold">
+                    <?php echo $fourStar; ?>
+                </span>
+            </div>
+            <div class="three_stars review_progress">
+                <span>
+                    <?= __('3 Star') ?> 
+                </span>
+                <div class="meter blue">
+                    <span class="natural" style="width:<?php echo ($totalReviews > 0) ? ($threeStar / $totalReviews) * 100 : 0; ?>%;"></span>
+                </div>
+                <span class="bold">
+                    <?php echo $threeStar; ?>
+                </span>
+            </div>
+            <div class="two_stars review_progress">
+                <span>
+                    <?= __('2 Star') ?> 
+                </span>
+                <div class="meter blue">
+                    <span class="negative" style="width:<?php echo ($totalReviews > 0) ? ($twoStar / $totalReviews) * 100 : 0; ?>%;"></span>
+                </div>
+                <span class="bold">
+                    <?php echo $twoStar; ?>
+                </span>
+            </div>
+            <div class="one_stars review_progress">
+                <span>
+                    <?= __('1 Star') ?> 
+                </span>
+                <div class="meter blue">
+                    <span class="negative" style="width:<?php echo ($totalReviews > 0) ? ($oneStar / $totalReviews) * 100 : 0; ?>%;"></span>
+                </div>
+                <span class="bold">
+                    <?php echo $oneStar; ?>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="review_slider">
+        <h3 class="heading"><?php echo __('Top Reviews') ?>
+            <span class="view-all"><a href="<?= $block->getVendorRatingsUrl(); ?>"><?php echo __('View all Reviews') ?></a></span>
+        </h3>
+        
+        <div class="review_desc">
+            <?php if ($reviewsCollection) : ?>
+                <?php foreach ($reviewsCollection as $reviewData) { ?>
+                    <?php if ($reviewData['rating_avg'] >= 70) : ?>
+                        <div class="single_vendor_review">
+                            
+                            <div class="review_content">
+                                
+                                <span class="review-star">
+                                    <img src="<?php echo $this->getViewFileUrl('Magedelight_Vendor::images/rating4.svg'); ?>" />
+                                    <?= ($reviewData['rating_avg'] * 5) / 100; ?>
+                                </span>
+                                <span class="vendor_review_user">
+                                    <?php
+                                        $reviewerName = $block->getReviewCustomer($reviewData['customer_id']); 
+                                        echo $reviewerName; 
+                                    ?>
+                                </span>
+
+                                <span class="review_date">
+                                    <?php
+                                        $origDate = $reviewData['created_at'];
+                                        $newDate = date("d M Y", strtotime($origDate));
+                                        echo $newDate;
+                                    ?>
+                                </span>
+                            </div>
+                            
+                            <div class="rb-data"><?= $reviewData['comment']; ?></div>
+                        </div>
+                    <?php endif; ?>
+                <?php } ?>
+            <?php else : ?>
+                <div class="single_vendor_review">
+                    <?= __("No vendor reviews found!"); ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>   <!-- end of review_slieder -->
+
+</div>    
+<!-- end of review_box -->

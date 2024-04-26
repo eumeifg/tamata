@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Ktpl_Pushnotification::js/pushnotification_order.js"/>
+    </head>
+    <body>
+           <referenceContainer name="content">
+            <referenceBlock name="sales_order_tabs">
+                <block class="Ktpl\Pushnotification\Block\Adminhtml\Order\Edit\Tabs\Pushnotification" name="order_edit_send_pushnotification"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">order_view_pushnotification</argument>
+                    <argument name="block" xsi:type="string">order_edit_send_pushnotification</argument>
+                </action>
+            </referenceBlock>
+            <uiComponent name="ktpl_pushnotification_form_order_view"/>
+         </referenceContainer>
+    </body>
+</page>

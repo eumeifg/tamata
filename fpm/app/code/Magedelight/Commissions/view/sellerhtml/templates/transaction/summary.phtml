@@ -1,0 +1,37 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Commissions
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block Magedelight\Commissions\Block\Transaction\Summary */
+?>
+<div class="row">
+    <div class="col-md-3">
+        <div class="rbpanel">
+            <div class="rbpanel-body<?php
+            if (floatval($block->getAmountBalance()) < 0) {
+                ?>
+                <?= ' bg-danger'; ?>
+                <?php
+            } elseif (floatval($block->getAmountBalance()) > 0) {
+                ?>
+                <?= ' bg-success'; ?>
+                <?php
+            } ?>">
+                <div class="order-summary-wrapper">
+                    <h2>
+                        <?= /* @noEscape */ $block->getFormatPrice(); ?>
+                    </h2>
+                    <div class="text-muted"><?= /* @noEscape */ __('Balance') ?></div>
+                    <div class="status success"></div>
+                </div>
+            </div>
+        </div> 
+    </div>    
+</div>

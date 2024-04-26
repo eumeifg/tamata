@@ -1,0 +1,136 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames('vendor_product_list_info', 'getChildHtml')):  ?>
+    <?php $layout = $block->getLayout(); ?>
+    <?php
+    $sfrm = $this->getRequest()->getParam('sfrm');
+    $vpro = $this->getRequest()->getParam('vpro');
+    if (($vpro == "approve" || $vpro == "pending" || $vpro == "disapproved") || $sfrm == 'nl') {
+        $activeAlias = "vendornonlive";
+        $defultTab = 1;
+    } else {
+        $activeAlias = "vendorlive";
+        $defultTab = 0;
+    }
+    ?> 
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="rbpanel" data-mage-init='{"tabs":{"active":<?= $defultTab; ?>,"openedState":"active"}}'>
+                <div class="rbpanel-heading pn">
+                    <div class="product data items rbpanel-tabs">
+                        <?php foreach ($detailedInfoGroup as $name): ?>
+                            <?php
+                            $html = $layout->renderElement($name);
+                            $alias = $layout->getElementAlias($name);
+                            $label = $block->getChildData($alias, 'title');
+                            $subTitle = "";
+                            if ($alias != 'vendorlive') {
+                                if ($this->getRequest()->getParam('vpro') == 'disapproved') {
+                                    $subTitle = __('Disapproved');
+                                } elseif ($this->getRequest()->getParam('vpro') == 'pending') {
+                                    $subTitle = __('Pending');
+                                } else {
+                                    $subTitle = __('Approved');
+                                }
+                            }
+
+
+                            ?>
+                            <div class="data item title tab-title"
+                                 aria-labeledby="tab-label-<?= $alias; ?>-title"
+                                 data-role="collapsible" id="tab-label-<?= $alias; ?>">
+                                <a class="data switch"
+                                   tabindex="-1"
+                                   data-toggle="switch"
+                                   href="javascript:void(0)"
+                                   id="tab-label-<?= $alias; ?>-title">
+                                <?= $label.' ';
+                                if ($alias != 'vendorlive') { ?>
+                                    <?=  '('.ucfirst($subTitle).')';
+                                }  ?>
+                                </a>
+                                <span class="vendor-nav-item-messages no-display" data-role="item-messages">
+                                    <span class="tab-validation-error">
+                                        <span class="vendor-page-nav-item-message-icon"></span>
+                                        <span class="vendor-page-nav-item-message-tooltip">
+                                            This tab contains invalid data. Please resolve this before saving.                           
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <div class="rbpanel-body">   
+                    <div class="variant-tab-content">
+                        <?php foreach ($detailedInfoGroup as $name): ?>
+                            <?php
+                            $html = $layout->renderElement($name);
+                            $alias = $layout->getElementAlias($name);
+                            ?>
+                            <div class="data item content tab-content" id="<?= $alias; ?>" data-role="content" <?= ($alias != $activeAlias) ? ' style="display:none"' : ''; ?>>
+                            <?= $html; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+            </div> 
+        </div>
+    </div>     
+<?php endif; ?>
+    
+<?php
+    $alertMessage = '';
+switch ($this->getRequest()->getParam('vpro')) {
+    case 'approve':
+        $alertMessage = 'Are you sure to list product(s)?';
+        break;
+    case 'pending':
+        $alertMessage = 'Are you sure to delete product(s)?';
+        break;
+    case 'disapproved':
+        $alertMessage = 'Are you sure to delete product(s)?';
+        break;
+    default:
+        $alertMessage = 'Are you sure to list product(s)?';
+        break;
+}
+?>
+<script type="text/javascript">
+    require(['jquery', 'Magedelight_Catalog/js/listing'], function ($, listing) {
+        /*if (window.location.hash != '#vendornonlive') {
+         $('#vendorlive').show();
+         }*/
+        $('.tab-title a').click(function (e) {
+            var acnchor = $(this).attr('href').replace(/^.*?(#|$)/, '');
+            if (acnchor === 'vendornonlive') {
+                $("a.vendor_approve").attr("href", "<?= $block->getParamUrl() ?>?vpro=approve#vendornonlive");
+                $("a.vendor_pending").attr("href", "<?= $block->getParamUrl() ?>?vpro=pending#vendornonlive");
+                $("a.vendor_disapproved").attr("href", "<?= $block->getParamUrl() ?>?vpro=disapproved#vendornonlive");
+                window.location.hash = $(this).attr("href");
+                e.preventDefault();
+            }
+            if (acnchor === 'vendorlive') {
+                window.location.hash = $(this).attr("href");
+                e.preventDefault();
+            }
+        });
+        
+        listing({
+            'nonlive_alertMessage':'<?= $alertMessage; ?>',
+            'live_alertMessage':'Are you sure to unlist product(s)?'
+        });
+    });
+</script>

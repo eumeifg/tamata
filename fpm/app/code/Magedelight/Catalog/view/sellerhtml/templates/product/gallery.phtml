@@ -1,0 +1,267 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block \Magedelight\Catalog\Block\Product\Helper\Form\Gallery\Content */
+$elementName = $block->getName() . '[images]';
+$formName = $block->getFormName();
+?>
+<div class="admin__scope-old">
+    <div id="<?= $block->getHtmlId() ?>"
+         class='gallery'
+         data-mage-init='{"rbProductGallery":{"template":"#<?= $block->getHtmlId() ?>-template"}}'
+         data-parent-component="<?= $block->escapeHtml($block->getData('config/parentComponent')) ?>"
+         data-images="<?= $block->escapeHtml($block->getImagesJson()) ?>"
+         data-types="<?=
+            $block->escapeHtml(
+                $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($block->getImageTypes())
+            )
+            ?>"
+         >
+
+        <?php if(!$block->isView()): ?>
+            <?php if (true) { ?>
+            <div class="image image-placeholder">
+                        <?= $block->getUploaderHtml(); ?>
+                <div class="product-image-wrapper">
+                    <p class="image-placeholder-text">
+                        <?= __('Browse to find or drag image here'); ?>
+                    </p>
+                </div>
+            </div>                        
+            <?php } ?>
+        <?php endif; ?>
+        <?php
+        foreach ($block->getImageTypes() as $typeData) {
+            ?>
+            <input name="<?= $block->escapeHtml($typeData['name']) ?>"
+                   data-form-part="<?= $formName ?>"
+                   class="image-<?= $block->escapeHtml($typeData['code']) ?>"
+                   type="hidden"
+                   value="<?= $block->escapeHtml($typeData['value']) ?>"/>
+        <?php }
+?>
+        <input name="product[swatch_image]" class="image-swatch_image" type="hidden" value="">
+        <input name="product[image]" class="image-image" type="hidden" value="<?= $block->getBaseImage() ?>">
+        <input name="product[small_image]" class="image-small_image" type="hidden" value="<?= $block->getBaseImage() ?>">
+        <input name="product[thumbnail]" class="image-thumbnail" type="hidden" value="<?= $block->getBaseImage() ?>">
+
+        <script id="<?= $block->getHtmlId() ?>-template" type="text/x-magento-template">
+            <div class="image item<% if (data.disabled == 1) { %> hidden-for-front<% } %> <% if (data.removed == 1) { %> removed<% } %>" style="<% if (data.removed == 1) { %>display:none;<% } %>"
+            data-role="<% if (data.removed != 1) { %>image<% } %>">
+            <input type="hidden"
+            name="<?= $elementName ?>[<%- data.file_id %>][position]"
+            value="<%- data.position %>"
+            data-form-part="<?= $formName ?>"
+            class="position"/>
+            <input type="hidden"
+            name="<?= $elementName ?>[<%- data.file_id %>][file]"
+            data-form-part="<?= $formName ?>"
+            value="<%- data.file %>"/>
+            <input type="hidden"
+            name="<?= $elementName ?>[<%- data.file_id %>][value_id]"
+            data-form-part="<?= $formName ?>"
+            value="<%- data.value_id %>"/>
+            <input type="hidden"
+            name="<?= $elementName ?>[<%- data.file_id %>][label]"
+            data-form-part="<?= $formName ?>"
+            value="<%- data.label %>"/>
+            <input type="hidden"
+            name="<?= $elementName ?>[<%- data.file_id %>][disabled]"
+            data-form-part="<?= $formName ?>"
+            value="<%- data.disabled %>"/>
+            <input type="hidden"
+            name="<?= $elementName ?>[<%- data.file_id %>][media_type]"
+            data-form-part="<?= $formName ?>"
+            value="image"/>                                            
+            <input type="hidden"
+            name="<?= $elementName ?>[<%- data.file_id %>][removed]"
+            value="<%- data.removed %>"
+            class="is-removed"/>
+            <input type="hidden"
+            name="<?= $elementName ?>[<%- data.file_id %>][small_image]"
+            data-form-part="<?= $formName ?>"
+            value="<%- data.file %>"/>
+            <input type="hidden"
+            name="<?= $elementName ?>[<%- data.file_id %>][thumbnail]"
+            data-form-part="<?= $formName ?>"
+            value="<%- data.file %>"/>
+
+
+
+            <div class="product-image-wrapper">
+            <img class="product-image"
+            data-role="image-element"
+            src="<%- data.url %>"
+            alt="<%- data.label %>"/>
+
+            <div class="actions">
+                <?php if(!$block->isView()): ?>
+                    <button type="button"
+                    class="action-remove"
+                    data-role="delete-button"
+                    title="<?= __('Delete image') ?>">
+                        <span>
+                            <?= __('Delete image') ?>
+                        </span>
+                    </button>
+                <?php endif; ?>
+            <div class="draggable-handle"></div>
+            </div>
+            <div class="image-fade"><span><?= __('Hidden') ?></span></div>
+            </div>
+
+            <div class="item-description">
+            <div class="item-title" data-role="img-title"><%- data.label %></div>
+            <div class="item-size">
+            <span data-role="image-dimens"></span>, <span data-role="image-size"><%- data.sizeLabel %></span>
+            </div>
+            </div>
+
+            <ul class="item-roles" data-role="roles-labels">
+            <?php
+            foreach ($block->getImageTypes() as $typeData) {
+                ?>
+                <li data-role-code="<?=
+                 $block->escapeHtml(
+                    $typeData['code']
+                )
+                ?>" class="item-role item-role-<?=
+                 $block->escapeHtml(
+                    $typeData['code']
+                )
+                ?>">
+                <?= __($block->escapeHtml($typeData['label'])) ?>
+                </li>
+    <?php
+            }
+?>
+            </ul>                        
+            </div>
+        </script>
+
+        <script data-role="img-dialog-container-tmpl" type="text/x-magento-template">
+            <div class="row image-panel" data-role="dialog">
+            </div>
+        </script>
+
+        <script data-role="img-dialog-tmpl" type="text/x-magento-template">
+            <div class="col-md-6 image-panel-preview">
+            <img src="<%- data.url %>" alt="<%- data.label %>" />
+            </div>
+            <div class="col-md-6 image-panel-controls">
+            <strong class="image-name"><%- data.label %></strong>                        
+
+            <fieldset class="fieldset fieldset-image-panel">
+            <div class="field field-image-description">
+            <label class="label" for="image-description">
+            <span><?= __('Alt Text') ?></span>
+            </label>
+
+            <div class="control">
+            <textarea data-role="image-description"
+            rows="3"
+            class="textarea"
+            name="<?=
+
+            $elementName
+?>[<%- data.file_id %>][label]"
+            <?= $block->isView()? 'disabled' : '' ?>><%- data.label %></textarea>
+            </div>
+            </div>
+
+            <div class="field field-image-role">
+            <label class="label">
+            <span><?= __('Role') ?></span>
+            </label>
+            <div class="control">
+            <ul class="multiselect-alt">
+<?php
+foreach ($block->getMediaAttributes() as $attribute) :
+    ?>
+                <li class="item">
+                <label>
+                <input class="image-type"
+                data-role="type-selector"
+                data-form-part="<?= $formName ?>"
+                type="checkbox"
+                value="<?=
+                         $block->escapeHtml(
+                            $attribute->getAttributeCode()
+                        )
+                ?>"
+                    <?= $block->isView()? 'disabled' : '' ?>
+                />
+    <?=
+     __($block->escapeHtml(
+        $attribute->getStoreLabel()
+    ))
+    ?>
+                </label>
+                </li>
+    <?php
+endforeach;
+?>
+            </ul>
+            </div>
+            </div>
+
+            <div class="field field-inline field-image-size" data-role="size">
+            <label class="label">
+            <span><?= __('Image Size') ?></span>
+            </label>
+            <div class="field-value" data-message="<?= __('{size}') ?>"></div>
+            </div>
+
+            <div class="field field-inline field-image-resolution" data-role="resolution">
+            <label class="label">
+            <span><?= __('Image Resolution') ?></span>
+            </label>
+            <div class="field-value" data-message="<?= __('{width}^{height} px') ?>"></div>
+            </div>
+
+            <div class="field field-image-hide">
+            <div class="field-control">
+            <div class="field field-option">
+            <input type="checkbox"
+            id="hide-from-product-page"
+            data-role="visibility-trigger"
+            data-form-part="<?= $formName ?>"
+            value="1"
+            class="admin__control-checkbox"
+                <?= $block->isView()? 'disabled' : '' ?>
+            name="<?= $elementName ?>[<%- data.file_id %>][disabled]"
+            <% if (data.disabled == 1) { %>checked="checked"<% } %> />
+
+            <label for="hide-from-product-page" class="label">
+<?= __('Hide from Product Page') ?>
+            </label>
+            </div>
+            </div>
+            </div>
+            </fieldset>
+            </div>
+        </script>
+    </div>        
+</div>    
+<script>
+    require(['jquery'], function($) {
+        $('body').trigger('contentUpdated');
+    });    
+</script>
+
+<!-- new section for variants images start-->
+<?= $this->getChildHtml('variants_gallery') ?>
+
+<div class="row image-style-guideline">
+    <div class="col-md-12">
+        <?= $this->getChildHtml('product-image-guideline') ?>
+    </div>        
+</div>

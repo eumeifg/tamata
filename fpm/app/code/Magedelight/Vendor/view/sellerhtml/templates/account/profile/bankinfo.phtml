@@ -1,0 +1,200 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+/** @var $this \Magedelight\Vendor\Block\Profile */
+use Magedelight\Vendor\Model\Vendor;
+
+$helper = $this->helper('Magedelight\Vendor\Helper\Data');
+if ($helper->getConfigValue(Vendor::IS_ENABLED_BANKING_DETAILS_XML_PATH)) {
+    $isBankInfoOptional = $helper->getConfigValue(Vendor::IS_BANK_DETAILS_OPTIONAL_XML_PATH);
+
+    $vendor =  $this->getVendor();
+    ?>
+<div id="bank-info-content" class="row signup-step-content profile-step-content no-display">
+    <div class="title">
+        <h3><span><?= __('Bank Details') ?></span></h3>
+        <?php if ($this->isVendorStatusPending() || $this->isVendorRejected()) { ?>
+        <span class="edit-link"><?= __('Edit') ?></span>
+        <?php } ?>
+    </div>
+    <form name="bank_information_form" id="bank-information-form" enctype="multipart/form-data" 
+          method="post" action="<?= $this->getPostActionUrl('bankinfo') ?>">
+        <fieldset class="fieldset">
+            <?php if (!$this->isVendorStatusPending() && !$this->isVendorRejected()) { ?>
+            <div class="field bank-account-name required">
+                <label class="label" for="bank-account-name"><span><?= __('Account Holder\'s Name') ?></span></label>
+                <div class="info">
+                    <span><?= $vendor->getBankAccountName(); ?></span>
+                </div>
+            </div>
+            <div class="field bank-account-number required">
+                <label class="label" for="bank-account-number"><span><?= __('Account Number') ?></span></label>
+                <div class="info">
+                    <span><?= $vendor->getBankAccountNumber(); ?></span>
+                </div>
+            </div>
+            <div class="field bank-name required">
+                <label class="label" for="bank-name"><span><?= __('Bank Name') ?></span></label>
+                <div class="info">
+                    <span><?= $vendor->getBankName(); ?></span>
+                </div>
+            </div>
+            <div class="field ifsc required">
+                <label class="label" for="ifsc"><span><?= __('IFSC Code') ?></span></label>
+                <div class="info">
+                    <span><?= $vendor->getIfsc(); ?></span>
+                </div>
+            </div>
+            <?php } else { ?>
+            <div class="field bank-account-name <?= (!$isBankInfoOptional)?'required':''; ?>">
+                <label class="label" for="bank-account-name"><span><?= __('Account Holder\'s Name') ?></span></label>
+                <div class="control _with-tooltip">
+                    <input name="bank_account_name" id="bank-account-name" title="<?= __('Account Holder\'s Name') ?>"
+                        value="<?= $vendor->getBankAccountName(); ?>"
+                        class="input-text <?= (!$isBankInfoOptional)?'required-entry':''; ?> validate-alpha-with-spaces-spl-150"
+                        type="text" placeholder="Account Holder's Name" />
+                     <div class="field-tooltip toggle">
+                    <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Account Holder\'s Name') ?></span>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="field bank-account-number <?= (!$isBankInfoOptional)?'required':''; ?>">
+                <label class="label" for="bank-account-number"><span><?= __('Account Number') ?></span></label>
+                <div class="control _with-tooltip">
+                    <input name="bank_account_number" id="bank-account-number" title="<?= __('Account Number') ?>"
+                        value="<?= $vendor->getBankAccountNumber(); ?>" 
+                        class="input-text <?= (!$isBankInfoOptional)?'required-entry':''; ?> validate-bank-account-number" 
+                        type="text" placeholder="Account Number"  />
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                             <span><?= __('Enter Account Number') ?></span>
+                        </div>
+                    </div>
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                             <span><?= __('Enter Account Number') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="field show-on-edit-field cbank-account-number <?= (!$isBankInfoOptional)?'required':''; ?>">
+                <label class="label" for="cbank-account-number"><span><?= __('Re-type Account Number') ?></span></label>
+                <div class="control _with-tooltip">
+                    <input name="cbank_account_number" id="cbank-account-number" title="<?= __('Re-type Account Number') ?>"
+                        value="<?= $vendor->getBankAccountNumber(); ?>" 
+                        class="input-text <?= (!$isBankInfoOptional)?'required-entry':''; ?> validate-cbank-account-number" 
+                        type="text" placeholder="Re-type Account Number"  />
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                            <span><?= __('Re-type Account Number') ?></span>
+                        </div>
+                    </div>
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                             <span><?= __('Re-type Account Number') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="field bank-name <?= (!$isBankInfoOptional)?'required':''; ?>">
+                <label class="label" for="bank-name"><span><?= __('Bank Name') ?></span></label>
+                <div class="control _with-tooltip">
+                    <input name="bank_name" id="bank-name" title="<?= __('Bank Name') ?>" value="<?= $vendor->getBankName(); ?>"
+                        class="input-text <?= (!$isBankInfoOptional)?'required-entry':''; ?> validate-alpha-with-spaces-spl-150" 
+                        type="text" placeholder="Bank Name"  />
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                             <span><?= __('Enter Bank Name') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="field ifsc <?= (!$isBankInfoOptional)?'required':''; ?>">
+                <label class="label" for="ifsc"><span><?= __('IFSC Code') ?></span></label>
+                <div class="control _with-tooltip">
+                    <input name="ifsc" id="ifsc" title="<?= __('IFSC Code') ?>" value="<?= $vendor->getIfsc(); ?>" 
+                        class="input-text <?= (!$isBankInfoOptional)?'required-entry':''; ?> validate-ifsc-code" 
+                        type="text" placeholder="IFSC Code" />
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                             <span><?= __('Enter IFSC Code') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" value="bank-information-form" title="<?= __('Save') ?>" class="action button primary btn-reset">
+                        <span><?= __('Save') ?></span>
+                    </button>
+                    <button type="reset" title="<?= __('Cancel') ?>" class="action button primary btn-reset">
+                        <span><?= __('Cancel') ?></span>
+                    </button>
+                </div>
+            </div>
+            <?php } ?>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery', /* jquery Library */
+        'Magedelight_Vendor/js/registration/validation/business-info',
+        'jquery/ui', /* Jquery UI Library */
+        'jquery/validate', /* Jquery Validation Library */
+        'mage/mage',
+        'mage/translate' /* Magento text translate (Validation message translte as per language) */
+    ], function($, validateBusinessInfo){
+        
+        validateBusinessInfo();
+        
+        $.validator.addMethod(
+            'validate-cbank-account-number', 
+            function () {
+                var conf = $('#cbank-account-number').length > 0 ? $('#cbank-account-number') : $($('.validate-cbank-account-number')[0]);
+                var pass = false;
+                if ($('#bank-account-number')) {
+                    pass = $('#bank-account-number');
+                }
+                var passwordElements = $('.validate-bank-account-number');
+                for (var i = 0; i < passwordElements.length; i++) {
+                    var passwordElement = $(passwordElements[i]);
+                    if (passwordElement.closest('form').attr('id') === conf.closest('form').attr('id')) {
+                        pass = passwordElement;
+                    }
+                }
+                return (pass.val() === conf.val());
+            }, 
+            $.mage.__('Please make sure your bank account numbers match.')
+        );
+        bankForm = $('#bank-information-form');
+        bankForm.mage('validation', {
+            ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+        }).find('input:text').attr('autocomplete', 'off');
+        $('#bank-account-number, #cbank-account-number').bind("cut copy paste",function(e) {
+            e.preventDefault();
+        });
+    });
+</script>
+<?php } ?>

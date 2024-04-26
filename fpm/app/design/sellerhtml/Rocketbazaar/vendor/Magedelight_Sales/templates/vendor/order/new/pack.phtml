@@ -1,0 +1,413 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block Magedelight\Sales\Block\Vendor\Order\Confirmedorder */
+?>
+<?php
+$gridsession = $block->getGridSession();
+$orders_active_new = $gridsession['grid_session']['orders_active_pack'];
+$_orders = $block->getCollection();
+$canSetSearchValue = ($this->getRequest()->getParam('sfrm') == 'packed') ? true : false;
+$helper = $this->helper('Magedelight\Vendor\Helper\Data');
+$tab = $block->getTab();
+?>
+<form action="<?= $block->getSubmitUrl() ?>" method="get" id="vendor-packed-order-search"
+      name="vendor_pack_order_search">
+    <input type="hidden" name="tab" value="<?= $tab; ?>">
+    <input type="hidden" name="sfrm" value="packed">
+    <input id="sort-order" type="hidden" name="sort_order" value="<?= $orders_active_new['sort_order'] ?>">
+    <input id="sort-direction" type="hidden" name="dir" value="<?= $orders_active_new['dir'] ?>">
+    <div class="row order-details">
+        <div class="row-gutter toolbar-wrapper mb10">
+            <div class="col-xs-4">
+                <div class="block block-search">
+                    <div class="content">
+                        <div class="field search-catalog">
+                            <div class="control">
+                                <input placeholder="<?= __('Search...') ?>" type="text" value="<?php
+                                if ($orders_active_new['q']) {
+                                    echo $orders_active_new['q'];
+                                } else {
+                                    echo $canSetSearchValue ? $helper->searchText() : '';
+                                }
+                                ?>" name="q" id="search-order-input-packorder"
+                                       class="input-text vendor search-order-input">
+                            </div>
+                            <div class="actions">
+                                <div class="vendor primary">
+                                    <button type="submit" class="vendor action login primary">
+                                        <span><?= __('Search') ?></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-xs-3 pt10">
+                        <a rel="packed" href="javascript:void(0)" class="action-reset search">Reset</a>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="toolbar-filter-wrapper">
+                            <div class="data-grid-filters-actions-wrap">
+                                <div class="data-grid-filters-action-wrap">
+                                    <span class="clear-filters mr10"><a rel="packed" href="javascript:void(0)" class="action-reset filter"><?= __('Clear') ?></a></span>
+                                    <button class="action secondary action-default _active" type="button" data-action="grid-filter-expand" title="<?= __('Filters') ?>">
+                                        <span><?= __('Filters') ?></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="data-grid-filters-actions-wrap">
+                                <div class="data-grid-filters-action-wrap">
+                                    <a href="<?= $block->getUrl('*/*/ExportPost', ['_current' => true, 'sfrm' => 'packed'])
+                            ?>" class="action export"><?= __('Export') ?></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-wrapper" style="display:none;">
+        <fieldset class="row fieldset">
+            <div class="row-gutter filter-row">
+                <div class="col-md-4 filter-section">
+                    <fieldset class="fieldset field-full-width">
+                        <div class="field">
+                            <label class="label" for="increment_id">
+                                <span><?= __('ID'); ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text" type="text" name="increment_id" placeholder="ID" id="increment_id" value="<?php
+                                if ($orders_active_new['increment_id']) {
+                                    echo $orders_active_new['increment_id'];
+                                } else {
+                                    echo $canSetSearchValue ? $this->getRequest()->getParam('increment_id') : '';
+                                }
+                                ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row-gutter filter-row">
+                <div class="col-md-6 col-lg-3 filter-section">
+                    <fieldset class="fieldset" id="ppurchased_date_range">
+                        <legend class="legend">
+                            <span class=""><?= __('Purchased Date') ?></span>
+                        </legend>
+                        <div class="field">
+                            <label class="label" for="ppurchased_date_from">
+                                <span><?= __('from') ?></span>
+                            </label>
+                            <div class="control date-control date-field-container">
+                                <input class="input-text"
+                                       type="text"
+                                       name="pdate_from"
+                                       placeholder="MM/DD/YYYY"
+                                       id="ppurchased_date_from"
+                                       value="<?php
+                                       if ($orders_active_new['pdate_from']) {
+                                           echo $orders_active_new['pdate_from'];
+                                       }
+                                       ?>">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="ppurchased_date_to">
+                                <span><?= __('to') ?></span>
+                            </label>
+                            <div class="control date-control date-field-container">
+                                <input class="input-text"
+                                       type="text"
+                                       name="pdate_to"
+                                       placeholder="MM/DD/YYYY"
+                                       id="ppurchased_date_to"
+                                       value="<?php
+                                       if ($orders_active_new['pdate_to']) {
+                                           echo $orders_active_new['pdate_to'];
+                                       }
+                                       ?>">
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+                <div class="col-md-6 col-lg-3 filter-section">
+                    <fieldset class="fieldset">
+                        <legend class="legend">
+                            <span class=""><?= __('Grand Total') ?></span>
+                        </legend>
+                        <div class="field">
+                            <label class="label" for="grndt_from">
+                                <span><?= __('from') ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text" type="text" name="grndt_from"  id="cgrndt_from" placeholder="<?= __('Min'); ?>" value="<?php
+                                if ($orders_active_new['grndt_from']) {
+                                    echo $orders_active_new['grndt_from'];
+                                } else {
+                                    echo $canSetSearchValue ? $this->getRequest()->getParam('grndt_from') : '';
+                                }
+                                ?>">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="grndt_to">
+                                <span><?= __('to') ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text" type="text"  name="grndt_to"  id="cgrndt_to" placeholder="<?= __('Max'); ?>" value="<?php
+                                if ($orders_active_new['grndt_to']) {
+                                    echo $orders_active_new['grndt_to'];
+                                } else {
+                                    echo $canSetSearchValue ? $this->getRequest()->getParam('grndt_to') : '';
+                                }
+                                ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row">
+            <div class="row-gutter">
+                <div class="filters-footer col-md-12">
+                    <div class="action-toolbar main-actions">
+                        <button class="action primary grid-filter-cancel cancel" type="reset"
+                                data-action="grid-filter-cancel">
+                            <span><?= __('Cancel') ?></span>
+                        </button>
+                        <button class="action primary" type="submit" data-action="grid-filter-apply">
+                            <span><?= __('Apply') ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="session-clear-orderpack" id="session-clear-orderpack" value="0"/>
+
+</form>
+<form method="POST" enctype='multipart/form-data' action="<?= $block->getMassActionUrl() ?>"
+      id="mass_action_form_packed">
+          <?php if ($_orders && count($_orders)): ?>
+        <div class="row mb20">
+            <div class="row-gutter">
+                <div class="control col-xs-4">
+                    <select id="order_mass_invoice_action_print" name="order_mass_invoice_action_print" class="select mass-order-action-invoice-print">
+                        <option value=""><?php /* @escapeNotVerified */ echo __('Action') ?></option>
+                        <option value="print"><?php /* @escapeNotVerified */ echo __('Print Invoice') ?></option>
+                    </select>        
+                </div> 
+            </div>
+        </div>
+    <?php endif; ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="packed-orders-table">
+            <thead>
+                <tr>
+                    <?php if ($_orders && count($_orders)): ?>
+                        <th scope="col" class="col mass-action mass_confirmed">
+                            <input class="checkbox order_mass_invoice_action_print_th" id="order_mass_invoice_action_print_checkall" type="checkbox">
+                            <label for="order_mass_invoice_action_print_checkall"><span></span></label>
+                        </th>
+                    <?php endif; ?>
+                    <th scope="col" sortorder="rvo_vendor_order_id" class="col id sortable"><?= __('ID #') ?></th>
+                    <th scope="col" sortorder="rvo_created_at"
+                        class="col date sortable"><?= __('Purchase Date') ?></th>
+                    <th scope="col" sortorder="rvo_grand_total"
+                        class="col total sortable"><?= __('Grand Total') ?></th>
+                    <th scope="col" class="col status"><?= __('Status') ?></th>
+                    <th scope="col" class="col actions"><?= __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php if ($_orders && count($_orders)): ?>
+                    <?php foreach ($_orders as $_order): $vendorOrder = $block->getVendorOrder($_order); ?>
+                        <tr>
+                            <td class="col data-grid-checkbox-cell">
+                                <input class="checkbox order_mass_invoice_action_print" id="order_mass_invoice_action_print-<?= $_order->getId() ?>" type="checkbox"
+                                       name="order_id[]" value="<?= $_order->getId() ?>" />
+                                <label for="order_mass_invoice_action_print-<?= $_order->getId() ?>"><span></span></label>
+                            </td>
+                            <td data-th="<?= $block->escapeHtml(__('ID #')) ?>"
+                                class="col data-grid-id-cell">
+                                <table>
+                                        <tr>
+                                            <td align="center">
+                                                <strong>
+                                                    <?= !empty($_order->getVendorOrderWithClassification()) ? $_order->getVendorOrderWithClassification() : $_order->getRvoIncrementId() ?>
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <?= $block->getOrderSummarizedHtml($_order); ?>
+                                            </td>
+                                        </tr>
+                                </table>
+                            </td>
+                            <td data-th="<?= $block->escapeHtml(__('Purchase Date')) ?>"
+                                class="col data-grid-date-cell"><?= $block->getCurrentLocaleDate($_order->getRvoCreatedAt()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Grand Total')) ?>"
+                                class="col data-grid-price-cell"><?= $this->helper(\Magedelight\Catalog\Helper\Pricing\Data::class)->format($_order->getRvoGrandTotal(), false, null, null, $_order->getOrderCurrencyCode()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col data-grid-status-cell">
+                                <div class="data-grid-cell-content">
+                                    <span
+                                        class="status"><?= $_order->getStatusLabel() == 'Pending' ? 'Shipment ' : '' ?><?= $_order->getStatusLabel() ?></span>
+                                </div>
+                            </td>
+                            <td data-th="<?= $block->escapeHtml(__('Actions')) ?>"
+                                class="col data-grid-actions-cell data-grid-actions-multiple-cell">
+                                <a href="<?= $block->getViewUrl($_order); ?>" class="action view">
+                                    <span><?= __('View') ?></span>
+                                </a>
+                                <span class="seperator">|</span>
+                                <?php if ($vendorOrder->getStatus() != 'canceled' && $vendorOrder->getIsConfirmed()) : ?>
+                                    <?php if ($vendorOrder->checkInvoiceIsAvailable($vendorOrder->getOrderId(), $vendorOrder->getVendorId())): ?>
+                                        <span class="seperator">|</span>
+                                        <a href="<?= $block->getPrintUrl($_order); ?>" class="action view">
+                                            <span><?= __('Print Invoices') ?></span>
+                                        </a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <script type="text/javascript">
+                    require([
+                        'jquery'
+                    ], function ($) {
+                        $(document).ready(function () {
+                            /*
+                             * Sorting feature
+                             */
+                            $currentSortOrder = $('#vendor-packed-order-search #sort-order').val();
+                            $currentSortDir = $('#vendor-packed-order-search #sort-direction').val();
+
+                            if ($currentSortOrder != null && $currentSortOrder != '') {
+                                $sortDirClass = ($currentSortDir == 'DESC') ? 'descend' : 'ascend';
+
+                                $('#packed-orders-table th[sortorder="' + $currentSortOrder + '"]').addClass($sortDirClass);
+                            }
+                            $sortDir = 'ASC';
+                            $('#packed-orders-table .sortable').click(function ($e) {
+                                $sortOrder = $(this).attr('sortorder');
+                                if ($currentSortOrder == $sortOrder) {
+                                    $sortDir = ($currentSortDir == 'DESC') ? 'ASC' : 'DESC';
+                                }
+
+                                $('#vendor-packed-order-search #sort-order').val($sortOrder); //for post
+                                $('#vendor-packed-order-search #sort-direction').val($sortDir); //for post
+                                $('#vendor-packed-order-search').submit();
+                            });
+                        });
+                    });
+                </script>
+            <?php else: ?>
+                <tr>
+                    <td colspan="7">
+                        <div id="packorder-msg" class="message info empty"><span><?= __("We couldn't find any records.") ?></span></div>
+                    </td>
+                </tr>
+            <?php endif ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+</form>
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/alert',
+        'Magento_Ui/js/modal/confirm',
+        'mage/calendar'
+    ], function ($, alertt, confirmation) {
+        $("#ppurchased_date_range").dateRange({
+            buttonText: "<?= __('Select Date') ?>",
+            showOn: "button",
+            from: {
+                id: "ppurchased_date_from"
+            },
+            to: {
+                id: "ppurchased_date_to"
+            }
+        });
+        $("#order_mass_invoice_action_print_checkall").change(function () {
+            $(".order_mass_invoice_action_print").prop('checked', $(this).prop("checked"));
+        });
+        $("#order_mass_invoice_action_print").change(function ($e) {
+            if ($('#packed-orders-table :checked').length === 0) {
+                alertt({
+                    title: '',
+                    content: 'You haven\'t selected any items!',
+                    actions: {
+                        always: function () {
+                            $(this).val("");
+                        }
+                    }
+                });
+                $e.preventDefault();
+                return false;
+            } else if ($(this).val() != undefined && $(this).val() != "") {
+                confirmation({
+                    title: '',
+                    content: 'Are you sure to ' + $('.mass-order-action-invoice-print option:selected').text() + ' of selected orders(s)?',
+                    actions: {
+                        confirm: function () {
+                            if ($('#order_mass_invoice_action_print').val() == 'print') {
+                                $('#mass_action_form_packed').attr('action', '<?= $block->getInvoicePrintUrl(); ?>');
+                                $("#mass_action_form_packed").submit();
+                            }
+                            $('#order_mass_invoice_action_print').val('');
+                        },
+                        cancel: function () {
+                            $('#order_mass_invoice_action_print').val('');
+                        }
+                    },
+                    buttons: [{
+                            text: $.mage.__('OK'),
+                            class: 'action secondary action-accept',
+                            /**
+                             * Click handler.
+                             */
+                            click: function (event) {
+                                this.closeModal(event, true);
+                            }
+                        },
+                        {
+                            text: $.mage.__('Cancel'),
+                            class: 'action secondary action-dismiss',
+                            /**
+                             * Click handler.
+                             */
+                            click: function (event) {
+                                this.closeModal(event);
+                            }
+                        }
+                    ]
+                });
+            }
+        });
+        $(".action-reset").click(function () {
+            $('#session-clear-orderpack').val(1);
+        });
+        $(".grid-filter-apply").click(function () {
+            $('#session-clear-orderpack').val(0);
+        });
+    });
+</script>

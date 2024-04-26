@@ -1,0 +1,131 @@
+<?php
+$invoiceLogo = $block->getData('invoicelogo');
+$storeData = $block->getData('storeaddressdata');
+$invoice = $block->getData('invoice');
+$orderDate = $block->getData('orderdate');
+$order = $invoice->getOrder();
+$vendorOrder = $block->getData('vendorOrder');
+$orderData = $block->getData('orderData');
+$baseUrl = $block->getData('baseurl');
+?>
+<div class="custom_shipment_container">
+	<h1><?= __("Hello"); ?></h1>
+	<h2><?= __("This is your invoice"); ?></h2>
+	<img src="<?php echo $invoiceLogo; ?>">
+	<p>
+		<?php
+			$storeAddressArray = [];
+            $storeAddressArray[] = $storeData->getName();
+            $storeAddressArray[] = $storeData->getData('city').", ".$storeData->getData('street_line1');
+
+            if ($storeData->getData("country_id") == "IQ") {
+                $countryName = "Iraq";
+            } else {
+                $countryName = $storeData->getData("country");
+            }
+            $storeAddressArray[] = $countryName;
+            $storeAddressArray[] = $storeData->getData('phone');
+
+            foreach ($storeAddressArray as $value) {
+                if ($value !== '') {
+                    $value = preg_replace('/<br[^>]*>/i', "\n", $value);
+                    	echo strip_tags(ltrim($value))."<br/>";
+                }
+            }
+		?>
+	</p>
+	<div class="billing_info_container">
+		<p><b><?= __("Billing address:"); ?></b><br/>
+			<?php
+				$shippingAddress = $order->getBillingAddress()->getData();
+				echo $shippingAddress['firstname']."".$shippingAddress['lastname']."<br/>";
+				echo $shippingAddress['street']."<br/>";
+				echo $shippingAddress['city'].", ";
+				echo $shippingAddress['region']."<br/>";
+				//echo $shippingAddress['country_id']."<br/>";
+				echo "T: ".$shippingAddress['telephone']."<br/>";
+			?>
+		</p>
+	</div>
+
+	<div class="order_info_container">
+		<div>
+			<span><?= __("Order ID # "); ?></span>
+			<span><?= __($order->getRealOrderId()); ?></span>
+		</div>
+		<div>
+			<span><?= __("Date: "); ?></span>
+			<span><?= __($orderDate);?></span>
+		</div>
+		<div>
+			<span><?= __("Invoice No: "); ?></span>
+			<span><?= __($invoice->getIncrementId()); ?></span>
+		</div>
+	</div>
+	<br/>
+	<div class="order_item_container">
+		<table class="data-item table-item">
+		  <tr>
+		    <th style="background-color:#ededed;"><?= __("Item"); ?></th>
+		    <th style="background-color:#ededed;"><?= __("Description"); ?></th>
+		    <th style="background-color:#ededed;"><?= __("Qty"); ?></th>
+		    <th style="background-color:#ededed;"><?= __("Unit Cost"); ?></th>
+		    <th style="background-color:#ededed;"><?= __("Total"); ?></th>
+		  </tr>
+		  <?php
+			  	$orderItemsCollection = $orderData->getAllVisibleItems();
+			  	$currencyCode = $vendorOrder->getorderCurrencyCode();
+			  	foreach ($orderItemsCollection as $itemData) {
+			  		if($itemData->getVendorProduct()->getVendorId() != $invoice->getVendorId())
+				  		{
+				  			continue;
+				  		}
+			  		 ?>
+				  <tr>
+				    <td>
+				    	<p><?php echo $itemData->getName(); ?><br/>
+				    		<?php
+				    			$options = $itemData->getProductOptions();
+						  	 	if (isset($options['attributes_info']) && !empty($options['attributes_info'])) {
+							        foreach ($options['attributes_info'] as $option) {
+							            echo "<b>".$option['label']. ":</b>" . $option['value'].'<br />';
+							        }
+							    }
+				    		?>
+				    	</p>
+				    </td>
+				    <td><?php echo $itemData->getProduct()->getShortDescription(); ?></td>
+				    <td><?php echo (int)$itemData->getQtyOrdered(); ?></td>
+				    <td><?php echo $currencyCode." ".number_format($itemData->getPrice(), 2); ?></td>
+				    <?php $totalRowPrice = $itemData->getQtyOrdered() * $itemData->getPrice(); ?>
+				    <td><?php echo $currencyCode." ".number_format($totalRowPrice, 2); ?></td>
+				  </tr>
+			  	 <?php } ?>
+		</table>
+	</div>
+	<?php
+		$vendorItemsCollection = $vendorOrder->getAllVendorItems();
+        $allLineItemSubtotal = 0;
+        foreach($vendorItemsCollection as $_items) {
+            $allLineItemSubtotal += $_items->getrowTotal();
+        }
+        $currencyCode = $vendorOrder->getorderCurrencyCode();
+        $discountAmount = round($vendorOrder->getdiscountAmount(), 2);
+		$totalPaidAmount = $allLineItemSubtotal + $discountAmount;
+		$couponCode = $orderData->getCouponCode();
+	?>
+	<?php $orderItemsCollection = $invoice->getOrder(); ?>
+	<div class="order_total_info_section">
+		<p><span><?= __("Subtotal:") ?></span><?= $currencyCode." ".$allLineItemSubtotal ?></p>
+		<p><span><?= __("Discount (".$couponCode."): ") ?></span><?= $discountAmount ?></p>
+		<p><strong><span><?= __("Grand Total:") ?></span><?= $currencyCode." ".$totalPaidAmount ?></strong></p>
+	</div>
+	<div class="invoice_html_footer_section">
+		<p><?= __($baseUrl); ?></p>
+		<p><?= __("Thank you for shopping with us!"); ?></p>
+		<img src="<?php echo $invoiceLogo; ?>" width="100">
+	</div>
+</div>
+<style type="text/css">
+	/*....Write CSS to change html view....*/
+</style>

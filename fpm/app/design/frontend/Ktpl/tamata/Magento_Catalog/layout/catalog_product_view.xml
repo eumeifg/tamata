@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	<referenceContainer name="content">
+        <container name="product.wrapper.sticky" htmlTag="div" htmlClass="product-wrapper-sticky" before="-" />
+    	<container name="prod.media.maininfo.box" htmlTag="div" htmlClass="prod-media-maininfo-box" before="-">
+        </container>
+    	</referenceContainer>
+        
+        <move element="prod.media.maininfo.box" destination="content" before="-"/>
+        <move element="product.info.media" destination="prod.media.maininfo.box" before="-"/>
+        <move element="product.info.main" destination="prod.media.maininfo.box" after="-"/>
+        <move element="product.info.details" destination="product.info.main" after="-" />
+        <move element="page.main.title" destination="product.info.main" before="-"/>
+        <!-- <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/> -->
+        <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
+        <!-- <move element="product.info.stock.sku" destination="product.info.main" before="page.main.title"/> -->
+	<referenceBlock name="product.info.stock.sku" remove="true" />
+        <move element="product.info.social" destination="product.info.media" before="-"/>
+        <move element="product.attributes" destination="content" after="product.info.description"/>
+        <move element="product.info.options.configurable" destination="product.info.main" before="product.info.details"/>
+
+        <move element="product.info.media" destination="product.wrapper.sticky" before="-" />
+        <move element="product.info.main" destination="product.wrapper.sticky" after="-" />
+
+        <move element="catalog.product.related" destination="page.wrapper" before="footer-container" />
+
+
+        <referenceContainer name="product.info.main">
+            <container name="config-swatch" htmlTag="div" htmlClass="config-swatch" after="product.info.price" />
+            <container name="seller-detail" htmlTag="div" htmlClass="seller-detail" before="product.info.description" />
+        </referenceContainer>
+        <move element="product.info" destination="config-swatch" />
+        
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Cms\Block\Block" name="detail-promo-block">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">detail-promo-block</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        
+
+    </body>
+</page>

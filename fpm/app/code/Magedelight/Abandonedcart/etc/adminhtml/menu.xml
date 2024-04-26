@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Magedelight
+* Copyright (C) 2018 Magedelight <info@magedelight.com>
+*
+* @category Magedelight
+* @package Magedelight_Abandonedcart
+* @copyright Copyright (c) 2018 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+
+		<add id="Magedelight_Abandonedcart::abandonedcart_root"
+			 title="Abandoned Cart"
+			 module="Magedelight_Abandonedcart"
+			 sortOrder="50"
+			 resource="Magedelight_Abandonedcart::root"
+			 toolTip="magedelight_base" />
+
+		<add id="Magedelight_Abandonedcart::abandonedcart_root_commonlyvisible"
+			 title="Abandoned Cart"
+			 module="Magedelight_Abandonedcart"
+			 sortOrder="10"
+			 parent="Magedelight_Base::md_modules"
+			 resource="Magedelight_Abandonedcart::root" />
+
+			<add id="Magedelight_Abandonedcart::rules"
+				 title="Rules"
+				 module="Magedelight_Abandonedcart"
+				 sortOrder="0"
+				 action="abandonedcart/rule"
+				 parent="Magedelight_Abandonedcart::abandonedcart_root"
+				 resource="Magedelight_Abandonedcart::rules" 
+				 dependsOnConfig="abandonedcart_section/general/active"/>
+
+			<add id="Magedelight_Abandonedcart::abandonedcart_blacklist"
+				 title="Blacklist"
+				 module="Magedelight_Abandonedcart"
+				 sortOrder="1"
+				 action="abandonedcart/blacklist"
+				 parent="Magedelight_Abandonedcart::abandonedcart_root"
+				 resource="Magedelight_Abandonedcart::abandonedcart_blacklist" 
+				 dependsOnConfig="abandonedcart_section/general/active"/>
+
+			<add id="Magedelight_Abandonedcart::abandonedcart_emailqueue"
+				 title="Email Queue"
+				 module="Magedelight_Abandonedcart"
+				 sortOrder="2"
+				 action="abandonedcart/emailqueue"
+				 parent="Magedelight_Abandonedcart::abandonedcart_root"
+				 resource="Magedelight_Abandonedcart::abandonedcart_emailqueue" 
+				 dependsOnConfig="abandonedcart_section/general/active"/>
+
+			<add id="Magedelight_Abandonedcart::abandonedcart_history"
+				 title="History"
+				 module="Magedelight_Abandonedcart"
+				 sortOrder="3"
+				 action="abandonedcart/history"
+				 parent="Magedelight_Abandonedcart::abandonedcart_root"
+				 resource="Magedelight_Abandonedcart::abandonedcart_history" 
+				 dependsOnConfig="abandonedcart_section/general/active"/>
+
+			<add id="Magedelight_Abandonedcart::abandonedcart_reports"
+				 title="Abandoned Cart Reports"
+				 module="Magedelight_Abandonedcart"
+				 sortOrder="4"
+				 action="abandonedcart/report_sales/mycustomreport"
+				 parent="Magedelight_Abandonedcart::abandonedcart_root"
+				 resource="Magedelight_Abandonedcart::abandonedcart_reports" 
+				 dependsOnConfig="abandonedcart_section/general/active"/>
+
+		<add id="Magedelight_Abandonedcart::abandonedcart_configuration"
+				 title="Configuration"
+				 module="Magedelight_Abandonedcart"
+				 sortOrder="5"
+				 parent="Magedelight_Abandonedcart::abandonedcart_root"
+				 action="adminhtml/system_config/edit/section/abandonedcart_section"
+				 resource="Magedelight_Abandonedcart::config_root" />
+
+		<add id="Magedelight_Abandonedcart::useful_links"
+			 title="Useful Links"
+			 module="Magedelight_Abandonedcart"
+			 sortOrder="10"
+			 parent="Magedelight_Abandonedcart::abandonedcart_root"
+			 resource="Magedelight_Abandonedcart::root" />
+
+			<add id="Magedelight_Abandonedcart::documentation"
+				 title="Documentation"
+				 module="Magedelight_Abandonedcart"
+				 sortOrder="10"
+				 target="_blank"
+				 parent="Magedelight_Abandonedcart::useful_links"
+				 resource="Magedelight_Abandonedcart::root" />
+
+	</menu>
+</config>

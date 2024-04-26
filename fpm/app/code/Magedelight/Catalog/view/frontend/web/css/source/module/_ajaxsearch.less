@@ -1,0 +1,145 @@
+& when (@media-common = true) {
+        .block-search {
+            .minisearch.loading {
+                .action.search:before {
+                    content: "";
+                }
+
+                .action.search {
+                   .lib-loader(
+                   @_loader-overlay-background-color: @button__background,
+                    @_loader-icon-width: 48px,
+                    @_loader-icon-height: 48px,
+                  );
+                  .lib-css(position, relative);
+
+                   &:before {
+                    right: auto;
+                    left: -60px;
+                  }
+
+                }
+            }
+        }
+
+        .search-autocomplete {
+            background-color: @color-white;
+            box-shadow: @popup__shadow;
+            left: 0;
+            margin-top: 4px;
+            .lib-css(width, 100%);
+            display: none;
+            &:extend(.abs-add-box-sizing all);
+
+            ul {
+                li {
+                    color: @color-black;
+                    cursor: unset;
+                    padding: 10px;
+
+                    &:hover,
+                    &.selected {
+                        background-color: @color-white !important;
+                    }
+
+                    &:after {
+                        clear: both;
+                        content: '';
+                        display: block;
+                    }
+
+                    &.full-search {
+                        .action.close {
+                            background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+                            border: 0 none;
+                            box-shadow: none;
+                            box-sizing: content-box;
+                            cursor: pointer;
+                            display: inline-block;
+                            float: right;
+                            font-weight: 400;
+                            height: 40px;
+                            line-height: inherit;
+                            margin: 0;
+                            padding: 0;
+                            position: absolute;
+                            right: 0;
+                            text-decoration: none;
+                            text-shadow: none;
+                            top: 0;
+                            width: 40px;
+
+                            &:before {
+                                color: @color-gray56;
+                                content: @icon-remove;
+                                display: inline-block;
+                                font-family: @icons__font-name;
+                                font-size: 16px;
+                                font-weight: normal;
+                                line-height: 16px;
+                                margin: 0;
+                                overflow: hidden;
+                                text-align: center;
+                                vertical-align: top;
+                            }
+                        }
+                    }
+
+                    a {
+                        cursor: pointer;
+                    }
+
+                    .qs-option-image {
+                        float: left;
+                       width: 75px;
+                       height: 75px;
+                       border: 1px solid @border-color__base;
+                       padding: 2px;
+                       text-align: center;
+
+
+                    }
+
+                    .qs-option-description {
+                        color: @color-black;
+                        display: inline-block;
+                        float: left;
+                        padding-left: 5%;
+                        text-align: left;
+                        width: 70%;
+
+                        .qs-option-title {
+                            display: inline-block;
+                            margin: 0 0 5px 0;
+                            width: 100%;
+                            font-weight: @font-weight__semibold;
+                        }
+
+                        .qs-option-reviews {
+                            display: inline-block;
+                            text-transform: lowercase;
+                            width: 100%;
+
+                            .reviews-actions {
+                                font-size: 12px;
+                            }
+                        }
+
+                        .qs-option-price {
+                            display: inline-block;
+                            font-weight: bold;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+        .search-autocomplete{
+        }
+
+}

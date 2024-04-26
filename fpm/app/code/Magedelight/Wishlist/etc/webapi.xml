@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- Used for retrieve own wishlist items -->
+    <route url="/V1/wishlist/items" method="GET">
+        <service class="Magedelight\Wishlist\Api\WishlistManagementInterface" method="getWishlistForCustomer"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/wishlist/add" method="POST">
+        <service class="Magedelight\Wishlist\Api\WishlistManagementInterface" method="addWishlistForCustomer"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/wishlist/remove/:itemId" method="DELETE">
+        <service class="Magedelight\Wishlist\Api\WishlistManagementInterface" method="removeWishlistItem"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/wishlist/removeProductWise/:productId" method="DELETE">
+        <service class="Magedelight\Wishlist\Api\WishlistManagementInterface" method="removeWishlistItemProductWise"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/wishlist/removeAll" method="DELETE">
+        <service class="Magedelight\Wishlist\Api\WishlistManagementInterface" method="removeAllWishlistForCustomer"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/wishlist/move-to-cart" method="POST">
+        <service class="Magedelight\Wishlist\Api\WishlistManagementInterface" method="moveToCart"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+    <route url="/V1/wishlist/move-to-wishlist" method="POST">
+        <service class="Magedelight\Wishlist\Api\WishlistManagementInterface" method="moveToWishlist"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+
+</routes>

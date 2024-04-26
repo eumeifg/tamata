@@ -1,0 +1,158 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .amsearch-leftside {
+        display: inline;
+    }
+    .amsearch-form-container .amsearch-wrapper-input,
+    .amsearch-leftside,
+    .search-autocomplete.-bottom-position {
+        width: 100%!important;
+    }
+    .search-autocomplete {
+        .amsearch-results {
+            .amsearch-leftside,
+            .amsearch-products {
+                padding-top: 0;
+            }
+            .amsearch-products {
+                padding-bottom: 2px;
+            }
+        }
+    }
+    #amasty-shopby-product-list > dl.block, #amasty-shopby-product-list > .amsearch-related-terms {
+        display: none;
+    }
+    .form.amsearch-form-container.-small .amsearch-products .amasty-xsearch-block-header,
+    .block form.amsearch-form-container.-small.-result .amsearch-item-container .amasty-xsearch-block-header {
+        background: #efefef;
+        padding: 8px 15px;
+    }
+    .amsearch-form-container.-opened {
+        .amsearch-leftside {
+            padding-top: 0;
+        }
+    }
+    .amsearch-form-container .amsearch-products .amsearch-item {
+        border-bottom: 1px solid #f6f6f6;
+        margin-bottom: 10px;
+    }
+    div.search-autocomplete .amsearch-products .amsearch-more-results {
+        background: #efefef;
+        padding: 8px 15px;
+        .amsearch-link {
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #000;
+            border-color: #000;
+        }
+    }
+    .amsearch-products {
+        .amsearch-wrapper-content {
+            padding-top: 10px;
+            max-height: 260px;
+            overflow: auto;
+            .amsearch-autocomplete-image {
+                width: 15%;
+                .product-image-container {
+                    border: 1px solid #ccc;
+                }
+            }
+            .amsearch-autocomplete-information {
+                width: 64%;
+                .product-item-description {
+                    margin-top: 5px;
+                    margin-bottom: 5px;
+                    font-size: 12px;
+                    color: #333;
+                    line-height: 18px;
+                }
+                .product-item-link {
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 22px;
+                    .amsearch-highlight {
+                        display: inline-block;
+                        padding: 1px 2px;
+                    }
+                }
+            }
+            .amsearch-wrapper-inner {
+                width: 21%;
+                margin: 0;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1022px) {
+    .amsearch-form-container .search-autocomplete {
+        margin-top: 40px;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .amsearch-results {
+        padding-top: 0;
+    }
+    .amsearch-item-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .amsearch-form-container.-opened .amsearch-leftside .recent_searches,
+    .amsearch-form-container.-opened .amsearch-leftside .amsearch-item {
+        padding: 5px 15px;
+    }
+    .amsearch-form-container .search-autocomplete,
+    .amsearch-wrapper-input {
+        min-width: 100%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .amsearch-wrapper-content > .amsearch-item {
+        display: inline-block;
+        width: 100%;
+    }
+    .amsearch-products {
+        .amsearch-wrapper-content {
+            .amsearch-wrapper-inner,
+            .amsearch-autocomplete-image,
+            .amsearch-autocomplete-information {
+                width: 100%;
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px) {
+    .amsearch-form-container {
+        .search-autocomplete {
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: -28px;
+        }
+    }
+    .amsearch-products .amsearch-wrapper-content {
+        .amsearch-autocomplete-information {
+            .product-item-link {
+                font-size: 16px;
+                line-height: 19px;
+            }
+        }
+    }
+}

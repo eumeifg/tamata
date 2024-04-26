@@ -1,0 +1,103 @@
+"Rule Information","Rule Information"
+Name,Name
+Description,Description
+Status,Status
+Active,Active
+Inactive,Inactive
+Websites,Websites
+"Uses per Coupon","Uses per Coupon"
+"Uses per Customer","Uses per Customer"
+"Usage limit enforced for logged in customers only","Usage limit enforced for logged in customers only"
+"From Date","From Date"
+Priority,Priority
+"To Date","To Date"
+"Customer Groups","Customer Groups"
+"Coupon Code","Coupon Code"
+"Conditions [Apply the rule only if the following conditions are met (leave blank for all products)]","Conditions [Apply the rule only if the following conditions are met (leave blank for all products)]"
+Conditions,Conditions
+Actions,Actions
+Apply,Apply
+"Percent of product price discount","Percent of product price discount"
+"Fixed amount discount","Fixed amount discount"
+"Fixed amount discount for whole cart","Fixed amount discount for whole cart"
+"Buy X get Y free (discount amount is Y)","Buy X get Y free (discount amount is Y)"
+"Discount Amount","Discount Amount"
+"Maximum Qty Discount is Applied To","Maximum Qty Discount is Applied To"
+"Discount Qty Step (Buy X)","Discount Qty Step (Buy X)"
+"Apply to Shipping Amount","Apply to Shipping Amount"
+"Free Shipping","Free Shipping"
+No,No
+"For matching items only","For matching items only"
+"For shipment with matching items","For shipment with matching items"
+"Actions Filter [Apply the rule only to cart items matching the following conditions (leave blank for all items)]","Actions Filter [Apply the rule only to cart items matching the following conditions (leave blank for all items)]"
+"Apply To","Apply To"
+Coupons,Coupons
+"Coupons Information","Coupons Information"
+"Coupon Qty","Coupon Qty"
+"Code Length","Code Length"
+"Excluding prefix, suffix and separators.","Excluding prefix, suffix and separators."
+"Code Format","Code Format"
+"Code Prefix","Code Prefix"
+"Code Suffix","Code Suffix"
+"Dash Every X Characters","Dash Every X Characters"
+"If empty no separation.","If empty no separation."
+Generate,Generate
+"Rule Not Found","Rule Not Found"
+"Not Authorised to Edit this Rule.","Not Authorised to Edit this Rule."
+"Cart Price Rules","Cart Price Rules"
+"Rule not found.","Rule not found."
+"The rule has been saved.","The rule has been saved."
+"An error occurred while saving the rule data.","An error occurred while saving the rule data."
+"Unable to find a data to save","Unable to find a data to save"
+"You are not authorised to use this coupon code. Please try other than this.","You are not authorised to use this coupon code. Please try other than this."
+"Rules %1 to %2 of %3 total","Rules %1 to %2 of %3 total"
+"%1 Rule","%1 Rule"
+"%1 Rule(s)","%1 Rule(s)"
+Page,Page
+Previous,Previous
+"You're currently reading page","You're currently reading page"
+Next,Next
+Show,Show
+"per page","per page"
+"Edit Cart Price Rule ""%1""","Edit Cart Price Rule ""%1"""
+"Create New Cart price Rule","Create New Cart price Rule"
+"* Indicated Required Fields","* Indicated Required Fields"
+"Please wait, submitting...","Please wait, submitting..."
+Save,Save
+"Return to rules list","Return to rules list"
+Search...,Search...
+Search,Search
+Reset,Reset
+Clear,Clear
+Filters,Filters
+"Add New","Add New"
+Rule,Rule
+"Start Date","Start Date"
+"End Date","End Date"
+selected,selected
+"--Please Select--","--Please Select--"
+Cancel,Cancel
+ID,ID
+Start,Start
+End,End
+Website,Website
+Action,Action
+Edit,Edit
+"Select Date","Select Date"
+"Export to:","Export to:"
+"records found","records found"
+"Previous page","Previous page"
+"of %1","of %1"
+"Next page","Next page"
+"This won't take long . . .","This won't take long . . ."
+"Vendor Promotion","Vendor Promotion"
+"Licence Detail","Licence Detail"
+"Serial Key","Serial Key"
+"Activation Key","Activation Key"
+"Include Discount for Vendor Net Payable.","Include Discount for Vendor Net Payable."
+Vendor,Vendor
+Promotions,Promotions
+promotions,promotions
+Labels,Labels
+"Manage Coupon Codes","Manage Coupon Codes"
+"As per the selection the net payable will include or exclude the discount","As per the selection the net payable will include or exclude the discount"

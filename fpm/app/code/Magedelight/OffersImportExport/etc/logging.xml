@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<logging xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Logging:etc/logging.xsd">
+    <groups>
+        <group name="vendor_offers">
+            <label translate="true">RB Vendor Offers</label>
+            <events>
+                <event controller_action="vendoroffers_offers_add" action_alias="view"
+                       post_dispatch="Magedelight\OffersImportExport\Model\Logging::postDispatchViewAddOffers"/>
+                <event controller_action="vendoroffers_offers_save" action_alias="save"
+                       post_dispatch="Magedelight\OffersImportExport\Model\Logging::postDispatchSaveAddOffers">
+                    <skip_on_back>
+                        <controller_action name="vendoroffers_offers_add"/>
+                    </skip_on_back>
+                </event>
+                <event controller_action="vendoroffers_offers_update" action_alias="view"
+                       post_dispatch="Magedelight\OffersImportExport\Model\Logging::postDispatchViewUpdateOffers"/>
+                <event controller_action="vendoroffers_offers_updatedata" action_alias="save"
+                       post_dispatch="Magedelight\OffersImportExport\Model\Logging::postDispatchUpdateOffers">
+                    <skip_on_back>
+                        <controller_action name="vendoroffers_offers_update"/>
+                    </skip_on_back>
+                </event>
+            </events>
+        </group>
+    </groups>
+</logging>

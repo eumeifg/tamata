@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+        <add id="Magedelight_Vendor::vendor_order_root"
+             title="Vendor Orders"
+             module="Magedelight_Vendor"
+             sortOrder="50"
+             resource="Magedelight_Sales::order_manage"
+             toolTip="magedelight_base" />
+
+        <add id="Magedelight_Vendor::vendor_order_root_commonlyvisible"
+             title="Vendor Orders"
+             module="Magedelight_Vendor"
+             sortOrder="10"
+             action="rbsales/order/index"
+             parent="Magedelight_Theme::md_modules"
+             resource="Magedelight_Sales::order_manage" />
+
+        <!-- All Vendor Menu -->
+        <add id="Magedelight_Vendor::vendor_order_listed"
+             resource="Magedelight_Sales::order_manage"
+             title="Active"
+             action="rbsales/order/index"
+             module="Magedelight_Vendor"
+             sortOrder="30"
+             parent="Magedelight_Vendor::vendor_order_root" />
+
+        <add id="Magedelight_Vendor::vendor_order_listed_canceled" title="Canceled" module="Magedelight_Vendor" parent="Magedelight_Vendor::vendor_order_root" sortOrder="50"  action="rbsales/order/index/status/canceled" resource="Magedelight_Sales::order_manage"/>
+        <add id="Magedelight_Vendor::vendor_order_listed_complete" title="Completed" module="Magedelight_Vendor" parent="Magedelight_Vendor::vendor_order_root" sortOrder="40"  action="rbsales/order/index/status/complete" resource="Magedelight_Sales::order_manage"/>
+    </menu>
+</config>

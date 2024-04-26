@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="cat_customer_referral" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Customer Referral</label>
+            <tab>cat_tamata_config</tab>
+            <resource>CAT_ReferralProgram::referral_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Enable</label>
+                    <comment>This field is an example for a basic yes or no select.</comment>
+                    <tooltip>Usually these kinds of fields are used to enable or disable a given feature. Other fields might be dependent to this and will only appear if this field is set to yes.</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="referral_rule" type="select" translate="label" sortOrder="2" showInDefault="1" showInStore="0" showInWebsite="1">
+                    <label>Select Referral Rule</label>
+                    <source_model>CAT\ReferralProgram\Model\Config\Source\RuleLists</source_model>
+                    <validate>required-entry no-whitespace</validate>
+                    <if_module_enabled>CAT_ReferralProgram</if_module_enabled>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="cron_frequency" type="text" translate="label" sortOrder="3" showInDefault="1" showInStore="0" showInWebsite="1">
+                    <label>Cron Frequency Configuration</label>
+                    <if_module_enabled>CAT_ReferralProgram</if_module_enabled>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="page_size" type="text" translate="label" sortOrder="3" showInDefault="1" showInStore="0" showInWebsite="1">
+                    <label>No of Customers Pick at a Time</label>
+                    <if_module_enabled>CAT_ReferralProgram</if_module_enabled>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="current_page" type="text" translate="label" sortOrder="3" showInDefault="1" showInStore="0" showInWebsite="1">
+                    <label>Current Page</label>
+                    <if_module_enabled>CAT_ReferralProgram</if_module_enabled>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="coupon_clean" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Unlinked Coupon Code Configuration</label>
+                <field id="enable_coupon" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_run_time" type="text" translate="label" sortOrder="3" showInDefault="1" showInStore="0" showInWebsite="1">
+                    <label>Cron Frequency Configuration</label>
+                    <if_module_enabled>CAT_ReferralProgram</if_module_enabled>
+                    <depends>
+                        <field id="enable_coupon">1</field>
+                    </depends>
+                </field>
+                <field id="limit" type="text" translate="label" sortOrder="3" showInDefault="1" showInStore="0" showInWebsite="1">
+                    <label>Number of Rows Pick</label>
+                    <if_module_enabled>CAT_ReferralProgram</if_module_enabled>
+                    <depends>
+                        <field id="enable_coupon">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

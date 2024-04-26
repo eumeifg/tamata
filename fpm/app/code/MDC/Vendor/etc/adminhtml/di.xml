@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_Vendor
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magedelight\Vendor\Block\Adminhtml\Microsite\Request\Edit\Tab\Form" type="MDC\Vendor\Block\Adminhtml\Microsite\Request\Edit\Tab\Form"/>
+    <preference for="Magedelight\Vendor\Controller\Adminhtml\Microsite\Request\Save" type="MDC\Vendor\Controller\Adminhtml\Microsite\Request\Save"/>
+    <preference for="Magedelight\Vendor\Controller\Adminhtml\Categories\Request\Save" type="MDC\Vendor\Controller\Adminhtml\Categories\Request\Save"/>
+    <preference for="Magedelight\Vendor\Controller\Adminhtml\Index\Save" type="MDC\Vendor\Controller\Adminhtml\Index\Save"/>
+</config>

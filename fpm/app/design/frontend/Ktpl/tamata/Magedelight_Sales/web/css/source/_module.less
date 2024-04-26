@@ -1,0 +1,394 @@
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+& when (@media-common = true) {
+	
+	.credit-memo-wrapper {
+		.rbpanel-heading {
+
+			&.heading-l {
+				.lib-font-size(18); 
+				background: none;
+			}
+
+		}
+
+		.front__page-section-item {
+			.front__page-section-item-title {
+				.lib-font-size(16);
+				font-weight: @font-weight__semibold;
+				margin-bottom: @indent__s;
+			}
+			
+		}
+
+		.table-wrapper {
+			.order-creditmemo-tables {
+				> tfoot {
+					> tr {
+						> th,
+						> td {
+							border:none;
+							text-align: center;
+						}
+					}
+				}
+
+			}
+		}
+
+		.order-subtotal-table {
+			.lib-table();
+			.lib-table-bordered(
+					@_table_type : clear,
+				);
+			> tbody,
+			> tfoot {
+				> tr {
+					> td {
+						vertical-align: middle;
+
+						&:last-child {
+							text-align: right;
+						}
+
+						.input-text {
+							width: 6rem;
+						}
+					}
+				}
+		}
+
+
+		}
+
+	}
+
+.custom-actions-toolbar {text-align:center;margin:40px 0px 40px 0px}
+   .order-success-wrapper {
+   border: @border-width__base dashed @color-gray68;
+   padding: @indent__base @indent__base - 5 0;
+   background: @color-white;
+   display: none;
+
+.title-info {
+	margin: 0 0 @indent__base 0 ;
+	font-weight: @font-weight__light;
+	letter-spacing: 2px;
+	.lib-font-size(30);
+}
+ .order-info-header {
+   border-bottom: @border-width__base solid @border-color__base;
+   padding-bottom: @indent__base;
+   margin-bottom: @indent__base;
+
+   .order-info-summary {
+         .lib-clearfix();
+     margin-bottom:@indent__base;
+      border-bottom: @border-width__base solid @border-color__base;
+        .item {
+          margin-bottom:5px;
+           .item-lable {
+             font-weight:@font-weight__semibold;
+             margin-right:5px;
+           }
+        }
+
+
+   }
+   .order-address-summary {
+     h4 {
+       margin:0 0 5px 0;
+     }
+
+   }
+
+ }
+ .order-info-body {
+       h4 {
+         .lib-font-size(15);
+         text-transform:uppercase;
+         font-weight:@font-weight__bold;
+         letter-spacing:2px;
+       }
+
+ }
+
+  .table-wrapper {
+    .table {
+      > tfoot {
+        > tr > th {
+          text-align: right;    
+        }
+      } 
+      
+    }
+  }
+
+
+}
+ .order-info-footer {
+     border: @border-width__base dashed @color-gray68;
+     border-top: 1px solid @border-color__base;
+   
+   background-color: @color-gray-light1;
+   padding: @indent__base;
+   margin-top: -1px;
+   text-align:center;
+ }
+
+.order-details-items{
+	tfoot{
+		.amount,
+		.mark{
+			text-align: right;
+			.rtl_layout & {
+				text-align: left;
+			}
+		}
+	}
+}
+
+	.order-details-items{
+		&.invoice{
+			.table-order-items{
+				&.invoice{
+					.sold-by{
+						padding: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	.order-details-items{
+		.order-title{
+			.action{
+				float: right;
+			}
+		}
+	}
+
+	.checkout-cart-index{
+		.cart-container{
+			.cart{
+				&.table-wrapper{
+					.action{
+						&.action-towishlist{
+							margin-right: 70px;
+						}
+					}
+				}
+				.actions-toolbar{
+					> .action-edit{
+						right: 0;
+					}
+				}
+			}
+		}
+	}
+
+	.rb-order-items{
+		.table{
+			&.table-order-items{
+				.items-container{
+					.rb-table-vendor-individual-order-items {
+						tbody:first-child .vendor-order-info {
+							border-top: 0;
+						}
+						.vendor-order-info {
+							.vendor-name {
+								color: @color-red;
+							}
+							.vendor-order-status {
+								color: @color-red;
+							}
+						}
+						td {
+							width: 20%;
+						}
+						th {
+							background: #f7f8fa;
+						}
+					}
+
+					.vendor-order-info{
+						
+						border-top: 1px solid #ccc;
+
+						padding: @indent__s;
+						a{
+							.lib-css(width, 16%);
+							.lib-css(color, #004c97);
+							.lib-css(display, inline-block);
+							text-decoration: underline;
+							.lib-css(padding, 0);
+							.lib-css(border, none);
+							vertical-align: top;
+							margin-top: 0;
+						}
+						.vendor-info{
+							.lib-css(width, 27%);
+							.lib-css(display, inline-block);
+							padding-top: 0;
+							vertical-align: top;
+							.lib-css(font-weight, @font-weight__semibold);
+							.lib-css(padding, 0);
+							.lib-css(border, none);
+						    font-size: 14px;
+    						font-weight: bold;
+
+							&.vendor-order-status{
+								.lib-css(float, right);
+								.lib-css(text-align, right);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+
+/*
+//    Desktop
+//--------------------------------------*/
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+	.actions-toolbar{
+		text-align: right;
+	}
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+	.account{
+		.rb-table-order-items{
+			.vendor-order-info{
+				.reviewvendor{
+					display: inline-block;
+				}
+				.vendor-info{
+					display: inline-block;
+				}
+			}
+		}
+		.order-details-items{
+			.item-options{
+				dt,
+				dd{
+					display: inline-block;
+					padding: 0 5px 0 0;
+				}
+			}
+		}
+	}
+
+	.order-details-items{
+		tfoot{
+			.amount{
+				.price{
+					font-weight: @font-weight__bold;
+				}
+			}
+		}
+	}
+
+	.actions-toolbar{
+		text-align: right;
+	}
+
+	.order-details-items{
+		.order-title{
+			> strong{
+				display: none;
+			}
+		}
+		&.invoice{
+			.actions-toolbar{
+				display: inline-block;
+				padding-left: 10px;
+			}
+		}
+		.order-title{
+			border: none;
+			display: inline-block;
+			.action{
+				float: none;
+			}
+		}
+	}
+
+}
+@media only screen and (max-width: 768px) {
+	.rb-order-items .table.table-order-items .items-container .vendor-order-info a {
+		width: auto;
+		margin-right: 15px;
+	}
+	.rb-order-items .table.table-order-items .items-container .vendor-order-info .vendor-info.vendor-order-status{
+		width: auto; 
+	}
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+	.account{
+		.rb-table-order-items{
+			.rb-table-vendor-individual-order-items{
+				thead{
+					display: none;
+				}
+			}
+		}
+	}
+	.order-details-items{
+		.order-title{
+			strong{
+				display: none !important;
+			}
+		}
+	}
+	.rb-order-items .table.table-order-items .items-container .rb-table-vendor-individual-order-items td {
+		width: inherit;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.rb-order-items .table.table-order-items .items-container .vendor-order-info .vendor-info {
+	    width: auto;
+    	float: right;
+	}
+	.rb-order-items .table.table-order-items .items-container .vendor-order-info .vendor-info.vendor-order-status {
+		clear: both;
+	}
+	.rb-table-vendor-individual-order-items {
+		padding-top: 30px;
+	}
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .products-grid {
+    	&.wishlist{
+	        .product-item {
+                display: inline-block;
+                margin-left: 1%;
+                width: calc(~'(100% - 2%)/2');
+	        }
+    	}
+    }
+    .rb-table-vendor-individual-order-items {
+	    td {
+			width: inherit;
+		}
+		th {
+			background: transparent;
+		}
+	}
+}

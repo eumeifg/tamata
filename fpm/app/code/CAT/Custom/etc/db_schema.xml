@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="catalog_product_entity">
+        <column xsi:type="varchar" name="box_number" nullable="true" length="255" comment="Entity Type"/>
+        <!-- Added -->
+        <index referenceId="CATALOG_PRODUCT_ENTITY_CREATED_AT" indexType="btree">
+            <column name="created_at"/>
+        </index>
+        <index referenceId="CATALOG_PRODUCT_ENTITY_CREATED_AT_UPDATED_AT" indexType="btree">
+            <column name="created_at"/>
+            <column name="updated_at"/>
+        </index>
+    </table>
+    <table name="catalog_product_entity_text" resource="default" engine="innodb"
+           comment="Catalog Product Text Attribute Backend Table">
+        <!-- Added -->
+        <index referenceId="CATALOG_PRODUCT_ENTITY_TEXT_ATTRIBUTE_ID_STORE_ID" indexType="btree">
+            <column name="attribute_id"/>
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="catalog_product_entity_varchar" resource="default" engine="innodb"
+           comment="Catalog Product Varchar Attribute Backend Table">
+        <!-- Added -->
+        <index referenceId="CATALOG_PRODUCT_ENTITY_VARCHAR_ROW_ID_IDX" indexType="btree">
+            <column name="row_id"/>
+        </index>
+        <index referenceId="CATALOG_PRODUCT_ENTITY_VARCHAR_VALUE_FT" indexType="fulltext">
+            <column name="value"/>
+        </index>
+    </table>
+    <table name="sales_order_item">
+        <!-- Added -->
+        <index referenceId="SALES_ORDER_ITEM_VENDOR_ORDER_ID" indexType="btree">
+            <column name="vendor_order_id"/>
+        </index>
+        <index referenceId="SALES_ORDER_ITEM_VENDOR_ID" indexType="btree">
+            <column name="vendor_id"/>
+        </index>
+        <index referenceId="SALES_ORDER_ITEM_SKU" indexType="btree">
+            <column name="sku"/>
+        </index>
+        <index referenceId="SALES_ORDER_ITEM_PARENT_ITEM_ID" indexType="btree">
+            <column name="parent_item_id"/>
+        </index>
+    </table>
+    <table name="automation_import_history" resource="default" engine="innodb" comment="Automation History">
+        <column xsi:type="int" name="import_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Import Id"/>
+        <column xsi:type="varchar" name="entity_type" nullable="false" length="255" comment="Entity Type"/>
+        <column xsi:type="varchar" name="file_name" nullable="false" length="255" comment="File Name"/>
+        <column xsi:type="varchar" name="report_url" nullable="true" length="255" comment="Report File Name"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP"
+                comment="Imported At"/>
+        <column xsi:type="datetime" name="started_at" on_update="false" nullable="true" comment="Started At"/>
+        <column xsi:type="datetime" name="processed_at" on_update="false" nullable="true" comment="Processed At"/>
+        <column xsi:type="smallint" name="batch_counter" padding="5" unsigned="true" comment="batch counter" default="0"
+                nullable="true"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true"
+                comment="File Status (0 => pending, 1 => completed, 2 => ready for indexer, 3 => indexing started)"
+                default="0" nullable="true"/>
+        <column xsi:type="varchar" name="additional_info" nullable="true" length="255" comment="Additional Info"/>
+        <column xsi:type="varchar" name="user_name" nullable="true" length="255" comment="User Name"/>
+        <column xsi:type="longtext" name="indexer_data" nullable="true" comment="Indexer Data"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="import_id"/>
+        </constraint>
+    </table>
+    <table name="customer_feedback_by_admin" resource="default" engine="innodb" comment="Customer Feedback by Admin">
+        <column xsi:type="int" name="feedback_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Feedback Id"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" comment="Customer Id"/>
+        <column xsi:type="smallint" name="score" padding="5" unsigned="true" comment="Customer Score" nullable="true"/>
+        <column xsi:type="varchar" name="comment" nullable="true" length="255" comment="Comment"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="feedback_id"/>
+        </constraint>
+        <index referenceId="INDEX_CUSTOMER_ID" indexType="btree">
+            <column name="customer_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="FB_ALLOWED_CUSTOMER_ID" table="customer_feedback_by_admin"
+                    column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+    </table>
+    <table name="md_vendor_order">
+        <column xsi:type="text" name="vendor_invoice_number" nullable="true" comment="Vendor Invoice Number"/>
+        <column xsi:type="decimal" name="vendor_invoice_amount" scale="4" precision="12" default="0.00"
+                comment="Vendor Invoice Amount"/>
+        <column xsi:type="decimal" name="amount_paid" scale="4" precision="12" default="0.00" comment="Amount Paid"/>
+        <column xsi:type="decimal" name="amount_enveloped" scale="4" precision="12" default="0.00"
+                comment="Amount Enveloped"/>
+        <column xsi:type="smallint" name="invoice_paid" padding="5" unsigned="true" comment="Invoice Paid"
+                nullable="true"/>
+        <column xsi:type="datetime" name="paid_date" on_update="false" nullable="true" comment="Paid Date"/>
+        <column xsi:type="datetime" name="in_warehouse_date" on_update="false" nullable="true"
+                comment="In Warehouse Date"/>
+        <column xsi:type="text" name="accounting_notes" nullable="true" comment="Accounting Notes"/>
+    </table>
+    <table name="sales_order">
+        <!-- Added -->
+        <index referenceId="SALES_ORDER_CUSTOMER_EMAIL" indexType="btree">
+            <column name="customer_email"/>
+        </index>
+        <index referenceId="SALES_ORDER_IS_CONFIRMED" indexType="btree">
+            <column name="is_confirmed"/>
+        </index>
+    </table>
+    <table name="sales_invoice">
+        <!-- Added -->
+        <index referenceId="SALES_INVOICE_VENDOR_ID" indexType="btree">
+            <column name="vendor_id"/>
+        </index>
+        <index referenceId="SALES_INVOICE_VENDOR_ORDER_ID" indexType="btree">
+            <column name="vendor_order_id"/>
+        </index>
+    </table>
+    <table name="sales_shipment">
+        <!-- Added -->
+        <index referenceId="SALES_SHIPMENT_VENDOR_ID" indexType="btree">
+            <column name="vendor_id"/>
+        </index>
+        <index referenceId="SALES_SHIPMENT_VENDOR_ORDER_ID" indexType="btree">
+            <column name="vendor_order_id"/>
+        </index>
+    </table>
+    <table name="md_vendor_order_log">
+        <!-- Added a new index -->
+        <index referenceId="MD_VENDOR_ORDER_LOG_STATUS_CHANGE_TO" indexType="btree">
+            <column name="status_change_to"/>
+        </index>
+        <index referenceId="MD_VENDOR_ORDER_LOG_VENDOR_ORDER_ID" indexType="btree">
+            <column name="vendor_order_id"/>
+        </index>
+    </table>
+</schema>

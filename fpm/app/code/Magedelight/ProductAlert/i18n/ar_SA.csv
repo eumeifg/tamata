@@ -1,0 +1,61 @@
+First Name,الاسم الاول
+Last Name,الكنية
+Email,البريد الإلكتروني
+Price,السعر
+Date Subscribed,تاريخ المشترك بها
+Last Notification,إشعار آخر
+Send Count,إرسال عدد
+Guest,زائر
+Action,عمل
+Remove,إزالة
+Websites,المواقع
+Name,اسم
+SKU,SKU
+Count,عد
+First Subscription,الاشتراك الأول
+Last Subscription,الاشتراك الماضي
+Total Number of Subscriptions,إجمالي عدد الاشتراكات
+Customers Awaiting Notification,الزبائن انتظار إعلام
+An error occurred while deleting the item from Subscriptions: %s,حدث خطأ أثناء حذف هذا البند من الاشتراكات:٪ ق
+An error occurred while deleting the item from Subscriptions.,حدث خطأ أثناء حذف هذا البند من الاشتراكات.
+Alerts,التنبيهات
+Price Alerts,تنبيهات سعر
+The item has been deleted from Subscriptions.,تم حذف هذا البند من الاشتراكات.
+Stock Alerts,الأسهم تنبيهات
+Stock Alerts ,الأسهم تنبيهات
+Not enough parameters.,لا يكفي المعلمات.
+Please enter a valid email address.,رجاء قم بإدخال بريد الكتروني صحيح.
+Thank you! You are already subscribed to this product.,شكرا لكم! أنت مشترك بالفعل لهذا المنتج.
+Alert subscription has been saved.,تم حفظ الاشتراك في حالة تأهب.
+Unable to update the alert subscription.,غير قادر على تحديث الاشتراك في حالة تأهب.
+Sign up to get notified when this configuration is back in stock,الاشتراك لتلقي تنبيه عند توفر هذا المنتج
+Out of Stock,إنتهى من المخزن
+Sign up for price alert,الاشتراك في تنبيه السعر
+Notify Me,أشعرني
+Grouped product items,عناصر المنتج مجمعة
+Product Name,اسم المنتج
+Qty,الكمية
+Availability,توفر
+Out of stock,إنتهى من المخزن
+No options of this product are available.,لا تتوفر خيارات من هذا المنتج.
+Notify me to back in stock notification,يخطر لي إلى الوراء في إشعار الأسهم
+Image,صورة
+Product,المنتج
+Notify Me On,يخطر لي على
+Remove This Item,أزل هذا البند
+Are you sure you would like to remove this item from the subscriptions?,هل أنت متأكد أنك ترغب في إزالة هذا العنصر من اشتراكات؟
+There are no active subscriptions.,لا توجد اشتراكات نشطة.
+Out of Stock Notifications,من المخزون الإخطارات
+General,جنرال لواء
+Use Configurable Image,استخدام صورة شكلي
+"
+                        Use configurable product image for simple product subscriptions on account page
+                    ",استخدام صورة المنتج شكلي للاشتراكات المنتج بسيطة على صفحة الحساب
+Greeting Text for Email,نص تحية للبريد الإلكتروني
+Minimum Stock Quantity,الحد الأدنى من الكمية الأوراق المالية
+"
+                        Minimum stock quantity before the email is triggered.
+                    ",يتم تشغيل الحد الأدنى من كمية المخزون قبل البريد الإلكتروني.
+Stock Subscribtion,الأسهم الإشتراك
+Disable Subscribe For Guest,تعطيل الاشتراك للحصول على الزوار
+Price Subscribtion,سعر الإشتراك

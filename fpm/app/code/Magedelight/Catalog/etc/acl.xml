@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magedelight_Theme::vendor">
+                    <resource id="Magedelight_Catalog::vendor_products" title="Manage Vendor Products" sortOrder="30">
+                        <resource id="Magedelight_Catalog::vendor_products_listed" title="Live" sortOrder="10"/>
+                        <resource id="Magedelight_Catalog::vendor_products_approved" title="Approved" sortOrder="20"/>
+
+                        <resource id="Magedelight_Catalog::vendor_products_listed_edit" title="Edit Live/Approved Product Request" sortOrder="30"/>
+                         
+                         
+                        <resource id="Magedelight_Catalog::vendor_products_disapproved" title="Manage Vendor Product Request (Disapproved)" sortOrder="40" />
+                        <resource id="Magedelight_Catalog::product_request_new" title="Manage Vendor Product Request (New)" sortOrder="50"/>
+                        <resource id="Magedelight_Catalog::product_request_existing" title="Manage Vendor Product Request (Existing)" sortOrder="60"/>
+
+                        <resource id="Magedelight_Catalog::vendor_products_disapproved_edit" title="Edit New/Existing/Disapproved Product Request" sortOrder="70"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Magedelight_Catalog::sorting" title="RB Sorting"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+            <resource id="Magedelight_Vendor::main">
+                <resource id="Magedelight_Catalog::manage_products" title="Manage Products" sortOrder="100">
+                    <resource id="Magedelight_Catalog::manage_products_live_view_edit" title="Live/Approved View-edit Products" sortOrder="10" />
+
+                   <!--  <resource id="Magedelight_Catalog::manage_products_approved_view_edit" title="Approved view/edit Products" sortOrder="20" /> -->
+
+                    <resource id="Magedelight_Catalog::manage_products_pending_view_edit" title="Pending view-edit Products" sortOrder="30" />
+
+                    <resource id="Magedelight_Catalog::manage_products_disapproved_view_edit" title="Disapproved view-edit Products" sortOrder="40" />
+
+                    <resource id="Magedelight_Catalog::manage_products_select_sell" title="Select and Sell" sortOrder="50" />
+                    <resource id="Magedelight_Catalog::manage_products_request_new_categories" title="Request New Categories" sortOrder="60" />
+                    <resource id="Magedelight_Catalog::manage_products_requested_categories" title="Requested Categories" sortOrder="70" />
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

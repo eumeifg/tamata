@@ -1,0 +1,27 @@
+<?php
+$query = $this->getRequest()->getParams();
+$link =  $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true, '_query' => $query]);
+?>
+<script type="text/javascript">
+    function isIosMobileDevice() {
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        return (
+            userAgent.match(/iPad/i) ||
+            userAgent.match(/iPhone/i) ||
+            userAgent.match(/iPod/i)
+        );
+    }
+	document.onreadystatechange = function(e) {
+	    if (document.readyState === "complete") {
+	        if (isIosMobileDevice()) {
+	            var url = window.location.href;
+	            var splittedArr = url.split("https://");
+	            var newurl = `tamata://${splittedArr[1]}`;
+	            window.location.replace(newurl);
+	        } else {
+	        	window.location.replace('<?= $link ?>');
+	        }
+	    }
+	};
+</script>
+

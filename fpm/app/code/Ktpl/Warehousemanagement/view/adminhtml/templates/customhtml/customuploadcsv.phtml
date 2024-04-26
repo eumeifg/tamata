@@ -1,0 +1,36 @@
+<div class="fieldset">
+	<label style="text-align:center; width:100%; float:left; font-weight:bold; margin-bottom:20px;">OR</label>
+</div>
+<div class="import-export-warehousemanagement">
+        <div class="import-warehousemanagement">
+            <form id="import-form" class="admin__fieldset" action="<?= /* @escapeNotVerified */ $block->getUrl('ktpl_warehousemanagement/warehousemanagement/importPost', ['_query' => ['deliverytype' => $this->getRequest()->getParam('deliverytype'), 'returntype' => $this->getRequest()->getParam('returntype')]]) ?>" method="post" enctype="multipart/form-data">
+                <?= $block->getBlockHtml('formkey') ?>
+                <div class="fieldset admin__field">
+                    <label for="import_csv_file" class="admin__field-label"><span><?= /* @escapeNotVerified */ __('Import CSV') ?></span></label>
+                    <div class="admin__field-control">
+                        <input type="file" id="import_csv_file" name="import_csv_file" class="input-file required-entry"/>
+                        <?= $block->getButtonHtml(__('Import'), '', 'import-submit') ?>
+                    </div>
+                </div>
+            </form>
+            <a href="<?= /* @escapeNotVerified */ $block->getUrl('ktpl_warehousemanagement/warehousemanagement/bulkbarcodecsvtemplate') ?>">Download Sample CSV</a>
+            <script>
+                require(['jquery', "mage/mage", "loadingPopup"], function(jQuery){
+
+                    jQuery('#import-form').mage('form').mage('validation');
+                    (function ($) {
+                        $('.import-submit').click(function(){
+                            if($(':input[name="import_csv_file"]').val()) {
+                                $('body').loadingPopup({
+                                    timeout: false
+                                });
+
+                                $(this.form).submit();
+                            }
+                        });
+                    })(jQuery);
+
+                });
+            </script>
+        </div>
+</div>

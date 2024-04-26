@@ -1,0 +1,56 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php
+/**
+ * @see \Magento\Sales\Block\Adminhtml\Items\Column\Name
+ */
+?>
+
+<?php if ($_item = $block->getItem()) : ?>
+    <div id="order_item_<?= /* @escapeNotVerified */ $_item->getId() ?>_title"
+         class="product-title">
+        <?= $block->escapeHtml($_item->getName()) ?>
+    </div>
+
+    <div class="product-sku-block">
+        <span><?= /* @escapeNotVerified */ __('SKU') ?>:</span> <?= implode('<br />', $this->helper('Magento\Catalog\Helper\Data')->splitSku($block->escapeHtml($block->getSku()))); ?>
+    </div>
+
+    <?php if ($block->getOrderOptions()) : ?>
+        <dl class="item-options">
+            <?php foreach ($block->getOrderOptions() as $_option) : ?>
+                <dt><?= /* @escapeNotVerified */ $_option['label'] ?>:</dt>
+                <dd>
+                    <?php if (isset($_option['custom_view']) && $_option['custom_view']) : ?>
+                        <?= /* @escapeNotVerified */ $block->getCustomizedOptionValue($_option); ?>
+                    <?php else : ?>
+                        <?php $_option = $block->getFormattedOption($_option['value']); ?>
+                        <?= /* @escapeNotVerified */ $_option['value']; ?><?php if (isset($_option['remainder']) && $_option['remainder']) :
+                            ?><span id="<?= /* @escapeNotVerified */ $_dots = 'dots' . uniqid()?>"> ...</span><span id="<?= /* @escapeNotVerified */ $_id = 'id' . uniqid()?>"><?= /* @escapeNotVerified */ $_option['remainder'] ?></span>
+                            <script>
+                                require(['prototype'], function() {
+                                    $('<?= /* @escapeNotVerified */ $_id ?>').hide();
+                                    $('<?= /* @escapeNotVerified */ $_id ?>').up().observe('mouseover', function(){$('<?= /* @escapeNotVerified */ $_id ?>').show();});
+                                    $('<?= /* @escapeNotVerified */ $_id ?>').up().observe('mouseover', function(){$('<?= /* @escapeNotVerified */ $_dots?>').hide();});
+                                    $('<?= /* @escapeNotVerified */ $_id ?>').up().observe('mouseout',  function(){$('<?= /* @escapeNotVerified */ $_id ?>').hide();});
+                                    $('<?= /* @escapeNotVerified */ $_id ?>').up().observe('mouseout',  function(){$('<?= /* @escapeNotVerified */ $_dots ?>').show();});
+                                });
+                            </script>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </dd>
+            <?php endforeach; ?>
+        </dl>
+    <?php endif; ?>
+    <?= $block->escapeHtml($_item->getDescription()) ?>
+<?php endif; ?>

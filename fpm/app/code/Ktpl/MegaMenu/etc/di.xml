@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the KrishTechnolabs.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.KrishTechnolabs.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_MegaMenu
+ * @author    Jaimin Sutariya <jaimin.sutariya@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.KrishTechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.KrishTechnolabs.com/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Magento\Theme\Block\Html\Topmenu" type="Ktpl\MegaMenu\Block\Html\Topmenu" />
+	<preference for="Magento\Catalog\Model\Category\DataProvider" type="Ktpl\MegaMenu\Model\Category\DataProvider" />
+</config>

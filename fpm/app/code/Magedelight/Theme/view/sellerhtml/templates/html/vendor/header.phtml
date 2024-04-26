@@ -1,0 +1,129 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Theme
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+/**
+ * @var \Magedelight\Theme\Block\Html\Vendor\Header $block
+ */
+?>
+<?=  /* @noEscape */ $this->getChildHtml('vendor_sales_summary'); ?>
+<script type="text/javascript">
+    require([
+        'jquery' /* jquery Library */
+    ], function($){
+       $(document).ready(function(){
+          $('header.vendor-page-header .nav-bar-logo span.action.action nav-toggle').click(function(e){
+             ele = $(this);
+             ele.toggleClass('collapsed');
+             $('.vendor-menu-wrapper').slideToggle();
+          });
+       });
+    });
+</script>
+
+<script>
+    require(['jquery','rbCustomScroll'], function($){
+        $(document).ready(function(){
+            
+            /*$(".sidebar-menu-container.mCustomScrollbar").mCustomScrollbar({               
+                scrollButtons:{enable:true},
+                autoHideScrollbar:true,
+            });
+            */
+           
+           $('.sidebar-menu-container.mCustomScrollbar').enscroll({
+    verticalTrackClass: 'track1',
+    verticalHandleClass: 'handle1',
+    drawScrollButtons: true,
+    scrollUpButtonClass: 'scroll-up1',
+    scrollDownButtonClass: 'scroll-down1'
+});
+           
+            $(window).scroll(function(){
+            if ($(this).scrollTop() > 70) {
+            $('body').addClass('stickyy');
+        } else {
+            $('body').removeClass('stickyy');
+        }
+
+                if ($(this).scrollTop() > 71) {
+                   $('body').addClass('slideDown');
+                } else {
+                   $('body').removeClass('slideDown');
+                }
+
+        });
+        });
+    });
+</script>
+<script>
+    require([
+    'jquery',
+    'jquery/jquery.cookie',
+    'tabs',
+    'accordion'
+], function ($) {
+    var burgerCookie = '';
+    if(typeof $.cookie('burger-menu-expanded') === 'undefined' || !$.cookie('burger-menu-expanded')){
+        burgerCookie = 1;
+    }else{
+        var burgerCookie = $.cookie('burger-menu-expanded');
+    }    
+    if (burgerCookie == 1) {
+        burgerCookie = true;
+    } else {
+        burgerCookie = false;
+    }
+
+    function getParameterByName(name, url) {
+        if (!url) {
+            url = window.location.href;
+        }
+        var tabPosition = url.search("/" + name + "/");
+        var fromPosition = tabPosition + 5;
+        var toPosition = fromPosition + 1;
+        if (url.indexOf(',') != -1) {
+            return url.substring(fromPosition, url.indexOf(','));   
+        }else{
+            return url.substring(fromPosition, url.indexOf('%2C'));
+        }
+    }
+    
+    var value = getParameterByName('tab');
+    if (!value) {
+        var $i = 0;
+    }else{        
+        var $i = parseInt(value);
+    }
+
+    $('document').ready(function () {
+        $('.single-menu').click(function () {
+            location.href = $(this).attr('href');
+        });
+
+        if (burgerCookie) {
+            $("#nav-sidebar-menu").accordion({active: $i});
+        } else {
+            $("#nav-sidebar-menu").accordion();
+            $('.vendor-menu-wrapper').addClass('collapsed');
+            $('.nav-bar-logo').addClass('active');
+            $('#vendor-main-content-wrapper,.page-footer').css('margin-left', '88px');
+            $(".panel.header").css('padding-left', '88px');
+            $(".sidebar-menu-container li.active").parent('ul').prev('a.accordion-toggle').addClass('ui-accordion-header-active');
+        }
+
+        $('.vendor-menu-wrapper .sidebar-menu-container .sidebar-menu li ul').css({
+            'height': ''
+        });
+
+    });
+});
+</script>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="vendor_orders_cancel_after">
+        <observer name="vendororderscancelafter" instance="Magedelight\Sales\Observer\VendorOrderCancelEmail" />
+    </event>
+    <event name="customer_orders_cancel_after">
+        <observer name="customer-order-cancel" instance="Magedelight\Sales\Observer\CustomerOrderCancel" />
+    </event>
+    <event name="customer_order_cancel_item">
+        <observer name="customer-order-cancel-item" instance="Magedelight\Sales\Observer\CustomerCancelOrderItem" />
+    </event>
+    <event name="controller_action_predispatch_checkout_index_index">
+        <observer name="validate-cart-before-checkout" instance="Magedelight\Sales\Observer\ValidateCartBeforeCheckout" />
+    </event>
+    <event name="prepare_sub_order_data">
+        <observer name="add-discount-data-to-sub-order" instance="Magedelight\Sales\Observer\SplitOrder\AddDiscountData" />
+    </event>
+</config>

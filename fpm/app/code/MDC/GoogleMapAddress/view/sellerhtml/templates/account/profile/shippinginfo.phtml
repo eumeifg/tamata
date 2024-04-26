@@ -1,0 +1,569 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+/** @var $this \Magedelight\Vendor\Block\Profile */
+$vendor =  $this->getVendor();
+$regions = $this->getRegions();
+$defaultLat = $vendor->getPickupLatitude() ? $vendor->getPickupLatitude() : 33.312805;
+$defaultLng = $vendor->getPickupLongitude() ? $vendor->getPickupLongitude() : 44.361488;
+$dataHelper = $this->helper('MDC\GoogleMapAddress\Helper\Data');
+?>
+<div id="shipping-info-content" class="row signup-step-content profile-step-content no-display">
+    <div class="title">
+        <h3><span><?php echo __('Pickup and Shipping Information') ?></span></h3>
+        <span class="edit-link f-right">Edit</span>
+    </div>
+    <form name="shipping_information_form" id="shipping-information-form" enctype="multipart/form-data" method="post" action="<?php echo $this->getPostActionUrl('shippinginfo') ?>">
+        <fieldset class="fieldset">
+            <?php if($dataHelper->getConfigValue('google_map/general/active')) : ?>
+                <div class="field fax" id="shiplocation_div">
+                    <label class="label" for="fax"><span><?= /* @escapeNotVerified */ __('Location') ?></span></label>
+                    <div class="control">
+                        <input class="form-control places-autocomplete" type="text" id="pickuplocation" name="pickupLocation" placeholder="" value="">
+                    </div>
+                </div>
+                <div class="field fax">
+                    <div id="google_map1" />
+                    </div>
+                </div>
+                <div class="field latitude">
+                    <label class="label" for="latitude"><span><?php echo __('Latitude') ?></span></label>
+                    <div class="control _with-tooltip">
+                         <input type="text" id="pickup_latitude" name="pickup_latitude" placeholder="pickuplatitude" class="input-text required-entry validate-alpha-with-spaces-spl-150" value="<?= $defaultLat; ?>">
+                         <div class="field-tooltip toggle">
+                           <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                            <div class="field-tooltip-content">
+                                 <span><?php echo __('Pickup Latitude') ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field longitude">
+                    <label class="label" for="longitude"><span><?php echo __('Longitude') ?></span></label>
+                    <div class="control _with-tooltip">
+                         <input type="text" id="pickup_longitude" name="pickup_longitude" placeholder="pickuplongitude" class="input-text required-entry validate-alpha-with-spaces-spl-150" value="<?= $defaultLng; ?>">
+                         <div class="field-tooltip toggle">
+                           <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                            <div class="field-tooltip-content">
+                                 <span><?php echo __('Pickup Longitude') ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            <?php endif; ?>
+                
+            <?php if(!$block->isRemoved('pickup_address1','shipping')) { ?>
+            <div class="field pickup-address-1 required">
+                <label class="label" for="pickup-address1"><span><?php echo __('Address Line 1') ?></span></label>
+                <div class="control _with-tooltip">
+                     <input name="pickup_address1" id="pickup-address1" title="<?php echo __('Address Line 1') ?>" value="<?php echo $vendor->getPickupAddress1(); ?>" class="input-text required-entry validate-alpha-with-spaces-spl-150" type="text" placeholder="Address Line 1"  />
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden">
+                        </span>
+                        <div class="field-tooltip-content">
+                            <span><?php echo __('Enter Address Line 1') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+                
+            <?php if(!$block->isRemoved('pickup_address2','shipping')) { ?>
+            <div class="field pickup-address-2">
+                <label class="label" for="pickup-address2"><span><?php echo __('Address Line 2') ?></span></label>
+                <div class="control _with-tooltip">
+                    <input name="pickup_address2" id="pickup-address2" title="<?php echo __('Address Line 2') ?>" value="<?php echo $vendor->getPickupAddress2(); ?>" class="input-text validate-alpha-with-spaces-spl-150-address2" type="text" placeholder="Address Line 2"  />
+
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden">
+                        </span>
+                        <div class="field-tooltip-content">
+                            <span><?php echo __('Enter Address Line 2') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+                
+            <?php if(!$block->isRemoved('pickup_country_id','shipping')) { ?>
+            <div class="field pickup-country-id">
+                <label class="label" for="pickup-country-id"><span><?php echo __('Country') ?></span></label>
+                <div class="control _with-tooltip">
+                    <?= $block->getCountryHtmlSelect($vendor->getPickupCountry(), 'pickup_country_id', 'pickup_country') ?>
+
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                             <span><?php echo __('Select Country') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+                
+            <?php if(!$block->isRemoved('pickup_region','shipping')) { ?>
+            <div class="field pickup_region_id <?php echo $block->isRegionsRequired() ? ' required' : '' ?>">
+                <label class="label" for="pickup_region_id"><span><?php echo __('State/Region') ?></span></label>
+                <div class="control _with-tooltip">
+                    <select name="pickup_region_id" id="pickup_region_id" title="<?php echo __('State/Region') ?>" class="select<?php echo $block->isRegionsRequired() ? ' validate-select' : '' ?>" type="text" placeholder="<?php echo __('State/Region') ?>" style="display:<?php echo (!empty($regions))?'inline-block':'none'; ?>" >
+                        <option value=""><?= $block->escapeHtml(__('Please select a region, state or province.')) ?></option>
+                    </select>
+                    <input name="pickup_region" value="<?php echo $vendor->getPickupRegion(); ?>" id="pickup_region" title="<?php echo __('State/Region') ?>" class="input-text validate-alpha-with-spaces-50<?php echo $block->isRegionsRequired() ? ' required-entry' : '' ?>" type="text" placeholder="<?php echo __('State/Region') ?>" style="display:<?php echo (empty($regions))?'inline-block':'none'; ?>"/>
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                             <span><?php echo __('Select if regions found or enter region name.') ?></span>
+                        </div>
+                    </div>
+                </div>
+           </div>
+            <?php } ?>
+                
+            <?php if(!$block->isRemoved('pickup_city','shipping')) { ?>
+           <div class="field pickup-city required">
+               <label class="label" for="pickup-city"><span><?php echo __('City') ?></span></label>
+               <div class="control _with-tooltip">
+                    <input name="pickup_city" id="pickup-city" title="<?php echo __('City') ?>" value="<?php echo $vendor->getPickupCity(); ?>" class="input-text required-entry validate-alpha-with-spaces-50" type="text" placeholder="<?php echo __('City') ?>" />
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden">
+                        </span>
+                        <div class="field-tooltip-content">
+                            <span><?php echo __('Enter City Name') ?></span>
+                        </div>
+                    </div>
+               </div>
+           </div>
+            <?php } ?>
+                
+            <?php if(!$block->isRemoved('pickup_pincode','shipping')) { ?>
+           <div class="field pickup-zip<?php echo $block->isZipRequired() ? ' required' : '' ?>">
+               <label class="label" for="pickup-zip"><span><?php echo __('Pincode') ?></span></label>
+               <div class="control _with-tooltip">
+                    <input name="pickup_pincode" id="pickup-zip" title="<?php echo __('Pincode') ?>" value="<?php echo $vendor->getPickupPincode(); ?>" class="input-text<?php echo $block->isZipRequired() ? ' required-entry' : '' ?> validate-alpha-with-spaces-10"  type="text" placeholder="Pincode" />
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden">
+                        </span>
+                        <div class="field-tooltip-content">
+                            <span><?php echo __('Enter Pincode') ?></span>
+                        </div>
+                    </div>
+                </div>
+           </div>
+            <?php } ?>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" value="shipping-information-form" title="<?php echo __('Save') ?>" class="action button primary btn-reset">
+                        <span><?php echo __('Save') ?></span>
+                    </button>
+                    <button type="reset" title="<?php echo __('Cancel') ?>" class="action button primary btn-reset">
+                        <span><?php echo __('Cancel') ?></span>
+                    </button>
+
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery', /* jquery Library */
+        'jquery/ui', /* Jquery UI Library */
+        'mage/mage',
+        'mage/translate' /* Magento text translate (Validation message translte as per language) */
+    ], function($){
+        shippingInfoForm = $('#shipping-information-form');
+        shippingInfoForm.mage('validation', {
+            ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+        }).find('input:text').attr('autocomplete', 'off');
+
+                shippingInfoForm = $('#shipping-information-form');
+                $.validator.addMethod(
+                'validate-alpha-with-spaces-spl-150',
+                function (v) {
+                    return $.mage.isEmptyNoTrim(v) || /^.{1,150}$/.test(v);
+                },
+                $.mage.__('Please use less than 150 characters  in this field.')
+                );
+
+                shippingInfoForm = $('#shipping-information-form');
+                $.validator.addMethod(
+                'validate-alpha-with-spaces-spl-150-address2',
+                function (v) {
+                    return $.mage.isEmptyNoTrim(v) || /^.{0,150}$/.test(v);
+                },
+                $.mage.__('Please use less than 150 characters  in this field.')
+                );
+
+                shippingInfoForm = $('#shipping-information-form');
+                $.validator.addMethod(
+                'validate-alpha-with-spaces-spl-50',
+                function (v) {
+                    return $.mage.isEmptyNoTrim(v) || /^.{1,50}$/.test(v);
+                },
+                $.mage.__('Please use less than 50 characters  in this field.')
+                );
+
+                $.validator.addMethod(
+                'validate-alpha-with-spaces-50',
+                function (v) {
+                    return $.mage.isEmptyNoTrim(v) || /^[a-zA-Z ]{1,50}$/.test(v);
+                },
+                $.mage.__('Allow only alphabate with space,Character limit 50, Not allowed special and numeric value.')
+                );
+
+                $.validator.addMethod(
+                'validate-alpha-with-spaces-10',
+                function (v) {
+                    return $.mage.isEmptyNoTrim(v) || /^[a-zA-Z0-9 ]{1,12}$/.test(v);
+                },
+                $.mage.__('Please use less than 10 characters  in this field, allow only alphanumeric.')
+                );
+
+        $(document).ready(function () {
+            <?php if ($vendor->getPickupRegionId() != null && $vendor->getPickupRegionId() != '') { ?>
+            var $pickupRegionId = '<?php echo $vendor->getPickupRegionId(); ?>';
+            var $pickupCityId = '<?php echo $vendor->getPickupCity(); ?>';
+            $('#pickup-region-id').val($pickupRegionId);
+            $('button[type="reset"]',shippingInfoForm).click(function(e){
+                e.preventDefault();
+                shippingInfoForm.get(0).reset();
+                $('#pickup-region-id').val($pickupRegionId);
+                if ($('#pickup-city').val() !== $pickupCityId) {
+                    $('#pickup-city').val($pickupCityId);
+                }
+            });
+            <?php } ?> 
+            $("#shiplocation_div").hide();
+            $('.edit-link').click(function ($event) {
+                $("#shiplocation_div").show();
+            });
+        });
+    });
+</script>
+
+<script type="text/x-magento-init">
+    {
+        "#pickup_country": {
+            "regionUpdater": {
+                "optionalRegionAllowed": <?= /* @noEscape */ $this->helper(\Magedelight\Vendor\Helper\Data::class)->getConfigValue('general/region/display_all') ? 'true' : 'false' ?>,
+                "regionListId": "#pickup_region_id",
+                "regionInputId": "#pickup_region",
+                "postcodeId": "#pincode",
+                "form": "#vendor-registration",
+                "regionJson": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getRegionJson() ?>,
+                "defaultRegion": "<?= (int) $vendor->getPickupRegionId() ?>",
+                "countriesWithOptionalZip": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getCountriesWithOptionalZip(true) ?>,
+                "disableRegionSelect": true
+            }
+        }
+    }
+</script>
+<script>
+    require([
+        'jquery',
+        'https://maps.googleapis.com/maps/api/js?key=<?php echo $dataHelper->getConfigValue('google_map/general/google_api_key')?>&libraries=places'
+        ], function($, googleMapApi) {
+
+        var placeSearch, autocomplete;
+        var enabled = '<?php echo $dataHelper->getConfigValue('google_map/general/active')?>';
+        var componentForm = {
+            street_number: 'short_name',
+            route: 'long_name',
+            locality: 'long_name',
+            administrative_area_level_1: 'long_name',
+            country: 'short_name',
+            postal_code: 'short_name',
+            postal_town: 'short_name',
+            sublocality_level_1: 'short_name'
+        };
+
+        var lookupElement = {
+            street_number: 'street_1',
+            route: 'street_2',
+            locality: 'city',
+            administrative_area_level_1: 'region',
+            country: 'country',
+            postal_code: 'zip'
+        }
+
+        var marker = '';
+        var markers = [];
+
+        var defaultLat = '<?php echo $defaultLat; ?>';
+        var defaultLng = '<?php echo $defaultLng; ?>';
+        var baghdad = {lat: Number(defaultLat), lng: Number(defaultLng)};
+        var map = new google.maps.Map(
+            document.getElementById('google_map1'), {zoom: 16, center: baghdad});
+        var marker = new google.maps.Marker({position: baghdad, map: map})
+
+        markers.push(marker);
+
+        map.addListener('click', function(e) {
+            setMapOnAll(null);
+            placeMarker(e.latLng, map);
+        });
+
+
+        fillInAddress = function () {
+            var place = autocomplete.getPlace();
+            var street = [];
+            var region  = '';
+            var city = '';
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (componentForm[addressType]) {
+                    var val = place.address_components[i][componentForm[addressType]];
+                    if(addressType == 'street_number') {
+                        street[0] = val;
+                    }
+                    else if(addressType == 'route') {
+                        street[1] = val;
+                    }
+                    else if (addressType == 'administrative_area_level_1') {
+                        region = val;
+                    }
+                    else if (addressType == 'sublocality_level_1') {
+                        city = val;
+                    }
+                    else if (addressType == 'postal_town') {
+                        city = val;
+                    }
+                    else if (addressType == 'locality' && city == '') {
+                        //ignore if we are using one of other city values already
+                        city = val;
+                    }
+                    else {
+                        var elementId = lookupElement[addressType];
+                        document.getElementById(elementId).value = val;
+                        if(addressType == 'country') {
+                            document.getElementById(elementId).dispatchEvent(new  window.CustomEvent('change'));
+                        }
+                    }
+                }
+            }
+            if(street.length > 0) {
+                document.getElementById('pickup-address1').value = street.join(' ');
+            }
+            document.getElementById('pickup-city').value = city;
+            if(region != '') {
+                if(document.getElementById('pickup_region_id')) {
+                    var regionSelector = document.getElementById('pickup_region_id');
+                    for (i = 0; i < regionSelector.length; i++) {
+                        if(regionSelector.options[i].text === region)
+                        {
+                            regionSelector.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+                if(document.getElementById('pickup_region')) {
+                    document.getElementById('pickup_region').value = region;
+
+                }
+            }
+
+            if(document.getElementById('pickup_latitude')) {
+                document.getElementById('pickup_latitude').value = place.geometry.location.lat().toFixed(6);
+            }
+            if(document.getElementById('pickup_longitude')) {
+                document.getElementById('pickup_longitude').value = place.geometry.location.lng().toFixed(6);
+            }
+
+            createMarker(place.geometry.location.lat(), place.geometry.location.lng());
+        }
+
+        if(enabled == '1') {
+
+            var input = document.getElementById('pickuplocation');
+
+            autocomplete = new google.maps.places.Autocomplete(
+                /** @type {!HTMLInputElement} */(document.getElementById('pickuplocation')),
+                {types: ['geocode']});
+
+            autocomplete.setComponentRestrictions(
+                {'country': ['iq']});
+
+            autocomplete.addListener('place_changed', fillInAddress);
+        }
+
+        createMarker = function (lat, lng) {
+
+            // The purpose is to create a single marker, so
+            // check if there is already a marker on the map.
+            // With a new click on the map the previous
+            // marker is removed and a new one is created.
+
+            // If the marker variable contains a value
+            if (marker) {
+                // remove that marker from the map
+                marker.setMap(null);
+                // empty marker variable
+                marker = "";
+            }
+
+            // Set marker variable with new location
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, lng),
+                draggable: true, // Set draggable option as true
+                map: map
+            });
+
+            markers.push(marker);
+            // This event detects the drag movement of the marker.
+            // The event is fired when left button is released.
+            google.maps.event.addListener(marker, 'dragend', function() {
+
+                // Updates lat and lng position of the marker.
+                marker.position = marker.getPosition();
+
+                // Get lat and lng coordinates.
+                var lat = marker.position.lat().toFixed(6);
+                var lng = marker.position.lng().toFixed(6);
+                if(lat) {
+                    document.getElementById('pickup_latitude').value = lat;
+                }
+                if(lng) {
+                    document.getElementById('pickup_longitude').value = lng;
+                }
+
+                // Update lat and lng values into text boxes.
+                getCoords(lat, lng);
+
+            });
+
+            map.setZoom(16);
+            map.setCenter(new google.maps.LatLng(lat, lng));
+
+            if(document.getElementById('pickuplatitude')) {
+                document.getElementById('pickuplatitude').value = lat;
+            }
+            if(document.getElementById('pickuplongitude')) {
+                document.getElementById('pickuplongitude').value = lng;
+            }
+        }
+
+        placeMarker = function  (position, map) {
+            marker = new google.maps.Marker({
+                position: position,
+                map: map
+            });
+            map.panTo(position);
+            markers.push(marker);
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': position }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    console.log(results);
+                    if (results[1]) {
+                        //alert("Location: " + results[1].formatted_address);
+                        /*....Start set address related field from map pin location....*/
+                        var place = results[0];
+                        var street = [];
+                        var region  = '';
+                        var city = '';
+                        for (var i = 0; i < place.address_components.length; i++) {
+                            var addressType = place.address_components[i].types[0];
+                            if (componentForm[addressType]) {
+                                var val = place.address_components[i][componentForm[addressType]];
+                                if(addressType == 'street_number') {
+                                    document.getElementById('address1').value = val;
+                                }
+                                else if(addressType == 'route') {
+                                    document.getElementById('address1').value = val;
+                                }
+                                else if (addressType == 'administrative_area_level_1') {
+                                    document.getElementById('country').value = val;
+                                }
+                                else if (addressType == 'sublocality_level_1') {
+                                    document.getElementById('city').value = val;
+                                }
+                                else if (addressType == 'postal_town') {
+                                    document.getElementById('city').value = val;
+                                }
+                                else if (addressType == 'locality' && city == '') {
+                                    //ignore if we are using one of other city values already
+                                    document.getElementById('city').value = val;
+                                }
+                                else {
+                                    var elementId = lookupElement[addressType];
+                                    document.getElementById(elementId).value = val;
+                                    if(addressType == 'country') {
+                                        document.getElementById(elementId).dispatchEvent(new  window.CustomEvent('change'));
+                                    }
+                                }
+                            }
+                        }
+                        if(street.length > 0) {
+                            document.getElementById('street_1').value = street.join(' ');
+                        }
+                        document.getElementById('city').value = city;
+                        if(region != '') {
+                            if(document.getElementById('region_id')) {
+                                var regionSelector = document.getElementById('region_id');
+                                for (i = 0; i < regionSelector.length; i++) {
+                                    if(regionSelector.options[i].text === region)
+                                    {
+                                        regionSelector.selectedIndex = i;
+                                        break;
+                                    }
+                                }
+                            }
+                            if(document.getElementById('region')) {
+                                document.getElementById('region').value = region;
+
+                            }
+                        }
+
+                        if(document.getElementById('latitude')) {
+                            document.getElementById('latitude').value = place.geometry.location.lat().toFixed(6);
+                        }
+                        if(document.getElementById('longitude')) {
+                            document.getElementById('longitude').value = place.geometry.location.lng().toFixed(6);
+                        }
+                        /*....End set address related field from map pin location....*/
+                    }
+                }
+            });
+        }
+
+        setMapOnAll = function  (map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+    });
+</script>
+<script>
+
+    (function () {
+        if ( typeof window.CustomEvent === "function" ) return false;
+
+        function CustomEvent ( event, params ) {
+            params = params || { bubbles: false, cancelable: false, detail: undefined };
+            var evt = document.createEvent( 'CustomEvent' );
+            evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+            return evt;
+        }
+
+        CustomEvent.prototype = window.Event.prototype;
+        window.CustomEvent = CustomEvent;
+
+    })();
+
+</script>
+<style>
+    #google_map1 {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+    }
+</style>

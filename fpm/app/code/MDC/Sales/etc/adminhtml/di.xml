@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_Sales
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magedelight\Sales\Block\Adminhtml\Order\Grid" type="MDC\Sales\Block\Adminhtml\Order\Grid" />
+    <preference for="Magedelight\Sales\Block\Adminhtml\Sales\Order\View\Items" type="MDC\Sales\Block\Adminhtml\Sales\Order\View\Items" />
+
+    <preference for="Magedelight\Sales\Controller\Adminhtml\Order\Cancel" type="MDC\Sales\Controller\Adminhtml\Order\Cancel" />
+
+    <type name="Magento\Sales\Block\Adminhtml\Order\View">
+      <plugin name="addmassinvoiceandshipbutton" type="MDC\Sales\Block\Adminhtml\Sales\Order\View"/>
+    </type> 
+    <preference for="Magedelight\Sales\Observer\Sales\OrderAdminConfirm" type="MDC\Sales\Observer\Sales\OrderAdminConfirm" />
+    <preference for="Magedelight\Sales\Observer\Sales\OrderAdminMassConfirm" type="MDC\Sales\Observer\Sales\OrderAdminMassConfirm" />
+</config>

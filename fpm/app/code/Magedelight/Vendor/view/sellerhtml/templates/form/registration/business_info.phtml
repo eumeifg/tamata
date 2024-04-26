@@ -1,0 +1,375 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+use Magedelight\Vendor\Model\Vendor;
+
+$vendor = $this->getVendor();
+$regions = $this->getRegions();
+$sortOrder = $block->getData('sort_order');
+?>
+
+<div id="register-step-<?= $sortOrder;?>" class="form-step final-form-step no-display">
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= __('Business Details') ?></span></legend>
+        
+        <div class="field business-name required">
+            <label class="label" for="business-name"><span><?= __('Business Name') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="business_name" id="business-name" title="<?= __('Business Name') ?>" value="<?= $vendor->getBusinessName(); ?>" class="input-text required-entry validate-alpha-with-spaces-spl-150 vendor-bussiness-unique" type="text" placeholder="Enter Business Name" autofocus/>
+                 <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Business Name') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <?php if (!$block->isRemoved('logo', 'business')) { ?>
+        <div class="field company-logo">
+            <label class="label" for="company-logo"><span><?= __('Company\'s Logo') ?></span></label>
+            <div class="control _with-tooltip">
+                <input accept="image/png, image/jpg, image/jpeg" type="file" name="logo" id="company-logo"  data-m-height="<?= $block->getLogoHeight();?>" data-m-width="<?= $block->getLogoWidth();?>" data-max-size="<?= Vendor::DEFAULT_IMAGE_SIZE; ?>" title="<?= __('Company\'s Logo') ?>" class="input-file validate-image-type validate-file-size" />
+                <span class="note"><?= __('Size: %1px x %2px, Allowed File Types :(JPG,JPEG,PNG), Max Size:%3', $block->getLogoWidth(), $block->getLogoHeight(), $this->vendorHelper()->getFormattedFileSize(Vendor::DEFAULT_IMAGE_SIZE)); ?></span>
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Choose Company Logo') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('vat', 'business')) { ?>
+        <div class="field vat required">
+            <label class="label" for="vat"><span><?= __('VAT Number') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="vat" id="vat" title="<?= __('VAT Number') ?>" value="<?= $vendor->getVat(); ?>" class="input-text required-entry validate-vat-number" type="text" placeholder="Enter VAT Number For Ex.24ABCDE2345F6ZM"  />
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter VAT Number') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('vat_doc', 'business')) { ?>
+        <div class="field vat-image required">
+            <label class="label" for="vat-image"><span><?= __('VAT Document') ?></span></label>
+            <div class="control _with-tooltip">
+                <input accept="image/png, image/jpg, image/jpeg" type="file" name="vat_doc" id="vat-image" data-max-size="<?= Vendor::DEFAULT_IMAGE_SIZE; ?>" title="<?= __('VAT Document') ?>" class="input-file required-file validate-file-size validate-image-type" />
+                
+                <span class="note">Allowed File Types :(JPG,JPEG,PNG), Max Size:<?= $this->vendorHelper()->getFormattedFileSize(Vendor::DEFAULT_IMAGE_SIZE); ?></span>
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Choose VAT Document') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('other_marketplace_profile', 'business')) { ?>
+        <div class="field other-marketplace">
+            <label class="label" for="other-marketplace"><span><?= __('Do you Sell on other Marketplace?') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="other_marketplace_profile" id="other-marketplace" title="<?= __('Please Enter URL') ?>" value="<?= $vendor->getOtherMarketplaceProfile(); ?>" class="input-text validate-domain-150"  type="text" placeholder="Enter URL" />
+                 <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter URL') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    </fieldset>
+    
+    <?php if ($block->isBankingInfoEnabled()) {
+        $isBankInfoOptional = $block->isBankingInfoOptional();
+        ?>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= __('Bank Details') ?></span></legend>
+        
+        <div class="field bank-account-name <?= (!$isBankInfoOptional)?'required':''; ?>">
+            <label class="label" for="bank-account-name"><span><?= __('Account Holder\'s Name') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="bank_account_name" id="bank-account-name" title="<?= __('Account Holder\'s Name') ?>" 
+                    value="<?= $vendor->getBankAccountName(); ?>" 
+                    class="input-text <?= (!$isBankInfoOptional)?'required-entry':''; ?> validate-alpha-with-spaces-spl-150" 
+                    type="text" placeholder="Enter Account Holder's Name" />
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Account Holder\'s Name') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="field bank-account-number <?= (!$isBankInfoOptional)?'required':''; ?>">
+            <label class="label" for="bank-account-number"><span><?= __('Account Number') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="bank_account_number" id="bank-account-number" title="<?= __('Account Number') ?>" 
+                        value="<?= $vendor->getBankAccountNumber(); ?>" 
+                        class="input-text <?= (!$isBankInfoOptional)?'required-entry':''; ?> validate-bank-account-number" 
+                        minlength="10"  type="text" placeholder="Enter Vendor's Bank Account Number" />
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Vendor\'s Bank Account Number') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field cbank-account-number <?= (!$isBankInfoOptional)?'required':''; ?>">
+            <label class="label" for="cbank-account-number"><span><?= __('Re-type Account Number') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="cbank_account_number" id="cbank-account-number" 
+                    value="<?= $vendor->getBankAccountNumber(); ?>" title="<?= __('Re-type Account Number') ?>"  
+                    class="input-text <?= (!$isBankInfoOptional)?'required-entry':''; ?> validate-cbank-account-number" 
+                    type="number" minlength="10"  placeholder="Re-type Account Number" />
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Re-Type Vendor\'s Bank Account Number') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field bank-name <?= (!$isBankInfoOptional)?'required':''; ?>">
+            <label class="label" for="bank-name"><span><?= __('Bank Name') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="bank_name" id="bank-name" title="<?= __('Bank Name') ?>" 
+                    value="<?= $vendor->getBankName(); ?>" 
+                    class="input-text <?= (!$isBankInfoOptional)?'required-entry':''; ?> validate-alpha-with-spaces-spl-150" 
+                    type="text" placeholder="Enter Bank Name" />
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Bank Name') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="field ifsc <?= (!$isBankInfoOptional)?'required':''; ?>">
+            <label class="label" for="ifsc"><span><?= __('IFSC Code') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="ifsc" id="ifsc" title="<?= __('IFSC Code') ?>" 
+                    value="<?= $vendor->getIfsc(); ?>" class="input-text <?= (!$isBankInfoOptional)?'required-entry':''; ?> validate-ifsc-code" 
+                    type="text" placeholder="Enter IFSC Code For Ex. ABCD1234567"  />
+
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter IFSC Code') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <?php } ?>
+    
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= __('Pickup and Shipping information') ?></span></legend>
+        <div class="field choice terms-accept">
+            <input type="checkbox" name="use_as_vendor" id="use-as-vendor" value="1" title="<?= __('Use Vendor Address as Pickup Address') ?>"<?= $vendor->getUseAsVendor() ? ' checked':''; ?> class="checkbox"/>
+
+
+            <label for="use-as-vendor" class="label"><span><?= __('Use Vendor Address as Pickup Address') ?></span></label>
+        </div>
+        
+        <?php if (!$block->isRemoved('pickup_address1', 'shipping')) { ?>
+        <div class="field pickup_address-1 required">
+            <label class="label" for="pickup_address1"><span><?= __('Address Line 1') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="pickup_address1" id="pickup_address1" title="<?= __('Address Line 1') ?>" value="<?= $vendor->getPickupAddress1(); ?>" class="input-text required-entry" type="text" placeholder="Enter Address Line 1"  />
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Address Line 1') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('pickup_address2', 'shipping')) { ?>
+        <div class="field pickup_address-2">
+            <label class="label" for="pickup_address2"><span><?= __('Address Line 2') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="pickup_address2" id="pickup_address2" title="<?= __('Address Line 2') ?>" value="<?= $vendor->getPickupAddress2(); ?>" class="input-text validate-alpha-with-spaces-spl-150-address2" type="text" placeholder="Enter Address Line 2" />
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Address Line 2') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('pickup_country_id', 'shipping')) { ?>
+        <div class="field pickup_country-id">
+            <label class="label" for="pickup_country-id"><span><?= __('Country') ?></span></label>
+            <div class="control _with-tooltip">
+                <?= $block->getCountryHtmlSelect(null, 'pickup_country_id', 'pickup_country') ?>
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter the country of the vendor location') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('pickup_region', 'shipping')) { ?>
+        <div class="field pickup_region-id<?= $block->isRegionsRequired() ? ' required' : '' ?>">
+            <label class="label" for="region-id"><span><?= __('State/Region') ?></span></label>
+            <div class="control _with-tooltip">
+                <select name="pickup_region_id" id="pickup_region_id" title="<?= __('State/Region') ?>" class="select<?= $block->isRegionsRequired() ? ' validate-select' : '' ?>" style="display:<?= (!empty($regions))?'inline-block':'none'; ?>" >
+                    <option value=""><?= $block->escapeHtml(__('Please select a region, state or province.')) ?></option>
+                </select>
+                <input name="pickup_region" value="<?= $vendor->getPickupRegion(); ?>" id="pickup_region" title="<?= __('State/Region') ?>" class="input-text validate-alpha-with-spaces-50<?= $block->isRegionsRequired() ? ' required-entry' : '' ?> validate-alpha-with-spaces-name" type="text" placeholder="Enter State/Region Name " style="display:<?= (empty($regions))?'inline-block':'none'; ?>" />
+                <div class="field-tooltip toggle">
+               <span class="field-tooltip-action action-help" tabindex="0"></span>
+                <div class="field-tooltip-content">
+                     <span><?= __('Select if regions found or enter region name.') ?></span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('pickup_city', 'shipping')) { ?>
+        <div class="field pickup_city required">
+            <label class="label" for="pickup_city"><span><?= __('City') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="pickup_city" id="pickup_city" title="<?= __('City') ?>" value="<?= $vendor->getPickupCity(); ?>" class="input-text required-entry validate-alpha-with-spaces-50" type="text" placeholder="Enter City Name" />
+
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter City Name') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('pickup_pincode', 'shipping')) { ?>
+        <div class="field pickup_zip<?= $block->isZipRequired() ? ' required' : '' ?>">
+            <label class="label" for="pickup_zip"><span><?= __('Pincode') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="pickup_pincode" id="pickup_zip" title="<?= __('Pincode') ?>" value="<?= $vendor->getPickupPincode(); ?>" class=" validate-alpha-with-spaces-spl-10 input-text<?= $block->isZipRequired() ? ' required-entry' : '' ?> pickup-zipcode-by-country" type="text" placeholder="<?= __('Enter Pincode') ?>" />
+
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Pincode') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    </fieldset>
+    
+    <fieldset class="fieldset">
+        <div class="field choice required terms-accept">
+            <input type="checkbox" name="terms" id="terms" value="1" title="<?= __('I have read and agree to terms and conditions') ?>" class="checkbox required-entry"/>
+            <label for="terms" class="label"><span>I have Read and agree to <a class="terms-condition" href="#inline1" target="_blank"><strong>terms and conditions</strong></a></span></label>
+        </div>
+
+        <div id="inline1" style="display: none;" class="terms-content">
+            <section class="popup-section-content-wrapper terms-information">
+                <div class="tray">
+                    <div class="rbpanel bn">
+                        <div class="rbpanel-heading"><?= __('Terms and conditions') ?></div>
+                        <div class="rbpanel-body">
+                            <?= $block->getTermsadnCondition(); ?>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </fieldset>
+    
+    <fieldset class="fieldset">
+        <div class="actions-toolbar ">
+            <div class="primary">
+                <button type="button" value="2" title="<?= __('Back') ?>" class="action primary btn-back">
+                    <span><?= __('Back') ?></span>
+                </button>
+                <button type="button" title="<?= __('Join Now') ?>" class="action primary btn-submit">
+                    <span><?= __('Join Now') ?></span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</div>                            
+<script type="text/javascript">
+require([
+    'jquery',
+    'Magedelight_Vendor/js/registration/business-info',
+    'Magedelight_Vendor/js/registration/validation/business-info',
+    'jquery/ui', /* Jquery UI Library */
+    'jquery/validate', /* Jquery Validation Library */
+    'mage/mage',
+    'mage/translate'
+], function ($,businessInfo,validateBusinessInfo) {
+
+    /*Business Information code starts.*/
+    validateBusinessInfo();
+    
+    <?php if (!empty($regions)) : ?>
+    var fields = ['address1', 'address2', 'country', 'city', 'zip'];
+    <?php else : ?>
+    var fields = ['address1', 'address2', 'country', 'city', 'zip'];
+    <?php endif; ?>
+        
+    var business_info_options = {
+        'ajaxUrlForUniqueBussinessName':'<?= $this->getUrl('rbvendor/account/checkbusinessname')?>',
+        'useVendorAddressAsPickupAddress':'<?= $vendor->getUseAsVendor() ?>',
+        'pickupAddressFields':fields,
+        'defaultCountryCode':'<?= $this->getDefaultCountryCode(); ?>'
+    }
+    businessInfo(business_info_options);
+    
+    /*Business Information code ends.*/
+});
+</script>
+
+<script type="text/x-magento-init">
+    {
+        "#pickup_country": {
+            "regionUpdater": {
+                "optionalRegionAllowed":"false",
+                "regionListId": "#pickup_region_id",
+                "regionInputId": "#pickup_region",
+                "postcodeId": "#pincode",
+                "form": "#vendor-registration",
+                "regionJson": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getRegionJson() ?>,
+                "defaultRegion": "",
+                "countriesWithOptionalZip": ""
+            }
+        }
+    }
+</script>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Magedelight_Catalog/css/source/chosen.css"/>        
+    </head>
+    <update handle="seller_account"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Bulk Product Listing</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Magedelight\Catalog\Block\Sellerhtml\Bulkimport\Attributeselector" name="vendorAttributeImport" template="Magedelight_Catalog::bulkimport/attributeimport.phtml" cacheable="false"/>
+            <block class="Magedelight\Catalog\Block\Sellerhtml\Bulkimport\Category" name="vendorProductCategory" template="Magedelight_Catalog::bulkimport/main.phtml" cacheable="false">
+                <block class="Magedelight\Catalog\Block\Sellerhtml\Bulkimport\Category" name="download_catalogue"   as="download_catalogue" template="Magedelight_Catalog::bulkimport/download_catalogue.phtml" group="bulkimport_info" cacheable="false" >
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Download Catalogue Template</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Catalog\Block\Sellerhtml\Bulkimport\Category" name="upload_catalogue" as="upload_catalogue" template="Magedelight_Catalog::bulkimport/upload_catalogue.phtml" group="bulkimport_info" cacheable="false" >
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Upload Catalogue</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Catalog\Block\Sellerhtml\Bulkimport\Category" name="update_offer" as="update_offer" template="Magedelight_Catalog::bulkimport/update_offer.phtml" group="bulkimport_info" cacheable="false" >
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Bulk Offer Update</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

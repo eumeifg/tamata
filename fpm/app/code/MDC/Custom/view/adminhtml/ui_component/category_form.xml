@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<fieldset name="general">
+		<field name="is_marketing">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+
+					<item name="sortOrder" xsi:type="number">60</item>
+
+					<item name="dataType" xsi:type="string">boolean</item>
+					<item name="formElement" xsi:type="string">checkbox</item>
+					<item name="label" xsi:type="string" translate="true">Is Marketing Category</item>
+					<item name="prefer" xsi:type="string">toggle</item>
+					<item name="valueMap" xsi:type="array">
+						<item name="true" xsi:type="string">1</item>
+						<item name="false" xsi:type="string">0</item>
+					</item>
+					<item name="default" xsi:type="number">0</item>
+				</item>
+			</argument>
+		</field>
+		<!-- <field name="mobile_category_banner">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="required" xsi:type="boolean">false</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">false</item>
+					</item>
+					<item name="sortOrder" xsi:type="number">333</item>
+					<item name="dataType" xsi:type="string">string</item>
+					<item name="formElement" xsi:type="string">fileUploader</item>
+					<item name="label" translate="true" xsi:type="string">Mobile Banner</item>
+					<item name="uploaderConfig" xsi:type="array">
+						<item name="url" path="catalog/category_image/upload" xsi:type="url"/>
+					</item>
+					<item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+					<item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+				</item>
+			</argument>
+		</field> -->
+		<field name="mobile_category_banner">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">category</item>
+                    <item name="label" xsi:type="string" translate="true">Mobile Banner</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="mdcustom/category_mobilecategroybanner/upload"/>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="mobile_category_image">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">category</item>
+                    <item name="label" xsi:type="string" translate="true">Mobile Image</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="mdcustom/category_mobilecategroyimage/upload"/>
+                    </item>
+                </item>
+            </argument>
+        </field>
+	</fieldset>
+</form>

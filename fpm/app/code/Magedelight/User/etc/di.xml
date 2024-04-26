@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_User
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- <type name="Magedelight\User\Helper\Data">
+        <plugin name="magedelight_user_helper_checklicense" type="Magedelight\User\Plugin\Helper\Data"/>
+    </type> -->
+    <preference for="Magedelight\User\Api\UserAccountManagementInterface" type="Magedelight\User\Model\UserAccountManagement"/>
+    <preference for="Magedelight\User\Api\Data\UserInterface" type="Magedelight\User\Model\User" />
+    
+    <type name="Magedelight\Vendor\Block\Sellerhtml\Account\Dashboard">
+        <plugin name="user_dashboard" type="Magedelight\User\Plugin\UserDashboard" sortOrder="2" />
+    </type>
+    <preference for="Magedelight\Vendor\Model\ResourceModel\Vendor\Grid\ApprovedCollection" type="Magedelight\User\Model\ResourceModel\Vendor\Grid\ApprovedCollection" />
+    <preference for="Magedelight\Vendor\Model\ResourceModel\Vendor\Grid\ClosedCollection" type="Magedelight\User\Model\ResourceModel\Vendor\Grid\ClosedCollection" />
+    <preference for="Magedelight\Vendor\Model\ResourceModel\Vendor\Grid\InactiveCollection" type="Magedelight\User\Model\ResourceModel\Vendor\Grid\InactiveCollection" />
+    <preference for="Magedelight\Vendor\Model\ResourceModel\Vendor\Grid\OnVactionCollection" type="Magedelight\User\Model\ResourceModel\Vendor\Grid\OnVactionCollection" />
+    <preference for="Magedelight\Vendor\Model\ResourceModel\Vendor\Grid\PendingCollection" type="Magedelight\User\Model\ResourceModel\Vendor\Grid\PendingCollection" />
+    <preference for="Magedelight\Vendor\Model\ResourceModel\Vendor\Grid\RejectedCollection" type="Magedelight\User\Model\ResourceModel\Vendor\Grid\RejectedCollection" />
+    <preference for="Magedelight\Vendor\Block\Sellerhtml\Account\Dashboard" type="Magedelight\User\Block\Sellerhtml\Account\Dashboard" />
+
+    <type name="Magedelight\Vendor\Model\AccountManagement">
+        <arguments>
+            <argument name="vendorAcl" xsi:type="object">Magedelight\User\Model\User</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="vendor_user_listing_data_source" xsi:type="string">Magedelight\User\Model\ResourceModel\User\Grid\VendorUsersCollection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magedelight\User\Model\ResourceModel\User\Grid\VendorUsersCollection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">md_vendor</argument>
+            <argument name="eventPrefix" xsi:type="string">md_vendor_user_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">vednor_user_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Magedelight\Vendor\Model\ResourceModel\Vendor</argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <route url="/V1/seller/order/pickup-status/update" method="PUT">
+        <service class="MDC\Sales\Api\PickupStatusManagerInterface" method="updateStatus"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    <route url="/V1/seller/vendorproductdetail" method="GET">
+        <service class="MDC\Sales\Api\PickupStatusManagerInterface" method="displayVendorProductDetail"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    <route url="/V1/seller/vendorBulkOrderConfirm" method="POST">
+        <service class="MDC\Sales\Api\OrderStatusManagerInterface" method="vendorBulkOrderConfirm"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    <route url="/V1/seller/vendorBulkOrderCancel" method="POST">
+        <service class="MDC\Sales\Api\OrderStatusManagerInterface" method="vendorBulkOrderCancel"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    <route url="/V1/m-orders" method="GET">
+        <service class="MDC\Sales\Api\OrderRepositoryInterface" method="getOrderList"/>
+        <resources>
+            <resource ref="Magento_Sales::actions_view" />
+        </resources>
+    </route>
+</routes>

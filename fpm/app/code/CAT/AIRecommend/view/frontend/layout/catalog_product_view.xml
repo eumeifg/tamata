@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+         <referenceContainer name="page.wrapper">
+            <block class="CAT\AIRecommend\Block\Fashionbased" name="product.info.aifrecommend" template="CAT_AIRecommend::fashionsproducts.phtml" before="footer-container"></block>
+            <block class="CAT\AIRecommend\Block\Itembased" name="product.info.airecommend" template="CAT_AIRecommend::Itemsproducts.phtml" before="footer-container"></block>
+        </referenceContainer>
+    </body>
+</page>

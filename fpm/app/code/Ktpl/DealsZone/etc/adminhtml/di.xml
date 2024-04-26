@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Ktpl
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Ktpl
+ * @package     Ktpl_DealsZone
+ * @copyright   Copyright (c) Ktpl (https://https://www.KrishTechnolabs.com/)
+ * @license     https://https://www.KrishTechnolabs.com/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Category\Attribute\Backend\Image">
+        <plugin name="Ktpl_DealsZone::dealzone_image_attribubte_save_bug_fix"
+                type="Ktpl\DealsZone\Plugin\Catalog\Model\Category\Attribute\Backend\ImagePlugin"/>
+    </type>
+</config>

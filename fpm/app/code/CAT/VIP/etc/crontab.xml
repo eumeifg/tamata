@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+	<group id="default">
+		<job name="unassign_vip" instance="CAT\VIP\Cron\Unassignvip" method="unassignvip">
+            <config_path>vip/customer/unassignvip</config_path>
+        </job>
+        <job name="assign_vip" instance="CAT\VIP\Cron\Assignvip" method="assignvip">
+            <config_path>vip/customer/assignvip</config_path>
+        </job>
+	</group>
+</config>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Wishlist
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<!--    <type name="Magento\Wishlist\Controller\Index\Allcart">
+        <plugin name="addWishlistProductToShoppingCartBefore" type="\Magedelight\Wishlist\Controller\Index\Plugin\BeforeAddProductToAllcart" sortOrder="1" />
+    </type>-->    
+    <type name="Magento\Wishlist\Controller\Index\Add">
+        <plugin name="addProductToWishlistBefore" type="\Magedelight\Wishlist\Controller\Index\Plugin\BeforeAddProductToWishlist" sortOrder="1" />
+    </type>
+    <type name="Magento\Wishlist\Model\Item">
+        <plugin name="setVendorPriceToProduct" type="\Magedelight\Wishlist\Model\Item\Plugin\AfterGetModel" sortOrder="1" />
+    </type>
+<!--    <type name="Magento\Wishlist\Controller\Index\Cart">
+        <plugin name="addWishlistProductToShoppingCartBefore" type="\Magedelight\Wishlist\Controller\Index\Plugin\BeforeAddProductToCart" sortOrder="1" />
+    </type>-->
+    <type name="Magento\Wishlist\Model\Item\Option">
+        <plugin name="setVendorPriceToWishlistProduct" type="\Magedelight\Wishlist\Model\Item\Plugin\Option" sortOrder="1" />
+    </type>
+    <type name="Magento\Wishlist\Controller\Index\Fromcart">
+        <plugin name="addProductToWishlistFromCart" type="\Magedelight\Wishlist\Controller\Index\Plugin\BeforeAddProductToWishlistFromCart" sortOrder="1" />
+    </type>
+    <type name="Magento\Wishlist\Helper\Data">
+        <plugin name="beforeGetAddParams" type="\Magedelight\Wishlist\Helper\Plugin\Data" sortOrder="1" />
+    </type>
+    <type name="Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Cart">
+        <plugin name="afterGetProductItem" type="\Magedelight\Wishlist\Block\Plugin\Customer\Wishlist\Item\Column\Cart" sortOrder="1" />
+    </type>
+</config>

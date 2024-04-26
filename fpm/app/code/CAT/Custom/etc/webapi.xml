@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/m-products" method="GET">
+        <service class="CAT\Custom\Api\ProductRepositoryInterface" method="getProductList"/>
+        <resources>
+            <resource ref="Magento_Catalog::products" />
+        </resources>
+    </route>
+    <route url="/V1/order/:orderId/update" method="POST">
+        <service class="CAT\Custom\Api\OrderUpdateInterface" method="execute"/>
+        <resources>
+            <resource ref="Magento_Sales::actions_view" />
+        </resources>
+    </route>
+    <route url="/V1/subOrder/:id/update" method="POST">
+        <service class="CAT\Custom\Api\OrderUpdateInterface" method="updateSubOrder"/>
+        <resources>
+            <resource ref="Magento_Sales::actions_view" />
+        </resources>
+    </route>
+    <route url="/V1/subOrder/pickup-status/update" method="PUT">
+        <service class="CAT\Custom\Api\OrderUpdateInterface" method="updateStatus"/>
+        <resources>
+            <resource ref="Magento_Sales::actions_view"/>
+        </resources>
+    </route>
+    <route url="/V1/sort-order" method="GET">
+        <service class="CAT\Custom\Api\SortOrderInterface" method="getOrders"/>
+        <resources>
+            <resource ref="Magento_Sales::action_view"/>
+        </resources>
+    </route>
+    <route url="/V1/subOrder/pickup-status/update" method="PUT">
+        <service class="CAT\Custom\Api\OrderUpdateInterface" method="updateStatus"/>
+        <resources>
+            <resource ref="Magento_Sales::actions_view"/>
+        </resources>
+    </route>
+    <route url="/V1/warehouse/orderDelivery" method="PUT">
+        <service class="CAT\Custom\Api\OrderUpdateInterface" method="warehouseOrderDelivery"/>
+        <resources>
+            <resource ref="Magento_Sales::actions_view"/>
+        </resources>
+    </route>
+    <route url="/V1/tmt-accounting" method="GET">
+        <service class="CAT\Custom\Api\AccountingInterface" method="getAccountingInfo"/>
+        <resources>
+            <resource ref="Magento_Sales::actions_view"/>
+        </resources>
+    </route>
+    <route url="/V1/bulkUpdateInvoicePaid" method="POST">
+        <service class="CAT\Custom\Api\OrderUpdateInterface" method="bulkUpdateInvoicePaid"/>
+        <resources>
+            <resource ref="Magento_Sales::actions_view"/>
+        </resources>
+    </route>
+    <!-- Check if sub order exist -->
+    <route url="/V1/check-suborder/:id" method="GET">
+        <service class="CAT\Custom\Api\OrderUpdateInterface" method="checkSubOrder"/>
+        <resources>
+            <resource ref="Magento_Sales::actions_view"/>
+        </resources>
+    </route>
+    <!-- update bulk subOrder -->
+    <route url="/V1/bulk-update-suborder" method="POST">
+        <service class="CAT\Custom\Api\OrderUpdateInterface" method="updateBulkSubOrder"/>
+        <resources>
+            <resource ref="Magento_Sales::action_view" />
+        </resources>
+    </route>
+
+    <!-- cancel subOrder -->
+    <route url="/V1/cancel-suborder" method="POST">
+        <service class="CAT\Custom\Api\OrderUpdateInterface" method="cancelSubOrder"/>
+        <resources>
+            <resource ref="Magento_Sales::action_view" />
+        </resources>
+    </route>
+</routes>

@@ -1,0 +1,348 @@
+<?php
+$invoiceLogo = $block->getData('invoicelogo');
+$storeData = $block->getData('storeaddressdata');
+$invoice = $block->getData('invoice');
+$orderDate = $block->getData('orderdate');
+$order = $invoice->getOrder();
+$vendorOrder = $block->getData('vendorOrder');
+$orderData = $block->getData('orderData');
+$baseUrl = $block->getData('baseurl');
+$arabicTextHelper = $this->helper('Ktpl\BarcodeGenerator\Helper\convertToArabic');
+?>
+<div class="custom_shipment_container">
+
+	<div class="head-box">
+		<div class="left-head-box">
+			<h1><?= __("Hello"); ?></h1>
+			<h2><?= __("This is your invoice"); ?></h2>
+		</div>
+		<div class="right-head-box">
+			<img src="<?php echo $invoiceLogo; ?>">
+			<p>
+			<?php
+				$storeAddressArray = [];
+	            $storeAddressArray[] = $storeData->getName();
+	            $storeAddressArray[] = $storeData->getData('city').", ".$storeData->getData('street_line1');
+
+	            if ($storeData->getData("country_id") == "IQ") {
+	                $countryName = "Iraq";
+	            } else {
+	                $countryName = $storeData->getData("country");
+	            }
+	            $storeAddressArray[] = $countryName;
+	            $storeAddressArray[] = $storeData->getData('phone');
+
+	            foreach ($storeAddressArray as $value) {
+	                if ($value !== '') {
+	                    $value = preg_replace('/<br[^>]*>/i', "\n", $value);
+	                    	echo strip_tags(ltrim($value))."<br/>";
+	                }
+	            }
+			?>
+		</p>
+		</div>
+	</div>
+
+	<div class="adr-container">
+		<div class="billing_info_container">
+			<div class="small-title"><strong><?= __("Billing address:"); ?></strong></div>
+				<address>
+					<?php
+						$shippingAddress = $order->getBillingAddress()->getData();
+						echo $shippingAddress['firstname']."".$shippingAddress['lastname']."<br/>";
+						echo $shippingAddress['street']."<br/>";
+						echo $shippingAddress['city'].", ";
+						echo $shippingAddress['region']."<br/>";
+						//echo $shippingAddress['country_id']."<br/>";
+						echo "T: ".$shippingAddress['telephone']."<br/>";
+					?>
+				</address>
+		</div>
+
+		<div class="order_info_container">
+			<div>
+				<span><?= __("Order ID # "); ?></span>
+				<span><?= __($order->getRealOrderId().'-'.$invoice->getVendorOrderId()); ?></span>
+			</div>
+			<div>
+				<span><?= __("Date: "); ?></span>
+				<span><?= __($orderDate);?></span>
+			</div>
+			<div>
+				<span><?= __("Invoice No: "); ?></span>
+				<span><?= __($invoice->getIncrementId()); ?></span>
+			</div>
+		</div>
+	</div>
+
+<div class="item-top-box">
+	<div class="order_item_container">
+		<table class="data-item table-item">
+		  <tr>
+		    <th style="background-color:#ededed;"><?= __("Item"); ?></th>
+		    <th style="background-color:#ededed;"><?= __("Description"); ?></th>
+		    <th style="background-color:#ededed;"><?= __("Qty"); ?></th>
+		    <th style="background-color:#ededed;"><?= __("Unit Cost"); ?></th>
+		    <th style="background-color:#ededed;"><?= __("Total"); ?></th>
+		  </tr>
+		  <?php
+			  	$orderItemsCollection = $orderData->getAllVisibleItems();
+			  	$currencyCode = $vendorOrder->getorderCurrencyCode();
+			  	foreach ($orderItemsCollection as $itemData) {
+			  		if($itemData->getVendorProduct()->getVendorId() != $invoice->getVendorId())
+				  		{
+				  			continue;
+				  		}
+			  		 ?>
+				  <tr>
+				    <td class="name">
+				    	<?php $productName = $itemData->getProduct()->getName(); ?>
+				    	<p <?php if ($arabicTextHelper->is_arabic($productName)) { ?> class="right_align" <?php } ?> >
+				    		<?php echo $productName; ?>
+				    		<br/>
+				    		<?php
+				    			$options = $itemData->getProductOptions();
+						  	 	if (isset($options['attributes_info']) && !empty($options['attributes_info'])) {
+							        foreach ($options['attributes_info'] as $option) {
+							            echo "<b>".$option['label']. ":</b>" . $option['value'].'<br />';
+							        }
+							    }
+				    		?>
+				    	</p>
+				    </td>
+				    <td class="short-desc">
+				    	<?php $productShortDesc = $itemData->getProduct()->getShortDescription(); ?>
+				    	<p <?php if ($arabicTextHelper->is_arabic($productShortDesc)) { ?> class="right_align" <?php } ?> >
+				    		<?php echo strip_tags($productShortDesc); ?>
+				    	</p>
+				    </td>
+				    <td class="order"><?php echo (int)$itemData->getQtyOrdered(); ?></td>
+				    <td class="price"><?php echo $currencyCode." ".number_format($itemData->getPrice(), 2); ?></td>
+				    <?php $totalRowPrice = $itemData->getQtyOrdered() * $itemData->getPrice(); ?>
+				    <td class="total-row-price"><?php echo $currencyCode." ".number_format($totalRowPrice, 2); ?></td>
+				  </tr>
+			  	 <?php } ?>
+		</table>
+	</div>
+	<?php
+		$vendorItemsCollection = $vendorOrder->getAllVendorItems();
+        $allLineItemSubtotal = 0;
+        $tempData = $vendorOrder->getData();
+        //foreach($tempData as $_items) {
+        	//$allLineItemSubtotal += $_items->getrowTotal();
+            //$allLineItemSubtotal += $tempData['subtotal'];
+            $allLineItemSubtotal = $vendorOrder->getSubTotal();
+        //}
+
+        $vendorItemsCollection = $vendorOrder->getItems();
+        $allLineItemSubtotal = $discountAmount = $itemInvoiced = 0;
+
+        $invoice_ids = [];
+        foreach ($order->getInvoiceCollection() as $key => $invoiceData) {
+        	$invoice_ids[] = $invoiceData->getIncrementId();
+        }
+
+        $second_invoice = false;
+        foreach ($invoice_ids as $key => $value) {
+        	if ($invoice->getIncrementId() == $value) {
+        		$second_invoice = $key > 0 ? true:false;
+        	}
+        }
+
+        foreach($vendorItemsCollection as $_items) {
+            $allLineItemSubtotal += $_items->getrowTotal();
+            $discountAmount += $_items->getDiscountAmount();
+            if ($_items->getQtyInvoiced() && $second_invoice){
+            	$itemInvoiced = $_items->getQtyInvoiced();
+            }
+        }
+        $discountAmount = -$discountAmount;
+
+        $currencyCode = $order->getorderCurrencyCode();
+        if($itemInvoiced) {
+			$shippingAmount = 0;
+        } else {
+			$shippingAmount = $order->getshippingAmount();
+        }
+		$totalPaidAmount = $allLineItemSubtotal + $discountAmount + $shippingAmount;
+		$couponCode = $orderData->getCouponCode();
+	?>
+	<?php $orderItemsCollection = $invoice->getOrder(); ?>
+	<div class="order_total_info_section">
+		<p><span><?= __("Subtotal:") ?></span><?= $currencyCode." ".round($allLineItemSubtotal, 2) ?></p>
+		<?php if($couponCode) : ?>
+			<p><span><?= __("Discount (".$couponCode."): ") ?></span><?= $currencyCode." ".$discountAmount ?></p>
+		<?php endif; ?>
+		<?php if($shippingAmount) : ?>
+			<p><span><?php echo __("Shipping & Handling:") ?></span><?php echo $currencyCode." ".$shippingAmount; ?></p>
+		<?php endif; ?>
+		<p><strong><span><?= __("Grand Total:") ?></span><?= $currencyCode." ".$totalPaidAmount ?></strong></p>
+	</div>
+</div>
+<div class="invoice_html_footer_section">
+	<span><?= __($baseUrl); ?></span>
+	<div class="right-side">
+		<p><?= __("Thank you for shopping with us!"); ?></p>
+		<img src="<?php echo $invoiceLogo; ?>" width="100">
+	</div>
+</div>
+</div>
+<style type="text/css">
+	@import url('https://fonts.googleapis.com/css?family=Cairo:400,700&display=swap');
+	body {
+		font-family: 'Cairo', sans-serif;
+		margin:0;
+		padding:0;
+		box-sizing:border-box;
+		-webkit-box-sizing:border-box;
+		background-color:#525659;
+		font-size:14px;
+	}
+	.custom_shipment_container {
+	    width: 800px;
+	    box-sizing:border-box;
+	    -webkit-box-sizing:border-box;
+	    margin: 15px auto;
+	    padding:20px;
+	    background-color:#ffffff;
+	}
+	.head-box {
+	    border-bottom: 2px solid #888888;
+	    display: inline-block;
+	    width: 100%;
+	}
+	.right-head-box {
+	    float: right;
+	}
+	.left-head-box {
+	    display: inline-block;
+	}
+	.left-head-box h1 {
+		margin: 0;
+		font-size: 60px;
+		color: #eb0028;
+		font-weight: 700;
+		line-height: 50px;
+	}
+	.left-head-box h2 {
+		font-size: 22px;
+		color: #eb0028;
+		font-weight: 700;
+		line-height: 25px;
+		margin: 10px 0 0;
+	}
+	.right-head-box p {
+	    line-height: 22px;
+	    font-size: 16px;
+	    font-weight: 400;
+	}
+	.right-head-box img {
+	    width: 125px;
+	    height: auto;
+	}
+	.right-head-box p {
+	    margin: 7px 0 10px;
+	}
+	.adr-container {
+	    display: inline-block;
+	    width: 100%;
+	    padding:10px 0;
+	}
+	.billing_info_container {
+	    display: inline-block;
+	    float: left;
+	}
+	.order_info_container {
+	    float: right;
+	    width: 210px;
+	}
+	.order_info_container span {
+	    margin-right: 5px;
+	}
+	.billing_info_container address {
+	    font-style: normal;
+	    font-size: 14px;
+	    line-height: 24px;
+	}
+	.small-title strong {
+	    font-size: 18px;
+	}
+	table.data-item td {
+		padding: 5px;
+		vertical-align: top;
+		font-size: 14px;
+	}
+	table.data-item td p {
+		margin: 0;
+		font-size: 14px;
+		line-height: 16px;
+	}
+	.invoice_html_footer_section {
+		border-top: 2px solid #636363;
+		display: inline-block;
+		width: 100%;
+	}
+	.invoice_html_footer_section span {
+	    margin: 12px 0 0 0;
+	    display: inline-block;
+	}
+	.invoice_html_footer_section .right-side {
+	    float: right;
+	    margin: 10px 0 0;
+	}
+	.invoice_html_footer_section .right-side p {
+	    display: inline-block;
+	    margin: 0 7px 0 0;
+	    vertical-align: middle;
+	}
+	.invoice_html_footer_section .right-side img {
+	    display: inline-block;
+	    vertical-align: middle;
+	}
+	table.data-item td.short-desc {
+	    width: 200px;
+	    line-height:18px;
+	}
+	table.data-item td.order {
+	    width: 40px;
+	    text-align: center;
+	}
+	table.data-item td.price,
+	table.data-item td.total-row-price {
+	    font-size: 14px;
+	    width: 100px;
+	}
+	table.data-item.table-item th {
+	    padding: 3px;
+	}
+	.item-top-box {
+	    min-height: 600px;
+	}
+	.order_total_info_section {
+    	float: right;
+	    margin-right: 30px;
+	}
+	.order_total_info_section p {
+	    margin: 0;
+	    line-height:20px;
+	}
+	.order_total_info_section strong {
+	    font-size: 15px;
+	    line-height:22px;
+	}
+	.order_total_info_section span {
+	    width: 150px;
+	    vertical-align: top;
+	    display: inline-block;
+	}
+	img {
+		max-width:100%;
+	}
+	table.data-item.table-item {
+	    width: 100%;
+	}
+	.right_align
+	{
+		direction: rtl;
+	}
+</style>

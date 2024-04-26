@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="ktpl_pushnotification Table" engine="innodb" name="ktpl_pushnotification" resource="default">
+		<column comment="Entity Id" identity="true" name="id" nullable="false" padding="6" unsigned="true" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="id"/>
+		</constraint>
+		<!-- <column identity="true" name="id" nullable="true" xsi:type="int"/> -->
+		<column length="255" name="title" nullable="true" xsi:type="varchar"/>
+		<column name="description" nullable="true" xsi:type="text"/>
+		<column length="255" name="image_url" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="send_to_customer_group" nullable="true" xsi:type="varchar"/>
+		<column name="send_to_customer" nullable="true" xsi:type="longtext"/>
+		<column name="type_promotion" nullable="true" xsi:type="text"/>
+		<column name="promotion_id" nullable="true" xsi:type="varchar"/>
+		<column name="status" nullable="false" default="1" xsi:type="boolean"/>
+		<column name="created_at" xsi:type="timestamp" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column name="updated_at" xsi:type="timestamp" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
+
+        <column name="is_sent" nullable="false" default="0" xsi:type="boolean" comment="0= Old to do not send, 1= New created, 2= Being send, 3= Sent"/>
+		<!-- <column name="created_at" nullable="true" xsi:type="datetime"/>
+		<column name="updated_at" nullable="true" xsi:type="datetime"/> -->
+        <column length="255" name="device_percentage" nullable="true" xsi:type="varchar"/>
+        <column length="255" name="device_per_batch" nullable="true" xsi:type="varchar"/>
+        <column length="255" name="batch_interval" nullable="true" xsi:type="varchar"/>
+        <column length="255" name="total_count" nullable="true" xsi:type="varchar"/>
+        <column name="current_page" nullable="false" default="0" padding="6" unsigned="true" xsi:type="smallint"/>
+	</table>
+	<table comment="ktpl_devicetokens Table" engine="innodb" name="ktpl_devicetokens" resource="default">
+		<!-- <column comment="Entity Id" identity="true" name="id" nullable="false" padding="6" unsigned="true" xsi:type="smallint"/> -->
+		<column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="id"/>
+		</constraint>
+		<column length="255" name="device_type" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="device_token" nullable="true" xsi:type="varchar"/>
+		<column padding="10" name="customer_id" nullable="true" xsi:type="int"/>
+		<column name="status" nullable="false" default="1" xsi:type="boolean"/>
+		<column name="created_at" xsi:type="timestamp" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column name="updated_at" xsi:type="timestamp" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Update Time"/>
+	</table>
+    <table comment="ktpl_recent_view_product_list Table" engine="innodb" name="ktpl_recent_view_product_list" resource="default">
+		<column comment="Entity Id" identity="true" name="id" nullable="false" padding="6" unsigned="true" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="id"/>
+		</constraint>
+		<column name="device_token_id" nullable="true" xsi:type="text"/>
+		<column name="product_id" nullable="false" xsi:type="int"/>
+		<column name="store_id" xsi:type="int" nullable="false" comment="Store ID"/>
+		<column name="send_status" nullable="false" default="0" xsi:type="boolean"/>
+        <column name="added_at" xsi:type="timestamp" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="ADD Time"/>
+	</table>
+    <table comment="ktpl_abandon_cart_list Table" engine="innodb" name="ktpl_abandon_cart_list" resource="default">
+		<column comment="Entity Id" identity="true" name="id" nullable="false" padding="6" unsigned="true" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="id"/>
+		</constraint>
+		<column name="device_token_id" nullable="true" xsi:type="text"/>
+        <column name="quote_id" nullable="false" xsi:type="int"/>
+		<column name="quote_item_id" nullable="false" xsi:type="int"/>
+		<column name="store_id" xsi:type="int" nullable="false" comment="Store ID"/>
+        <column name="added_at" xsi:type="timestamp" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="ADD Time"/>
+	</table>
+</schema>

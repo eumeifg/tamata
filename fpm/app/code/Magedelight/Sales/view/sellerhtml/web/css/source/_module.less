@@ -1,0 +1,149 @@
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+//--------------------------------------
+
+& when (@media-common = true) {
+	
+	.credit-memo-wrapper {
+		.rbpanel-heading {
+
+			&.heading-l {
+				.lib-font-size(18); 
+				background: none;
+			}
+
+		}
+
+		.front__page-section-item {
+			.front__page-section-item-title {
+				.lib-font-size(16);
+				font-weight: @font-weight__semibold;
+				margin-bottom: @indent__s;
+			}
+			
+		}
+
+		.table-wrapper {
+			.order-creditmemo-tables {
+				> tfoot {
+					> tr {
+						> th,
+						> td {
+							border:none;
+							text-align: center;
+						}
+					}
+				}
+
+			}
+		}
+
+		.order-subtotal-table {
+			.lib-table();
+			.lib-table-bordered(
+					@_table_type : clear,
+				);
+			> tbody,
+			> tfoot {
+				> tr {
+					> td {
+						vertical-align: middle;
+
+						&:last-child {
+							text-align: right;
+						}
+
+						.input-text {
+							width: 6rem;
+						}
+					}
+				}
+		}
+
+
+		}
+
+	}
+        
+.custom-actions-toolbar {text-align:center;margin:40px 0px 40px 0px}
+   .order-success-wrapper {
+   border: @border-width__base dashed @color-gray68;
+   padding: @indent__base @indent__base - 5 0;
+   background: @color-white;
+   
+
+.title-info {
+	margin: 0 0 @indent__base 0 ;
+	font-weight: @font-weight__light;
+	letter-spacing: 2px;
+	.lib-font-size(30);
+}
+ .order-info-header {
+   border-bottom: @border-width__base solid @border-color__base;
+   padding-bottom: @indent__base;
+   margin-bottom: @indent__base;
+
+   .order-info-summary {
+         .lib-clearfix();
+     margin-bottom:@indent__base;
+      border-bottom: @border-width__base solid @border-color__base;
+        .item {
+          margin-bottom:5px;
+           .item-lable {
+             font-weight:@font-weight__semibold;
+             margin-right:5px;
+           }
+        }
+
+
+   }
+   .order-address-summary {
+     h4 {
+       margin:0 0 5px 0;
+     }
+
+   }
+
+ }
+ .order-info-body {
+       h4 {
+         .lib-font-size(15);
+         text-transform:uppercase;
+         font-weight:@font-weight__bold;
+         letter-spacing:2px;
+       }
+
+ }
+
+  .table-wrapper {
+    .table {
+      > tfoot {
+        > tr > th {
+          text-align: right;    
+        }
+      } 
+      
+    }
+  }
+
+
+}
+ .order-info-footer {
+     border: @border-width__base dashed @color-gray68;
+     border-top: 1px solid @border-color__base;
+   
+   background-color: @color-gray-light1;
+   padding: @indent__base;
+   margin-top: -1px;
+   text-align:center;
+ }
+
+}

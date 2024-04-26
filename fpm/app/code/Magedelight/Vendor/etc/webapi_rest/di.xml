@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Authorization">
+        <plugin name="sellerAuthorization" type="Magedelight\Vendor\Model\Plugin\SellerAuthorization" />
+    </type>
+<!--    
+Currently not needed keep this until we ensure that actually not needed - Vipul Limbasiya -->
+<type name="Magento\Authorization\Model\CompositeUserContext">
+        <arguments>
+            <argument name="userContexts" xsi:type="array">
+                <item name="sellerSessionUserContext" xsi:type="array">
+                    <item name="type" xsi:type="object">Magedelight\Vendor\Model\Authorization\SellerSessionUserContext</item>
+                    <item name="sortOrder" xsi:type="string">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magedelight\Vendor\Api\MicrositeBuilderInterface" type="Magedelight\Vendor\Model\Microsite\MicrositeBuilder" />
+    <preference for="Magedelight\Vendor\Api\Data\MicrositeBuildDataInterface" type="Magedelight\Vendor\Model\Microsite\MicrositeBuild" />
+    <preference for="Magedelight\Vendor\Api\Data\MicrositeRatingDataInterface" type="Magedelight\Vendor\Model\Microsite\RatingBuild" />
+    <preference for="Magedelight\Vendor\Api\Data\MicrositeTopReviewsInterface" type="Magedelight\Vendor\Model\Microsite\TopReviews" />
+    <preference for="Magedelight\Vendor\Api\Data\CategoryDataInterface" type="Magedelight\Vendor\Model\Category"/>
+    <preference for="Magedelight\Vendor\Api\Data\StoreDataInterface" type="Magedelight\Vendor\Model\StoreData"/>
+</config>

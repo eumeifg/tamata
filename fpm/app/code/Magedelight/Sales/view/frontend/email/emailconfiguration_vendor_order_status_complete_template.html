@@ -1,0 +1,9 @@
+<!--@subject Order Status Complete @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Dear "}} {{var name}} {{trans ","}}</p>   
+<p>{{trans "Your order ("}}{{var vendor_order_id}}{{trans ") status has been completed."}}</p>
+
+
+{{template config_path="design/email/footer_template"}}

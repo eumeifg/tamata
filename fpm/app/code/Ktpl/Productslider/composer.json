@@ -1,0 +1,23 @@
+{
+  "name": "ktpl/magento-2-product-slider",
+  "description": "Magento 2 Product Slider",
+  "type": "magento2-module",
+  "version": "2.0.4",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ktpl",
+      "email": "support@ktpl.com",
+      "homepage": "https://www.ktpl.com",
+      "role": "Technical Support"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Ktpl\\Productslider\\": ""
+    }
+  }
+}

@@ -1,0 +1,55 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var Magedelight\Vendor\Block\Dashboard\Orders\Grid $block */
+?>
+<?php
+$collection = $block->getCollection();
+?>
+<div class="table-caption-heading">
+        <span class="table-heading fleft"><?= __('New Orders') ?></span>
+        <a href="<?= $block->getNewOrdersUrl() ?>" class="view-all fright"><span><?= __('View All') ?></span></a>
+    </div>
+<table class="data table table-order-items summary-table" id="new-orders-table">
+    <thead>
+        <tr>
+            <th scope="col" class="col customer-name"><?= __('Customer Name') ?></th>
+            <th scope="col" class="col qty"><?= __('Qty')?></th>
+            <th scope="col" class="col grand-total text-right"><?= __('Total') ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if (count($collection) > 0) {
+            foreach ($collection as $item) {
+                ?>
+                <tr>
+                <td data-th="" class="col customer-name"><div class="data-grid-cell-content">
+                <?php if ($item->getCustomer() == '') {?>
+                    <?= __('Guest') ?>
+                <?php } else {?>
+                    <?= $item->getCustomer() ?>
+                <?php }?>
+                </div></td>
+                <td data-th="" class="col data-grid-qty-cell"><?= $block->getVendorItemsCount($item->getEntityId()); ?></td>
+                <td data-th="" class="col col data-grid-price-cell text-right"><?= $item->formatPrice($item->getRevenue()) ?></td>
+            </tr>
+                <?php
+            }
+        } else { ?>
+            <tr>
+                <td colspan="3"><?= __('No Orders Found.') ?></td>
+            </tr>
+            <?php
+        }
+        ?>
+    </tbody>
+</table>

@@ -1,0 +1,285 @@
+// /**
+//  * Copyright © 2016 Rocket Bazaar. All rights reserved.
+//  * See COPYING.txt for license details
+//  */
+
+@table-caption__hide: false;
+@table-caption__padding: 11px 10px;
+
+@table-caption__background: #81c784;
+@table-head__background-color: lighten(@table-caption__background, 6%);
+
+@table__background-color-gray: #4E4E4E;
+@table__background-color-red: #E57373;
+@table__background-color-green: #81c784;
+
+
+
+
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    .vendor-dashboard-container {
+    .dashboard-sales-summary {
+        .rbpanel .rbpanel-body {
+            padding: 10px;
+        }
+    }
+    .table-wrapper {
+        .lib-css(margin-bottom,0);
+        .table-caption-heading {
+            background: lighten(@table-caption__background,6%);
+            padding: 13px 10px;
+            display: table;
+            width: 100%;
+            color: @color-white;
+            font-weight: @font-weight__semibold;
+            a {
+                color: @color-white;
+            }
+        }
+        .summary-table {
+            .lib-table-striped();
+            .lib-table-caption(@_table-caption-color: @color-white);
+            .lib-table-typography(@_table-th-color: @color-black;
+            );
+            .lib-table-background-color (@_table-head-background-color: lighten(@table-caption__background,20%),);
+            .lib-table-bordered(@_table_type: clear);
+            .lib-css(border,1px solid @table-caption__background);
+            .lib-css(border-collapse,separate);
+            > caption {
+                .lib-css(background,@table-caption__background);
+                .lib-css(padding,@table-caption__padding);
+                a {
+                    color: @color-white;
+                }
+            }
+            > tbody {
+                > tr {
+                    > td {
+                        .lib-css(border-top,1px solid @border-color__base);
+                    }
+                }
+            }
+        }
+        &.table-bg-gray {
+            .table-caption-heading {
+                background: @table__background-color-gray;
+            }
+            .summary-table {
+                .lib-table-striped();
+                .lib-table-hover();
+                .lib-css(border,1px solid lighten(@table__background-color-gray,50%));
+                .lib-css(border-collapse,separate);
+                .lib-table-background-color (@_table-head-background-color: lighten(@table__background-color-gray,50%),);
+                thead > tr > th {
+                    &:hover {
+                        .lib-css(background,none);
+                    }
+                }
+            }
+        }
+        &.table-bg-red {
+            .table-caption-heading {
+                background: @table__background-color-red;
+            }
+            .summary-table {
+                .lib-table-striped();
+                .lib-table-hover();
+                .lib-css(border,1px solid lighten(@table__background-color-red,20%));
+                .lib-css(border-collapse,separate);
+                .lib-table-background-color (@_table-head-background-color: lighten(@table__background-color-red,20%),);
+                thead > tr > th {
+                    &:hover {
+                        .lib-css(background,none);
+                    }
+                }
+            }
+        }
+        &.table-bg-green {
+            .table-caption-heading {
+                background: @table__background-color-green;
+            }
+            .summary-table {
+                .lib-table-striped();
+                .lib-table-hover();
+                .lib-css(border,1px solid lighten(@table__background-color-green,20%));
+                .lib-css(border-collapse,separate);
+                .lib-table-background-color (@_table-head-background-color: lighten(@table__background-color-green,20%),);
+                thead > tr > th {
+                    &:hover {
+                        .lib-css(background,none);
+                    }
+                }
+            }
+        }
+    }
+    .summary-wrapper {
+        .lib-css(text-align,center);
+        h2 {
+            .lib-font-size(16);
+            .lib-css(margin,0 0 @indent__s 0);
+            .lib-css(font-weight,@font-weight__regular);
+            .lib-css(color,@color-gray40);
+        }
+        h6 {
+            .lib-css(margin,0 0 @indent__s 0);
+            .lib-font-size(12);
+            .lib-css(font-weight,@font-weight__semibold);
+            .lib-css(letter-spacing,1px);
+            .lib-css(text-transform,uppercase);
+        }
+        .view-detail {
+            a {
+                .lib-css(color,@color-white);
+                .lib-css(text-decoration,underline);
+            }
+        }
+        .rating-summary {
+            .lib-css(margin,0 0 @indent__s 0);
+            .rating-result {
+            }
+        }
+        &.balance {
+            h2, h6 {
+                .lib-css(color,@color-white);
+            }
+        }
+    }
+    .bg-white {
+        padding-top: 40px !important;
+        .summary-wrapper.balance {
+            h2, h6 {
+                color: @secondary__color;
+            }
+        }
+    }
+    select {
+        .lib-font-size(12);
+    }
+}
+
+/*.rating-summary{
+    &.rating-summary-box{
+        .rating-result{
+            .lib-css(width, 100px);
+            .lib-css(margin-bottom, 5px);
+            &:before{
+                font-size: 20px;
+                height: 20px;
+                line-height: 20px;
+            }
+        }
+        .rating-result-text{
+            span{
+                .lib-css(display, block);
+                .lib-css(color, #666666);
+                text-transform: uppercase;
+                .lib-font-size(11);
+                &.rating-amount{
+                   .lib-font-size(25);
+                   font-weight: @font-weight__semibold;
+                }
+            }
+        }
+    }
+}*/
+
+    .rating-summary{
+        .rating-result{
+            .lib-css(margin-left, -5px);
+            .lib-css(width, 74px);
+            .lib-css(display, inline-block);
+            position: relative;
+            vertical-align: middle;
+            &:before{
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: 1;
+                -webkit-font-smoothing: antialiased;
+                color: #c7c7c7;
+                font-family: 'RB-Vendor-Theme-Icons';
+                font-size: 14px;
+                height: 14px;
+                letter-spacing: 1px;
+                line-height: 14px;
+                content: "\e605" "\e605" "\e605" "\e605" "\e605";
+                display: block;
+                font-style: normal;
+                font-weight: normal;
+                speak: none;
+            }
+            > span{
+                display: block;
+                overflow: hidden;
+                &:before{
+                    position: relative;
+                    z-index: 2;
+                    -webkit-font-smoothing: antialiased;
+                    color: #ffc960;
+                    font-family: 'RB-Vendor-Theme-Icons';
+                    font-size: 14px;
+                    height: 14px;
+                    letter-spacing: 1px;
+                    line-height: 14px;
+                    content: "\e605" "\e605" "\e605" "\e605" "\e605";
+                    display: block;
+                    font-style: normal;
+                    font-weight: normal;
+                    speak: none;
+                }
+                span{
+                    border: 0;
+                    clip: rect(0, 0, 0, 0);
+                    height: 1px;
+                    margin: -1px;
+                    overflow: hidden;
+                    padding: 0;
+                    position: absolute;
+                    width: 1px;
+                }
+            }
+        }
+    }
+
+}
+
+//
+//    Mobile @screen__s
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+//
+//    Mobile @screen__m
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//    large Desktop
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .vendor-dashboard-container {
+    .dashboard-item-summary-container {
+        .dasboard-item {
+           &:nth-child(3n+1) {
+                clear: left;
+           }
+
+        }
+
+ }
+}
+
+}
+
+
+
+
+

@@ -1,0 +1,165 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var $this \Magedelight\Vendor\Block\Profile
+ * @var $vendor \Magedelight\Vendor\Api\Data\VendorInterface
+ */
+
+use Magedelight\Vendor\Model\Vendor;
+
+$vendor =  $this->getVendor();
+?>
+<div id="business-info-content" class="row signup-step-content profile-step-content no-display">
+    <div class="title">
+        <h3><span><?= __('Business Information') ?></span></h3>
+        <span class="edit-link"><?= __('Edit') ?></span>
+    </div>
+    <form name="business_information_form" id="business-information-form" enctype="multipart/form-data" method="post" action="<?= $this->getPostActionUrl('businessinfo') ?>">
+        <fieldset class="fieldset">
+            <div class="field business-name required">
+                <label class="label" for="business-name"><span><?= __('Business Name') ?></span></label>
+                <?php if (!$this->isVendorStatusPending() && !$this->isVendorRejected()) { ?>
+                    <div class="info">
+                        <span><?= $vendor->getBusinessName(); ?></span>
+                    </div>
+                <?php } else { ?>
+                    <div class="control _with-tooltip">
+                        <input name="business_name" id="business-name" title="<?= __('Business Name') ?>" value="<?= $vendor->getBusinessName(); ?>" class="input-text required-entry validate-alpha-with-spaces-spl-150" type="text" placeholder="<?= __('Business Name') ?>" />
+                        <div class="field-tooltip toggle">
+                    <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Business Name') ?></span>
+                    </div>
+                </div>
+                    
+                    </div>
+                <?php } ?>
+            </div>
+            
+            <?php if (!$block->isRemoved('vat', 'business')) { ?>
+            <div class="field vat required">
+                <label class="label" for="vat"><span><?= __('VAT Number') ?></span></label>
+                <?php if (!$this->isVendorStatusPending() && !$this->isVendorRejected()) { ?>
+                    <div class="info">
+                        <span><?= $vendor->getVat(); ?></span>
+                    </div>
+                <?php } else { ?>
+                    <div class="control _with-tooltip">
+                        <input name="vat" id="vat" title="<?= __('VAT Number') ?>" value="<?= $vendor->getVat(); ?>" class="input-text required-entry validate-vat-number" type="text" placeholder="24ABCDE2345F6ZM" />
+                        <div class="field-tooltip toggle">
+                           <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                            <div class="field-tooltip-content">
+                                 <span><?= __('Enter VAT Number') ?></span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                <?php } ?>
+            </div>
+            <?php } ?>
+            
+            <?php if (!$block->isRemoved('vat_doc', 'business')) { ?>
+            <div class="field field-image vat-image required<?= (!$this->isVendorStatusPending() && !$this->isVendorRejected()) ? ' status-active' : ''; ?>">
+                <label class="label" for="vat-image"><span><?= __('VAT Document') ?></span></label>
+                <div class="control">
+                    <?php if ($this->isVendorStatusPending() || $this->isVendorRejected()) { ?>
+                        <div class="image-upload show-on-edit-field">
+                            <label for="vat-image" class="tan_img"><span><?= __('Choose a file&hellip;')?></span></label>
+                            <input accept="image/png, image/jpg, image/jpeg" data-max-size="<?= Vendor::DEFAULT_IMAGE_SIZE; ?>" type="file" name="vat_doc" id="vat-image" title="<?= __('VAT Document') ?>" value="<?= $vendor->getVatDoc(); ?>" class="inputfile inputfile-1 validate-file-size validate-image-type <?php if ($vendor->getVatDoc() == null && $vendor->getVatDoc() == '') {
+                                ?> <?= __('required-file'); ?> <?php
+                                                                                            } ?>" /><div class="field-tooltip toggle">
+                           <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                            <div class="field-tooltip-content">
+                                 <span><?= __('Enter VAT Document') ?></span>
+                            </div>
+                        </div>
+                            <span class="note"><?= __('Allowed File Types :(JPG,JPEG,PNG), Max Size: %1', $this->vendorHelper()->getFormattedFileSize(Vendor::DEFAULT_IMAGE_SIZE))?></span>
+                        </div>
+                    <?php } ?>
+                    <?php if ($vendor->getVatDoc() != null && $vendor->getVatDoc() != '') { ?>
+                        <div class="image-preview">
+                            <div class="image">
+                                <input type="hidden" name="vendor[vat_doc][value]" value="<?= $vendor->getVatDoc(); ?>">
+                                <a download="<?= $vendor->getVat(); ?>" href="<?= $this->getVatDocUrl();?>">
+                                    <img src="<?= $this->getVatDocUrl();?>" width="100" alt="<?= $vendor->getVat(); ?>"/>
+                                </a>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <div id="vat-document-image">
+                        <span style="color: #e9573f"></span>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+            
+            <?php if (!$block->isRemoved('other_marketplace_profile', 'business')) { ?>
+            <div class="field other_marketplace_profile">
+                <label class="label" for="other_marketplace_profile"><span><?= __('Other Marketplace Url') ?></span></label>
+                <div class="control _with-tooltip">
+                    <input name="other_marketplace_profile" id="other_marketplace_profile" title="<?= __('Other Marketplace Url') ?>" value="<?= $vendor->getOtherMarketplaceProfile(); ?>" class="input-text validate-domain-150" type="text" placeholder="<?= __('Other Marketplace Url') ?>" />
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                             <span><?= __('Enter Other Marketplace Url') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+            
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" value="business-information-form" title="<?= __('Save') ?>" class="action button primary btn-reset">
+                        <span><?= __('Save') ?></span>
+                    </button>
+                    <button type="reset" title="<?= __('Cancel') ?>" class="action button primary btn-reset" onclick="clearErrorMsg();">
+                        <span><?= __('Cancel') ?></span>
+                    </button>
+
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery', /* jquery Library */
+        'Magedelight_Vendor/js/registration/validation/business-info',
+        'jquery/ui', /* Jquery UI Library */
+        'jquery/validate', /* Jquery Validation Library */
+        'mage/mage',
+        'mage/translate' /* Magento text translate (Validation message translte as per language) */
+    ], function($,validateBusinessInfo){
+        
+        validateBusinessInfo();
+        
+        $.validator.addMethod(
+            'validate-vat-number',
+            function (v) {
+                return /(^[a-zA-Z0-9]{10,20}$)/.test(v);
+            },
+            $.mage.__('Allow only alpha numeric value without space, not allowed special character and minimum length 10 and maximum length 20.')
+        );
+        
+        businessForm = $('#business-information-form');
+        businessForm.mage('validation', {
+            ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+        }).find('input:text').attr('autocomplete', 'off');
+
+    });
+
+    function clearErrorMsg()
+    {
+        document.getElementById("advice-required-entry-display-name").style.display = "none";
+    }
+</script>

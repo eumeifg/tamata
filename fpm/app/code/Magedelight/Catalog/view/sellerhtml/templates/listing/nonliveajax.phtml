@@ -1,0 +1,245 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+$extparam = $this->getRequest()->getParam('extparam');
+
+$isView = $block->isView();
+$disable ='';
+if ($isView) {
+    $disable = 'disabled';
+}
+?>
+<?php $collection = $block->getCollection(); ?>
+<?php if ($block->isRejectedProductRequest()) { ?>
+
+    <section class="popup-section-content-wrapper">
+        <div class="tray">
+            <div class="rbpanel bn">
+                <div class="rbpanel-heading">
+                    <?= __('Product request disapproved reason.') ?>
+                </div>
+                <div class="rbpanel-body">
+                    <div class="disapprove_message">
+                        <?= $collection->getData('disapprove_message'); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+<?php } elseif ($extparam == 1) { ?>
+    <?php
+    if (!$collection->getId() || $collection->getVendorId() != $block->getVendorId()) {
+        ?>
+<div class="error">
+    <section class="popup-section-content-wrapper">
+        <div class="tray">
+            <div class="rbpanel bn">
+                <div class="rbpanel-heading">
+                <?= __('Product Summary') ?>
+                </div>
+                <div class="rbpanel-body">
+                    <div class="popup-product-info-wrapper">
+                    <?= __('This Product no longer exists.') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+        <?php
+    } else {
+        ?>
+        <?php $product = $block->getProduct($collection['marketplace_product_id']); ?>
+        <?php
+        $catIds = $product->getCategoryIds();
+        ?>
+    <form target="_parent" method="POST" id="vendornonliveedit" enctype='multipart/form-data' action="<?= $block->getSubmitUrlNonLive() ?>" data-hasrequired="<?= __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <input type="hidden" name="tab" value="<?= $this->getRequest()->getParam('tab'); ?>"/> 
+        <input type="hidden" name="vpro" value="<?php if ($this->getRequest()->getParam('vpro') !='') {?> <?= $this->getRequest()->getParam('vpro'); ?> <?php } ?>"/>
+        <input type="hidden" name="sfrm" value="<?php if ($this->getRequest()->getParam('sfrm') !='') {?> <?= $this->getRequest()->getParam('sfrm'); ?> <?php } ?>"/>
+        <input type="hidden" name="vendor_product_id" value="<?= $collection['vendor_product_id']; ?>"/> 
+        <input type="hidden" name="vendor_id" value="<?= $block->getVendorId(); ?>"/> 
+        <input type="hidden" name="extraid_id" value="<?= $this->getRequest()->getParam('extparam'); ?>"/> 
+        <?php $_imagehelper = $this->helper('Magento\Catalog\Helper\Image'); ?>
+        <?php
+        $imageSize = 220;
+        $productImage = $_imagehelper->init($product, 'category_page_list', ['height' => $imageSize, 'width' => $imageSize])->getUrl();
+        ?>  
+
+        <section class="popup-section-content-wrapper product-edit-live-popup">
+            <div class="tray">
+                <div class="rbpanel bn">
+                    <div class="rbpanel-heading pt20 pb20">
+                        <?= __('Product Summary') ?>
+
+                    </div>
+                    <div class="rbpanel-body">
+                        <div class="popup-product-info-wrapper">
+                            <div class="popup-product-media">
+                                <div class="popup-product-photo">
+                                    <img height="220" width="220" src="<?= $productImage ?>" class="product-photo"  />
+                                </div>
+                            </div>
+
+                            <div class="popup-product-info-main">
+                                <div class="page-title-wrapper product">
+                                    <h1 class="page-title">
+                                        <span class="base" data-ui-id="page-title-wrapper" itemprop="name"><?= $collection['product_name']; ?></span></h1>
+                                </div>
+                                <div class="product-info-sku-wrapper">
+                                    <div class="sku">
+                                        <span class="label"><?= __('Vendor SKU:');?></span>
+                                        <span class="value"><?= $collection['vendor_sku']; ?></span>
+                                    </div>
+                                </div>
+                                <?php $catCount = count($catIds);?>
+                                <?php if ($catCount):?>
+                                    <div class="product-info-sku-wrapper">
+                                        <span class="label">
+                                            <?= __('Category:');?>
+                                        </span>
+                                        <?php $count = 1;?>
+                                        <?php foreach ($catIds as $categoryId):?>
+                                            <span class="value">
+                                                <?= $block->getCategoryPath($categoryId); ?>
+                                                <?php if ($catCount != $count):?>
+                                                    <?= __(' , ');?>
+                                                <?php endif;?>
+                                            </span>
+                                            <?php $count++;?>
+                                        <?php endforeach;?>
+                                    </div>
+                                <?php endif;?>
+                            </div>
+                        </div>
+                        <div class="popup popup-product-info-details">
+                            <fieldset class="fieldset">
+                            <div class="quick-edit-row">
+                                <div class="field vendor-nl-price required">
+                                    <label class="label" for="vendor-nl-price">
+                                        <span><?= __('Your Price') ?></span>
+                                    </label>
+                                    <div class="control price">
+                                        <input class="input-text price-update" type="text"  id="vendor-nl-price" data-validate="{required:true, 'validate-greater-than-zero':true, 'validate-number': true}" name="vendorproduct_price" value="<?= number_format($collection['price'], 2, '.', ''); ?>" <?= $disable ?>/>
+                                    </div> 
+                                </div>
+                                <div class="field vendor-nl-special-price">
+                                    <label class="label" for="vendor-nl-special-price"><span><?= __('Special Price') ?></span></label>
+                                    <div class="control special-price">
+                                        <input class="input-text price-update" type="text" id="vendor-nl-special-price" name="vendorproduct_spprice" value="<?php if ($collection['special_price']): ?><?= number_format($collection['special_price'], 2, '.', ''); ?><?php endif; ?>" data-validate="{'validate-greater-than-zero':true, 'validate-number': true, 'validate-less-than-price':true}" <?= $disable ?>/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quick-edit-row">
+                                <div class="field vendor-quantity required">
+                                    <label class="label" for="vendor-quantity">
+                                        <span><?= __('Your Quantity') ?></span>
+                                    </label>
+                                    <div class="control">
+                                        <input class="input-text" type="text" id="vendor-quantity" data-validate="{required:true, 'validate-number': true, 'validate-not-negative-number':true}" name="vendorproduct_qty" value="<?= number_format($collection['qty'], 2, '.', ''); ?>" <?= $disable ?>/>
+                                    </div>               
+                                </div>       
+                                <div class="field reorder-level">
+                                    <label class="label" for="reorder-level">
+                                        <span><?= __('Reorder Level') ?></span>
+                                    </label>
+                                    <div class="control">
+                                        <input class="input-text" type="text" id="reorder-level" name="vendorproductreorder_level" value="<?= number_format($collection['reorder_level'], 2, '.', ''); ?>" <?= $disable ?>/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quick-edit-row">
+                                <div class="field date-field-wrapper">
+                                <label class="label" for="Sale Date">
+                                    <span><?= __('Sale Date') ?></span>
+                                </label>
+                                    <div class="control info" id="nonlive-special-price-date-range">
+                                <div class="from-date date-field special-from-date mb10">
+                                    <label for="special-from-date"><span><?= __('Sale Start Date') ?>:</span></label>
+                                     <div class="date-field-container">
+                                    <input class="input-text nonlivespecial_from_date"
+                                           type="text"
+                                           id="nonlivespecial-from-date"
+                                           name="nonlivespecial_from_date"
+                                           value="<?php if ($collection['special_from_date']): ?><?= $block->getDateFromate($collection['special_from_date']); ?><?php endif; ?>"
+                                        <?= $disable ?>
+                                           />
+                                    <span id="date_from_advice"></span>
+                                </div>
+                                </div>
+                                <div class="to-date date-field special-to-date">
+                                    <label for="special-to-date"><span><?= __('Sale End Date') ?>:</span></label>
+                                 <div class="date-field-container">
+                                 <input class="input-text"
+                                           type="text"
+                                           id="nonlivespecial-to-date"
+                                           name="nonlivespecial_to_date"
+                                           value="<?php if ($collection['special_to_date']): ?><?= $block->getDateFromate($collection['special_to_date']); ?><?php endif; ?>"
+                                     <?= $disable ?>
+                                           />
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                            </fieldset>   
+                        </div>
+                    </div>
+
+                    <?php if (!$isView): ?>
+                        <div class="rbpanel-footer">
+                            <div class="actions-toolbar popup-actions-toolbar">
+                                <div class="primary">
+                                    <button id="vendornonlive_ajax" type="button" title="<?= __('Submit') ?>" class="action button primary  btn-submit">
+                                        <span><?= __('Submit') ?></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </section>          
+    </form>
+<script type="text/javascript">
+    require([
+        'jquery', /* jquery Library */
+        "mage/calendar", /* Calender widget */
+        'mage/translate', /* Magento text translate (Validation message translte as per language) */
+        'mage/mage',
+        'mage/validation'
+    ], function ($) {
+        $.validator.addMethod(
+            'validate-less-than-price', function (v, elm) {
+                var priceFieldId = $(elm).attr('id').toString().replace('special-', '');
+                var price = $('#' + priceFieldId).val();
+                return ($.mage.isEmptyNoTrim(v) || parseFloat(v) < parseFloat(price))
+            }, "<?= __('Please enter special price less than price.')?>"
+        );
+        $("#vendornonlive_ajax").click(function () {
+            $('#vendornonliveedit').submit();
+        });
+        $("#nonlive-special-price-date-range").dateRange({
+            buttonText: "<?= __('Select Date') ?>",
+            showOn: "button",
+            from: {
+                id: "nonlivespecial-from-date"
+            },
+            to: {
+                id: "nonlivespecial-to-date"
+            }
+        });
+    });
+</script>
+    <?php } ?>
+<?php } ?>

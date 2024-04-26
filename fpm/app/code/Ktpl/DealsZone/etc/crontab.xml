@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Krish TechnoLabs, All rights reserved.
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+	<group id="default">
+		<job instance="Ktpl\DealsZone\Cron\AssignProduct" method="execute" name="ktpl_dealszone_cron">
+			<schedule>0 0 * * *</schedule>
+		</job>
+	</group>
+</config>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="offerpage" resource="default" engine="innodb" comment="Offer Page">
+        <column xsi:type="int" name="offerpage_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Offer Page Id"/>
+        <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Offer Title"/>
+        <column xsi:type="varchar" name="default_image" nullable="true" length="255" comment="Default Image"/>
+        <column xsi:type="text" name="additional_info" nullable="true" comment="Additional Info"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" comment="Status" default="0" nullable="true"/>
+        <column xsi:type="smallint" name="device" padding="5" unsigned="true" comment="Desktop:0, Mobile:1" default="0" nullable="true"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="offerpage_id"/>
+        </constraint>
+        <index referenceId="OFFER_PAGE_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+        <index referenceId="OFFER_PAGE_DEVICE" indexType="btree">
+            <column name="device"/>
+        </index>
+    </table>
+</schema>

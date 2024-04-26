@@ -1,0 +1,47 @@
+<script type="text/javascript">
+    function isIosMobileDevice() {
+        console.log('isIosMobileDevice');
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        return (
+            userAgent.match(/iPad/i) ||
+            userAgent.match(/iPhone/i) ||
+            userAgent.match(/iPod/i)
+        );
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    document.onreadystatechange = function(e) {
+        if (document.readyState === "complete") {
+            if (isIosMobileDevice()) {
+                var url = window.location.href;
+
+                var awrfurl = getCookie('rafvalue');
+
+                if(awrfurl != ''){
+
+                    var splittedArr = url.split("https://");
+                    var newurl = `tamata://${splittedArr[1]}`+`?awraf=`+awrfurl
+                    var name = 'rafvalue';
+                    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                    setTimeout(function () { window.location = url; }, 25);
+                    window.location = newurl;
+                }
+            }
+        }
+    }
+</script>

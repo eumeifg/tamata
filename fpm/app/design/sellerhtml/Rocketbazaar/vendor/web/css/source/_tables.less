@@ -1,0 +1,608 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .table-wrapper {
+        .lib-css(background, @color-white);
+        margin-bottom: @indent__base;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    table {
+        .lib-table-caption();
+    }
+
+    .table {
+      .lib-table();
+      .lib-table-bordered();
+      .lib-table-striped();
+      .lib-table-hover();
+      .lib-table-background-color();
+      .lib-table-typography(
+            @_table-th-color: @color-white,
+          );
+      .lib-table-overflow(); 
+       thead {
+         tr {
+            th {
+              .lib-css(border-color, #666);
+              &.actions,
+              &.action {
+               .lib-css(text-align, center);
+              }
+
+              &.mass-action {
+                text-align:center;
+                   [type="checkbox"]:not(:checked) + label, [type="checkbox"]:checked + label {
+                    padding-left: 16px;
+                    margin-left: 0;
+                    &:before,
+                    &:after {
+                      top:0;
+                    }
+                  }
+            }
+             &.status {
+               .lib-css(text-align, center);
+             }
+
+             &.sort-order-field,
+             &.sortable {
+               cursor: pointer;
+               position: relative;
+              &.sort-asc,
+              &.ascend {
+                padding-right: 27px;
+                .lib-icon-font (
+                @icon-arrow-up-thin,
+                @_icon-font-size: 14px,
+                @_icon-font-margin: 0px 0px 0 0,
+                @_icon-font-position: after,
+                @_icon-font-display:table-cell,
+            );
+                &:after {
+                  position: absolute;
+                  right: 10px;
+                  top: 12px;
+                }
+
+               }
+
+              &.sort-desc,
+              &.descend {
+                padding-right: 27px;
+                .lib-icon-font (
+                  @icon-arrow-down-thin,
+                  @_icon-font-size: 14px,
+                  @_icon-font-margin: 0px 0px 0 0,
+                  @_icon-font-position: after,
+                 @_icon-font-display:table-cell,
+
+            );
+                  &:after {
+                  position: absolute;
+                  right: 10px;
+                  top: 13px;
+                }
+
+                 }
+
+
+             }
+            a {
+              color: @color-white;
+              &:hover {
+                text-decoration:none;
+              }
+
+            }
+
+             &:hover {
+               background: darken(@table-head__background-color, 15%);
+             }
+
+             }
+
+         }
+
+       }
+
+        tbody {
+          tr {
+            th {
+              .lib-css(color, @color-gray20);
+            }
+
+            td {
+                vertical-align: middle;
+              &.productimage, &.product-thumb {
+                width: 15rem;
+                text-align:center;
+                img {
+                  .lib-css(border, 1px solid @border-color__base);
+                  .lib-css(padding, 1px);
+                  .lib-css(width, 9rem);
+                  .lib-css(background, @color-white);
+
+                }
+
+              }
+              &.data-grid-checkbox-cell {
+                  vertical-align: middle;
+                  width: 50px;
+                  text-align:center;
+
+                  [type="checkbox"]:not(:checked) + label, [type="checkbox"]:checked + label {
+                    padding-left: 16px;
+                    margin-left: 0;
+
+                    &:before,
+                    &:after {
+                      top:0;
+                    }
+
+                  }
+
+                }
+              &.data-grid-thumbnail-cell {
+                  text-align:center;
+                  width: 7rem;
+                  img {
+                    border: 1px solid @border-color__base;
+                    max-width: 100px;
+                    padding: 2px;
+                  }
+                }
+
+              &.data-grid-id-cell {
+                  text-align:left;
+                 width: 11rem;
+                }
+              &.data-grid-name-cell {
+                  text-align:left;
+                 width: 11rem;
+                }  
+              &.data-grid-date-cell {
+                  text-align:left;
+                 width: 18rem;
+                }
+              &.data-grid-sku-cell {
+                  text-align:left;
+                 width: 15rem;
+                }
+              &.data-grid-qty-cell {
+                  text-align:left;
+                  width: 7rem;
+                }
+              &.data-grid-price-cell {
+                  text-align:left;
+                  width: 10rem;
+
+                }
+              &.data-grid-special-price-cell {
+                  text-align:left;
+                  width: 12rem;
+                }
+
+                &.data-grid-status-cell {
+                 text-align:center;
+                  width: 15rem;
+                  .data-grid-cell-content {
+                    display:block;
+                  }
+
+                }
+                &.data-grid-email-cell {
+                  width: 20rem;
+                  white-space: nowrap;
+                }
+                &.data-grid-product-name-cell {
+                  width: 18rem;
+                }
+                
+                &.data-grid-category-cell {
+                  white-space: nowrap;
+                }
+              &.data-grid-actions-cell {
+                  text-align:center;
+                  width: 10rem;
+                  a.action {
+                    .lib-button-primary(
+                        @_button-border: 1px solid @color-blue1,
+                        @_button-border-hover: 1px solid @color-blue1,
+                        @_button-border-active: 1px solid @color-blue1,
+                    );
+                    .lib-button-s();
+                    .lib-css(margin, 2px);
+                    .lib-css(padding, 4px 8px 4px 8px);
+                    .lib-css(border-radius, 2px);
+                    white-space: nowrap;
+                     &:hover {
+                       text-decoration: none;
+                     }
+                    &.delete {
+                    .lib-button-primary(
+                        @_button-background: @color-gray40,
+                        @_button-border: 1px solid @color-gray40,
+                        @_button-color: @color-white,
+                        @_button-color-hover: @color-gray40,
+                        @_button-background-hover: @color-white,
+                        @_button-border-hover: 1px solid @color-gray40,
+                        @_button-color-active: @color-white,
+                        @_button-background-active: @color-gray40,
+                        @_button-border-active: 1px solid @color-gray40,
+                    );
+                    box-shadow:0 0 0 0 @color-gray40 inset;
+                    transition-duration :0.7s;
+                   &:hover {
+                      box-shadow:0 100px 0 0 #fff inset;
+                   }
+                    .lib-button-s();
+                    }
+                  }
+                  button.action {
+                    .lib-css(margin, 5px);
+                    .lib-font-size(11);
+                    .lib-css(padding, @indent__xs - 1 @indent__s - 2);
+                    .lib-css(text-transform, none);
+                    .lib-css(line-height, 12px);
+                    .lib-css(border-width, 1px);
+                    &.button-s {
+                      .lib-button-s();
+                      min-width: 70px;
+                    }
+                  }
+
+                }
+            &.data-grid-actions-multiple-cell {
+              width: 18rem;
+              .seperator {
+                margin: 0px 2px;
+                display: none;
+              }
+            }
+            &.data-grid-product-name-cell {
+                text-align:left;
+                width: 20rem;
+            }
+            &.data-grid-category-cell {
+                text-align:left;
+                white-space: nowrap;
+               .breadcrumbs {
+                  .lib-breadcrumbs(
+                  @_icon-font: @breadcrumbs-icon__font,
+                  @_icon-font-size: 11px,
+                 );
+               }
+            }
+            &.data-grid-customer-name {
+                width: 20rem;
+            }
+            &.data-grid-rating-cell {
+                width: 10rem;
+            }
+            &.col-action {
+                  vertical-align: top;
+                  width: 4.2rem;
+                  text-align:center;
+            }
+              &.col-vendor-sku {
+                  text-align:left;
+                 width: 25rem;
+                }
+
+            &.col-condition {
+                  vertical-align: top;
+                  width: 15rem;
+                  vertical-align: middle;
+            }
+              &.col-price,
+              &.col-special-price {
+                  text-align:left;
+                  width: 12rem;
+                }
+              &.col-special-from-date,
+              &.col-special-to-date {
+                  text-align:left;
+                  width: 15rem;
+                }
+              &.col-warranty-type {
+                 text-align:left;
+                  width: 15rem;
+              }
+              &.col-warranty-description {
+                 text-align:left;
+                  width: 25rem;
+              }
+
+             &.col-neutral {
+                .lib-css(color, @color-neutral);
+                .lib-css(font-weight, @font-weight__bold);
+             }
+
+             &.col-negative {
+                .lib-css(color, @color-negative);
+                .lib-css(font-weight, @font-weight__bold);
+             }
+
+             &.col-positive {
+               .lib-css(color, @color-positive);
+               .lib-css(font-weight, @font-weight__bold);
+             }
+
+             div.data-grid-cell-content{
+                overflow: hidden;
+                width: 100%;
+                display: inline-block;
+
+                 input[type="text"],
+                 input[type="number"] {
+                    .lib-css(min-width, 150px); 
+                  }
+                select {
+                    .lib-css(min-width, 150px);
+                  }                  
+
+                div.mage-error:empty {
+                  display: none;
+                }
+             }
+
+              span.status {
+                   .lib-css(color, @color-white);
+                   .lib-css(border-radius, 2px);
+                   .lib-css(padding, 2px 10px);
+                   .lib-css(display, inline-block);
+                   .lib-css(text-shadow, 0px 1px 1px rgba(0, 0, 0, 0.2));
+                    .lib-css(background, @color-gray40);
+
+                  &.pending {
+                   .lib-css(background, @color-pending);
+                  }
+
+                  &.canceled {
+                   .lib-css(background, @color-canceled);
+                  }
+
+                  &.completed,
+                  &.processed{
+                   .lib-css(background, @color-completed);
+                  }
+
+              }
+
+            }
+
+          }
+
+        }
+     &.variant-table-grid {
+              > tbody > tr > td {
+                .remove-row {
+                    .lib-button(
+                            @_button-icon-use: true,
+                            @_button-font-content:@icon-remove-full,
+                            @_button-icon-font-text-hide: true,
+                            @_button-color: @primary__color,
+                        );
+                        .lib-button-reset();
+                        margin: 8px 0 0 0 ;
+                   &:focus {
+                     color:@primary__color;
+                   }
+
+                }
+
+              }
+
+     }
+
+
+
+   }
+
+
+html.rtl-layout {
+  .table {
+         thead {
+           tr {
+              th {
+   
+                &.mass-action {
+                  text-align:center;
+                     [type="checkbox"]:not(:checked) + label, [type="checkbox"]:checked + label {
+                      padding-left: 0px;
+                      margin-left: 0;
+                      padding-right: 16px;
+                      margin-right: 0;
+
+       
+                    }
+              }
+
+               &.sort-order-field,
+               &.sortable {
+                  &.sort-asc,
+                  &.ascend {
+                    &:after {
+                      right: auto;
+                      left: 10px;
+                    }
+
+                   }
+
+                &.sort-desc,
+                &.descend {
+                      &:after {
+                      right: auto;
+                      left: 10px;
+                    }
+                   }
+               }
+               }
+
+           }
+
+         }
+
+          tbody {
+            tr {
+              th {}
+
+              td {
+                
+                &.data-grid-checkbox-cell {
+                    vertical-align: middle;
+                    width: 50px;
+                    text-align:center;
+
+                    [type="checkbox"]:not(:checked) + label, [type="checkbox"]:checked + label {
+                      padding-left: 0;
+                      margin-left: 0;
+                      padding-right: 16px;
+                      margin-right: 0;                      
+
+                    }
+
+                  }
+ 
+
+                &.data-grid-id-cell {
+                    text-align:right;
+                  }
+                &.data-grid-date-cell {
+                    text-align:right;
+                  }
+                &.data-grid-sku-cell {
+                    text-align:right;
+
+                  }
+                &.data-grid-qty-cell {
+                    text-align:right;
+                  }
+                &.data-grid-price-cell {
+                    text-align:right;
+                  }
+                &.data-grid-special-price-cell {
+                    text-align:right;
+                  }
+              
+              &.data-grid-product-name-cell {
+                  text-align:right;
+              }
+              &.data-grid-category-cell {
+                  text-align:right;
+              }
+              
+              &.col-vendor-sku {
+                  text-align:right;
+                }
+                &.col-price,
+                &.col-special-price {
+                    text-align:right;
+                  }
+                &.col-special-from-date,
+                &.col-special-to-date {
+                    text-align:right;
+                  }
+                &.col-warranty-type {
+                   text-align:right;
+                }
+                &.col-warranty-description {
+                   text-align:right;
+                }
+
+              }
+
+            }
+
+          }
+       
+
+     }
+}
+
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .table-wrapper {
+        .lib-table-overflow();
+        position: relative; // to hide unnecessary horizontal scrollbar in Safari
+        .table {
+            &:not(.cart) {
+                &:not(.totals) {
+                    &:not(.table-comparison) {
+                        tbody > tr {
+                            > td:first-child {
+                                padding-top: @indent__base;
+                            }
+                            > td:last-child {
+                                padding-bottom: @indent__base;
+                            }
+                        }
+                        &.additional-attributes {
+                            tbody {
+                                th {
+                                    &:extend(.abs-no-display-s all);
+                                }
+                                td {
+                                    &:last-child {
+                                        border: none;
+                                        padding: 0 0 @indent__xs;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .table {
+            &:not(.totals){
+                &:not(.table-comparison) {
+                    tfoot {
+                        display: block;
+                        tr {
+                            display: block;
+                            &:extend(.abs-add-clearfix-mobile all);
+                            &:first-child {
+                                th,
+                                td {
+                                    padding-top: @indent__base;
+                                }
+                            }
+                        }
+                        th {
+                            box-sizing: border-box;
+                            float: left;
+                            padding-left: 0;
+                            padding-right: 0;
+                            text-align: left;
+                            width: 70%;
+                        }
+                        td {
+                            box-sizing: border-box;
+                            float: left;
+                            padding-left: 0;
+                            padding-right: 0;
+                            text-align: right;
+                            width: 30%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

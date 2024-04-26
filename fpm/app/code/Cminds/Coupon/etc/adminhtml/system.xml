@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="cminds"
+                 translate="label"
+                 sortOrder="900"
+                 class="cminds-logo">
+                <label>Cminds</label>
+        </tab>
+        <section id="coupon_error" translate="label" type="text" sortOrder="307" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Custom Coupons Error Messages</label>
+            <tab>cminds</tab>
+            <resource>Magento_Sales::config_sales</resource>
+            <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General configuration</label>
+                <field id="enable_coupon_error" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Module enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="coupon_not_exist" translate="label comment" sortOrder="2" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message when coupon does not exist</label>
+                    <comment>You can use shortcode %s to display the coupon code used by the customer</comment>
+                </field>
+                <field id="coupon_not_apply_rule" translate="label comment" sortOrder="3" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Coupon code exist but do not apply to the rule conditions</label>
+                    <comment>You can use shortcode %s to display the coupon code used by the customer</comment>
+                </field>
+                <field id="coupon_expired" translate="label comment" sortOrder="4" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Coupon code exist but is expired</label>
+                    <comment>You can use shortcode %s to display the coupon code used by the customer</comment>
+                </field>
+                <field id="customer_not_belong_group" translate="label comment" sortOrder="5" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer doesn't belong to the assigned customer group</label>
+                    <comment>You can use shortcode %s to display the coupon code used by the customer</comment>
+                </field>
+                <field id="coupon_used_multiple" translate="label comment" sortOrder="6" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message when coupon was used more than it can be used</label>
+                    <comment>You can use shortcode %s to display the coupon code used by the customer</comment>
+                </field>
+                <field id="coupon_used_multiple_customer_group" translate="label comment" sortOrder="7" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message when coupon was used more than it can be used in customer group</label>
+                    <comment>You can use shortcode %s to display the coupon code used by the customer</comment>
+                </field>
+                <field id="coupon_other_messages" translate="label comment" sortOrder="8" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Any other error messages applies</label>
+                    <comment>You can use shortcode %s to display the coupon code used by the customer</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

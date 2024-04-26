@@ -1,0 +1,77 @@
+{
+    "ktpl_bannerslider_banner": {
+        "column": {
+            "banner_id": true,
+            "name": true,
+            "status": true,
+            "type": true,
+            "default_template": true,
+            "content": true,
+            "image": true,
+            "url_banner": true,
+            "title": true,
+            "banner_text": true,
+            "newtab": true,
+            "created_at": true,
+            "updated_at": true,
+            "page_type": true,
+            "data_id": true,
+            "sort_order": true
+        },
+        "index": {
+            "KTPL_BANNERSLIDER_BANNER_NAME_IMAGE_URL_BANNER": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "ktpl_bannerslider_slider": {
+        "column": {
+            "slider_id": true,
+            "name": true,
+            "status": true,
+            "location": true,
+            "store_ids": true,
+            "customer_group_ids": true,
+            "priority": true,
+            "effect": true,
+            "autowidth": true,
+            "autoheight": true,
+            "design": true,
+            "loop": true,
+            "lazyload": true,
+            "autoplay": true,
+            "autoplaytimeout": true,
+            "nav": true,
+            "dots": true,
+            "is_responsive": true,
+            "responsive_items": true,
+            "from_date": true,
+            "to_date": true,
+            "created_at": true,
+            "updated_at": true,
+            "visible_devices": true,
+            "autoplayhoverpause": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "ktpl_bannerslider_banner_slider": {
+        "column": {
+            "slider_id": true,
+            "banner_id": true,
+            "position": true
+        },
+        "index": {
+            "KTPL_BANNERSLIDER_BANNER_SLIDER_SLIDER_ID": true,
+            "KTPL_BANNERSLIDER_BANNER_SLIDER_BANNER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_0171260D9E7C2C5B8CD004BFA1D2D278": true,
+            "FK_9FA6B75A952C347768A5747F47BBD20B": true,
+            "KTPL_BANNERSLIDER_BANNER_SLIDER_SLIDER_ID_BANNER_ID": true
+        }
+    }
+}

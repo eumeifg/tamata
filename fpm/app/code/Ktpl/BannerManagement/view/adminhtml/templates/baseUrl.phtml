@@ -1,0 +1,17 @@
+<?php
+
+$defaultImages=$block->getImages();
+?>
+<script>
+  window.defaultTemplate1 = '<?php echo $defaultImages[0]?>';
+  window.defaultTemplate2 = '<?php echo $defaultImages[1]?>';
+  window.defaultTemplate3 = '<?php echo $defaultImages[2]?>';
+  window.defaultTemplate4 = '<?php echo $defaultImages[3]?>';
+  window.defaultTemplate5 = '<?php echo $defaultImages[4]?>';
+  
+  window.defaultContent1 =  '<?php echo $block->getTemplateHtml(1); ?>';
+  window.defaultContent2 =  '<?php echo $block->getTemplateHtml(2); ?>';
+  window.defaultContent3 =  '<?php echo $block->getTemplateHtml(3); ?>';
+  window.defaultContent4 =  '<?php echo $block->getTemplateHtml(4); ?>';
+  window.defaultContent5 =  '<?php echo $block->getTemplateHtml(5); ?>';
+</script>

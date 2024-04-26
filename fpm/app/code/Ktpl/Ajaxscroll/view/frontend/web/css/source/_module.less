@@ -1,0 +1,49 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+
+//
+//    Common
+//--------------------------------------
+
+& when (@media-common = true) {
+.ias-spinner,
+.ias-noneleft,
+.ias-trigger,
+.ias-trigger-next {
+  clear:both;
+  padding: 10px 0;
+}
+
+
+}
+
+//
+//    Mobile
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {}
+
+//
+//    tablet
+//--------------------------------------
+@media all and (max-width: @screen__l - 1) and (min-width: @screen__m){}
+
+
+
+
+//
+//    Mobile
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {}
+
+@media all and (max-width:@screen__l) and (min-width: @screen__m){}
+
+
+//
+//    Desktop
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {}
+
+

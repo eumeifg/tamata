@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">    
+    <preference for="Magedelight\Sales\Model\Order\Pdf\Invoice" type="Ktpl\BarcodeGenerator\Model\Order\Pdf\Invoice"/>
+    <!-- <preference for="MDC\Sales\Model\Sales\Order\Pdf\Invoice" type="Ktpl\BarcodeGenerator\Model\Sales\Order\Pdf\Invoice"/> -->
+
+</config>

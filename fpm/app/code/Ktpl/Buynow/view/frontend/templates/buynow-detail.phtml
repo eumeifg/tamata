@@ -1,0 +1,53 @@
+<?php $formId = "product_addtocart_form"; ?>
+<div id="buynowbtnmobile" style="display:none;">
+	
+    <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Buy Now') ?>" id="buy-now" class="action primary tocart addtobagbtn" data-mage-init='
+    {
+        "Ktpl_Buynow/js/buy-now": {
+            "form": "#<?php echo $formId; ?>"
+        }
+    }
+    '>
+    <span><?php /* @escapeNotVerified */ echo __('Buy Now') ?></span>
+    </button>
+</div>
+    <script type="text/javascript">
+         require(["jquery"],function($) {
+            $(document).ready(function () {
+               /* $("#product-addtobag-button").click(function() {
+                $( "#product-addtocart-button" ).trigger( "click" );
+            });*/
+    });
+});
+</script>
+<script type="text/javascript">
+require(["jquery"],function($) {
+    $(document).ready(function () {
+        $("#buynowbtnmobile").hide();
+        $("#product-addtobag-button").click(function() {
+            $( "#product-addtocart-button" ).trigger( "click" );
+        });
+        
+        $('.product-info-main .product.attribute.description h3').click(function () {
+            $('.spec-content').toggleClass('active');
+            $(this).toggleClass('active');
+        });
+
+        $('.product-info-main .product.data.items #tab-label-reviews').click(function () {
+            $(this).siblings('.review-add').toggleClass('active');
+            $(this).toggleClass('active');
+        });
+
+        $('.product-info-main .product .review-list .block-title').click(function () {
+            $(this).next('.block-content').toggleClass('active');
+            $(this).toggleClass('active');
+        });
+        $('#buynowbtnmobile').contents().appendTo('.box-tocart');
+        if($(".box-tocart" + name).length != 0) {
+            $("#buynowbtnmobile").show();
+         //$("#buynowbtnmobile").appendTo(".media");
+        }
+
+    });
+});
+</script>

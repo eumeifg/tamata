@@ -1,0 +1,82 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+$pricingHelper = $this->helper(\Magedelight\Catalog\Helper\Pricing\Data::class);
+$summarizedOrderData = $block->getSummarizedOrderData();
+if(count($summarizedOrderData)) {
+    ?>
+    <table border="1 solid">
+        <tr>
+            <td>
+                <strong>
+                    <?= __('Product Image'); ?>
+                </strong>
+            </td>
+            <td>
+                <strong>
+                    <?= __('Vendor Product'); ?>
+                </strong>
+            </td>
+            <td>
+                <strong>
+                    <?= __('Barcode'); ?>
+                </strong>
+            </td>
+            <td>
+                <strong>
+                    <?= __('Qty'); ?>
+                </strong>
+            </td>
+            <td>
+                <strong>
+                    <?= __('Subtotal'); ?>
+                </strong>
+            </td>
+        </tr>
+        <?php
+        foreach ($summarizedOrderData as $vendorSku => $data) {
+            $productName = $data['product_name'];
+            ?>
+            <tr>
+                <td style="text-align:center;">
+                    <a href="<?= $data['image_url']; ?>" target="_blank">
+	        <span class="product-image-container" style="width:75px;">
+	            <img src="<?= $data['image_url'] ; ?>" alt="<?= $productName; ?>" title="<?= $productName; ?>" max-width="75" max-height="75" style="border: 1px solid #e0e0e0"  />
+	        </span>
+                    </a>
+                </td>
+                <td>
+                    <?php
+                    echo '<a href="'.$data['product_storefront_url'].'" target="_blank">'.$productName.'</a>';
+                    if(isset($data['options'])) {
+                        echo '<dl>';
+                        $options = $data['options'];
+                        foreach ($options as $option) {
+                            echo '<dt style="display:inline !important;">'.$option["label"].'</dt>';
+                            echo '<dd style="margin-bottom: 5px;">'.$option["value"].'</dd>';
+                        }
+                        echo '</dl>';
+                    }
+                    ?>
+                </td>
+                <td>
+                    <?= $data['barcode']; ?>
+                </td>
+                <td>
+                    <?= $data['qty']; ?>
+                </td>
+                <td>
+                    <?= $pricingHelper->format($data['row_total'], false, null, null, $block->getOrderCurrency()); ?>
+                </td>
+            </tr>
+        <?php } ?>
+    </table>
+<?php } ?>

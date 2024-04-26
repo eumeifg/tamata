@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">tookan_returns_export.tookan_returns_export_grid_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>tookan_returns_export_columns</spinner>
+        <deps>
+            <dep>tookan_returns_export.tookan_returns_export_grid_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="tookan_returns_export_grid_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <updateUrl path="mui/index/render"/>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">increment_id</param>
+            </storageConfig>
+        </settings>
+        <aclResource>Ktpl_Tookan::returns_export</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="tookan_returns_export_grid_data_source">
+            <settings>
+                <requestFieldName>increment_id</requestFieldName>
+                <primaryFieldName>increment_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button"/>
+        <filters name="listing_filters" />
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="tookan_returns_export_columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">tookan_returns_export.tookan_returns_export.tookan_returns_export_columns.actions</item>
+                    <item name="target" xsi:type="string">applyAction</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">view</item>
+                        <item name="1" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>increment_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="increment_id">
+            <settings>
+                <dataType>actions</dataType>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="order_comment"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\OrderComment"-->
+            <settings>
+                <label translate="true">Task Description*</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="customer_name"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\CustomerName"-->
+            <settings>
+                <label translate="true">Customer Name*</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="customer_email"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\CustomerEmail"-->
+            <settings>
+                <label translate="true">Customer Email*</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="delivery_street_address"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\DeliveryStreetAddress"-->
+            <settings>
+                <label translate="true">Street Level Address*</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="delivery_city"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\DeliveryCity"-->
+            <settings>
+                <label translate="true">City*</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="delivery_pincode"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\DeliveryPincode"-->
+            <settings>
+                <label translate="true">Zipcode/ Pincode*</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="delivery_country"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\DeliveryCountry"-->
+            <settings>
+                <label translate="true">Country*</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="delivery_latitude"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\DeliveryLatitude"-->
+            <settings>
+                <label translate="true">Latitude</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="delivery_longitude"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\DeliveryLongitude"-->
+            <settings>
+                <label translate="true">Longitude</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="delivery_mobile"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\DeliveryMobile"-->
+            <settings>
+                <label translate="true">Customer Phone Number</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+
+        <column name="delivery_time">
+            <settings>
+                <label translate="true">Delivery Date and Time (MM/DD/YYYY) (HH:MM:SS)*</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="agent_id">
+            <settings>
+                <label translate="true">Agent ID (Settings > Agents)</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="has_pickup">
+            <settings>
+                <label translate="true">has_pickup (1=yes)</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="vendor_email"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\VendorEmail"-->
+            <settings>
+                <label translate="true">Merchant Email</label>
+                <filter>text</filter>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="vendor_name"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\VendorName"-->
+            <settings>
+                <label translate="true">Merchant Name</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="pickup_street_address"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\PickupStreetAddress"-->
+            <settings>
+                <label translate="true">P_Street Level Address*</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="pickup_city"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\PickupCity"-->
+            <settings>
+                <label translate="true">P_City*</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="pickup_pincode"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\PickupPincode"-->
+            <settings>
+                <label translate="true">P_Zipcode/ Pincode*</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="pickup_country"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\PickupCountry"-->
+            <settings>
+                <label translate="true">P_Country*</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="pickup_latitude"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\PickupLatitude"-->
+            <settings>
+                <label translate="true">P_Latitude</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="pickup_longitude"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\PickupLongitude"-->
+            <settings>
+                <label translate="true">P_Longitude</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="vendor_mobile"> <!-- class="Ktpl\Tookan\Ui\Component\Listing\Column\VendorMobile"-->
+            <settings>
+                <label translate="true">Phone Number*</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="pickup_time">
+            <settings>
+                <label translate="true">Pickup Date and Time (MM/DD/YYYY) (HH:MM:SS)*</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="p_order_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">P_Order_id</label>
+            </settings>
+        </column>
+        <column name="d_order_id">
+            <settings>
+                <label translate="true">D_Order_id</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="tags">
+            <settings>
+                <label translate="true">Tags</label>
+                <visible>false</visible>
+            </settings>
+        </column>
+    </columns>
+</listing>

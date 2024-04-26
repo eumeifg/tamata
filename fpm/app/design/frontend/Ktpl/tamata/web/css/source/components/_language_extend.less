@@ -1,0 +1,126 @@
+& when (@media-common =true) {
+    
+    html[lang="ar"] {
+
+        .navigation {
+            li.level0 {
+                > .megamenu-content {
+                    .megamenu-container {
+                        border-left: 1px solid #f2f2f2;
+                    }
+                    > .megamenu-container {
+                        > ul {
+                            border-right: none;
+                        }
+                    }
+                }
+            }
+        }
+        .menu-top-partners {
+            left: 0;
+            right: auto;
+            padding: 0 15px 0 0;
+        }
+        
+        .navigation {
+            .level0.parent {
+                .link-arrow {
+                    > .level-top {
+                        &:after {
+                            margin: 0 7px 0 0;
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+            ul.level0 {
+                li.level1 {
+                    li.level2 {
+                        > .link-arrow {
+                            a {
+                                padding: 7px 15px 7px 5px;
+                            }
+                        }
+                    }
+                }
+            }
+            .level0 {
+                .submenu {
+                    a {
+                        padding: 5px 15px 5px 5px;
+                    }
+                }
+            }
+            > ul {
+                li {
+                    text-align: right;
+                }
+            }
+            li.level0 {
+                > .megamenu-content {
+                    text-align: right;
+                }
+            }
+        }
+    }   
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {    
+    
+    html[lang="ar"] {
+        nav.navigation .level0.viewed .link-arrow>.level-top:after {
+            margin: 0 8px 0 0px;    
+        }
+        .navigation {
+            .level0.zone {
+                margin-left: 0;
+                margin-right: @indent__l;
+            }
+        }
+
+
+    }
+    
+
+}
+
+
+@media only screen and (max-width: 1279px) and (min-width: 1023px)  {
+
+    html[lang="ar"] {
+       nav.navigation ul.level0 li.hover>.level1.submenu {
+            width: auto !important;
+            right: auto;
+            left: @indent__xs;
+        }
+        .navigation {
+            .menu-top-partners {
+                float: right;
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+
+   
+}
+
+
+//
+//  Mobile
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
+    
+   
+
+}
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__xs) {
+
+}

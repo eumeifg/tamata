@@ -1,0 +1,4 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Integration\Model\CustomerTokenService" type="MDC\Customerapproval\Model\CustomerTokenService" />
+    <preference for="Magedelight\SocialLogin\Model\SocialLoginApiServices" type="MDC\Customerapproval\Model\SocialLoginApiServices" />
+</config>

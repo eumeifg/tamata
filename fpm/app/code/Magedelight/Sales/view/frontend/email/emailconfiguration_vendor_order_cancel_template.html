@@ -1,0 +1,10 @@
+<!--@subject Order Cancel @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Hello %business_name" business_name=$business_name}}{{trans ","}}</p>
+<p>{{trans "We're contacting you about your order cancellation for"}} {{var increment_id}} {{trans "."}}</p>
+<p>{{trans "If you have paid for the item then the refund will be initiated shortly."}}</p>
+
+{{template config_path="design/email/footer_template"}}
+

@@ -1,0 +1,212 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+use Magedelight\Sales\Model\Order;
+use MDC\Sales\Model\Source\Order\PickupStatus;
+/* var $block \Magedelight\Sales\Block\Adminhtml\Sales\Order\View\Items */
+?>
+<?php 
+$_order = $block->getOrder();
+$helper = $this->helper('Magedelight\Vendor\Helper\Data');
+$catalogHelper = $this->helper('Magedelight\Catalog\Helper\Data');
+$historyHelper = $this->helper('MDC\Sales\Helper\Data');
+$_vendorItems = array();
+$i = 0;
+foreach ($_order->getItemsCollection() as $item) {
+    $vendorId = $item->getData('vendor_id');
+    if ($vendorId == null || $vendorId == '' || $vendorId == 0) {
+       continue;
+    }
+    ?>
+
+    <?php if ($item->getParentItem()) {
+        continue;
+    } else {
+        $i++;
+    }?>
+    <?php $_vendor = $block->getVendor($vendorId);?>
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-products">
+                <?php if ($_vendor) { ?>
+                    <?php $_vendorOrder = $block->getVendorOrder($_order->getId(), $_vendor->getId(), $item->getVendorOrderId());?>
+                    <?php $massCheckBox = true;
+                        if($_vendorOrder->getData('status') == Order::STATUS_CANCELED){
+                            $massCheckBox = false;
+                        }elseif($_vendorOrder->getData('status') == Order::STATUS_CLOSED){
+                            $massCheckBox = false;
+                        }elseif($_vendorOrder->getData('status') == Order::STATUS_COMPLETE){
+                            $massCheckBox = false;
+                        }
+                     ?>
+                    <?= __('Vendor: %1 (%2)', $helper->getVendorNameById($_vendor->getVendorId()),$_vendor->getName()) ?><span class="separator">|</span>
+                    <?= __('Vendor order: #%1', $_vendorOrder->getData('vendor_order_with_classification')) ?><span class="separator">|</span>
+                    <?php if($item->getSku() == $catalogHelper->getStoreCreditProduct()){
+                        echo __('Status: %1',ucwords($_vendorOrder->getData('status')));
+                    } elseif ($_vendorOrder->getData('status') === "processing" && $_vendorOrder->getData('is_confirmed') === "1") {
+                        $status = "Vendor confirmed";
+                        echo __('Status: %1', $status);
+                    } else if($_vendorOrder->getData('status') == Order::STATUS_CANCELED){
+                        echo __('Status: %1 (Cancelled By %2)', $_vendorOrder->getStatusLabel(), $_vendorOrder->getCancelledByEntity());
+                    } else { ?>
+                        <?= __('Status: %1', $_vendorOrder->getStatusLabel()); ?>
+                    <?php } ?><span class="separator">|</span>
+                        <?= __('Pickup status: %1', $block->getPickupStatusModel()->getPickupStatus($_vendorOrder->getData('pickup_status'))); ?>
+                        <?= $block->_getButtonsHtml($_vendorOrder, $_order, $vendorId, $item); ?>
+                <?php } else { echo __('Vendor does not exist.'); } ?>
+            </h4>
+        </div>
+    </div>
+
+    <div class="admin__table-wrapper table-wrapper order-items rb-order-items">
+        <table class="data table table-order-items rb-table-order-items data-table admin__table-primary edit-order-table">
+            <thead>
+            <tr class="headings">
+                <th class="col product col-product"><span>
+                    <?php /*if($_vendorOrder->getData('status') == Order::STATUS_PROCESSING || $_vendorOrder->getData('status') == Order::STATUS_PACKED):*/?>
+                    <?php if($massCheckBox):?>
+                        <input type="checkbox" name="vendor_order_id[]" value="<?php echo $item->getVendorOrderId(); ?>" />
+                    <?php endif;?>                     
+                    <?php /* @escapeNotVerified */ echo __('Product') ?></span></th>
+                <th class="col status col-status"><span><?php /* @escapeNotVerified */ echo __('Item Status') ?></span></th>
+                <th class="col original-price col-price-original"><span><?php /* @escapeNotVerified */ echo __('Original Price') ?></span></th>
+                <th class="col price col-price"><span><?php /* @escapeNotVerified */ echo __('Price') ?></span></th>
+                <th class="col qty col-ordered-qty"><span><?php /* @escapeNotVerified */ echo __('Qty') ?></span></th>
+                <th class="col subtotal col-subtotal"><span><?php /* @escapeNotVerified */ echo __('Subtotal') ?></span></th>
+                <th class="col tax-amount col-tax-amount"><span><?php /* @escapeNotVerified */ echo __('Tax Amount') ?></span></th>
+                <th class="col tax-percent col-tax-percent"><span><?php /* @escapeNotVerified */ echo __('Tax Percent') ?></span></th>
+                <th class="col discount-amount col-discont"><span><?php /* @escapeNotVerified */ echo __('Discount Amount') ?></span></th>
+                <th class="col discount-amount col-discont"><span><?php /* @escapeNotVerified */ echo __('Referral Discount') ?></span></th>
+                <th class="col row-total col-total last"><span><?php /* @escapeNotVerified */ echo __('Row Total') ?></span></th>
+            </tr>
+            </thead>
+                <tbody class="<?php /* @escapeNotVerified */ echo $i%2 ? 'even' : 'odd' ?>">
+                <?= $block->getItemHtml($item) ?>
+                <?= $block->getItemExtraInfoHtml($item) ?>
+                </tbody>
+        </table>
+    </div>
+    <?php
+    $_vendorOrder = $block->getVendorOrder($_order->getId(), $_vendor->getId(), $item->getVendorOrderId());
+    $vendorOrderId = $_vendorOrder->getData('increment_id');
+    $allOrderData = $historyHelper->getOrderProcessHistory($vendorOrderId);
+    if ($allOrderData) : ?>
+        <div class="custom_order_process_section">
+            <div class="admin__page-section-title">
+                <span class="title"><?php echo __("Order Process History"); ?></span>
+            </div>
+            <div class="custom_order_history_container" style="margin-bottom: 45px;">
+                <span><?php echo __("Vendor order ID: <b>%1</b>", $vendorOrderId); ?></span>
+                    <ul class="note-list" style="list-style: none;">
+                    <?php foreach ($allOrderData as $orderData) { ?>
+                        <li class="note-list-item">
+                            <span class="note-list-date">
+                                <?php
+                                    $orgDate = $historyHelper->formatDateToTimezone($orderData['updated_at'])
+                                    //$orgDate = $orderData['updated_at'];
+                                ?>
+                                <?= __('Order status changed from <b>%1</b> to <b>%2</b> at %3', $orderData['current_status'], $orderData['status_change_to'], $orgDate) ?>
+                            </span>
+                        </li>
+                    <?php } ?>
+                    </ul>
+             </div>
+        </div>
+    <?php endif; ?>
+<?php } ?>
+
+<script>
+    require([
+        'jquery'
+    ], function($) {
+
+        $(document).ready(function() {
+
+            $("#invoice_and_ship").on("click", function() {
+
+                var fields = $("input[name='vendor_order_id[]']:checked");
+                if (!fields.length) {
+                    alert('Please select any vendor order !');
+                    return false;
+                } else {
+                    var vendorOrderIds = new Array();
+                    $("input[name='vendor_order_id[]']:checked").each(function(i) {
+                        vendorOrderIds.push($(this).val());
+                    });
+
+                    $.ajax({
+                        url: "<?php echo $block->massInvoiceShipUrl()?>",
+                        showLoader: true,
+                        data: {
+                            form_key: window.FORM_KEY,
+                            vendor_order_id: vendorOrderIds
+                        },
+                        type: "POST",
+                        dataType: 'json',
+                        success: function(result) {
+                            location.reload();
+
+                        },
+                        error: function(error) {
+                            location.reload();
+                        }
+                    });
+
+
+                }
+            });
+
+
+            $("#mass_cancel").on("click", function() {
+
+                var fields = $("input[name='vendor_order_id[]']:checked");
+                if (!fields.length) {
+                    alert('Please select any vendor order !');
+                    return false;
+                } else {
+                    var vendorOrderIds = new Array();
+                    $("input[name='vendor_order_id[]']:checked").each(function(i) {
+                        vendorOrderIds.push($(this).val());
+                    });
+
+                    var order_id = $("input[name=order_id]").val();
+
+                    $.ajax({
+                        url: "<?php echo $block->massCancelUrl()?>",
+                        showLoader: true,
+                        data: {
+                            form_key: window.FORM_KEY,
+                            vendor_order_id: vendorOrderIds,
+                            order_id: order_id
+
+                        },
+                        type: "POST",
+                        dataType: 'json',
+                        success: function(result) {
+                             if (result.status) {
+                                location.reload();
+                            }
+
+                        },
+                        error: function(error) {
+                            if (!error.status) {
+                                location.reload();
+                            }
+                        }
+                    });
+
+
+                }
+            });
+
+        });
+
+    }); </script>

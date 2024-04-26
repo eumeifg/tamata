@@ -1,0 +1,255 @@
+<?php /** @var $block Magedelight\User\Block\Account\Dashboard */
+$response = $block->getVendorDashboard();
+?>
+<div class="vendor-dashboard-container">
+    <div class="row mb20">
+        <div class="row-gutter dashboard-sales-summary">
+            <?php if ($block->isOrderSectionAllowed()) { ?>
+            <div class="col-xs-12 col-md-4 col-lg-4 col-xl-2 mb10-md mb10-sm">
+                <div class="rbpanel">
+                    <?php
+                    if ($response->getAmountBalanceWithoutFormat() > 0) {
+                        $class = 'bg-success';
+                    } elseif ($response->getAmountBalanceWithoutFormat() == 0) {
+                        $class = 'bg-white';
+                    } else {
+                        $class = 'bg-danger';
+                    }
+                    ?>
+                    <div class="rbpanel-body pt25 minh125 text-center <?php echo $class ?>">
+                        <div class="summary-wrapper balance">
+                            <h2><?php echo $response->getAmountBalance(); ?></h2>
+                            <h6 class="text-success"><?php echo __('Balance') ?></h6>
+                            <?php if ($response->getAmountBalanceWithoutFormat() != 0) { ?>
+                            <div class="view-detail"><a href="<?php echo $response->getTransactionSummaryUrl() ?>"><?php echo __('View transactions') ?></a></div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-4 col-xl-2 mb10-md mb10-sm">
+                <div class="rbpanel">
+                    <div class="rbpanel-body pt35 minh125">
+                        <div class="summary-wrapper">
+                            <h2><?php echo $response->getProductsSold(); ?></h2>
+                            <h6 class="text-success"><?php echo __('Product Sold') ?></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-4 col-xl-2 mb10-md mb10-sm">
+                <div class="rbpanel">
+                    <div class="rbpanel-body pt35 minh125">
+                        <div class="summary-wrapper">
+                            <h2><?php echo $response->getLifeTimeSales(); ?></h2>
+                            <h6 class="text-success"><?php echo __('Life Time Sales') ?></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-4 col-xl-2 mb10-md mb10-sm">
+                <div class="rbpanel">
+                    <div class="rbpanel-body pt35 minh125">
+                        <div class="summary-wrapper">
+                            <h2><?php echo $response->getAverageOrder(); ?></h2>
+                            <h6 class="text-danger"><?php echo __('Average Orders') ?></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 col-lg-4 col-xl-2 mb10-md mb10-sm">
+                <div class="rbpanel">
+                    <div class="rbpanel-body pt35 minh125">
+                        <div class="summary-wrapper">
+                            <h2><?php echo $response->getAmountPaid(); ?></h2>
+                            <h6 class="text-danger"><?php echo __('Paid') ?></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+            <div class="col-xs-12 col-md-4 col-lg-4 col-xl-2 mb10-md mb10-sm">
+                <div class="rbpanel">
+                    <div class="rbpanel-body pt25 minh125">
+                        <div class="summary-wrapper">
+
+                            <?php
+                                $newRatingAvg = $response->getRatingAvg();
+                                $avgRat = $newRatingAvg['rating_avg'] / 20;
+                                $finalAvgRat = $avgRat * 100 / 5; ?>
+                                <div class="rating-summary rating-summary-box vender-display-list">
+                                    <div class="rating-result" title="<?php echo $finalAvgRat; ?>%">
+                                        <span class="rating-icon" style="width:<?php echo $finalAvgRat; ?>%">
+                                            <span>
+                                                <span itemprop="ratingValue"><?php echo $finalAvgRat; ?></span>% of <span itemprop="bestRating">100</span>                                                
+                                            </span>
+                                        </span>
+                                    </div>
+                                        <?php $avg = $newRatingAvg['rating_avg'] / 20; ?>
+                                    <div class="text-alert rating-result-text"><span class="rating-amount"><?php echo number_format($avg, 1); ?></span> <span class="rating-out-of"><?php echo __('Out of 5')?></span></div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb30">
+    <div class="row-gutter">
+        <?php if ($response['user']['isOrderSectionAllowed']) { ?>
+        <div class="col-xs-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="rbpanel">
+                <div class="rbpanel-heading pt10 pb10">
+                    <div class="row">
+                    <div class="row-gutter">
+                        <div class="col-md-6 col-lg-6 col-xl-6 pt10">
+                            <?php echo __('Orders Overview') ?>
+                        </div>
+                        <div class="col-md-6 col-lg-3 fright">
+                            <select name="period" id="order_amounts_period" onchange="changeDiagramsPeriod(this);" class="select admin__control-select">
+                                <option value="24h" <?php echo ($this->getRequest()->getParam('period') == '24h') ? 'selected="selected"' : '' ?>><?php echo __('Last 24 Hours') ?></option>
+                                <option value="7d" <?php echo ($this->getRequest()->getParam('period') == '7d') ? 'selected="selected"' : '' ?>><?php echo __('Last 7 Days') ?></option>
+                                <option value="1m" <?php echo ($this->getRequest()->getParam('period') == '1m') ? 'selected="selected"' : '' ?>><?php echo __('Current Month') ?></option>
+                                <option value="1y" <?php echo ($this->getRequest()->getParam('period') == '1y') ? 'selected="selected"' : '' ?>><?php echo __('YTD') ?></option>
+                                <option value="2y" <?php echo ($this->getRequest()->getParam('period') == '2y') ? 'selected="selected"' : ($this->getRequest()->getParam('period') == '') ? 'selected="selcted"' : '' ?>><?php echo __('2YTD') ?></option>
+                            </select>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="rbpanel-body">                    
+                    <div class="row order-overview-wrapper">
+                    <div class="row-gutter">
+                        <div class="col-md-12 col-lg-6 col-xl-6">
+                            <div class="rbpanel">
+                            <div class="rbpanel-heading p10"><?php echo __('Orders')?></div>
+                            <div class="rbpanel-body">
+                                <?php echo $block->getChildHtml('orders'); ?>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6 col-xl-6">
+                            <div class="rbpanel">
+                            <div class="rbpanel-heading p10"><?php echo __('Amounts')?></div>
+                            <div class="rbpanel-body">
+                                <?php echo $block->getChildHtml('amounts'); ?>
+                            </div>                                 
+                            </div>
+                        </div>
+                        <script>
+                         require([
+                             'jquery', 
+                             'prototype'
+                                ], function($) {
+                            window.changeDiagramsPeriod = function(periodObj) {
+                                periodParam = periodObj.value ? 'period/' + periodObj.value + '/' : '';
+                                window.location.href = '<?php echo $block->getUrl('rbvendor/account/dashboard/', ['tab'=>'0,0'])?>' + periodParam;
+                            }
+                            
+                         });   
+                        
+                        </script>
+                        <?php echo $block->getChildHtml('diagrams') ?>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+    </div>
+
+    <div class="row mb30 dashboard-item-summary-container">
+    <div class="row-gutter">
+        <?php if ($response['user']['isOrderSectionAllowed']) { ?>
+        <div class="dasboard-item col-md-12 col-lg-6 col-xl-4 mb10-md mb10-sm">
+            <div class="table-wrapper orders-history table-bg-green">
+            <?php echo $block->getChildHtml('lastOrders'); ?>
+            </div>
+        </div>
+        <?php } ?>
+        <?php if ($response['user']['isProductSectionAllowed']) { ?>
+        <div class="dasboard-item col-md-12 col-lg-6 col-xl-4 mb10-md mb10-sm">
+            <div class="table-wrapper summary-table-wrapper table-bg-green">
+                <div class="table-caption-heading">
+                    <span class="table-heading fleft"><?php echo __('Approved Products') ?></span>
+                    <a href="<?php echo $response->getApprovedProductUrl() ?>" class="view-all fright"><span><?php echo __('View All') ?></span></a>
+                </div>
+                <table class="data table table-order-items history summary-table" id="new-orders-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="col sku"><?php echo __('SKU') ?></th>
+                            <th scope="col" class="col product-name"><?php echo __('Product Name') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>                        
+                    <?php if (count($response->getLastApprovedItems())) : ?>
+                        <?php foreach ($response->getLastApprovedItems() as $appCollection) :?>
+                            <tr>
+                                <td data-th="" class="col sku"><?php echo $appCollection['vendor_sku']; ?></td>
+                                <td data-th="" class="col product-name"><?php echo $appCollection['product_name']; ?></td>                                
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                            <tr>
+                                <td colspan="2" data-th="" class="col no-product"><?php echo __('There are no product in this list.') ?></td>
+                            </tr>
+                    <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="dasboard-item col-md-12 col-lg-6 col-xl-4 mb10-md mb10-sm">
+            <?php echo $block->getChildHtml('vendor_low_stock_products'); ?>
+        </div>
+        <?php } ?>
+        <?php if ($block->isOrderSectionAllowed()) { ?>
+        <div class="dasboard-item col-md-12 col-lg-6 col-xl-4 mb10-md mb10-sm">
+            <div class="table-wrapper summary-table-wrapper table-bg-gray">
+            <?php echo $block->getChildHtml('sales_summary'); ?>
+            </div>
+        </div>
+        <?php } ?>
+        <?php if ($response['user']['isProductSectionAllowed']) { ?>
+        <div class="dasboard-item col-md-12 col-lg-6 col-xl-4 mb10-md mb10-sm">
+            <div class="table-wrapper summary-table-wrapper table-bg-gray">
+                <div class="table-caption-heading">
+                    <span class="table-heading fleft"><?php echo __('Best Sellers') ?></span>
+                </div>
+
+                <table class="data table table-order-items history summary-table" id="new-orders-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="col sku"><?php echo __('Qty') ?></th>
+                            <th scope="col" class="col product-name"><?php echo __('Product Name') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $bestsellcountCollection = count($response->getBestSellingItems()); ?>
+            <?php if ($bestsellcountCollection) : ?>
+                <?php foreach ($response->getBestSellingItems() as $bestsellCollection) : ?>
+                                <tr>
+                                    <td data-th="" class="col sku"><?php echo $bestsellCollection['total']; ?></td>
+                                    <td data-th="" class="col product-name"><?php echo $bestsellCollection['name']; ?></td>
+                                </tr>
+    <?php endforeach; ?>
+            <?php else : ?>
+                            <tr>
+                                <td colspan="2" data-th="" class="col no-product"><?php echo __('There are no product in this list.') ?></td>
+                            </tr>
+            <?php endif; ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="dasboard-item col-md-12 col-lg-6 col-xl-4 mb10-md mb10-sm">
+            <div class="table-wrapper summary-table-wrapper product-viewed-history table-bg-gray">
+            <?php echo $block->getChildHtml('products_viewed'); ?>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
+    </div>
+</div>

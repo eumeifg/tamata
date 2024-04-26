@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ktpl" translate="label" sortOrder="250" class="ktpl-extensions">
+            <label><![CDATA[<span class="ktpl-logo">KTPL Extensions</span>]]></label>
+        </tab>
+        <section id="dealszonesettings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Deals Zone settings</label>
+            <tab>ktpl</tab>
+            <resource>Ktpl_DealsZone::dealszonesettings</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category showcase settings</label>
+                <field id="shortdescriptiontitle" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Category list</label>
+                    <source_model>Ktpl\DealsZone\Model\Config\Source\Categorylist</source_model>
+                    <comment>It will show selected category products</comment>
+                </field>
+            </group>
+         </section>
+    </system>
+</config>

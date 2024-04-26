@@ -1,0 +1,181 @@
+{
+    "md_vendor_order": {
+        "column": {
+            "vendor_order_id": true,
+            "order_id": true,
+            "vendor_id": true,
+            "increment_id": true,
+            "status": true,
+            "coupon_code": true,
+            "protect_code": true,
+            "shipping_description": true,
+            "weight": true,
+            "is_virtual": true,
+            "subtotal": true,
+            "base_shipping_discount_amount": true,
+            "shipping_discount_amount": true,
+            "bundle_discount_amount": true,
+            "base_bundle_discount_amount": true,
+            "discount_tax_compensation_amount": true,
+            "base_discount_tax_compensation_amount": true,
+            "shipping_discount_tax_compensation_amount": true,
+            "base_shipping_discount_tax_compensation_amnt": true,
+            "discount_tax_compensation_invoiced": true,
+            "base_discount_tax_compensation_invoiced": true,
+            "discount_tax_compensation_refunded": true,
+            "base_discount_tax_compensation_refunded": true,
+            "tax_amount": true,
+            "shipping_amount": true,
+            "giftwrap_amount": true,
+            "shipping_tax_amount": true,
+            "shipping_method": true,
+            "shipping_method_title": true,
+            "shipping_carrier": true,
+            "shipping_carrier_title": true,
+            "discount_amount": true,
+            "discount_description": true,
+            "grand_total": true,
+            "commission_amount": true,
+            "discount_canceled": true,
+            "discount_invoiced": true,
+            "discount_refunded": true,
+            "shipping_canceled": true,
+            "shipping_invoiced": true,
+            "shipping_refunded": true,
+            "shipping_tax_refunded": true,
+            "subtotal_canceled": true,
+            "subtotal_invoiced": true,
+            "subtotal_refunded": true,
+            "tax_canceled": true,
+            "tax_invoiced": true,
+            "tax_refunded": true,
+            "base_subtotal": true,
+            "base_discount_amount": true,
+            "base_tax_amount": true,
+            "base_shipping_amount": true,
+            "base_shipping_tax_amount": true,
+            "base_grand_total": true,
+            "base_discount_canceled": true,
+            "base_discount_invoiced": true,
+            "base_discount_refunded": true,
+            "base_shipping_canceled": true,
+            "base_shipping_invoiced": true,
+            "base_shipping_refunded": true,
+            "base_shipping_tax_refunded": true,
+            "base_subtotal_canceled": true,
+            "base_subtotal_invoiced": true,
+            "base_subtotal_refunded": true,
+            "base_tax_canceled": true,
+            "base_tax_invoiced": true,
+            "base_tax_refunded": true,
+            "base_total_canceled": true,
+            "base_total_invoiced": true,
+            "base_total_paid": true,
+            "base_total_refunded": true,
+            "total_canceled": true,
+            "total_invoiced": true,
+            "total_paid": true,
+            "total_refunded": true,
+            "subtotal_incl_tax": true,
+            "shipping_incl_tax": true,
+            "base_subtotal_incl_tax": true,
+            "base_shipping_incl_tax": true,
+            "total_online_refunded": true,
+            "total_offline_refunded": true,
+            "base_total_online_refunded": true,
+            "base_total_offline_refunded": true,
+            "commission_amount_refunded": true,
+            "base_adjustment_positive": true,
+            "adjustment_positive": true,
+            "base_adjustment_negative": true,
+            "adjustment_negative": true,
+            "payout_status": true,
+            "store_id": true,
+            "base_to_global_rate": true,
+            "base_to_order_rate": true,
+            "store_to_base_rate": true,
+            "store_to_order_rate": true,
+            "base_currency_code": true,
+            "global_currency_code": true,
+            "order_currency_code": true,
+            "store_currency_code": true,
+            "is_confirmed": true,
+            "confirmed_at": true,
+            "cancelled_by": true,
+            "created_at": true
+        },
+        "index": {
+            "MD_VENDOR_ORDER_CONFIRMED_AT": true,
+            "MD_VENDOR_ORDER_IS_CONFIRMED": true,
+            "MD_VENDOR_ORDER_INCREMENT_ID": true,
+            "MD_VENDOR_ORDER_VENDOR_ID": true,
+            "MD_VENDOR_ORDER_ORDER_ID": true,
+            "MD_VENDOR_ORDER_STATUS": true,
+            "MD_VENDOR_ORDER_PAYOUT_STATUS": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MD_VENDOR_ORDER_VENDOR_ID_MD_VENDOR_VENDOR_ID": true,
+            "MD_VENDOR_ORDER_ORDER_ID_SALES_ORDER_ENTITY_ID": true
+        }
+    },
+    "quote_item": {
+        "column": {
+            "vendor_id": true,
+            "vendor_sku": true
+        }
+    },
+    "sales_order_item": {
+        "column": {
+            "vendor_id": true,
+            "cancel_item_reason": true,
+            "cancel_item_comment": true,
+            "vendor_order_id": true,
+            "vendor_sku": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "is_split": true,
+            "is_confirmed": true,
+            "order_cancel_reason": true
+        }
+    },
+    "sales_invoice": {
+        "column": {
+            "vendor_id": true,
+            "vendor_order_id": true
+        }
+    },
+    "sales_shipment": {
+        "column": {
+            "vendor_id": true,
+            "vendor_order_id": true
+        }
+    },
+    "sales_creditmemo": {
+        "column": {
+            "vendor_id": true
+        }
+    },
+    "catalog_compare_item": {
+        "column": {
+            "vendor_id": true
+        }
+    },
+    "sales_order_grid": {
+        "column": {
+            "is_confirmed": true
+        }
+    },
+    "sales_invoice_grid": {
+        "column": {
+            "vendor_order_id": true
+        }
+    },
+    "sales_shipment_grid": {
+        "column": {
+            "vendor_order_id": true
+        }
+    }
+}

@@ -1,0 +1,335 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block Magedelight\Sales\Block\Vendor\Order\Closed */
+?>
+<?php
+$gridsession = $block->getGridSession();
+$orders_closed = $gridsession['grid_session']['orders_closed'];
+$_orders = $block->getCollection();
+$helper = $this->helper('Magedelight\Vendor\Helper\Data');
+$tab = $block->getTab();
+?>
+<form action="<?php echo $block->getSubmitUrl() ?>" method="get" id="vendor-closed-order-search" name="vendor_closed_order_search">
+    <input type="hidden" name="tab" value="<?php echo $tab; ?>">
+    <input type="hidden" name="sfrm" value="closed">
+    <input id="closed-sort-order" type="hidden" name="sort_order" value="<?php echo $orders_closed['sort_order'] ?>">
+    <input id="closed-sort-direction" type="hidden" name="dir" value="<?php echo $orders_closed['dir'] ?>">
+    <div class="row order-details">
+        <div class="row-gutter toolbar-wrapper mb10">
+            <div class="col-xs-4">
+                <div class="block block-search">
+                    <div class="content">
+                        <div class="field search-catalog">
+                            <div class="control">
+                                <input placeholder="<?php echo __('Search...') ?>" type="text" value="<?php
+                                if ($orders_closed['q']) {
+                                    echo $orders_closed['q'];
+                                }
+                                ?>" name="q" id="search-order-input-closedorder" class="input-text vendor search-order-input">
+                            </div>
+                            <div class="actions">
+                                <div class="vendor primary"><button type="submit" class="vendor action login primary"><span><?php echo __('Search') ?></span></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-xs-3 pt10">
+                        <a rel="closed" href="javascript:void(0)" class="action-reset search"><?php echo __('Reset') ?></a>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="toolbar-filter-wrapper">
+                            <div class="data-grid-filters-actions-wrap">
+                                <div class="data-grid-filters-action-wrap">
+                                    <span class="clear-filters mr10"><a rel="closed" href="javascript:void(0)" class="action-reset filter"><?php echo __('Clear') ?></a></span>
+                                    <button class="action secondary action-default _active" type="button" data-action="grid-filter-expand" title="<?php echo __('Filters') ?>">
+                                        <span><?php echo __('Filters') ?></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="data-grid-filters-actions-wrap">
+                                <div class="data-grid-filters-action-wrap">
+                                    <a href="<?php
+                                    echo $block->getUrl('*/*/exportPost', ['_current' => true, 'sfrm' => 'closed'])
+                                    ?>" class="action export"><?php echo __('Export') ?></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-wrapper" style="display: none;">
+        <fieldset class="row fieldset">
+            <div class="row-gutter filter-row">
+                <div class="col-md-4 filter-section">
+                    <fieldset class="fieldset field-full-width">
+                        <div class="field">
+                            <label class="label" for="increment_id">
+                                <span><?php echo __('ID'); ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text" type="text" name="increment_id" id="increment_id" value="<?php
+                                if ($orders_closed['increment_id']) {
+                                    echo $orders_closed['increment_id'];
+                                }
+                                ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row-gutter filter-row">
+                <div class="col-md-6 col-lg-3 filter-section">
+                    <fieldset class="fieldset" id="purchased_date_range_closed">
+                        <legend class="legend">
+                            <span class=""><?php echo __('Purchased Date') ?></span>
+                        </legend>
+                        <div class="field">
+                            <label class="label" for="cpurchased_date_from">
+                                <span><?php echo __('from') ?></span>
+                            </label>
+                            <div class="control date-control date-field-container">
+                                <input class="input-text"
+                                       type="text"
+                                       name="pdate_from"
+                                       placeholder="MM/DD/YYYY"
+                                       id="cpurchased_date_from"
+                                       value="<?php
+                                       if ($orders_closed['pdate_from']) {
+                                           echo $orders_closed['pdate_from'];
+                                       }
+                                       ?>">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="cpurchased_date_to">
+                                <span><?php echo __('to') ?></span>
+                            </label>
+                            <div class="control date-control date-field-container">
+                                <input class="input-text"
+                                       type="text"
+                                       name="pdate_to"
+                                       placeholder="MM/DD/YYYY"
+                                       id="cpurchased_date_to"
+                                       value="<?php
+                                       if ($orders_closed['pdate_to']) {
+                                           echo $orders_closed['pdate_to'];
+                                       }
+                                       ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-6 col-lg-3 filter-section">
+                    <fieldset class="fieldset">
+                        <legend class="legend">
+                            <span class=""><?php echo __('Grand Total') ?></span>
+                        </legend>
+                        <div class="field">
+                            <label class="label" for="grndt_from">
+                                <span><?php echo __('from') ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text" type="text" name="grndt_from"  id="grndt_from" placeholder="<?php echo __('Min'); ?>" value="<?php
+                                if ($orders_closed['grndt_from']) {
+                                    echo $orders_closed['grndt_from'];
+                                }
+                                ?>">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="grndt_to">
+                                <span><?php echo __('to') ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text" type="text"  name="grndt_to"  id="grndt_to" placeholder="<?php echo __('Max'); ?>" value="<?php
+                                if ($orders_closed['grndt_to']) {
+                                    echo $orders_closed['grndt_to'];
+                                }
+                                ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row">
+            <div class="row-gutter">
+                <div class="filters-footer col-md-12">
+                    <div class="action-toolbar main-actions">
+                        <button class="action primary grid-filter-cancel cancel" type="reset" data-action="grid-filter-cancel" >
+                            <span><?php echo __('Cancel') ?></span>
+                        </button>
+                        <button class="action primary" type="submit" data-action="grid-filter-apply" >
+                            <span><?php echo __('Apply') ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="session-clear-orderclosed" id="session-clear-orderclosed" value="0"/>
+</form>
+<?php if ($_orders && count($_orders)): ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="closed-orders-table">
+            <thead>
+                <tr>
+                    <th scope="col" sortorder="rvo_vendor_order_id" class="col id sortable"><?php echo __('ID #') ?><span id="closed-rvo-vendor-order-id" class="sort-dir-arrow">&nbsp;</span></th>
+                    <th scope="col" sortorder="rvo_created_at" class="col date sortable"><?php echo __('Purchase Date') ?><span id="closed-rvo-created-at" class="sort-dir-arrow">&nbsp;</span></th>
+                    <th scope="col" sortorder="rvo_grand_total" class="col total sortable"><?php echo __('Grand Total') ?><span id="closed-rvo-grand-total" class="sort-dir-arrow">&nbsp;</span></th>
+                    <th scope="col" sortorder="status" class="col total sortable status"><?php echo __('Status') ?><span id="closed-status" class="sort-dir-arrow">&nbsp;</span></th>
+                    <th scope="col" sortorder="total_refunded" class="col total sortable"><?php echo __('Total Refunded') ?><span id="closed-total-refunded" class="sort-dir-arrow">&nbsp;</span></th>
+                    <th scope="col" class="col actions"><?php echo __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <?php foreach ($_orders as $_order): ?>
+                    <tr>
+                        <td data-th="<?php echo $block->escapeHtml(__('ID #')) ?>" class="col data-grid-id-cell">
+                            <table>
+                                <tr>
+                                    <td align="center">
+                                        <strong>
+                                            <?= $_order->getRvoIncrementId() ?>
+                                        </strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <?= $block->getOrderSummarizedHtml($_order); ?>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Purchase Date')) ?>" class="col data-grid-date-cell"><?php echo $block->getCurrentLocaleDate($_order->getRvoCreatedAt()) ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Grand Total')) ?>" class="col data-grid-price-cell"><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($_order->getRvoGrandTotal()) ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Status')) ?>" class="col data-grid-price-cell <?php echo $_order->getStatus() ?>">
+                            <div class="data-grid-cell-content">
+                                <span class="status"><?php echo $_order->getStatusLabel() ?></span>
+                            </div>
+                        </td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Total Refunded')) ?>" class="col data-grid-price-cell"><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($_order->getTotalRefunded()) ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Actions')) ?>" class="col data-grid-actions-cell">
+                            <a href="<?php echo $block->getViewUrl($_order); ?>" class="action view">
+                                <span><?php echo __('View') ?></span>
+                            </a>                            
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+
+<?php else: ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="closed-orders-table">
+            <thead>
+                <tr>
+                    <th scope="col" sortorder="rvo_vendor_order_id" class="col id"><?php echo __('ID #') ?></th>
+                    <th scope="col" sortorder="rvo_created_at" class="col date"><?php echo __('Purchase Date') ?></th>
+                    <th scope="col" sortorder="rvo_grand_total" class="col total"><?php echo __('Grand Total') ?></th>
+                    <th scope="col" sortorder="status" class="col total"><?php echo __('Status') ?></th>
+                    <th scope="col" sortorder="total_refunded" class="col total"><?php echo __('Total Refunded') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="7">
+                        <div id="closedorder-msg" class="message info empty"><span></span></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<?php endif ?>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'mage/calendar',
+    ], function ($) {
+        $(".grid-filter-clear-all").click(function () {
+            $form = $(this).parents('form');
+            $(':input:not([type=hidden])', $form).val("");
+            $($form).submit();
+        });
+
+        $("#purchased_date_range_closed").dateRange({
+            buttonText: "<?php echo __('Select Date') ?>",
+            showOn: "button",
+            from: {
+                id: "cpurchased_date_from"
+            },
+            to: {
+                id: "cpurchased_date_to"
+            }
+        });
+
+        $(".action-reset").click(function () {
+            $form = $(this).parents('form');
+            if ($(this).hasClass('search')) {
+                $parent = $('.block-search', $form);
+            } else {
+                $parent = $('.filter-wrapper', $form);
+            }
+            $(':input:not([type=hidden])', $parent).val("");
+            $('#session-clear-orderclosed').val(1);
+            $($form).submit();
+        });
+
+        $(document).ready(function () {
+            $value = "false";
+            $('input[type=text]').each(function () {
+                var text_value = $(this).val();
+                if (text_value != '')
+                {
+                    $value = "true";
+                }
+            });
+            if ($('#search-order-input-closedorder')[0].value != "" || $value == "true") {
+                $('#closedorder-msg span').html('<?php echo __("Your search result could not find.") ?>');
+            } else {
+                $('#closedorder-msg span').html("<?php echo __("We couldn't find any records.") ?>");
+            }
+
+            /*
+             * Sorting feature
+             */
+            $currentNewSortOrder = $('#closed-sort-order').val();
+            $currentNewSortDir = $('#closed-sort-direction').val();
+            if ($currentNewSortOrder != null && $currentNewSortOrder != '') {
+                $sortNewDirClass = ($currentNewSortDir == 'DESC') ? 'descend' : 'ascend';
+                $('#closed-orders-table th[sortorder="' + $currentNewSortOrder + '"]').addClass($sortNewDirClass);
+            }
+            $newSortDir = 'ASC';
+            $('#closed-orders-table .sortable').click(function ($e) {
+                $newSortOrder = $(this).attr('sortorder');
+                if ($currentNewSortOrder == $newSortOrder) {
+                    $newSortDir = ($currentNewSortDir == 'DESC') ? 'ASC' : 'DESC';
+                }
+                $('#closed-sort-order').val($newSortOrder);
+                $('#closed-sort-direction').val($newSortDir);
+                $('#vendor-closed-order-search').submit();
+            });
+        });
+    });
+</script>

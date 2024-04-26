@@ -1,0 +1,628 @@
+<?php
+/**
+ * Copyright © 2018 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details
+ */
+/* @codingStandardsIgnoreFile */
+?>
+
+<?php
+$micrositeInfo = $block->getMicrositeInfo();
+$storeCode = ($block->getCurrentStore()->isUseStoreInUrl())?$block->getCurrentStore()->getCode().'/':'';
+?>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="rbpanel">
+			<div class="rb-container">
+				<div class="rbpanel-heading">
+					<h3 class="pn mn"><span><?= __('Microsite Information'); ?><span></h3>
+				</div>
+				<div id="microsite-info-content" class="rbpanel-body">
+					<form name="microsite_information_form" id="microsite-information-form" enctype="multipart/form-data" method="post" action="<?= $block->getPostActionUrl();?>"
+						data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+						data-mage-init='{"validation":{}}'>
+						<input type="hidden" id="microsite_id" name="microsite_id" value="<?= (isset($micrositeInfo['microsite_id']))?$micrositeInfo['microsite_id']:'' ?>" />
+						<fieldset class="fieldset">
+							<legend class="legend"><span><?= __('Microsite General') ?></span></legend>
+
+							<?php if(isset($micrositeInfo['url_key'])): ?>
+								<div class="field page-title">
+									<label class="label" for="page-title"><span><?= __('&nbsp;') ?></span></label>
+									<div class="control">
+										<button onClick ='window.open("<?= $this->getUrl('',['clear_prefix' => true]).$storeCode.$micrositeInfo['url_key'];?>");' type="reset" class="action button primary">
+											<span><?= __('Preview Microsite') ?></span>
+										</button>
+									</div>
+								</div>
+							<?php endif; ?>
+							<div class="field page-title required">
+                                                            <label class="label" for="page-title"><span><?= __('Page Title') ?></span></label>
+                                                            <div class="control _with-tooltip">
+                                                                <input name="page_title" id="page_title" title="<?= __('Page Title') ?>" value="<?= (isset($micrositeInfo['page_title']))?$micrositeInfo['page_title']:'' ?>" class="input-text required-entry validate-page-title-size" type="text" placeholder="<?= __('Page Title') ?>" />
+                                                                <div class="field-tooltip toggle">
+                                                                    <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                                                    <div class="field-tooltip-content">
+                                                                        <span><?= __('The name of your store on Rocket Bazaar') ?></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                <div class="field banner">
+                                    <label class="label" for="page-title"><span><?= __('Main Banner') ?></span></label>
+                                    <div class="control _with-tooltip">
+                                        <div class="rb-ms-banner-image">
+                                                <?php if(isset($micrositeInfo['banner']) && !empty($micrositeInfo['banner'])):?>
+                                                        <img src="<?= $block->getMicrositeFileUrl($micrositeInfo['banner']);?>" width="50" height="50" />
+                                                <?php endif;?>
+                                        </div>
+                                        <div class="rb-ms-banner-upload-info">
+                                                <input name="banner" id="banner" title="<?= __('Main Banner') ?>" type="file" accept="image/jpeg, image/jpg, image/png" data-max-size="524288" />
+                                                <label for="banner_delete"><?= __('Delete');?></label>
+                                                <input name="banner[delete]" id="banner_delete" type="checkbox" />
+                                                <span class="note"><?= __('Allowed File Types :(JPG,JPEG,PNG), Max Size:512KB'); ?></span>
+                                                <div id="microsite-banner">
+                                                        <span style="color: #e9573f"></span>
+                                                </div>
+                                        </div>
+
+                                        <div class="field-tooltip toggle">
+                                            <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                            <div class="field-tooltip-content">
+                                                 <span><?= __('Upload the main banner of dimension 1920px * 450px for the best look of your microsite page.') ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field promo_banner_1">
+                                    <label class="label" for="page-title"><span><?= __('Promotional Banner 1') ?></span></label>
+                                    <div class="control _with-tooltip">
+                                        <div class="rb-ms-banner-image">
+                                                <?php if(isset($micrositeInfo['promo_banner_1']) && !empty($micrositeInfo['promo_banner_1'])):?>
+                                                        <img src="<?= $block->getMicrositeFileUrl($micrositeInfo['promo_banner_1'], 'microsite/promo_banners');?>" width="50" height="50" />
+                                                <?php endif;?>
+                                        </div>
+                                        <div class="rb-ms-banner-upload-info">
+                                                <input name="promo_banner_1" id="promo_banner_1" title="<?= __('Promotional Banner 1') ?>" type="file" accept="image/jpeg, image/jpg, image/png" data-max-size="524288" />
+                                                <label for="promo_banner_1_delete"><?= __('Delete');?></label>
+                                                <input name="promo_banner_1[delete]" id="promo_banner_1_delete" type="checkbox" />
+                                                <span class="note"><?= __('Allowed File Types :(JPG,JPEG,PNG), Max Size:512KB'); ?></span>
+                                                <span class="note"><?= __('Recommended image dimensions: Width - 759px Height - 250px') ?></span>
+                                                <div id="promo_banner_1">
+                                                    <span style="color: #e9573f"></span>
+                                                </div>
+                                        </div>
+
+                                        <div class="field-tooltip toggle">
+                                            <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                            <div class="field-tooltip-content">
+                                                 <span><?= __('Upload promotional banner 1.') ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field promo_banner_2">
+                                    <label class="label" for="page-title"><span><?= __('Promotional Banner 2') ?></span></label>
+                                    <div class="control _with-tooltip">
+                                        <div class="rb-ms-banner-image">
+                                                <?php if(isset($micrositeInfo['promo_banner_2']) && !empty($micrositeInfo['promo_banner_2'])):?>
+                                                        <img src="<?= $block->getMicrositeFileUrl($micrositeInfo['promo_banner_2'], 'microsite/promo_banners');?>" width="50" height="50" />
+                                                <?php endif;?>
+                                        </div>
+                                        <div class="rb-ms-banner-upload-info">
+                                                <input name="promo_banner_2" id="promo_banner_2" title="<?= __('Promotional Banner 2') ?>" type="file" accept="image/jpeg, image/jpg, image/png" data-max-size="524288" />
+                                                <label for="promo_banner_2_delete"><?= __('Delete');?></label>
+                                                <input name="promo_banner_2[delete]" id="promo_banner_2_delete" type="checkbox" />
+                                                <span class="note"><?= __('Allowed File Types :(JPG,JPEG,PNG), Max Size:512KB'); ?></span>
+                                                <span class="note"><?= __('Recommended image dimensions: Width - 759px Height - 250px') ?></span>
+                                                <div id="promo_banner_2">
+                                                    <span style="color: #e9573f"></span>
+                                                </div>
+                                        </div>
+
+                                        <div class="field-tooltip toggle">
+                                            <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                            <div class="field-tooltip-content">
+                                                 <span><?= __('Upload promotional banner 2.') ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field promo_banner_3">
+                                    <label class="label" for="page-title"><span><?= __('Promotional Banner 3') ?></span></label>
+                                    <div class="control _with-tooltip">
+                                        <div class="rb-ms-banner-image">
+                                                <?php if(isset($micrositeInfo['promo_banner_3']) && !empty($micrositeInfo['promo_banner_3'])):?>
+                                                        <img src="<?= $block->getMicrositeFileUrl($micrositeInfo['promo_banner_3'], 'microsite/promo_banners');?>" width="50" height="50" />
+                                                <?php endif;?>
+                                        </div>
+                                        <div class="rb-ms-banner-upload-info">
+                                                <input name="promo_banner_3" id="promo_banner_3" title="<?= __('Promotional Banner 3') ?>" type="file" accept="image/jpeg, image/jpg, image/png" data-max-size="524288" />
+                                                <label for="promo_banner_3_delete"><?= __('Delete');?></label>
+                                                <input name="promo_banner_3[delete]" id="promo_banner_3_delete" type="checkbox" />
+                                                <span class="note"><?= __('Allowed File Types :(JPG,JPEG,PNG), Max Size:512KB'); ?></span>
+                                                <span class="note"><?= __('Recommended image dimensions: Width - 760px Height - 520px') ?></span>
+                                                <div id="promo_banner_3">
+                                                    <span style="color: #e9573f"></span>
+                                                </div>
+                                        </div>
+
+                                        <div class="field-tooltip toggle">
+                                            <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                            <div class="field-tooltip-content">
+                                                 <span><?= __('Upload promotional banner 3.') ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="field mobile_promo_banner_1">
+                                    <label class="label" for="page-title"><span><?= __('Mobile Promotional Banner 1') ?></span></label>
+                                    <div class="control _with-tooltip">
+                                        <div class="rb-ms-banner-image">
+                                                <?php if(isset($micrositeInfo['mobile_promo_banner_1']) && !empty($micrositeInfo['mobile_promo_banner_1'])):?>
+                                                        <img src="<?= $block->getMicrositeFileUrl($micrositeInfo['mobile_promo_banner_1'], 'microsite/promo_banners');?>" width="50" height="50" />
+                                                <?php endif;?>
+                                        </div>
+                                        <div class="rb-ms-banner-upload-info">
+                                                <input name="mobile_promo_banner_1" id="mobile_promo_banner_1" title="<?= __('Promotional Banner 3') ?>" type="file" accept="image/jpeg, image/jpg, image/png" data-max-size="524288" />
+                                                <div class="custom-mobile-checkbox">
+                                                    <label for="mobile_promo_banner_1_delete"><?= __('Delete');?></label>
+                                                    <input name="mobile_promo_banner_1[delete]" id="mobile_promo_banner_1_delete" type="checkbox" />
+                                                </div>
+                                                <span class="note"><?= __('Allowed File Types :(JPG,JPEG,PNG), Max Size:512KB'); ?></span>
+                                                <div id="mobile_promo_banner_1">
+                                                    <span style="color: #e9573f"></span>
+                                                </div>
+                                        </div>
+                                        <div class="field-tooltip toggle">
+                                            <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                            <div class="field-tooltip-content">
+                                                 <span><?= __('Upload Mobile promotional banner 1.') ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field mobile_promo_banner_2">
+                                    <label class="label" for="page-title"><span><?= __('Mobile Promotional Banner 2') ?></span></label>
+                                    <div class="control _with-tooltip">
+                                        <div class="rb-ms-banner-image">
+                                                <?php if(isset($micrositeInfo['mobile_promo_banner_2']) && !empty($micrositeInfo['mobile_promo_banner_2'])):?>
+                                                        <img src="<?= $block->getMicrositeFileUrl($micrositeInfo['mobile_promo_banner_2'], 'microsite/promo_banners');?>" width="50" height="50" />
+                                                <?php endif;?>
+                                        </div>
+                                        <div class="rb-ms-banner-upload-info">
+                                                <input name="mobile_promo_banner_2" id="mobile_promo_banner_2" title="<?= __('Promotional Banner 3') ?>" type="file" accept="image/jpeg, image/jpg, image/png" data-max-size="524288" />
+                                                <div class="custom-mobile-checkbox">
+                                                    <label for="mobile_promo_banner_2_delete"><?= __('Delete');?></label>
+                                                    <input name="mobile_promo_banner_2[delete]" id="mobile_promo_banner_2_delete" type="checkbox" />
+                                                </div>
+                                                <span class="note"><?= __('Allowed File Types :(JPG,JPEG,PNG), Max Size:512KB'); ?></span>
+                                                <div id="mobile_promo_banner_2">
+                                                    <span style="color: #e9573f"></span>
+                                                </div>
+                                        </div>
+                                        <div class="field-tooltip toggle">
+                                            <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                            <div class="field-tooltip-content">
+                                                 <span><?= __('Upload Mobile promotional banner 2.') ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field mobile_promo_banner_3">
+                                    <label class="label" for="page-title"><span><?= __('Mobile Promotional Banner 3') ?></span></label>
+                                    <div class="control _with-tooltip">
+                                        <div class="rb-ms-banner-image">
+                                                <?php if(isset($micrositeInfo['mobile_promo_banner_3']) && !empty($micrositeInfo['mobile_promo_banner_3'])):?>
+                                                        <img src="<?= $block->getMicrositeFileUrl($micrositeInfo['mobile_promo_banner_3'], 'microsite/promo_banners');?>" width="50" height="50" />
+                                                <?php endif;?>
+                                        </div>
+                                        <div class="rb-ms-banner-upload-info">
+                                                <input name="mobile_promo_banner_3" id="mobile_promo_banner_3" title="<?= __('Promotional Banner 3') ?>" type="file" accept="image/jpeg, image/jpg, image/png" data-max-size="524288" />
+                                                <div class="custom-mobile-checkbox">
+                                                    <label for="mobile_promo_banner_3_delete"><?= __('Delete');?></label>
+                                                    <input name="mobile_promo_banner_3[delete]" id="mobile_promo_banner_3_delete" type="checkbox" />
+                                                </div>
+                                                <span class="note"><?= __('Allowed File Types :(JPG,JPEG,PNG), Max Size:512KB'); ?></span>
+                                                <div id="mobile_promo_banner_3">
+                                                    <span style="color: #e9573f"></span>
+                                                </div>
+                                        </div>
+                                        <div class="field-tooltip toggle">
+                                            <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                            <div class="field-tooltip-content">
+                                                 <span><?= __('Upload Mobile promotional banner 3.') ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="control _with-tooltip">
+                                    <input name="url_key" id="url_key" title="<?= __('Url Key') ?>" value="<?php if(isset($micrositeInfo['url_key'])){echo $micrositeInfo['url_key'];}?>" class="input-text required-entry" type="hidden" placeholder="Url Key" />
+                                </div>
+
+                            <div class="field meta-keyword">
+                            	<label class="label" for="meta-keyword"><span><?= __('Meta Keyword') ?></span></label>
+                            	<div class="control _with-tooltip">
+                            		<textarea name="meta_keyword" id="meta_keyword" title="<?= __('Meta Keyword') ?>" class="input-textarea" placeholder="<?= __('Meta Keyword') ?>"><?php if(isset($micrositeInfo['meta_keyword'])){echo trim($micrositeInfo['meta_keyword']);}?></textarea>
+                            	<div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?= __('For SEO purpose, enter your store keywords') ?></span>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="field meta-description">
+                            	<label class="label" for="meta-description"><span><?= __('Meta Description') ?></span></label>
+                            	<div class="control _with-tooltip">
+                            		<textarea name="meta_description" id="meta_description" title="<?= __('Meta Description') ?>"  class="input-textarea" placeholder="<?= __('Meta Description') ?>"><?php if(isset($micrositeInfo['meta_description'])){echo trim($micrositeInfo['meta_description']);}?></textarea>
+                            	<div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?= __('For SEO purpose, enter your store description') ?></span>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="field vacation-date-range" data-role="status-information-form"
+                         id="vacation_date_range">
+                        <label class="label"><span><?= __('Customer Support Call Time') ?></span></label>
+                        <div class="control info date-control _with-tooltip">
+                            <div class="vacation-from-date date-field">
+                                <label for="vacation-from-date "><span><?= __('From') ?>:</span></label>
+                                <div class="date-field-container">
+                                    <input class="input-text"
+                                           type="text"
+                                           id="customer-support-time-from"
+                                           name="customer_support_time_from"
+                                           value="<?php if(isset($micrositeInfo['customer_support_time_from'])){echo date('H:i',strtotime($micrositeInfo['customer_support_time_from'])); }?>"
+
+                                    />
+
+
+                                    <span id="date_from_advice"></span>
+                                </div>
+                            </div>
+                            <div class="vacation-to-date date-field">
+                                <label for="vacation-to-date"><span><?= __('To') ?>:</span></label>
+                                <div class="date-field-container">
+                                    <input class="input-text"
+                                           type="text"
+                                           id="customer-support-time-to"
+                                           name="customer_support_time_to"
+                                           value="<?php if(isset($micrositeInfo['customer_support_time_to'])){echo date('H:i',strtotime($micrositeInfo['customer_support_time_to'])); }?>"
+                                    />
+                                    <div class="field-tooltip toggle">
+                                    <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden">
+
+                                    </span>
+                                        <div class="field-tooltip-content">
+                                            <span><?= __('Enter Customer Support Call Time') ?></span>
+                                        </div>
+                                    </div>
+                                    <span id="date_to_advice"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                            <legend class="legend"><span><?= __('Social Follow US') ?></span></legend>
+                            <div class="field twitter-page">
+                            	<label class="label" for="twitter-page"><span><?= __('Twitter Page') ?></span></label>
+                            	<div class="control _with-tooltip">
+                            		<input name="twitter_page" id="twitter_page" title="<?= __('Twitter Page') ?>" value="<?php if(isset($micrositeInfo['twitter_page'])){echo $micrositeInfo['twitter_page'];}?>" class="input-text validate-twitter-page" type="text"  placeholder="<?= __('Twitter Page') ?>" />
+                                    <div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?= __('Enter your twitter account url') ?></span>
+                                    </div>
+                                </div>
+                            	</div>
+                            </div>
+                            <div class="field google-page">
+                            	<label class="label" for="google-page"><span><?= __('Google Page') ?></span></label>
+                            	<div class="control _with-tooltip">
+                            		<input name="google_page" id="google_page" title="<?= __('Google Page') ?>" value="<?php if(isset($micrositeInfo['google_page'])){echo $micrositeInfo['google_page'];}?>" class="input-text validate-google-page" type="text"  placeholder="<?= __('Google Page') ?>" />
+                                    <div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?= __('Enter your google account url') ?></span>
+                                    </div>
+                                </div>
+                            	</div>
+                            </div>
+                            <div class="field facebook-page">
+                            	<label class="label" for="facebook-page"><span><?= __('Facebook Page') ?></span></label>
+                            	<div class="control _with-tooltip">
+                            		<input name="facebook_page" id="facebook_page"  title="<?= __('Facebook Page') ?>" value="<?php if(isset($micrositeInfo['facebook_page'])){echo $micrositeInfo['facebook_page'];}?>" class="input-text validate-facebook-page" type="text" placeholder="<?= __('Facebook Page') ?>" />
+                                    <div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?= __('Enter your facebook account url') ?></span>
+                                    </div>
+                                </div>
+                            	</div>
+                            </div>
+                            <div class="field tumbler-page">
+                            	<label class="label" for="tumbler-page"><span><?= __('Tumblr Page') ?></span></label>
+                            	<div class="control _with-tooltip">
+                            		<input name="tumbler_page" id="tumbler_page"  title="<?= __('Tumblr Page') ?>" value="<?php if(isset($micrositeInfo['tumbler_page'])){echo $micrositeInfo['tumbler_page'];}?>" class="input-text validate-tumblr-page" type="text" placeholder="<?= __('Tumblr Page') ?>" />
+                                    <div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?= __('Enter your tumblr account url') ?></span>
+                                    </div>
+                                </div>
+                            	</div>
+                            </div>
+                            <div class="field instagram-page">
+                            	<label class="label" for="instagram-page"><span><?= __('Instagram Page') ?></span></label>
+                            	<div class="control _with-tooltip">
+                            		<input name="instagram_page" id="instagram_page"  title="<?= __('Instagram Page') ?>" value="<?php if(isset($micrositeInfo['instagram_page'])){echo $micrositeInfo['instagram_page'];}?>" class="input-text validate-insta-page" type="text" placeholder="<?= __('Instagram Page') ?>" />
+                                    <div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?= __('Enter your instagram account url') ?></span>
+                                    </div>
+                                </div>
+                            	</div>
+                            </div>
+
+                            <legend class="legend"><span><?= __('Content') ?></span></legend>
+
+                            <div class="field short-description">
+                                <label class="label" for="short-description"><span><?= __('About Us') ?></span></label>
+                                <div class="control _with-tooltip">
+                                    <textarea name="short_description" id="short_description" title="<?= __('About Us') ?>" class="input-textarea" placeholder="<?= __('About Us') ?>" ><?php if(isset($micrositeInfo['short_description'])){echo trim($micrositeInfo['short_description']);}?></textarea>
+                                    <div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?= __('About Rocketbazaar Content') ?></span>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="field deliver-policy">
+                            	<label class="label" for="deliver-policy"><span><?= __('Delivery Policy') ?></span></label>
+                            	<div class="control _with-tooltip">
+                            		<textarea name="delivery_policy" id="delivery_policy"  title="<?= __('Delivery Policy') ?>" class="input-textarea" placeholder="<?= __('Delivery Policy') ?>" ><?php if(isset($micrositeInfo['delivery_policy'])){echo trim($micrositeInfo['delivery_policy']);}?></textarea>
+                                    <div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?= __('Delivery Policy Content') ?></span>
+                                    </div>
+                                </div>
+                            	</div>
+                            </div>
+                            <div class="field return-policy">
+                            	<label class="label" for="return-policy"><span><?= __('Return Policy') ?></span></label>
+                            	<div class="control _with-tooltip">
+                            		<textarea name="return_policy" id="return_policy"  title="<?= __('Return Policy') ?>" class="input-textarea" placeholder="<?= __('Return Policy') ?>" ><?php if(isset($micrositeInfo['return_policy'])){echo trim($micrositeInfo['return_policy']);}?></textarea>
+                                    <div class="field-tooltip toggle">
+                                   <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                                    <div class="field-tooltip-content">
+                                         <span><?= __('Returns Policy content') ?></span>
+                                    </div>
+                                </div>
+                            	</div>
+                            </div>
+
+
+                            <div class="field actions-toolbar">
+                            	<div class="primary">
+                            		<button type="submit" value="vendor-information-form" title="<?= __('Save') ?>" class="action button primary btn-save save">
+                            			<span><?= __('Save') ?></span>
+                            		</button>
+                            		<button type="reset" title="<?= __('Reset') ?>" class="action button primary btn-reset">
+                            			<span><?= __('Reset') ?></span>
+                            		</button>
+
+                            	</div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	require([
+		"jquery",
+		"mage/calendar",
+		"mage/mage",
+		'Magedelight_Vendor/js/microsite/validation',
+		'mage/adminhtml/wysiwyg/tiny_mce/setup'
+		], function ($,tiny_mce,micrositeValidation) {
+            var editor;
+
+
+			/*micrositeValidation(function(){
+            micrositeValidation();
+        });*/
+
+			$('#banner').change(function(){
+            $('#microsite-banner span').text('');
+            var bannerSize = '524288';//$('#banner').data('max-size');
+            var fileType = $('#banner').get(0).files[0].type;
+            var types = ['jpg','jpeg','png'];
+            fileType = fileType.substr(fileType.indexOf("/") + 1);
+            if($.inArray(fileType, types) > 0) {
+            	if($('#banner').get(0).files.length){
+            		var fileSize = $('#banner').get(0).files[0].size; /* in bytes */
+            		if(fileSize>bannerSize){
+            			$('#microsite-banner span').text('File size is more then 512KB');
+            			return false;
+            		}
+            	}else{
+            		$('#microsite-banner').text('Choose file, please');
+            		return false;
+            	}
+
+            } else {
+            	$('#microsite-banner span').text('Upload file jpg,jpeg and png only.');
+            	return false;
+            }
+
+            return true;
+        });
+            startDate = new Date();
+            /*$("#vacation_date_range").dateRange({
+            buttonText: "<?= __('Select Date') ?>",
+           from: {
+                id: "vacation-from-date"
+            },
+            to: {
+                id: "vacation-to-date"
+            },
+            showOn: "button",
+            showsTime: true,
+            timeFormat: "HH:mm:ss",
+            disabled: false,
+            timeOnly:true,
+            showSecond: false,
+            showTimepicker:true
+        });*/
+
+            $( "#customer-support-time-from,#customer-support-time-to" ).timepicker({
+            buttonText: "<?= __('Select Date') ?>",
+            showOn: "button",
+            showsTime: true,
+            timeFormat: "HH:mm:ss",
+            disabled: false,
+            timeOnly:true,
+            showTimepicker:true,
+            showSecond: false
+
+
+            });
+
+
+        $("#page_title").blur(function(){
+            var msg = "<?= __('Entered page title is assigned with a another Vendor.');?>";
+            var urlKey = $("#page_title").val();
+            var urlMsg = 'Your microsite URL will be : ';
+            var micrositeId = $("#microsite_id").val();
+
+            if(urlKey != ''){
+                $.ajax({
+                    type: "POST",
+                    data: ({url_key: urlKey,microsite_id: micrositeId}),
+                    url: '<?= $this->getUrl('rbvendor/microsite/checkurlkey')?>',
+                    success: function (result) {
+                        if (result.error != 'error') {
+                            if ($('#advice-required-entry-url-key').length) {
+                                jQuery('#advice-required-entry-url-key').remove();
+                            }
+                            var urlHtml = '<div class="validation-advice" id="advice-required-entry-url-key" style="display:block;color:green">'+urlMsg+'<?= $this->getUrl('',['clear_prefix' => true]);?>'+result.url+' </div>';
+                            $("#url_key").val(result.url);
+                            $("#page_title").after(urlHtml);
+                       }else if (result.error == 'error') {
+                            $("#url_key").val(result.url);
+                            if ($('#advice-required-entry-url-key').length) {
+                                jQuery('#advice-required-entry-url-key').remove();
+                            }
+                            var errorHtml = '<div class="validation-advice" id="advice-required-entry-url-key" style="display:block;color:red">'+msg +' </div>';
+                            if (!$('#advice-required-entry-url-key').length) {
+                                $("#page_title").after(errorHtml);
+                            }
+                        }
+                   }
+                });
+            }else{
+                if ($('#advice-required-entry-url-key').length) {
+                    jQuery('#advice-required-entry-url-key').remove();
+                }
+            }
+        });
+
+        $(document).ready(function () {
+          $(".field-tooltip").on('click', function (event) {
+            if($(this).hasClass('_active')){
+              $(this).removeClass('_active');
+              $(this).find('.field-tooltip-content').removeClass('_active');
+            } else {
+              $(".field-tooltip").removeClass('_active');
+              $(".field-tooltip-content").removeClass('_active');
+              $(this).addClass('_active');
+              $(this).find('.field-tooltip-content').addClass('_active');
+            }
+          });
+        });
+
+
+			$(document).ready(function () {
+				var editor;
+				editor = new wysiwygSetup(
+                    'delivery_policy',{
+                    "width":"99%",
+                    "height":"200px",
+                    "plugins":[{"name":"image"}],
+                    "tinymce4":{"toolbar":"formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap","plugins":"advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
+                }
+                });
+
+                editor.setup("exact");
+
+				$('#delivery_policy')
+				.addClass('wysiwyg-editor')
+				.data(
+					'wysiwygEditor',
+					editor
+					);
+
+				editor = new wysiwygSetup(
+                    'return_policy',{
+                    "width":"99%",
+                    "height":"200px",
+                    "plugins":[{"name":"image"}],
+                    "tinymce4":{"toolbar":"formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap","plugins":"advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
+                }
+                });
+
+                editor.setup("exact");
+				$('#return_policy')
+				.addClass('wysiwyg-editor')
+				.data(
+					'wysiwygEditor',
+					editor
+					);
+
+
+
+                editor = new wysiwygSetup(
+                    'short_description',{
+                    "width":"99%",
+                    "height":"200px",
+                    "plugins":[{"name":"image"}],
+                    "tinymce4":{"toolbar":"formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap","plugins":"advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
+                }
+                });
+
+                editor.setup("exact");
+                $('#short_description')
+                .addClass('wysiwyg-editor')
+                .data(
+                    'wysiwygEditor',
+                    editor
+                    );
+
+                $('#short_description').attr('maxlength',255);
+				$('#delivery_policy').attr('maxlength',255);
+				$('#return_policy').attr('maxlength',255);
+
+
+			});
+		});
+</script>

@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="page.messages" destination="main" before="-" />
+        <move element="footer" destination="root" after="page.wrapper" />
+        <referenceContainer name="sidebar.main">
+            <container name="vendor.menu.wrapper" as="vendor.menu.wrapper" htmlTag="div" htmlClass="vendor-menu-wrapper">
+                <container name="vendor.sidebar.menu.container" label="Vendor Sidebar Menu Container" htmlTag="div" htmlClass="sidebar-menu-container mCustomScrollbar" >
+                    <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menus" name="vendorMenus" >
+                        <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="vendorMenu">
+                            <arguments>
+                                <argument name="icon_class" xsi:type="string" translate="true">rbvt-icon rbvt-icon-dashboard</argument>
+                                <argument name="label" xsi:type="string" translate="true">Dashboard</argument>
+                                <argument name="path" xsi:type="string">rbvendor/account/dashboard</argument>
+                                <argument name="vendor_group" xsi:type="string">dashboard</argument>
+                                <argument name="path_tab" xsi:type="string">0,0</argument>
+                                <argument name="sort_order" xsi:type="string">10</argument>
+                                <argument name="resource_id" xsi:type="string">Magedelight_Vendor::account_dashboard</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="vendorServices" group="vendorServicesInfo">
+                            <arguments>
+                                <argument name="icon_class" xsi:type="string" translate="true">rbvt-icon rbvt-icon-vendor-services</argument>
+                                <argument name="label" xsi:type="string" translate="true">Vendor Services</argument>
+                                <argument name="vendor_group" xsi:type="string">services</argument>
+                                <argument name="child_id" xsi:type="string" translate="true">vendor_service</argument>
+                                <argument name="path" xsi:type="string">#</argument>
+                                <argument name="accordion_toggle" xsi:type="string">accordion-toggle</argument>
+                                <argument name="resource_id" xsi:type="string">Magedelight_Vendor::services</argument>
+                                <argument name="sort_order" xsi:type="string">130</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="vendorFeedbackAndRating" group="vendorServicesInfo">
+                            <arguments>
+                                <argument name="label" xsi:type="string" translate="true">Feedback and Rating</argument>
+                                <argument name="parent_id" xsi:type="string" translate="true">vendor_service</argument>
+                                <argument name="child_id" xsi:type="string" translate="true">vendor_service</argument>
+                                <argument name="path" xsi:type="string">rbvendor/review_customer/reviews</argument>
+                                <argument name="vendor_group" xsi:type="string">services</argument>
+                                <argument name="accordion_toggle" xsi:type="string">accordion-toggle</argument>
+                                <argument name="path_tab" xsi:type="string">4,1</argument>
+                                <argument name="sort_order" xsi:type="string">140</argument>
+                            </arguments>
+                        </block>
+
+                        <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="request_new_categories" ifconfig="vendor/general/enable_selling_categories" >
+                            <arguments>
+                                <argument name="icon_class" xsi:type="string" translate="true">rbvt-icon rbvt-icon-dashboard</argument>
+                                <argument name="parent_id" xsi:type="string" translate="true">products</argument>
+                                <argument name="child_id" xsi:type="string" translate="true">products</argument>
+                                <argument name="label" xsi:type="string" translate="true">Request New Categories</argument>
+                                <argument name="path" xsi:type="string">rbvendor/categories/index</argument>
+                                <argument name="sort_order" xsi:type="string">100</argument>
+                                <argument name="vendor_group" xsi:type="string">products</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="requested_categories" ifconfig="vendor/general/enable_selling_categories" >
+                            <arguments>
+                                <argument name="icon_class" xsi:type="string" translate="true">rbvt-icon rbvt-icon-dashboard</argument>
+                                <argument name="parent_id" xsi:type="string" translate="true">products</argument>
+                                <argument name="child_id" xsi:type="string" translate="true">products</argument>
+                                <argument name="label" xsi:type="string" translate="true">Requested Categories</argument>
+                                <argument name="path" xsi:type="string">rbvendor/categories_request/index</argument>
+                                <argument name="sort_order" xsi:type="string">110</argument>
+                                <argument name="vendor_group" xsi:type="string">products</argument>
+                            </arguments>
+                        </block>
+            
+                        <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Menu" name="vendorShippingMethod" group="vendorShippingMethodInfo">
+                            <arguments>
+                                <argument name="icon_class" xsi:type="string">rbvt-icon rbvt-icon-shipping-method</argument>
+                                <argument name="label" xsi:type="string" translate="true">Shipping Method</argument>
+                                <argument name="child_id" xsi:type="string" translate="true">shipping_method</argument>
+                                <argument name="vendor_group" xsi:type="string">shipping_method</argument>
+                                <argument name="path" xsi:type="string">#</argument>
+                                <argument name="accordion_toggle" xsi:type="string">accordion-toggle</argument>
+                                <argument name="resource_id" xsi:type="string">Magedelight_Vendor::shippingmethod</argument>
+                                <argument name="sort_order" xsi:type="string">150</argument>
+                            </arguments>
+                        </block>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+        
+        <referenceContainer name="vendor.header.panel">
+            <block class="Magedelight\Vendor\Block\Sellerhtml\Account\Profile" name="vendor.header.actions" as="vendor_header_actions" after="vendor.header" template="Magedelight_Vendor::html/header/actions.phtml">
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Html\HeaderLink" as="vendor.profile" name="vendor.header.actions.profile.link" group="vendor_header_links">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Manage Profile</argument>
+                        <argument translate="true" name="action_url" xsi:type="string">rbvendor/account</argument>
+                        <argument translate="true" name="icon_class" xsi:type="string">rbvt-icon-profile</argument>
+                        <argument translate="true" name="sort_order" xsi:type="string">1</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Html\HeaderLink" as="microsite" name="vendor.header.actions.microsite.link" group="vendor_header_links">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Microsite</argument>
+                        <argument name="action_url" xsi:type="string">rbvendor/microsite</argument>
+                        <argument name="icon_class" xsi:type="string">rbvt-icon-profile</argument>
+                        <argument name="sort_order" xsi:type="string">3</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Html\HeaderLink" as="vendor.logout" name="vendor.header.actions.logout.link" group="vendor_header_links">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Logout</argument>
+                        <argument translate="true" name="action_url" xsi:type="string">rbvendor/account/logout</argument>
+                        <argument translate="true" name="icon_class" xsi:type="string">rbvt-icon-logout</argument>
+                        <argument translate="true" name="sort_order" xsi:type="string">10</argument>
+                    </arguments>
+                </block>
+            </block>
+            <block class="Magedelight\Vendor\Block\Sellerhtml\Account\Profile" name="vendor.header.status.message" as="vendor_status_message" after="-" template="Magedelight_Vendor::html/header/status.phtml"/>
+        </referenceContainer>
+        
+        <referenceContainer name="header.container">
+            <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Header\Logo" name="vendor_logo">
+                <arguments>
+                    <argument name="logo_file" xsi:type="string">images/logo.png</argument>
+                    <argument name="logo_img_width" xsi:type="number">189</argument>
+                    <argument name="logo_img_height" xsi:type="number">64</argument>
+                </arguments>
+            </block>
+            <container name="vendor.header.panel" label="Page Header Panel" htmlTag="div" htmlClass="panel header">
+                <block class="Magedelight\Theme\Block\Sellerhtml\Html\Vendor\Header" name="vendor.header" as="vendor_header" template="Magedelight_Theme::html/vendor/header.phtml" />
+            </container>
+        </referenceContainer>
+        
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="rb.footer.customcss" template="Magedelight_Theme::customcss.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,80 @@
+// /**
+//  * Copyright © 2016 Rocket Bazaar. All rights reserved.
+//  * See COPYING.txt for license details
+//  */
+
+//
+//  Email extend styles
+//  _____________________________________________
+
+//  This file should be used for theme-specific styles for emails that extend or modify the styles in _email.less
+//  This will allow you to edit email styles without copying and editing the _email.less file
+
+//  Importing fonts from an external CSS file, rather than embedding @font-face declarations inside the <style> tag,
+//  as the latter will cause font rendering issues if the web fonts are inaccessible.
+
+/*@import url("@{baseUrl}css/email-fonts.css");*/
+
+//  Structure
+@email-body__width: 660px;
+@email-body__padding: @indent__base;
+
+//  Colors
+@email__background-color: @color-white-smoke;
+
+//  Headings
+@h3__font-weight: @heading__font-weight__base;
+
+.header {
+    background-color: @email__background-color;
+    padding: @email-body__padding;
+}
+
+.footer {
+    background-color: @email__background-color;
+    padding: @email-body__padding;
+
+    table {
+        width: 100%;
+
+        td {
+            padding-bottom: @email-body__padding;
+            width: 33%;
+
+            p {
+                margin-bottom: 0;
+
+                &.phone {
+                    font-size: @font-size__l;
+
+                    a {
+                        color: inherit;
+                    }
+                }
+            }
+        }
+    }
+}
+.main {
+  border: 1px solid @border-color__base;
+  background: @color-white;
+}
+.main-content {
+    border-top: 1px solid @border-color__base;
+    border-bottom: 1px solid @border-color__base;
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .header,
+    .main-content,
+    .footer {
+        padding: @email-body__padding @indent__s !important;
+    }
+
+    .footer {
+        td {
+            display: block;
+            width: auto !important;
+        }
+    }
+}

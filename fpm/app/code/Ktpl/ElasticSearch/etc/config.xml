@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <search>
+            <engine>
+                <engine>mysql2</engine>
+            </engine>
+            <advanced>
+                <wildcard>infix</wildcard>
+                <result_limit>10000</result_limit>
+                <noroute_to_search>1</noroute_to_search>
+                <terms_highlighting>1</terms_highlighting>
+                <google_sitelinks>1</google_sitelinks>
+                <redirect_on_single_result>1</redirect_on_single_result>
+                <show_related_terms>1</show_related_terms>
+                <match_mode>and</match_mode>
+            </advanced>
+        </search>
+    </default>
+</config>

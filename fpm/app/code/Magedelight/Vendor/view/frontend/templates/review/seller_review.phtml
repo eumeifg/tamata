@@ -1,0 +1,125 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+/** @var $block Magedelight\Vendor\Block\Review\Ajaxreview */
+?>
+<?php
+    $users = $this->getcustomerSession();
+    $firstname = $users['firstname'];
+    $email = $users['email'];
+    $cid = $users['entity_id'];
+?>
+<div id="vendor-review-popup-modal" style="display: none;">
+    
+    <div class="block review-add">    
+        <div class="block-title"><strong><?= __('Write Your Own Review') ?></strong></div>
+    <div class="block-content">    
+    <form target="_top" method="POST" enctype='multipart/form-data' action="<?= $this->getUrl('rbvendor/review_index/post'); ?>" id="review-form" data-role="product-review-form" data-bind="scope: 'review-form'">
+    <section class="popup-section-content-wrapper">
+                <div class="tray">
+                    <div class="rbpanel bn">    
+        <?= $block->getBlockHtml('formkey'); ?>    
+        <?php if (isset($cid) && $cid != '') {
+            ?><input type="hidden" name="customer_id" value="<?= $cid; ?>"><?php
+        } ?>
+        <fieldset class="fieldset review-fieldset" data-hasrequired="<?php __('* Required Fields'); ?>">
+                   <span id="input-message-box"></span>
+                   <fieldset class="field required review-field-ratings">
+                        <legend class="label"><span><?=  __('Your Rating') ?><span></legend><br/>
+                        <div class="control">
+                        <div class="nested" id="product-review-table">    
+                        <?php foreach ($block->getRatings() as $_rating) : ?>
+                        <div class="field choice review-field-rating">
+                         <label class="label" id="<?= $block->escapeHtml($_rating->getRatingCode()) ?>_rating_label"><span><?= $block->escapeHtml($_rating->getRatingCode()) ?></span></label>
+                                <div class="control review-control-vote">
+                                <?php $options = $_rating->getOptions();?>
+                                <?php $iterator = 1; foreach ($options as $_option) : ?>
+                                    <input
+                                        type="radio"
+                                        name="ratings[<?= $_rating->getId() ?>]"
+                                        id="<?= $block->escapeHtml($_rating->getRatingCode()) ?>_<?=  $_option->getValue() ?>"
+                                        value="<?=  $_option->getId() ?>_<?= $_option->getValue() ?>"
+                                        class="radio"
+                                        data-validate="{required:true, messages:{required:'<?= __("Please select one of each of the ratings above.") ?>'}}"
+                                        aria-labelledby="<?= $block->escapeHtml($_rating->getRatingCode()) ?>_rating_label <?= $block->escapeHtml($_rating->getRatingCode()) ?>_<?= $_option->getValue() ?>_label" />
+                                    <label
+                                        class="rating-<?= $iterator; ?>"
+                                        for="<?= $block->escapeHtml($_rating->getRatingCode()) ?>_<?= $_option->getValue() ?>"
+                                        title="<?= __('%1 %2', $iterator, $iterator > 1 ? 'stars' : 'star') ?>"
+                                        id="<?= $block->escapeHtml($_rating->getRatingCode()) ?>_<?= $_option->getValue() ?>_label">
+                                        <span><?= __('%1 %2', $iterator, $iterator > 1 ? 'stars' : 'star') ?></span>
+                                    </label>
+                                    <?php $iterator++; ?>
+                                <?php endforeach; ?>
+                                </div>
+                        </div>
+                        <?php endforeach; ?>
+                        </div> 
+                            <input type="hidden" name="incremen_id" value="<?= $block->getIncrementId(); ?>"/>
+                            <input type="hidden" name="vendor_id" value="<?= $block->getVendor_id(); ?>"/> 
+                            <input type="hidden" name="order_id" value="<?= $block->getOrderId(); ?>"/> 
+                            <input type="hidden" name="validate_rating" class="validate-rating" value="" />
+                       </div>                 
+                     </fieldset> 
+                    <div class="field review-field-text required">
+                        <label for="review_field" class="label"><span><?= __('Comment') ?></span></label>
+                        <div class="control">
+                            <textarea name="comment" id="review_field" cols="5" rows="3" data-validate="{required:true}" data-bind="value: review().detail"></textarea>
+                        </div>
+                    </div>
+        </fieldset>  
+        <div class="actions-toolbar review-form-actions">
+            <div class="primary actions-primary">
+                <button type="submit" class="action submit primary"><span><?= __('Submit Review') ?></span></button>
+            </div>
+        </div>
+        </div>
+         </div>
+        </section>
+        </form>
+    </div>    
+    </div> 
+</div>
+
+<script>
+    require(
+            [
+                'jquery',
+                'Magento_Ui/js/modal/modal',
+                'mage/translate'
+            ],
+            function ($, modal) {
+                var options = {
+                    type: 'popup',
+                    responsive: true,
+                    innerScroll: true,
+                    title: $.mage.__('Seller Review'),
+                    buttons: [{
+                            text: $.mage.__('Close'),
+                            class: '',
+                            click: function () {
+                                this.closeModal();
+                            }
+                        }]
+                };
+                var popup = modal(options, $('#vendor-review-popup-modal'));
+
+                $(".reviewvendor").on("click", function () {
+                    $('[name="vendor_id"]').val($(this).data('vendor_id'));
+                    $('[name="incremen_id"]').val($(this).data('increment_id'));
+                    $('[name="order_id"]').val($(this).data('order_id'));
+                    $('#vendor-review-popup-modal').modal('openModal');
+                });
+            }
+    );
+</script>
+

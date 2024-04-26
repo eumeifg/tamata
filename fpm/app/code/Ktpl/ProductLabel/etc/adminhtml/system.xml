@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+ /**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_CategoryImportExport
+ * @author    Kirti Nariya <kirti.nariya@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <system>
+        <tab id="ktpl" translate="label" sortOrder="100" class="ktpl-extensions">
+             <label>KTPL</label>
+        </tab>
+        <section id="customktplproductlabel" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="6" translate="label">
+            <label>Product Label</label>
+            <tab>ktpl</tab>
+            <resource>Ktpl_ProductLabel::ktpl_productlabel</resource>
+            <group id="productlabel" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="0" translate="label">
+                <attribute type="expanded">1</attribute>
+                <label>Product Label</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,52 @@
+<?php
+/**
+ * Ktpl
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Ktpl
+ * @package     Ktpl_DealsZone
+ * @copyright   Copyright (c) Ktpl (https://https://www.KrishTechnolabs.com/)
+ * @license     https://https://www.KrishTechnolabs.com/
+ */
+$categoryData = $block->getTopCategoryData();
+$mode = 'grid';
+?>
+<div>
+	<?php if($categoryData->count()) : ?>
+		<div class="block-content">
+	        <div class="products-<?= $mode; ?> <?= $mode; ?> carousel-container">
+	                <div id="deals">
+					<?php foreach($categoryData as $key => $category) : ?>
+						 <div class="item">
+		                   <div class="prod-img-box">
+							<a id="<?= $category->getId()?>" name="<?= $category->getName()?>" data-toggle="tab" href="<?= $category->getUrl()?>">
+								<?php
+								$_outputhelper = $this->helper('Magento\Catalog\Helper\Output');
+								$_imgHtml = '';
+								if ($_imgUrl = $block->getThumbnailImagePath($category->getDealzoneImage())) {
+									$_imgHtml = '<img src="' . $_imgUrl . '" />';
+									$_imgHtml = $_outputhelper->categoryAttribute($category, $_imgHtml, 'image');
+									/* @escapeNotVerified */ echo $_imgHtml;
+								}
+								?>
+							</a>
+							</div>
+							<div class="product-item-details">
+	                            <strong class="category name category-item-name">
+	                            	<a title="<?= $block->escapeHtmlAttr(__($category->getName())) ?>" href="<?= $block->escapeHtmlAttr(__($category->getUrl())) ?>">
+	                            		<?= $block->escapeHtmlAttr(__($category->getName())) ?>
+									</a>
+								</strong>
+								<?= $category->getDiscountLabel() ?>
+	                        </div>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+</div>

@@ -1,0 +1,81 @@
+    <div class="carousel-container">
+        <div id="hometoppartners" class="owl-carousel owl-theme">
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+            <div class="item">
+                <img src="<?php echo $this->getViewFileUrl('images/top-partners-01.jpg'); ?>" alt="">
+            </div>
+        </div>
+    </div>
+
+
+
+<script type="text/javascript">
+         require(["jquery","owlcarousel"],function($) {
+           $(document).ready(function () {
+                $("#hometoppartners").owlCarousel({
+                autoPlay: 3000, //3000 Set AutoPlay to 3 seconds
+                margin:30,
+                items : 10,
+                navigation : false,
+                nav: true,
+                loop:false,
+                rtl:true,
+                responsive:{
+                    0:{
+                        items:2
+                    },
+                    600:{
+                        items:5
+                    },
+                    1000:{
+                        items:7
+                    },
+                    1200:{
+                        items:10
+                    }
+                }
+          });
+    });
+});
+</script>

@@ -1,0 +1,20 @@
+{
+  "name": "ktpl/searchelastic",
+  "description": "Search Elastic",
+  "require": {
+    "magento/framework": "100.1.*|100.2.*|101.0.*|102.0.*",
+    "elasticsearch/elasticsearch": "~2.0|~5.1",
+    "ktpl/module-search": "dev-master|dev-develop|~1.0.10"
+  },
+  "type": "magento2-module",
+  "version": "1.2.36",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Ktpl\\SearchElastic\\": ""
+    }
+  }
+}

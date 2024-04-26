@@ -1,0 +1,29 @@
+{
+    "name": "RB\/Catalog",
+    "description": "",
+    "require": {
+        "php": "~5.6.0|~7.0.0",
+	"dompdf/dompdf": "^0.8.2"
+    },
+    "type": "magento2-module",
+    "version": "1.0.5",
+    "license": [
+        "Proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "RB\\Catalog\\": ""
+        }
+    },
+    "extra": {
+        "map": [
+            [
+                "*",
+                "RB\/Catalog"
+            ]
+        ]
+    }
+}

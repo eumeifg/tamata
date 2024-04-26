@@ -1,0 +1,55 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+$vendor = $this->getVendor();
+$sortOrder = $block->getData('sort_order');
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of Object Manager
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data'); // Instance of Pricing Helper
+?>
+<div id="register-step-<?= $sortOrder;?>" class="form-step no-display">
+    <fieldset class="fieldset">
+        <legend class="legend legend-modify"><span><?= __('Please select one or more categories from the below list.') ?>*</span></legend>
+        <div id="sell_category_error" class="mage-error" style="display:none;"></div>
+        <?= $this->getChildHtml('additional_content_before_sell_cat'); ?>
+        <div id="category-list" class="category-list">
+            <?= $this->getCategories(); ?>
+        </div>
+        <?= $this->getChildHtml('additional_content_after_sell_cat'); ?>
+
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="button" value="1" title="<?= __('Back') ?>" class="action primary btn-back">
+                    <span><?= __('Back') ?></span>
+                </button>
+                <button type="button" value="3" title="<?= __('Continue') ?>" class="action primary btn-continue">
+                    <span><?= __('Continue') ?></span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<script type="text/javascript">
+require([
+    'jquery',
+    'Magedelight_Vendor/js/registration/selling-categories',
+    'Magedelight_Vendor/js/registration/validation/selling-categories'
+], function ($,sellingCategories,validatesellingCategories) {
+        /*Selling categories code starts.*/
+        $(function() {
+            validatesellingCategories();
+            var selling_categories_options={};
+            sellingCategories(selling_categories_options);
+        });
+        /*Selling categories code ends.*/
+});
+</script>

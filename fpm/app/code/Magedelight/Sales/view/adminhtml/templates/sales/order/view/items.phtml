@@ -1,0 +1,79 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+use Magedelight\Sales\Model\Order;
+
+/* var $block \Magedelight\Sales\Block\Adminhtml\Sales\Order\View\Items */
+?>
+<?php
+$_order = $block->getOrder();
+$helper = $this->helper('Magedelight\Vendor\Helper\Data');
+$catalogHelper = $this->helper('Magedelight\Catalog\Helper\Data');
+$_vendorItems = [];
+$i = 0;
+foreach ($_order->getItemsCollection() as $item) {
+    $vendorId = $item->getData('vendor_id');
+    if ($vendorId == null || $vendorId == '' || $vendorId == 0) {
+        continue;
+    }
+    ?>
+
+    <?php if ($item->getParentItem()) {
+        continue;
+    } else {
+        $i++;
+    }?>
+    <?php $_vendor = $block->getVendor($vendorId);?>
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-products">
+                <?php if ($_vendor) { ?>
+                    <?php $_vendorOrder = $block->getVendorOrder($_order->getId(), $_vendor->getId(), $item->getVendorOrderId());?>
+                    <?= __('Vendor: %1 (%2)', $helper->getVendorNameById($_vendor->getVendorId()), $_vendor->getName()) ?><span class="separator">|</span>
+                    <?= __('Vendor order: #%1', $_vendorOrder->getData('increment_id')) ?><span class="separator">|</span>
+                    <?php if ($item->getSku() == $catalogHelper->getStoreCreditProduct()) { ?>
+                        <?= __('Status: %1', ucwords($_vendorOrder->getData('status'))); ?>
+                    <?php } elseif ($_vendorOrder->getData('status') == Order::STATUS_CANCELED) { ?>
+                        <?= __('Status: %1 (Cancelled By %2)', $_vendorOrder->getStatusLabel(), $_vendorOrder->getCancelledByEntity()); ?>
+                    <?php } else { ?>
+                        <?= __('Status: %1', $_vendorOrder->getStatusLabel()); ?>
+                    <?php } ?>
+                    <?= $block->_getButtonsHtml($_vendorOrder, $_order, $vendorId, $item); ?>
+                <?php } else {
+                    ?> <?= __('Vendor does not exist.'); ?> <?php
+                } ?>
+            </h4>
+        </div>
+    </div>
+
+    <div class="admin__table-wrapper table-wrapper order-items rb-order-items">
+        <table class="data table table-order-items rb-table-order-items data-table admin__table-primary edit-order-table">
+            <thead>
+            <tr class="headings">
+                <th class="col product col-product"><span><?= /* @escapeNotVerified */ __('Product') ?></span></th>
+                <th class="col status col-status"><span><?= /* @escapeNotVerified */ __('Item Status') ?></span></th>
+                <th class="col original-price col-price-original"><span><?= /* @escapeNotVerified */ __('Original Price') ?></span></th>
+                <th class="col price col-price"><span><?= /* @escapeNotVerified */ __('Price') ?></span></th>
+                <th class="col qty col-ordered-qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></th>
+                <th class="col subtotal col-subtotal"><span><?= /* @escapeNotVerified */ __('Subtotal') ?></span></th>
+                <th class="col tax-amount col-tax-amount"><span><?= /* @escapeNotVerified */ __('Tax Amount') ?></span></th>
+                <th class="col tax-percent col-tax-percent"><span><?= /* @escapeNotVerified */ __('Tax Percent') ?></span></th>
+                <th class="col discount-amount col-discont"><span><?= /* @escapeNotVerified */ __('Discount Amount') ?></span></th>
+                <th class="col row-total col-total last"><span><?= /* @escapeNotVerified */ __('Row Total') ?></span></th>
+            </tr>
+            </thead>
+                <tbody class="<?= /* @escapeNotVerified */ $i%2 ? 'even' : 'odd' ?>">
+                <?= $block->getItemHtml($item) ?>
+                <?= $block->getItemExtraInfoHtml($item) ?>
+                </tbody>
+        </table>
+    </div>
+<?php } ?>

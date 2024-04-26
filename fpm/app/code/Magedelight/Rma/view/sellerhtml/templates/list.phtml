@@ -1,0 +1,54 @@
+<?php
+/**
+ * Copyright © 2016 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details
+ */
+/* @codingStandardsIgnoreFile */
+?>
+<?php
+$_returnsrequests = $block->getReturns();
+?>
+<div class="table-wrapper orders-history">
+    <table class="data table table-order-items rb-table-order-items history" id="complete-orders-table">
+        <thead>
+            <tr><th scope="col" sortorder="rvo_vendor_rma_id" class="col id sortable"><?php echo __('RMA #') ?><span id="complete-rvo-vendor-order-id" class="sort-dir-arrow">&nbsp;</span></th>
+                <th scope="col" sortorder="rvo_vendor_order_id" class="col id sortable"><?php echo __('Order#') ?><span id="complete-rvo-vendor-order-id" class="sort-dir-arrow">&nbsp;</span></th>
+                <th scope="col" sortorder="customer_id" class="col id sortable"><?php echo __('Customer Name') ?><span id="complete-customer-id" class="sort-dir-arrow">&nbsp;</span></th>
+                <th scope="col" sortorder="rvo_created_at" class="col date sortable"><?php echo __('Requested Date/Time') ?><span id="complete-rvo-created-at" class="sort-dir-arrow">&nbsp;</span></th>
+                <th scope="col" sortorder="status" class="col shipping sortable text-center"><?php echo __('Status') ?><span id="complete-ship-to-name" class="sort-dir-arrow">&nbsp;</span></th>
+                <th scope="col" class="col actions"><?php echo __('Action') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+         <?php if ($_returnsrequests && count($_returnsrequests)): ?>
+            <?php foreach ($_returnsrequests as $_returnsrequest): ?>
+                <tr>
+                    <td data-th="<?php echo $block->escapeHtml(__('RMA #')) ?>" class="col data-grid-id-cell"><?php echo $_returnsrequest->getIncrementId() ?></td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Order#')) ?>" class="col">
+                        <a href="<?= /* @escapeNotVerified */ $block->getUrl('rbsales/order/view',['id' => $_returnsrequest->getVendorOrderId()]); ?>" target="_blank">
+                            <?php echo $_returnsrequest->getVendorOrderIncrementId() ?>
+                        </a>
+                    </td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Customer Name')) ?>" class="col"><?php echo $_returnsrequest->getCustomerName() ?></td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Requested Date/Time')) ?>" class="col data-grid-date-cell billing"><?php echo $_returnsrequest->getDateRequested(); ?></td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Status')) ?>" class="col data-grid-status-cell"><?php echo $block->getStatusLabel($_returnsrequest->getStatus()); ?></td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Actions')) ?>" class="col data-grid-actions-cell data-grid-actions-multiple-cell">
+                        <a href="<?php echo $block->getViewUrl($_returnsrequest); ?>" class="action view">
+                            <span><?php echo __('View') ?></span>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            <?php else: ?>
+                    <tr>
+                        <td colspan="6" class="col data-grid-actions-cell data-grid-actions-multiple-cell">
+                            <div class="message info"><?=  __('You have not received any return request(s).') ?></div>
+                        </td>
+                    </tr>
+            <?php endif ?>
+        </tbody>
+    </table>
+</div>
+<?php if ($block->getPagerHtml()): ?>
+    <div class="return-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+<?php endif ?>

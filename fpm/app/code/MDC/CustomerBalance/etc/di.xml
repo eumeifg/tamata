@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\CustomerBalance\Model\BalanceManagement" type="MDC\CustomerBalance\Model\BalanceManagement" />
+
+    <preference for="Magento\CustomerBalance\Model\Total\Quote\Customerbalance" type="MDC\CustomerBalance\Model\Total\Quote\Customerbalance" />
+
+    <preference for="Magento\CustomerBalance\Controller\Cart\Unapply" type="MDC\CustomerBalance\Controller\Cart\Unapply" />
+    
+
+</config>

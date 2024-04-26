@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ktpl" translate="label" sortOrder="250" class="ktpl-extensions">
+            <label><![CDATA[<span class="ktpl-logo">KTPL Extensions</span>]]></label>
+        </tab>
+        <section id="productdetailpagesettings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Product detail page settings</label>
+            <tab>ktpl</tab>
+            <resource>Ktpl_ProductView::productdetailpagesettings</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Description Titles</label>
+                <field id="shortdescriptiontitle" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Short Description Title</label>
+                    <comment>It will show on product detail page short description title</comment>
+                </field>
+                <field id="longdescriptiontitle" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Long Description Title</label>
+                    <comment>It will show on product detail page long description title</comment>
+                </field>
+            </group>
+         </section>
+    </system>
+</config>

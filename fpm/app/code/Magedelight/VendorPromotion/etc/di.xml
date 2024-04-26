@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_VendorPromotion
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\SalesRule\Model\Rule">
+        <plugin name="rb_vendorpromotion_salesrule_model" type="Magedelight\VendorPromotion\Model\Plugin\Rule" sortOrder="1" />
+    </type>
+    <preference for="Magento\SalesRule\Model\Rule\Condition\Address" type="Magedelight\VendorPromotion\Model\Rule\Condition\Address"/>
+    <preference for="Magento\SalesRule\Model\Rule\Condition\Product\Combine" type="Magedelight\VendorPromotion\Model\Rule\Condition\Product\Combine"/>
+    <preference for="Magento\SalesRule\Model\Rule\Condition\Product" type="Magedelight\VendorPromotion\Model\Rule\Condition\Product"/>
+</config>

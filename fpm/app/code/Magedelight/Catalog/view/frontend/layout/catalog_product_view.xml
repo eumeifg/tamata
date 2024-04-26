@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>        
+        <referenceContainer name="content">
+            <block class="Magedelight\Catalog\Block\Product\View\ProductVendor" name="product.vendor.list" template="Magedelight_Catalog::product/view/vendor_list.phtml" before="product.info.details"/>
+        </referenceContainer>
+
+        <referenceBlock name="product.info.main">
+                <container name="seller.info" htmlTag="div" htmlClass="vendor-info" before="-">
+                    <block class="Magedelight\Catalog\Block\Product\View\ProductVendor" name="rb.product.default.vendor.name" template="Magedelight_Catalog::product/view/default_vendor/name.phtml"/>
+                    <block class="Magedelight\Catalog\Block\Product\View\ProductVendor" name="rb.product.default.vendor.other.offers" template="Magedelight_Catalog::product/view/default_vendor/other_offers.phtml"/>
+                </container>
+        </referenceBlock>
+
+        <referenceBlock name="product.info">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magedelight_Catalog::product/view/form.phtml</argument>
+            </action>
+            <block class="Magedelight\Catalog\Block\Product\View\ProductVendor" name="rb.product.warranty.details" template="Magedelight_Catalog::product/view/warranty_details.phtml" after="-" />
+            <block class="Magedelight\Catalog\Block\Product\View\ProductVendor" name="rb.product.condition" template="Magedelight_Catalog::product/view/condition.phtml" after="-" />
+            <block class="Magedelight\Catalog\Block\Product\View\ProductVendor" name="rb.product.condition.note" template="Magedelight_Catalog::product/view/condition_note.phtml" after="-" />
+        </referenceBlock>
+        
+        <referenceBlock name="product.info.options.wrapper">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magedelight_Catalog::product/view/options/wrapper.phtml</argument>
+            </action>
+        </referenceBlock>
+        
+        <referenceContainer name="product.info.social">
+            <block class="Magedelight\Catalog\Block\Getproductdetails"
+                name="product.view.extra"
+                template="Magedelight_Catalog::product/view/sku.phtml"
+                after="-">
+            </block>        
+        </referenceContainer>
+
+        <move element="seller.info" destination="product.info.main" before="product.info" />
+        <move element="rb.product.warranty.details" destination="product.info.main" after="product.info.overview"/>
+        <move element="rb.product.condition" destination="product.info.main" after="rb.product.warranty.details"/>
+        <move element="rb.product.condition.note" destination="product.info.main" after="rb.product.condition"/>
+
+    </body>
+</page> 

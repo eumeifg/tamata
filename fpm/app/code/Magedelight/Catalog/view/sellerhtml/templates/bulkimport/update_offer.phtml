@@ -1,0 +1,85 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var \Magedelight\Catalog\Block\Category $block
+ *
+ */
+?>
+    
+<div class="sections download-category-template-sections signup-steps-sections profile-steps-sections">
+    <div class="panel download-category-template-panel signup-steps profile-steps mb20">
+        <div class="rb-container">
+            <div class="row bn signup-step-content profile-step-content download-category-template-list">
+                <div class="col-md-12 col-lg-12 col-xl-12">
+                    <div class="rbpanel">
+                        <div class="rbpanel-heading p10">
+                            <span class="sub-title"><?= __("Bulk Offer Update") ?></span>
+                            <a href="javascript:void(0)" data-href="<?= $this->getUrl("rbcatalog/bulkimport/guidelines") ?>" class="action bulkimport-guidelines">
+                                <?= __("Help") ?>
+                            </a>
+                        </div>
+                        <div class="rbpanel-body">
+                            <div class="row">
+                                <div class="col-md-8 col-lg-8 col-xl-8">
+                                    <fieldset class="fieldset bulk-offer-update offer-upload">
+                                        <div class="field">
+                                            <div class="control">
+                                                <div class="file-upolad">
+                                                    <input  data-validate="{required:true}" id="catalog-bulk-upload" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"  name="catalog-bulk-upload" class="inputfile inputfile-1"/>
+                                                    <label for="catalog-bulk-upload"><span><?= __('Choose a file')?></span></label>
+                                                    <div id="catalog-bulk-upload-error" for="catalog-bulk-upload" generated="true" class="mage-error"></div>
+                                                </div>
+                                            </div>
+                                            <div class="actions-toolbar mt20">
+                                                <div class="primary">
+                                                    <button id="uploadBulkOfferBtn" title="<?= __('Upload') ?>" value="<?= __('Upload') ?>" class="action primary btn-primary catalog-bupload" >
+                                                    <span><?= __('Upload') ?></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-4 col-lg-4 col-xl-4">
+                                    <fieldset class="fieldset bulk-offer-update offer-download">
+                                        <div class="actions-toolbar">
+                                            <div class="primary">
+                                                <p class="mb25"><?= __('Bulk Offer Template ') ?></p>
+                                                <a class="action primary download" href="<?= $this->getUrl('rbcatalog/bulkimport/bulkoffercsvtemplate') ?>"><?= __("Download") ?></a>
+                                                <div id="catalog-bulk-file-error" generated="true" class="mage-error" ></div>                                                                
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    require(['jquery','Magedelight_Catalog/js/bulkimport/custom'], function ($,custom) {
+        $(function() {
+            $('#uploadBulkOfferBtn').on('click', function(e) {
+                custom.uploadbulkoffer("<?= $this->getUrl('rbcatalog/bulkimport/csvupload', ['type' => 'update_offer']); ?>");
+                var $el = $('#catalog-bulk-upload');
+                $el.wrap('<form>').closest('form').get(0).reset();
+                $el.unwrap();
+                return false;
+            });
+            custom.setFileInputChangeEvent('catalog-bulk-upload');
+        });
+    });
+</script>

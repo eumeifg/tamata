@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Commissions
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magedelight_Backend:etc/email_templates.xsd">
+  <template id="emailconfiguration_vendor_commission_new_template" label="Vendor Commission New" file="emailconfiguration_vendor_commission_new_template.html" type="html" area="frontend" module="Magedelight_Commissions"/>
+  <template id="emailconfiguration_vendor_catcommission_new_template" label="Vendor Category Commission New" file="emailconfiguration_vendor_catcommission_new_template.html" type="html" area="frontend" module="Magedelight_Commissions"/>
+  <template id="emailconfiguration_vendor_commission_change_template" label="Vendor Commission Change" file="emailconfiguration_vendor_commission_change_template.html" type="html" area="frontend" module="Magedelight_Commissions"/>
+  <template id="emailconfiguration_global_commission_change_template" label="Vendor Commission Change" file="emailconfiguration_global_commission_change_template.html" type="html" area="frontend" module="Magedelight_Commissions"/>
+  <template id="emailconfiguration_vendor_catcommission_change_template" label="Vendor Category Commission Change" file="emailconfiguration_vendor_catcommission_change_template.html" type="html" area="frontend" module="Magedelight_Commissions"/>
+  <template id="emailconfiguration_vendor_comm_template" label="Vendor Payment Notification" file="emailconfiguration_vendor_comm_template.html" type="html" area="frontend" module="Magedelight_Commissions"/>
+  <template id="emailconfiguration_vendor_product_commission_change_template" label="Vendor Product Commission Change" file="emailconfiguration_vendor_product_commission_change_template.html" type="html" area="frontend" module="Magedelight_Commissions"/>
+</config>

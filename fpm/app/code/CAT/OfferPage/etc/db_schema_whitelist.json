@@ -1,0 +1,20 @@
+{
+    "offerpage": {
+        "column": {
+            "offerpage_id": true,
+            "title": true,
+            "default_image": true,
+            "additional_info": true,
+            "status": true,
+            "device": true,
+            "created_at": true
+        },
+        "index": {
+            "OFFERPAGE_STATUS": true,
+            "OFFERPAGE_DEVICE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

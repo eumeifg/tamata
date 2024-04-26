@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+                <resource id="Ktpl_Core::menu">
+                    <resource id="Ktpl_Pushnotification::pushnotifications" title="Manage Push Notification" sortOrder="1">
+                        <resource id="Ktpl_Pushnotification::ktpl_pushnotification_ktpl_pushnotifications" title="Push Notifications" sortOrder="10">
+                            <resource id="Ktpl_Pushnotification::ktpl_pushnotifications" title="Push Notification Listing" sortOrder="1"/>
+                        </resource>
+                        <resource id="Ktpl_Pushnotification::ktpl_pushnotification_ktpl_devicetokens" title="Device Tokens" sortOrder="11">
+                            <resource id="Ktpl_Pushnotification::ktpl_devicetokens" title="Device Token Listing" sortOrder="1"/>
+                        </resource>
+                    </resource>
+                </resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route method="POST" url="/V1/mdc-mobilebanner/banner">
+		<service class="MDC\MobileBanner\Api\BannerRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="MDC_MobileBanner::banner_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/mdc-mobilebanner/banner/search">
+		<service class="MDC\MobileBanner\Api\BannerRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="MDC_MobileBanner::banner_view"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/mdc-mobilebanner/banner/:bannerId">
+		<service class="MDC\MobileBanner\Api\BannerRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="MDC_MobileBanner::banner_view"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/mdc-mobilebanner/banner/:bannerId">
+		<service class="MDC\MobileBanner\Api\BannerRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="MDC_MobileBanner::banner_update"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/mdc-mobilebanner/banner/:bannerId">
+		<service class="MDC\MobileBanner\Api\BannerRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="MDC_MobileBanner::banner_delete"/>
+		</resources>
+	</route>
+</routes>

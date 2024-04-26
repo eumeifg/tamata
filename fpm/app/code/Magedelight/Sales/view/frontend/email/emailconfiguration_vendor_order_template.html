@@ -1,0 +1,10 @@
+<!--@subject {{var vendor_name}} new order {{var purchase_order_id}}@-->
+
+{{template config_path="design/email/header_template"}}        
+<p>{{trans "Hello"}} {{var vendor_name}},</p>
+<p>{{trans "We would like to inform that a new order"}} <strong>{{var purchase_order_id}}</strong> {{trans "has been placed."}}</p>
+<p>{{trans "Kindly confirm the order and ship the items."}}</p>
+<p>{{trans "View order details by log into Vendor Panel"}}</p>
+
+
+{{template config_path="design/email/footer_template"}}

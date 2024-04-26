@@ -1,0 +1,3 @@
+interface ProductInterface @typeResolver(class: "Magento\\CatalogGraphQl\\Model\\ProductInterfaceTypeResolverComposite") @doc(description: "The ProductInterface contains attributes that are common to all types of products. Note that descriptions may not be available for custom and EAV attributes.") {	
+    vip_price: String @doc(description: "An array of Reviews objects") @resolver(class: "CAT\\VIP\\Model\\Resolver\\Product\\VipPrice")
+}

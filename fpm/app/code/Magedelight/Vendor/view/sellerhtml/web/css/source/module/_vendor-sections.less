@@ -1,0 +1,247 @@
+// /**
+//  * Copyright © 2016 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .product.data.items {
+        .lib-data-accordion();
+        margin-bottom: @indent__base;
+    }
+
+    section {
+      #invoice_item_container {
+        .lib-css(padding, @indent__base);
+      }
+    }
+
+
+    #invoice_item_container {
+      .admin__page-section {
+        .lib-css(margin-bottom, @indent__base);
+      }
+      .admin__page-section-title {
+        .lib-css(border-bottom, 1px solid @color-gray88);
+        .lib-css(margin-bottom, 17px);
+        .lib-css(padding, @indent__l 0px);
+       .title {
+        .lib-css(float, left);
+        .lib-css(margin, 0);
+        .lib-css(color, #41362f);
+        font-weight: @font-weight__regular;
+        line-height: 1.2;
+        .lib-font-size(20);
+       }
+      }
+      .admin__page-section-content {
+        .order-comments-history {
+          .lib-css(float, left);
+          .lib-css(width, 48%);
+          .admin__page-section-item-title {
+              .lib-css(border-bottom, 0);
+              .lib-css(margin-bottom, @indent__base - 5);
+              .lib-css(padding, 0);
+            .title {
+              .lib-font-size(18);
+              font-weight: @font-weight__semibold;
+              .lib-css(margin, 0);
+            }
+          }
+          .order-history-form {
+            .lib-css(margin-bottom, 0);
+            .admin__field-label {
+              .lib-css(display, block);
+              .lib-css(line-height, 14px);
+              .lib-css(margin-bottom, .86rem);
+              .lib-css(margin-top, -14px);
+              .lib-css(text-align, left);
+              .lib-css(width, auto);
+              .lib-font-size(14);
+              font-weight: @font-weight__semibold;
+              .lib-css(padding, 0);
+              white-space: nowrap;
+              word-wrap: break-word;
+              color: #303030;
+            }
+          }
+        }
+        .order-totals {
+          .lib-css(float, right);
+          .lib-css(width, 48%);
+          .admin__page-section-item-title {
+              .lib-css(border-bottom, 0);
+              .lib-css(margin-bottom, @indent__base - 5);
+              .lib-css(padding, 0);
+            .title {
+              .lib-font-size(18);
+              font-weight: @font-weight__semibold;
+              .lib-css(margin, 0);
+            }
+          }
+          .order-totals-actions {
+            .lib-css(margin-top, @indent__s);
+            .admin__table-secondary {
+              .lib-css(width, 100%);
+              background-color: transparent;
+              color: #303030;
+            }
+            .admin__field-option {
+                padding-top: .8rem;
+                &.field-append {
+                  padding-top: .8rem;
+                }
+                &.field-email {
+                  margin-top: .9rem;
+                }
+            }
+            .actions {
+              .lib-css(margin-top, @indent__s);
+              .lib-css(text-align, right);
+              .lib-css(margin-bottom, @indent__s);
+            }
+          }
+        }
+      }
+    }
+
+
+
+
+}
+
+//
+//
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .product.data.items {
+        .lib-data-tabs(
+            @_tab-content-border-top-status: false,
+            @_tab-control-background-color: @color-white,
+            @_tab-control-font-weight: @font-weight__semibold,
+            @_tab-control-height: 40px,
+            @_tab-control-background-color-hover: #fafafa,
+            @_tab-control-color-hover: @color-gray20,
+
+            @_tab-control-padding-right: 20px,
+            @_tab-control-padding-left: 20px,
+        );
+        &.rbpanel-tabs {
+          .lib-css(margin-bottom, 0);
+        }
+      > .item.title {
+            .lib-css(margin, 0);
+            .lib-css(border-right, 1px solid @border-color__base);
+           > .switch {
+                 .lib-css(border-width, 0);
+           }
+
+        &:not(.disabled) > .switch:focus,
+        &:not(.disabled) > .switch:hover {
+
+        }
+        &:not(.disabled) > .switch:active,
+        &.active > .switch,
+        &.active > .switch:focus,
+        &.active > .switch:hover {
+
+            &:before {
+              content:"";
+              height:3px;
+              background: @color-gray40;
+              left:0;
+              right:0;
+              position: absolute;
+              top:-1px
+            }
+
+        }
+        &.active > .switch,
+        &.active > .switch:focus,
+        &.active > .switch:hover {
+
+        }
+       &.has-errors {
+           > .data {
+             position: relative;
+                .lib-icon-font(
+                @_icon-font-content: @icon-warning,
+                @_icon-font-color: @color-orange-red4,
+                @_icon-font-size: 20px,
+                @_icon-font-position: after,
+                @_icon-font-margin: 0px 0 0 -20px,
+                );
+                 &:after {
+                        position: absolute;
+                        top: 0px
+                      }
+           }
+
+
+       }
+
+       &.active  {
+         margin-bottom: 0;
+       }
+
+      }
+
+    }
+.data.item.content.tab-content {
+      display: block;
+
+
+}
+
+html.rtl-layout {
+  .product.data.items {
+    > .item.title {
+      float: right;
+      border-right: none;
+      border-left: 1px solid @border-color__base;
+    }
+  }
+}
+
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .product.data.items {
+        .lib-data-tabs(
+            @_tab-content-border-top-status: false,
+            @_tab-control-background-color: @color-white,
+            @_tab-control-font-weight: @font-weight__semibold,
+            @_tab-control-height: 40px,
+            @_tab-control-background-color-hover: #fafafa,
+            @_tab-control-color-hover: @color-gray20,
+            @_tab-control-margin-right: 0,
+            @_tab-control-padding-right: @tab-control__padding-right,
+            @_tab-control-padding-left: @tab-control__padding-left,
+        );
+
+    }
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .product.data.items {
+        .lib-data-accordion();
+        .data.item {
+            display: block;
+        }
+    }
+}

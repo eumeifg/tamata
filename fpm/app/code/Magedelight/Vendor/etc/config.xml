@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <admin>
+            <dashboard>
+                <enable_charts>1</enable_charts>
+            </dashboard>
+        </admin>
+        <multishipping>
+            <options>
+                <checkout_multiple>0</checkout_multiple>
+            </options>
+        </multishipping>
+        <vendor_design>
+            <email>
+                <header_template>vendor_design_email_header_template</header_template>
+                <footer_template>vendor_design_email_footer_template</footer_template>
+            </email>
+            <vendor_dashboard>
+                <vendor_dashboard_color_option_header>#00a2b1</vendor_dashboard_color_option_header>
+                <vendor_dashboard_color_option_main>#273238</vendor_dashboard_color_option_main>
+            </vendor_dashboard>
+            <vendor_dashboard>
+                <vendor_dashboard_color_option_header>00A2B1</vendor_dashboard_color_option_header>
+                <vendor_dashboard_color_option_main>273238</vendor_dashboard_color_option_main>
+            </vendor_dashboard>
+        </vendor_design>
+        <vendor>
+            <account_share>
+                <scope>1</scope>
+            </account_share>
+            <general>
+                <vendor_vacation_mode>1</vendor_vacation_mode>
+                <router>seller</router>
+                <company_logo_width>300</company_logo_width>
+                <company_logo_height>300</company_logo_height>
+            </general>
+            <create_account>
+                <confirm>1</confirm>
+                <email_identity>general</email_identity>
+                <email_confirmation_template>vendor_create_account_email_confirmation_template</email_confirmation_template>
+                <enable_bank_details>1</enable_bank_details>
+                <is_bank_details_optional>0</is_bank_details_optional>
+            </create_account>
+            <password>
+                <forgot_email_identity>support</forgot_email_identity>
+                <forgot_email_template>vendor_password_forgot_email_template</forgot_email_template>
+                <remind_email_template>vendor_password_remind_email_template</remind_email_template>
+                <reset_link_expiration_period>1</reset_link_expiration_period>
+                <reset_password_template>vendor_password_reset_password_template</reset_password_template>
+            </password>
+            <status_request>
+                <confirm>1</confirm>
+                <email_identity>general</email_identity>
+                <email_recipient>xyz@example.com</email_recipient>
+                <email_notification_template>vendor_status_request_email_notification_template</email_notification_template>
+                <email_notification_reject_template>vendor_status_request_email_notification_reject_template</email_notification_reject_template>
+                <email_notification_admin_template>vendor_status_request_email_notification_admin_template</email_notification_admin_template>
+            </status_request>
+            <contact_admin>
+                <email_identity>general</email_identity>
+                <email_recipient>xyz@example.com</email_recipient>
+                <email_template>vendor_status_request_email_notification_template</email_template>
+            </contact_admin>
+            <dashboard_summary>
+                <new_orders>5</new_orders>
+                <approved_products>5</approved_products>
+                <best_sellers>5</best_sellers>
+                <most_viewed_products>5</most_viewed_products>
+            </dashboard_summary>
+            <terms_conditions>
+                <editortextarea>
+                    <![CDATA[
+                        <p>Terms and Conditions General Site Usage Last Revised: December 16, 2013 Welcome to www.lorem-ipsum.
+                        info. This site is provided as a service to our visitors and may be used for informational purposes
+                        only. Because the Terms and Conditions contain legal obligations, please read them carefully. 1.
+                        YOUR AGREEMENT By using this Site, you agree to be bound by, and to comply with,
+                        these Terms and Conditions. If you do not agree to these Terms and Conditions,
+                        please do not use this site. PLEASE NOTE: We reserve the right, at our sole discretion,
+                        to change, modify or otherwise alter these Terms and Conditions at any time. Unless otherwise
+                        indicated, amendments will become effective immediately. Please review these Terms and Conditions
+                        periodically. Your continued use of the Site following the posting of changes and/or modifications
+                        will constitute your acceptance of the revised Terms and Conditions and the reasonableness of
+                        these standards for notice of changes. For your information, this page was last updated as of
+                        the date at the top of these terms and conditions. 2. PRIVACY Please review our Privacy Policy,
+                        which also governs your visit to this Site, to understand our practices. 3.
+                        LINKED SITES This Site may contain links to other independent third-party Web sites ("Linked Sites&rdquo;). These Linked Sites are provided solely as a convenience to our visitors. Such Linked Sites are not under our control, and we are not responsible for and does not endorse the content of such Linked Sites, including any information or materials contained on such Linked Sites. You will need to make your own independent judgment regarding your interaction with these Linked Sites. 4. FORWARD LOOKING STATEMENTS All materials reproduced on this site speak as of the original date of publication or filing. The fact that a document is available on this site does not mean that the information contained in such document has not been modified or superseded by events or by a subsequent document or filing. We have no duty or policy to update any information or statements contained on this site and, therefore, such information or statements should not be relied upon as being current as of the date you access this site. 5. DISCLAIMER OF WARRANTIES AND LIMITATION OF LIABILITY A. THIS SITE MAY CONTAIN INACCURACIES AND TYPOGRAPHICAL ERRORS. WE DOES NOT WARRANT THE ACCURACY OR COMPLETENESS OF THE MATERIALS OR THE RELIABILITY OF ANY ADVICE, OPINION, STATEMENT OR OTHER INFORMATION DISPLAYED OR DISTRIBUTED THROUGH THE SITE. YOU EXPRESSLY UNDERSTAND AND AGREE THAT: (i) YOUR USE OF THE SITE, INCLUDING ANY RELIANCE ON ANY SUCH OPINION, ADVICE, STATEMENT, MEMORANDUM, OR INFORMATION CONTAINED HEREIN, SHALL BE AT YOUR SOLE RISK; (ii) THE SITE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS; (iii) EXCEPT AS EXPRESSLY PROVIDED HEREIN WE DISCLAIM ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, WORKMANLIKE EFFORT, TITLE AND NON-INFRINGEMENT; (iv) WE MAKE NO WARRANTY WITH RESPECT TO THE RESULTS THAT MAY BE OBTAINED FROM THIS SITE, THE PRODUCTS OR SERVICES ADVERTISED OR OFFERED OR MERCHANTS INVOLVED; (v) ANY MATERIAL DOWNLOADED OR OTHERWISE OBTAINED THROUGH THE USE OF THE SITE IS DONE AT YOUR OWN DISCRETION AND RISK; and (vi) YOU WILL BE SOLELY RESPONSIBLE FOR ANY DAMAGE TO YOUR COMPUTER SYSTEM OR FOR ANY LOSS OF DATA THAT RESULTS FROM THE DOWNLOAD OF ANY SUCH MATERIAL. B. YOU UNDERSTAND AND AGREE THAT UNDER NO CIRCUMSTANCES, INCLUDING, BUT NOT LIMITED TO, NEGLIGENCE, SHALL WE BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE OR CONSEQUENTIAL DAMAGES THAT RESULT FROM THE USE OF, OR THE INABILITY TO USE, ANY OF OUR SITES OR MATERIALS OR FUNCTIONS ON ANY SUCH SITE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. THE FOREGOING LIMITATIONS SHALL APPLY NOTWITHSTANDING ANY FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY. 6. EXCLUSIONS AND LIMITATIONS SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES.
+                     ]]>
+                </editortextarea>
+            </terms_conditions>
+            <authorised_category>
+                <enable_selling_categories>0</enable_selling_categories>
+            </authorised_category>
+                
+            <new_category_request_admin_notification>
+                <template>vendor_new_category_request_admin_notification_template</template>           
+            </new_category_request_admin_notification>
+
+            <new_category_request_vendor_notification>
+                <template>vendor_new_category_request_vendor_notification_template</template>           
+            </new_category_request_vendor_notification>
+
+            <category_request_approval_vendor_notification>
+                <template>vendor_category_request_approval_vendor_notification_template</template>           
+            </category_request_approval_vendor_notification>
+        </vendor>
+        <general> 
+            <locale>
+                <is_rtl>0</is_rtl>
+            </locale>
+        </general>
+        <oauth>
+            <access_token_lifetime>
+                <seller>1</seller>
+            </access_token_lifetime>
+        </oauth>
+        <vendor>
+            <general>
+                <allow_multiwebsite>1</allow_multiwebsite>
+            </general>
+        </vendor>
+        <emailconfiguration>
+            <new_vendor>
+                <notification>1</notification>
+                <template>emailconfiguration_new_vendor_template</template>           
+            </new_vendor>
+            <vendor_email_verification>
+                <template>emailconfiguration_vendor_email_verification_template</template>           
+            </vendor_email_verification>
+            <vendor_status_change>
+                <template>emailconfiguration_vendor_status_change_template</template>           
+            </vendor_status_change>
+            <vendor_profile_update>
+                <template>emailconfiguration_vendor_profile_update_template</template>           
+            </vendor_profile_update>
+            <vendor_delete>
+                <template>emailconfiguration_vendor_delete_template</template>           
+            </vendor_delete>
+            <vendor_register_first_step>
+                <template>emailconfiguration_vendor_register_first_step_template</template>           
+            </vendor_register_first_step>
+        </emailconfiguration>
+    </default>
+</config>

@@ -1,0 +1,204 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+$vendor = $this->getVendor();
+$regions = $this->getRegions();
+$sortOrder = $block->getData('sort_order');
+?>
+
+<div id="register-step-<?= $sortOrder;?>" class="form-step">
+    <fieldset class="fieldset">
+        <div class="field name required">
+            <label class="label" for="name"><span><?= __('Name') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="name" id="name" title="<?= __('Name') ?>" value="<?= $vendor->getName(); ?>" class="input-text required-entry validate-alpha-with-spaces-name" type="text" placeholder="Enter Vendor Name " autofocus />
+
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Vendor Name') ?></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="field email required">
+            <label class="label" for="email"><span><?= __('Email Address') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="email" id="email" title="<?= __('Email Address') ?>" placeholder="Enter Vendor Email Address " class="input-text required-entry validate-email" type="text" value="<?= $vendor->getEmail(); ?>" readonly="readonly"/>
+
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Vendor Email Address') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field password required">
+            <label class="label" for="password"><span><?= __('Create Password') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="password" id="password" title="<?= __('Create Password') ?>" class="input-text required-entry validate-custom-pswd"   type="password" placeholder="Create Password"  minlength="6"/>
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Password') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field cpassword required">
+            <label class="label" for="cpassword"><span><?= __('Confirm Password') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="cpassword" id="cpassword" title="<?= __('Confirm Password') ?>" class="input-text required-entry validate-cpassword"  type="password" placeholder="Enter Confirm Password " />
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Confirm Password') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <?php if (!$block->isRemoved('address1', 'personal')) { ?>
+        <div class="field address-1 required">
+            <label class="label" for="address1"><span><?= __('Address Line 1') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="address1" id="address1" title="<?= __('Address Line 1') ?>" value="<?= $vendor->getAddress1(); ?>" class="input-text required-entry validate-alpha-with-spaces-spl-150" type="text"  placeholder="Enter Address Line 1 " />
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Address Line 1') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('address2', 'personal')) { ?>
+        <div class="field address-2">
+            <label class="label" for="address2"><span><?= __('Address Line 2') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="address2" id="address2" title="<?= __('Address Line 2') ?>" value="<?= $vendor->getAddress2(); ?>" class="input-text validate-alpha-with-spaces-spl-150-address2" type="text"  placeholder="Enter Address Line 2 " />
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Address Line 2') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('country_id', 'personal')) { ?>
+        <div class="field country-id required">
+            <label class="label" for="country-id"><span><?= __('Country') ?></span></label>
+            <div class="control _with-tooltip">
+                <?= $block->getCountryHtmlSelect() ?>
+                <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Select Country') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('region', 'personal')) { ?>
+        <div class="field region<?= $block->isRegionsRequired() ? ' required' : '' ?>">
+            <label class="label" for="region-id"><span><?= __('State/Region') ?></span></label>
+            <div class="control _with-tooltip">
+                <select name="region_id" id="region_id" title="<?= __('State/Region') ?>" class="select validate-select" <?= /* @noEscape */ !$this->helper(\Magedelight\Vendor\Helper\Data::class)->getConfigValue('general/region/display_all') ? ' disabled="disabled"' : '' ?> style="display:<?= (!empty($regions))?'inline-block':'none'; ?>" >
+                    <option value=""><?= $block->escapeHtml(__('Please select a region, state or province.')) ?></option>
+                </select>
+                <input name="region" value="<?= $vendor->getRegion(); ?>" id="region" title="<?= __('State/Region') ?>" class="input-text validate-alpha-with-spaces-50 "<?= !$this->helper(\Magedelight\Vendor\Helper\Data::class)->getConfigValue('general/region/display_all') ? ' disabled="disabled"' : '' ?> type="text" placeholder="Enter State/Region Name " style="display:<?= (empty($regions))?'inline-block':'none'; ?>" />
+                <div class="field-tooltip toggle">
+               <span class="field-tooltip-action action-help" tabindex="0"></span>
+                <div class="field-tooltip-content">
+                     <span><?= __('Enter the state or region of the vendors location') ?></span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('city', 'personal')) { ?>
+        <div class="field city required">
+            <label class="label" for="city"><span><?= __('City') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="city" id="city" title="<?= __('City') ?>" value="<?= $vendor->getCity(); ?>" class="input-text required-entry validate-alpha-with-spaces-50"  type="text" placeholder="Enter City Name " />
+                 <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter City Name') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <?php if (!$block->isRemoved('pincode', 'personal')) { ?>
+        <div class="field zip<?= $block->isZipRequired() ? ' required' : '' ?>">
+            <label class="label" for="zip"><span><?= __('Pincode') ?></span></label>
+            <div class="control _with-tooltip">
+                <input name="pincode" id="zip" title="<?= __('Pincode') ?>" value="<?= $vendor->getPincode(); ?>" class="input-text<?= $block->isZipRequired() ? ' required-entry' : '' ?> zipcode-by-country" type="text" placeholder="<?= __('Enter Pincode ') ?>"  />
+                 <div class="field-tooltip toggle">
+                   <span class="field-tooltip-action action-help" tabindex="0"></span>
+                    <div class="field-tooltip-content">
+                         <span><?= __('Enter Pincode') ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="button" value="2" title="<?= __('Continue') ?>" class="action primary btn-continue">
+                    <span><?= __('Continue') ?></span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<script type="text/javascript">
+require([
+    'jquery', // jquery Library
+    'Magedelight_Vendor/js/registration/vendor-info',
+    'Magedelight_Vendor/js/registration/validation/vendor-info'
+], function ($,vendorInfo,validateVendorInfo) {
+    /*Vendor Information code starts.*/
+    validateVendorInfo();
+    var vendor_info_options={};
+    vendorInfo(vendor_info_options);
+    /*Vendor Information code ends.*/
+});
+</script>
+
+<script type="text/x-magento-init">
+    {
+        "#country": {
+            "regionUpdater": {
+                "optionalRegionAllowed": <?= /* @noEscape */ $this->helper(\Magedelight\Vendor\Helper\Data::class)->getConfigValue('general/region/display_all') ? 'true' : 'false' ?>,
+                "regionListId": "#region_id",
+                "regionInputId": "#region",
+                "postcodeId": "#pincode",
+                "form": "#vendor-registration",
+                "regionJson": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getRegionJson() ?>,
+                "defaultRegion": "<?= (int) $block->getRegionId() ?>",
+                "countriesWithOptionalZip": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getCountriesWithOptionalZip(true) ?>
+            }
+        }
+    }
+</script>

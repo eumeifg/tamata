@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="cat_tamata_config" translate="label" sortOrder="9999999">
+            <label>Tamata Configuration</label>
+        </tab>
+        <section id="cat_product_feed" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Product Feed</label>
+            <tab>cat_tamata_config</tab>
+            <resource>CAT_ProductFeed::productfeed_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Enable</label>
+                    <comment>This field is an example for a basic yes or no select.</comment>
+                    <tooltip>Usually these kinds of fields are used to enable or disable a given feature. Other fields might be dependent to this and will only appear if this field is set to yes.</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cron_frequency" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Frequency</label>
+                    <comment>A descriptive text explaining this configuration field.</comment>
+                    <tooltip>Another possible frontend element that also can be used to describe the meaning of this field. Will be displayed as a small icon beside the field.</tooltip>
+                    <if_module_enabled>CAT_ProductFeed</if_module_enabled>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="heading_links" translate="label" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Facebook Product Feed Links</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <attribute type="shared">1</attribute>
+                    <if_module_enabled>CAT_ProductFeed</if_module_enabled>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="links" translate="label tooltip" type="button" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Click "Generate Product Feed" button below. After the process is done every store you have in Magento will have one product feed. You can change the product feed file name on store scope level. See tooltip for more information.</label>
+                    <tooltip><![CDATA[You can change the product feed file name on store scope level. The option is called "Product Feed File Name" you can set it to whatever you want as long as it is unique. Two or multiple stores must not have the same file name.]]></tooltip>
+                    <frontend_model>CAT\ProductFeed\Block\Adminhtml\Links</frontend_model>
+                    <if_module_enabled>CAT_ProductFeed</if_module_enabled>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="heading_generate" translate="label" sortOrder="14" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Facebook Catalog Product Feed Generation</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <attribute type="shared">1</attribute>
+                    <if_module_enabled>CAT_ProductFeed</if_module_enabled>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="generate" translate="label" type="button" sortOrder="15" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Start Product Feed Generation Process</label>
+                    <frontend_model>CAT\ProductFeed\Block\Adminhtml\Button\Generate</frontend_model>
+                    <if_module_enabled>CAT_ProductFeed</if_module_enabled>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

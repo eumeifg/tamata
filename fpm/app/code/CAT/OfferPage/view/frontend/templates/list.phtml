@@ -1,0 +1,34 @@
+<?php
+/** @var CAT\OfferPage\Block\OfferPageListData $block */
+$collection = $block->getOfferPageCollection();
+$mediaUrl = $block->getMediaUrl();
+?>
+<?php if($collection->count() > 0): ?>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+    <?php foreach ($collection as $key => $data): ?>
+        <div class="row-full-offer-page" data-element="inner">
+            <div class="fashion-picks-banners">
+                <caption class="table-caption"><h3><?= $data->getTitle();?></h3></caption>
+                <?php $id = ($data->getOfferPageId()) ? $data->getOfferPageId() : $data['offerpage_id']; ?>
+                <a href="<?php echo $block->getBaseUrl().'offerpage/index/view/id/'.$id; ?>">
+                    <img class="offer-content" src="<?php echo $mediaUrl.'cat/offerpage/'.$data->getDefaultImage(); ?>" alt="" />
+                </a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+<?php else: ?>
+    <h2>We couldn't find any records</h2>
+<?php endif; ?>
+<style>
+    .row-full-offer-page{
+        margin: 5px 5px 5px 5px;
+    }
+    .offer-content {
+        border: 1px solid #bfbfbf;
+    }
+</style>

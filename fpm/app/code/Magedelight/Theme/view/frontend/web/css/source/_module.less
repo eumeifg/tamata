@@ -1,0 +1,24 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .customer-account-index{
+        .table-wrapper{
+            &.orders-recent{
+                margin-top: 0;
+            }
+        }
+    }
+    .swatch-option{
+    	&.text{
+    		height: inherit;
+    		line-height: inherit;
+    	}
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {}

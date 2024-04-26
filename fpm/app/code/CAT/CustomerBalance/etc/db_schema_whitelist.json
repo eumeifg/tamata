@@ -1,0 +1,15 @@
+{
+    "cat_customerbalance": {
+        "column": {
+            "import_id": true,
+            "file_name": true,
+            "created_at": true,
+            "report_url": true,
+            "processed_at": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

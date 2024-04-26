@@ -1,0 +1,350 @@
+// /**
+//  * Copyright � 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+
+    .page-header.vendor-page-header {
+     background: @color-white;
+
+    .header.panel {
+    .lib-css(padding, 0 0 0px @menu__width );
+    .lib-css(border-bottom, 1px solid @border-color__base);
+    max-width: 100%;
+    .lib-clearfix();
+    .vendor-sales-notification {
+        .lib-css(padding, @indent__l - 3 0 @indent__l - 3 @indent__base);
+        strong {
+            color: @color-red10;
+        }
+    }
+    //  header navigation bar
+    .nav {
+        float: right;
+        margin: 0 0 0 0;
+        &.navbar-nav {
+            margin-bottom: 0;
+            padding-left: 0;
+            list-style: none;
+            }
+          > li {
+              position: relative;
+              display: block;
+              float: left;
+              margin:0px;
+              a {
+                  position: relative;
+                  display: block;
+                  padding: @indent__base - 3 @indent__s + @indent__xs;
+                  height: 74px;
+                  max-height: 74px;
+                  color: @secondary__color;
+                  font-weight:@font-weight__regular;
+                  line-height:@indent__l - @indent__xs;
+                &.profile {
+                  padding: @indent__base @indent__s + @indent__xs;
+                }
+                  .avatar { 
+                      width: 42px;
+                      height:42px;
+                      border-radius: 50%;
+                      vertical-align: middle;
+                      border:1px solid @border-color__base
+                  }
+                span.rbvt-icon { 
+                   &.rbvt-icon-help {
+                     .lib-icon-font (
+                      @icon-help,
+                       @_icon-font-size: 26px,
+                       @_icon-font-margin:8px 0 0 0,
+                     );
+                   }
+                   &.rbvt-icon-bell-empty {
+                     .lib-icon-font (
+                       @icon-bell-empty,
+                       @_icon-font-size: 26px,
+                     );
+                   }
+
+
+                }
+                &.dropdown-toggle {
+
+                      span.rbvt-icon {
+                        .lib-icon-font (
+                    @icon-pointer-down,
+                    @_icon-font-size: 12px
+                    );
+                         }
+
+                        }
+               &:hover {
+                 background:#f6f6f6;
+                 text-decoration: none;
+                 color: @primary__color;
+               }
+
+              }
+
+              &.dropdown {
+
+               .dropdown-menu {
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    z-index: 1000;
+                    display: none;
+                    float: left;
+                    min-width: 250px;
+                    padding: 0px 0;
+                    margin: 0px 0 0;
+                    list-style: none;
+                    text-align: left;
+                    background-color: #ffffff;
+                    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+                    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+                    background-clip: padding-box;
+                    border-top: 3px solid @color-blue1;
+
+                    &:before {
+                      content: "";
+                      position: absolute;
+                      width: 0;
+                      height: 0;
+                      border-color: transparent;
+                      border-style: solid;
+                      right: 11px;
+                      bottom: 100%;
+                      border-width: 0 10px 10px;
+                      border-bottom-color: @color-blue1;
+                    }
+
+                li {
+                  .lib-css(margin-bottom, @indent__s);
+                  &:last-child {
+                    .lib-css(margin-bottom, 0);
+                  }
+
+                  a {
+                    .lib-css(padding, 10px 10px);
+                    .lib-css(height, auto);
+                    .lib-font-size(14px);
+
+                    .fa {
+                      &:before {
+                      .lib-font-size(18px);
+                      }
+                    }
+
+                  }
+
+                }
+
+                }
+
+              }
+
+               &.open {
+                .dropdown-menu {
+                  display:block;
+                }
+
+           }
+
+          }
+
+    }
+
+
+     }
+    .nav-bar-logo {
+      width: @menu__width;
+      float:left;
+      position:relative;
+      z-index:@z-index-8;
+      background-color: transparent !important;
+
+ .logo {
+        display: block;
+        height: @menu-logo-img__height; 
+        padding: @menu-logo__padding-top 0 @menu-logo__padding-bottom @indent__base;
+        position: relative;
+        text-align: left;
+        float:none;
+        background: @color-white;
+        margin: 0;
+        border-bottom:1px solid @color-white;
+        ._keyfocus & {
+            &:focus {
+                box-shadow: none;
+            }
+        }
+        &:hover {
+            .logo-img {
+                -webkit-filter: brightness(1.1);
+                filter: brightness(1.1);
+            }
+        }
+        &:active {
+            .logo-img {
+                transform: scale(.95);
+            }
+        }
+        .logo-img {
+            height: auto;
+            transition: -webkit-filter .2s linear,
+            filter .2s linear,
+            transform .1s linear;
+            width: @menu-logo-img__width;
+            margin: -10px 0 0 0;
+        }
+    }
+    .nav-toggle {
+        .lib-icon-font(
+          @icon-menu,
+          @_icon-font-size: 24px,
+          @_icon-font-color: @color-white,
+          @_icon-font-color-hover: @color-black,
+          @_icon-font-color-active: @color-white,
+        );
+        .lib-icon-text-hide();
+        cursor: pointer;
+        display: block;
+        font-size: 0;
+        left: 10px;
+        position: absolute;
+        top: 13px;
+        z-index: @menu__z-index + 1;
+        .rbvt-font-icon;
+        &.active {
+             color: @color-blue1;
+        }
+
+    }
+
+   &.active {
+      width: 88px;
+      .nav-toggle.active {
+          transform: rotate(90deg);
+          left: 50%;
+          margin-left: -15px;
+
+      }
+
+      .logo_container {
+         .logo-img {
+           display: none !important;
+         }
+      }
+
+    }
+
+    }
+
+
+ }
+
+html.rtl-layout {
+  .page-header {
+    &.vendor-page-header {
+      .nav-bar-logo {
+        float: right;
+
+        .logo {
+          text-align: right;
+          padding-right: @indent__base;
+          padding-left: 0;
+
+        }
+      }
+
+      .header.panel {
+        .lib-css(padding, 0 @menu__width 0 0);
+
+        .vendor-sales-notification {
+          float: right;
+           .lib-css(padding, 20px 20px 20px 0);
+        }
+
+        .nav {
+          float: left; 
+
+          > li  {
+            float: right;
+
+            &.dropdown {
+              .dropdown-menu {
+                left: 10px;
+                right: auto;
+                text-align: right;
+                &:before {
+                  left: 11px;
+                  right: auto;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .switcher {
+      float: left;
+      .options {
+        ul.dropdown {
+          &:before {
+            left: auto;
+            right: 10px;
+
+          }
+
+          &:after {
+            left: auto;
+            right: 9px;
+
+          }          
+        }
+      }
+
+      
+    }
+  }
+
+}
+
+}
+
+//
+//    tablet
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .page-header.vendor-page-header {
+           .header.panel {
+                .vendor-sales-notification {
+                  .lib-css(padding, 10px 0 10px 10px);
+                }
+
+           }
+    }
+
+
+}
+
+//
+//    Mobile @screen__m
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//    Desktop
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {}
+
+
+

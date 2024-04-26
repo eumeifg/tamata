@@ -1,0 +1,203 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+//
+//  Tables
+//  ---------------------------------------------
+
+
+@table__background-color: @color-white;
+
+@table-cell__padding-vertical: 11px;
+@table-cell-stripped__background-color: @table-cell__hover__background-color;
+@table-responsive-th__background-color: @table-cell-stripped__background-color;
+@table-responsive-cell__padding: @indent__xs @indent__s;
+
+
+@table-head__background-color: @color-gray20;
+@table-th__color: @color-white;
+@table-th__font-weight: @font-weight__semibold;
+
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .table-wrapper {
+        margin-bottom: @indent__base;
+        .lib-css(background, @color-white);
+    }
+
+    table {
+        .lib-table-caption();
+    }
+
+    .table {
+      .lib-table();
+      .lib-table-bordered();
+      .lib-table-striped();
+      .lib-table-hover();
+      .lib-table-background-color();
+      .lib-table-typography(
+            @_table-th-color: @color-white,
+          );
+       > thead {
+        > tr {
+            > th {
+             &.sort-order-field {
+               cursor: pointer;
+               position: relative;
+
+             }
+               &.sort-asc {
+               .lib-icon-font (
+                    @icon-arrow-up-thin,
+                    @_icon-font-size: 14px,
+                    @_icon-font-margin: 0px 0px 0 0,
+                    @_icon-font-position: before,
+                    );
+               }
+              &.sort-desc{
+                .lib-icon-font (
+                    @icon-arrow-down-thin,
+                    @_icon-font-size: 14px,
+                    @_icon-font-margin: 0px 0px 0 0,
+                    @_icon-font-position: before,
+                    );
+                 }
+
+            a {
+              color: @table-th__color;
+              &:hover {
+                text-decoration:none;
+              }
+
+            }
+            .sort-dir-arrow {
+                .lib-css(cursor, pointer);
+
+            }
+
+
+
+
+
+             }
+
+         }
+
+       }
+
+        tbody {
+         > tr {
+            > td {
+              &.productimage, &.product-thumb {
+                width: 15rem;
+                text-align:center;
+
+                img {
+                  .lib-css(border, 1px solid @border-color__base);
+                  .lib-css(padding, 1px);
+                  .lib-css(width, 9rem);
+
+                }
+
+              }
+              &.actions {
+                a {
+                    .lib-css(margin-right, 5px);
+                    .lib-css(display, none);
+                }
+
+              }
+              &.action {
+                a {
+                    .lib-css(margin-right, 5px);
+                }
+              }
+            }
+
+          }
+
+        }
+
+   }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .table-wrapper {
+        .lib-table-overflow();
+        position: relative; // to hide unnecessary horizontal scrollbar in Safari
+        .table {
+            &:not(.cart) {
+                &:not(.totals) {
+                    &:not(.table-comparison) {
+                        tbody > tr {
+                            > td:first-child {
+                                padding-top: @indent__base;
+                            }
+                            > td:last-child {
+                                padding-bottom: @indent__base;
+                            }
+                        }
+                        &.additional-attributes {
+                            tbody {
+                                th {
+                                    &:extend(.abs-no-display-s all);
+                                }
+                                td {
+                                    &:last-child {
+                                        border: none;
+                                        padding: 0 0 @indent__xs;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .table {
+            &:not(.totals){
+                &:not(.table-comparison) {
+                    tfoot {
+                        display: block;
+                        tr {
+                            display: block;
+                            &:extend(.abs-add-clearfix-mobile all);
+                            &:first-child {
+                                th,
+                                td {
+                                    padding-top: @indent__base;
+                                }
+                            }
+                        }
+                        th {
+                            box-sizing: border-box;
+                            float: left;
+                            padding-left: 0;
+                            padding-right: 0;
+                            text-align: left;
+                            width: 70%;
+                        }
+                        td {
+                            box-sizing: border-box;
+                            float: left;
+                            padding-left: 0;
+                            padding-right: 0;
+                            text-align: right;
+                            width: 30%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

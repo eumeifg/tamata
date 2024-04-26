@@ -1,0 +1,10 @@
+<?php
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+
+
+?>
+<p class="toolbar-amount" id="toolbar-amount">
+	<?php
+    echo __('Page %1 of %2',
+            '<span class="toolbar-number">' . $block->getCurrentPage() . '</span>','<span class="toolbar-number">' . $block->getLastPageNum() . '</span>') ?>
+</p>

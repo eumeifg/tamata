@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_Sales
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magedelight\Sales\Block\Sellerhtml\Vendor\Order\Handover">
+        <plugin name="add_invoice_status_to_handover_colln" type="MDC\Sales\Plugin\Block\Sellerhtml\Vendor\Order\Handover\AddInvoiceStatusToColln" sortOrder="1"/>
+    </type>
+    <preference for="Magedelight\Sales\Controller\Sellerhtml\Order\Cancel" type="MDC\Sales\Controller\Sellerhtml\Order\Cancel" />
+    <preference for="Magedelight\Sales\Controller\Sellerhtml\Order\MassAction" type="MDC\Sales\Controller\Sellerhtml\Order\MassAction" />
+</config>

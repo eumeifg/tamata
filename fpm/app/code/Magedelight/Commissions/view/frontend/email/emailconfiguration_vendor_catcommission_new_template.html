@@ -1,0 +1,12 @@
+<!--@subject Category Commission Rate Created@-->
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "Hello %vendor_name" vendor_name=$vendor_name}}</p>
+<p>{{trans "This is to inform you that the commission rate for %category has been added." category=$category}}</p>
+<p>{{trans "New commission : %new_commission_rate" new_commission_rate=$cur_comm}}</p>
+<p>{{trans "New Marketplace Fee : %new_mp_rate" new_mp_rate=$cur_mp_fee}}</p>
+<p>{{trans "New Cancellation Fee : %new_can_rate" new_can_rate=$cur_can_fee}}</p>
+<p>{{trans "This new commission will be charged from now onwards."}}</p>
+<p>{{trans  "In case of any queries, kindly contact %store_name" store_name=$store_name}}</p>
+
+{{template config_path="design/email/footer_template"}}

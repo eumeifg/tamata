@@ -1,0 +1,415 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Magento\Catalog\Block\Product\AbstractProduct */
+
+$thresholdQtyHelper = $this->helper('MDC\Catalog\Helper\OnlyXLeft');
+
+?>
+
+<?php
+switch ($type = $block->getType()) {
+
+    case 'related-rule':
+        if ($exist = $block->hasItems()) {
+            $type = 'related';
+            $class = $type;
+
+            $image = 'related_products_list';
+            $title = __('People who bought this also bought');
+            $items = $block->getAllItems();
+            $limit = $block->getPositionLimit();
+            $shuffle = (int) $block->isShuffled();
+            $canItemsAddToCart = $block->canItemsAddToCart();
+
+            $showAddTo = true;
+            $showCart = false;
+            $templateType = null;
+            $description = false;
+        }
+    break;
+
+    case 'related':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Related $block */
+        if ($exist = $block->getItems()->getSize()) {
+            $type = 'related';
+            $class = $type;
+
+            $image = 'related_products_list';
+            $title = __('Related Products');
+            $items = $block->getItems();
+            $limit = 0;
+            $shuffle = 0;
+            $canItemsAddToCart = $block->canItemsAddToCart();
+
+            $showAddTo = true;
+            $showCart = false;
+            $templateType = null;
+            $description = false;
+        }
+    break;
+
+    case 'upsell-rule':
+        if ($exist = $block->hasItems()) {
+            $type = 'upsell';
+            $class = $type;
+
+            $image = 'upsell_products_list';
+            $title = __('We found other products you might like!');
+            $items = $block->getAllItems();
+            $limit = $block->getPositionLimit();
+            $shuffle = (int) $block->isShuffled();
+
+            $showAddTo = false;
+            $showCart = false;
+            $templateType = null;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'upsell':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Upsell $block */
+        if ($exist = count($block->getItemCollection()->getItems())) {
+            $type = 'upsell';
+            $class = $type;
+
+            $image = 'upsell_products_list';
+            $title = __('We found other products you might like!');
+            $items = $block->getItemCollection()->getItems();
+            $limit = $block->getItemLimit('upsell');
+            $shuffle = 0;
+
+            $showAddTo = false;
+            $showCart = false;
+            $templateType = null;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'crosssell-rule':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Crosssell $block */
+        if ($exist = $block->hasItems()) {
+            $type = 'crosssell';
+            $class = $type;
+
+            $image = 'cart_cross_sell_products';
+            $title = __('More Choices:');
+            $items = $block->getItemCollection();
+
+            $showAddTo = false;
+            $showCart = false;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'crosssell':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Crosssell $block */
+        if ($exist = count($block->getItems())) {
+            $type = 'crosssell';
+            $class = $type;
+
+            $image = 'cart_cross_sell_products';
+            $title = __('More Choices:');
+            $items = $block->getItems();
+
+            $showAddTo = false;
+            $showCart = false;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    case 'new':
+        if ($exist = $block->getProductCollection()) {
+            $type = 'new';
+            $mode = 'grid';
+            $type = $type . ' ' . $mode;
+
+            $class = 'widget' . ' ' . $type;
+
+            $image = 'new_products_content_widget_grid';
+            $title = __('New Products');
+            $items = $exist;
+
+            $showAddTo = true;
+            $showCart = true;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = ($mode == 'list') ? true : false;
+            $canItemsAddToCart = false;
+        }
+    break;
+
+    default:
+        $exist = null;
+}
+?>
+
+<?php if ($exist):?>
+
+    <?php if ($type == 'related' || $type == 'upsell'):?>
+        <?php if ($type == 'related'): ?>
+            <div class="block <?= /* @escapeNotVerified */ $class ?>" data-mage-init='{"relatedProducts":{"relatedCheckbox":".related.checkbox"}}' data-limit="<?= /* @escapeNotVerified */ $limit ?>" data-shuffle="<?= /* @escapeNotVerified */ $shuffle ?>">
+        <?php else: ?>
+            <div class="block <?= /* @escapeNotVerified */ $class ?>" data-mage-init='{"upsellProducts":{}}' data-limit="<?= /* @escapeNotVerified */ $limit ?>" data-shuffle="<?= /* @escapeNotVerified */ $shuffle ?>">
+        <?php endif; ?>
+    <?php else: ?>
+        <div class="block <?= /* @escapeNotVerified */ $class ?>">
+    <?php endif; ?>
+    <div class="block-title title">
+        <strong id="block-<?= /* @escapeNotVerified */ $class ?>-heading" role="heading" aria-level="2"><?= /* @escapeNotVerified */ $title ?></strong>
+    </div>
+    <div class="block-content content" aria-labelledby="block-<?= /* @escapeNotVerified */ $class ?>-heading">
+        <?php if ($type == 'related' && $canItemsAddToCart): ?>
+        <div class="block-actions">
+            <?= /* @escapeNotVerified */ __('Check items to add to the cart or') ?>
+            <button type="button" class="action select" role="select-all"><span><?= /* @escapeNotVerified */ __('select all') ?></span></button>
+        </div>
+        <?php endif; ?>
+        <div class="products wrapper grid products-grid products-<?= /* @escapeNotVerified */ $type ?>" >
+            <div class="products list items product-items owl-carousel owl-theme ">
+                <?php
+                foreach ($items as $_item): ?>
+                <?php $available = ''; ?>
+                <?php if (!$_item->isComposite() && $_item->isSaleable() && $type == 'related'): ?>
+                    <?php if (!$_item->getRequiredOptions()): ?>
+                        <?php $available = 'related-available'; ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <div class="item product product-item"> 
+                <div class="product-item-info <?= /* @escapeNotVerified */ $available ?>">
+                    <?= /* @escapeNotVerified */ '<!-- ' . $image . '-->' ?>
+                    <a href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
+                        <?= $block->getImage($_item, $image)->toHtml() ?>
+                    </a>
+                    <div class="product details product-item-details">
+
+                        <strong class="product name product-item-name"><a class="product-item-link" title="<?= $block->escapeHtml($_item->getName()) ?>" href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item) ?>">
+                            <?= $block->escapeHtml($_item->getName()) ?></a>
+                        </strong>
+
+                         <!-- Add to wishlist feature  -->
+                         <div data-role="add-to-links" class="actions-secondary">
+                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                        <?= $addToBlock->setProduct($_item)->getChildHtml() ?>
+                                    <?php endif; ?>
+                        </div>
+                        <!-- Add to wishlist feature  -->
+
+                        <?= /* @escapeNotVerified */ $block->getProductPrice($_item) ?>
+
+                         <!-- /*.....Custom review section Start.....*/ -->
+                        <?php //if ($block->canShowReview()) : ?>
+                            <?php
+                                $productId = $_item->getId();
+                                $ratingData = $this->getLayout()->createBlock('Ktpl\Productslider\Block\CategoryId')->getReviewSummary($productId);
+                                $ratingSummary = $ratingData['ratingSummary'];
+                                $ratingSummaryCount = ((5*$ratingSummary)/100);
+                                $reviewCount = $ratingData['reviewCount'];
+                                ?>
+                              
+                                <?php 
+                                    if($_item->getTypeId() === "simple"){
+                                        $thresoldStatus = $thresholdQtyHelper->getProductXleftById($productId);
+
+                                        if($thresoldStatus["status"] && $thresoldStatus["qty"] > 0){ ?>
+
+                                            <div class="listing-view-only-few-lefts">
+                                                <div class="availability only" title="Only <?php echo $thresoldStatus['qty'];?> left">
+                                                    <?= __('Only %1 left!',"<strong>".$thresoldStatus["qty"]."</strong>") ?>
+                                                </div>
+                                            </div>
+
+                                        <?php }else{ ?>
+                                                <div class="listing-view-only-few-lefts">
+                                                    <div class="availability only empty"> 
+                                                    </div>
+                                                </div>
+                                            <?php
+                                        }
+                                    }else{
+                                        ?>
+                                         <div class="listing-view-only-few-lefts">
+                                                <div class="availability only empty"> 
+                                                </div>
+                                            </div>
+                                        <?php
+                                    }
+                                ?>
+
+                                <?php if ($ratingSummary) { ?>
+                                <div class="product-reviews-summary short">
+                                    <div class="rating-summary">
+                                        <div title="<?php echo (int)$ratingSummary; ?>%" class="rating-result">
+                                            <span style="width:<?php echo (int)$ratingSummary; ?>%"><span><?php echo (int)$ratingSummary; ?>%</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="reviews-actions">
+                                        <?php echo number_format($ratingSummaryCount, 1); ?>
+                                    </div>
+                                </div>
+                            <?php  } else { ?>
+                                <div class="short empty">
+                                    <div class="reviews-actions">
+                                        <a class="action add" href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item).'#review-form' ?> ">
+                                            <?= $block->escapeHtml(__('Write a Review')) ?>
+                                        </a>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        <?php //endif; ?>
+                        <!-- /*.....Custom review section End.....*/ -->
+
+
+                            <?php if ($templateType): ?>
+                                <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                            <?php endif; ?>
+
+                            <?php if ($canItemsAddToCart && !$_item->isComposite() && $_item->isSaleable() && $type == 'related'): ?>
+                                <?php if (!$_item->getRequiredOptions()): ?>
+                                    <div class="field choice related">
+                                        <input type="checkbox" class="checkbox related" id="related-checkbox<?= /* @escapeNotVerified */ $_item->getId() ?>" name="related_products[]" value="<?= /* @escapeNotVerified */ $_item->getId() ?>" />
+                                        <label class="label" for="related-checkbox<?= /* @escapeNotVerified */ $_item->getId() ?>"><span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span></label>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+
+                            <?php if ($showAddTo || $showCart): ?>
+                                <div class="product actions product-item-actions">
+                                    <?php if ($showCart): ?>
+                                        <div class="actions-primary">
+                                            <?php if ($_item->isSaleable()): ?>
+                                                <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+                                                    <button class="action tocart primary" data-mage-init='{"redirectUrl": {"url": "<?= /* @escapeNotVerified */ $block->getAddToCartUrl($_item) ?>"}}' type="button" title="<?= /* @escapeNotVerified */ __('Add to Cart') ?>">
+                                                        <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+                                                    </button>
+                                                <?php else: ?>
+                                                    <?php $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                                                    $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
+                                                    ?>
+                                                    <button class="action tocart primary"
+                                                            data-post='<?= /* @escapeNotVerified */ $postData ?>'
+                                                            type="button" title="<?= /* @escapeNotVerified */ __('Add to Cart') ?>">
+                                                        <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+                                                    </button>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <?php if ($_item->getIsSalable()): ?>
+                                                    <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
+                                                <?php else: ?>
+                                                    <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif;?>
+
+<script type="text/javascript">
+    require(['jquery', 'magentocatalog/owlcarousel'], function ($) {
+	var carousel_status = 0;
+        var tabletWidth = 1023;
+        $(window).load(function() {
+            var viewportWidth = $(window).width();
+
+            if(viewportWidth > tabletWidth) {
+                $(".owl-carousel").owlCarousel({
+                    loop:($(".owl-carousel .item").length > 5) ? true: false,
+                    nav:true,
+                    dots: false,
+                    rtl: true,
+                    responsive:{
+                        0:{
+                            items:1,
+                            autoWidth: true,
+                            loop:($(".owl-carousel .item").length > 1) ? true: false
+                        },
+                        400:{
+                            items:2,
+                            autoWidth: true,
+                            loop:($(".owl-carousel .item").length > 2) ? true: false
+                        },
+                        600:{
+                            items:3,
+                            autoWidth: true,
+                            loop:($(".owl-carousel .item").length >3) ? true: false
+                        },
+                        1000:{
+                            items:4,
+                            autoWidth: true,
+                            loop:($(".owl-carousel .item").length > 4) ? true: false
+                        },
+                        1200:{
+                            items:4,
+                            loop:($(".owl-carousel .item").length > 4) ? true: false
+                        }
+                    }
+                });
+                carousel_status = 1;
+            }
+        });
+
+        $(window).resize(function() {
+            if ($(window).width() > tabletWidth) {
+                if(!carousel_status) {
+                    $(".owl-carousel").owlCarousel({
+                        loop:($(".owl-carousel .item").length > 5) ? true: false,
+                        nav:true,
+                        dots: false,
+                        rtl: true,
+                        responsive:{
+                            0:{
+                                items:1,
+                                autoWidth: true,
+                                loop:($(".owl-carousel .item").length > 1) ? true: false
+                            },
+                            400:{
+                                items:2,
+                                autoWidth: true,
+                                loop:($(".owl-carousel .item").length > 2) ? true: false
+                            },
+                            600:{
+                                items:3,
+                                autoWidth: true,
+                                loop:($(".owl-carousel .item").length >3) ? true: false
+                            },
+                            1000:{
+                                items:4,
+                                autoWidth: true,
+                                loop:($(".owl-carousel .item").length > 4) ? true: false
+                            },
+                            1200:{
+                                items:4,
+                                loop:($(".owl-carousel .item").length > 4) ? true: false
+                            }
+                        }
+                    });
+                    carousel_status = 1;
+                }
+            } else {
+                $('.owl-carousel').owlCarousel('destroy');
+                carousel_status = 0;
+            }
+        });
+
+    });
+</script>
+

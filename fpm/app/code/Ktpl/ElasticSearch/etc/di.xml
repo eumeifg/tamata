@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Ktpl\ElasticSearch\Api\Data\IndexInterface" type="Ktpl\ElasticSearch\Model\Index"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Data\StopwordInterface" type="Ktpl\ElasticSearch\Model\Stopword"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Data\SynonymInterface" type="Ktpl\ElasticSearch\Model\Synonym"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Data\ScoreRuleInterface" type="Ktpl\ElasticSearch\Model\ScoreRule"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Repository\IndexRepositoryInterface" type="Ktpl\ElasticSearch\Repository\IndexRepository"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Repository\StopwordRepositoryInterface" type="Ktpl\ElasticSearch\Repository\StopwordRepository"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Repository\SynonymRepositoryInterface" type="Ktpl\ElasticSearch\Repository\SynonymRepository"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Repository\ScoreRuleRepositoryInterface" type="Ktpl\ElasticSearch\Repository\ScoreRuleRepository"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Service\IndexServiceInterface" type="Ktpl\ElasticSearch\Service\IndexService"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Service\QueryServiceInterface" type="Ktpl\ElasticSearch\Service\QueryService"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Service\StopwordServiceInterface" type="Ktpl\ElasticSearch\Service\StopwordService"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Service\SynonymServiceInterface" type="Ktpl\ElasticSearch\Service\SynonymService"/>
+
+    <preference for="Ktpl\ElasticSearch\Api\Service\StemmingServiceInterface" type="Ktpl\ElasticSearch\Service\StemmingService"/>
+
+    <preference for="Magento\Framework\Search\Request\IndexScopeResolverInterface" type="Magento\Framework\Indexer\ScopeResolver\IndexScopeResolver" />
+
+    <preference for="TemplateMonster\AjaxCatalog\Plugin\CatalogSearch\Result"
+        type="Ktpl\ElasticSearch\Preference\TemplateMonster\AjaxCatalog\Plugin\CatalogSearch\Result" />
+
+    <preference for="TemplateMonster\AjaxCatalog\Helper\Catalog\View\ContentAjaxResponse"
+        type="Ktpl\ElasticSearch\Preference\TemplateMonster\AjaxCatalog\Helper\Catalog\View\ContentAjaxResponse"/>
+
+    <preference for="Manadev\ProductCollection\Resources\Filters\SearchFilterResource" 
+        type="Ktpl\ElasticSearch\Plugin\Manadev\ProductCollection\Contracts\FilterResource\ApplyPlugin"/>
+
+    <!-- register default data mapper for indexation -->
+    <type name="Ktpl\ElasticSearch\Api\Data\Index\InstanceInterface">
+        <arguments>
+            <argument name="dataMappers" xsi:type="array">
+                <item name="1default" xsi:type="object">Ktpl\ElasticSearch\Model\Index\DataMapper</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Ktpl\ElasticSearch\Index\Magento\Catalog\Product\Index">
+        <arguments>
+            <argument name="dataMappers" xsi:type="array">
+                <item name="0product" xsi:type="object">Ktpl\ElasticSearch\Index\Magento\Catalog\Product\DataMapper</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Ktpl\ElasticSearch\Index\Magento\Cms\Page\Index">
+        <arguments>
+            <argument name="dataMappers" xsi:type="array">
+                <item name="0page" xsi:type="object">Ktpl\ElasticSearch\Index\Magento\Cms\Page\DataMapper</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Ktpl\ElasticSearch\Index\Aheadworks\Blog\Post\Index">
+        <arguments>
+            <argument name="dataMappers" xsi:type="array">
+                <item name="0post" xsi:type="object">Ktpl\ElasticSearch\Index\Aheadworks\Blog\Post\DataMapper</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Ktpl\ElasticSearch\Api\Repository\IndexRepositoryInterface">
+        <arguments>
+            <argument name="indices" xsi:type="array">
+                <item name="magento_catalog_product" xsi:type="string">Ktpl\ElasticSearch\Index\Magento\Catalog\Product\Index</item>
+                <item name="magento_catalog_category" xsi:type="string">Ktpl\ElasticSearch\Index\Magento\Catalog\Category\Index</item>
+                <item name="magento_cms_page" xsi:type="string">Ktpl\ElasticSearch\Index\Magento\Cms\Page\Index</item>
+                <item name="external_wordpress_post" xsi:type="string">Ktpl\ElasticSearch\Index\External\Wordpress\Post\Index</item>
+                <item name="ktpl_blog_post" xsi:type="string">Ktpl\ElasticSearch\Index\Ktpl\Blog\Post\Index</item>
+                <item name="ktpl_kb_article" xsi:type="string">Ktpl\ElasticSearch\Index\Ktpl\Kb\Article\Index</item>
+                <item name="ktpl_gry_registry" xsi:type="string">Ktpl\ElasticSearch\Index\Ktpl\Gry\Registry\Index</item>
+                <item name="magefan_blog_post" xsi:type="string">Ktpl\ElasticSearch\Index\Magefan\Blog\Post\Index</item>
+                <item name="aheadworks_blog_post" xsi:type="string">Ktpl\ElasticSearch\Index\Aheadworks\Blog\Post\Index</item>
+                <item name="mageplaza_blog_post" xsi:type="string">Ktpl\ElasticSearch\Index\Mageplaza\Blog\Post\Index</item>
+                <item name="ves_blog_post" xsi:type="string">Ktpl\ElasticSearch\Index\Ves\Blog\Post\Index</item>
+                <item name="ves_brand_brand" xsi:type="string">Ktpl\ElasticSearch\Index\Ves\Brand\Brand\Index</item>
+                <item name="magento_catalog_attribute" xsi:type="string">Ktpl\ElasticSearch\Index\Magento\Catalog\Attribute\Index</item>
+                <item name="amasty_faq_question" xsi:type="string">Ktpl\ElasticSearch\Index\Amasty\Faq\Question\Index</item>
+                <item name="amasty_blog_post" xsi:type="string">Ktpl\ElasticSearch\Index\Amasty\Blog\Post\Index</item>
+                <item name="blackbird_contentmanager_content" xsi:type="string">Ktpl\ElasticSearch\Index\Blackbird\ContentManager\Content\Index</item>
+            </argument>
+        </arguments>
+
+        <plugin name="ktplSearchSyncWeights" type="Ktpl\ElasticSearch\Index\Magento\Catalog\Product\WeightSynchronizationPlugin"/>
+    </type>
+
+    <type name="Magento\Framework\Search\Adapter\Mysql\TemporaryStorage">
+        <plugin name="ktplSearchScoreRule" type="Ktpl\ElasticSearch\Index\Magento\Catalog\Product\ScoreRulePlugin"/>
+    </type>
+
+    <!--Compatibility-->
+    <type name="Mageplaza\LayeredNavigation\Controller\Search\Result\Index">
+        <plugin name="ktplMageplazaSearchResultIndex" type="Ktpl\ElasticSearch\Plugin\Mageplaza\LayeredNavigation\Controller\Search\Result\IndexPlugin"/>
+    </type>
+
+    <type name="Manadev\LayeredNavigationAjax\Blocks\Intercept">
+        <plugin name="ktplManadevBlocksIntercept" type="Ktpl\ElasticSearch\Plugin\Manadev\LayeredNavigationAjax\Blocks\InterceptPlugin"/>
+    </type>
+
+    <!--register index providers for NATIVE magento mysql search-->
+    <!--Extension can works without SearchMysql, SearchSphinx, SearchElastic-->
+    <type name="Magento\Framework\Search\Adapter\Mysql\Mapper">
+        <arguments>
+            <argument name="indexProviders" xsi:type="array">
+                <item name="magento_catalog_category" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="magento_cms_page" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="external_wordpress_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="ktpl_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="ktpl_kb_article" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="ktpl_gry_registry" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="magefan_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="aheadworks_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="mageplaza_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="ves_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="ves_brand_brand" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="magento_catalog_attribute" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="amasty_faq_question" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="amasty_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+                <item name="blackbird_contentmanager_content" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Mapper\IndexBuilder</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--registering data providers for NATIVE magento mysql search-->
+    <type name="Magento\Framework\Search\Adapter\Mysql\Aggregation\DataProviderContainer">
+        <arguments>
+            <argument name="dataProviders" xsi:type="array">
+                <item name="magento_catalog_category" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="magento_cms_page" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="external_wordpress_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="ktpl_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="ktpl_kb_article" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="ktpl_gry_registry" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="magefan_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="aheadworks_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="mageplaza_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="ves_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="ves_brand_brand" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="magento_catalog_attribute" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="amasty_faq_question" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="amasty_blog_post" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+                <item name="blackbird_contentmanager_content" xsi:type="object">Ktpl\ElasticSearch\Model\Adapter\Aggregation\DataProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--Read adapter/engine from our config-->
+    <type name="Magento\Search\Model\AdapterFactory">
+        <arguments>
+            <argument name="path" xsi:type="const">Ktpl\ElasticSearch\Model\Config::CONFIG_ENGINE_PATH</argument>
+            <argument name="scopeType" xsi:type="const">Magento\Store\Model\ScopeInterface::SCOPE_STORE</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Search\Model\EngineResolver">
+        <arguments>
+            <argument name="path" xsi:type="const">Ktpl\ElasticSearch\Model\Config::CONFIG_ENGINE_PATH</argument>
+            <argument name="scopeType" xsi:type="const">Magento\Store\Model\ScopeInterface::SCOPE_STORE</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\Indexer\IndexerHandlerFactory">
+        <arguments>
+            <argument name="configPath" xsi:type="const">Ktpl\ElasticSearch\Model\Config::CONFIG_ENGINE_PATH</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\ResourceModel\EngineProvider">
+        <plugin name="ktplSearchSyncEngine" type="Ktpl\ElasticSearch\Plugin\SyncEngineConfigPlugin"/>
+    </type>
+
+    <!--register requests for all search indices-->
+    <type name="Magento\Framework\Search\Request\Config\FilesystemReader">
+        <plugin name="ktplSearchSearchIndices" type="Ktpl\ElasticSearch\Plugin\RequestConfigPlugin"/>
+    </type>
+
+    <!--register console commands-->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="ktplSearchReindex" xsi:type="object">Ktpl\ElasticSearch\Console\Command\ReindexCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--register inflects -->
+    <type name="Ktpl\ElasticSearch\Api\Service\StemmingServiceInterface">
+        <arguments>
+            <argument name="stemmers" xsi:type="array">
+                <item name="en" xsi:type="object">Ktpl\ElasticSearch\Service\Stemming\En</item>
+                <item name="nl" xsi:type="object">Ktpl\ElasticSearch\Service\Stemming\Nl</item>
+                <item name="ru" xsi:type="object">Ktpl\ElasticSearch\Service\Stemming\Ru</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- register indices provider for autocomplete -->
+    <type name="Ktpl\SearchAutocomplete\Api\Repository\IndexRepositoryInterface">
+        <arguments>
+            <argument name="additionalProviders" xsi:type="array">
+                <item name="provider" xsi:type="object">Ktpl\ElasticSearch\Model\AutocompleteProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--after full reindex-->
+    <type name="Magento\CatalogSearch\Model\Indexer\Fulltext">
+        <plugin name="ktplSearchFullReindex" type="Ktpl\ElasticSearch\Plugin\FullReindexPlugin"/>
+    </type>
+
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Ktpl\ElasticSearch\Api\Data\IndexInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Ktpl\ElasticSearch\Api\Data\IndexInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Ktpl\ElasticSearch\Api\Data\IndexInterface::ID</item>
+                </item>
+                <item name="Ktpl\ElasticSearch\Api\Data\ScoreRuleInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Ktpl\ElasticSearch\Api\Data\ScoreRuleInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Ktpl\ElasticSearch\Api\Data\ScoreRuleInterface::ID</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Ktpl\ElasticSearch\Api\Data\IndexInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Ktpl\ElasticSearch\Api\Data\ScoreRuleInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--UI-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="search_index_listing_data_source" xsi:type="string">Ktpl\ElasticSearch\Model\ResourceModel\Index\Grid</item>
+                <item name="search_stopword_listing_data_source" xsi:type="string">Ktpl\ElasticSearch\Model\ResourceModel\Stopword\Grid</item>
+                <item name="search_synonym_listing_data_source" xsi:type="string">Ktpl\ElasticSearch\Model\ResourceModel\Synonym\Grid</item>
+                <item name="search_scorerule_listing_data_source" xsi:type="string">Ktpl\ElasticSearch\Model\ResourceModel\ScoreRule\Grid</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Ktpl\Core\Api\Service\ValidationServiceInterface">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="search" xsi:type="object">Ktpl\ElasticSearch\Service\ValidationService</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\App\DeploymentConfig\Writer">
+        <plugin name="ktplSearchModuleStatus" type="Ktpl\ElasticSearch\Plugin\ModuleStatusPlugin"/>
+    </type>
+
+    <type name="Magento\CatalogSearch\Model\Indexer\Fulltext\Action\DataProvider">
+        <plugin name="ktplSearchIndexer" type="Ktpl\ElasticSearch\Plugin\SearchIndexerPlugin"/>
+    </type>
+
+    <!-- Score Rule Indexation -->
+    <type name="Magento\Catalog\Model\ResourceModel\Product">
+        <plugin name="ktplSearchScoreRuleProduct" type="Ktpl\ElasticSearch\Model\ScoreRule\Indexer\Plugin\ProductPlugin"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Product\Action">
+        <plugin name="ktplSearchScoreRuleMassAction" type="Ktpl\ElasticSearch\Model\ScoreRule\Indexer\Plugin\ProductActionPlugin"/>
+    </type>
+
+</config>

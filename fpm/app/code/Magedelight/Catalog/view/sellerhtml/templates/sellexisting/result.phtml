@@ -1,0 +1,108 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block Magedelight\Catalog\Block\Sellexisting\Result */
+?>
+<?php $collection = $block->getCollection();  ?>
+<div class="tray">
+    <div class="rbpanel mt20">
+        <div class="rbpanel-heading bbn bgn">
+        </div>
+        <div class="rbpanel-body ptn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-wrapper sellexist-main">
+                        <table class="data table table-sellexist" id="my-sellexist-table">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="col date"><?= __('Image') ?></th>
+                                <th scope="col" class="col item"><?= __('Product') ?></th>
+                                <th scope="col" class="col summary"><?= __('Category') ?></th>
+                                <th scope="col" class="col description"><?= __('Action') ?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php if (count($collection) != 0) {  ?>
+                                <?php foreach ($collection as $collectionData): ?>
+                                <tr>
+                                    <td data-th="productimage" class="col data-grid-thumbnail-cell">
+                                        <?php $_imagehelper = $this->helper('Magento\Catalog\Helper\Image'); ?>
+                                        <?php $imageSize = 100;
+                                        $productImage = $_imagehelper->init($collectionData, 'category_page_list', ['height' => $imageSize, 'width' => $imageSize])->getUrl(); ?>
+                                        <img src="<?= $productImage ?>" title="<?= $collectionData->getName() ?>" alt="<?= $collectionData->getName() ?>" />
+                                    </td>
+                                    <td data-th="productname" class="col data-grid-product-name-cell">
+                                        <?php if (false === strpos($collectionData->getProductUrl(), 'catalog/product')) { ?>
+                                            <a class="product-item-link" href="<?= $collectionData->getProductUrl(); ?>" target="_blank">
+                                                <?= $collectionData->getName(); ?>
+                                            </a>
+                                        <?php } else { ?>
+                                                <?= $collectionData->getName(); ?>
+                                        <?php } ?>
+                                    </td>
+                                    <td data-th="subcategory" class="col data-grid-category-cell">
+                                        <div class="category-list breadcrumbs"><?= $block->categoryPath($collectionData->getId()); ?></div>
+                                    </td>
+                                    <td data-th="action" class="col col data-grid-actions-cell">
+                                        <?php if (!empty($block->getCategoryId($collectionData->getId()))): ?>
+                                            <?php $fastfind = array_intersect($block->getCategoryId($collectionData->getId()), $block->getCategoryInVendor()); ?>
+                                            <?php if (empty($fastfind)): ?>
+                                                <?= __("You are not allowed to sell this product") ?>
+                                            <?php elseif ($block->existButNotApproved($collectionData->getId())): ?>
+                                                <a href="javascript:void()" class="action view request-already-exist" data-bind="<?= $block->loadByProductVendorId($collectionData->getId())->getStatusLabel(); ?>"><?= __('Sell Yours') ?></a>
+                                            <?php else: ?>
+                                                <a href="<?= $block->getSelectUrl($collectionData->getId()) ?>" class="action view"><?= __('Sell Yours') ?></a>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            <?= __("You are not allowed to sell this product") ?>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr> 
+                            <?php endforeach; ?>
+                            <?php } else { ?>
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="message info empty"><span><?= __("We couldn't find any records.") ?></span></div>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php if ($block->getPagerHtml()): ?>
+                        <div class="tickets-events-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+                    <?php endif ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require(['jquery', 'Magento_Ui/js/modal/alert'], function ($, alert) {
+        $('.request-already-exist').click(function($e){
+            $status = $(this).attr('data-bind');
+            alert({
+                title: 'Attention',
+                content: 'You have already listed this product for approval.<br/> Current Status : <b>' + $status + '</b>',
+                actions: {
+                    always: function(){
+                    }
+                }
+            });
+        });
+    });
+</script>
+    
+        

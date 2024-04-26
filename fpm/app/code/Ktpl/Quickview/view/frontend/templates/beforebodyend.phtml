@@ -1,0 +1,19 @@
+<?php
+$_helper = $this->helper('Ktpl\Quickview\Helper\Data');
+$customCss = $_helper->getCustomCSS();
+$zoomType = $_helper->getZoomType();
+?>
+<script type="text/x-magento-init">
+{
+    "body" : {
+        "quickView": {
+            "zoomType": "<?= /* @noEscape */ __($zoomType) ?>"
+        }
+    }
+}
+</script>
+<?php if (!empty($customCss)) : ?>
+<style>
+    <?php /* @noEscape */ echo $customCss; ?>
+</style>
+<?php endif; ?>

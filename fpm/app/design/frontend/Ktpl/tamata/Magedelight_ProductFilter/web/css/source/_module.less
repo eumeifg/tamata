@@ -1,0 +1,98 @@
+.ln_overlay {
+    background-color: #FFFFFF;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 555;
+    display:none;
+    img {
+        top: 30%;left: 45%;display: block;position: absolute;
+    }
+}
+.price-slider-box {
+    .items {
+        .item {
+            .ui-slider {
+                .ui-slider-handle {
+                    margin-left: 0;
+                    & + .ui-slider-handle {
+                        margin-left: -22px;
+                    }
+                }
+            }
+        }
+    }
+}
+/********/
+.md-price-filter-box-sidebar {
+    span.md-dydr {
+        padding: 0 2px;
+    }
+    position: relative;
+    .ln_currency_symbol {
+        display: inline-block;
+        margin: 0 5px 0 0;
+    }
+    .validate-number {
+        display: inline-block;
+        width: 70px;
+        margin: 0 5px 0 0;
+        padding: 0;
+        background: #ececed;
+        border-radius: 3px;
+        text-align: center;
+        border:0;
+        color: @color-black;
+    }
+    .go-button {
+        float: right;
+    }
+    label.error {
+        position: absolute;
+        bottom: -23px;
+        left: 0;
+        font-size: 11px;
+        color: red;
+    }
+}
+.filter-options-content {
+    a.display-label-with-image {
+        display: inline-block;
+        margin: 4px 0 4px 0 !important;
+        max-width: 100%;
+        width: 100%;
+        vertical-align: top;
+        .swatch-option {
+            margin: 0 10px 0 0;
+        }
+        .md-color-label {
+            font-size: 12px;
+            font-weight: bold;
+            color: #949494;
+            display: inline-block;
+            padding: 3px 0 0 0;
+        }
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1230px) {
+    .md-price-filter-box-sidebar {
+        span.md-dydr {
+            width: 100%;
+            display: inline-block;
+        }
+        .go-button {
+            float: none;
+            display: block;
+            margin: 15px 0 0 13px;
+        }
+        label.error {
+            position: static;
+            display: inline-block;
+            line-height: normal;
+        }
+    }
+}
+/********/

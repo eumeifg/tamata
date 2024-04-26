@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- md_commissions table starts. -->
+    <table name="md_commissions" resource="default" engine="innodb" comment="md_commissions">
+        <column xsi:type="int" name="commission_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Commission ID" />
+        <column xsi:type="smallint" name="calculation_type" padding="6" nullable="false" comment="Commission Calculation Type." />
+        <column xsi:type="decimal" name="commission_value" scale="4" precision="12" comment="Commission Value" />
+        <column xsi:type="smallint" name="marketplace_fee_type" padding="6" nullable="false" comment="1 => Flat, 2=> Percentage" />
+        <column xsi:type="decimal" name="marketplace_fee" scale="4" precision="12" comment="Marketplace Fee for product listing." />
+        <column xsi:type="decimal" name="cancellation_fee_commission_value" scale="4" precision="12" nullable="false" default="0" comment="cancellation_fee_commission_value" />
+        <column xsi:type="smallint" name="cancellation_fee_calculation_type" padding="6" nullable="false" default="0" comment="Total service tax collected on Fees." />
+        <column xsi:type="int" name="product_category" padding="11" nullable="true" comment="Product Category" />
+        <column xsi:type="boolean" name="status" default="false" comment="Status" />
+        <column xsi:type="smallint" name="website_id" padding="5" nullable="false" default="1" unsigned="true" comment="Website ID" />
+        <column xsi:type="smallint" name="store_id" padding="5" nullable="false" default="1" unsigned="true" comment="Store ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="commission_id"/>
+        </constraint>
+    </table>
+    <!-- md_commissions table ends. -->
+    <!-- md_vendor_commissions table starts. -->
+    <table name="md_vendor_commissions" resource="default" engine="innodb" comment="md_vendor_commissions">
+        <column xsi:type="int" name="vendor_commission_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Vendor Commission ID" />
+        <column xsi:type="smallint" name="vendor_calculation_type" padding="6" nullable="false" comment="Vendor Commission Calculation Type." />
+        <column xsi:type="decimal" name="vendor_commission_value" scale="4" precision="12" comment=" Vendor Commission Value" />
+        <column xsi:type="smallint" name="vendor_marketplace_fee_type" padding="6" nullable="false" comment="1 => Flat, 2=> Percentage" />
+        <column xsi:type="decimal" name="vendor_marketplace_fee" scale="4" precision="12" comment="Vendor Marketplace Fee for product listing." />
+        <column xsi:type="decimal" name="vendor_cancellation_fee" scale="4" precision="12" nullable="false" default="0" comment="vendor_cancellation_fee" />
+        <column xsi:type="smallint" name="vendor_cancellation_fee_type" padding="6" nullable="false" default="0" comment="Total service tax collected on Fees." />
+        <column xsi:type="int" name="vendor_id" padding="10" nullable="true" comment="Vendor ID" />
+        <column xsi:type="boolean" name="vendor_status" default="false" comment="Vendor Status" />
+        <column xsi:type="smallint" name="website_id" padding="5" nullable="false" unsigned="true" default="1" comment="Website ID" />
+        <column xsi:type="smallint" name="store_id" padding="5" nullable="false" unsigned="true" default="1" comment="Store ID" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="vendor_commission_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="MD_VENDOR_COMMISSIONS_VENDOR_ID_WEBSITE_ID">
+            <column name="vendor_id"/>
+            <column name="website_id"/>
+        </constraint>
+    </table>
+    <!-- md_vendor_commissions table ends. -->
+    <!-- md_vendor_order table starts. -->
+    <table name="md_vendor_order" resource="default">
+        <column xsi:type="boolean" name="po_generated" nullable="false" default="0" comment="Describes that Purchase order generated or not." />
+    </table>
+    <!-- md_vendor_order table ends. -->
+    <!-- md_vendor_commission_payment table starts. -->
+    <table name="md_vendor_commission_payment" resource="default" engine="innodb" comment="Payout processed for Vendors">
+        <column xsi:type="int" name="vendor_payment_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Transaction Id for Purchase Order" />
+        <column xsi:type="varchar" name="purchase_order_id" length="50" nullable="true" comment="Purchase order Id" />
+        <column xsi:type="varchar" name="commission_invoice_id" length="50" nullable="true" comment="Vendor Commission(Including Shipping / Tax / Additional fees) Invoice Id" />
+        <column xsi:type="int" name="vendor_order_id" padding="10" unsigned="true" nullable="false" comment=" Vendor Order ID" />
+        <column xsi:type="int" name="vendor_id" padding="10" nullable="false" unsigned="true" comment="Vendor ID" />
+        <column xsi:type="text" name="comment" nullable="true" comment="Comment" />
+        <column xsi:type="boolean" name="commission_level" nullable="false" comment="0 => Product, 1 => Category, 2 => Vendor, 3 => Global" />
+        <column xsi:type="decimal" name="total_commission" scale="4" precision="12" default="0" nullable="true" comment="Total Commission" />
+        <column xsi:type="decimal" name="shipping_amount" scale="4" precision="12" default="0" nullable="true" comment="Shipping Amount" />
+        <column xsi:type="decimal" name="tax_amount" scale="4" precision="12" default="0" nullable="true" comment="Tax Amount" />
+        <column xsi:type="decimal" name="adjustment_amount" scale="4" precision="12" default="0" nullable="true" comment="Adjustment Amount" />
+        <column xsi:type="decimal" name="total_amount" scale="4" precision="12" default="0" nullable="true" comment="Total Amount" />
+        <column xsi:type="decimal" name="total_due" scale="4" precision="12" default="0" nullable="true" comment="Total Due" />
+        <column xsi:type="decimal" name="total_paid" scale="4" precision="12" default="0" nullable="true" comment="Total Paid" />
+        <column xsi:type="decimal" name="marketplace_fee" scale="4" precision="12" default="0" nullable="true" comment="Marketplace Fee" />
+        <column xsi:type="decimal" name="transaction_fee" scale="4" precision="12" default="0" nullable="true" comment="Transaction Fee" />
+        <column xsi:type="decimal" name="cancellation_fee" scale="4" precision="12" default="0" nullable="true" comment="Vendor order cancellation fee" />
+        <column xsi:type="decimal" name="service_tax" scale="4" precision="12" default="0" nullable="true" comment="Service Tax" />
+        <column xsi:type="boolean" name="status" default="0" nullable="true" comment="0 => pending, 1 => Paid, 2 => Partial" />
+        <column xsi:type="smallint" name="website_id" padding="5" nullable="false" default="1" unsigned="true" comment="Website ID" />
+        <column xsi:type="smallint" name="store_id" padding="5" nullable="false" default="1" unsigned="true" comment="Store ID" />
+        <column xsi:type="text" name="transaction_summary" nullable="true" comment="Transaction_Summary" />
+        <column xsi:type="timestamp" name="created_at" default="CURRENT_TIMESTAMP" nullable="true" on_update="false" comment="Payment Creation time" />
+        <column xsi:type="timestamp" name="updated_at" default="CURRENT_TIMESTAMP" nullable="true" on_update="true" comment="Payment Update time" />
+        <column xsi:type="timestamp" name="paid_at" default="NULL" nullable="true" on_update="false" comment="Paid time" />
+        <column xsi:type="varchar" name="transaction_type" length="20" nullable="true" comment="PO, Debit Note"/>
+        <column xsi:type="boolean" name="is_settled" default="0" comment="Type of Transaction for Vendor"/>
+        <column xsi:type="varchar" name="settled_transaction_id" length="255" nullable="true" comment="Type of Transaction for Vendor"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="vendor_payment_id"/>
+        </constraint>
+        <index referenceId="MD_VENDOR_COMMISSION_PAYMENT_PURCHASE_ORDER_ID" indexType="btree">
+            <column name="purchase_order_id"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="MD_VENDOR_COMMISSION_PAYMENT_VENDOR_ORDER_ID_MD_VENDOR_ORDER_VENDOR_ORDER_ID" table="md_vendor_commission_payment" column="vendor_order_id" referenceTable="md_vendor_order" referenceColumn="vendor_order_id" onDelete="CASCADE"/>
+    </table>
+    <!-- md_vendor_commission_payment table ends. -->
+    <!-- md_vendor_commission_invoice table starts. -->
+    <table name="md_vendor_commission_invoice" resource="default" engine="innodb" comment="Invoice produced for commissions deducted from vendor orders">
+        <column xsi:type="int" name="vendor_invoice_id" padding="10" identity="true" nullable="false" unsigned="true" comment="Transaction Id for Purchase Order" />
+        <column xsi:type="varchar" name="invoice_number" length="50" nullable="true" comment="Purchase order Id" />
+        <column xsi:type="int" name="vendor_id" padding="10" nullable="false" unsigned="true" comment="Vendor Id" />
+        <column xsi:type="decimal" name="total_commission" scale="4" precision="12" nullable="false" default="0" comment="Commission(Including Shipping / Tax / Additional fees)" />
+        <column xsi:type="decimal" name="marketplace_fee" scale="4" precision="12" nullable="false" default="0" comment="Marketplace Fee for transaction" />
+        <column xsi:type="decimal" name="cancellation_fee" scale="4" precision="12" nullable="false" default="0" comment="Order cancellation Fee" />
+        <column xsi:type="decimal" name="transaction_fee" scale="4" precision="12" nullable="false" default="0" comment="Transaction Fee for transaction" />
+        <column xsi:type="decimal" name="adjustment_amount" scale="4" precision="12" nullable="false" default="0" comment="Adjustment Amount" />
+        <column xsi:type="decimal" name="service_tax" scale="4" precision="12" nullable="false" default="0" comment="Total service tax collected on Fees." />
+        <column xsi:type="decimal" name="amount" scale="4" precision="12" nullable="true" default="0" comment="Total Commission + Marketplace Fee + Order Cancellation Fee + Transaction Fee" />
+        <column xsi:type="timestamp" name="created_at" nullable="true" default="CURRENT_TIMESTAMP" on_update="false" comment="Invoice Creation time" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="vendor_invoice_id"/>
+        </constraint>
+        <index referenceId="IDX_RB_VENDOR_COMM_INVOICE_VENDOR_ID" indexType="btree">
+            <column name="vendor_id"/>
+        </index>
+        <index referenceId="IDX_RB_VENDOR_COMM_INVOICE_CREATED_AT" indexType="btree">
+            <column name="created_at"/>
+        </index>
+        <constraint xsi:type="foreign" referenceId="FK_RB_VENDOR_COMM_INVOICE_VENDOR_ID_RB_VENDOR_VENDOR_ID" table="md_vendor_commission_invoice" column="vendor_id" referenceTable="md_vendor" referenceColumn="vendor_id" onDelete="CASCADE"/>
+    </table>
+    <!-- md_vendor_commission_invoice table ends. -->
+    <!-- md_vendor_commission_invoice_payment table starts. -->
+    <table name="md_vendor_commission_invoice_payment" resource="default" engine="innodb" comment="Relationship between commission invoice and payments">
+        <column xsi:type="int" name="vendor_invoice_id" padding="10" nullable="false" unsigned="true" comment="Transaction Id for Purchase Order" />
+        <column xsi:type="int" name="vendor_payment_id" unsigned="true" padding="10" nullable="false" comment="Transaction Id for Purchase Order" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="vendor_invoice_id"/>
+            <column name="vendor_payment_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_RB_VENDOR_COMM_INVOICE_TNX_VIID_RB_VENDOR_COMM_INVOICE_VIID" table="md_vendor_commission_invoice_payment" column="vendor_invoice_id" referenceTable="md_vendor_commission_invoice" referenceColumn="vendor_invoice_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_RB_VENDOR_COMM_INVOICE_TNX_TNX_ID_RB_VENDOR_PMT_PMT_ID" table="md_vendor_commission_invoice_payment" column="vendor_payment_id" referenceTable="md_vendor_commission_payment" referenceColumn="vendor_payment_id" onDelete="CASCADE"/>
+    </table>
+    <!-- md_vendor_commission_invoice_payment table ends. -->
+
+    <!-- md_vendor_payment_history table Starts -->
+    <table name="md_vendor_payment_history" resource="default" engine="innodb" comment="Save records of bank transactions did by admin for Seller as per the md_vendor_commission_payment">
+        <column xsi:type="int" name="payment_transaction_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Transaction Id for Bank Payment" />
+        <column xsi:type="int" name="vendor_payment_id" padding="10" unsigned="true" nullable="false" comment="Vendor Payment Id"/>
+        <column xsi:type="int" name="vendor_id" padding="10" unsigned="true" nullable="false" comment="Vendor Id"/>
+        <column xsi:type="varchar" name="transaction_id" length="50" nullable="true" comment="Bank transaction id" />
+        <column xsi:type="decimal" name="transaction_amount" scale="4" precision="12" default="0" nullable="true" comment="Payment amount transfered by admin" />
+        <column xsi:type="datetime" name="transaction_date" nullable="true" comment="Date of bank transction done" />
+        <column xsi:type="timestamp" name="created_at" default="CURRENT_TIMESTAMP" nullable="true" on_update="false" comment="Payment detail inserted time" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="payment_transaction_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MD_VENDOR_PAYMENT_HISTORY_VENDOR_PAYMENT_ID_MD_VENDOR_COMMISSION_PAYMENT_VENDOR_PAYMENT_ID" table="md_vendor_payment_history" column="vendor_payment_id" referenceTable="md_vendor_commission_payment" referenceColumn="vendor_payment_id" onDelete="CASCADE"/>
+    </table>
+    <!-- md_vendor_payment_history table Ends -->
+
+</schema>

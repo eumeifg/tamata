@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/cartitems/mine/items" method="POST">
+        <service class="Magedelight\Quote\Api\CartInterface" method="save"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+
+    <!-- Managing shipping information - SAVE SHIPPING METHOD -->
+    <route url="/V1/carts/:cartId/shipping-information-by-id" method="POST">
+        <service class="Magedelight\Quote\Api\ShippingInformationManagementByIdInterface" method="saveAddressInformation"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+</routes>
+

@@ -1,0 +1,122 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php  $_order = $block->getShipment()->getOrder() ?>
+<?php $vendorOrder = $block->getVendorOrder(); ?>
+<?= $block->getChildHtml('order_info') ?>
+<section class="admin__page-section order-shipment-billing-shipping">
+    <div class="admin__page-section-title">
+        <span class="title"><?= /* @escapeNotVerified */ __('Payment &amp; Shipping Method') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+
+        <?php /* Billing Address */ ?>
+        <div class="admin__page-section-item order-payment-method">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= /* @escapeNotVerified */ __('Payment Information') ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <div><?= $block->getChildHtml('order_payment') ?></div>
+                <div class="order-payment-currency"><?= /* @escapeNotVerified */ __('The order was placed using %1.', $_order->getOrderCurrencyCode()) ?></div>
+            </div>
+        </div>
+
+        <?php /* Shipping Address */ ?>
+        <div class="admin__page-section-item order-shipping-address">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= /* @escapeNotVerified */ __('Shipping and Tracking Information') ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <div class="shipping-description-wrapper">
+                    <?php if ($block->getShipment()->getTracksCollection()->count()) : ?>
+                        <p>
+                            <a href="#" id="linkId" onclick="popWin('<?= /* @escapeNotVerified */ $this->helper('Magento\Shipping\Helper\Data')->getTrackingPopupUrlBySalesModel($block->getShipment()) ?>','trackshipment','width=800,height=600,resizable=yes,scrollbars=yes')" title="<?= /* @escapeNotVerified */ __('Track this shipment') ?>"><?= /* @escapeNotVerified */ __('Track this shipment') ?></a>
+                        </p>
+                    <?php endif; ?>
+                    <div class="shipping-description-title">
+                        <?= $block->escapeHtml($_order->getShippingDescription()) ?>
+                    </div>
+
+                    <?= /* @escapeNotVerified */ __('Total Shipping Charges'); ?>:
+
+                    <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingPriceIncludingTax()) : ?>
+                        <?php $_excl = $block->displayShippingPriceInclTax($vendorOrder); ?>
+                    <?php else : ?>
+                        <?php $_excl = $block->displayShippingPriceInclTax($vendorOrder); ?>
+                    <?php endif; ?>
+                    <?php $_incl = $block->displayShippingPriceInclTax($vendorOrder); ?>
+
+                    <?= /* @escapeNotVerified */ $_excl; ?>
+                    <?php if ($this->helper('Magento\Tax\Helper\Data')->displayShippingBothPrices() && $_incl != $_excl) : ?>
+                        (<?= /* @escapeNotVerified */ __('Incl. Tax'); ?> <?= /* @escapeNotVerified */ $_incl; ?>)
+                    <?php endif; ?>
+                </div>
+                <?php if ($block->canCreateShippingLabel()) : ?>
+                <p>
+                    <?= /* @escapeNotVerified */ $block->getCreateLabelButton()?>
+                    <?php if ($block->getShipment()->getShippingLabel()) : ?>
+                        <?= /* @escapeNotVerified */ $block->getPrintLabelButton() ?>
+                    <?php endif ?>
+                    <?php if ($block->getShipment()->getPackages()) : ?>
+                        <?= /* @escapeNotVerified */ $block->getShowPackagesButton() ?>
+                    <?php endif ?>
+                </p>
+                <?php endif ?>
+                <?= $block->getChildHtml('shipment_tracking') ?>
+
+                <?= $block->getChildHtml('shipment_packaging') ?>
+<script>
+    require([
+        'prototype'
+    ], function () {
+
+        setTimeout(function () {
+            packaging.setConfirmPackagingCallback(function () {
+                packaging.sendCreateLabelRequest();
+            });
+            packaging.setLabelCreatedCallback(function (response) {
+                setLocation("<?= /* @escapeNotVerified */ $block->getUrl(
+                    'adminhtml/order_shipment/view',
+                    ['shipment_id' => $block->getShipment()->getId()]
+); ?>");
+            });
+        }, 500);
+
+    });
+</script>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?= /* @escapeNotVerified */ __('Items Shipped') ?></span>
+    </div>
+    <?= $block->getChildHtml('shipment_items') ?>
+</section>
+
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?= /* @escapeNotVerified */ __('Order Total') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <?= $block->getChildHtml('shipment_packed') ?>
+
+        <div class="admin__page-section-item order-comments-history">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= /* @escapeNotVerified */ __('Shipment History') ?></span>
+            </div>
+            <div class="admin__page-section-item-content"><?= $block->getChildHtml('order_comments') ?></div>
+        </div>
+    </div>
+</section>

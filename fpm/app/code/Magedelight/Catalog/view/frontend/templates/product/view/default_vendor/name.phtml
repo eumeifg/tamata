@@ -1,0 +1,86 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var $block \Magedelight\Catalog\Block\Product\View\ProductVendor
+ */
+?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+?>
+<?php if ($block->getHelper()->isEnabled()) { ?>
+    <div class="seller-info more-seller" data-role="defaultVendor">
+    <?php if ($block->getTypeId() == 'configurable' && $block->getCurrentProduct()->isAvailable() && $block->getCurrentProduct()->isSalable()) { ?>
+            <div class="sold-by" >
+                <span class="seller-label"><?= __('Sold By:') ?></span>
+                <!-- <a href="" id="seller-config-remove"> -->
+                    <span class="seller-name" id="seller-name"></span>
+                <!-- </a> -->
+                <span class="seller-name" id="seller-name-nohref"></span>
+            </div>
+            <div class="seller-rating-wrapper">
+                <div class="seller-rating-container" id="seller-rating-container"></div>
+            </div>
+            <script>
+                require(['jquery'], function ($) {
+                    $("#seller-name-nohref").remove();
+                });
+            </script>
+    <?php } elseif (($vendor = $block->getProductDefaultVendor()) && $block->getCurrentProduct()->isAvailable()) {  ?>
+            <div class="sold-by" >
+                <span class="seller-label"><?php echo __('Sold By:') ?></span>
+                <?php if ($vendor->getBusinessName()) : ?>
+                    <?php $vendorName = $vendor->getBusinessName(); ?>
+                <?php else : ?>
+                    <?php $vendorName = $vendor->getVendorName(); ?>
+                <?php endif; ?>
+                
+                <?php if($block->getVendorMicrositeUrl()): ?>
+                <a href="<?php echo $block->getVendorMicrositeUrl(); ?>">
+                    <span class="seller-name">
+                        <?php echo $vendorName; ?>
+                    </span>
+                </a>
+                <?php else : ?>
+                    <span class="seller-name">
+                        <?php echo $vendorName; ?>
+                    </span>
+                <?php endif; ?>
+            </div>
+            <div class="seller-rating-wrapper">
+                <div class="seller-rating-container">
+                    <?php if ($vendor->getRatingAvg() == 0) { ?>
+                        <div class="rating-summary">
+                             <div class="rating-result" title="0%">
+                                 <span style="width:0%">
+                                     <span>
+                                         <span itemprop="ratingValue">50</span>% of <span itemprop="bestRating">100</span>
+                                     </span>
+                                 </span>
+                             </div>
+                        </div>
+                    <?php } else { ?>
+                        <div class="rating-summary">
+                             <div class="rating-result" title="<?= $block->escapeHtmlAttr($block->getRating($vendor->getRatingAvg())); ?>%">
+                                 <span style="width:<?= $block->escapeHtmlAttr($block->getRating($vendor->getRatingAvg())); ?>%">
+                                     <span>
+                                         <span itemprop="ratingValue"><?= $block->escapeHtml($block->getRating($vendor->getRatingAvg())); ?></span>% of <span itemprop="bestRating">100</span>
+                                     </span>
+                                 </span>
+                             </div>
+                         </div>
+                    <?php } ?>
+                </div>
+            </div>
+    <?php } ?>
+    <?= $block->getChildHtml(''); ?>
+    </div>
+<?php } ?>

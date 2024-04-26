@@ -1,0 +1,261 @@
+<?php
+/**
+ * Copyright © 2016 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/* @codingStandardsIgnoreFile */
+/** @var $block Magedelight\User\Block\User\Grid */
+$userCollection = $block->getVendorUserCollection();
+?>
+<form method="get" action="<?php echo $block->getSubmitUrl() ?>" id="form-vendor-user-search">
+    <div class="row">
+        <div class="row-gutter toolbar-wrapper mb10">
+            <div class="col-md-4">
+                <input type="hidden" name="sort_order" id="sort-order" value="<?php echo $this->getRequest()->getParam('sort_order', 'created_at') ?>">
+                <input type="hidden" name="dir" id="sort-direction" value="<?php echo $this->getRequest()->getParam('dir', 'DESC') ?>">
+
+                <div class="block block-search">
+                    <div class="content">
+                        <div class="field search-catalog">
+                            <div class="control">
+                                <input placeholder="<?php echo __('Search...') ?>" type="text"
+                                       value="<?php echo $this->getRequest()->getParam('q') ?>"
+                                       name="q"
+                                       class="input-text search"
+                                       id ="search">
+                            </div>
+                            <div class="actions">
+                                <div class="vendor primary">
+                                    <button type="submit" class="vendor action login primary">
+                                        <span><?php echo __('Search...') ?></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-3 pt10">
+                        <a rel="new" href="javascript:void(0)" class="action-reset search"><?php echo __('Reset') ?></a>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="topbar-right pt10">
+                            <div class="data-grid-filters-actions-wrap">
+                                <div class="data-grid-filters-action-wrap">
+                                    <span class="clear-filters mr10">
+                                        <a rel="new" id="reset_filter" class="action action-reset filter" href="javascript:void(0);"><span><?php echo __('Clear') ?></span></a>
+                                    </span>
+                                    <button class="action secondary action-default _active mr10" type="button"
+                                            data-action="grid-filter-expand" title="Filters">
+                                        <span><?php echo __('Filters') ?></span>
+                                    </button>
+
+                                     <button type="button" title="<?php echo __('Add New User'); ?>"
+                                            data-url="<?php echo $block->getAddNewUrl(); ?>" class="action button primary">
+                                        <span><?php echo __('Add New User'); ?></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-wrapper" style="display:none;">
+        <fieldset class="fieldset">
+            <div class="row-gutter filter-row">
+                <div class="col-md-3">
+                    <fieldset class="fieldset field-full-width">
+                        <legend class="legend">
+                            <span class=""><?php echo __('Name') ?></span>
+                        </legend>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input-text" type="text" name="name" id="name"
+                                       value="<?php echo trim($this->getRequest()->getParam('name')) ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-3">
+                    <fieldset class="fieldset field-full-width">
+                        <legend class="legend">
+                            <span class=""><?php echo __('Email') ?></span>
+                        </legend>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input-text" type="text" name="email" id="email"
+                                       value="<?php echo trim($this->getRequest()->getParam('email')) ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-3">
+                    <fieldset class="fieldset field-full-width">
+                        <legend class="legend">
+                            <span class=""><?php echo __('Status') ?></span>
+                        </legend>
+                        <div class="field">
+                            <div class="control">
+                                <select name="status" id="user_is_active">
+                                    <option value=""><?php echo __('Please Select') ?></option>
+                                    <option value="1" <?php if(!empty($this->getRequest()->getParam('status')) && $this->getRequest()->getParam('status') == 1) { echo 'selected';}?>><?php echo __('Active') ?></option>
+                                    <option value="2" <?php if($this->getRequest()->getParam('status') == '2') { echo 'selected';}?>><?php echo __('Inactive') ?></option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row">
+            <div class="filters-footer col-md-12">
+                <div class="action-toolbar main-actions">
+                    <a class="action primary cancel" href="<?php echo $this->getUrl().'rbuser/user/index/tab/'.$this->getRequest()->getParam('tab');?>"><span><?php echo __('Cancel') ?></span></a>
+                    <button class="action primary" type="submit" data-action="grid-filter-apply">
+                        <span><?php echo __('Apply') ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="table-wrapper ratings-summary">
+    <table class="data table table-ratings-items history" id="deal-product-table">
+        <thead>
+        <tr>
+            <th scope="col" class="col"><?php echo __('ID #') ?></th>
+            <th scope="col" class="col firstname sortable" sortorder="firstname"><?php echo __('Name') ?></th>
+            <th scope="col" class="col email sortable"><?php echo __('Email') ?></th>
+            <th scope="col" class="col role sortable"><?php echo __('Role') ?></th>
+            <th scope="col" class="col status"><?php echo __('Is Active') ?></th>
+            <th scope="col" class="col actions"><?php echo __('Action') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if ($userCollection && count($userCollection)) { ?>
+            <?php foreach ($userCollection as $user): ?>
+                <tr>
+                    <td data-th="id"class="col data-grid-price-cell"><?php echo $user->getId() ?></td>
+                    <td data-th="name" class="col"><?php echo $user->getName() ?></td>
+                    <td data-th="email" class="col data-grid-email-cell"><?php echo $user->getEmail() ?></td>
+                    <td data-th="role" class="col data-grid-user-role"><?php echo $user->getRoleName() ?></td>
+                    <td data-th="status" class="col data-grid-status-cell"><?php echo ($user->getStatus() == 1) ? __('Yes') : __('No') ?></td>
+                    <td data-th="<?php echo __('Actions') ?>" class="col data-grid-actions-cell">
+                        <a href="<?php echo $block->getEditUrl($user->getId()) ?>"
+                           class="action edit">
+                            <span><?php echo __('Edit') ?></span>
+                        </a>
+                        <a href="javascript:void(0)" data-url="<?php echo $block->getDeleteUrl($user->getId()); ?>" class="action delete deletebtn">
+                            <span><?php echo __('Delete') ?></span>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php } else { ?>
+            <tr>
+                <td colspan="6">
+                    <div class="message info empty" id="no-record-message"></div>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
+<?php if ($block->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+<?php endif ?>
+
+
+<script type="text/javascript">
+    require(['jquery', 'Magento_Ui/js/modal/confirm', 'Magedelight_Theme/js/common'], function ($, confirmation, common) {
+        $(".filter-wrapper").hide();
+
+        $(".action-default").click(function () {
+            $(".filter-wrapper").toggle(500);
+        });
+
+        $(".grid-filter-clear-all").click(function () {
+            $form = $(this).parents('form');
+            $(':input:not([type=hidden])', $form).val("");
+            $($form).submit();
+        });
+
+        /* Button click events. */
+        $('.action.button').click(function (e) {
+            common.handleClicks($(this));
+            return false;
+        });
+
+        $(".action-reset").click(function () {
+            $('#search').val('');
+            $('#form-vendor-user-search').submit();
+        });
+
+        $(".action-reset").click(function () {
+            $form = $(this).parents('form');
+            if ($(this).hasClass('search')) {
+                $parent = $('.block-search', $form);
+            } else {
+                $parent = $('.filter-wrapper', $form);
+            }
+            $(':input:not([type=hidden])', $parent).val("");
+            $($form).submit();
+        });
+
+        $value = "false";
+        $('input[type=text]').each(function () {
+            var text_value = $(this).val();
+            if (text_value != '') {
+                $value = "true";
+            }
+        });
+
+        if ($('#search')[0].value != "" || $value == "true") {
+            $('#no-record-message').html('<span>' + $.mage.__('Your search result could not find.') + '</<span>');
+        } else {
+            $('#no-record-message').html('<span>' + $.mage.__('We couldn\'t find any records.') + '</<span>');
+        }
+
+        $(document).on('click', '.deletebtn', function () {
+            var url = $(this).attr('data-url');
+            confirmation({
+                title: '',
+                content: 'Are you sure to delete this user?',
+                actions: {
+                    confirm: function () {
+                        window.location.href = url;
+                    },
+                    cancel: function () {
+                    }
+                },
+                buttons: [{
+                    text: $.mage.__('OK'),
+                    class: 'action secondary action-accept',
+                    /**
+                     * Click handler.
+                     */
+                    click: function (event) {
+                        this.closeModal(event, true);
+                    }
+                },
+                    {
+                        text: $.mage.__('Cancel'),
+                        class: 'action secondary action-dismiss',
+                        /**
+                         * Click handler.
+                         */
+                        click: function (event) {
+                            this.closeModal(event);
+                        }
+                    }
+                ]
+            });
+        });
+    })
+    ;
+</script>
+

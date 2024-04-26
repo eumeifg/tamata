@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Theme
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="footer">
+             <container name="footer.panel.wrapper" htmlClass="panel wrapper container footer-links-container" htmlTag="div">
+               <container name="footer.panel.wrapper.content" htmlClass="panel row" htmlTag="div">
+                    <block class="Magento\Cms\Block\Block" name="vendor-footer-links">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">vendor-footer-links</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

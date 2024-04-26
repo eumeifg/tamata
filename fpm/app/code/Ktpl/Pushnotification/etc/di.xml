@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Ktpl\Pushnotification\Api\KtplPushnotificationsRepositoryInterface" type="Ktpl\Pushnotification\Model\KtplPushnotificationsRepository"/>
+	<preference for="Ktpl\Pushnotification\Api\Data\KtplPushnotificationsInterface" type="Ktpl\Pushnotification\Model\Data\KtplPushnotifications"/>
+	<preference for="Ktpl\Pushnotification\Api\Data\KtplPushnotificationsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Ktpl\Pushnotification\Model\ResourceModel\KtplPushnotifications\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ktpl_pushnotification</argument>
+			<argument name="resourceModel" xsi:type="string">Ktpl\Pushnotification\Model\ResourceModel\KtplPushnotifications\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="ktpl_pushnotification_ktpl_pushnotifications_listing_data_source" xsi:type="string">Ktpl\Pushnotification\Model\ResourceModel\KtplPushnotifications\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+	<!-- Image Uploader -->
+	<virtualType name="VirtualTypeName" type="Magento\Catalog\Model\ImageUploader">
+	   <arguments>
+	      <argument name="baseTmpPath" xsi:type="string">pushnotification/images/</argument>
+	      <argument name="basePath" xsi:type="string">pushnotification/images/</argument>
+	      <argument name="allowedExtensions" xsi:type="array">
+	         <item name="jpg" xsi:type="string">jpg</item>
+	         <item name="jpeg" xsi:type="string">jpeg</item>
+	         <item name="gif" xsi:type="string">gif</item>
+	         <item name="png" xsi:type="string">png</item>
+	      </argument>
+	   </arguments>
+	</virtualType>
+	<type name="Ktpl\Pushnotification\Controller\Adminhtml\Ktplpushnotifications\Upload">
+	   <arguments>
+	      <argument name="imageUploader" xsi:type="object">VirtualTypeName</argument>
+	   </arguments>
+	</type>
+	<!-- End Image Uploader -->
+
+    <preference for="Ktpl\Pushnotification\Api\KtplDevicetokensRepositoryInterface" type="Ktpl\Pushnotification\Model\KtplDevicetokensRepository"/>
+	    <preference for="Ktpl\Pushnotification\Api\Data\KtplDevicetokensInterface" type="Ktpl\Pushnotification\Model\Data\KtplDevicetokens"/>
+	    <preference for="Ktpl\Pushnotification\Api\KtplDevicetokensInterface" type="Ktpl\Pushnotification\Model\KtplDeviceSavetokens"/>
+	    <preference for="Ktpl\Pushnotification\Api\Data\KtplDevicetokensSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	    <!-- <virtualType name="Ktpl\Pushnotification\Model\ResourceModel\KtplDevicetokens\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		    <arguments>
+			    <argument name="mainTable" xsi:type="string">ktpl_devicetokens</argument>
+			    <argument name="resourceModel" xsi:type="string">Ktpl\Pushnotification\Model\ResourceModel\KtplDevicetokens\Collection</argument>
+		    </arguments>
+	    </virtualType> -->
+	    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		    <arguments>
+			    <argument name="collections" xsi:type="array">
+				    <item name="ktpl_pushnotification_ktpl_devicetokens_listing_data_source" xsi:type="string">Ktpl\Pushnotification\Model\ResourceModel\KtplDevicetokens\Grid\Collection</item>
+			    </argument>
+		    </arguments>
+	    </type>
+	<type name="Ktpl\Pushnotification\Model\ResourceModel\KtplDevicetokens\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ktpl_devicetokens</argument>
+            <argument name="eventPrefix" xsi:type="string">ktpldevicetokens_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">ktpldevicetokens_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Ktpl\Pushnotification\Model\ResourceModel\KtplDevicetokens</argument>
+        </arguments>
+    </type>
+    <preference for="Ktpl\Pushnotification\Api\KtplRecentViewProductRepositoryInterface" type="Ktpl\Pushnotification\Model\KtplRecentViewProductRepository"/>
+	<preference for="Ktpl\Pushnotification\Api\Data\KtplRecentViewProductInterface" type="Ktpl\Pushnotification\Model\Data\KtplRecentViewProduct"/>
+    <preference for="Ktpl\Pushnotification\Api\KtplRecentViewProductInterface" type="Ktpl\Pushnotification\Model\KtplRecentViewProductSave"/>
+   	<!-- Changes By : RH -->
+	<preference for="Ktpl\Pushnotification\Api\KtplPushnotificationListInterface" type="Ktpl\Pushnotification\Model\KtplPushnotificationList"/>
+   	<!-- Changes By : RH -->
+
+   	<preference for="Ktpl\Pushnotification\Api\KtplCustomerPushnotificationListInterface" type="Ktpl\Pushnotification\Model\KtplCustomerPushnotificationList"/>
+
+</config>

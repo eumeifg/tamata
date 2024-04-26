@@ -1,0 +1,29 @@
+<?php
+$enabled_custom_style = $block->getIsenabledCustomStyle();
+$config_color = $block->getConfigColor();
+$config_font_color = $block->getConfigFontColor();
+
+if ($enabled_custom_style) :
+?>
+<style>
+    <?php //backend configuration color ?>
+    
+    .modal-inner-wrap.md-social-popup .modal-header .modal-title{
+        background: <?php echo '#'.$config_color ?>;
+        color:<?php echo '#'.$config_font_color?>;
+    }
+
+    .modal-inner-wrap.md-social-popup .md-login-form-popup .md-form-button,
+    .modal-inner-wrap.md-social-popup #md-sociallogin-form-create .primary button,
+    .modal-inner-wrap.md-social-popup #md-sociallogin-form-forgot .primary button{
+        background:<?php echo '#'.$config_color ?>;
+        border:<?php echo '#'.$config_color ?>;
+        color:<?php echo '#'.$config_font_color?>;
+    }
+    
+    <?php
+   //custom css added in backend
+    echo $block->getConfigCss() ?>
+</style>
+
+<?php endif; ?>

@@ -1,0 +1,29 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php  $data = $block->getReviewData(); ?>
+<?php $sum = 0; ?>
+    <?php foreach ($data['vendorrating'] as $vdata) : ?>
+        <?php  $sum+= $vdata['rating_avg']; ?>
+    <?php endforeach; ?>
+
+<?php if ($sum == 0) :
+    ?><?php $ratImage = 0; ?><?php
+else :
+    ?><?php $ratImage = $sum ?><?php
+endif; ?>
+
+               
+<div id="summary_rating" class="control-value admin__field-value">    <div class="rating-box">
+        <div class="rating" style="width:<?= $ratImage; ?>%;"></div>
+    </div>
+</div>

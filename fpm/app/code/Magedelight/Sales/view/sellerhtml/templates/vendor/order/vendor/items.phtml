@@ -1,0 +1,82 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block Magedelight\Sales\Block\Vendor\Order\Vendor\Items */
+?>
+<?php $_order = $block->getOrder() ?>
+<div class="table-wrapper order-items rb-order-items">
+    <table class="data table table-order-items rb-table-order-items" id="my-orders-table" summary="<?= /* @escapeNotVerified */ __('Items Ordered') ?>">
+        <!--<caption class="table-caption"><?= /* @escapeNotVerified */ __('Items Ordered') ?></caption> -->
+        <thead>
+            <tr>
+                <th class="col name"><?= /* @escapeNotVerified */ __('Product Name') ?></th>
+                <th class="col name"><?= /* @escapeNotVerified */ __('Item Status') ?></th>
+                <th class="col price"><?= /* @escapeNotVerified */ __('Price') ?></th>
+                <th class="col qty"><?= /* @escapeNotVerified */ __('Qty') ?></th>
+                <th class="col subtotal"><?= /* @escapeNotVerified */ __('Subtotal') ?></th>
+                <th class="col tax-amount"><?= /* @escapeNotVerified */ __('Tax Amount') ?></th>
+                <th class="col tax-percent"><span><?= /* @escapeNotVerified */ __('Tax Percent') ?></span></th>
+                <th class="col discont-amount"><span><?= /* @escapeNotVerified */ __('Discount Amount') ?></span></th>
+                <th class="col row-total last"><span><?= /* @escapeNotVerified */ __('Row Total') ?></span></th>
+            </tr>
+        </thead>
+        <?php $_items = $block->getItemsCollection(); ?>
+        <?php $_index = 0; ?>
+        <?php $_giftMessage = '' ?>
+        <?php foreach ($_items as $_item) : ?>
+            <?php
+            if ($_item->getParentItem()) {
+                continue;
+            }
+            ?>
+            <tbody>
+            <?= $block->getItemHtml($_item); ?>
+            <?php $message = $block->getGiftOptionsMessage($_item->getGiftMessageId()); ?>
+            <?php if ($message) { ?>
+            <tr>
+                <td colspan="9">
+                    <a class="gift-options-link" title="<?= __('Click here to view'); ?>" href="javascript:void(0)"><?= __('Gift Options'); ?></a>
+                    <div class="gift-options-content" style="display: none;">
+                        <div class="gift-options-sender">
+                            <label><strong><?= __('From'); ?></strong> :</label>
+                            <?= $message->getSender(); ?>
+                        </div>
+                        <div class="gift-options-sender">
+                            <label><strong><?= __('To'); ?></strong> :</label>
+                            <?= $message->getRecipient(); ?>
+                        </div>
+                        <div class="gift-options-sender">
+                            <label><strong><?= __('Message'); ?></strong> :</label>
+                            <?= $message->getMessage(); ?>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <?php } ?>
+            </tbody>
+
+        <?php endforeach; ?>
+        <tfoot>
+            <?= $block->getChildHtml('order_totals') ?>
+        </tfoot>
+    </table>
+</div>
+
+<script>
+require([
+    "jquery"
+], function($){
+    $('.gift-options-link').on('click',function(){
+            $(this).next().toggle('slow');
+        });
+
+});
+</script>

@@ -1,0 +1,121 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+
+$storeManager = $objectManager->create('Magento\Store\Model\StoreManagerInterface');
+$rootCategoryId = $storeManager->getStore($storeManager->getStore()->getId())->getRootCategoryId();
+
+//$request = $objectManager->get('Magento\Framework\App\Action\Context')->getRequest();
+//$parentCategories = $category->getParenId();   // Get Parent Category Id
+
+//if ($block->canShowBlock() && ($request->getFullActionName() == 'catalog_category_view' && $parentCategories != $rootCategoryId) ):
+if ($block->canShowBlock()):
+
+    $filters = $block->getLayer()->getState()->getFilters();
+
+    ?><div class="block filter" id="layered-filter-block" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
+        <?php $filtered = count($filters) ?>
+        <div class="block-title filter-title" data-count="<?= $filtered ?>">
+            <strong data-role="title">
+                <span class="filtextbt"><?= __('Shop By') ?></span>
+            </strong>
+            <strong data-role="title">
+                <a href="<?= $block->getClearUrl() ?>"><span class="canceltext action secondary"><?= __('Clear Filters') ?></span></a>
+            </strong>
+            <div class="action primary apply" id="apply"><?= __('Apply') ?></div>
+        </div>
+        <div class="block-content filter-content">
+            <?= $block->getChildHtml('state') ?><?php
+            if ($filters):
+                ?><div class="block-actions filter-actions">
+                    <a href="<?= $block->getClearUrl() ?>" class="action secondary clear filter-clear"><span><?= __('Clear All') ?></span></a>
+                </div><?php
+            endif;
+            $wrapOptions = false;
+            foreach ($block->getFilters() as $filter):
+                if ($filter->getItemsCount()):
+                    if (!$wrapOptions):
+                        ?><strong role="heading" aria-level="2" class="block-subtitle filter-subtitle">
+                            <span class="filterstext"><?= __('Filter By') ?></span><?php
+                            if (!$filters):
+                                ?><span class="clearall">
+                                    <a href="#" onclick="window.location.reload(true);"><?= __('Clear All') ?></a>
+                                </span>
+                                <?php
+                            else:
+                            ?>
+                            <span class="clearall">
+                                    <a id="crossclick"><?= __('Clear All') ?></a>
+                                </span>
+                            <?php endif; ?></strong>
+                        <div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":{"openedState": "active open-filter", "collapsible": true, "active open-filter": false, "multipleCollapsible": false}}'><?php
+                        $wrapOptions = true;
+                    endif;
+                    ?><div data-role="collapsible" class="filter-options-item">
+                        <div data-role="title" class="filter-options-title"><?= $block->escapeHtml(__($filter->getName())) ?></div>
+                        <div data-role="content" class="filter-options-content"><?= $block->getChildBlock('renderer')->render($filter) ?></div>
+                    </div><?php
+                endif;
+            endforeach;
+            if ($wrapOptions):
+                ?></div><?php
+            else:
+                ?><script>
+                    require([
+                        'jquery'
+                    ], function ($) {
+                        $('#layered-filter-block').addClass('filter-no-options');
+                    });
+                </script><?php
+            endif;
+
+        ?></div>
+    </div>
+     <script>
+        require(['jquery'], function ($) {
+            $(document).ready(function() {
+                    $(".filter-options-title").click(function(){
+                        if($(this).attr('aria-expanded')!='true'){
+                           $("div .filter-options-title").each(function(){
+                               if(($(this).attr('aria-expanded')=='true' && $(this).attr('done')!='true')){
+                                   $(this).attr('done','true');
+                                    $(this).trigger('click');
+                                }else{
+                                   $(this).attr('done','false');
+                                }
+                            });
+                        }
+                    });
+                    $("#crossclick").click(function(){
+                        $("#apply").click();
+                    });
+                });
+            });
+    </script>
+    <script>
+     /*   require(['jquery'], function ($) {
+		$(".am-filter-items-attr_category_ids li ul").hide();
+		$(".am-filter-items-attr_category_ids li").on("click", function(e) {
+			alert("Hiii");
+			e.preventDefault();
+		});
+		var newEle = "<span class='plus'>+</span>";
+        	$(".am-filter-items-attr_category_ids li a").after(newEle);
+		$(".am-filter-items-attr_category_ids li .plus").on("click", function(){
+			$(this).next().show();
+		});
+	}); */
+    </script>
+<?php endif; ?>

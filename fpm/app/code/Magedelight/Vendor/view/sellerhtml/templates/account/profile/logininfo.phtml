@@ -1,0 +1,105 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $this \Magedelight\Vendor\Block\Profile */
+$vendor =  $this->getVendor();
+$status = strtolower(str_replace(' ', '-', $this->getVendorStatusLabel()));
+?>
+<div id="login-info-content" class="row signup-step-content profile-step-content no-display">
+    <div class="title">
+        <h3><span><?= __('Login Information') ?></span></h3>
+        <span class="note">- <?= __('Click on Edit to change the password.') ?></span>
+        <span class="edit-link"><?= __('Edit') ?></span>
+    </div>
+    <form name="login_information_form" id="login-information-form" enctype="multipart/form-data" method="post" action="<?= $this->getPostActionUrl('logininfo') ?>">
+        <fieldset class="fieldset">
+            <div class="field mobile-info">
+                <label class="label"><span><?= __('Mobile Number') ?></span></label>
+                <div class="info">
+                    <span class="status active"><?= $vendor->getMobile(); ?></span>
+                </div>
+            </div>
+            <div class="field email-info">
+                <label class="label"><span><?= __('Email Address') ?></span></label>
+                <div class="info">
+                    <span class="status active"><?= $vendor->getEmail(); ?></span>
+                </div>
+            </div>
+            <div class="field show-on-edit-field current-password required">
+                <label class="label" for="current-password"><span><?= __('Current Password') ?></span></label>
+                <div class="control _with-tooltip">
+                    <input name="current_password" id="current-password" title="<?= __('Current Password') ?>" class="input-text required-entry" type="password" placeholder="<?= __('Current Password') ?>" />
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                            <span><?= __('Enter Current Password') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field show-on-edit-field password required">
+                <label class="label" for="password"><span><?= __('New Password') ?></span></label>
+                <div class="control _with-tooltip">
+                    <input name="password" id="password" title="<?= __('New Password') ?>" value="" class="input-text required-entry validate-password" minlength="6" type="password" placeholder="<?= __('New Password') ?>" />
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                            <span><?= __('Enter New Password') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field show-on-edit-field cpassword required">
+                <label class="label" for="cpassword"><span><?= __('Confirm Password') ?></span></label>
+                <div class="control _with-tooltip">
+                    <input name="cpassword" id="cpassword" title="<?= __('Confirm Password') ?>" value="" class="input-text required-entry validate-cpassword" minlength="6" type="password" placeholder="<?= __('Confirm Password') ?>" />
+                    <div class="field-tooltip toggle">
+                        <span class="field-tooltip-action action-help" tabindex="0" hidden="hidden"></span>
+                        <div class="field-tooltip-content">
+                            <span><?= __('Enter Confirm Password') ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" value="login-information-form" title="<?= __('Save') ?>" class="action button primary btn-reset">
+                        <span><?= __('Save') ?></span>
+                    </button>
+                    <button type="reset" title="<?= __('Cancel') ?>" class="action button primary btn-reset">
+                        <span><?= __('Cancel') ?></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery', /* jquery Library */
+        'jquery/ui', /* Jquery UI Library */
+        'mage/mage',
+        'mage/translate' /* Magento text translate (Validation message translte as per language) */
+    ], function($){
+        loginForm = $('#login-information-form');
+        loginForm.mage('validation', {
+            ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+        }).find('input:text').attr('autocomplete', 'off');
+        $(":password").keydown(function(e){
+            if (e.which == 32) {
+                e.preventDefault();
+            }
+        });
+        $('#password, #cpassword').bind("cut copy paste",function(e) {
+            e.preventDefault();
+        });
+    });
+</script>

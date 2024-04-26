@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">offerpage_form.cat_offerpage_index_listing_data_source</item>
+            <item name="deps" xsi:type="string">offerpage_form.cat_offerpage_index_listing_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="label" translate="true" xsi:type="string">Slider Information</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Ktpl\BannerManagement\Block\Adminhtml\Block\Edit\BackButton</item>
+            <item name="save_and_continue" xsi:type="string">Ktpl\BannerManagement\Block\Adminhtml\Block\Edit\SaveAndContinueButton</item>
+            <item name="save" xsi:type="string">Ktpl\BannerManagement\Block\Adminhtml\Block\Edit\SaveButton</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">offerpage_form</item>
+        </item>
+    </argument>
+    <dataSource name="cat_offerpage_index_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">CAT\OfferPage\Model\OfferPageDataProvider</argument>
+            <argument name="name" xsi:type="string">cat_offerpage_index_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">offerpage_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" path="*/items/save" xsi:type="url"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="label" translate="true" xsi:type="string">Offer Information</item>
+            </item>
+        </argument>
+        <field name="offerpage_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">contact</item>
+                </item>
+            </argument>
+        </field>
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Title</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">title</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">category</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="string">1</item>
+                        <item name="false" xsi:type="string">0</item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="default" xsi:type="string">1</item>
+                </item>
+            </argument>
+        </field>
+        <field name="device" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Device</label>
+                <dataScope>device</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">0</item>
+                                <item name="label" xsi:type="string">Desktop</item>
+                            </option>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">1</item>
+                                <item name="label" xsi:type="string">Mobile</item>
+                            </option>
+                        </options>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="tab4">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Images</item>
+            </item>
+        </argument>
+        <dynamicRows name="dynamic_rows">
+            <settings>
+                <addButtonLabel translate="true">Add Rows</addButtonLabel>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <componentType>dynamicRows</componentType>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                    </item>
+                </argument>
+                <field name="image" formElement="imageUploader">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="source" xsi:type="string">general</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                        <notice translate="true">Some notice.</notice>
+                        <label translate="true">Image Uploader</label>
+                        <!--<componentType>imageUploader</componentType>-->
+                        <required>false</required>
+                    </settings>
+                    <formElements>
+                        <imageUploader>
+                            <settings>
+                                <isMultipleFiles>true</isMultipleFiles>
+                                <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                                <maxFileSize>2097152</maxFileSize>
+                                <uploaderConfig>
+                                    <param xsi:type="string" name="url">cat_offerpage/image/uploader</param>
+                                </uploaderConfig>
+                            </settings>
+                        </imageUploader>
+                    </formElements>
+                </field>
+                <field name="banner_title" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                            <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                        </validation>
+                        <dataType>text</dataType>
+                        <label>Banner Title</label>
+                    </settings>
+                </field>
+                <field name="banner_layout" formElement="select">
+                    <settings>
+                        <dataType>text</dataType>
+                        <label translate="true">Banner Layout</label>
+                        <dataScope>banner_layout</dataScope>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <options>
+                                    <option name="rectangle" xsi:type="array">
+                                        <item name="value" xsi:type="string">rectangle</item>
+                                        <item name="label" xsi:type="string">1. Rectangle</item>
+                                    </option>
+                                    <option name="square" xsi:type="array">
+                                        <item name="value" xsi:type="string">square</item>
+                                        <item name="label" xsi:type="string">2. Square</item>
+                                    </option>
+                                </options>
+                                <caption translate="true">-- Please Select --</caption>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <field name="page_type" formElement="select">
+                    <settings>
+                        <dataType>text</dataType>
+                        <label translate="true">Page Type</label>
+                        <dataScope>page_type</dataScope>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <options>
+                                    <option name="product" xsi:type="array">
+                                        <item name="value" xsi:type="string">product</item>
+                                        <item name="label" xsi:type="string">Product</item>
+                                    </option>
+                                    <option name="category" xsi:type="array">
+                                        <item name="value" xsi:type="string">category</item>
+                                        <item name="label" xsi:type="string">Category</item>
+                                    </option>
+                                </options>
+                                <caption translate="true">-- Please Select --</caption>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+                <field name="url" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                            <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                        </validation>
+                        <dataType>text</dataType>
+                        <label>URL</label>
+                    </settings>
+                </field>
+                <field name="data_id" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <validation>
+                            <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                        </validation>
+                        <dataType>text</dataType>
+                        <label>Data ID</label>
+                    </settings>
+                </field>
+                <actionDelete template="Magento_Backend/dynamic-rows/cells/action-delete">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <additionalClasses>
+                            <class name="some-class">true</class>
+                        </additionalClasses>
+                        <dataType>text</dataType>
+                        <label>Actions</label>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+</form>

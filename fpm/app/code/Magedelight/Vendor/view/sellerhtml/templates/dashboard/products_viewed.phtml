@@ -1,0 +1,43 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block Magedelight\Vendor\Block\Dashboard\Products\ProductsViewed */
+$collection = $block->getCollection();
+?>
+<div class="table-caption-heading">
+     <span class="table-heading fleft"><?= __('Most Viewed Products') ?></span>        
+</div>
+<table class="data table table-viewed-items summary-table" id="viewed-items-table">
+    <thead>
+        <tr>
+            <th scope="col" class="col sku"><?= __('SKU') ?></th>
+            <th scope="col" class="col product-name"><?= __('Product Name') ?></th>            
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        if ($collection->count()) {
+            foreach ($collection as $item) {
+                ?>
+                <tr>
+                    <td data-th="" class="col sku"><?= $item->getSku() ?></td>
+                    <td data-th="" class="col product-name"><?= $block->getProduct($item->getSku()) ?></td>                
+                </tr>
+                <?php
+            }
+        } else {
+            ?>
+            <tr><td colspan="2"><?= __('No data found.') ?></td></tr>
+            <?php
+        }
+        ?>
+    </tbody>
+</table>

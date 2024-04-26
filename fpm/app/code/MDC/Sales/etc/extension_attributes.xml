@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Sales\Api\Data\OrderItemInterface">
+        <attribute code="vendor_data" type="Magedelight\Sales\Api\Data\OrderDataInterface"/>
+        <attribute  code="product_rma_flag" type="string"/>
+        <attribute code="product_rma_validity" type="string"/>
+        <attribute code="order_item_image_data" type="Magedelight\Sales\Api\Data\OrderItemImageInterface"/>
+        <attribute code="product_shipment_id" type="string"/>
+        <attribute code="item_increment_id" type="string" />
+        <attribute code="item_status" type="string" />
+        <attribute code="is_packed" type="string" />
+        <attribute code="cancelled_by" type="string" />
+        <attribute code="is_sorted" type="string"/>
+        <attribute code="is_picked_up" type="string" />
+        <attribute code="is_received" type="string" />
+        <attribute code="ready_to_ship" type="string" />
+        <attribute code="barcode_number" type="string" />
+        <attribute code="vendor_order_with_classification" type="string" />
+        <attribute code="is_picked_up_timestamp" type="string"/>
+        <attribute code="is_sorted_timestamp" type="string"/>
+        <attribute code="is_packed_timestamp" type="string"/>
+        <attribute code="ready_to_ship_timestamp" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
+        <attribute code="vendor_orders" type="Magedelight\Sales\Api\Data\SubOrdersInterface"/>
+        <attribute code="delivered_count" type="string"/>
+        <attribute code="pending_count" type="string"/>
+        <attribute code="order_comment" type="string"/>
+        <attribute code="order_confirm_code" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magedelight\Sales\Api\Data\VendorOrderInterface">
+        <attribute code="pickup_status" type="string"/>
+        <attribute code="pickup_status_label" type="string"/>
+    </extension_attributes>
+</config>

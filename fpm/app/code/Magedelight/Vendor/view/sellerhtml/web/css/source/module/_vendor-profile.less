@@ -1,0 +1,1080 @@
+    // /**
+//  * Copyright � 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+  .rbvendor-account-register {
+    .page-wrapper {
+        .lib-css(width, 100%);
+    }
+
+  }
+    .sections {
+        .signup-steps {
+            .lib-css(padding-top, 50px);
+            .rb-container {
+                  padding-left: 0;
+                  padding-right: 0;
+                .lib-css(margin-left, 0);
+                .lib-css(margin-right, 0); 
+
+
+                  .signup-step-progress { 
+                        margin-bottom:25px;
+                    ul {
+                       .lib-list-reset-styles();
+                      li {
+                        .lib-list-reset-styles();
+                            position:relative;
+                            text-align: center;
+                            float:left;
+                            width:33.3333%;
+
+                            strong {
+                                font-size: 16px;
+                                color: @color-blue2;;
+                                font-weight:@font-weight__regular;
+                            }
+                            span:before {
+                              content:"1.";
+                              font-size: 16px;
+                              color: @color-gray80;
+                              font-weight: @font-weight__semibold;
+                            }
+                          &:nth-child(2) {
+                              span:before {
+                                content:"2.";
+                                font-size: 16px;
+                                color: @color-gray80;
+                                font-weight: @font-weight__semibold;
+                              }
+                          }
+                          &:nth-child(3) {
+                              span:before {
+                                content:"3.";
+                                font-size: 16px;
+                                color: @color-gray80;
+                                font-weight: @font-weight__semibold;
+                              }
+                          }
+                        &.completed {
+                          position: relative;
+                          &:before {
+                            content: "\e610";
+                            font-size: 19px;
+                            color: @color-blue2;
+                            font-family: 'RB-Vendor-Theme-Icons';
+                            font-weight: bold;
+                            bottom: -3px;
+                            left: 20px;
+                            position: absolute;
+                          }
+                          strong {
+                            color: @color-blue2;
+                          }
+                          span:before {
+                            color: @color-blue2;
+                          }
+                          &:after {
+                            content:"";
+                            background: @color-blue2;
+                            height: 5px;
+                            width:100%;
+                            bottom:-10px;
+                            left:0;
+                            position: absolute;
+                          }
+                        }
+                        &:after {
+                          content:"";
+                          background: @color-gray80;
+                          height: 5px;
+                          width:100%;
+                          bottom:-10px;
+                          left:0;
+                          position: absolute;
+                        }
+                        &.active {
+                          strong {
+                            color: @color-blue2;
+                          }
+                          span {
+                            &:before {
+                              color: @color-blue2;   
+                            }
+                          }
+                          &:after {
+                            content:"";
+                            background: @color-blue2;
+                            height: 5px;
+                            width:100%;
+                            bottom:-10px;
+                            left:0;
+                            position: absolute;
+                          }
+                        }
+
+                      }
+
+                    }
+
+                  }
+                  .signup-step-content {
+                    .lib-css(border, 1px solid @border-color__base);
+                    .lib-css(background, @color-white);
+                    .lib-css(padding, 20px 15px 20px 15px);
+                        form {
+                         .fieldset {
+                          
+                         }
+                        }
+
+//
+//    select category style start
+//--------------------------------------
+
+              
+
+
+            #register-step-2 {
+             .fieldset {
+              > .field:not(.choice)  {
+                  
+                  &.membership-price,
+                  &.compare {
+                    margin-bottom: 0;
+                  }
+
+                &.compare {
+                  .label {
+                      text-align: left;
+                      padding-top: 0;
+                      a {
+                        text-decoration: underline;
+                      }
+                    }
+                }
+              }
+
+           
+             }
+            }                
+
+                  }
+
+              }
+
+          }
+
+}
+
+              ul.category-ul {
+                  .lib-list-reset-styles();   
+                  text-align: left; 
+
+                  input[type="checkbox"]:disabled {
+                    opacity: 0;
+                  }
+
+
+                  &.level-3 {
+                    padding-left: 25px;
+                  }
+                  &.level-4 {
+                    padding-left: 30px; 
+                  }
+                  &.level-5 {
+                    padding-left: 20px;
+                  }
+
+                  li.item {
+                        margin:8px 0 8px 0;
+                        padding:0px 10px 0 10px;
+
+                        &:not(.level0) {
+                          padding-left: 40px;
+                        }
+
+                        .label {
+                          &.selectall-subcat {
+                            display: inline-block;
+                            margin-top: 5px;
+
+                            strong {
+                              font-weight: @font-weight__semibold;
+                              color: @color-blue2;
+                              text-decoration: underline;
+                              text-transform: uppercase;
+
+                              &:hover {
+                                text-decoration: none;
+                                color: @color-black; 
+                              }
+                            }
+                          }
+                        }
+          
+                      &.base {
+                          border-bottom: 1px solid @border-color__base;
+                          padding:0 0 @indent__s 0;
+
+                        > label {
+                            &:first-child {
+                              .lib-icon-font(
+                                  @icon-up,
+                                  @_icon-font-size: 15px,
+                                  @_icon-font-position: after,
+                                  @_icon-font-margin: -3px 0 0 6px,
+                                  @_icon-font-color: @color-black,
+                                  @_icon-font-color-hover: @color-blue2,
+                               );
+                              .lib-font-size(20);
+                               font-weight: @font-weight__bold;
+                               text-transform: uppercase;
+                               display: block;
+                               position: relative;
+                               padding: 5px 10px 5px 10px;  
+                               cursor: pointer;
+                               margin-left:0;
+                                .rbvt-font-icon;         
+
+                              &:after {
+                                right: 25px;
+                                top: 12px; 
+                                position: absolute; 
+                              }
+
+                              &:hover {
+                                background: @color-white-smoke;
+                              }
+
+                          }
+                          &.selectall-subcat {
+                            margin-left: 10px;
+
+                            &:after {
+                              display: none;
+                            }
+                          }
+                        }
+
+                        &.expand {
+                           > label {
+                                &:after {
+                                  content: @icon-down; 
+                                }
+
+                           }
+                        }
+                      }
+
+                      &.has-children:not(.base) {
+                          border-bottom: 1px solid lighten(@border-color__base, 7%) ;
+                          padding:0 0 @indent__s 0;
+                          font-weight: @font-weight__semibold;
+
+                          &:last-child {
+                            border-bottom: none;
+                            padding-bottom: 0;
+                          }
+
+                          &.sub-cat-parent {
+                              > label {
+                                  &:first-child {
+                                    .lib-icon-font(
+                                        @icon-minus-thick,
+                                        @_icon-font-size: 12px,
+                                        @_icon-font-position: after,
+                                        @_icon-font-color: @color-black,
+                                        @_icon-font-color-hover: @color-blue2,
+                                     );
+                                    .lib-font-size(14);
+                                     font-weight: @font-weight__semibold;
+                                     text-transform: uppercase;
+                                     display: block;
+                                     position: relative;
+                                     padding: 5px 10px 5px 55px; 
+                                     cursor: pointer; 
+                                      .rbvt-font-icon;
+                                    &:after {
+                                      left: 30px; 
+                                      top: 7px; 
+                                      position: absolute; 
+                                    }
+                                    &:hover {
+                                      background: @color-white-smoke; 
+                                    }
+
+                                }
+                                &.selectall-subcat {
+                                  margin-left: 40px;
+                                }
+                              }                                    
+
+                            &.expand {
+                               > label {
+                                &:first-child { 
+                                  &:after {
+                                    content: @icon-plus-thick; 
+                                  }                                                  
+                                }
+                              }
+                            }
+                          }
+
+                          &:first-child {
+                            + .label {
+                              font-weight: @font-weight__semibold; 
+                            }
+                          }
+                      }
+
+                      &:not(.has-children) {
+                          display: inline-block;
+                          width: 100%;
+
+                          a {
+                            text-transform: none;
+                            font-weight: @font-weight__semibold;
+                          }
+
+
+                      }
+                  }
+
+               }
+
+.block-vendor-account-nav{
+    width: 25%;
+    float: left;
+    margin-right: 2%;
+}
+
+}
+
+
+//
+//    Mobile @screen__m
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+     .sections {
+        .signup-steps {
+            .lib-css(padding-top, 50px);
+            .rb-container {
+                .lib-css(max-width, 804px);
+                .signup-step-progress {
+                    margin-bottom: 25px;
+                    ul {
+                        li {
+                            .lib-list-reset-styles();
+                            position: relative;
+                            text-align: center;
+                            float: left;
+                            width: 33.3333%;
+                            strong {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+                .signup-step-content {
+                    .lib-css(padding, 40px 0 20px 0);
+                    .fieldset {
+                        > .actions-toolbar {
+                            .lib-css(margin, 0);
+                            .lib-css(padding, 0 0px 0 0px);
+                            .lib-css(text-align, right);
+                            > .primary {
+                                float: left;
+                                width: 95%;
+                                .action {
+                                    margin: 0px;
+                                    float: none;
+                                }
+                                .btn-back {
+                                    float: left;
+                                    margin-left: @indent__base;
+                                    padding: @indent__s;
+                                }
+                                .btn-continue {
+                                  float: right;
+                                  padding: @indent__s;
+                                }
+                                .btn-submit {
+                                  float: right;
+                                  padding: @indent__s;
+                                }
+                            }
+                        }
+                    }
+                }
+                //  Profile page
+                .profile-step-content {
+                    .lib-css(padding, 0 0 20px 0);
+                    .title {
+                        .lib-css(border-bottom, 1px solid @border-color__base);
+                        .lib-css(margin, 0 0 30px 0);
+                        .lib-css(padding, 10px 15px 10px);
+                        .lib-clearfix();
+                        h3 {
+                            .lib-font-size(@font-size__base + 1);
+                            .lib-css(margin, 0);
+                            .lib-css(float, left);
+                            .lib-css(line-height, @font-size__base + 1);
+                        }
+                        .edit-link {
+                            .lib-css(float, right);
+                            .lib-css(position, relative);
+                            .lib-css(padding-left, 20px);
+                            .lib-css(line-height, 1.1);
+                            .lib-font-size(@font-size__s);
+                            .lib-icon-font(
+                            @icon-edit1,
+                            @_icon-font-size: @font-size__l,
+                            @_icon-font-position: before,
+                            @_icon-font-margin: 0 0px 0 0,
+                            );
+                            cursor: pointer;
+                           .rbvt-font-icon;
+
+                           &:before {
+                             position:  absolute;
+                             left: 0;
+                             top: -2px;
+                           }
+                        }
+                    }
+                    input,
+                    select,
+                    textarea {
+                        &:disabled {
+                            .lib-css(border-width, 0);
+                            .lib-css(opacity, 1);
+                        }
+
+
+                        &._has-datepicker:disabled {
+                         .lib-css(border, 1px solid @form-element-input__disabled__border) !important;
+                        }
+
+                    }
+                    input[type="checkbox"]:disabled {
+                           .lib-css(opacity, 0);
+                      }
+                    select {
+                      &:disabled {
+                         .lib-css(background, none);
+                    }
+                    }
+
+                    input {
+                        &.hasDatepicker {
+                            &:disabled {
+                                &:empty {
+                                    display: block;
+                                    .lib-css(border, 1px solid @form-element-input__disabled__border) !important;
+                                    opacity: 0.5;
+                                }
+                            }
+                        }
+                    }
+                    select {
+                        &:disabled {
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            text-indent: 1px;
+                            text-overflow: '';
+                        }
+                    }
+                    textarea {
+                        .lib-css(min-height, 150px);
+                        &:disabled {
+                            .lib-css(border, 1px solid @form-element-input__border-color);
+                            .lib-css(opacity, 0.5);
+                        }
+                    }
+                    &.active {
+                        .actions-toolbar, .show-on-edit-field {
+                            display: none;
+                        }
+                    }
+                    &.edit {
+                        .actions-toolbar {
+                            display: block;
+                            div.primary {
+                                .lib-css(text-align, left);
+                                .lib-css(padding-left, 25%);
+                                .primary {
+                                    .lib-css(margin-right, 20px) !important;
+                                }
+                            }
+                        }
+
+                        .show-on-edit-field {
+                          display:block;
+                          &.field-image {
+                              .image-upload {
+                                float:left;
+                                width:70%;
+                                padding-right: 2%;
+
+                              }
+                              .image-preview {
+                                float:right;
+                                width:25%;
+                                text-align:right;
+                                .image {
+                                  border:none;
+                                  width: auto;
+                                  height: auto;
+                                  margin: 0;
+                                  float: none;
+
+                                  img {
+                                    border: 1px solid #bbb;
+                                    padding: 2px;
+                                  }
+                                }
+                              }
+
+                              &.status-active {
+                                  .image-preview {
+                                    float:left;
+                                    text-align:left;
+                                  }
+
+
+                              }
+
+                          }
+
+                        }
+                     .title {
+                        .edit-link {
+                         display:none
+                        }
+
+                     }
+                    }
+                }
+            }
+         &.profile-steps {
+           .lib-css (padding-top, 0);
+           .lib-css (float, left);
+           width: 100%;
+             .container {
+
+             }
+
+         }
+        }
+
+        //  vendor Forgot Password
+        .forgot-password-form {
+          max-width: 580px;
+          padding: 120px 0;
+
+            .forgot-password-form-container {
+                  border: 1px solid @border-color__base;
+                  background: @color-white;
+                  padding:10px 0px;
+
+              .form.password.forget.reset {
+                  width: 100%;
+                  min-width: auto;
+                  padding: 0px 20px;
+
+              }
+
+              .page-title-wrapper {
+                    .lib-clearer();
+                    .lib-css(border-bottom, 1px solid @border-color__base);
+                    .lib-css(padding, 5px 20px 20px 20px);
+                    .lib-css(margin-bottom, 20px);
+                    .page-title {
+                        .lib-font-size(24);
+                        .lib-css(font-weight, @font-weight__regular);
+                        .lib-css(text-align, left);
+                        .lib-css(float, left);
+                    }
+                    .action {
+                        .lib-css(float, right);
+                    }
+
+                  }
+               .fieldset  {
+                  .lib-css(margin-bottom, @indent__base);
+                  > .field {
+                        label {
+                          max-width: 180px;
+                          text-align: left;
+                        }
+
+                 &.note {
+                   padding-right:0px;
+                 }
+
+                }
+               }
+              .actions-toolbar  {
+                    .lib-css(margin-left, 0);
+                    > .primary {
+                      .lib-css(padding-left, 180px);
+                    }
+
+              }
+               .field-footer-note {
+                    .lib-css(border-top, 1px solid @border-color__base);
+                    .lib-css(padding, 10px 20px 10px 20px);
+                    .lib-css(margin-top, 20px);
+               a {
+                 .lib-css(font-weight, @font-weight__semibold);
+               }
+
+               }
+
+            }
+          .back-to-login {
+                .lib-css(text-align, center);
+                .lib-css(margin-top, 20px);
+          }
+
+        }
+     }
+
+
+
+
+
+}
+
+//
+//    Desktop
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+     .sections {
+        .signup-steps {
+            .lib-css(padding-top, 50px);
+            .rb-container {
+                .lib-css(max-width, 900px);
+                &.rb-profile-step-container {
+                        .lib-css(margin-left, auto);
+                        .lib-css(margin-right, auto);
+
+                }
+
+                .signup-step-progress {
+                    margin-bottom: 25px;
+                    ul {
+                        li {
+                            .lib-list-reset-styles();
+                            position: relative;
+                            text-align: center;
+                            float: left;
+                            width: 32.5%;
+                            strong {
+                                font-weight: @font-weight__semibold;
+                                color: @color-gray80;
+                            }
+                            &:nth-child(2) {
+                              margin: 0 @indent__s;
+                            }
+                        }
+                    }
+                }
+                .signup-step-content {
+                    .lib-css(padding, 40px 0 20px 0);
+                    margin-bottom: 80px;
+                    .fieldset {
+                      .legend {
+                        background: @color-white-smoke;
+                      }
+                        > .actions-toolbar {
+                            /*.lib-css(margin, 40px 0 -80px 0);*/
+                            .lib-css(padding, 0 0 0 0px);
+                            .lib-css(text-align, center);
+                            max-width: 100%;
+                            > .primary {
+                                float: none;
+                                .action {
+                                    margin: 0px;
+                                    float: none;
+                                }
+                                .btn-back {
+                                 .lib-button(
+                                          @_button-icon-use: true,
+                                          @_button-font-content: @icon-arrow-left-thin,
+                                          @_button-icon-font-position:before,
+                                          @_button-icon-font-size:16px,
+                                          @_button-icon-font-line-height:16px,
+                                          @_button-icon-font-margin: 5px 0 0 0,
+                                      );                                    
+                                       .lib-button-as-link(
+                                        @_margin: 0 20px 0 0,
+                                        ); 
+
+                                       &:hover {
+                                        text-decoration: none;
+                                       }
+                                }
+                                .btn-continue {
+                                  .lib-button(
+                                          @_button-margin: 3px,
+                                          @_button-icon-use: true,
+                                          @_button-font-content: @icon-next,
+                                          @_button-icon-font-position:after,
+                                          @_button-icon-font-size:16px,
+                                          @_button-icon-font-line-height:16px,
+                                          
+                                      );  
+                                      .lib-button-primary();                                
+
+                                }
+                                .btn-submit {
+                                }
+                            }
+                        }
+                    }
+                }
+                //  Profile page
+                .profile-step-content {
+                    .lib-css(padding, 0 0 20px 0);
+                    .title {
+                        .lib-css(border-bottom, 1px solid @border-color__base);
+                        .lib-css(margin, 0 0 30px 0);
+                        .lib-css(padding, 10px 15px 10px);
+                        .lib-clearfix();
+                        h3 {
+                            .lib-font-size(@font-size__base + 1);
+                            .lib-css(margin, 0);
+                            .lib-css(float, left);
+                            .lib-css(line-height, @font-size__base + 1);
+                        }
+                        .edit-link {
+                            .lib-css(float, right);
+                            .lib-css(position, relative);
+                            .lib-css(padding-left, 20px);
+                            .lib-css(line-height, 1.1);
+                            .lib-font-size(@font-size__s);
+                            .lib-icon-font(
+                            @icon-edit1,
+                            @_icon-font-size: @font-size__l,
+                            @_icon-font-position: before,
+                            @_icon-font-margin: 0 0px 0 0,
+                            );
+                            cursor: pointer;
+                           .rbvt-font-icon;
+
+                           &:before {
+                             position:  absolute;
+                             left: 0;
+                             top: -2px;
+                           }
+                        }
+                    }
+                    input,
+                    select,
+                    textarea {
+                        &:disabled {
+                            .lib-css(border-width, 0);
+                            .lib-css(opacity, 1); 
+                        }
+
+
+                    }
+                    input[type="checkbox"]:disabled {
+                           .lib-css(opacity, 0);
+                      }
+                    select {
+                      &:disabled {
+                         .lib-css(background, none);
+                    }
+                    }
+
+                    input {
+                        &._has-datepicker {
+                            &:disabled {
+                                &:empty {
+                                    display: block;
+                                    .lib-css(border, 1px solid @form-element-input__border-color);
+                                    opacity: 0.5;
+                                }
+                            }
+                        }
+                    }
+                    select {
+                        &:disabled {
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            text-indent: 1px;
+                            text-overflow: '';
+                        }
+                    }
+                    textarea {
+                        .lib-css(min-height, 150px);
+                        &:disabled {
+                            .lib-css(border, none);
+                            .lib-css(opacity, 1);
+                            .lib-css(min-height, 70px);
+                            resize: none;
+                        }
+                    }
+                    
+                    &.active {
+                        .actions-toolbar, .show-on-edit-field {
+                            display: none;
+                        }
+                        .fieldset {
+                          > .field {
+                                 &:not(.choice) {
+                                   .info {
+                                     span {
+                                       .lib-css(padding-left, 9px);
+                                     }
+                                   &.date-control {
+                                     span {
+                                       .lib-css(padding-left, 0px);
+                                     }
+                                   }
+                                   }
+                                 }
+                            &.status-info {
+                                .info {
+                                     span {
+                                       .lib-css(padding-left, 0px);
+                                     }
+                                 }
+                            }
+                          }
+                        }
+                      .field-tooltip .field-tooltip-action {
+                        display: none;
+                      }
+                    }
+                    &.edit {
+                        .field-tooltip .field-tooltip-action {
+                            display: inline-block;
+                      }                      
+
+                    }
+                    input,
+                    textarea {
+                          &::-moz-placeholder {
+                          .lib-css(color, transparent);
+
+                      }
+                      &::-webkit-input-placeholder {
+                          .lib-css(color, transparent);
+
+                      }
+                      &:-ms-input-placeholder {
+                          .lib-css(color, transparent);
+                      }
+                    }
+                    &.edit {
+                        .actions-toolbar {
+                            display: block;
+                            div.primary {
+                                .lib-css(text-align, left);
+                                .lib-css(padding-left, 35%);
+                                .primary {
+                                    .lib-css(margin-right, 5px) !important;
+                                }
+                            }
+                        }
+
+                        .show-on-edit-field {
+                          display:block;
+                          &.field-image {
+                              .image-upload {
+                                float:left;
+                                width:70%;
+                                padding-right: 2%;
+                                margin-top: 7px;
+                                .tan_img{
+                                  background-color: #666;
+                                  color: #f1e5e6;
+                                  max-width: 80%;
+                                  font-size: 1.25rem;
+                                  font-weight: 400;
+                                  text-overflow: ellipsis;
+                                  white-space: nowrap;
+                                  cursor: pointer;
+                                  display: inline-block;
+                                  overflow: hidden;
+                                  padding: 0.625rem 1.25rem;
+                                  text-transform: uppercase;
+                                  letter-spacing: 1px;
+                                  margin-left: 0;
+                                }
+                              }
+                              .image-preview {
+                                float:right;
+                                width:25%;
+                                text-align:right;
+                                .image {
+                                  border:none;
+                                  width: auto;
+                                  height: auto;
+                                  margin: 0;
+                                  float: none;
+
+                                  img {
+                                    border: 1px solid #bbb;
+                                    padding: 2px;
+
+                                  }
+
+                                }
+
+                              }
+
+                              &.status-active {
+                                  .image-preview {
+                                    float:left;
+                                    text-align:left ;
+                                  }
+
+
+                              }
+
+                          }
+
+                        }
+                     .title {
+                        .edit-link {
+                         display:none
+                        }
+
+                     }
+                    input {
+                          &::-moz-placeholder {
+                          .lib-css(color, @form-element-input-placeholder__color);
+
+                      }
+                      &::-webkit-input-placeholder {
+                          .lib-css(color, @form-element-input-placeholder__color);
+
+                      }
+                      &:-ms-input-placeholder {
+                          .lib-css(color, @form-element-input-placeholder__color);
+                      }
+                    }
+                    }
+                }
+            }
+         &.profile-steps {
+           .lib-css (padding-top, 0);
+           .lib-css (float, left);
+           width: 73%;
+             .container {
+
+             }
+
+         }
+        }
+
+        //  vendor Forgot Password
+        .forgot-password-form {
+          max-width: 580px;
+          padding: 120px 0;
+          background: @color-light-black;
+            .forgot-password-form-container {
+              border: 1px solid @border-color__base;
+              background: @color-white;
+              padding: @indent__s 0;
+              box-shadow: 0 @indent__base 100px rgba(0, 0, 0, 0.5);
+              .form.password.forget,
+              .form.password.reset {
+                width: 100%;
+                min-width: auto;
+                padding: 0px @indent__base;
+              }
+              .page-title-wrapper {
+                    .lib-clearer();
+                    .lib-css(border-bottom, 1px solid @border-color__base);
+                    .lib-css(padding, @indent__xs @indent__base @indent__base @indent__base);
+                    .lib-css(margin-bottom, @indent__base);
+                    .page-title {
+                        .lib-font-size(24);
+                        .lib-css(font-weight, @font-weight__regular);
+                        .lib-css(text-align, left);
+                        .lib-css(float, left);
+                    }
+                    .action {
+                        .lib-css(float, right);
+                    }
+
+                  }
+               .fieldset  {
+                  .lib-css(margin-bottom, @indent__base);
+                  > .field {
+                        label {
+                          max-width: 100%;
+                          text-align: right;
+                          width: 33%;
+                        }
+
+                 &.note {
+                   padding-right:0px;
+                 }
+
+                }
+                .control {
+                  width: 65%;
+                }
+               }
+              .actions-toolbar  {
+                    .lib-css(margin-left, 0);
+                    > .primary {
+                      .lib-css(padding-left, 177px);
+                    }
+
+              }
+               .field-footer-note {
+                    .lib-css(border-top, 1px solid @border-color__base);
+                    .lib-css(padding, 10px 20px 10px 20px);
+                    .lib-css(margin-top, 20px);
+               a {
+                 .lib-css(font-weight, @font-weight__semibold);
+               }
+
+               }
+
+            }
+          .back-to-login {
+            .lib-css(text-align, center);
+            .lib-css(margin-top, 20px);
+            a {
+              color: @color-white;
+              &:hover {
+                color: @color-blue2;
+              }
+            }
+          }
+
+        }
+     }
+
+    #business-information-form{
+      .control{
+        #company-logo-image{
+          position: relative;
+          span{
+            position: absolute;
+            bottom: -80px;
+            left: 0
+          }
+        }
+      }
+    }
+
+}
+
+
+

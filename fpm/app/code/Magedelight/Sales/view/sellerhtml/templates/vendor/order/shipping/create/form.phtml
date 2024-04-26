@@ -1,0 +1,23 @@
+<?php /** @var $block Magedelight\Sales\Block\Vendor\Order\Shipping\Create\Form */ ?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="actions-toolbar top-bar-action mb10">
+            <div class="primary fright">
+                <button type="button" title="<?= __('Back');?>" onclick="window.history.back();" class="action button secondary back mrn">
+                    <span>
+                        <?= __('Back');?>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="rbpanel">
+            <form action="<?= $block->getSaveUrl() ?>" name="order_shipment_form" method="post" id="edit_form" novalidate="novalidate">
+                <input type="hidden" name="tab" value="<?= $block->getRequest()->getParam('tab'); ?>">
+                <input type="hidden" name="vendor_order_id" value="<?= $block->getVendorOrderId() ?>">
+                <?= $block->getChildHtml('vendor_order_info') ?>
+            </form>
+        </div>
+    </div>
+</div>

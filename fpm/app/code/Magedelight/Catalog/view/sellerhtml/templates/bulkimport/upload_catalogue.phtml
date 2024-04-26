@@ -1,0 +1,226 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var \Magedelight\Catalog\Block\Category $block
+ *
+ */
+$helper = $this->helper('Magedelight\Catalog\Helper\Bulkimport\Data');
+$catalogHelper = $this->helper('Magedelight\Catalog\Helper\Data');
+$allowedExtensions = $catalogHelper->getAllowedExtensions();
+?>
+    <div class="sections download-category-template-sections signup-steps-sections profile-steps-sections">
+        <div class="panel download-category-template-panel signup-steps profile-steps mb20">
+            <div class="rb-container">
+                <div class="row bn signup-step-content profile-step-content upload-catalog-steps">
+
+                <div class="col-md-12 col-lg-12 col-xl-12">
+                    <div class="rbpanel">
+                        <div class="rbpanel-heading p10">
+                            <span class="sub-title"><?= __("Step 1: Image Upload"); ?></span>
+                            <a href="javascript:void(0)" data-href="<?= $this->getUrl("rbcatalog/bulkimport/guidelines") ?>" class="action bulkimport-guidelines">
+                                <?= __("Help") ?>
+                           </a>
+                        </div>
+                        <div class="rbpanel-body">
+                        <fieldset class="fieldset bulkimport-step step-01">
+                                <div class="field">
+                                   <div class="control">
+                                        <div class="file-upolad">
+                                            <span class="btn btn-success fileinput-button">
+                                                <label class="action primary" for="bulk-image"><span><?= __("Select Images");?></span></label>
+                                                <input data-validate="{required:true}" id="bulk-image" type="file" name="bulk-image[]" multiple accept="image/x-png,image/gif,image/jpeg" data-multiple-caption="{count} files selected" >
+                                            </span>
+                                            <div id="progress" class="progress">
+                                                <div class="progress-bar progress-bar-success"></div>
+                                            </div>
+                                            <div id="files" class="files"></div>
+                                        </div>
+
+                                    </div>
+                                    <div class="notes mt20">
+                                        <ul class="pl15">
+                                            <li>
+                                                <?= __('Images must be of following dimensions %1.', '<b>'.$catalogHelper->getImageWidth().'px x '.$catalogHelper->getImageHeight().'px</b>');
+                                                ?>
+                                            </li>
+                                            <li>
+                                                <?= __('Maximum allowed size %1', '<b>'.$catalogHelper->getImageSize().'KB</b>');?>
+                                            </li>
+                                            <li>
+                                                <?= __('Please avoid following special characters in fields images & base_image. - [+,%]');?>
+                                            </li>
+                                            <li>
+                                                <?= __('File(s) once uploaded irrespective of catalog file in step2, need not require to be uploaded again.');?>
+                                            </li>
+                                            <?php if ($helper->getConfigValue('md_bulkimport/cleanup/enabled')) { ?>
+                                            <li>
+                                                <?= __('Note : Uploaded image(s) file will be deleted at %1.', $helper->getCleanupTime()); ?>
+                                            </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>                                                                                                                
+                                    <div id="cataimage-upload-count" for="md_banner_image" generated="true" class="mage-error"></div>
+                                    <div id="cataimage-upload-error" for="md_banner_image" generated="true" class="mage-error"></div>
+                                </div>
+                              </fieldset>                                                
+                        </div>
+                    </div>
+                    <div class="rbpanel mt30">
+                        <div class="rbpanel-heading p10">
+                            <span class="sub-title"><?= __("Step 2: Catalogue Upload"); ?></span>
+                            <a href="<?= $this->getUrl('rbcatalog/listing/index/') . "tab/1,0/vpro/pending/sfrm/nl/"; ?>" target="_blank" class="action uploaded-offers">
+                                <?= __("Uploaded Offers") ?>
+                            </a>
+                            <a href="javascript:void(0)" data-href="<?= $this->getUrl("rbcatalog/bulkimport/guidelines") ?>" class="action bulkimport-guidelines">
+                                <?= __("Help") ?>
+                            </a>
+                        </div>
+                        <div class="rbpanel-body">
+                            <fieldset class="fieldset bulkimport-step step-01">
+                                <div class="field">
+                                    <div class="control">
+                                        <select name="import-category" id="import-category" maxlength="12"  data-validate="{required:true}" aria-required="true">
+                                            <option><?= __('Select Category') ?></option>
+                                            <?php
+                                            foreach ($block->getAllowedTabCategories() as $rootcategory => $value): ?>
+                                            <option class="import-category-select" value="<?= $rootcategory; ?>"><?= $value ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <div id="import-category-error" generated="true" class="mage-error" ></div>
+                                        <div class="file-upolad mt20">
+                                            <input type="hidden" value="" class="catid">
+                                            <input data-validate="{required:true}" id="catalog-upload" type="file" name="catalog-upload" class="inputfile inputfile-1" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+                                            <label for="catalog-upload"><span><?= __('Choose a file')?></span></label>
+                                        </div>
+                                    </div>
+                                    <div class="actions-toolbar mt20">
+                                        <div class="primary">
+                                            <button type="button" id="uploadCatalogBtn" title="<?= __('Upload') ?>" value="<?= __('Upload') ?>" class="action primary btn-primary catalog-upload" id="btn-primary">
+                                                <span><?= __('Upload') ?></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div id="catalouge-upload-error" for="md_banner_image" generated="true" class="mage-error"></div>                                                            
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    require([
+        'jquery',
+        'Magedelight_Catalog/js/bulkimport/custom',
+        'Magento_Ui/js/lib/validation/validator'
+    ], function ($,custom, validator) {
+        $(function() {
+            $('.bulkimport-guidelines').on('click', function(event) {
+                event.preventDefault();
+                window.location.href = $(this).data('href');
+            });
+            
+            $("#import-category").change(function () {
+                var cat_id = $('select[name=import-category]').val();
+                $('.catid').val(cat_id);
+            });
+
+            $('#uploadCatalogBtn').on('click', function(e) {
+                custom.uploadcatalog("<?= $this->getUrl('rbcatalog/bulkimport/csvupload', ['type' => 'catalog_upload']); ?>");
+                var $el = $('#catalog-upload');
+                $el.wrap('<form>').closest('form').get(0).reset();
+                $el.unwrap();
+                return false;
+            });
+
+            custom.setFileInputChangeEvent('bulk-image');
+            custom.setFileInputChangeEvent('catalog-upload');
+            
+            var url = '<?= $this->getUrl('rbcatalog/bulkimport/csvupload', ['type' => 'gallery']); ?>';
+            var filesUploadedCount = 0;
+            var selectedFiles = 0;
+            var maxFileSize = <?= $block->escapeJs($catalogHelper->getImageSize('bytes')) ?>,
+            allowedExtensions = '<?= $block->escapeHtml(implode(' ', $allowedExtensions)) ?>';
+            $('#bulk-image').fileupload({
+                url: url,
+                dataType: 'json',
+                add: function (e, data) {
+                    $('#cataimage-upload-error').html('');
+                    var validationResult, errorExists = false;
+                    data.files = data.files.filter(function (file) {
+                        if (maxFileSize) {
+                            validationResult = validator('validate-max-size', file.size, maxFileSize);
+
+                            if (!validationResult.passed) {
+                                errorExists = true;
+                                $('#cataimage-upload-error').html(validationResult.message + ' <br/>');
+                                return false;
+                            }
+                        }
+                        
+                        if (allowedExtensions) {
+                            validationResult = validator('validate-file-type', file.name, allowedExtensions);
+
+                            if (!validationResult.passed) {
+                                errorExists = true;
+                                $('#cataimage-upload-error').html(validationResult.message + ' <br/>');
+                                return false;
+                            }
+                        }
+                        return true;
+                    });
+                    
+                    if(!errorExists){
+                        $(this).fileupload('process', data).done(function () {
+                            data.submit();
+                        });
+                    }
+                },
+                done: function (e, data) {
+                    filesUploadedCount++;
+                    var result = JSON.parse(data.result);
+                    if(result.file_upload_error){
+                        /*$('#cataimage-upload-error').append(data.result.file_name + $.mage.__(' Invalid file (Dimension too large)') + '<br />');*/
+                        filesUploadedCount--;
+                            $('#cataimage-upload-error').append($.mage.__(result.error) + '<br />');
+                            $('#progress .progress-bar').css('height', '0px');
+                        }
+                    $.each(result, function (index, file) {
+                        if(filesUploadedCount > 0){
+                            $('#cataimage-upload-count').html(filesUploadedCount + $.mage.__(' File(s) uploaded successfully.'));
+                        }
+                    });
+                    if(selectedFiles == filesUploadedCount){
+                        $('#progress .progress-bar').css('height', '0px');
+                    }
+                },
+                progress: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#progress .progress-bar').css(
+                        'width',
+                        progress + '%'
+                    ).css('height', '20px');
+                },
+                failed: function(){
+                }
+            });
+            
+            $('#bulk-image').change(function(){
+                selectedFiles = $(this)[0].files.length;
+                filesUploadedCount = 0;
+                $('#cataimage-upload-count').html('');
+            });
+        });
+    });
+</script>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceBlock name="content">
+        <block class="CAT\Address\Block\Checkout\Cities" name="city-admin" template="CAT_Address::city-admin.phtml"/>
+        <referenceBlock name="billing_address">
+            <arguments>
+                <argument name="template" xsi:type="string">CAT_Address::order/create/form/address.phtml</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="shipping_address">
+            <arguments>
+                <argument name="template" xsi:type="string">CAT_Address::order/create/form/address.phtml</argument>
+            </arguments>
+        </referenceBlock>
+    </referenceBlock>
+</page>

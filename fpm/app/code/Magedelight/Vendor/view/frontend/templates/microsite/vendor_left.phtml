@@ -1,0 +1,192 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php $vendorData = $block->getVendorData(); ?>
+<?php $vDetail = $block->getVendor($this->getRequest()->getParam('vid')); ?>
+
+<div class="block block-vendor-info">
+    <div class="block-title block-ms-title vendor-info-title">
+        <strong><?= $vDetail['business_name']; ?></strong>
+    </div>
+    <div class="block-content block-ms-content vendor-info-content">
+        <div class="vendor-microsite-summary-wrapper">
+            <?php if ($block->getVendorLogo()) : ?>
+               <div class="vendor-logo">
+                    <img src="<?= $block->getVendorLogo(); ?>" alt="">
+               </div>
+            <?php endif; ?>
+            <div class="share-links-container">
+                <ul class="share-links">
+                    <li><a class="facebook social-link" href="javascript:void(0)" target="_blank"></a></li>
+                    <li><a class="twitter social-link" href="javascript:void(0)" target="_blank"></a></li>
+                    <li><a class="instagram social-link" href="javascript:void(0)" target="_blank"></a></li>
+                    <li><a class="tumblr social-link" href="javascript:void(0)" target="_blank"></a></li>
+                    <li><a class="communication social-link" href="javascript:void(0)" target="_blank" id="vb_communication"></a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="block block-vendor-ratings">
+    <div class="block-title block-ms-title">
+        <strong data-role="title" role="tab" aria-selected="false" aria-expanded="false" tabindex="0"><?= __('Vendor Ratings') ?></strong>
+    </div>
+
+    <div class="block-content block-ms-content vendor-ratings-content">
+        <div class="vendor-ratings-summary-wrapper">
+        <?php
+            $avgRat = $block->getAvgRating() / 20;
+            $finalAvgRat = $avgRat * 100 / 5;
+        ?>
+            <div class="rating-summary rating-summary-box vender-display-list">
+                <div class="rating-result" title="<?= $finalAvgRat; ?>%">
+                    <span class="rating-icon" style="width:<?= $finalAvgRat; ?>%">
+                        <span>
+                            <span itemprop="ratingValue"><?= $finalAvgRat; ?></span>% of <span itemprop="bestRating">100</span>
+                        </span>
+                    </span>
+                </div>
+                <?php $avg = $block->getAvgRating() / 20; ?>
+                <div class="text-alert rating-result-text"><span class="rating-amount"><?= number_format($avg, 1); ?></span><span class="rating-out-of"> Out of 5</span></div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div class="block block-ms-static-links">
+    <div class="block-title block-ms-title" data-count="0" role="tablist">
+        <strong data-role="title" role="tab" aria-selected="false" aria-expanded="false" tabindex="0"><?= __('Vendor Policy') ?></strong>
+    </div>
+    <div class="block-content block-ms-content block-ms-static-links-content">
+        <ol class="items">
+          <li class="item">
+               <a class="delivery_policy" href="#inline1" target="_blank"><strong><?= __('Delivery Policy') ?></strong></a>
+                   <div id="inline1" style="display: none;">
+               <section class="popup-section-content-wrapper">
+                   <div class="tray">
+                       <div class="rbpanel bn">
+                           <div class="rbpanel-heading"><?= __('Delivery Policy') ?></div>
+                           <div class="rbpanel-body">
+                                <?= $vendorData['delivery_policy']; ?>
+                           </div>
+
+                       </div>
+                   </div>
+               </section>
+           </div>
+          </li>
+          <li class="item">
+               <a class="return_policy" href="#inline2" target="_blank"><strong><?= __('Return Policy') ?></strong></a>
+                       <div id="inline2" style="display: none;">
+               <section class="popup-section-content-wrapper">
+                   <div class="tray">
+                       <div class="rbpanel bn">
+                           <div class="rbpanel-heading"><?= __('Return Policy') ?></div>
+                           <div class="rbpanel-body">
+                                <?= $vendorData['return_policy']; ?>
+                           </div>
+
+                       </div>
+                   </div>
+               </section>
+           </div>
+          </li>
+
+        </ol>
+    </div>
+</div>
+
+
+<div class="block block-ms-loaction">
+    <div class="block-title block-ms-title" data-count="0" role="tablist">
+        <strong data-role="title" role="tab" aria-selected="false" aria-expanded="false" tabindex="0"><?= __('Contact Vendor') ?></strong>
+    </div>
+    <div class="block-content block-ms-content block-ms-loaction-content">
+        <iframe width="100%" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="//maps.google.com/maps?q=<?= $vDetail['city']; ?>&amp;output=embed"></iframe>
+        <div class="view-location">
+            <a href="//maps.google.com/maps?q=<?= $vDetail['city']; ?>"><?= __('View Location on Map') ?></a>
+        </div>
+    </div>
+</div>
+
+<div class="block block-ms-connect-us">
+    <div class="block-title block-ms-title" data-count="0" role="tablist">
+        <strong data-role="title" role="tab" aria-selected="false" aria-expanded="false" tabindex="0"><?= __('Connect with Vendor') ?></strong>
+    </div>
+    <div class="block-content block-ms-content block-ms-connect-with-content">
+        <a href="" target="_blank">
+            <i class="sidebar-icon facebook-icon"></i>
+        </a>
+        <a href="" target="_blank">
+            <i class="sidebar-icon twitter-icon"></i>
+        </a>
+        <a href="" target="_blank">
+            <i class="sidebar-icon instagram-icon"></i>
+        </a>
+        <a href="" target="_blank">
+            <i class="sidebar-icon tumblr-icon"></i>
+        </a>
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    require([
+        'jquery', /* jquery Library */
+        'jquery/ui', /* Jquery UI Library */
+        'jquery/validate', /* Jquery Validation Library */
+        'mage/mage',
+        'Magedelight_Theme/js/fancybox',
+        'mage/translate' /* Magento text translate (Validation message translte as per language) */
+    ], function ($) {
+          $('.delivery_policy').fancybox({
+                maxWidth: 800,
+                maxHeight: 475,
+                fitToView: false,
+                width: '70%',
+                height: '70%',
+                autoSize: false,
+                closeClick: false,
+                openEffect: 'elastic',
+                closeEffect: 'none',
+                showCloseButton: true,
+                afterShow: function () {
+                    $('.fancybox-skin').append('<a title="Close" class="fancybox-item fancybox-close" href="javascript:jQuery.fancybox.close();"></a>');
+                }
+            });
+            $('.return_policy').fancybox({
+                maxWidth: 800,
+                maxHeight: 475,
+                fitToView: false,
+                width: '70%',
+                height: '70%',
+                autoSize: false,
+                closeClick: false,
+                openEffect: 'elastic',
+                closeEffect: 'none',
+                showCloseButton: true,
+                afterShow: function () {
+                    $('.fancybox-skin').append('<a title="Close" class="fancybox-item fancybox-close" href="javascript:jQuery.fancybox.close();"></a>');
+                }
+            });
+                });
+</script>

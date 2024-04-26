@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+        <add id="Magedelight_Vendor::vendor_root"
+             title="Manage Vendor"
+             module="Magedelight_Vendor"
+             sortOrder="50"
+             resource="Magedelight_Vendor::vendor_manage"
+             toolTip="magedelight_base" />
+
+        <add id="Magedelight_Vendor::vendor_root_commonlyvisible"
+             title="Manage Vendors"
+             module="Magedelight_Vendor"
+             sortOrder="10"
+             action="vendor/index/all"
+             parent="Magedelight_Theme::md_modules"
+             resource="Magedelight_Vendor::vendor_manage" />
+
+        <!-- All Vendor Menu -->
+        <add id="Magedelight_Vendor::vendor_manage_all"
+             resource="Magedelight_Vendor::grid_vendor"
+             title="All Vendors"
+             action="vendor/index/all"
+             module="Magedelight_Vendor"
+             sortOrder="30"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <!-- All Vendor New -->
+        <add id="Magedelight_Vendor::vendor_manage_new"
+             resource="Magedelight_Vendor::grid_vendor"
+             title="New Registration / Pending"
+             action="vendor/index/index"
+             module="Magedelight_Vendor"
+             sortOrder="35"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <!-- Approved Vendor -->
+        <add id="Magedelight_Vendor::vendor_manage_approved"
+             resource="Magedelight_Vendor::grid_vendor"
+             title="Approved / Active"
+             action="vendor/index/approved/"
+             module="Magedelight_Vendor"
+             sortOrder="40"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <!-- Rejected Vendor -->
+        <add id="Magedelight_Vendor::vendor_manage_rejected"
+             resource="Magedelight_Vendor::grid_vendor"
+             title="Disapproved / Rejected"
+             action="vendor/index/rejected/"
+             module="Magedelight_Vendor"
+             sortOrder="45"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <!-- On Vacation Vendor -->
+        <add id="Magedelight_Vendor::vendor_manage_onvacation"
+             resource="Magedelight_Vendor::grid_vendor"
+             title="On Vacation"
+             action="vendor/index/onvacation/"
+             module="Magedelight_Vendor"
+             sortOrder="50"
+             parent="Magedelight_Vendor::vendor_root"/>
+
+        <add id="Magedelight_Vendor::vendor_manage_inactive"
+             resource="Magedelight_Vendor::grid_vendor"
+             title="Inactive"
+             action="vendor/index/inactive/"
+             module="Magedelight_Vendor"
+             sortOrder="55"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <add id="Magedelight_Vendor::vendor_manage_closed"
+             resource="Magedelight_Vendor::grid_vendor"
+             title="Closed"
+             action="vendor/index/closed/"
+             module="Magedelight_Vendor"
+             sortOrder="60"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <add id="Magedelight_Vendor::requested_categories"
+             resource="Magedelight_Vendor::requested_categories"
+             title="Requested Categories"
+             action="vendor/categories_request/index"
+             module="Magedelight_Vendor"
+             sortOrder="65"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <add id="Magedelight_Vendor::microsite_manage"
+             resource="Magedelight_Vendor::microsite_manage"
+             title="Manage Microsite"
+             action="vendor/microsite_request/"
+             module="Magedelight_Vendor"
+             sortOrder="70"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <add id="Magedelight_Vendor::vendor_request_manage"
+             resource="Magedelight_Vendor::request_manage"
+             title="Vendor Request"
+             action="vendor/request/"
+             module="Magedelight_Vendor"
+             sortOrder="75"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <add id="Magedelight_Vendor::vendor_reviews"
+             resource="Magedelight_Vendor::vendorrating"
+             title="Reviews"
+             action="vendor/review_vendorrating/"
+             module="Magedelight_Vendor"
+             sortOrder="80"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <add id="Magento_Review::vendor_rating_type"
+             resource="Magento_Review::ratings"
+             title="Rating Types"
+             action="review/rating/"
+             module="Magento_Review"
+             sortOrder="85"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <add id="Magedelight_Vendor::configuration"
+             resource="Magedelight_Theme::config"
+             title="Settings"
+             action="adminhtml/system_config/edit/section/vendor/"
+             module="Magedelight_Vendor"
+             sortOrder="90"
+             parent="Magedelight_Vendor::vendor_root" />
+
+        <add id="Magedelight_Vendor::email_configuration"
+             resource="Magedelight_Theme::config"
+             title="Email Notifications Settings"
+             action="adminhtml/system_config/edit/section/emailconfiguration/"
+             module="Magedelight_Vendor"
+             sortOrder="100"
+             parent="Magedelight_Vendor::vendor_root"/>
+    </menu>
+</config>

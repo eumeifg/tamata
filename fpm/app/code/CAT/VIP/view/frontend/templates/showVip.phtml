@@ -1,0 +1,91 @@
+<?php
+    /** @var CAT\VIP\ViewModel\ShowVipToCustomer $viewModel */
+    $viewModel = $block->getVipViewModel();
+?>
+
+<style type="text/css">
+  @import url(https://fonts.googleapis.com/css?family=Lato:700);
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.set-size {
+  font-size: 12em;
+}
+
+.charts-container:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.pie-wrapper {
+  height: 1em;
+  width: 1em;
+  float: left;
+  margin: 15px;
+  position: relative;
+}
+.pie-wrapper:nth-child(3n+1) {
+  clear: both;
+}
+.pie-wrapper .pie {
+  height: 100%;
+  width: 100%;
+  clip: rect(0, 1em, 1em, 0.5em);
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+.pie-wrapper .pie .half-circle {
+  height: 100%;
+  width: 100%;
+  border: 5px solid #EB0028;
+  border-radius: 50%;
+  clip: rect(0, 0.5em, 1em, 0);
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+.pie-wrapper .label {
+    background: #EB0028;
+    border-radius: 50%;
+    bottom: 8px;
+    color: #fff;
+    cursor: default;
+    display: block;
+    font-size: 0.25em;
+    left: 8px;
+    line-height: 145px;
+    position: absolute;
+    right: 8px;
+    text-align: center;
+    top: 8px;
+}
+.pie-wrapper .shadow {
+  height: 100%;
+  width: 100%;
+  border: 5px solid #F6F6F6;
+  border-radius: 50%;
+}
+.more_180 .pie-wrapper.progress-90 .pie {
+  clip: rect(auto, auto, auto, auto);
+}
+.pie-wrapper.progress-90 .pie .right-side {
+    display: none;
+}
+.more_180 .pie-wrapper.progress-90 .pie .right-side {
+  transform: rotate(180deg);
+  display: block;
+}
+.not_vip .pie-wrapper .label {
+    background: #F6F6F6;
+    color: #ACACAC;
+    line-height: 30px;
+    font-weight: 600;
+    padding-top: 50px;
+}
+</style>
+<?php echo $viewModel->showSomething(); ?>

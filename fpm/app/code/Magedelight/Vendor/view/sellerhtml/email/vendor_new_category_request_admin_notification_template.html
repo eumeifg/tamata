@@ -1,0 +1,20 @@
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<!--@subject New Category Request Notification @-->
+
+{{template config_path="vendor_design/email/header_template"}}
+<!-- Begin wrapper table -->
+
+<p> {{trans "New categories request for following categories - %categories has been raised by %vendor." vendor=$vendor_name categories=$categories}} </p>
+<!-- End wrapper table -->
+{{template config_path="vendor_design/email/footer_template"}}

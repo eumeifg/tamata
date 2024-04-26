@@ -1,0 +1,179 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block \Magedelight\Catalog\Block\Product\Nonlive */
+?>
+<?php
+$session = $block->getSessionForGrid();
+$gridsession = $session->getGridSession();
+$collection = $block->getCollection();
+$storeId = $this->getCurrentStoreId();
+$helper = $this->helper('Magedelight\Catalog\Helper\Listing\Data');
+$jsonHelper = $this->helper('\Magento\Framework\Json\Helper\Data');
+$product_nonlive = $gridsession['grid_session']['product_nonlive_approved'];
+$diffColparm = 1;
+?>
+<?php
+$reqParams = $this->getRequest()->getParams();
+if (array_key_exists('sfrm', $reqParams)) {
+    unset($reqParams['p']);
+    if ($reqParams['sfrm'] == 'l') {
+        unset($reqParams['limit']);
+        unset($reqParams['sort_order']);
+        unset($reqParams['dir']);
+    }
+}
+$reqParams['sfrm'] = 'nl';
+$reqParams['p'] = '1';
+if (!array_key_exists('vpro', $reqParams)) {
+    $reqParams['vpro'] = 'approve';
+}
+$sortOrderData = $block->getSortOrderData($reqParams);
+?>
+<form method="get" enctype='multipart/form-data' action="<?= $helper->getLiveMasslist() ?>" id="mass_list_form">
+    <div class="row mb20">
+        <div class="row-gutter">
+            <div class="control col-xs-4">
+                <select   name="masslive_list_id" placeholder="" class="select mass-list-live">
+                    <option value=""><?= __('Action') ?></option>
+                    <option value="mass_action_list"><?= __('List') ?></option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-wrapper mylisting-main">
+        <table class="data table table-mylisting" id="my-mylisting-table-nl">
+            <thead>
+            <tr>
+                <th scope="col" class="col mass-action mass_list_nonlive">
+                    <input class="checkbox vendor_mass_list_th" id="vendor_mass_list_checkall" type="checkbox">
+                    <label for="vendor_mass_list_checkall"><span></span></label>
+                </th>
+                <th scope="col" class="col product-thumb"><?= __('Image') ?></th>
+                <?php foreach ($sortOrderData as $field) { ?>
+                    <th scope="col" class="col sort-order-field <?php
+                    echo str_replace(" ", "-", strtolower($field['label'])); ?> sort-dir-arrow<?= $field['sort_dir_class']; ?>" title="<?= $field['sort_dir_title']; ?>">
+                        <a href="<?= $block->getUrl('rbcatalog/listing', ['_query' => $field['sort_params']]); ?>">
+                            <?= $field['label'] ?>
+                        </a>
+                    </th>
+                <?php } ?>
+                <th scope="col" class="col action">
+                    <?= __('Barcode') ?>
+                </th>
+                <th scope="col" class="col action">
+                    <?= __('Item Number') ?>
+                </th>
+                <th scope="col" class="col action"><?= __('Requested for Edit') ?></th>
+                <th scope="col" class="col action"><?= __('Product Attributes') ?></th>
+                <th scope="col" class="col action"><?= __('Action') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if (count($collection) != 0) : ?>
+                <?php
+                foreach ($collection as $item) :?>
+                    <?php $id = $item['vendor_product_id']; ?>
+                    <?php
+                    $productName =  $storeData =  $currentWebData = $websiteData = $price = $specialPrice = $specialFromDate = $specialToDate = '';
+                    $price = $item->getPrice();
+                    $specialPrice = $item['special_price'];
+                    $barCode = !empty($item->getBarcode()) ? $item->getBarcode() : '-';
+                    $itemNumber = !empty($item->getItemNumber()) ? $item->getItemNumber() : '-';
+                    ?>
+                    <tr>
+                        <td class="col data-grid-checkbox-cell">
+                            <input class="checkbox vendor_mass_list" id="vendor_mass_list-<?= $id; ?>" type="checkbox" name="product_list[]" value="<?= $id; ?>">
+                            <label for="vendor_mass_list-<?= $id; ?>"><span></span></label>
+                        </td>
+
+                        <td data-th="productimage" class="col data-grid-thumbnail-cell">
+                            <?= $block->getImage($item, 'product_listing_thumbnail')->toHtml() ?>
+                        </td>
+
+                        <td data-th="productsku" class="col data-grid-sku-cell">
+                            <div class="data-grid-cell-content"><?= $item->getVendorSku(); ?></div>
+                        </td>
+
+                        <td data-th="productname" class="col product-name">
+                            <div class="data-grid-cell-content">
+                                <?php
+                                echo ($item->getProductName())?$item->getProductName():$item->getDefaultProductName();
+                                ?>
+                            </div>
+                        </td>
+
+                        <td data-th="productprice" class="col data-grid-price-cell"><?= $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($price); ?></td>
+                        <td data-th="productspprice" class="col data-grid-price-cell data-grid-special-price-cell">
+                            <?php
+                            $sp = $specialPrice;
+                            if ($sp) {
+                                $sp = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($sp);
+                            }
+                            echo $sp; ?>
+                        </td>
+                        <td data-th="productqty" class="col data-grid-qty-cell"><?= number_format($item->getQty(), 2); ?></td>
+                        <td data-th="product_barcode" class="col data-grid-qty-cell"><?= $barCode ?></td>
+                        <td data-th="product_item_number" class="col data-grid-qty-cell"><?= $itemNumber ?></td>
+                        <td class="col data-grid-actions-cell"><?= ($item->getIsRequestedForEdit()) ? __('Yes') : __('No') ?></td>
+                        <!-- Start Product attributes in live products grid -->
+                        <td>
+                            <?php
+                            $attributesHelper = $this->helper('MDC\Catalog\Helper\Listing\Data');
+                            foreach ($attributesHelper->getAttributesList() as $attributeCode)
+                            {
+                                $value = $item->getResource()->getAttribute($attributeCode)->getFrontend()->getValue($item);
+                                if($value){
+                                    echo "<b>".$item->getResource()->getAttribute($attributeCode)->getFrontend()->getLabel($item).":</b> ".$value."<br/>";
+                                }
+                            }
+                            ?>
+                        </td>
+                        <!-- End Product attributes in live products grid -->
+                        <td data-th="action" class="col data-grid-actions-cell data-grid-action-edit">
+
+                            <div class="product-edit" data-bind="collapsible">
+                                <ul class="product-edit-dropdown" data-bind="css: {_active: $collapsible.opened}">
+                                    <li class="list-item quick-edit">
+                                        <a class="action fancybox-listing-quick-edit quick-edit" title="<?= __('Quick edit Offer and Inventory') ?>" href="<?= $block->getAjaxEditUrl(); ?>?vpro=approve&sfrm=nl&id=<?= $item->getVendorProductId(); ?>&extparam=<?= $diffColparm; ?>" > <?= __('Quick Edit') ?></a>
+                                    </li>
+                                    <?php if (!$item->getIsOffered()) { /* Allow Edit if product is main product & not offer product. */ ?>
+                                        <li class="list-item">
+                                            <a class="action" title="<?= __('Edit') ?>" href="<?= $block->getApprovedProductEditUrlWithStore($item, $storeId,$this->getRequest()->getParam('p',1)) ?>" ><?= __('Edit'); ?></a>
+                                        </li>
+                                        <li class="list-item">
+                                            <a class="action" title="<?= __('View') ?>" href="<?= $block->getApprovedProductEditUrlWithStore($item, $storeId,$this->getRequest()->getParam('p',1), true) ?>" ><?= __('View'); ?></a>
+                                        </li>
+                                    <?php }else{ ?>
+                                        <li class="list-item quick-edit">
+                                            <a class="action fancybox-listing-quick-edit quick-edit" title="<?= __('Quick edit Offer and Inventory') ?>" href="<?= $block->getAjaxEditUrl(); ?>?vpro=approve&sfrm=nl&id=<?= $item->getVendorProductId(); ?>&extparam=<?= $diffColparm; ?>&view=1" > <?= __('view') ?></a>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <td colspan="12">
+                        <div class="message info empty nonliveprod-msg" id="nonliveprod-msg"><span><?= __("We couldn't find any records."); ?></span></div>
+                    </td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()) : ?>
+        <div class="tickets-events-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+</form>

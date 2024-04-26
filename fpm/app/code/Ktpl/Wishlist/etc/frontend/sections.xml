@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Krish TechnoLabs, All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Customer:etc/sections.xsd">
+	<action name="customer/account/loginPost">
+        <section name="wishlist-ids" />
+    </action>
+    <action name="customer/account/createPost">
+        <section name="wishlist-ids" />
+    </action>
+    <action name="customer/account/logout">
+        <section name="wishlist-ids" />
+    </action>
+    <action name="rest/V1/ktpl/extendedwishlist/add">
+        <section name="wishlist" />
+        <section name="wishlist-ids" />
+    </action>
+    <action name="rest/V1/ktpl/extendedwishlist/remove">
+        <section name="wishlist" />
+        <section name="wishlist-ids" />
+    </action>
+</config>

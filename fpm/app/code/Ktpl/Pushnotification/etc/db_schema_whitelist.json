@@ -1,0 +1,66 @@
+{
+    "ktpl_pushnotification": {
+        "column": {
+            "id": true,
+            "title": true,
+            "description": true,
+            "image_url": true,
+            "send_to_customer_group": true,
+            "send_to_customer": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true,
+            "type_promotion": true,
+            "promotion_id": true,
+            "is_sent": true,
+            "device_per_batch": true,
+            "batch_interval": true,
+            "device_percentage": true,
+            "current_page": true,
+            "total_count": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "ktpl_devicetokens": {
+        "column": {
+            "id": true,
+            "device_type": true,
+            "device_token": true,
+            "customer_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "ktpl_recent_view_product_list": {
+        "column": {
+            "id": true,
+            "device_token_id": true,
+            "product_id": true,
+            "store_id": true,
+            "send_status": true,
+            "added_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "ktpl_abandon_cart_list": {
+        "column": {
+            "id": true,
+            "device_token_id": true,
+            "quote_id": true,
+            "quote_item_id": true,
+            "store_id": true,
+            "added_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

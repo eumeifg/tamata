@@ -1,0 +1,247 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+$categories = $this->getStoreCategories(true, false, true);
+$categoryHelper = $this->getCategoryHelper();
+$catId = '';
+if ($this->getRequest()->getParam('catId')) {
+    $catId = $this->getRequest()->getParam('catId');
+}
+?>
+<div class="block microsite-seller-cateories">
+    <div class="block-content">
+        <ul id="left-sidebar-category" class="seller-dir">
+            <li class="home"><a href="<?php echo $this->getBaseUrl().""; ?>"><?php echo __('Home');?></a></li>
+            <?php if ($block->showAllCategoryLink()) : ?>
+            <li class="top-level">
+                <a href="<?php echo $block->getAllCategoryLink();?>" class="seller-directory-category-link"><?php echo __('All');?></a>
+            </li>
+            <?php endif;?>
+            <?php foreach ($categories as $category) :
+                if (!$category->getIsActive() || !in_array($category->getId(), $block->getVendorCategories())) {
+                    continue;
+                }?>
+            <li class="top-level">
+                <?php
+                $url = 'javascript:void(0)';
+                $class = 'seller-category';
+                if (!$category->hasChildren()) {
+                    $url = $block->getMainCategoryUrl($category->getId());
+                    $class = 'seller-directory-category-link';
+                }
+                ?>
+                <a href="<?php echo $url;?>" class="<?php echo $class;?>"><?php echo $category->getName() ?>
+                    <?php if ($category->hasChildren()) :?>
+                        <span id="category-id-<?php echo $category->getId();?>" class="icon-plus" />
+                    <?php endif;?>
+                </a>
+                <?php if ($childrenCategories = $this->getChildCategories($category)) :?>
+                    <?php echo $block->getChildCategoryView($category); ?>
+                <?php endif;?>
+            </li>
+            <?php endforeach;?>
+        </ul>
+    </div>
+</div>
+<?php
+
+$session = \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Catalog\Model\Session::class);
+$maxPrice = $session->getMaxPrice();
+$minPrice = $session->getMinPrice();
+$session->unsMaxPrice();
+$session->unsMinPrice();
+$topurl = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+// get price check 
+if(isset($_GET['price'])){
+    $price = $_GET['price'];
+    $maxprices = explode('-',$price);
+    $maxPricea = $maxprices[1];
+    $minPricea = $maxprices[0];
+}else{
+    $maxPricea = $maxPrice;
+    $minPricea = $minPrice;
+}
+
+?>
+<div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":{"openedState": "active open-filter", "collapsible": true, "active open-filter": false, "multipleCollapsible": false}}'>
+
+    <div data-role="collapsible" class="filter-options-item">
+        <div data-role="title" class="filter-options-title">Price</div>
+        <div data-role="content" class="filter-options-content">
+
+            <div class="items am-filter-items-attr_price">
+                <form data-amshopby-filter="attr_price"
+                      data-amshopby-filter-request-var="price">
+                    <div id="am-shopby-filter-attr_price_6241b8ec9c8e2"
+                         class="amshopby-slider-container amshopby_currency_rate"
+                         data-am-js="slider-container"
+                         data-min="<?=$minPrice?>"
+                         data-max="<?=$maxPrice?>"
+                         data-rate="1">
+                        <input data-amshopby-slider-id="value"
+                               type=hidden
+                               name="amshopby[price][]" value="<?=$minPricea?>-<?=$maxPricea?>"/>
+                        <div data-amshopby-slider-id="slider" class="am-slider"></div>
+                        <div data-amshopby-slider-id="display"
+                             class="amshopby-slider-display"
+                             data-am-js="slider-display"></div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="am-filter-widget-attr_price_6241b8ec9d31e"
+             class="am-filter-items-attr_price"
+             data-am-js="fromto-widget">
+                <form
+                    data-amshopby-filter="attr_price"
+                    data-amshopby-filter-request-var="price">
+                    <input
+                                        value="<?=$minPricea?>-<?=$maxPricea?>"
+                                    type="hidden"
+                        data-amshopby-fromto="value"
+                        name="amshopby[price][]"/>
+                    <div class="range am-fromto-widget amshopby_currency_rate"
+                         data-rate="1">
+                        <input
+                            class="am-filter-price -from input-text"
+                            data-amshopby-fromto="from"
+                            data-validate-data="{'validate-number':true}"
+                            type="number"
+                            placeholder="From"/>
+                        <span class="delimiter">-</span>
+                        <input
+                            class="am-filter-price -to input-text"
+                            data-amshopby-fromto="to"
+                            data-validate-data="{'validate-number':true}"
+                            type="number"
+                            placeholder="To"
+                            />
+                                        <button class="am-filter-go"
+                                    title="Apply filter"
+                                    data-amshopby-fromto="go">
+                                Go                </button>
+                                </div>
+                </form>
+            </div>
+
+            <script type="text/x-magento-init">
+            {
+                "#am-filter-widget-attr_price_6241b8ec9d31e": {
+                    "amShopbyFilterFromTo": {
+                            "enabled": 1,
+                            "collectFilters": 0,
+                            "from":"<?=$minPricea?>",
+                            "to":"<?=$maxPricea?>",
+                            "min":"<?=$minPrice?>",
+                            "max":"<?=$maxPrice?>",
+                            "code":"price",
+                            "isSlider": 1,
+                            "isDropdown": 0,
+                            "url": "<?=$topurl?>?price=amshopby_slider_from-amshopby_slider_to",
+                            "step":1        }
+                }
+            }
+            </script>
+
+            <script type="text/x-magento-init">
+                {
+                    "#am-shopby-filter-attr_price_6241b8ec9c8e2": {
+                        "amShopbyFilterSlider": {
+                                "collectFilters": 0,
+                                "template":"IQD {from} - IQD {to}",
+                                "step":1,
+                                "from":"<?=$minPricea?>",
+                                "to":"<?=$maxPricea?>",
+                                "min":<?=$minPrice?>,
+                                "max":<?=$maxPrice?>,
+                                "url": "<?=$topurl?>?price=amshopby_slider_from-amshopby_slider_to",
+                                "code":"price",
+                                "hideDisplay": 1                }
+                    }
+                }
+            </script>
+        </div>
+    </div>
+     <script>
+        require(['jquery'], function ($) {
+            $(document).ready(function() {
+                    $(".filter-options-title").click(function(){
+                        if($(this).attr('aria-expanded')!='true'){
+                           $("div .filter-options-title").each(function(){
+                               if(($(this).attr('aria-expanded')=='true' && $(this).attr('done')!='true')){
+                                   $(this).attr('done','true');
+                                    $(this).trigger('click');
+                                }else{
+                                   $(this).attr('done','false');
+                                }
+                            });
+                        }
+                    });
+                    $("#crossclick").click(function(){
+                        $("#apply").click();
+                    });
+                });
+            });
+    </script>
+    <style type="text/css">
+        .filter-options-content {
+            padding: 0 20px 20px 20px;
+        }
+        .filter-options-title {
+            padding: 13px 20px 15px 20px;
+        }
+        .microsite-seller-cateories .seller-dir li {
+            width: 100%;
+        }
+    </style>
+</div>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+
+        $(window).on("load", function () {
+            if ($(window).width() <= 1365) { 
+                var catId = '#category-id-'+"<?php echo $catId;?>";
+                var activeClass = '.'+$(catId).attr('class');
+                if(!($("#left-sidebar-category").hasClass('mobile-rb'))){
+                    $("#left-sidebar-category").addClass('mobile-rb');
+                }
+                
+                $("#left-sidebar-category.seller-dir a.seller-category").on("load", function (e) {
+                    $('span', $(this)).toggleClass("icon-minus");            
+                    $(this).next('ul').slideToggle( "slow", function() {
+                        $(this).next('ul').toggleClass( "expand-category" ); 
+                    });
+                });
+
+                $('.seller-directory-category-link').click(function () {
+                    window.location.href = $(this).attr('data-url');
+                });
+
+                $("#left-sidebar-category.seller-dir a.seller-category").on("click", function (e) {
+                    $('span', $(this)).toggleClass("icon-minus");            
+                    $(this).next('ul').slideToggle( "slow", function() {
+                        $(this).next('ul').toggleClass( "expand-category" ); 
+                    });
+                
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+            }
+	    $('.seller-directory-category-link').on('click',function () {
+		 window.location.href = $(this).attr('data-url');
+	    });
+        });
+
+});
+</script>

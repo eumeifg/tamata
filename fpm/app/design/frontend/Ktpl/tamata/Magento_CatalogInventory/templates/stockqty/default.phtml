@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var $block \Magento\CatalogInventory\Block\Stockqty\DefaultStockqty
+ */
+
+$mdCatalogHelper = $this->helper('\Magedelight\Catalog\Helper\Data');
+	
+$vendorData = $mdCatalogHelper->getAvailableVendorsForProduct($block->getProduct()->getId(), false, true);
+
+?>
+<?php if ($block->isMsgVisible() && $vendorData->count() > 0) : ?>
+    <div class="availability only" title="<?= $block->escapeHtmlAttr(__('Only %1 left', ($block->getStockQtyLeft()))) ?>">
+        <?= /* @noEscape */ __('Only %1 left!', "<strong>{$block->escapeHtml($block->getStockQtyLeft())}</strong>") ?>
+    </div>
+<?php endif ?>

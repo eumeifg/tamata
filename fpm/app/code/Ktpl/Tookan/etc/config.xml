@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<tookan>
+			<general>
+				<enable>1</enable>
+				<pickup_buffer>+4</pickup_buffer>
+				<delivery_buffer>+24</delivery_buffer>
+			</general>
+		</tookan>
+	</default>
+</config>

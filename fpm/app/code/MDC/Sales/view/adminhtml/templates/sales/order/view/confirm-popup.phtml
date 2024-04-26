@@ -1,0 +1,84 @@
+<?php
+/**
+ * @var $block \MDC\Sales\Block\Adminhtml\Order\ModalBox
+ */
+?>
+<div id="popup-modal" style="display: none">
+    <form action="<?= $block->escapeUrl($block->getFormUrl())?>" method="post" id="order-view-confirm-form">
+        <div class="entry-edit form-inline">
+            <div class="fieldset-wrapper">
+                <div class="admin__fieldset-wrapper-content">
+                    <fieldset class="admin__fieldset">
+                        <input type="hidden" name="order_id" value="<?= $this->getRequest()->getParam('order_id'); ?>" />
+                        <div class="admin__field">
+                            <div class="admin__field-label">
+                                <label  for="DNVHD9Q">
+                                    <span>Gender</span>
+                                </label>
+                            </div>
+                            <div class="admin__field-control">
+                                <select class="admin__control-select"  name="order_gender" id="DNVHD9Q" aria-describedby="notice-DNVHD9Q">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="not-specified">Not Specified</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="admin__field">
+                            <div class="admin__field-label">
+                                <label for="DNVHD9Q">
+                                    <span></span>
+                                </label>
+                            </div>
+                            <div class="admin__field-control">
+                                <button type="button" class="action- scalable save ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="order-view-confirm">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function (
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'slide',
+                responsive: true,
+                innerScroll: true,
+                title: "<?= __('Select Gender') ?>",
+                modalClass: 'custom-modal',
+                buttons: [{
+                    text: $.mage.__('Close'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                     }
+                }]
+            };
+
+            var popup = modal(options, $('#popup-modal'));
+            $("#confirm_order").click(function() {
+                $("#popup-modal").modal('openModal');
+            });
+
+            $('#order-view-confirm').click(function () {
+                $('#order-view-confirm-form').append($('<input>', {
+                    'name': 'form_key',
+                    'value': window.FORM_KEY,
+                    'type': 'hidden'
+                }));
+                $('#order-view-confirm-form').submit();
+            });
+        }
+    );
+</script>

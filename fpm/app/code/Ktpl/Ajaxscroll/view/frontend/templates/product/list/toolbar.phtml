@@ -1,0 +1,43 @@
+<?php
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+?>
+
+ 
+
+<?php if ($block->getCollection()->getSize()): ?>
+    <div class="toolbar toolbar-products" data-mage-init='<?php echo $block->getWidgetOptionsJson(); ?>'>
+        <?php if ($block->isExpanded()): ?>
+            <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/viewmode.phtml')) ?>
+        <?php endif; ?>
+
+        <?php include ($block->getTemplateFile('Ktpl_Ajaxscroll::product/list/toolbar/amount.phtml')) ?>
+
+        <?php echo $block->getPagerHtml() ?>
+
+        <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/limiter.phtml')) ?>
+
+        <?php if ($block->isExpanded()): ?>
+            <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')) ?>
+        <?php endif; ?>
+    </div>
+<?php endif ?>
+
+
+
+
+<!-- Move applied Active filters to above product list content -->
+    <script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function($){
+        $(document).ready(function($) {
+             
+            if ($('.toolbar-products').first().length) {
+                $(($('.block-actions.filter-actions')[1])).insertAfter($('#am-shopby-container').find('ol.items'));
+                $('#am-shopby-container').insertAfter($('.toolbar-products').first());
+            }  
+            if ($('.toolbar.toolbar-products').first().length) {
+                $($('.catalog-topnav.amasty-catalog-topnav')[0]).insertBefore($('.products.wrapper').first());
+            }        
+        });
+    });
+    </script>
+<!-- Move applied Active filters to above product list content -->

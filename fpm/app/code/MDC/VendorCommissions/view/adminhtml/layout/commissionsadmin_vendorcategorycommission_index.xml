@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * KrishTechnolabs
+  *
+  * PHP version 7
+  *
+  * @category  KrishTechnolabs
+  * @package   MDC_VendorCommissions
+  * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+  * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+  * @link      https://www.krishtechnolabs.com/
+  */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Magedelight_Commissions::js/jquery-customselect.js" />
+        <script src="Magedelight_Commissions::css/jquery-customselect.css" />
+    </head>
+    <referenceBlock name="page.title">
+        <action method="setPageTitle">
+            <argument name="title" xsi:type="string">Vendor Category Commision</argument>
+        </action>
+    </referenceBlock>
+    <body>
+        <referenceContainer name="content">
+            <block class="MDC\VendorCommissions\Block\Adminhtml\VendorCategoryCommission" name="vendorcategory_commission_listing" />
+            <block class="Magento\Framework\View\Element\Template" name="vendorcategory_commission_cat" template="MDC_VendorCommissions::vendor.phtml">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Selling Categories</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

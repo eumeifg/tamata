@@ -1,0 +1,117 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var \Magedelight\Catalog\Block\Category $block
+ *
+ */
+?>
+
+<?php
+$bulkimportInfoGroup = $block->getGroupChildNames('bulkimport_info', 'getChildHtml');
+$layout = $block->getLayout();
+if ($bulkimportInfoGroup) { ?>
+<div class="col-md-12 mt20">
+    <div class="rbpanel">
+        <div class="rbpanel-heading pn">
+            <div class="product data items rbpanel-tabs" role="tablist">
+                <?php
+                $counter = 1;
+                foreach ($bulkimportInfoGroup as $name) {
+                    $html = $layout->renderElement($name);
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                    ?>
+                    <div class="data item title tab-title <?= ($counter === 1)?'active':'' ?>"
+                         aria-labeledby="tab-label-<?= $alias; ?>-title"
+                         data-role="collapsible" id="tab-label-<?= $alias; ?>"
+                         role="tab" data-collapsible="true" aria-controls="<?= $alias; ?>" aria-selected="false" aria-expanded="true" tabindex="0">
+                        <a class="data switch"
+                           tabindex="-1"
+                           data-toggle="switch"
+                           href="javascript:void(0)"
+                           id="tab-label-<?= $alias; ?>-title"><?= __($label); ?>
+                        </a>
+                        <span class="vendor-nav-item-messages no-display" data-role="item-messages">
+                            <span class="tab-validation-error">
+                                <span class="vendor-page-nav-item-message-icon"></span>
+                                <span class="vendor-page-nav-item-message-tooltip">
+                                    <?= __('This tab contains invalid data. Please resolve this before saving.');?>
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <?php $counter++;
+                } ?>
+            </div>
+        </div>
+<?php } ?>
+        
+        <div class="rbpanel-body">
+            <div class="variant-tab-content">
+                <?php
+                $counter = 1;
+                foreach ($bulkimportInfoGroup as $name) {
+                    $html = $layout->renderElement($name);
+
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                    ?>
+                    <div class="data item content tab-content" id="<?= $alias; ?>" aria-labeledby="tab-label-<?= $alias; ?>-title" role="tabpanel" data-role="content"<?= ($counter != 1) ? ' style="display:none" aria-hidden="false"' : ' style="display:block" aria-hidden="true"'; ?>>
+                        <?= $html; ?>
+                    </div>
+                    <?php $counter++;
+                } ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cat-imoprt-error">
+    <div class="cat-info" id="cat-info"></div>
+</div>
+
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        $('.tab-title a').click(function (e) {
+            if ($(this)[0].id === 'tab-label-download_catalogue-title') {
+                $(this).parent().addClass('active');
+                $('#tab-label-upload_catalogue-title').parent().removeClass('active');
+                $('#tab-label-upload_offer-title').parent().removeClass('active');
+                $('#upload_catalogue')[0].style.display = "none";
+                $('#download_catalogue')[0].style.display = "block";
+                $('#update_offer')[0].style.display = "none";
+            }
+            if ($(this)[0].id === 'tab-label-upload_catalogue-title') {
+                $(this).parent().addClass('active');
+                $('#tab-label-download_catalogue-title').parent().removeClass('active');
+                $('#tab-label-upload_offer-title').parent().removeClass('active');
+                $('#download_catalogue')[0].style.display = "none";
+                $('#upload_catalogue')[0].style.display = "block";
+                $('#update_offer')[0].style.display = "none";
+            }
+            if ($(this)[0].id === 'tab-label-update_offer-title') {
+                $(this).parent().addClass('active');
+                $('#tab-label-download_catalogue-title').parent().removeClass('active');
+                $('#tab-label-upload_catalogue-title').parent().removeClass('active');
+                $('#download_catalogue')[0].style.display = "none";
+                $('#upload_catalogue')[0].style.display = "none";
+                $('#update_offer')[0].style.display = "block";
+            }
+        });
+        $("a.action-default").click(function () {
+            $rowEl = $(this).parents('.row');
+            $form = $('#' + $rowEl.attr('id').toString().replace('-row', ''));
+            $('input[name="q"]', $form).val('');
+            $($form).submit();
+        });
+    });
+</script>

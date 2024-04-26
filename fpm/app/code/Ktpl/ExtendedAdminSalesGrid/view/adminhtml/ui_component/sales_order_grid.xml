@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_columns">
+        <column name="md_vendor_order_increment_id" class="Ktpl\ExtendedAdminSalesGrid\Ui\Component\Listing\Column\VendorOrderData">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Vendor Order ID | Status | Vendor name | Shipment ID</item>
+                    <item name="sortOrder" xsi:type="number">110</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="number">150</item>
+                </item>
+            </argument>
+        </column>
+
+        <!--Count of previously delivered orders for a customer-->
+        <column name="delivered_count" class="Ktpl\ExtendedAdminSalesGrid\Ui\Component\Listing\Column\DeliveredOrderCount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Delivered Count</item>
+                    <item name="sortOrder" xsi:type="number">110</item>
+                    <item name="resizeEnabled" xsi:type="boolean">true</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </column>
+        <!--Count of previously pending orders for a customer-->
+        <column name="pending_count" class="Ktpl\ExtendedAdminSalesGrid\Ui\Component\Listing\Column\DeliveredOrderCount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Pending Count</item>
+                    <item name="sortOrder" xsi:type="number">111</item>
+                    <item name="resizeEnabled" xsi:type="boolean">true</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </column>
+
+        <!-- Sub Order Barcode Column -->
+        <column name="order_barcode" class="Ktpl\ExtendedAdminSalesGrid\Ui\Component\Listing\Column\VendorOrderData">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">BarCode</item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">112</item>
+                    <item name="resizeEnabled" xsi:type="boolean">true</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </column>
+        
+        <!-- Changes By : RH -->
+
+        <column name="coupon_rule_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">140</item>
+                    <item name="label" xsi:type="string" translate="true">Coupon Rule Name</item>
+                </item>
+            </argument>
+        </column>
+        <column name="device_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">150</item>
+                    <item name="label" xsi:type="string" translate="true">Device ID</item>
+                </item>
+            </argument>
+        </column>
+         
+        <!-- md_vendor_order_status was creating issue in cloumn visible and missmatch -->
+        <column name="md_vendor_order_status" class="Ktpl\ExtendedAdminSalesGrid\Ui\Component\Listing\Column\VendorOrderData">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\ExtendedAdminSalesGrid\Ui\Component\Listing\Column\OrderEventStatus</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="sortOrder" xsi:type="number">120</item>
+                    <item name="label" translate="true" xsi:type="string">Vendor Order Status</item>
+                    <item name="fieldClass" xsi:type="string">custom_vendor_order_status</item>
+                </item>
+            </argument>
+        </column>
+        <!-- Changes By : RH -->
+
+        <!-- <column name="md_vendor_name" class="Ktpl\ExtendedAdminSalesGrid\Ui\Component\Listing\Column\VendorOrderData">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ktpl\ExtendedAdminSalesGrid\Ui\Component\Listing\Column\OrderVendorName</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="sortOrder" xsi:type="number">130</item>
+                    <item name="label" translate="true" xsi:type="string">Vendor Name</item>
+                    <item name="fieldClass" xsi:type="string">custom_vendor_name</item>
+                </item>
+            </argument>
+        </column> -->
+        
+        <!-- <column name="md_vendor_order_shipment_id" class="Ktpl\ExtendedAdminSalesGrid\Ui\Component\Listing\Column\VendorOrderData">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Vendor Order ID | Status | Vendor name | Shipment ID</item>
+                    <item name="sortOrder" xsi:type="number">110</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="number">150</item>
+                    <item name="fieldClass" xsi:type="string">custom_vendor_order_shipment_ids</item>
+                </item>
+            </argument>
+        </column> -->
+    </columns>
+</listing>

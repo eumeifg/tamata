@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceBlock name="page.main.title" remove="true" />
+    <referenceBlock name="vendorproduct.front" remove="true" />
+    <move element="breadcrumbs" destination="content" before="-" />
+    <!-- <move element="Vendor.Social" destination="content" after="breadcrumbs" /> -->
+    <referenceContainer name="content">
+        <!-- <block class="Magento\Cms\Block\Block" name="Vendor.Social">
+            <arguments>
+                <argument name="block_id" xsi:type="string">vendor-social</argument>
+            </arguments>
+        </block> -->
+       <!--  <block class="Magedelight\Vendor\Block\Microsite\Html\VendorSidebar" name="vendor.front.categories" template="Magedelight_Vendor::microsite/vendor_sidebar.phtml" cacheable="false"  /> -->
+        <block class="Magedelight\Vendor\Block\Microsite\Html\VendorProductAll" name="vendor.front.products" template="Magedelight_Vendor::microsite/vendor_product_list.phtml">
+            <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Ktpl_Ajaxscroll::product/list/toolbar.phtml">
+                <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+            </block>
+            <action method="setToolbarBlockName">
+                <argument name="name" xsi:type="string">product_list_toolbar</argument>
+            </action>
+        </block>
+        <block class="Magedelight\Vendor\Block\Microsite\Html\Header" name="vendor.front.promo.banners" before = "vendor.front.products" template="Magedelight_Vendor::microsite/promotional_banners.phtml" />
+    </referenceContainer>
+    <referenceContainer name="columns">
+    <container name="chennai.review" htmlTag="div" htmlClass="review">
+        <block class="Magedelight\Vendor\Block\Microsite\Html\Header" name="vendor.front.reviews" template="Magedelight_Vendor::microsite/reviews.phtml" />
+    </container>
+</referenceContainer>
+</page>

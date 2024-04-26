@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Theme
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    
+    <fieldset name="general">
+        <field name="md_category_attribute_set_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magedelight\Theme\Model\Source\SuggestedSets</item>
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">31</item>                    
+                    <item name="dataScope" xsi:type="string">md_category_attribute_set_id</item>
+                    <item name="dataType" xsi:type="string">string</item>                    
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="label" xsi:type="string" translate="true">Attribute Set</item>
+                    <item name="scopeLabel" xsi:type="string">[GLOBAL]</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

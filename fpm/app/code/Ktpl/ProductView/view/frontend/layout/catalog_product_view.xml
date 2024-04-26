@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	 <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.review" template="Ktpl_ProductView::product/view/review.phtml" after="product.info.stock.sku" />
+           <!--  <block class="Magento\Review\Block\Product\View\ListView" name="product.info.product_additional_data" as="product_additional_data" template="Ktpl_ProductView::product/view/list.phtml" ifconfig="catalog/review/active"/> -->
+	    <!-- <block class="Magento\Catalog\Block\Product\View" name="product.returnpolicy.block" template="Ktpl_ProductView::product/view/return-policy.phtml" /> -->
+        </referenceContainer>
+        <move element="seller.info" destination="product.info.price" after="product.price.final" />
+        <move element="product.returnpolicy.block" destination="seller.info" after="-" />
+        <move element="product.vendor.list" destination="product.info.price" after="seller.info" />
+        <move element="reviews.tab" destination="content" after="product.attributes" />
+        <!-- <move element="product.info.product_additional_data" destination="product.info.main" before="reviews.tab" /> -->
+        <!-- <move element="product.info.description" destination="product.info.main" before="product.info.product_additional_data" /> -->
+        <move element="product.info.description" destination="content" after="-" />
+        <move element="product.info.overview" destination="content" after="product.info.media" />
+
+     <!--    <move element="product.info.product_additional_data" destination="product.info.main" before="reviews.tab" /> -->
+      <!--   <move element="amasty.product.info.product_additional_data" destination="content" before="reviews.tab" /> -->
+        <referenceBlock name="rb.product.condition" remove="true" />
+        <referenceBlock name="rb.product.condition.note" remove="true" />
+       
+    </body>
+</page> 

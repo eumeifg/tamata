@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="columns.top">
+            <block class="Magedelight\Vendor\Block\Microsite\Html\Header" name="vendor.front.banner" template="Magedelight_Vendor::microsite/banner.phtml" cacheable="false"  />
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Magedelight\Vendor\Block\Microsite\Html\VendorProduct" name="vendorproduct.front" template="Magedelight_Vendor::microsite/products.phtml" cacheable="false"  />
+        </referenceContainer>
+        <referenceContainer name="sidebar.main">
+            <block class="Magedelight\Vendor\Block\Microsite\Html\VendorSidebar" name="vendor.front.left" template="Magedelight_Vendor::microsite/vendor_sidebar.phtml" cacheable="false"  />
+        </referenceContainer>
+    </body>
+</page>

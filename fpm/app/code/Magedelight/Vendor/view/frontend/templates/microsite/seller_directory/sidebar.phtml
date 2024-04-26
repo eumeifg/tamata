@@ -1,0 +1,59 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+$categories = $block->getStoreCategories(true, false, true);
+$categoryHelper = $this->getCategoryHelper();
+?>
+<div class="block filter sellerdirectory-sidebar">
+    <div class="block-title">
+            <strong><?= /* @escapeNotVerified */ __('Categories');  ?></strong>
+    </div>
+    <div class="block-content">   
+        <ul id="left-sidebar-category" class="seller-dir">
+            <?php foreach ($categories as $category) :
+                if (!$category->getIsActive()) {
+                    continue;
+                }?>
+            <li>
+                <?php
+                $url = 'javascript:void(0)';
+                $class = 'seller-category';
+                if (!$category->hasChildren()) {
+                    $url = $block->getMainCategoryUrl($category->getId());
+                    $class = 'seller-directory-category-link';
+                }
+                ?>
+                <a href="<?= /* @escapeNotVerified */ $url;?>" class="<?= /* @escapeNotVerified */ $class;?>"><?= /* @escapeNotVerified */ $category->getName() ?>
+                    <?php if ($category->hasChildren()) :?>
+                        <span id="category-id-<?= /* @escapeNotVerified */ $category->getId();?>" class="icon-plus" />
+                    <?php endif;?>
+                </a>
+                <?php if ($childrenCategories = $block->getChildCategories($category)) :?>
+                    <?= /* @escapeNotVerified */ $block->getChildCategoryView($category); ?>
+                <?php endif;?>
+            </li>
+            <?php endforeach;?>
+        </ul>
+    </div>
+</div>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $("#left-sidebar-category.seller-dir a.seller-category").on("click", function (e) {
+            $('span', $(this)).toggleClass("icon-minus");            
+        $(this).next('ul').slideToggle();        
+        e.stopPropagation();
+        e.preventDefault();
+    });
+});
+</script>

@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="ktpl" sortOrder="999" translate="label">
+			<label>KTPL</label>
+		</tab>
+		<section id="barcode_generator" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Barcode Generator</label>
+			<tab>ktpl</tab>
+			<resource>Ktpl_BarcodeGenerator::config_ktpl_barcodegenerator</resource>
+			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1" translate="label">
+				<label>General</label>
+				<field id="enable" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="1" translate="label" type="select">
+					<label>Enable</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="barcode_format" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Barcode Format</label>
+					<comment>Select barcode format to generate barcodes</comment>
+					<source_model>Ktpl\BarcodeGenerator\Model\Config\Source\BarcodeFormat</source_model>
+				</field>
+				<field id="max_width" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+					   showInStore="1">
+					<label>Maximum Barcode Width</label>
+					<comment>Maximum width for barcode. Maximum allowed width is 200.</comment>
+				</field>
+				<field id="height" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+					   showInStore="1">
+					<label>Barcode Height</label>
+					<comment>Height for barcode.</comment>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

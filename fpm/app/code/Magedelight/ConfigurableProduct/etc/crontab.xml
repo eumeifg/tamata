@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_ConfigurableProduct
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="rocket_bazaar">
+        <!-- Remove configurable products garbage data-->
+        <job name="rb_remove_configurable_products_with_no_child" instance="Magedelight\ConfigurableProduct\Cron\RemoveProductsWithNoChild" method="execute">
+        <!-- Runs once a month on 1st day/date at midnight. -->
+            <schedule>00 00 01 * *</schedule>
+        </job>
+    </group>
+</config>

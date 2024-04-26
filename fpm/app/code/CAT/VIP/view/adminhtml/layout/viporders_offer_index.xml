@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="root">
+        <block class="CAT\VIP\Block\Adminhtml\VipOffers\VipOffersGrid" name="vendor_offers_grid" template="CAT_VIP::catalog/product/edit/steps/vip_offer_list.phtml">
+            <block class="CAT\VIP\Block\Adminhtml\VipOffers" name="vip_offers_list"/>
+        </block> 
+    </container>
+</layout>

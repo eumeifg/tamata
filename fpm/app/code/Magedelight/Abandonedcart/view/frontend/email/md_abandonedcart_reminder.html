@@ -1,0 +1,60 @@
+<!--@subject {{trans "Are you still interested?"}}  @-->
+<!--@vars
+   {"var name"    :"Customer Name",
+   "var subtotal" :"Subtotal",
+   "var email"    :"Email"
+   }
+@-->
+{{template config_path="design/email/header_template"}}
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="">
+   <tr>
+      <td colspan="3">
+         <h2 style="margin-top: 0;"> Dear {{var name}},</h2>
+         <p style="line-height: 24px; margin-bottom: 20px;"> {{trans "It seems you added below listed item(s) in your cart, but didn’t finish your purchase. You can pick up where you left off."}}</p>
+      </td>
+   </tr>
+   {{depend abandonedcart_promo_code}}
+      <tr>
+          <td colspan="3"><p style="line-height: 24px; margin-bottom: 20px;">{{trans "Please use following coupon code to get additional discount on your purchase"}} <strong>{{var abandonedcart_promo_code}}</strong></p></td>
+      </tr>
+   {{/depend}}
+   <tr>
+      <th style="padding:6px 0;font-size: 18px;" align="left">
+         <strong>{{trans "Item in your cart"}}</strong>
+      </th>
+      <th style="padding:6px 0;font-size: 18px;" align="left">
+         <strong>{{trans "Qty"}}</strong>
+      </th>
+      <th style="padding:6px 0;font-size: 18px;" align="left">
+         <strong>{{trans "Price"}}</strong>
+      </th>
+   </tr>
+   <tr>
+      <td colspan="2" style="padding:6px 0;">
+         {{block class="Magento\Framework\View\Element\Template" name="quote_items_list" template="Magedelight_Abandonedcart::email/quote/items.phtml" area="frontend" items=$items}}
+      </td>
+   </tr>
+   <tr>
+      <td>
+           &nbsp;
+      </td>
+      <td style="padding:6px 0; font-size: 20px; font-style: bold;" align="left">
+         {{trans "Subtotal : "}}
+      </td>
+      <td align="left" style="padding:6px 0; font-size: 20px;  font-style: bold;">
+        {{var subtotal}}
+      </td>
+   </tr>
+   <tr>
+      <td colspan="3">{{trans "You can complete your purchase by clicking this"}} <a href="{{var restore_url}}">{{trans "Restore"}}</a> {{trans " link"}}</td>
+   </tr>
+</table>
+{{template config_path="design/email/footer_template"}}
+
+{{depend unsubscribe_url}}
+<div style="text-align:center; font-size: 7pt; font-family: 'Myriad Pro', 'Verdana', Geneva;padding: 17px 0 0 0;">
+   {{trans "If you don't want to hear from us anymore, feel free to "}}<a href="{{var unsubscribe_url}}">
+      {{trans "Unsubscribe"}}
+   </a>
+</div>
+{{/depend}}

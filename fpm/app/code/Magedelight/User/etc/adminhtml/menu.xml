@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_User
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magedelight_User::addon" resource="Magedelight_User::manage_vendor_user" module="Magedelight_User" title="Vendor User Permission" translate="title" sortOrder="10" dependsOnModule="Magedelight_User" parent="Magedelight_Theme::addons" dependsOnConfig="vendorauthorization/general/enable"/>
+        <add id="Magedelight_User::manage_user" title="Manage Vendor User" module="Magedelight_User"
+             action="vendor/manage/index" sortOrder="5"
+             resource="Magedelight_User::manage_vendor_user" parent="Magedelight_User::addon" />
+        <add id="Magedelight_User::configuration" title="Vendor User Settings" module="Magedelight_User" 
+             action="adminhtml/system_config/edit/section/vendorauthorization/" sortOrder="10"              
+             resource="Magedelight_Theme::config" parent="Magedelight_User::addon" />
+    </menu>
+</config>

@@ -1,0 +1,22 @@
+{
+    "name": "mdc/module-shippingmatrix",
+    "description": "Patches for order reorder issue",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Ashwinder Singh",
+            "email": "asingh@creativeadvtech.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MDC\\Shippingmatrix\\": ""
+        }
+    }
+}

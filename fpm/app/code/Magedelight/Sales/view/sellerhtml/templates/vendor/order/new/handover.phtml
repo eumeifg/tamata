@@ -1,0 +1,368 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/** @var $block Magedelight\Sales\Block\Vendor\Order\Handover */
+?>
+<?php
+$gridsession = $block->getGridSession();
+$orders_active_new = $gridsession['grid_session']['orders_active_handover'];
+$_orders = $block->getCollection();
+$helper = $this->helper('Magedelight\Vendor\Helper\Data');
+$tab = $block->getTab();
+?>
+<form action="<?= $block->getSubmitUrl() ?>" method="get" id="vendor-handover-order-search" name="vendor_handover_order_search">
+    <input type="hidden" name="tab" value="<?= $tab; ?>">
+    <input type="hidden" name="sfrm" value="handover">
+    <input id="sort-order" type="hidden" name="sort_order" value="<?= $orders_active_new['sort_order'] ?>">
+    <input id="sort-direction" type="hidden" name="dir" value="<?= $orders_active_new['dir'] ?>">
+    <div class="row order-details">
+        <div class="row-gutter toolbar-wrapper mb10">
+            <div class="col-xs-4">
+                <div class="block block-search">
+                    <div class="content">
+                        <div class="field search-catalog">
+                            <div class="control">
+                                <input placeholder="<?= __('Search...') ?>" type="text" value="<?php
+                                if ($orders_active_new['q']) { ?>
+                                    <?= $orders_active_new['q']; ?>
+                                <?php }
+                                ?>" name="q" id="search-order-input-handoverorder" class="input-text vendor search-order-input">
+                            </div>
+                            <div class="actions">
+                                <div class="vendor primary">
+                                    <button type="submit" class="vendor action login primary">
+                                        <span><?= __('Search') ?></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-xs-3 pt10">
+                        <a rel="handover" href="javascript:void(0)" class="action-reset search"><?= __('Reset') ?></a>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="toolbar-filter-wrapper">
+                        <div class="data-grid-filters-actions-wrap">
+                                <div class="data-grid-filters-action-wrap">
+                                    <span class="clear-filters mr10"><a rel="handover" href="javascript:void(0)" class="action-reset filter"><?= __('Clear') ?></a></span>
+                                    <button class="action secondary action-default _active" type="button" data-action="grid-filter-expand" title="<?= __('Filters') ?>">
+                                        <span><?= __('Filters') ?></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="data-grid-filters-actions-wrap">
+                                <div class="data-grid-filters-action-wrap">
+                                    <a href="<?= $block->getUrl('*/*/ExportPost', ['_current' => true, 'sfrm' => 'handover'])
+                                    ?>" class="action export"><?= __('Export') ?></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-wrapper" style="display:none;">
+        <fieldset class="row fieldset">
+            <div class="row-gutter filter-row">
+                <div class="col-md-4 filter-section">
+                    <fieldset class="fieldset field-full-width">
+                        <div class="field">
+                            <label class="label" for="increment_id">
+                                <span><?= __('ID'); ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text" type="text" name="increment_id" placeholder="ID" id="increment_id" value="<?php
+                                if ($orders_active_new['increment_id']) { ?>
+                                    <?= $orders_active_new['increment_id']; ?>
+                                <?php }
+                                ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-4 filter-section">
+                    <fieldset class="fieldset field-full-width">
+                        <div class="field">
+                            <label class="label" for="bill_to_name">
+                                <span><?= __('Bill To Name') ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text" type="text" placeholder="<?= __('Bill To Name') ?>" name="bill_to_name" id="bill_to_name" value="<?php
+                                if ($orders_active_new['bill_to_name']) { ?>
+                                    <?= $orders_active_new['bill_to_name']; ?>
+                                <?php }
+                                ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-4 filter-section">
+                    <fieldset class="fieldset field-full-width">
+                        <div class="field">
+                            <label class="label" for="ship_to_name">
+                                <span><?= __('Ship To Name') ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text" type="text" name="ship_to_name" placeholder="<?= __('Ship To Name') ?>" id="ship_to_name" value="<?php
+                                if ($orders_active_new['ship_to_name']) { ?>
+                                    <?= $orders_active_new['ship_to_name']; ?>
+                                <?php }
+                                ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="row-gutter filter-row">
+                <div class="col-md-6 col-lg-3 filter-section">
+                    <fieldset class="fieldset" id="hpurchased_date_range">
+                        <legend class="legend">
+                            <span class=""><?= __('Purchased Date') ?></span>
+                        </legend>
+                        <div class="field">
+                            <label class="label" for="hpurchased_date_from">
+                                <span><?= __('from') ?></span>
+                            </label>
+                            <div class="control date-control date-field-container">
+                                <input class="input-text"
+                                       type="text"
+                                       name="pdate_from"
+                                       placeholder="MM/DD/YYYY"
+                                       id="hpurchased_date_from"
+                                       value="<?php
+                                        if ($orders_active_new['pdate_from']) { ?>
+                                            <?= $orders_active_new['pdate_from']; ?>
+                                        <?php }
+                                        ?>">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="hpurchased_date_to">
+                                <span><?= __('to') ?></span>
+                            </label>
+                            <div class="control date-control date-field-container">
+                                <input class="input-text"
+                                       type="text"
+                                       name="pdate_to"
+                                       placeholder="MM/DD/YYYY"
+                                       id="hpurchased_date_to"
+                                       value="<?php
+                                        if ($orders_active_new['pdate_to']) { ?>
+                                            <?= $orders_active_new['pdate_to']; ?>
+                                        <?php }
+                                        ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-md-6 col-lg-3 filter-section">
+                    <fieldset class="fieldset">
+                        <legend class="legend">
+                            <span class=""><?= __('Grand Total') ?></span>
+                        </legend>
+                        <div class="field">
+                            <label class="label" for="grndt_from">
+                                <span><?= __('from') ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text" type="text" name="grndt_from"  id="cgrndt_from" placeholder="<?= __('Min'); ?>" value="<?php
+                                if ($orders_active_new['grndt_from']) { ?>
+                                    <?= $orders_active_new['grndt_from']; ?>
+                                <?php }
+                                ?>">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="grndt_to">
+                                <span><?= __('to') ?></span>
+                            </label>
+                            <div class="control">
+                                <input class="input-text" type="text"  name="grndt_to"  id="cgrndt_to" placeholder="<?= __('Max'); ?>" value="<?php
+                                if ($orders_active_new['grndt_to']) { ?>
+                                    <?= $orders_active_new['grndt_to']; ?>
+                                <?php }
+                                ?>">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row">
+            <div class="row-gutter">
+                <div class="filters-footer col-md-12">
+                    <div class="action-toolbar main-actions">
+                        <button class="action primary grid-filter-cancel cancel" type="reset"
+                                data-action="grid-filter-cancel">
+                            <span><?= __('Cancel') ?></span>
+                        </button>
+                        <button class="action primary" type="submit" data-action="grid-filter-apply">
+                            <span><?= __('Apply') ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="session-clear-orderhandover" id="session-clear-orderhandover" value="0"/>
+</form>
+<form method="POST" enctype='multipart/form-data' action="<?= $block->getMassActionUrl() ?>"
+      id="mass_action_form">
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="handover-orders-table">
+            <thead>
+                <tr>
+                    <th scope="col" sortorder="rvo_vendor_order_id" class="col id sortable"><?= __('ID #') ?></th>
+                    <th scope="col" sortorder="rvo_created_at"
+                        class="col date sortable"><?= __('Purchase Date') ?></th>
+                    <th scope="col" sortorder="bill_to_name"
+                        class="col billing sortable"><?= __('Bill To Name') ?></th>
+                    <th scope="col" sortorder="ship_to_name"
+                        class="col shipping sortable"><?= __('Ship To Name') ?></th>
+                    <th scope="col" sortorder="rvo_grand_total"
+                        class="col total sortable"><?= __('Grand Total') ?></th>
+                    <th scope="col" class="col status"><?= __('Status') ?></th>
+                    <th scope="col" class="col actions"><?= __('Action') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if ($_orders && count($_orders)) : ?>
+                    <?php foreach ($_orders as $_order) :
+                        $vendorOrder = $block->getVendorOrder($_order); ?>
+                        <tr>
+                            <td data-th="<?= $block->escapeHtml(__('ID #')) ?>"
+                                class="col data-grid-id-cell">
+                                <table>
+                                    <tr>
+                                        <td align="center">
+                                            <strong>
+                                                <?= $_order->getRvoIncrementId() ?>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <?= $block->getOrderSummarizedHtml($_order); ?>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td data-th="<?= $block->escapeHtml(__('Purchase Date')) ?>"
+                                class="col data-grid-date-cell"><?= $block->getCurrentLocaleDate($_order->getRvoCreatedAt()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Bill To Name')) ?>"
+                                class="col billing"><?= $_order->getBillToName() ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Ship To Name')) ?>"
+                                class="col shipping"><?= $_order->getShipToName() ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Grand Total')) ?>"
+                                class="col data-grid-price-cell"><?= $this->helper(\Magedelight\Catalog\Helper\Pricing\Data::class)->format($_order->getRvoGrandTotal(), false, null, null, $_order->getOrderCurrencyCode()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col data-grid-status-cell">
+                                <div class="data-grid-cell-content">
+                                    <span
+                                        class="status"><?= $_order->getStatusLabel() == 'Pending' ? 'Shipment ' : '' ?><?= $_order->getStatusLabel() ?></span>
+                                </div>
+                            </td>
+                            <td data-th="<?= $block->escapeHtml(__('Actions')) ?>"
+                                class="col data-grid-actions-cell data-grid-actions-multiple-cell">
+                                <a href="<?= $block->getViewUrl($_order); ?>" class="action view">
+                                    <span><?= __('View') ?></span>
+                                </a>
+                                <span class="seperator">|</span>
+                                <?php if ($vendorOrder->getStatus() != 'canceled' && $vendorOrder->getIsConfirmed()) : ?>
+                                    <a href="<?= $block->getManifestUrl($vendorOrder) ?>" class="action manifest">
+                                        <span><?= __('Manifest') ?></span>
+                                    </a>
+                                    <a href="<?= $block->getPackingSlipUrl($_order, $vendorOrder) ?>" class="action generate-packing-slip">
+                                        <span><?= __('Generate Packing Slip') ?></span>
+                                    </a>
+                                    <?php if ($vendorOrder->checkInvoiceIsAvailable($vendorOrder->getOrderId(), $vendorOrder->getVendorId())): ?>
+                                        <span class="seperator">|</span>
+                                        <a href="<?= $block->getPrintUrl($_order); ?>" class="action view">
+                                            <span><?= __('Print Invoices') ?></span>
+                                        </a>
+                                    <?php endif; ?>
+                                    <?php if ($block->isManualShipmentAllowed()) : ?>
+                                    <a href="<?= $block->getIntransitUrl($vendorOrder) ?>" class="action in-transit">
+                                        <span><?= __('In Transit') ?></span>
+                                    </a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <script type="text/javascript">
+                    require([
+                        'jquery'
+                    ], function ($) {
+                        $(document).ready(function () {
+                            /*
+                             * Sorting feature
+                             */
+                            $handSortOrder = $('#vendor-handover-order-search #sort-order').val();
+                            $handSortDir = $('#vendor-handover-order-search #sort-direction').val();
+                            if ($handSortOrder != null && $handSortOrder != '') {
+                                $handDirClass = ($handSortDir == 'DESC') ? 'descend' : 'ascend';
+                                $('#handover-orders-table th[sortorder="' + $handSortOrder + '"]').addClass($handDirClass);
+                            }
+                            $sortDir = 'ASC';
+                            $('#handover-orders-table .sortable').click(function ($e) {
+                                $sortOrder = $(this).attr('sortorder');
+                                if ($handSortOrder == $sortOrder) {
+                                    $sortDir = ($handSortDir == 'DESC') ? 'ASC' : 'DESC';
+                                }
+                                $('#vendor-handover-order-search #sort-order').val($sortOrder); //for post
+                                $('#vendor-handover-order-search #sort-direction').val($sortDir); //for post
+                                $('#vendor-handover-order-search').submit();
+                            });
+                        });
+                    });
+                </script>
+                <?php else : ?>
+                <tr>
+                    <td colspan="7">
+                        <div id="handoverorder-msg" class="message info empty"><span><?= __("We couldn't find any records.") ?></span></div>
+                    </td>
+                </tr>
+                <?php endif ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()) : ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+</form>
+<script>
+    require([
+        'jquery',
+        'mage/calendar'
+    ], function ($) {
+        $("#hpurchased_date_range").dateRange({
+            buttonText: "<?= __('Select Date') ?>",
+            showOn: "button",
+            from: {
+                id: "hpurchased_date_from"
+            },
+            to: {
+                id: "hpurchased_date_to"
+            }
+        });
+
+        $(".action-reset").click(function () {
+            $('#session-clear-orderhandover').val(1);
+        });
+        $(".grid-filter-apply").click(function () {
+            $('#session-clear-orderhandover').val(0);
+        });
+    });
+</script>

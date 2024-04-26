@@ -1,0 +1,221 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+$vendor = $this->getVendor();
+$regions = $this->getRegions();
+$hash = $this->getRequest()->getParam('rbhash');
+
+$sortedTabs=[];
+$regn_tabs = $block->getGroupChildNames('vendor_regn_tabs', 'getChildHtml');
+$layout = $block->getLayout();
+if ($regn_tabs) {
+    foreach ($regn_tabs as $regn_tab) {
+        $order = ($block->getChildData($layout->getElementAlias($regn_tab), 'sort_order'))?$block->getChildData($layout->getElementAlias($regn_tab), 'sort_order'):0;
+        $sortedTabs[$order] = $regn_tab;
+    }
+    ksort($sortedTabs);
+}
+?>
+
+<div class="sections signup-steps-sections">
+    <div class="section-items signup-steps-section-items">
+        <div class="section-item-content signup-steps-section-item-content">
+            <div class="panel signup-steps mb50">
+                <div class="rb-container rb-profile-step-container">
+                    <div class="row signup-step-progress">
+                        <ul>
+                            <?php if (!empty($sortedTabs)) { ?>
+                                <?php foreach ($sortedTabs as $index => $sortedTab) { ?>
+                                    <?php  $alias = $layout->getElementAlias($sortedTab);?>
+                                    <li id="step-<?= $index; ?>" class="item <?= ($index == 1)?'active':''; ?>">
+                                        <span class="number"></span>
+                                        <strong><?= __($block->getChildData($alias, 'title')); ?></strong>
+                                    </li>
+                                <?php } ?>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rb-container rb-profile-step-container">
+                    <div class="row signup-step-content">
+                        <form name="vendor_registration" id="vendor-registration" enctype="multipart/form-data" method="post" action="<?= $this->getPostActionUrl() ?>">
+                            <?php foreach ($sortedTabs as $sortedTab) {  ?>
+                                <?php $html = $layout->renderElement($sortedTab); ?>
+                                <?= $html; ?>
+                            <?php } ?>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.checkoutConfig = <?= /* @escapeNotVerified */ $block->getPostcodes() ?>;
+    require([
+        'jquery',
+        'Magedelight_Vendor/js/registration/validation/common',
+        'jquery/jquery.cookie',
+        'domReady!',
+        'mage/mage'
+    ], function ($,commonValidation) {
+        
+        $(function() {
+            /* Call common validations*/
+            commonValidation();
+        });
+      
+        vendorForm = $('#vendor-registration');
+        var ignore = null;
+        $validator = vendorForm.mage('validation', {
+            ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+        }).find('input:text').attr('autocomplete', 'off');
+        
+        $(function () {
+            $(':input').on("keypress", function (e) {
+                elem = $(this);
+                canSubmit = elem.parents('.form-step').hasClass('final-form-step');
+                if (e.which === 13) {
+                    /* disabled submit when enter key press if not final step */
+                    if (!canSubmit) {
+                        $('button.btn-continue', elem.parents('.form-step')).trigger('click');
+                        e.preventDefault();
+                    }
+                }
+            });
+            
+            var formSubmitted = false;
+            $('button.primary').click(function (event) {
+                ele = $(this);
+                err = false;
+                var buttonId = 0;
+                if (ele.hasClass('btn-continue')) {
+                    buttonId = parseInt(ele.attr('value')) - 1;
+                    if(buttonId == '2'){
+                        /* Seller categories section. */
+                        if($('#category-list').find('input[type="checkbox"]:checked').length == 0){
+                            err = true;
+                            $('#sell_category_error').html($.mage.__('Please select at least one or more categories from the list.')).show();
+                            $("html, body").animate({ scrollTop: 0 }, "slow");
+                        }else{
+                            err = false;
+                            $('#sell_category_error').html('').hide();
+                        }
+                    }else{
+                        /* Other than seller-categories sections. */
+                        $('#register-step-' + buttonId + ' :input').each(function () {
+                            elem = $(this);
+                            if(elem.attr('name') != 'category[]' && !elem.is(':disabled')){
+                                if (!($.validator.validateElement(elem)) && !err) {
+                                    err = true;
+                                    $("html, body").animate({ scrollTop: $(elem).offset().top }, "fast");
+                                }
+                            }   
+                        });
+                    }
+                }else if(ele.hasClass('btn-submit')) {
+                    if (vendorForm.valid() && !formSubmitted) {
+                        formSubmitted = true;
+                        $(ele).find('span').html('Submitting...');
+                        $(':input', vendorForm).attr('disabled', false);
+                        vendorForm.submit();
+                    }
+                }
+                
+                if (!ele.hasClass('btn-submit') && !err) {
+                    $('div.form-step').addClass('no-display');
+                    $('#register-step-' + ele.val()).removeClass('no-display');
+                    $("html, body").animate({ scrollTop: 0 }, "fast");
+                    $('.signup-step-progress li.item').removeClass('active');
+                    if (buttonId > 0) {
+                        $('#step-' + buttonId).addClass('completed');
+                    } else {
+                        $('#step-' + ele.val()).removeClass('completed');
+                    }
+                    $('#step-' + ele.val()).addClass('active');
+                }
+            });
+        });
+    
+        $(document).ready(function () {
+          /* Tooltip code starts */
+            $(".field-tooltip").on('click', function (event) {
+                if($(this).hasClass('_active')){
+                  $(this).removeClass('_active');
+                  $(this).find('.field-tooltip-content').removeClass('_active');
+                } else {
+                  $(".field-tooltip").removeClass('_active');
+                  $(".field-tooltip-content").removeClass('_active');
+                  $(this).addClass('_active');
+                  $(this).find('.field-tooltip-content').addClass('_active');
+                }
+            });
+          
+            $(document).mouseup(function(e){
+                var container = $(".field-tooltip");
+                /* if the target of the click isn't the container nor a descendant of the container */
+                if (!container.is(e.target) && container.has(e.target).length === 0) 
+                {
+                    container.removeClass('_active');
+                    $(".field-tooltip-content").removeClass('_active');
+                }
+            });
+          /* Tooltip code ends */ 
+       });
+    
+        /* Maintain vendor's registration data in cookie.*/
+        $(document).ready( function(){
+            var hash = '<?= $hash; ?>';
+
+            function setCookie(pagnum) {
+                var $inputs = $('#vendor-registration #register-step-'+pagnum+' input[type=text], select, textarea');
+                var cookieData = {};
+                $inputs.each(function (index) {
+                     cookieData[$(this).attr('id')] = $(this).attr('value');                        
+                });
+                $("#vendor-registration #register-step-"+pagnum+" input[type=checkbox]:checked").each(function() {
+                    var link_name = $(this).attr('name');                
+                    if($(this).attr('name') != 'value_ids[]' && $(this).attr('name') != 'attribute_ids[]' && $(this).attr('name') != 'selectall' && $(this).attr('name') != 'category[]'){
+                        cookieData[$(this).attr('id')] = '';
+                    }
+                });                   
+                $.cookie('register_step_'+pagnum+'_'+hash, JSON.stringify(cookieData), { expires: 365, path: '/' });                    
+            }
+        
+            function setDataFromCookie(pagnum) {
+
+                var retrive = $.cookie("register_step_"+pagnum+'_'+hash);
+                var decodecookie = $.parseJSON(retrive);
+
+                $.each(decodecookie, function(key,val) {
+                    if($('select[id=' + key + ']').length != 0){
+                        $('#' + key+ ' option[value="'+val+'"]').attr("selected", "selected");
+                    } else if($('input[id=' + key + ']').attr('type') == 'checkbox'){                            
+                        $('input[id=' + key + ']').prop('checked', true);
+                    }else {
+                        $('input[id=' + key + ']').val(val);
+                    }
+                });
+            }
+
+            setDataFromCookie(1);
+            $("#vendor-registration .btn-continue").click(function(){                      
+                var pagnum = $(this).attr('value')-1;
+                var data = setCookie(pagnum);                    
+                if(pagnum != 0) {
+                    setDataFromCookie(pagnum+1);
+                }                                       
+            });            
+        });
+    /* Maintain vendor's registration data in cookie.*/
+});
+</script>

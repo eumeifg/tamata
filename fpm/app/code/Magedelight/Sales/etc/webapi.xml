@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <!-- Used for retrieve own order list -->
+    <route url="/V1/orders/mine/list" method="GET">
+        <service class="Magedelight\Sales\Api\OrderRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+
+    <route url="/V1/seller/vendor-order/:vendorOrderId" method="GET">
+        <service class="Magedelight\Sales\Api\OrderRepositoryInterface" method="getVendorOrderById"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+    </route>
+
+    <route url="/V1/vendor-order/get-by-original-order/:orderId/:vendorId" method="GET">
+        <service class="Magedelight\Sales\Api\OrderRepositoryInterface" method="getByOriginalOrderId"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <!-- Used for retrieve own order by order id -->
+    <route url="/V1/self-orders/:id" method="GET">
+        <service class="Magento\Sales\Api\OrderRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+
+    <!-- Cancel full order by customer -->
+    <route url="/V1/orders/cancelfullorder" method="POST">
+        <service class="Magedelight\Sales\Api\OrderManagementInterface" method="cancelFullOrderByCustomer"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+
+    <!-- Cancel order item by customer -->
+    <route url="/V1/orders/cancelorderitem" method="POST">
+        <service class="Magedelight\Sales\Api\OrderManagementInterface" method="cancelOrderItemByCustomer"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+
+    <!-- Cancel customer order reason -->
+    <route url="/V1/orders/cancelreason" method="GET">
+        <service class="Magedelight\Sales\Api\OrderRepositoryInterface" method="getCustomerOrderCancelReason"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+
+    <!-- change order status to in transit -->
+    <route url="/V1/orders/statusUpdate" method="POST">
+        <service class="Magedelight\Sales\Api\OrderManagementInterface" method="orderStatusUpdate"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+    <!-- vendor Orders Management -->
+    <route url="/V1/seller/vendorOrders" method="GET">
+        <service class="Magedelight\Sales\Api\OrderRepositoryInterface" method="getVendorOrders"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+     <!-- vendor Orders Confirm -->
+    <route url="/V1/seller/vendorOrderConfirm" method="POST">
+        <service class="Magedelight\Sales\Api\OrderManagementInterface" method="confirmOrder"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+    <!-- vendor Order Cancel -->
+    <route url="/V1/seller/vendorOrderCancel" method="POST">
+        <service class="Magedelight\Sales\Api\OrderManagementInterface" method="orderCancel"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+    <route url="/V1/seller/order/packingSlip" method="GET">
+        <service class="Magedelight\Sales\Api\ShippingManagementInterface" method="generatePackingSlip"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+    <route url="/V1/seller/order/manifest" method="GET">
+        <service class="Magedelight\Sales\Api\ShippingManagementInterface" method="generateManifest"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+    <route url="/V1/seller/order/:orderId/ship-form" method="GET">
+        <service class="Magedelight\Sales\Api\ShippingBuilderInterface" method="createShipmentFormData"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+    <route url="/V1/seller/order/:orderId/ship" method="POST">
+        <service class="Magento\Sales\Api\ShipOrderInterface" method="execute"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+    <route url="/V1/seller/order/:orderId/invoice-form" method="GET">
+        <service class="Magedelight\Sales\Api\InvoiceBuilderInterface" method="createInvoiceFormData"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+
+    <route url="/V1/seller/order/:orderId/invoice" method="POST">
+        <service class="Magento\Sales\Api\InvoiceOrderInterface" method="execute"/>
+        <resources>
+            <resource ref="seller"/>
+        </resources>
+    </route>
+    <!-- get invoice list for customer -->
+    <route url="/V1/self/invoices" method="GET">
+        <service class="Magento\Sales\Api\InvoiceRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+
+    <!-- get shipment list for customer -->
+    <route url="/V1/self/shipments" method="GET">
+        <service class="Magento\Sales\Api\ShipmentRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+    </route>
+
+    <!-- get shipment list for customer -->
+    <route url="/V1/seller/order/printinvoice" method="GET">
+        <service class="Magedelight\Sales\Api\InvoiceBuilderInterface" method="printInvoice"/>
+        <resources>
+            <resource ref="seller" />
+        </resources>
+    </route>
+</routes>

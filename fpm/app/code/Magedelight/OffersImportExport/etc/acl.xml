@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_OffersImportExport
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magedelight_Theme::vendor">
+                    <resource id="Magedelight_Theme::addons">
+                        <resource id="Magedelight_OffersImportExport::vendor_offers" title="Vendor Offers" translate="title" sortOrder="10">
+                            <resource id="Magedelight_OffersImportExport::add_offers" title="Add Offers" translate="title" sortOrder="10" />
+                            <resource id="Magedelight_OffersImportExport::update_offers" title="Update Offers" translate="title" sortOrder="20" />
+                            <resource id="Magedelight_OffersImportExport::export_offers" title="Export Offers" translate="title" sortOrder="30" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,69 @@
+<!-- <div id="shipment_container" class="table-wrapper">
+    <table class="data table rb-shipping-details" id="tracking_numbers_table">
+        <thead>
+            <tr class="headings">
+                <th colspan="2" class=""><?php //echo __('Shipping Details') ?></th>
+            </tr>
+        </thead>
+        <tbody id="track_row_container">
+            <tr class="headings">
+                <th class="col col-shipping-method"><?php //echo __('Shipping Method') ?>:</th>
+                <td class="col col-shipping-method">
+                    <table class="data table ship-method-info" id="track_row_container1">
+                        <tbody>
+                            <tr id="track_row_template" class="template">
+                                <td><?php //echo __('Carrier') ?>:</td>
+                                <td><?php //echo __('Shipping Service') ?>:</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <select name="tracking[1][carrier_code]" id="trackingC1" class="select carrier">
+                                        <?php //foreach ($block->getCarriers() as $_code => $_name): ?>
+                                            <option value="<?php /* @escapeNotVerified */ //echo $_code ?>"><?php //echo $block->escapeHtml($_name) ?></option>
+                                        <?php //endforeach; ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input class="input-text number-title" type="text" name="tracking[1][title]" id="trackingT1" value="" style="">
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </td>
+            </tr>
+            <tr>
+                <th class="col col-tracking-id"><?php //echo __('Tracking ID') ?>:</th>
+                <td class="col col-tracking-id"><input class="input-text required-entry" type="text" name="tracking[1][number]" id="trackingN1" value="" /></td>
+            </tr>
+            <tr>
+                <th class="col col-shipping-comment"><?php //echo __('Shipment comment') ?>:</th>
+                <td class="col col-shipping-comment">
+                    <div class="commentbox">
+                        <textarea cols="51" rows="2" name="shipment[comment_text]" class="tracking-comment"> </textarea> 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
+<div class="actions-toolbar">
+      <div class="primary">
+          <button id="cancel-shippment" type="button" title="<?php echo __('Cancel') ?>" data-url="<?php echo $block->getBackUrl() ?>" class="action primary cancel mr10">
+              <span><?php echo __('Cancel') ?></span>
+          </button>
+          <button type="submit" title="<?php echo __('Generate') ?>" class="action primary">
+              <span><?php echo __('Generate') ?></span>
+          </button>
+
+      </div>
+</div>
+<script>
+    require(['jquery'], function ($) {
+        $('#cancel-shippment').click(function() {
+            location.href = $(this).attr('data-url');
+        });
+        $('#trackingC1').change(function () {
+            $('#trackingT1').val($('#trackingC1 option:selected').text());
+        });
+    });
+</script>

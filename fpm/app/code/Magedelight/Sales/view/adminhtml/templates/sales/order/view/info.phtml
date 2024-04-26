@@ -1,0 +1,283 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Sales
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+<?php /** @var $block \Magedelight\Sales\Block\Adminhtml\Sales\Order\View\Info */ ?>
+<?php $_order = $block->getOrder() ?>
+<?php $vendorOrder = $block->getVendorOrder(); ?>
+<?php
+$orderAdminDate = $block->formatDate(
+    $block->getOrderAdminDate($_order->getCreatedAt()),
+    \IntlDateFormatter::MEDIUM,
+    true
+);
+$orderStoreDate = $block->formatDate(
+    $_order->getCreatedAt(),
+    \IntlDateFormatter::MEDIUM,
+    true,
+    $block->getTimezoneForStore($_order->getStore())
+);
+?>
+
+<section class="admin__page-section order-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"><?= /* @escapeNotVerified */
+            __('Order & Account Information') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-information">
+            <?php /* Order Information */ ?>
+            <?php if ($_order->getEmailSent()) :
+                $_email = __('The order confirmation email was sent');
+            else :
+                $_email = __('The order confirmation email is not sent');
+            endif; ?>
+            <?php if ($vendorOrder) { ?>
+            <div class="admin__page-section-item-title">
+                <span class="title">
+                    <?php if ($block->getNoUseOrderLink()) : ?>
+                        <?= /* @escapeNotVerified */
+                        __('vendor Order # %1', $vendorOrder->getIncrementId()) ?> (
+                        <span><?= /* @escapeNotVerified */
+                            $_email ?></span>)
+                    <?php else : ?>
+                        <a href="<?= /* @escapeNotVerified */
+                        $block->getViewUrl($_order->getId()) ?>"><?= /* @escapeNotVerified */
+                            __('Vendor Order # %1', $vendorOrder->getIncrementId()) ?></a>
+                        <span>(<?= /* @escapeNotVerified */
+                            $_email ?>)</span>
+                    <?php endif; ?>
+                </span>
+            </div>
+            <?php } ?>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-information-table">
+                    <tr>
+                        <th><?= /* @escapeNotVerified */
+                            __('Order Date') ?></th>
+                        <td><?= /* @escapeNotVerified */
+                            $orderAdminDate ?></td>
+                    </tr>
+                    <?php if ($orderAdminDate != $orderStoreDate) : ?>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __(
+                                    'Order Date (%1)',
+                                    $block->getTimezoneForStore($_order->getStore())
+                                ) ?></th>
+                            <td><?= /* @escapeNotVerified */
+                                $orderStoreDate ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($block->isMagentoOrderStatusDisplayed() && $vendorOrder) : ?>
+                    <tr>
+                        <th><?= /* @escapeNotVerified */
+                            __('Order Status') ?></th>
+                        <td><span id="order_status"><?= /* @escapeNotVerified */
+                                $vendorOrder->getStatusLabel() ?></span></td>
+                    </tr>
+                    <?php endif; ?>
+                    <?php if ($block->isSingleStoreMode() == false) : ?>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __('Purchased From') ?></th>
+                            <td><?= /* @escapeNotVerified */
+                                $block->getOrderStoreName() ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($_order->getRelationChildId()) : ?>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __('Link to the New Order') ?></th>
+                            <td><a href="<?= /* @escapeNotVerified */
+                                $block->getViewUrl($_order->getRelationChildId()) ?>">
+                                    <?= /* @escapeNotVerified */
+                                    $_order->getRelationChildRealId() ?>
+                                </a></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($_order->getRelationParentId()) : ?>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __('Link to the Previous Order') ?></th>
+                            <td><a href="<?= /* @escapeNotVerified */
+                                $block->getViewUrl($_order->getRelationParentId()) ?>">
+                                    <?= /* @escapeNotVerified */
+                                    $_order->getRelationParentRealId() ?>
+                                </a></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($_order->getRemoteIp() && $block->shouldDisplayCustomerIp()) : ?>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __('Placed from IP') ?></th>
+                            <td><?= /* @escapeNotVerified */
+                                $_order->getRemoteIp(); ?>
+                                <?= ($_order->getXForwardedFor()) ? ' (' . $block->escapeHtml($_order->getXForwardedFor()) . ')' : ''; ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($_order->getGlobalCurrencyCode() != $_order->getBaseCurrencyCode()) : ?>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __(
+                                    '%1 / %2 rate:',
+                                    $_order->getGlobalCurrencyCode(),
+                                    $_order->getBaseCurrencyCode()
+                                ) ?></th>
+                            <td><?= /* @escapeNotVerified */
+                                $_order->getBaseToGlobalRate() ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($_order->getBaseCurrencyCode() != $_order->getOrderCurrencyCode()) : ?>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __(
+                                    '%1 / %2 rate:',
+                                    $_order->getOrderCurrencyCode(),
+                                    $_order->getBaseCurrencyCode()
+                                ) ?></th>
+                            <th><?= /* @escapeNotVerified */
+                                $_order->getBaseToOrderRate() ?></th>
+                        </tr>
+                    <?php endif; ?>
+                    <?php if ($_order->getOrderCancelReason() != "") : ?>
+                        <tr>
+                            <th><?= __('Customer Order Cancel Reason') ?></th>
+                            <td><?= $_order->getOrderCancelReason() ?> </td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </div>
+        </div>
+
+        <div class="admin__page-section-item order-account-information">
+            <?php /* Account Information */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= /* @escapeNotVerified */
+                    __('Account Information') ?></span>
+                <div class="actions"><?= /* @escapeNotVerified */
+                    $block->getAccountEditLink() ?></div>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary order-account-information-table">
+                    <tr>
+                        <th><?= /* @escapeNotVerified */
+                            __('Customer Name') ?></th>
+                        <td>
+                            <?php if ($_customerUrl = $block->getCustomerViewUrl()) : ?>
+                                <a href="<?= /* @escapeNotVerified */
+                                $_customerUrl ?>" target="_blank">
+                                    <span><?= $block->escapeHtml($_order->getCustomerName()) ?></span>
+                                </a>
+                            <?php else : ?>
+                                <?= $block->escapeHtml($_order->getCustomerName()) ?>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><?= /* @escapeNotVerified */
+                            __('Email') ?></th>
+                        <td>
+                            <a href="mailto:<?= $block->escapeHtml($_order->getCustomerEmail()) ?>"><?= $block->escapeHtml($_order->getCustomerEmail()) ?></a>
+                        </td>
+                    </tr>
+                    <?php if ($_groupName = $block->getCustomerGroupName()) : ?>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __('Customer Group') ?></th>
+                            <td><?= /* @escapeNotVerified */
+                                $_groupName ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php foreach ($block->getCustomerAccountData() as $data) : ?>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                $data['label'] ?></th>
+                            <td><?= /* @escapeNotVerified */
+                                $data['value'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+        </div>
+        <?php /* Vendor Detail insertion in admin order invoice area. */ ?>
+        <?php $vendor = ($vendorOrder) ? $this->getVendorDetail($vendorOrder->getVendorId()) : ''; ?>
+        <?php if (!empty($vendor)) { ?>
+            <div class="admin__page-section-item order-account-information" style="margin-top: 20px;">
+                <?php /* Account Information */ ?>
+                <div class="admin__page-section-item-title">
+                    <span class="title"><?= /* @escapeNotVerified */
+                        __('Vendor Information') ?></span>
+                </div>
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary order-account-information-table">
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __('Sold By') ?></th>
+                            <td>
+                                <?php
+                                if (!empty($vendor->getBusinessName())) { ?>
+                                    <?= $vendor->getBusinessName(); ?>
+                                <?php }
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __('Address') ?></th>
+                            <td><?php if (!empty($this->getFullAddress($vendorOrder->getVendorId()))) { ?>
+                                    <?= $this->getFullAddress($vendorOrder->getVendorId()); ?>
+                                <?php } ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __('VAT') ?></th>
+                            <td><?php if (!empty($vendor->getVat())) {
+                                ?> <?= $vendor->getVat(); ?> <?php
+                                } ?></td>
+                        </tr>
+
+                        <?php if (!empty($this->getVendorGstin($vendorOrder->getVendorId()))) { ?>
+                        <tr>
+                            <th><?= /* @escapeNotVerified */
+                                __('GSTIN') ?></th>
+                            <td><?= $this->getVendorGstin($vendorOrder->getVendorId())  ?></td>
+                        </tr>
+                        <?php }  ?>
+
+                    </table>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</section>
+
+<section class="admin__page-section order-addresses">
+    <div class="admin__page-section-title">
+        <span class="title"><?= /* @escapeNotVerified */
+            __('Address Information') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <?php if (!$block->getOrder()->getIsVirtual()) : ?>
+            <div class="admin__page-section-item order-shipping-address">
+                <?php /* Shipping Address */ ?>
+                <div class="admin__page-section-item-title">
+                    <span class="title"><?= /* @escapeNotVerified */
+                        __('Shipping Address') ?></span>
+                    <div class="actions"><?= /* @escapeNotVerified */
+                        $block->getAddressEditLink($_order->getShippingAddress()); ?></div>
+                </div>
+                <address class="admin__page-section-item-content"><?= /* @escapeNotVerified */
+                    $block->getFormattedAddress($_order->getShippingAddress()); ?></address>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>

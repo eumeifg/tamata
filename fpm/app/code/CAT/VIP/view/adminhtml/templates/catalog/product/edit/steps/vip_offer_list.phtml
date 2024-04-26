@@ -1,0 +1,18 @@
+<?php
+?>
+<div class="vip-offer-grid-block <?= /* @noEscape */ $block->getData('config/dataScope') ?>" data-role="vip-offer-grid-step">
+    <div class="vip-offer-actions" >
+        <?= /* @noEscape */  $block->getAddNewOfferButton(); ?>
+    </div>
+    <h2 class="steps-wizard-title"><?= $block->escapeHtml(
+        __('VIP Offers')
+    ); ?></h2>
+</div>
+<?= $block->getChildHtml(); ?>
+
+<script>
+    require(['jquery'], function ($) {
+        $('.vip-offer-grid-block[data-role = vip-offer-grid-step]').applyBindings();
+        $('body').trigger('contentUpdated');
+    })
+</script>

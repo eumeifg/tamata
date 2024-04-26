@@ -1,0 +1,1981 @@
+Invalid Form Key. Please refresh the page.,Invalid Form Key. Please refresh the page.
+You entered an invalid Secret Key. Please refresh the page.,You entered an invalid Secret Key. Please refresh the page.
+"Your account is under review. In the meantime, you can update your profile.","Your account is under review. In the meantime, you can update your profile."
+Your account is disapproved due to %1. Please correct and resubmit.,Your account is disapproved due to %1. Please correct and resubmit.
+Your account mode is on vacation. Your selling is disabled till vacation ends.,Your account mode is on vacation. Your selling is disabled till vacation ends.
+Add Vendor,Add Vendor
+start typing to search category,start typing to search category
+Delete File,Delete File
+Manage Vendor Order,Manage Vendor Order
+This product is disabled.,This product is disabled.
+Buy %1 for price %2,Buy %1 for price %2
+Item ordered qty,Item ordered qty
+%1 with %2 discount each,%1 with %2 discount each
+%1 for %2,%1 for %2
+* - Enter custom price including tax,* - Enter custom price including tax
+* - Enter custom price excluding tax,* - Enter custom price excluding tax
+Configure,Configure
+This product does not have any configurable options,This product does not have any configurable options
+Vendor ID,Vendor ID
+Order ID,Order ID
+ Purchased On, Purchased On
+Vendor,Vendor
+Admin Confirm,Admin Confirm
+Vendor Confirm,Vendor Confirm
+Status,Status
+Total Refunded,Total Refunded
+Cancel By,Cancel By
+Total,Total
+Cancellation Fee,Cancellation Fee
+Action,Action
+Invoice ID,Invoice ID
+Invoice At,Invoice At
+Order #,Order #
+Bill-to Name,Bill-to Name
+Order Date,Order Date
+Shipment,Shipment
+Ship Date,Ship Date
+Ship-to Name,Ship-to Name
+Total Quantity,Total Quantity
+Invoices1,Invoices1
+Order Invoices1,Order Invoices1
+Manage Vendor Products,Manage Vendor Products
+Deleted Products,Deleted Products
+ID,ID
+Product Name,Product Name
+QTY,QTY
+Product SKU,Product SKU
+List,List
+Unlist,Unlist
+Edit Product '%1',Edit Product '%1'
+New Product,New Product
+Product Information,Product Information
+Vendor SKU,Vendor SKU
+Condition,Condition
+Condition Note,Condition Note
+Price,Price
+Special Price,Special Price
+Special From Date,Special From Date
+Special To Date,Special To Date
+Quantity,Quantity
+Reorder level,Reorder level
+Warranty Type,Warranty Type
+Warranty Description,Warranty Description
+Request Information,Request Information
+Image,Image
+Store View,Store View
+Edit,Edit
+Delete,Delete
+Are you sure?,Are you sure?
+UnList,UnList
+Manage Product Request,Manage Product Request
+Approve,Approve
+Approve and List,Approve and List
+Disapprove,Disapprove
+Edit Product Request '%1',Edit Product Request '%1'
+New Product Request,New Product Request
+Product Request Information,Product Request Information
+Category,Category
+Category Information,Category Information
+Images,Images
+General Information,General Information
+Offer Information,Offer Information
+Marketplace Product Link,Marketplace Product Link
+Seller SKU,Seller SKU
+Created At,Created At
+Disapprove Message,Disapprove Message
+Product Variants,Product Variants
+Variants,Variants
+Has Variants,Has Variants
+Is Requested For Edit,Is Requested For Edit
+Actions,Actions
+[GLOBAL],[GLOBAL]
+[WEBSITE],[WEBSITE]
+[STORE VIEW],[STORE VIEW]
+"Images (.gif, .jpg, .png)","Images (.gif, .jpg, .png)"
+Add New Images,Add New Images
+Manage Request,Manage Request
+Save,Save
+Save and Continue Edit,Save and Continue Edit
+Vendor Name,Vendor Name
+Request Type,Request Type
+Vacation From Date,Vacation From Date
+Vacation To Date,Vacation To Date
+Reason,Reason
+Requested At,Requested At
+Approved At,Approved At
+Page Status,Page Status
+Status operations of request auto assigned to vendor profile.,Status operations of request auto assigned to vendor profile.
+Shipping & Handling,Shipping & Handling
+Confirm,Confirm
+Are you sure you want to do this?,Are you sure you want to do this?
+Are you sure you want to cancel this order?,Are you sure you want to cancel this order?
+Cancel,Cancel
+Invoice and Ship,Invoice and Ship
+Invoice,Invoice
+Ship,Ship
+"This will create an offline refund. To create an online refund, open an invoice and create credit memo for it. Do you wish to proceed?","This will create an offline refund. To create an online refund, open an invoice and create credit memo for it. Do you wish to proceed?"
+Credit Memo,Credit Memo
+Manage Vendors,Manage Vendors
+Add New Vendor,Add New Vendor
+Save Vendor,Save Vendor
+Delete Vendor,Delete Vendor
+Reset Password,Reset Password
+New Vendor,New Vendor
+Bank Details,Bank Details
+Account Holder Name,Account Holder Name
+Bank Account Number,Bank Account Number
+Bank Name,Bank Name
+IFSC,IFSC
+"Allowed File Types : (JPG,JPEG,PNG), Max Size:2MB.","Allowed File Types : (JPG,JPEG,PNG), Max Size:2MB."
+Business Details,Business Details
+Business Name,Business Name
+Display Name,Display Name
+"Optional. If filled, it will display instead if business name.","Optional. If filled, it will display instead if business name."
+Company Logo,Company Logo
+"Size: 164px x 24px, Allowed File Types : (JPG,JPEG,PNG), Max Size:2MB.","Size: 164px x 24px, Allowed File Types : (JPG,JPEG,PNG), Max Size:2MB."
+VAT,VAT
+VAT Document,VAT Document
+Other Marketplace URL,Other Marketplace URL
+Categories,Categories
+Other Category,Other Category
+Product(s) Category Details,Product(s) Category Details
+Product(s) Category,Product(s) Category
+Select All ,Select All 
+Profile Details,Profile Details
+Name,Name
+Vendor Email,Vendor Email
+Mobile,Mobile
+Address Line 1,Address Line 1
+Address Line 2,Address Line 2
+Country,Country
+State,State
+City,City
+Pincode,Pincode
+Profile Status,Profile Status
+Inactive/Disapproved Reason,Inactive/Disapproved Reason
+Vacation Message,Vacation Message
+Vendor Information,Vendor Information
+Pickup and Shipping Information,Pickup and Shipping Information
+Revenue,Revenue
+"Media (.avi, .flv, .swf)","Media (.avi, .flv, .swf)"
+All Files,All Files
+We can't get the order instance right now.,We can't get the order instance right now.
+-- Select Status --,-- Select Status --
+Update Qty's,Update Qty's
+Submit Invoice and Shipment,Submit Invoice and Shipment
+Submit Invoice,Submit Invoice
+Paid Amount,Paid Amount
+Refund Amount,Refund Amount
+Shipping Amount,Shipping Amount
+Shipping Refund,Shipping Refund
+Order Grand Total,Order Grand Total
+Send Email,Send Email
+Are you sure you want to send an invoice email to customer?,Are you sure you want to send an invoice email to customer?
+Capture,Capture
+Void,Void
+Print,Print
+The invoice email was sent.,The invoice email was sent.
+The invoice email wasn't sent.,The invoice email wasn't sent.
+Invoice #%1 | %2 | %4 (%3),Invoice #%1 | %2 | %4 (%3)
+Invalid parent block for this block,Invalid parent block for this block
+Custom Value,Custom Value
+Please correct the parent block for this block.,Please correct the parent block for this block.
+Order # %1,Order # %1
+Root Catalog,Root Catalog
+Yes,Yes
+No,No
+Manufacturer,Manufacturer
+Remove,Remove
+Bulk Images &amp; Price,Bulk Images &amp; Price
+Click here or drag and drop to add images.,Click here or drag and drop to add images.
+Delete image,Delete image
+Make Base,Make Base
+Hidden,Hidden
+Images and Videos,Images and Videos
+Edit Offer to %1,Edit Offer to %1
+Add Offer to %1,Add Offer to %1
+All Store Views,All Store Views
+Contact Us,Contact Us
+Please enter query and query description.,Please enter query and query description.
+Thanks for contacting us with your comments and questions. We'll respond to you very soon.,Thanks for contacting us with your comments and questions. We'll respond to you very soon.
+Your password reset link has expired.,Your password reset link has expired.
+Dashboard,Dashboard
+"Session has been timeout, Please login","Session has been timeout, Please login"
+Please fill up all data,Please fill up all data
+Please enter current password.,Please enter current password.
+Please enter new password.,Please enter new password.
+Please enter confirm password.,Please enter confirm password.
+Confirm your new password.,Confirm your new password.
+Something went wrong while changing the password.,Something went wrong while changing the password.
+Your status change request submitted successfully.,Your status change request submitted successfully.
+Information has been updated successfully.,Information has been updated successfully.
+Something went wrong while updating the profile.,Something went wrong while updating the profile.
+Enter a valid email address.,Enter a valid email address.
+"Sorry, we didn't found any account associated with '%1'.","Sorry, we didn't found any account associated with '%1'."
+We're unable to send the password reset email.,We're unable to send the password reset email.
+Please enter your email.,Please enter your email.
+If there is an account associated with %1 you will receive an email with a link to reset your password.,If there is an account associated with %1 you will receive an email with a link to reset your password.
+My Profile,My Profile
+"This account is not confirmed. <a href=""%1"">Click here</a> to resend confirmation email.","This account is not confirmed. <a href=""%1"">Click here</a> to resend confirmation email."
+Invalid login or password.,Invalid login or password.
+A login and a password are required.,A login and a password are required.
+Please register using Email address,Please register using Email address
+"You have already registered as vendor, Login to continue.","You have already registered as vendor, Login to continue."
+Create New Vendor Account,Create New Vendor Account
+Please fill up all registration details,Please fill up all registration details
+"Your account has been setup and under review. In the meantime, you can update your profile.","Your account has been setup and under review. In the meantime, you can update your profile."
+Something went wrong while saving the vendor.,Something went wrong while saving the vendor.
+Please make sure your passwords match.,Please make sure your passwords match.
+New Password and Confirm New Password values didn't match.,New Password and Confirm New Password values didn't match.
+Please enter a new password.,Please enter a new password.
+You updated your password.,You updated your password.
+Something went wrong while saving the new password.,Something went wrong while saving the new password.
+"You have already registered as vendor, Please proceed with further steps of registration.","You have already registered as vendor, Please proceed with further steps of registration."
+"You have already registered as vendor, Login to continue..","You have already registered as vendor, Login to continue.."
+Enter a valid phone number.,Enter a valid phone number.
+"Thank you for registering, We have sent you an email with instructions and the next steps for you to complete your registration.","Thank you for registering, We have sent you an email with instructions and the next steps for you to complete your registration."
+invalid request,invalid request
+see error log for details,see error log for details
+Service unavailable: %1,Service unavailable: %1
+Vendors,Vendors
+Something went wrong while editing the vendor.,Something went wrong while editing the vendor.
+Manage Approved Vendors,Manage Approved Vendors
+Manage Closed Vendors,Manage Closed Vendors
+You have deleted vendor successfully .,You have deleted vendor successfully .
+Something went wrong while deleting the vendor.,Something went wrong while deleting the vendor.
+Manage Inactive Vendors,Manage Inactive Vendors
+Manage Vendor New Registrations,Manage Vendor New Registrations
+A totall of %1 record(s) have been deleted.,A totall of %1 record(s) have been deleted.
+A total of %1 record(s) were updated.,A total of %1 record(s) were updated.
+Manage Vacation Mode On Vendors,Manage Vacation Mode On Vendors
+Manage Rejected Vendors,Manage Rejected Vendors
+The vendor will receive an email with a link to reset password.,The vendor will receive an email with a link to reset password.
+Something went wrong while resetting vendor password.,Something went wrong while resetting vendor password.
+Make sure Vacation From Date and To Date.,Make sure Vacation From Date and To Date.
+You saved the vendor.,You saved the vendor.
+The order has been canceled.,The order has been canceled.
+The order has not been canceled.,The order has not been canceled.
+The order has been confirmed.,The order has been confirmed.
+The order has not been confirmed.,The order has not been confirmed.
+Credit Memos,Credit Memos
+New Memo for #%1,New Memo for #%1
+New Memo,New Memo
+You need to manage shipping amount manually.,You need to manage shipping amount manually.
+The credit memo's total must be positive.,The credit memo's total must be positive.
+Cannot create online refund for Refund to Store Credit.,Cannot create online refund for Refund to Store Credit.
+You created the credit memo.,You created the credit memo.
+We can't save the credit memo right now.,We can't save the credit memo right now.
+We can't update the item's quantity right now.,We can't update the item's quantity right now.
+The order no longer exists.,The order no longer exists.
+We can't create credit memo for the order.,We can't create credit memo for the order.
+Manage Orders,Manage Orders
+The order does not allow an invoice to be created.,The order does not allow an invoice to be created.
+You can't create an invoice without products.,You can't create an invoice without products.
+Invoices,Invoices
+New Invoice,New Invoice
+We can't save the invoice right now.,We can't save the invoice right now.
+The invoice and the shipment  have been created. The shipping label cannot be created now.,The invoice and the shipment  have been created. The shipping label cannot be created now.
+You created the invoice and shipment.,You created the invoice and shipment.
+The invoice has been created.,The invoice has been created.
+We can't send the invoice email right now.,We can't send the invoice email right now.
+We can't send the shipment right now.,We can't send the shipment right now.
+Cannot update item quantity.,Cannot update item quantity.
+We confirmed %1 order(s).,We confirmed %1 order(s).
+Shipments,Shipments
+New Shipment,New Shipment
+We can't save the shipment right now.,We can't save the shipment right now.
+The order does not allow to create a shipment.,The order does not allow to create a shipment.
+The shipment has been created.,The shipment has been created.
+You created the shipping label.,You created the shipping label.
+An error occurred while creating shipping label.,An error occurred while creating shipping label.
+Cannot save shipment.,Cannot save shipment.
+Sales,Sales
+Orders,Orders
+Deleted successfully !,Deleted successfully !
+Disabled Products,Disabled Products
+Products,Products
+This Product no longer exits. ,This Product no longer exits. 
+Edit Product,Edit Product
+. ' (' . . ')',. ' (' . . ')'
+Manage Products,Manage Products
+The Product request has been disapproved.,The Product request has been disapproved.
+Something went wrong while saving the product request.,Something went wrong while saving the product request.
+Vendor product Listed sucessfully.,Vendor product Listed sucessfully.
+Something went wrong while saving record.,Something went wrong while saving record.
+Please select product(s).,Please select product(s).
+A total of %1 record(s) have been deleted.,A total of %1 record(s) have been deleted.
+A total of %1 record(s) have been updated.,A total of %1 record(s) have been updated.
+Vendor product unlisted sucessfully,Vendor product unlisted sucessfully
+Product request does not exist,Product request does not exist
+Product does not found.,Product does not found.
+Product Request has been approved.,Product Request has been approved.
+No such product available.,No such product available.
+Unable to save product,Unable to save product
+SKU for product %1 has been changed to %2.,SKU for product %1 has been changed to %2.
+Something went wrong.,Something went wrong.
+Product is already exist vendor with same store.,Product is already exist vendor with same store.
+This vendor product no longer exists.,This vendor product no longer exists.
+The image cannot be removed as it has been assigned to the other image role,The image cannot be removed as it has been assigned to the other image role
+Delete successfully !,Delete successfully !
+This Product Request no longer exits.,This Product Request no longer exits.
+Edit Product Request,Edit Product Request
+New Request,New Request
+Vendor Product,Vendor Product
+This Product Request no longer exits. ,This Product Request no longer exits. 
+Please select product request(s).,Please select product request(s).
+Product request does not exist.,Product request does not exist.
+Product request has been disaproved.,Product request has been disaproved.
+Product request has been saved.,Product request has been saved.
+This Request no longer exits. ,This Request no longer exits. 
+Edit Request,Edit Request
+Request,Request
+Manage Vendor Request,Manage Vendor Request
+Something went wrong while updating the vendor(s) request status.,Something went wrong while updating the vendor(s) request status.
+Something went wrong while load record.,Something went wrong while load record.
+You saved this vendor request status.,You saved this vendor request status.
+The order has could not been canceled.,The order has could not been canceled.
+This order no longer exists.,This order no longer exists.
+Cancelled Orders,Cancelled Orders
+Completed Orders,Completed Orders
+The order could not confirm.,The order could not confirm.
+Vendor Order Id,Vendor Order Id
+Purchase Date,Purchase Date
+Ship To Name,Ship To Name
+Bill To Name,Bill To Name
+Grand Total,Grand Total
+Ship to Name,Ship to Name
+Active Orders,Active Orders
+In Progress Orders,In Progress Orders
+"You are not allowed to use requested feature, Please contact Marketplace Admin in case any query.","You are not allowed to use requested feature, Please contact Marketplace Admin in case any query."
+Failed to upload invoice.,Failed to upload invoice.
+Please select order(s).,Please select order(s).
+%1 Order Confirmed successfully.,%1 Order Confirmed successfully.
+%1 Order(s) canceled.,%1 Order(s) canceled.
+There are no printable documents related to selected orders.,There are no printable documents related to selected orders.
+Order Status has been updated successfully.,Order Status has been updated successfully.
+Something went wrong while update order status.,Something went wrong while update order status.
+Cannot Generate shipment.,Cannot Generate shipment.
+Shipment has been generated successfully.,Shipment has been generated successfully.
+Shipping label has been created successfully.,Shipping label has been created successfully.
+Cannot do shipment for the order separately from invoice.,Cannot do shipment for the order separately from invoice.
+Cannot do shipment for the order.,Cannot do shipment for the order.
+Specified order does not found.,Specified order does not found.
+You are not allowed to use requested feature as your account status is pending.,You are not allowed to use requested feature as your account status is pending.
+This Product no longer exits.,This Product no longer exits.
+"An edit request for this product is already exist. <a href=""%1""> Click here to edit existing request.</a>","An edit request for this product is already exist. <a href=""%1""> Click here to edit existing request.</a>"
+Edit Approved Product,Edit Approved Product
+Select Category,Select Category
+"Sorry, Unauthorised action perform.","Sorry, Unauthorised action perform."
+No attribute set has added to selected category.,No attribute set has added to selected category.
+Vendor SKU is already exist.,Vendor SKU is already exist.
+Something went wrong while submitting product request.,Something went wrong while submitting product request.
+Seller Sku in offer section,Seller Sku in offer section
+Price in offer section,Price in offer section
+Your product is added successfully for approval.,Your product is added successfully for approval.
+Can't send email.,Can't send email.
+Your product changes are added successfully for approval.,Your product changes are added successfully for approval.
+Something went wrong while submitting approved product change request.,Something went wrong while submitting approved product change request.
+Product Attributes - Vital Info,Product Attributes - Vital Info
+Last 24 Hours,Last 24 Hours
+Last 7 Days,Last 7 Days
+Current Month,Current Month
+YTD,YTD
+2YTD,2YTD
+No confirmation needed.,No confirmation needed.
+Please correct the transactional account email type.,Please correct the transactional account email type.
+Account already active,Account already active
+Invalid confirmation token,Invalid confirmation token
+This account is not confirmed.,This account is not confirmed.
+Your account has been closed.,Your account has been closed.
+Your account is inactive.,Your account is inactive.
+Please enter a password with at least %1 characters.,Please enter a password with at least %1 characters.
+The password can't begin or end with a space.,The password can't begin or end with a space.
+Reset password token mismatch.,Reset password token mismatch.
+Reset password token expired.,Reset password token expired.
+Please verify your account.,Please verify your account.
+This vendor already exists in this store.,This vendor already exists in this store.
+A vendor with the same email already exists in an associated website.,A vendor with the same email already exists in an associated website.
+The current password doesn't match this account.,The current password doesn't match this account.
+Select,Select
+ You are not allowed to sell under this category., You are not allowed to sell under this category.
+None,None
+Use Parent Category Settings,Use Parent Category Settings
+Global,Global
+Per Website,Per Website
+We can't share vendor accounts globally when the accounts share identical email addresses on more than one website.,We can't share vendor accounts globally when the accounts share identical email addresses on more than one website.
+--Please Select--,--Please Select--
+Order does not allow to be canceled.,Order does not allow to be canceled.
+Invoice # ,Invoice # 
+Sold By : ,Sold By : 
+Address : ,Address : 
+VAT : ,VAT : 
+GSTIN : ,GSTIN : 
+No Vendor found for the item '%1'.,No Vendor found for the item '%1'.
+Approved but not listed,Approved but not listed
+Listed,Listed
+Used,Used
+New,New
+Rental,Rental
+Invalid product and vendor.,Invalid product and vendor.
+Requested product doesn't exist,Requested product doesn't exist
+Please enter %1.,Please enter %1.
+Pending,Pending
+Approved,Approved
+Disapproved,Disapproved
+Vendor SKU(s) %1 already exist.,Vendor SKU(s) %1 already exist.
+Vendor SKU is already exist in Approved Products.,Vendor SKU is already exist in Approved Products.
+Vendor SKU is already exist In Pending Request.,Vendor SKU is already exist In Pending Request.
+Vendor SKU is already exist In Pending Request in variants.,Vendor SKU is already exist In Pending Request in variants.
+Order # ,Order # 
+Order Date: ,Order Date: 
+Sold to:,Sold to:
+Ship to:,Ship to:
+Payment Method:,Payment Method:
+Payment Method,Payment Method
+Shipping Method:,Shipping Method:
+Title,Title
+Number,Number
+Seller:,Seller:
+Packing Slip # ,Packing Slip # 
+Total Shipping Charges,Total Shipping Charges
+We cannot register an existing credit memo.,We cannot register an existing credit memo.
+The most money available to refund is %1.,The most money available to refund is %1.
+Active,Active
+Inactive,Inactive
+On Vacation,On Vacation
+Closed,Closed
+Rejected,Rejected
+Vacation,Vacation
+Close,Close
+-- Please Select --,-- Please Select --
+Please Select,Please Select
+File size must be less than 512 KB.,File size must be less than 512 KB.
+Please enter name.,Please enter name.
+Please use letters only (a-z or A-Z) in Name.,Please use letters only (a-z or A-Z) in Name.
+Please enter password.,Please enter password.
+Please enter 6 or more characters for password. Leading and trailing spaces will be ignored.,Please enter 6 or more characters for password. Leading and trailing spaces will be ignored.
+Please enter email address.,Please enter email address.
+"Please correct this email address: ""%1"".","Please correct this email address: ""%1""."
+Please enter address line 1.,Please enter address line 1.
+Please select state/region.,Please select state/region.
+Please select city.,Please select city.
+Please use only letters (a-z or A-Z) in city.,Please use only letters (a-z or A-Z) in city.
+Please select pincode.,Please select pincode.
+Please enter pickup address line 1.,Please enter pickup address line 1.
+Please select pickup state/region.,Please select pickup state/region.
+Please select pickup city.,Please select pickup city.
+Please use only letters (a-z or A-Z) in pickup city.,Please use only letters (a-z or A-Z) in pickup city.
+Please enter pickup pincode.,Please enter pickup pincode.
+Please select a category or specify other category.,Please select a category or specify other category.
+Please enter business name.,Please enter business name.
+Please enter VAT.,Please enter VAT.
+Please enter bank account holder's name.,Please enter bank account holder's name.
+Please use only letters (a-z or A-Z) or spaces only in bank account holder's name.,Please use only letters (a-z or A-Z) or spaces only in bank account holder's name.
+Please enter bank account number.,Please enter bank account number.
+Bank account number should be numeric value ranging from 10 to 17 digits.,Bank account number should be numeric value ranging from 10 to 17 digits.
+Please enter bank name.,Please enter bank name.
+Please use only letters (a-z or A-Z) or spaces only in bank name.,Please use only letters (a-z or A-Z) or spaces only in bank name.
+"Please use only letters (a-z or A-Z), numbers (0-9) or spaces only in display name.","Please use only letters (a-z or A-Z), numbers (0-9) or spaces only in display name."
+Requested vendor doesn't exist,Requested vendor doesn't exist
+Unable to save vendor,Unable to save vendor
+"Product not assigned to vendor(s) ""%1"" due to category mismatch.","Product not assigned to vendor(s) ""%1"" due to category mismatch."
+Packed,Packed
+Shipment Generated,Shipment Generated
+Delivered,Delivered
+Delete ${ $.$data.name },Delete ${ $.$data.name }
+Are you sure you want to delete a ${ $.$data.name } record?,Are you sure you want to delete a ${ $.$data.name } record?
+Add Value,Add Value
+SKU,SKU
+Vendor Sku,Vendor Sku
+Your price,Your price
+Qty,Qty
+Your Quantity,Your Quantity
+Sale Start Date,Sale Start Date
+MM/DD/YYYY,MM/DD/YYYY
+Sale End Date,Sale End Date
+No Variants found.,No Variants found.
+Browse to find or drag image here,Browse to find or drag image here
+Alt Text,Alt Text
+Role,Role
+Image Size,Image Size
+{size},{size}
+Image Resolution,Image Resolution
+{width}^{height} px,{width}^{height} px
+Hide from Product Page,Hide from Product Page
+Product,Product
+Subtotal,Subtotal
+Discount,Discount
+Row Subtotal,Row Subtotal
+No ordered items,No ordered items
+Update Items and Quantities,Update Items and Quantities
+Total %1 product(s),Total %1 product(s)
+Subtotal:,Subtotal:
+selected,selected
+Tier Pricing,Tier Pricing
+Custom Price,Custom Price
+Apply,Apply
+Please select,Please select
+Move to Shopping Cart,Move to Shopping Cart
+Move to Wish List,Move to Wish List
+Payment &amp; Shipping Method,Payment &amp; Shipping Method
+Payment Information,Payment Information
+The order was placed using %1.,The order was placed using %1.
+Shipping Information,Shipping Information
+Incl. Tax,Incl. Tax
+Items to Refund,Items to Refund
+Return to Stock,Return to Stock
+Qty to Refund,Qty to Refund
+Tax Amount,Tax Amount
+Discount Amount,Discount Amount
+Row Total,Row Total
+No Items To Refund,No Items To Refund
+Order Total,Order Total
+Credit Memo Comments,Credit Memo Comments
+Comment Text,Comment Text
+Refund Totals,Refund Totals
+Append Comments,Append Comments
+Email Copy of Credit Memo,Email Copy of Credit Memo
+Items Refunded,Items Refunded
+No Items,No Items
+Memo Total,Memo Total
+Credit Memo History,Credit Memo History
+Credit Memo Totals,Credit Memo Totals
+Create Shipment,Create Shipment
+Invoice and shipment types do not match for some items on this order. You can create a shipment only after creating the invoice.,Invoice and shipment types do not match for some items on this order. You can create a shipment only after creating the invoice.
+Items Invoiced,Items Invoiced
+Invoice History,Invoice History
+Invoice Totals,Invoice Totals
+Items to Ship,Items to Ship
+Qty to Ship,Qty to Ship
+Shipment Total,Shipment Total
+Shipment Comments,Shipment Comments
+Shipment Options,Shipment Options
+Create Shipping Label,Create Shipping Label
+Email Copy of Shipment,Email Copy of Shipment
+Invalid value(s) for Qty to Ship,Invalid value(s) for Qty to Ship
+Shipping and Tracking Information,Shipping and Tracking Information
+Track this shipment,Track this shipment
+Items Shipped,Items Shipped
+Shipment History,Shipment History
+Order & Account Information,Order & Account Information
+The order confirmation email was sent,The order confirmation email was sent
+The order confirmation email is not sent,The order confirmation email is not sent
+vendor Order # %1,vendor Order # %1
+Vendor Order # %1,Vendor Order # %1
+Order Date (%1),Order Date (%1)
+Order Status,Order Status
+Purchased From,Purchased From
+Link to the New Order,Link to the New Order
+Link to the Previous Order,Link to the Previous Order
+Placed from IP,Placed from IP
+%1 / %2 rate:,%1 / %2 rate:
+Account Information,Account Information
+Customer Name,Customer Name
+Email,Email
+Customer Group,Customer Group
+Sold By,Sold By
+Address,Address
+GSTIN,GSTIN
+Address Information,Address Information
+Billing Address,Billing Address
+Shipping Address,Shipping Address
+Vendor: %1 (%2),Vendor: %1 (%2)
+Vendor order: #%1,Vendor order: #%1
+Status: %1,Status: %1
+Vendor does not exist.,Vendor does not exist.
+Item Status,Item Status
+Original Price,Original Price
+Tax Percent,Tax Percent
+Tax,Tax
+SKU:,SKU:
+Ordered,Ordered
+Shipping &amp; Handling Information,Shipping &amp; Handling Information
+Track Order,Track Order
+No shipping information available,No shipping information available
+Items Ordered,Items Ordered
+Order Totals,Order Totals
+Access denied,Access denied
+You need more permissions to access this.,You need more permissions to access this.
+Contact Information,Contact Information
+Change Password,Change Password
+Newsletters,Newsletters
+"You subscribe to ""General Subscription"".","You subscribe to ""General Subscription""."
+You don't subscribe to our newsletter.,You don't subscribe to our newsletter.
+or,or
+Back,Back
+My Account,My Account
+Business Information,Business Information
+Login Information,Login Information
+Selling Categories,Selling Categories
+Selling Brands,Selling Brands
+Bank Account Detail,Bank Account Detail
+Payout Details,Payout Details
+Account Holder's Name,Account Holder's Name
+Account Number,Account Number
+IFSC Code,IFSC Code
+Re-type Account Number,Re-type Account Number
+"Allowed File Types :(JPG,JPEG,PNG), Max Size:2MB","Allowed File Types :(JPG,JPEG,PNG), Max Size:2MB"
+Company's Logo,Company's Logo
+Choose a file&hellip;,Choose a file&hellip;
+VAT Number,VAT Number
+required-file,required-file
+This Display Name is already exist,This Display Name is already exist
+Mobile Number,Mobile Number
+Email Address,Email Address
+Current Password,Current Password
+Create Password,Create Password
+New Password,New Password
+Confirm Password,Confirm Password
+State/Region,State/Region
+Current Status,Current Status
+Go to Vacation,Go to Vacation
+From,From
+To,To
+Vacation Reason,Vacation Reason
+Select Date,Select Date
+Change,Change
+Reset,Reset
+* Required Fields,* Required Fields
+This tab contains invalid data. Please resolve this before saving.,This tab contains invalid data. Please resolve this before saving.
+Previous,Previous
+Next,Next
+Save & Finish,Save & Finish
+Balance,Balance
+View transactions,View transactions
+Product Sold,Product Sold
+Life Time Sales,Life Time Sales
+Average Orders,Average Orders
+Paid,Paid
+Out of 5,Out of 5
+Orders Overview,Orders Overview
+Amounts,Amounts
+Approved Products,Approved Products
+View All,View All
+There are no product in this list.,There are no product in this list.
+Best Sellers,Best Sellers
+No Data Found,No Data Found
+Chart is disabled by admin.,Chart is disabled by admin.
+New Orders,New Orders
+Guest,Guest
+No Orders Found.,No Orders Found.
+Low Inventory Products,Low Inventory Products
+No products with low inventory.,No products with low inventory.
+Most Viewed Products,Most Viewed Products
+No data found.,No data found.
+Sale Summary,Sale Summary
+Tenure,Tenure
+Order Product Sales,Order Product Sales
+No. Of Orders,No. Of Orders
+Already added offers,Already added offers
+Weight,Weight
+Size,Size
+Color,Color
+New Registration,New Registration
+Phone Number,Phone Number
+Join Now,Join Now
+Write Us,Write Us
+Jot us a note and we’ll get back to you as quickly as possible.,Jot us a note and we’ll get back to you as quickly as possible.
+Query,Query
+Query Summary,Query Summary
+Description,Description
+Query Description,Query Description
+Submit,Submit
+Forgot Your Password?,Forgot Your Password?
+"Enter the email address associated with your Marketplace account, then click Submit. We'll send you a link to a page where you can easily create a new password.","Enter the email address associated with your Marketplace account, then click Submit. We'll send you a link to a page where you can easily create a new password."
+"If you don't remember email address associated with your Marketplace account, you may <a href='%1'>Contact Support</a> for help to access your account.","If you don't remember email address associated with your Marketplace account, you may <a href='%1'>Contact Support</a> for help to access your account."
+Back to Login,Back to Login
+Password,Password
+Login,Login
+Forgot Password?,Forgot Password?
+Pickup and Shipping information,Pickup and Shipping information
+Use Vendor Address as Pickup Address,Use Vendor Address as Pickup Address
+Do you need installation?,Do you need installation?
+Installation fee,Installation fee
+Select Category (Please select at least one or specify in other cateogry.),Select Category (Please select at least one or specify in other cateogry.)
+Do you Sell on other Marketplace?,Do you Sell on other Marketplace?
+Please Enter Product URL,Please Enter Product URL
+I have read and agree to terms and conditions,I have read and agree to terms and conditions
+Terms and conditions,Terms and conditions
+Continue,Continue
+Reset Vendor Password,Reset Vendor Password
+Confirm New Password,Confirm New Password
+Set a New Password,Set a New Password
+Toggle Nav,Toggle Nav
+Transaction(s) With Total Payable Amount,Transaction(s) With Total Payable Amount
+Items %1 to %2 of %3 total,Items %1 to %2 of %3 total
+%1 Item,%1 Item
+%1 Item(s),%1 Item(s)
+Page,Page
+You're currently reading page,You're currently reading page
+Show,Show
+per page,per page
+Browse Files...,Browse Files...
+New Vendors,New Vendors
+"Creating an account has many benefits: check out faster, keep more than one address, track orders and more.","Creating an account has many benefits: check out faster, keep more than one address, track orders and more."
+Create an Account,Create an Account
+View Detail Page,View Detail Page
+Search...,Search...
+Search,Search
+Export,Export
+Clear,Clear
+Filters,Filters
+Purchased Date,Purchased Date
+from,from
+to,to
+Min,Min
+Max,Max
+ID #,ID #
+View,View
+Your search result could not find.,Your search result could not find.
+You have received no orders.,You have received no orders.
+Canceled,Canceled
+Dispatch By,Dispatch By
+No orders found.,No orders found.
+1%,1%
+Qty to Invoice,Qty to Invoice
+Invoice Comments,Invoice Comments
+Amount,Amount
+Capture Online,Capture Online
+Capture Offline,Capture Offline
+Not Capture,Not Capture
+The invoice will be created offline without the payment gateway.,The invoice will be created offline without the payment gateway.
+Email Copy of Invoice,Email Copy of Invoice
+Print All Invoices,Print All Invoices
+Invoice #,Invoice #
+Print Invoice,Print Invoice
+Qty Invoiced,Qty Invoiced
+Total Tax,Total Tax
+Review Vendor,Review Vendor
+Vendor Items Ordered,Vendor Items Ordered
+Gift Message,Gift Message
+Invoiced,Invoiced
+Shipped,Shipped
+Refunded,Refunded
+Excl. Tax,Excl. Tax
+Marketplace SKU,Marketplace SKU
+Generate Shipment,Generate Shipment
+Generate Packing Slip,Generate Packing Slip
+Print Invoices,Print Invoices
+Confirm Order,Confirm Order
+Cancel Order,Cancel Order
+To be Confirmed,To be Confirmed
+To be Shipped,To be Shipped
+Order Information,Order Information
+Shipping Method,Shipping Method
+Shipment #%1,Shipment #%1
+Qty Shipped,Qty Shipped
+Print All Shipments,Print All Shipments
+Shipment #,Shipment #
+Print Shipment,Print Shipment
+Tracking Number(s):,Tracking Number(s):
+Sku,Sku
+Shipping Details,Shipping Details
+Carrier,Carrier
+Shipping Service,Shipping Service
+Tracking ID,Tracking ID
+Shipment comment,Shipment comment
+Generate,Generate
+Order,Order
+Ship-to-Name,Ship-to-Name
+Generate Invoice,Generate Invoice
+Date,Date
+Is Confirmed,Is Confirmed
+Shipping & Handling Information,Shipping & Handling Information
+Your Price,Your Price
+more,more
+"Minimum price will be calculate whether it price or special price. Marketplace Fees, Marketplace Commission, and Service Tax will be deduct from minimum price. The commission, marketplace fees and service tax are based on the current commission and payment settings. The actual charges may vary depending on date of order.","Minimum price will be calculate whether it price or special price. Marketplace Fees, Marketplace Commission, and Service Tax will be deduct from minimum price. The commission, marketplace fees and service tax are based on the current commission and payment settings. The actual charges may vary depending on date of order."
+Reorder Level,Reorder Level
+Example: 3 year parts and labor warranty is non-transferable and valid for 1 year from the original date of purchase.,Example: 3 year parts and labor warranty is non-transferable and valid for 1 year from the original date of purchase.
+Does this product have variants,Does this product have variants
+Does this product have variants.,Does this product have variants.
+Show All Fields,Show All Fields
+Please select atleast one option from,Please select atleast one option from
+Show Minimal Fields,Show Minimal Fields
+"Sorry, No variant attributes found for selected category.","Sorry, No variant attributes found for selected category."
+"Sorry, No attributes found.","Sorry, No attributes found."
+Create Grid,Create Grid
+My Listing,My Listing
+List New Product,List New Product
+Select and Sell,Select and Sell
+Completed,Completed
+Financials,Financials
+Transactions Summary,Transactions Summary
+Commissions Invoice,Commissions Invoice
+Vendor Service,Vendor Service
+Feedback and Rating,Feedback and Rating
+Shipping Matrix,Shipping Matrix
+The information in this tab has been changed.,The information in this tab has been changed.
+Loading...,Loading...
+"Dear %name,","Dear %name,"
+Welcome to ,Welcome to 
+Please verify your email address by clicking on the link below or by opening it in your browser.,Please verify your email address by clicking on the link below or by opening it in your browser.
+Confirm Your Account,Confirm Your Account
+Thank you!,Thank you!
+"%name,","%name,"
+There was recently a request to change the password for your account.,There was recently a request to change the password for your account.
+"If you requested this change, set a new password here:","If you requested this change, set a new password here:"
+"If you did not make this request, you can ignore this email and your password will remain the same.","If you did not make this request, you can ignore this email and your password will remain the same."
+The password for your account has been successfully changed.,The password for your account has been successfully changed.
+"If you did not request this change, please contact us.","If you did not request this change, please contact us."
+Hello,Hello
+Your vacation request from,Your vacation request from
+has been approved.,has been approved.
+Account status has been changed to,Account status has been changed to
+You will be able to operate the vendor panel however your products will inactive on the marketplace.,You will be able to operate the vendor panel however your products will inactive on the marketplace.
+has requested for vacation from,has requested for vacation from
+0,0
+along with comment:,along with comment:
+Kindly check the request and do the necessary.,Kindly check the request and do the necessary.
+has been rejected.,has been rejected.
+Account status is active.,Account status is active.
+You are able to operate the vendor panel.,You are able to operate the vendor panel.
+"Thank you, %store_name","Thank you, %store_name"
+Please use only letters (a-z or A-Z) or spaces only in this field.,Please use only letters (a-z or A-Z) or spaces only in this field.
+Please enter valid IFSC Code. For e.g. {ABCD1234567}.,Please enter valid IFSC Code. For e.g. {ABCD1234567}.
+Logo file size is more than 2MB,Logo file size is more than 2MB
+Vat file size is more than 2MB,Vat file size is more than 2MB
+Add Products,Add Products
+You have item changes,You have item changes
+Please make sure your bank account numbers match.,Please make sure your bank account numbers match.
+Please enter valid VAT. For e.g. {24ABCDE2345F6ZM}.,Please enter valid VAT. For e.g. {24ABCDE2345F6ZM}.
+Please enter special price less than price.,Please enter special price less than price.
+Please enter a valid email address.,Please enter a valid email address.
+Please enter a valid mobile number.,Please enter a valid mobile number.
+We could not detect a size.,We could not detect a size.
+Uploaded file dimension is too large.,Uploaded file dimension is too large.
+Please upload appropriate image size. (Maximum 2MB),Please upload appropriate image size. (Maximum 2MB)
+We don't recognize or support this file extension type.,We don't recognize or support this file extension type.
+OK,OK
+This Business Name is Available.,This Business Name is Available.
+This Business Name already exists. Please try another.,This Business Name already exists. Please try another.
+This Display Name is available.,This Display Name is available.
+This Display Name already exists. Please try another.,This Display Name already exists. Please try another.
+Installation fee : <strong>,Installation fee : <strong>
+File type is not allowed,File type is not allowed
+Please enter category name or select from above list.,Please enter category name or select from above list.
+This Business Name is already exist. Please try another.,This Business Name is already exist. Please try another.
+Gift Options for ,Gift Options for 
+Edit Order,Edit Order
+Ok,Ok
+Vendor Configuration,Vendor Configuration
+Create New Account Options,Create New Account Options
+Require Emails Confirmation,Require Emails Confirmation
+Email Sender,Email Sender
+Confirmation Link Email,Confirmation Link Email
+"Email template chosen based on theme fallback when ""Default"" option is selected.","Email template chosen based on theme fallback when ""Default"" option is selected."
+Vendor Status Request,Vendor Status Request
+Email Receiver,Email Receiver
+Email address to receive vendor notifications for status change request.,Email address to receive vendor notifications for status change request.
+Notification Email,Notification Email
+Notification Email To Admin,Notification Email To Admin
+Contact Configurations,Contact Configurations
+Email Template,Email Template
+Password Options,Password Options
+Forgot Email Template,Forgot Email Template
+Remind Email Template,Remind Email Template
+Reset Password Template,Reset Password Template
+Password Template Email Sender,Password Template Email Sender
+Vendor Password Recovery Link Expiration Period (days),Vendor Password Recovery Link Expiration Period (days)
+Please enter a number 1 or greater in this field.,Please enter a number 1 or greater in this field.
+Terms and Conditions,Terms and Conditions
+Content,Content
+Dashboard Summary,Dashboard Summary
+"Please enter a number to display number of records of ""New Orders"" on vendor dashboard.","Please enter a number to display number of records of ""New Orders"" on vendor dashboard."
+"Please enter a number to display number of records of ""Approve Products"" on vendor dashboard.","Please enter a number to display number of records of ""Approve Products"" on vendor dashboard."
+"Please enter a number to display number of records of ""Low Inventory"" Products on vendor dashboard.","Please enter a number to display number of records of ""Low Inventory"" Products on vendor dashboard."
+Please enter a number to display number of records of Sale Summary on vendor dashboard.,Please enter a number to display number of records of Sale Summary on vendor dashboard.
+"Please enter a number to display number of records of ""Best Sellers"" on vendor dashboard.","Please enter a number to display number of records of ""Best Sellers"" on vendor dashboard."
+"Please enter a number to display number of records of ""Most Viewed Products"" on vendor dashboard.","Please enter a number to display number of records of ""Most Viewed Products"" on vendor dashboard."
+General,General
+Allow Vendor for Vacation Mode,Allow Vendor for Vacation Mode
+Allow Vendor to Generate Inovice,Allow Vendor to Generate Inovice
+Vendor Design,Vendor Design
+Vendor Profile,Vendor Profile
+Default Avatar,Default Avatar
+Emails,Emails
+Header Template,Header Template
+Footer Template,Footer Template
+Vendor Dashboard,Vendor Dashboard
+Left Panel Header Color,Left Panel Header Color
+Left Panel Main Color,Left Panel Main Color
+Product Configurations,Product Configurations
+Manage Attributes,Manage Attributes
+Exclude Attributes,Exclude Attributes
+Default Attribute Set For Category,Default Attribute Set For Category
+Product Image Style Guide,Product Image Style Guide
+Product Request Settings,Product Request Settings
+Email address to receive vendor notifications for new product request.,Email address to receive vendor notifications for new product request.
+Admin Notification Email Template,Admin Notification Email Template
+Category Display Settings,Category Display Settings
+Display Authorised Categories Only,Display Authorised Categories Only
+Display Category Counts,Display Category Counts
+Product Validation Settings,Product Validation Settings
+Check Vendor SKU,Check Vendor SKU
+Check Manufacturer SKU,Check Manufacturer SKU
+Allow Variants,Allow Variants
+Image Width,Image Width
+Image Height,Image Height
+Sales Settings,Sales Settings
+Order Settings,Order Settings
+Auto confirm marketplace orders,Auto confirm marketplace orders
+Statuses to delay auto confirm,Statuses to delay auto confirm
+Auto confirm vendor orders,Auto confirm vendor orders
+Licence,Licence
+Licence Detail,Licence Detail
+Serial Key,Serial Key
+Activation Key,Activation Key
+Attribute Set,Attribute Set
+Vendor Sell This Product,Vendor Sell This Product
+Delete Request,Delete Request
+Are you sure to delete selected request?,Are you sure to delete selected request?
+Confirm order(s),Confirm order(s)
+Confirm selected order(s)?,Confirm selected order(s)?
+Change status,Change status
+Phone,Phone
+Logo,Logo
+PDF Invoices,PDF Invoices
+Invoice Date,Invoice Date
+Shipping and Handling,Shipping and Handling
+Delete items,Delete items
+Are you sure to delete selected vendors?,Are you sure to delete selected vendors?
+products,products
+orders,orders
+Vendor Services,Vendor Services
+vendor_service,vendor_service
+Manage Profile,Manage Profile
+rbvendor/account,rbvendor/account
+1,1
+Logout,Logout
+rbvendor/account/logout,rbvendor/account/logout
+10,10
+Password forgotten,Password forgotten
+2,2
+3,3
+New Order,New Order
+Confirmed Order,Confirmed Order
+Vital Info,Vital Info
+Offers,Offers
+More Info,More Info
+Allready Registered,Allready Registered
+Enter Vendor Name,Enter Vendor Name
+Enter Address Line 1,Enter Address Line 1
+Enter Address Line 2,Enter Address Line 2
+"Allow to request RMA after order completion, days","Allow to request RMA after order completion, days"
+Eligible for Return,Eligible for Return
+Short Description,Short Description
+Vendor Email Address,Vendor Email Address
+Select Country,Select Country
+Select State/Region,Select State/Region
+Enter City Name,Enter City Name
+Enter Pincode,Enter Pincode
+Enter Password,Enter Password
+Enter Display Name,Enter Display Name
+Enter Current Password,Enter Current Password
+Enter New Password,Enter New Password
+Enter Confirm Password,Enter Confirm Password
+Enter Vacation Date,Enter Vacation Date
+Enter Vacation Reason,Enter Vacation Reason
+Enter Other Category,Enter Other Category
+Enter Product URL,Enter Product URL
+Enter Business Name,Enter Business Name
+Choose Company Logo,Choose Company Logo
+Enter VAT Number,Enter VAT Number
+Choose VAT Document,Choose VAT Document
+Enter Account Holder's Name,Enter Account Holder's Name
+Enter Vendor's Bank Account Number,Enter Vendor's Bank Account Number
+Re-Type Vendor's Bank Account Number,Re-Type Vendor's Bank Account Number
+Enter Bank Name,Enter Bank Name
+Enter IFSC Code,Enter IFSC Code
+Some products were not deleted due to vendor association,Some products were not deleted due to vendor association
+=======
+Invalid Form Key. Please refresh the page.,Invalid Form Key. Please refresh the page.
+You entered an invalid Secret Key. Please refresh the page.,You entered an invalid Secret Key. Please refresh the page.
+"Your account is under review. In the meantime, you can update your profile.","Your account is under review. In the meantime, you can update your profile."
+Your account is disapproved due to %1. Please correct and resubmit.,Your account is disapproved due to %1. Please correct and resubmit.
+Your account mode is on vacation. Your selling is disabled till vacation ends.,Your account mode is on vacation. Your selling is disabled till vacation ends.
+Add Vendor,Add Vendor
+start typing to search category,start typing to search category
+Delete File,Delete File
+Manage Vendor Order,Manage Vendor Order
+This product is disabled.,This product is disabled.
+Buy %1 for price %2,Buy %1 for price %2
+Item ordered qty,Item ordered qty
+%1 with %2 discount each,%1 with %2 discount each
+%1 for %2,%1 for %2
+* - Enter custom price including tax,* - Enter custom price including tax
+* - Enter custom price excluding tax,* - Enter custom price excluding tax
+Configure,Configure
+This product does not have any configurable options,This product does not have any configurable options
+Vendor ID,Vendor ID
+Order ID,Order ID
+ Purchased On, Purchased On
+Vendor,Vendor
+Admin Confirm,Admin Confirm
+Vendor Confirm,Vendor Confirm
+Status,Status
+Total Refunded,Total Refunded
+Cancel By,Cancel By
+Total,Total
+Cancellation Fee,Cancellation Fee
+Action,Action
+Invoice ID,Invoice ID
+Invoice At,Invoice At
+Order #,Order #
+Bill-to Name,Bill-to Name
+Order Date,Order Date
+Shipment,Shipment
+Ship Date,Ship Date
+Ship-to Name,Ship-to Name
+Total Quantity,Total Quantity
+Invoices1,Invoices1
+Order Invoices1,Order Invoices1
+Manage Vendor Products,Manage Vendor Products
+Deleted Products,Deleted Products
+ID,ID
+Product Name,Product Name
+QTY,QTY
+Product SKU,Product SKU
+List,List
+Unlist,Unlist
+Edit Product '%1',Edit Product '%1'
+New Product,New Product
+Product Information,Product Information
+Vendor SKU,Vendor SKU
+Condition,Condition
+Condition Note,Condition Note
+Price,Price
+Special Price,Special Price
+Special From Date,Special From Date
+Special To Date,Special To Date
+Quantity,Quantity
+Reorder level,Reorder level
+Warranty Type,Warranty Type
+Warranty Description,Warranty Description
+Request Information,Request Information
+Image,Image
+Store View,Store View
+Edit,Edit
+Delete,Delete
+Are you sure?,Are you sure?
+UnList,UnList
+Manage Product Request,Manage Product Request
+Approve,Approve
+Approve and List,Approve and List
+Disapprove,Disapprove
+Edit Product Request '%1',Edit Product Request '%1'
+New Product Request,New Product Request
+Product Request Information,Product Request Information
+Category,Category
+Category Information,Category Information
+Images,Images
+General Information,General Information
+Offer Information,Offer Information
+Marketplace Product Link,Marketplace Product Link
+Seller SKU,Seller SKU
+Created At,Created At
+Disapprove Message,Disapprove Message
+Product Variants,Product Variants
+Variants,Variants
+Has Variants,Has Variants
+Is Requested For Edit,Is Requested For Edit
+Actions,Actions
+[GLOBAL],[GLOBAL]
+[WEBSITE],[WEBSITE]
+[STORE VIEW],[STORE VIEW]
+"Images (.gif, .jpg, .png)","Images (.gif, .jpg, .png)"
+Add New Images,Add New Images
+Manage Request,Manage Request
+Save,Save
+Save and Continue Edit,Save and Continue Edit
+Vendor Name,Vendor Name
+Request Type,Request Type
+Vacation From Date,Vacation From Date
+Vacation To Date,Vacation To Date
+Reason,Reason
+Requested At,Requested At
+Approved At,Approved At
+Page Status,Page Status
+Status operations of request auto assigned to vendor profile.,Status operations of request auto assigned to vendor profile.
+Shipping & Handling,Shipping & Handling
+Confirm,Confirm
+Are you sure you want to do this?,Are you sure you want to do this?
+Are you sure you want to cancel this order?,Are you sure you want to cancel this order?
+Cancel,Cancel
+Invoice and Ship,Invoice and Ship
+Invoice,Invoice
+Ship,Ship
+"This will create an offline refund. To create an online refund, open an invoice and create credit memo for it. Do you wish to proceed?","This will create an offline refund. To create an online refund, open an invoice and create credit memo for it. Do you wish to proceed?"
+Credit Memo,Credit Memo
+Manage Vendors,Manage Vendors
+Add New Vendor,Add New Vendor
+Save Vendor,Save Vendor
+Delete Vendor,Delete Vendor
+Reset Password,Reset Password
+New Vendor,New Vendor
+Bank Details,Bank Details
+Account Holder Name,Account Holder Name
+Bank Account Number,Bank Account Number
+Bank Name,Bank Name
+IFSC,IFSC
+"Allowed File Types : (JPG,JPEG,PNG), Max Size:2MB.","Allowed File Types : (JPG,JPEG,PNG), Max Size:2MB."
+Business Details,Business Details
+Business Name,Business Name
+"Optional. If filled, it will display instead if business name.","Optional. If filled, it will display instead if business name."
+Company Logo,Company Logo
+"Size: 164px x 24px, Allowed File Types : (JPG,JPEG,PNG), Max Size:2MB.","Size: 164px x 24px, Allowed File Types : (JPG,JPEG,PNG), Max Size:2MB."
+VAT,VAT
+VAT Document,VAT Document
+Other Marketplace URL,Other Marketplace URL
+Categories,Categories
+Other Category,Other Category
+Product(s) Category Details,Product(s) Category Details
+Product(s) Category,Product(s) Category
+Select All ,Select All 
+Profile Details,Profile Details
+Name,Name
+Vendor Email,Vendor Email
+Mobile,Mobile
+Address Line 1,Address Line 1
+Address Line 2,Address Line 2
+Country,Country
+State,State
+City,City
+Pincode,Pincode
+Profile Status,Profile Status
+Inactive/Disapproved Reason,Inactive/Disapproved Reason
+Vacation Message,Vacation Message
+Vendor Information,Vendor Information
+Pickup and Shipping Information,Pickup and Shipping Information
+Revenue,Revenue
+"Media (.avi, .flv, .swf)","Media (.avi, .flv, .swf)"
+All Files,All Files
+We can't get the order instance right now.,We can't get the order instance right now.
+-- Select Status --,-- Select Status --
+Update Qty's,Update Qty's
+Submit Invoice and Shipment,Submit Invoice and Shipment
+Submit Invoice,Submit Invoice
+Paid Amount,Paid Amount
+Refund Amount,Refund Amount
+Shipping Amount,Shipping Amount
+Shipping Refund,Shipping Refund
+Order Grand Total,Order Grand Total
+Send Email,Send Email
+Are you sure you want to send an invoice email to customer?,Are you sure you want to send an invoice email to customer?
+Capture,Capture
+Void,Void
+Print,Print
+The invoice email was sent.,The invoice email was sent.
+The invoice email wasn't sent.,The invoice email wasn't sent.
+Invoice #%1 | %2 | %4 (%3),Invoice #%1 | %2 | %4 (%3)
+Invalid parent block for this block,Invalid parent block for this block
+Custom Value,Custom Value
+Please correct the parent block for this block.,Please correct the parent block for this block.
+Order # %1,Order # %1
+Root Catalog,Root Catalog
+Yes,Yes
+No,No
+Manufacturer,Manufacturer
+Remove,Remove
+Bulk Images &amp; Price,Bulk Images &amp; Price
+Click here or drag and drop to add images.,Click here or drag and drop to add images.
+Delete image,Delete image
+Make Base,Make Base
+Hidden,Hidden
+Images and Videos,Images and Videos
+Edit Offer to %1,Edit Offer to %1
+Add Offer to %1,Add Offer to %1
+All Store Views,All Store Views
+Contact Us,Contact Us
+Please enter query and query description.,Please enter query and query description.
+Thanks for contacting us with your comments and questions. We'll respond to you very soon.,Thanks for contacting us with your comments and questions. We'll respond to you very soon.
+Your password reset link has expired.,Your password reset link has expired.
+Dashboard,Dashboard
+"Session has been timeout, Please login","Session has been timeout, Please login"
+Please fill up all data,Please fill up all data
+Please enter current password.,Please enter current password.
+Please enter new password.,Please enter new password.
+Please enter confirm password.,Please enter confirm password.
+Confirm your new password.,Confirm your new password.
+Something went wrong while changing the password.,Something went wrong while changing the password.
+Your status change request submitted successfully.,Your status change request submitted successfully.
+Information has been updated successfully.,Information has been updated successfully.
+Something went wrong while updating the profile.,Something went wrong while updating the profile.
+Enter a valid email address.,Enter a valid email address.
+"Sorry, we didn't found any account associated with '%1'.","Sorry, we didn't found any account associated with '%1'."
+We're unable to send the password reset email.,We're unable to send the password reset email.
+Please enter your email.,Please enter your email.
+If there is an account associated with %1 you will receive an email with a link to reset your password.,If there is an account associated with %1 you will receive an email with a link to reset your password.
+My Profile,My Profile
+This account is not confirmed. <a href="%1">Click here</a> to resend confirmation email.,This account is not confirmed. <a href="%1">Click here</a> to resend confirmation email.
+Invalid login or password.,Invalid login or password.
+A login and a password are required.,A login and a password are required.
+Please register using Email address,Please register using Email address
+"You have already registered as vendor, Login to continue.","You have already registered as vendor, Login to continue."
+Create New Vendor Account,Create New Vendor Account
+Please fill up all registration details,Please fill up all registration details
+"Your account has been setup and under review. In the meantime, you can update your profile.","Your account has been setup and under review. In the meantime, you can update your profile."
+Something went wrong while saving the vendor.,Something went wrong while saving the vendor.
+Please make sure your passwords match.,Please make sure your passwords match.
+New Password and Confirm New Password values didn't match.,New Password and Confirm New Password values didn't match.
+Please enter a new password.,Please enter a new password.
+You updated your password.,You updated your password.
+Something went wrong while saving the new password.,Something went wrong while saving the new password.
+"You have already registered as vendor, Please proceed with further steps of registration.","You have already registered as vendor, Please proceed with further steps of registration."
+"You have already registered as vendor, Login to continue..","You have already registered as vendor, Login to continue.."
+Enter a valid phone number.,Enter a valid phone number.
+"Thank you for registering, We have sent you an email with instructions and the next steps for you to complete your registration.","Thank you for registering, We have sent you an email with instructions and the next steps for you to complete your registration."
+invalid request,invalid request
+see error log for details,see error log for details
+Service unavailable: %1,Service unavailable: %1
+Vendors,Vendors
+Something went wrong while editing the vendor.,Something went wrong while editing the vendor.
+Manage Approved Vendors,Manage Approved Vendors
+Manage Closed Vendors,Manage Closed Vendors
+You have deleted vendor successfully .,You have deleted vendor successfully .
+Something went wrong while deleting the vendor.,Something went wrong while deleting the vendor.
+Manage Inactive Vendors,Manage Inactive Vendors
+Manage Vendor New Registrations,Manage Vendor New Registrations
+A totall of %1 record(s) have been deleted.,A totall of %1 record(s) have been deleted.
+A total of %1 record(s) were updated.,A total of %1 record(s) were updated.
+Manage Vacation Mode On Vendors,Manage Vacation Mode On Vendors
+Manage Rejected Vendors,Manage Rejected Vendors
+The vendor will receive an email with a link to reset password.,The vendor will receive an email with a link to reset password.
+Something went wrong while resetting vendor password.,Something went wrong while resetting vendor password.
+Make sure Vacation From Date and To Date.,Make sure Vacation From Date and To Date.
+You saved the vendor.,You saved the vendor.
+The order has been canceled.,The order has been canceled.
+The order has not been canceled.,The order has not been canceled.
+The order has been confirmed.,The order has been confirmed.
+The order has not been confirmed.,The order has not been confirmed.
+Credit Memos,Credit Memos
+New Memo for #%1,New Memo for #%1
+New Memo,New Memo
+You need to manage shipping amount manually.,You need to manage shipping amount manually.
+The credit memo's total must be positive.,The credit memo's total must be positive.
+Cannot create online refund for Refund to Store Credit.,Cannot create online refund for Refund to Store Credit.
+You created the credit memo.,You created the credit memo.
+We can't save the credit memo right now.,We can't save the credit memo right now.
+We can't update the item's quantity right now.,We can't update the item's quantity right now.
+The order no longer exists.,The order no longer exists.
+We can't create credit memo for the order.,We can't create credit memo for the order.
+Manage Orders,Manage Orders
+The order does not allow an invoice to be created.,The order does not allow an invoice to be created.
+You can't create an invoice without products.,You can't create an invoice without products.
+Invoices,Invoices
+New Invoice,New Invoice
+We can't save the invoice right now.,We can't save the invoice right now.
+The invoice and the shipment  have been created. The shipping label cannot be created now.,The invoice and the shipment  have been created. The shipping label cannot be created now.
+You created the invoice and shipment.,You created the invoice and shipment.
+The invoice has been created.,The invoice has been created.
+We can't send the invoice email right now.,We can't send the invoice email right now.
+We can't send the shipment right now.,We can't send the shipment right now.
+Cannot update item quantity.,Cannot update item quantity.
+We confirmed %1 order(s).,We confirmed %1 order(s).
+Shipments,Shipments
+New Shipment,New Shipment
+We can't save the shipment right now.,We can't save the shipment right now.
+The order does not allow to create a shipment.,The order does not allow to create a shipment.
+The shipment has been created.,The shipment has been created.
+You created the shipping label.,You created the shipping label.
+An error occurred while creating shipping label.,An error occurred while creating shipping label.
+Cannot save shipment.,Cannot save shipment.
+Sales,Sales
+Orders,Orders
+Deleted successfully !,Deleted successfully !
+Disabled Products,Disabled Products
+Products,Products
+This Product no longer exits. ,This Product no longer exits. 
+Edit Product,Edit Product
+. ' (' . . ')',. ' (' . . ')'
+Manage Products,Manage Products
+The Product request has been disapproved.,The Product request has been disapproved.
+Something went wrong while saving the product request.,Something went wrong while saving the product request.
+Vendor product Listed sucessfully.,Vendor product Listed sucessfully.
+Something went wrong while saving record.,Something went wrong while saving record.
+Please select product(s).,Please select product(s).
+A total of %1 record(s) have been deleted.,A total of %1 record(s) have been deleted.
+A total of %1 record(s) have been updated.,A total of %1 record(s) have been updated.
+Vendor product unlisted sucessfully,Vendor product unlisted sucessfully
+Product request does not exist,Product request does not exist
+Product does not found.,Product does not found.
+Product Request has been approved.,Product Request has been approved.
+No such product available.,No such product available.
+Unable to save product,Unable to save product
+SKU for product %1 has been changed to %2.,SKU for product %1 has been changed to %2.
+Something went wrong.,Something went wrong.
+Product is already exist vendor with same store.,Product is already exist vendor with same store.
+This vendor product no longer exists.,This vendor product no longer exists.
+The image cannot be removed as it has been assigned to the other image role,The image cannot be removed as it has been assigned to the other image role
+Delete successfully !,Delete successfully !
+This Product Request no longer exits.,This Product Request no longer exits.
+Edit Product Request,Edit Product Request
+New Request,New Request
+Vendor Product,Vendor Product
+This Product Request no longer exits. ,This Product Request no longer exits. 
+Please select product request(s).,Please select product request(s).
+Product request does not exist.,Product request does not exist.
+Product request has been disaproved.,Product request has been disaproved.
+Product request has been saved.,Product request has been saved.
+This Request no longer exits. ,This Request no longer exits. 
+Edit Request,Edit Request
+Request,Request
+Manage Vendor Request,Manage Vendor Request
+Something went wrong while updating the vendor(s) request status.,Something went wrong while updating the vendor(s) request status.
+Something went wrong while load record.,Something went wrong while load record.
+You saved this vendor request status.,You saved this vendor request status.
+The order has could not been canceled.,The order has could not been canceled.
+This order no longer exists.,This order no longer exists.
+Cancelled Orders,Cancelled Orders
+Completed Orders,Completed Orders
+The order could not confirm.,The order could not confirm.
+Vendor Order Id,Vendor Order Id
+Purchase Date,Purchase Date
+Ship To Name,Ship To Name
+Bill To Name,Bill To Name
+Grand Total,Grand Total
+Ship to Name,Ship to Name
+Active Orders,Active Orders
+In Progress Orders,In Progress Orders
+"You are not allowed to use requested feature, Please contact Marketplace Admin in case any query.","You are not allowed to use requested feature, Please contact Marketplace Admin in case any query."
+Failed to upload invoice.,Failed to upload invoice.
+Please select order(s).,Please select order(s).
+%1 Order Confirmed successfully.,%1 Order Confirmed successfully.
+%1 Order(s) canceled.,%1 Order(s) canceled.
+There are no printable documents related to selected orders.,There are no printable documents related to selected orders.
+Order Status has been updated successfully.,Order Status has been updated successfully.
+Something went wrong while update order status.,Something went wrong while update order status.
+Cannot Generate shipment.,Cannot Generate shipment.
+Shipment has been generated successfully.,Shipment has been generated successfully.
+Shipping label has been created successfully.,Shipping label has been created successfully.
+Cannot do shipment for the order separately from invoice.,Cannot do shipment for the order separately from invoice.
+Cannot do shipment for the order.,Cannot do shipment for the order.
+Specified order does not found.,Specified order does not found.
+You are not allowed to use requested feature as your account status is pending.,You are not allowed to use requested feature as your account status is pending.
+This Product no longer exits.,This Product no longer exits.
+An edit request for this product is already exist. <a href="%1"> Click here to edit existing request.</a>,An edit request for this product is already exist. <a href="%1"> Click here to edit existing request.</a>
+Edit Approved Product,Edit Approved Product
+Select Category,Select Category
+"Sorry, Unauthorised action perform.","Sorry, Unauthorised action perform."
+No attribute set has added to selected category.,No attribute set has added to selected category.
+Vendor SKU is already exist.,Vendor SKU is already exist.
+Something went wrong while submitting product request.,Something went wrong while submitting product request.
+Seller Sku in offer section,Seller Sku in offer section
+Price in offer section,Price in offer section
+Your product is added successfully for approval.,Your product is added successfully for approval.
+Can't send email.,Can't send email.
+Your product changes are added successfully for approval.,Your product changes are added successfully for approval.
+Something went wrong while submitting approved product change request.,Something went wrong while submitting approved product change request.
+Product Attributes - Vital Info,Product Attributes - Vital Info
+Last 24 Hours,Last 24 Hours
+Last 7 Days,Last 7 Days
+Current Month,Current Month
+YTD,YTD
+2YTD,2YTD
+No confirmation needed.,No confirmation needed.
+Please correct the transactional account email type.,Please correct the transactional account email type.
+Account already active,Account already active
+Invalid confirmation token,Invalid confirmation token
+This account is not confirmed.,This account is not confirmed.
+Your account has been closed.,Your account has been closed.
+Your account is inactive.,Your account is inactive.
+Please enter a password with at least %1 characters.,Please enter a password with at least %1 characters.
+The password can't begin or end with a space.,The password can't begin or end with a space.
+Reset password token mismatch.,Reset password token mismatch.
+Reset password token expired.,Reset password token expired.
+Please verify your account.,Please verify your account.
+This vendor already exists in this store.,This vendor already exists in this store.
+A vendor with the same email already exists in an associated website.,A vendor with the same email already exists in an associated website.
+The current password doesn't match this account.,The current password doesn't match this account.
+Select,Select
+ You are not allowed to sell under this category., You are not allowed to sell under this category.
+None,None
+Use Parent Category Settings,Use Parent Category Settings
+Global,Global
+Per Website,Per Website
+We can't share vendor accounts globally when the accounts share identical email addresses on more than one website.,We can't share vendor accounts globally when the accounts share identical email addresses on more than one website.
+--Please Select--,--Please Select--
+Order does not allow to be canceled.,Order does not allow to be canceled.
+Invoice # ,Invoice # 
+Sold By : ,Sold By : 
+Address : ,Address : 
+VAT : ,VAT : 
+GSTIN : ,GSTIN : 
+No Vendor found for the item '%1'.,No Vendor found for the item '%1'.
+Approved but not listed,Approved but not listed
+Listed,Listed
+Used,Used
+New,New
+Rental,Rental
+Invalid product and vendor.,Invalid product and vendor.
+Requested product doesn't exist,Requested product doesn't exist
+Please enter %1.,Please enter %1.
+Pending,Pending
+Approved,Approved
+Disapproved,Disapproved
+Vendor Sku(s) %1 already exist.,Vendor Sku(s) %1 already exist.
+Vendor Sku is already exist in Approved Products.,Vendor Sku is already exist in Approved Products.
+Vendor Sku is already exist In Pending Request.,Vendor Sku is already exist In Pending Request.
+Vendor Sku is already exist In Pending Request in variants.,Vendor Sku is already exist In Pending Request in variants.
+Order # ,Order # 
+Order Date: ,Order Date: 
+Sold to:,Sold to:
+Ship to:,Ship to:
+Payment Method:,Payment Method:
+Payment Method,Payment Method
+Shipping Method:,Shipping Method:
+Title,Title
+Number,Number
+Seller:,Seller:
+Packing Slip # ,Packing Slip # 
+Total Shipping Charges,Total Shipping Charges
+We cannot register an existing credit memo.,We cannot register an existing credit memo.
+The most money available to refund is %1.,The most money available to refund is %1.
+Active,Active
+Inactive,Inactive
+On Vacation,On Vacation
+Closed,Closed
+Rejected,Rejected
+Vacation,Vacation
+Close,Close
+-- Please Select --,-- Please Select --
+Please Select,Please Select
+File size must be less than 512 KB.,File size must be less than 512 KB.
+Please enter name.,Please enter name.
+Please use letters only (a-z or A-Z) in Name.,Please use letters only (a-z or A-Z) in Name.
+Please enter password.,Please enter password.
+Please enter 6 or more characters for password. Leading and trailing spaces will be ignored.,Please enter 6 or more characters for password. Leading and trailing spaces will be ignored.
+Please enter email address.,Please enter email address.
+Please correct this email address: "%1".,Please correct this email address: "%1".
+Please enter address line 1.,Please enter address line 1.
+Please select state/region.,Please select state/region.
+Please select city.,Please select city.
+Please use only letters (a-z or A-Z) in city.,Please use only letters (a-z or A-Z) in city.
+Please select pincode.,Please select pincode.
+Please enter pickup address line 1.,Please enter pickup address line 1.
+Please select pickup state/region.,Please select pickup state/region.
+Please select pickup city.,Please select pickup city.
+Please use only letters (a-z or A-Z) in pickup city.,Please use only letters (a-z or A-Z) in pickup city.
+Please enter pickup pincode.,Please enter pickup pincode.
+Please select a category or specify other category.,Please select a category or specify other category.
+Please enter business name.,Please enter business name.
+Please enter VAT.,Please enter VAT.
+Please enter bank account holder's name.,Please enter bank account holder's name.
+Please use only letters (a-z or A-Z) or spaces only in bank account holder's name.,Please use only letters (a-z or A-Z) or spaces only in bank account holder's name.
+Please enter bank account number.,Please enter bank account number.
+Bank account number should be numeric value ranging from 10 to 17 digits.,Bank account number should be numeric value ranging from 10 to 17 digits.
+Please enter bank name.,Please enter bank name.
+Please use only letters (a-z or A-Z) or spaces only in bank name.,Please use only letters (a-z or A-Z) or spaces only in bank name.
+"Please use only letters (a-z or A-Z), numbers (0-9) or spaces only in display name.","Please use only letters (a-z or A-Z), numbers (0-9) or spaces only in display name."
+Requested vendor doesn't exist,Requested vendor doesn't exist
+Unable to save vendor,Unable to save vendor
+Product not assigned to vendor(s) "%1" due to category mismatch.,Product not assigned to vendor(s) "%1" due to category mismatch.
+Packed,Packed
+Shipment Generated,Shipment Generated
+Delivered,Delivered
+Delete ${ $.$data.name },Delete ${ $.$data.name }
+Are you sure you want to delete a ${ $.$data.name } record?,Are you sure you want to delete a ${ $.$data.name } record?
+Add Value,Add Value
+SKU,SKU
+Vendor Sku,Vendor Sku
+Your price,Your price
+Qty,Qty
+Your Quantity,Your Quantity
+Sale Start Date,Sale Start Date
+MM/DD/YYYY,MM/DD/YYYY
+Sale End Date,Sale End Date
+No Variants found.,No Variants found.
+Browse to find or drag image here,Browse to find or drag image here
+Alt Text,Alt Text
+Role,Role
+Image Size,Image Size
+{size},{size}
+Image Resolution,Image Resolution
+{width}^{height} px,{width}^{height} px
+Hide from Product Page,Hide from Product Page
+Product,Product
+Subtotal,Subtotal
+Discount,Discount
+Row Subtotal,Row Subtotal
+No ordered items,No ordered items
+Update Items and Quantities,Update Items and Quantities
+Total %1 product(s),Total %1 product(s)
+Subtotal:,Subtotal:
+selected,selected
+Tier Pricing,Tier Pricing
+Custom Price,Custom Price
+Apply,Apply
+Please select,Please select
+Move to Shopping Cart,Move to Shopping Cart
+Move to Wish List,Move to Wish List
+Payment &amp; Shipping Method,Payment &amp; Shipping Method
+Payment Information,Payment Information
+The order was placed using %1.,The order was placed using %1.
+Shipping Information,Shipping Information
+Incl. Tax,Incl. Tax
+Items to Refund,Items to Refund
+Return to Stock,Return to Stock
+Qty to Refund,Qty to Refund
+Tax Amount,Tax Amount
+Discount Amount,Discount Amount
+Row Total,Row Total
+No Items To Refund,No Items To Refund
+Order Total,Order Total
+Credit Memo Comments,Credit Memo Comments
+Comment Text,Comment Text
+Refund Totals,Refund Totals
+Append Comments,Append Comments
+Email Copy of Credit Memo,Email Copy of Credit Memo
+Items Refunded,Items Refunded
+No Items,No Items
+Memo Total,Memo Total
+Credit Memo History,Credit Memo History
+Credit Memo Totals,Credit Memo Totals
+Create Shipment,Create Shipment
+Invoice and shipment types do not match for some items on this order. You can create a shipment only after creating the invoice.,Invoice and shipment types do not match for some items on this order. You can create a shipment only after creating the invoice.
+Items Invoiced,Items Invoiced
+Invoice History,Invoice History
+Invoice Totals,Invoice Totals
+Items to Ship,Items to Ship
+Qty to Ship,Qty to Ship
+Shipment Total,Shipment Total
+Shipment Comments,Shipment Comments
+Shipment Options,Shipment Options
+Create Shipping Label,Create Shipping Label
+Email Copy of Shipment,Email Copy of Shipment
+Invalid value(s) for Qty to Ship,Invalid value(s) for Qty to Ship
+Shipping and Tracking Information,Shipping and Tracking Information
+Track this shipment,Track this shipment
+Items Shipped,Items Shipped
+Shipment History,Shipment History
+Order & Account Information,Order & Account Information
+The order confirmation email was sent,The order confirmation email was sent
+The order confirmation email is not sent,The order confirmation email is not sent
+vendor Order # %1,vendor Order # %1
+Vendor Order # %1,Vendor Order # %1
+Order Date (%1),Order Date (%1)
+Order Status,Order Status
+Purchased From,Purchased From
+Link to the New Order,Link to the New Order
+Link to the Previous Order,Link to the Previous Order
+Placed from IP,Placed from IP
+%1 / %2 rate:,%1 / %2 rate:
+Account Information,Account Information
+Customer Name,Customer Name
+Email,Email
+Customer Group,Customer Group
+Sold By,Sold By
+Address,Address
+GSTIN,GSTIN
+Address Information,Address Information
+Billing Address,Billing Address
+Shipping Address,Shipping Address
+Vendor: %1 (%2),Vendor: %1 (%2)
+Vendor order: #%1,Vendor order: #%1
+Status: %1,Status: %1
+Vendor does not exist.,Vendor does not exist.
+Item Status,Item Status
+Original Price,Original Price
+Tax Percent,Tax Percent
+Tax,Tax
+SKU:,SKU:
+Ordered,Ordered
+Shipping &amp; Handling Information,Shipping &amp; Handling Information
+Track Order,Track Order
+No shipping information available,No shipping information available
+Items Ordered,Items Ordered
+Order Totals,Order Totals
+Access denied,Access denied
+You need more permissions to access this.,You need more permissions to access this.
+Contact Information,Contact Information
+Change Password,Change Password
+Newsletters,Newsletters
+You subscribe to "General Subscription".,You subscribe to "General Subscription".
+You don't subscribe to our newsletter.,You don't subscribe to our newsletter.
+or,or
+Back,Back
+My Account,My Account
+Business Information,Business Information
+Login Information,Login Information
+Selling Categories,Selling Categories
+Selling Brands,Selling Brands
+Bank Account Detail,Bank Account Detail
+Payout Details,Payout Details
+Account Holder's Name,Account Holder's Name
+Account Number,Account Number
+IFSC Code,IFSC Code
+Re-type Account Number,Re-type Account Number
+"Allowed File Types :(JPG,JPEG,PNG), Max Size:2MB","Allowed File Types :(JPG,JPEG,PNG), Max Size:2MB"
+Company's Logo,Company's Logo
+Choose a file&hellip;,Choose a file&hellip;
+VAT Number,VAT Number
+required-file,required-file
+This Display Name is already exist,This Display Name is already exist
+Mobile Number,Mobile Number
+Email Address,Email Address
+Current Password,Current Password
+Create Password,Create Password
+New Password,New Password
+Confirm Password,Confirm Password
+State/Region,State/Region
+Current Status,Current Status
+Go to Vacation,Go to Vacation
+From,From
+To,To
+Vacation Reason,Vacation Reason
+Select Date,Select Date
+Change,Change
+Reset,Reset
+* Required Fields,* Required Fields
+This tab contains invalid data. Please resolve this before saving.,This tab contains invalid data. Please resolve this before saving.
+Previous,Previous
+Next,Next
+Save & Finish,Save & Finish
+Balance,Balance
+View transactions,View transactions
+Product Sold,Product Sold
+Life Time Sales,Life Time Sales
+Average Orders,Average Orders
+Paid,Paid
+Out of 5,Out of 5
+Orders Overview,Orders Overview
+Amounts,Amounts
+Approved Products,Approved Products
+View All,View All
+There are no product in this list.,There are no product in this list.
+Best Sellers,Best Sellers
+No Data Found,No Data Found
+Chart is disabled by admin.,Chart is disabled by admin.
+New Orders,New Orders
+Guest,Guest
+No Orders Found.,No Orders Found.
+Low Inventory Products,Low Inventory Products
+No products with low inventory.,No products with low inventory.
+Most Viewed Products,Most Viewed Products
+No data found.,No data found.
+Sale Summary,Sale Summary
+Tenure,Tenure
+Order Product Sales,Order Product Sales
+No. Of Orders,No. Of Orders
+Already added offers,Already added offers
+Weight,Weight
+Size,Size
+Color,Color
+New Registration,New Registration
+Phone Number,Phone Number
+Join Now,Join Now
+Write Us,Write Us
+Jot us a note and we’ll get back to you as quickly as possible.,Jot us a note and we’ll get back to you as quickly as possible.
+Query,Query
+Query Summary,Query Summary
+Description,Description
+Query Description,Query Description
+Submit,Submit
+Forgot Your Password?,Forgot Your Password?
+"Enter the email address associated with your Marketplace account, then click Submit. We'll send you a link to a page where you can easily create a new password.","Enter the email address associated with your Marketplace account, then click Submit. We'll send you a link to a page where you can easily create a new password."
+"If you don't remember email address associated with your Marketplace account, you may <a href='%1'>Contact Support</a> for help to access your account.","If you don't remember email address associated with your Marketplace account, you may <a href='%1'>Contact Support</a> for help to access your account."
+Back to Login,Back to Login
+Password,Password
+Login,Login
+Forgot Password?,Forgot Password?
+Pickup and Shipping information,Pickup and Shipping information
+Use Vendor Address as Pickup Address,Use Vendor Address as Pickup Address
+Do you need installation?,Do you need installation?
+Installation fee,Installation fee
+Select Category (Please select at least one or specify in other cateogry.),Select Category (Please select at least one or specify in other cateogry.)
+Do you Sell on other Marketplace?,Do you Sell on other Marketplace?
+Please Enter Product URL,Please Enter Product URL
+I have read and agree to terms and conditions,I have read and agree to terms and conditions
+Terms and conditions,Terms and conditions
+Continue,Continue
+Reset Vendor Password,Reset Vendor Password
+Confirm New Password,Confirm New Password
+Set a New Password,Set a New Password
+Toggle Nav,Toggle Nav
+Transaction(s) With Total Payable Amount,Transaction(s) With Total Payable Amount
+Items %1 to %2 of %3 total,Items %1 to %2 of %3 total
+%1 Item,%1 Item
+%1 Item(s),%1 Item(s)
+Page,Page
+You're currently reading page,You're currently reading page
+Show,Show
+per page,per page
+Browse Files...,Browse Files...
+New Vendors,New Vendors
+"Creating an account has many benefits: check out faster, keep more than one address, track orders and more.","Creating an account has many benefits: check out faster, keep more than one address, track orders and more."
+Create an Account,Create an Account
+View Detail Page,View Detail Page
+Search...,Search...
+Search,Search
+Export,Export
+Clear,Clear
+Filters,Filters
+Purchased Date,Purchased Date
+from,from
+to,to
+Min,Min
+Max,Max
+ID #,ID #
+View,View
+Your search result could not find.,Your search result could not find.
+You have received no orders.,You have received no orders.
+Canceled,Canceled
+Dispatch By,Dispatch By
+No orders found.,No orders found.
+1%,1%
+Qty to Invoice,Qty to Invoice
+Invoice Comments,Invoice Comments
+Amount,Amount
+Capture Online,Capture Online
+Capture Offline,Capture Offline
+Not Capture,Not Capture
+The invoice will be created offline without the payment gateway.,The invoice will be created offline without the payment gateway.
+Email Copy of Invoice,Email Copy of Invoice
+Print All Invoices,Print All Invoices
+Invoice #,Invoice #
+Print Invoice,Print Invoice
+Qty Invoiced,Qty Invoiced
+Total Tax,Total Tax
+Review Vendor,Review Vendor
+Vendor Items Ordered,Vendor Items Ordered
+Gift Message,Gift Message
+Invoiced,Invoiced
+Shipped,Shipped
+Refunded,Refunded
+Excl. Tax,Excl. Tax
+Marketplace SKU,Marketplace SKU
+Generate Shipment,Generate Shipment
+Generate Packing Slip,Generate Packing Slip
+Print Invoices,Print Invoices
+Confirm Order,Confirm Order
+Cancel Order,Cancel Order
+To be Confirmed,To be Confirmed
+To be Shipped,To be Shipped
+Order Information,Order Information
+Shipping Method,Shipping Method
+Shipment #%1,Shipment #%1
+Qty Shipped,Qty Shipped
+Print All Shipments,Print All Shipments
+Shipment #,Shipment #
+Print Shipment,Print Shipment
+Tracking Number(s):,Tracking Number(s):
+Sku,Sku
+Shipping Details,Shipping Details
+Carrier,Carrier
+Shipping Service,Shipping Service
+Tracking ID,Tracking ID
+Shipment comment,Shipment comment
+Generate,Generate
+Order,Order
+Ship-to-Name,Ship-to-Name
+Generate Invoice,Generate Invoice
+Date,Date
+Is Confirmed,Is Confirmed
+Shipping & Handling Information,Shipping & Handling Information
+Your Price,Your Price
+more,more
+"Minimum price will be calculate whether it price or special price. Marketplace Fees, Marketplace Commission, and Service Tax will be deduct from minimum price. The commission, marketplace fees and service tax are based on the current commission and payment settings. The actual charges may vary depending on date of order.","Minimum price will be calculate whether it price or special price. Marketplace Fees, Marketplace Commission, and Service Tax will be deduct from minimum price. The commission, marketplace fees and service tax are based on the current commission and payment settings. The actual charges may vary depending on date of order."
+Reorder Level,Reorder Level
+Example: 3 year parts and labor warranty is non-transferable and valid for 1 year from the original date of purchase.,Example: 3 year parts and labor warranty is non-transferable and valid for 1 year from the original date of purchase.
+Does this product have variants,Does this product have variants
+Does this product have variants.,Does this product have variants.
+Show All Fields,Show All Fields
+Please select atleast one option from,Please select atleast one option from
+Show Minimal Fields,Show Minimal Fields
+"Sorry, No variant attributes found for selected category.","Sorry, No variant attributes found for selected category."
+"Sorry, No attributes found.","Sorry, No attributes found."
+Create Grid,Create Grid
+My Listing,My Listing
+List New Product,List New Product
+Select and Sell,Select and Sell
+Completed,Completed
+Financials,Financials
+Transactions Summary,Transactions Summary
+Commissions Invoice,Commissions Invoice
+Vendor Service,Vendor Service
+Feedback and Rating,Feedback and Rating
+Shipping Matrix,Shipping Matrix
+The information in this tab has been changed.,The information in this tab has been changed.
+Loading...,Loading...
+"Dear %name,","Dear %name,"
+Welcome to ,Welcome to 
+Please verify your email address by clicking on the link below or by opening it in your browser.,Please verify your email address by clicking on the link below or by opening it in your browser.
+Confirm Your Account,Confirm Your Account
+Thank you!,Thank you!
+"%name,","%name,"
+There was recently a request to change the password for your account.,There was recently a request to change the password for your account.
+"If you requested this change, set a new password here:","If you requested this change, set a new password here:"
+"If you did not make this request, you can ignore this email and your password will remain the same.","If you did not make this request, you can ignore this email and your password will remain the same."
+The password for your account has been successfully changed.,The password for your account has been successfully changed.
+"If you did not request this change, please contact us.","If you did not request this change, please contact us."
+Hello,Hello
+Your vacation request from,Your vacation request from
+has been approved.,has been approved.
+Account status has been changed to,Account status has been changed to
+You will be able to operate the vendor panel however your products will inactive on the marketplace.,You will be able to operate the vendor panel however your products will inactive on the marketplace.
+has requested for vacation from,has requested for vacation from
+.,.
+along with comment:,along with comment:
+Kindly check the request and do the necessary.,Kindly check the request and do the necessary.
+has been rejected.,has been rejected.
+Account status is active.,Account status is active.
+You are able to operate the vendor panel.,You are able to operate the vendor panel.
+"Thank you, %store_name","Thank you, %store_name"
+Please use only letters (a-z or A-Z) or spaces only in this field.,Please use only letters (a-z or A-Z) or spaces only in this field.
+Please enter valid IFSC Code. For e.g. {ABCD1234567}.,Please enter valid IFSC Code. For e.g. {ABCD1234567}.
+Logo file size is more than 2MB,Logo file size is more than 2MB
+Vat file size is more than 2MB,Vat file size is more than 2MB
+Add Products,Add Products
+You have item changes,You have item changes
+Please make sure your bank account numbers match.,Please make sure your bank account numbers match.
+Please enter valid VAT. For e.g. {24ABCDE2345F6ZM}.,Please enter valid VAT. For e.g. {24ABCDE2345F6ZM}.
+Please enter special price less than price.,Please enter special price less than price.
+Please enter a valid email address.,Please enter a valid email address.
+Please enter a valid mobile number.,Please enter a valid mobile number.
+We could not detect a size.,We could not detect a size.
+Uploaded file dimension is too large.,Uploaded file dimension is too large.
+Please upload appropriate image size. (Maximum 2MB),Please upload appropriate image size. (Maximum 2MB)
+We don't recognize or support this file extension type.,We don't recognize or support this file extension type.
+OK,OK
+This Business Name is Available.,This Business Name is Available.
+This Business Name already exists. Please try another.,This Business Name already exists. Please try another.
+This Display Name is available.,This Display Name is available.
+This Display Name already exists. Please try another.,This Display Name already exists. Please try another.
+Installation fee : <strong>,Installation fee : <strong>
+File type is not allowed,File type is not allowed
+Please enter category name or select from above list.,Please enter category name or select from above list.
+This Business Name is already exist. Please try another.,This Business Name is already exist. Please try another.
+Gift Options for ,Gift Options for 
+Edit Order,Edit Order
+Ok,Ok
+Vendor Configuration,Vendor Configuration
+Create New Account Options,Create New Account Options
+Require Emails Confirmation,Require Emails Confirmation
+Email Sender,Email Sender
+Confirmation Link Email,Confirmation Link Email
+Email template chosen based on theme fallback when "Default" option is selected.,Email template chosen based on theme fallback when "Default" option is selected.
+Vendor Status Request,Vendor Status Request
+Email Receiver,Email Receiver
+Email address to receive vendor notifications for status change request.,Email address to receive vendor notifications for status change request.
+Notification Email,Notification Email
+Notification Email To Admin,Notification Email To Admin
+Contact Configurations,Contact Configurations
+Email Template,Email Template
+Password Options,Password Options
+Forgot Email Template,Forgot Email Template
+Remind Email Template,Remind Email Template
+Reset Password Template,Reset Password Template
+Password Template Email Sender,Password Template Email Sender
+Vendor Password Recovery Link Expiration Period (days),Vendor Password Recovery Link Expiration Period (days)
+Please enter a number 1 or greater in this field.,Please enter a number 1 or greater in this field.
+Terms and Conditions,Terms and Conditions
+Content,Content
+Dashboard Summary,Dashboard Summary
+Please enter a number to display number of records of "New Orders" on vendor dashboard.,Please enter a number to display number of records of "New Orders" on vendor dashboard.
+Please enter a number to display number of records of "Approve Products" on vendor dashboard.,Please enter a number to display number of records of "Approve Products" on vendor dashboard.
+Please enter a number to display number of records of "Low Inventory" Products on vendor dashboard.,Please enter a number to display number of records of "Low Inventory" Products on vendor dashboard.
+Please enter a number to display number of records of Sale Summary on vendor dashboard.,Please enter a number to display number of records of Sale Summary on vendor dashboard.
+Please enter a number to display number of records of "Best Sellers" on vendor dashboard.,Please enter a number to display number of records of "Best Sellers" on vendor dashboard.
+Please enter a number to display number of records of "Most Viewed Products" on vendor dashboard.,Please enter a number to display number of records of "Most Viewed Products" on vendor dashboard.
+General,General
+Allow Vendor for Vacation Mode,Allow Vendor for Vacation Mode
+Allow Vendor to Generate Inovice,Allow Vendor to Generate Inovice
+Vendor Design,Vendor Design
+Vendor Profile,Vendor Profile
+Default Avatar,Default Avatar
+Emails,Emails
+Header Template,Header Template
+Footer Template,Footer Template
+Vendor Dashboard,Vendor Dashboard
+Left Panel Header Color,Left Panel Header Color
+Left Panel Main Color,Left Panel Main Color
+Product Configurations,Product Configurations
+Manage Attributes,Manage Attributes
+Exclude Attributes,Exclude Attributes
+Default Attribute Set For Category,Default Attribute Set For Category
+Product Image Style Guide,Product Image Style Guide
+Product Request Settings,Product Request Settings
+Email address to receive vendor notifications for new product request.,Email address to receive vendor notifications for new product request.
+Admin Notification Email Template,Admin Notification Email Template
+Category Display Settings,Category Display Settings
+Display Authorised Categories Only,Display Authorised Categories Only
+Display Category Counts,Display Category Counts
+Product Validation Settings,Product Validation Settings
+Check Vendor SKU,Check Vendor SKU
+Check Manufacturer SKU,Check Manufacturer SKU
+Allow Variants,Allow Variants
+Image Width,Image Width
+Image Height,Image Height
+Sales Settings,Sales Settings
+Order Settings,Order Settings
+Auto confirm marketplace orders,Auto confirm marketplace orders
+Statuses to delay auto confirm,Statuses to delay auto confirm
+Auto confirm vendor orders,Auto confirm vendor orders
+Licence,Licence
+Licence Detail,Licence Detail
+Serial Key,Serial Key
+Activation Key,Activation Key
+Attribute Set,Attribute Set
+Vendor Sell This Product,Vendor Sell This Product
+Delete Request,Delete Request
+Are you sure to delete selected request?,Are you sure to delete selected request?
+Confirm order(s),Confirm order(s)
+Confirm selected order(s)?,Confirm selected order(s)?
+Change status,Change status
+Phone,Phone
+Logo,Logo
+PDF Invoices,PDF Invoices
+Invoice Date,Invoice Date
+Shipping and Handling,Shipping and Handling
+Delete items,Delete items
+Are you sure to delete selected vendors?,Are you sure to delete selected vendors?
+products,products
+orders,orders
+Vendor Services,Vendor Services
+vendor_service,vendor_service
+Manage Profile,Manage Profile
+rbvendor/account,rbvendor/account
+1,1
+Logout,Logout
+rbvendor/account/logout,rbvendor/account/logout
+10,10
+Password forgotten,Password forgotten
+2,2
+3,3
+New Order,New Order
+Confirmed Order,Confirmed Order
+Vital Info,Vital Info
+Offers,Offers
+More Info,More Info
+Allready Registered,Allready Registered
+Enter Vendor Name,Enter Vendor Name
+Enter Address Line 1,Enter Address Line 1
+Enter Address Line 2,Enter Address Line 2
+"Allow to request RMA after order completion, days","Allow to request RMA after order completion, days"
+Eligible for Return,Eligible for Return
+Short Description,Short Description
+Vendor Email Address,Vendor Email Address
+Select Country,Select Country
+Select State/Region,Select State/Region
+Enter City Name,Enter City Name
+Enter Pincode,Enter Pincode
+Enter Password,Enter Password
+Enter Display Name,Enter Display Name
+Enter Current Password,Enter Current Password
+Enter New Password,Enter New Password
+Enter Confirm Password,Enter Confirm Password
+Enter Vacation Date,Enter Vacation Date
+Enter Vacation Reason,Enter Vacation Reason
+Enter Other Category,Enter Other Category
+Enter Product URL,Enter Product URL
+Enter Business Name,Enter Business Name
+Choose Company Logo,Choose Company Logo
+Enter VAT Number,Enter VAT Number
+Choose VAT Document,Choose VAT Document
+Enter Account Holder's Name,Enter Account Holder's Name
+Enter Vendor's Bank Account Number,Enter Vendor's Bank Account Number
+Re-Type Vendor's Bank Account Number,Re-Type Vendor's Bank Account Number
+Enter Bank Name,Enter Bank Name
+Enter IFSC Code,Enter IFSC Code
+Canceled,Cancelled
+"We couldn't find any records.","We couldn't find any records."

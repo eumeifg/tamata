@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_ProductAlert
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="product_alert_price">
+        <column xsi:type="int" name="parent_id" padding="10" unsigned="true" nullable="true" identity="false"
+                 comment="Parent id"/>
+        <column xsi:type="varchar" name="email" length="255" nullable="true" comment="Email id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store id"/>
+        <constraint xsi:type="foreign" referenceId="PRODUCT_ALERT_PRICE_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID"
+                    table="product_alert_price" column="customer_id" referenceTable="customer_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE" disabled="true" />
+        <index referenceId="PRODUCT_ALERT_PRICE_CUSTOMER_ID" indexType="btree" disabled="true">
+            <column name="customer_id"/>
+        </index>
+    </table>
+    <table name="product_alert_stock">
+        <column xsi:type="int" name="parent_id" padding="10" unsigned="true" nullable="true" identity="false"
+                 comment="Parent id"/>
+        <column xsi:type="varchar" name="email" length="255" nullable="true" comment="Email id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store id"/>
+        <constraint xsi:type="foreign" referenceId="PRODUCT_ALERT_STOCK_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID"
+                    table="product_alert_stock" column="customer_id" referenceTable="customer_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE" disabled="true" />
+        <index referenceId="PRODUCT_ALERT_STOCK_CUSTOMER_ID" indexType="btree" disabled="true" >
+            <column name="customer_id"/>
+        </index>
+    </table>
+</schema>

@@ -1,0 +1,14 @@
+ID/Order,ID/Order
+"Menu Title","Menu Title"
+Url,Url
+Class,Class
+Parent,Parent
+"Add Menu Item","Add Menu Item"
+Category,Category
+name,name
+"KTPL Custom Menu","KTPL Custom Menu"
+"Before Menu Items","Before Menu Items"
+"Menu Items","Menu Items"
+"Item added in this section will get displayed on Top menu section before default Category menu items. Items will be sorted based on Ids. If parent id is not added, the menu will be added as Main menu item. If parent value is added then, the item will be added as a child element of defined parent.","Item added in this section will get displayed on Top menu section before default Category menu items. Items will be sorted based on Ids. If parent id is not added, the menu will be added as Main menu item. If parent value is added then, the item will be added as a child element of defined parent."
+"After Menu Items","After Menu Items"
+"Item added in this section will get displayed on Top menu section after default Category menu items. Items will be sorted based on Ids. If parent id is not added, the menu will be added as Main menu item. If parent value is added then, the item will be added as a child element of defined parent.","Item added in this section will get displayed on Top menu section after default Category menu items. Items will be sorted based on Ids. If parent id is not added, the menu will be added as Main menu item. If parent value is added then, the item will be added as a child element of defined parent."

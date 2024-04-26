@@ -1,0 +1,51 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Catalog
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+/**
+ * @var $block \Magedelight\Catalog\Block\Product\View\ProductVendor
+ */
+?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+?>
+<?php if ($block->getHelper()->isEnabled()) { ?>
+<?php if ($block->getTypeId() == 'configurable' && $block->getCurrentProduct()->isAvailable() && $block->getCurrentProduct()->isSalable()) { ?>
+    <!-- <div class="seller-info" data-role="defaultVendor">
+        <div class="more" id="more-vendor"> </div>
+        <script>
+            require(['jquery'], function ($) {
+                $('#morevendor').on('click', function () {
+                    event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: $($.attr(this, 'href')).offset().top
+                    }, 2000);
+                });
+            });
+        </script>
+    </div> -->
+<?php } elseif (($vendor = $block->getProductDefaultVendor()) && $block->getCurrentProduct()->isAvailable()) { ?>
+    <!-- <?php //if ($block->getProductNoOfVendors() > 0) : ?>
+        <div class="seller-info more-info">
+            <div class="more" > <?php //echo __('View') ?> <a id="morevendor" href="#vendorlist"><?php //echo __('More Sellers') ?></a> <span>(<?php //echo $block->getProductNoOfVendors() ?>)</span></div>
+            <script>
+                require(['jquery'], function ($) {
+                    $('#morevendor').on('click', function () {
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: ($($.attr(this, 'href')).offset().top) - 200
+                        }, 2000);
+                    });
+                });
+            </script>
+        </div>
+    <?php //endif; ?> -->
+<?php } ?>
+<?php } ?>

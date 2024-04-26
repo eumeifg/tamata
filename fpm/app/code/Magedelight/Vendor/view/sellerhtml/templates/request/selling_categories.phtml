@@ -1,0 +1,81 @@
+<?php
+/*
+ * Copyright © 2018 Rocket Bazaar. All rights reserved.
+ * See COPYING.txt for license details
+ */
+/**
+ * @author Rocket Bazaar Core Team
+ */
+/**
+ * @var \Magedelight\Vendor\Block\Product\Category $block
+ */
+
+$tabData = explode(",", $this->getRequest()->getParam('tab'));
+if (isset($tabData[1])) {
+    $tabData[1] = $tabData[1] + 1;
+}
+$tab = implode(',', $tabData);
+?>
+
+<div class="col-md-12">
+    <div class="actions-toolbar top-bar-action mb10">
+        <div class="primary fright">
+            <button type="button" title="<?= __('View Requested Categories');?>" data-url="<?= $this->getUrl('rbvendor/categories_request/index', ['tab' => $tab]);?>" class="action button request-list primary">
+                <span><?= __('Show my Requested Categories');?></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+    <div class="rbpanel-heading-note">
+        <div class="categories_note_left">
+            <span>
+                <strong><?= __("Note")." : "; ?></strong>
+            </span>
+        </div>
+        <div class="categories_note">
+            <ul>
+            <li><?= __("Checked categories are the existing authorized categories of yours. "); ?></li>
+            <li><?= __("Please create new request in order to add new categories to your list. "); ?></li>
+            <li><?= __("To create new request, please select unchecked categories and click on submit request. "); ?></li>
+            </ul>
+        </div>
+    </div>
+        <form name="categories_form" id="categories-form" enctype="multipart/form-data" method="post" action="<?= $block->getUrl('rbvendor/categories_request/save', ['tab'=>$this->getRequest()->getParam('tab')]);?>"
+                          data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>"
+                          data-mage-init='{"validation":{}}'>
+            <div id="product-selling-categories" class="category-list product-selling-categories">
+                <ul class="category-ul">
+                    <?= $block->getHtml('level-top', 'submenu', 0); ?>
+                </ul>
+            </div>
+            <div class="field actions-toolbar">
+                <div class="primary">
+                    <button type="submit" title="<?= __('Submit Request') ?>" class="action button primary">
+                        <span><?= __('Submit Request') ?></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Magedelight_Vendor/js/request/selling_categories',
+        'Magedelight_Theme/js/common'
+    ], function ($,sellingCategories,common) {
+        
+        sellingCategories();
+        
+        /* Button click events. */
+        $('.action.button.request-list').click(function (e) {
+            common.handleClicks($(this));
+            return false;
+        });
+        /* Button click events. */
+    });
+</script>

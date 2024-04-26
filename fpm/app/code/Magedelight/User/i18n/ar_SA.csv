@@ -1,0 +1,89 @@
+-- Select Status --,- اختر الحالة -
+You have deleted user successfully .,لقد حذف المستخدم بنجاح.
+Something went wrong while deleting the user.,حدث خطأ ما أثناء حذف المستخدم.
+This user no longer exists.,هذا المستخدم لم يعد موجودا.
+Something went wrong while edit the user.,حدث خطأ ما أثناء تحرير المستخدم.
+Edit User,تحرير العضو
+New User,مستخدم جديد
+User,المستعمل
+You have deleted Role successfully.,لقد حذف دور بنجاح.
+Something went wrong while deleting the role.,حدث خطأ ما أثناء حذف هذا الدور.
+Edit Role,تحرير دور
+Add New Role,إضافة دور جديد
+Role,وظيفة
+This role no longer exists.,هذا الدور لم يعد موجودا.
+You saved the role.,يمكنك حفظ هذا الدور.
+An error occurred while saving this role.,حدث خطأ أثناء حفظ هذا الدور.
+You saved the user.,يمكنك حفظ المستخدم.
+You have entered an invalid password for current user.,لقد قمت بإدخال كلمة مرور غير صالحة للمستخدم الحالي.
+Email,البريد الإلكتروني
+User Name,اسم المستخدم
+A user with the same user name or email already exists.,يمكن للمستخدم مع نفس اسم المستخدم أو البريد الإلكتروني موجود بالفعل.
+Enabled,تمكين
+Disabled,معاق
+Requested vendor doesn't exist,لا وجود بائع طلب
+Unable to save vendor,غير قادر على حفظ بائع
+User Name is a required field.,اسم المستخدم هو حقل مطلوب.
+First Name is a required field.,الاسم الأول هو حقل مطلوب.
+Last Name is a required field.,اسم العائلة هو حقل مطلوب.
+Please enter a valid email.,يرجى إدخال البريد الإلكتروني الصحيح.
+Password is required field.,مطلوب كلمة المرور المجال.
+Your password must be at least %1 characters.,يجب أن تكون كلمة المرور٪ على الأقل 1 حرفا.
+Your password must include both numeric and alphabetic characters.,ويجب أن تتضمن كلمة المرور الخاصة بك الأحرف كلا رقمية وأبجدية.
+Your password confirmation must match your password.,تأكيدا كلمة السر يجب أن تتطابق كلمة المرور الخاصة بك.
+Back,الى الخلف
+Role Information,معلومات الدور
+* Required Fields,* الحقول المطلوبة
+Role Name,اسم الدور
+Resource Access,وصول الموارد
+Custom,العادة
+All,الكل
+Resources,مصادر
+Save,حفظ
+Search...,بحث...
+Search,بحث
+Reset Filter,تصفية إعادة تعيين
+ID,هوية شخصية
+Action,عمل
+Edit,تصحيح
+Delete,حذف
+User Information,معلومات المستخدم
+Name,اسم
+Mobile,التليفون المحمول
+Password,كلمه السر
+Password Confirmation,تأكيد كلمة المرور
+This account is,هذا الحساب
+Active,نشيط
+Inactive,غير نشط
+Reset,إعادة تعيين
+Add New User,إضافة مستخدم جديد
+Clear,واضح
+Filters,مرشحات
+Status,الحالة
+Please Select,الرجاء الإختيار
+Cancel,إلغاء
+Apply,تطبيق
+ID #,هوية شخصية #
+Is Active,نشط
+Yes,نعم فعلا
+No,لا
+Actions,أفعال
+User Role,دور المستخدم
+Assigned,تعيين
+Are you sure to delete the Role?,هل أنت متأكد من حذف دور؟
+OK,حسنا
+Your search result could not find.,نتيجة البحث الخاص بك لا يمكن العثور عليها.
+We couldn't find any records.,لم نتمكن من العثور على أي سجلات.
+Allow everything,تسمح كل شيء
+Main Vendor,البائع الرئيسي
+Vendor User Permission,بائع إذن العضو
+Users and Role,المستخدمين ودور
+Licence Detail,رخصة التفاصيل
+Serial Key,رقم مسلسل
+Activation Key,مفتاح التفعيل
+General Settings,الاعدادات العامة
+Permissions,أذونات
+permissions,أذونات
+All Users,جميع المستخدمين
+users,المستخدمين
+User Roles,أدوار المستخدمين

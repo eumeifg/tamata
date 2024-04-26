@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Create New Vendor Account</title>
+        <css src="Magedelight_Vendor::css/component.css"/>
+        <link src="Magedelight_Vendor::js/custom-file-input.js"/>
+        <link src="Magedelight_Catalog::css/jquery.fancybox.css"/>
+    </head>
+    <body>
+        <!-- Removed Content starts. -->
+        <referenceContainer name="header.container" remove="true"/>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <!-- Removed Content ends. -->
+        <referenceContainer name="content">
+            <block class="Magedelight\Vendor\Block\Sellerhtml\Form\Register" name="vendorForm" template="Magedelight_Vendor::form/register.phtml">
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Form\Register" name="regn_vendor_info" template="Magedelight_Vendor::form/registration/vendor_info.phtml" group="vendor_regn_tabs" cacheable="false">                    
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Vendor Information</argument>
+                        <argument name="sort_order" xsi:type="string">1</argument>
+                    </arguments>
+                </block>
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Form\Register" name="regn_selling_categories" template="Magedelight_Vendor::form/registration/selling_categories.phtml" group="vendor_regn_tabs" cacheable="false">                    
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Selling Categories</argument>
+                        <argument name="sort_order" xsi:type="string">2</argument>
+                    </arguments>
+                    <block name="additional_content_before_sell_cat"  template="Magedelight_Vendor::form/additional_content.phtml" />
+                    <block name="additional_content_after_sell_cat"  template="Magedelight_Vendor::form/additional_content.phtml" />
+                </block>
+                <block class="Magedelight\Vendor\Block\Sellerhtml\Form\Register" name="regn_business_info" template="Magedelight_Vendor::form/registration/business_info.phtml" group="vendor_regn_tabs" cacheable="false">
+                    <arguments>
+                        <argument translate="true" name="title" xsi:type="string">Business Information</argument>
+                        <argument name="sort_order" xsi:type="string">3</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="vendor-general-logo">
+            <arguments>
+                <argument name="logo_link" xsi:type="string">#</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

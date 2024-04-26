@@ -1,0 +1,49 @@
+"Save Offers","Save Offers"
+Offers,Offers
+"Choose a csv file","Choose a csv file"
+"Download a sample csv file","Download a sample csv file"
+"Add Offers","Add Offers"
+"Offers Information","Offers Information"
+"Export Offers","Export Offers"
+"-- All --","-- All --"
+Vendor,Vendor
+"Download Vendor Data","Download Vendor Data"
+"Update Offers","Update Offers"
+"%1 Offer(s) updated.","%1 Offer(s) updated."
+"%1 Offer(s) saved.","%1 Offer(s) saved."
+"Invalid file upload attempt.","Invalid file upload attempt."
+"Please correct offers file format.","Please correct offers file format."
+"Sample file and Uploading file's header fields are not matched.","Sample file and Uploading file's header fields are not matched."
+"We couldn't import this file because of these errors: %1","We couldn't import this file because of these errors: %1"
+"Vendor offer already exists.","Vendor offer already exists."
+"Please correct offers csv format in row #%1. Invalid number of columns","Please correct offers csv format in row #%1. Invalid number of columns"
+"Please correct marketplace_sku ""%1"" in row #%2.","Please correct marketplace_sku ""%1"" in row #%2."
+". 'Please correct marketplace_sku ""%1"" in row #%2.'",". 'Please correct marketplace_sku ""%1"" in row #%2.'"
+"Please correct vendor_id value %1 in Row #%2.","Please correct vendor_id value %1 in Row #%2."
+"Please correct vendor_id ""%1"" in row #%2.","Please correct vendor_id ""%1"" in row #%2."
+"Please correct price  %1 in row #%2.","Please correct price  %1 in row #%2."
+"Please correct special_price   %1 in row #%2.","Please correct special_price   %1 in row #%2."
+"Enter Pincode to check delivery details.","Enter Pincode to check delivery details."
+"Enter Delivery Pincode","Enter Delivery Pincode"
+Search,Search
+Check,Check
+"Vendor Offers","Vendor Offers"
+"Licence Detail","Licence Detail"
+"Serial Key","Serial Key"
+"Activation Key","Activation Key"
+"Add New Zipcode","Add New Zipcode"
+"Delete items","Delete items"
+"Delete selected items?","Delete selected items?"
+Delete,Delete
+"Change status","Change status"
+Enable,Enable
+Disable,Disable
+ID,ID
+Zipcode,Zipcode
+Vendor,Vendor
+City,City
+State/Province,State/Province
+Country,Country
+"COD Availability","COD Availability"
+"Pre-paid Service Availability","Pre-paid Service Availability"
+Status,Status

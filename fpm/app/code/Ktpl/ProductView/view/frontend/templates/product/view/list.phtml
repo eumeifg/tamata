@@ -1,0 +1,154 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var Magento\Review\Block\Product\View\ListView $block */
+
+$_items = $block->getReviewsCollection()->getItems();
+$format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
+$_helper = $this->helper('Ktpl\ProductView\Helper\Data');
+$productId = $block->getProduct()->getId();
+$url = $_helper->getReviewsUrl(false,$productId) . '#reviews';
+$urlForm = $_helper->getReviewsUrl(false,$productId) . '#review-form';
+$ratingData = $_helper->getReviewSummary($productId);
+$ratingSummary = $ratingData['ratingSummary'];
+$ratingSummaryCount = ((5*$ratingSummary)/100);
+$reviewCount = $ratingData['reviewCount'];
+?>
+<?php if (count($_items)):?>
+<div class="block review-list" id="customer-reviews">
+    <div class="block-title">
+        <strong><?= $block->escapeHtml(__('Reviews & Ratings')) ?></strong>
+    </div>
+    <div class="block-content">
+
+        <div class="review-top">
+            <div class="review-left">
+                <span itemprop="reviewCount"><?php echo number_format($ratingSummaryCount, 1); ?></span>
+                <span class="basedon"><?= $block->escapeHtml(__('Based on')) ?></span>
+
+                <div class="reviews-actions">
+                    <?= $block->escapeHtml($_helper->getReviewCount($productId)) ?>
+                </div>
+                <span><?= ($_helper->getReviewCount($productId) == 1) ? $block->escapeHtml(__('Review')) : $block->escapeHtml(__('Reviews')) ?></span>
+            </div>
+            <div class="review-right">
+                <h4><?= $block->escapeHtml(__('Have you purchased this product?')) ?></h4>
+                <p><?= $block->escapeHtml(__('Your rating of this product')) ?></p>
+                <div class="rating-summary">
+                    <div  class="rating-result">
+                        <span ><span><?php echo (int)$ratingSummary; ?>%</span></span>
+                    </div>
+                </div>
+                <!-- <div class="your-rating">
+                    <span class="review-big"></span>
+                    <span class="review-big"></span>
+                    <span class="review-big"></span>
+                    <span class="review-big"></span>
+                    <span class="review-big"></span>
+                </div> -->
+                <a class="action add" href="<?= $block->escapeUrl($urlForm) ?>"><?= $block->escapeHtml(__('Write Review')) ?></a>
+            </div>
+        </div>
+
+        <?php /*<div class="toolbar review-toolbar">
+            <?= $block->getChildHtml('toolbar') ?>
+        </div>*/ ?>
+        <ol class="items review-items">
+        <?php $iterator = 0; $hideClass =''; $numOfReviewToShow = 4; ?>
+        <?php foreach ($_items as $_review):?>
+            <?php if ($iterator > $numOfReviewToShow) $hideClass= 'style="display:none;"'; ?>
+            <li id="review_<?= $iterator ?>" data-number="<?= $iterator ?>" class="item review-item " <?= $hideClass ?> itemscope itemprop="review" itemtype="http://schema.org/Review">
+                <div class="review-title" itemprop="name"><?= $block->escapeHtml($_review->getTitle()) ?></div>
+                <?php if (count($_review->getRatingVotes())): ?>
+                    <div class="review-ratings">
+                        <?php $rating_total=0;
+                        foreach ($_review->getRatingVotes() as $_vote):
+                            $rating_total +=$_vote->getPercent();
+                            $ratingCount = (5*($rating_total/3)/100);
+                        endforeach; ?>
+                    <div class="rating-summary item" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                        <span class="label rating-label"><span><?= number_format($ratingCount, 1); ?></span></span>
+                    </div>
+                    </div>
+                <?php endif; ?>
+                <div class="review-details">
+                    <p class="review-author">
+                        <?php /* <span class="review-details-label"><?= $block->escapeHtml(__('Review by')) ?></span>*/ ?>
+                        <strong class="review-details-value" itemprop="author"><?= $block->escapeHtml($_review->getNickname()) ?></strong>
+                    </p>
+                    <p class="review-date">
+                        <?php /*<span class="review-details-label"><?= $block->escapeHtml(__('Posted on')) ?></span><?php */ ?>
+                        <time class="review-details-value" itemprop="datePublished" datetime="<?= $block->escapeHtmlAttr($block->formatDate($_review->getCreatedAt(), $format)) ?>">
+                            <?= date('d M Y', strtotime($_review->getCreatedAt())); ?>
+                        </time>
+                    </p>
+                </div>
+                <div class="review-content" itemprop="description">
+                    <?= nl2br($block->escapeHtml($_review->getDetail())) ?>
+                </div>
+            </li>
+            <?php $iterator++; ?>
+        <?php endforeach; ?>
+        </ol>
+        <?php 
+            if ($iterator >= 4 || count($_items) == 4) :
+                $countCheck = count($_items) - $numOfReviewToShow - 1; 
+                if (!$countCheck == 0) : 
+        ?>
+            <div class="more-review" ><a id="show" href="javascript:;"><?= $block->escapeHtml(__('view')) ?> <?= $block->escapeHtml(__(count($_items) - $numOfReviewToShow - 1)) ?> <?= $block->escapeHtml(__('More Reviews')) ?></a></div>
+            <?php endif; ?>
+        <?php endif; ?>
+        <?php /*<div class="toolbar review-toolbar">
+            <?= $block->getChildHtml('toolbar') ?>
+        </div>*/ ?>
+    </div>
+</div>
+<?php endif;?>
+<script type="text/javascript">
+    require(['jquery'], function($){
+        $(document).ready(function () {
+                $('a#show').click(function() {
+                    $('li.review-item').show();
+                    $('.more-review').hide();
+            });
+                // $(".discount-box-<?php echo $productId; ?>").appendTo(".saving_percent");
+
+            if ($(".overvw_n_specfc_short_description")[0]){
+                $('.overvw_n_specfc_description').css
+
+                ("display", "none");
+            } else {
+                $('.overvw_n_specfc_short_description').css("display", "none");
+            }
+
+            $( "<div class='description_plus_specification' > </div>" ).insertAfter(".product-wrapper-sticky");
+
+            if( ($(".product.attribute.overview")[0]) || ($(".product.attribute.description")[0]) || ($(".product.attribute")[0])){
+                $('<h3 class="additional_attributes_detail"> <p class="overvw_n_specfc_short_description"><?php echo __('Overview & Specifications') ?>  </p> </h3> <div data-role="content" class="description_body"> </div> ').appendTo('.description_plus_specification');
+            }
+
+            if ($(".product.attribute.overview")[0]){
+                $(".product.attribute.overview").appendTo('.description_body');
+            }
+            if ($(".product.attribute.description")[0]){
+                $(".product.attribute.description").appendTo('.description_body');
+            }
+            if ($(".product.attribute")[0]){
+                $(".product.attribute").appendTo('.description_body');
+            }        
+
+            if (/iP(od|hone)/i.test(window.navigator.userAgent) || /IEMobile/i.test(window.navigator.userAgent) || /Windows Phone/i.test(window.navigator.userAgent) || /BlackBerry/i.test(window.navigator.userAgent) || /BB10/i.test(window.navigator.userAgent) || /Android.*Mobile/i.test(window.navigator.userAgent)) {
+                
+               $('.description_plus_specification').click(function(){
+                    $('.description_body').slideToggle('slow');
+                })    
+
+              }            
+        });
+    });
+</script>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Magedelight
+* Copyright (C) 2018 Magedelight <info@magedelight.com>
+*
+* @category Magedelight
+* @package Magedelight_Abandonedcart
+* @copyright Copyright (c) 2018 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magedelight\Abandonedcart\Api\RuleRepositoryInterface" type="Magedelight\Abandonedcart\Model\RuleRepository" />
+    
+    <preference for="Magedelight\Abandonedcart\Api\Data\RuleInterface" type="Magedelight\Abandonedcart\Model\Rule" />
+
+    <type name="Magento\Customer\Model\AccountManagement">
+        <plugin name="magedelight_abandonedcart_guest_email_save" type="Magedelight\Abandonedcart\Model\AccountManagement" sortOrder="100" />
+    </type>
+
+    <!-- /* Dynamic rules grid */ -->
+	<virtualType name="RuleGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+		<arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+	</virtualType>
+	<virtualType name="RuleGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magedelight\Abandonedcart\Model\Resource\Rule\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">RuleGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magedelight\Abandonedcart\Model\ResourceModel\Rule\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">md_abandonedcart_rule</argument>
+            <argument name="resourceModel" xsi:type="string">Magedelight\Abandonedcart\Model\ResourceModel\Rule</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="abandonedcart_rule_listing_data_source" xsi:type="string">Magedelight\Abandonedcart\Model\ResourceModel\Rule\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- /* Blacklist data grid */ -->
+    <virtualType name="BlacklistGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>   
+    
+    <virtualType name="BlacklistGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magedelight\Abandonedcart\Model\ResourceModel\Blacklist\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">BlacklistGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    
+    <type name="Magedelight\Abandonedcart\Model\ResourceModel\Blacklist\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">md_abandonedcart_email_black_list</argument>
+            <argument name="eventPrefix" xsi:type="string">abandonedcart_blacklist_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">abandonedcart_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Magedelight\Abandonedcart\Model\ResourceModel\Blacklist</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="abandonedcart_blacklist_listing_data_source" xsi:type="string">Magedelight\Abandonedcart\Model\ResourceModel\Blacklist\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- /* Email Queue grid */ -->
+    <virtualType name="EmailQueueGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>   
+    
+    <virtualType name="EmailQueueGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magedelight\Abandonedcart\Model\ResourceModel\EmailQueue\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">EmailQueueGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    
+    <type name="Magedelight\Abandonedcart\Model\ResourceModel\EmailQueue\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">md_abandonedcart_email_queue</argument>
+            <argument name="eventPrefix" xsi:type="string">abandonedcart_emailqueue_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">abandonedcart_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Magedelight\Abandonedcart\Model\ResourceModel\EmailQueue</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="abandonedcart_emailqueue_listing_data_source" xsi:type="string">Magedelight\Abandonedcart\Model\ResourceModel\EmailQueue\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type> 
+
+    <!-- /* Abandoned Cart History grid */ -->
+    <virtualType name="HistoryGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>   
+    
+    <virtualType name="HistoryGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Magedelight\Abandonedcart\Model\ResourceModel\History\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">HistoryGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    
+    <type name="Magedelight\Abandonedcart\Model\ResourceModel\History\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">md_abandonedcart_history</argument>
+            <argument name="eventPrefix" xsi:type="string">abandonedcart_history_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">abandonedcart_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Magedelight\Abandonedcart\Model\ResourceModel\History</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="abandonedcart_history_listing_data_source" xsi:type="string">Magedelight\Abandonedcart\Model\ResourceModel\History\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type> 
+
+    <type name="Magento\Cms\Block\Adminhtml\Page\Grid\Renderer\Action\UrlBuilder">
+        <arguments>
+            <argument name="frontendUrlBuilder" xsi:type="object">Magento\Framework\Url</argument>
+        </arguments>
+    </type>
+</config>

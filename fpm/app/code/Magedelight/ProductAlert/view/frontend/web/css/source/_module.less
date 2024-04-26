@@ -1,0 +1,148 @@
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_ProductAlert
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+//--------------------------------------
+
+& when (@media-common = true) {
+
+//
+//    Product notificaiton subscription
+//--------------------------------------
+.block.stock-notification {
+    .lib-css(margin-top, -9px);
+    .lib-css(margin-bottom, 0);
+    .lib-css(float, left);
+    .lib-css(width, 85%);
+    .lib-css(max-width, 350px);
+    .lib-clearfix();
+    .lib-clearer();
+
+    .form.subscribe {
+        display: table;
+        width: 100%;
+    }
+    .field {
+        .lib-css(margin-right, 0);
+        .lib-css(text-align, left);
+        .lib-css(font-weight, @font-weight__semibold);
+        .control {
+
+            &:before {
+
+            }
+            display: block;
+        }
+    }
+    input {
+      .lib-form-element-input(
+      @_type: input-text,
+      @_border: none,
+      @_height: 35px,
+      );
+    }
+    .content {
+      position: relative;
+    }
+
+    .label {
+      text-align:left;
+      margin-bottom: 5px;
+      display:block;
+
+
+        }
+    .actions {
+        display: table-cell;
+        vertical-align: top;
+         position: absolute;
+          right: 0;
+          top: 23px;
+          bottom: 0;
+
+    }
+    .action.notify {
+      .lib-button (
+          @_button-font-size: 13,
+          @_button-background: @color-gray40,
+          @_button-border: 2px solid @color-gray40,
+          @_button-padding: 3px 20px 3px 20px,
+          @_button-background-hover: @button__hover__background,
+      );
+
+    }
+}
+.page-product-configurable .product-info-form-wrapper {
+   .block.stock-notification {
+        input {
+                 .lib-form-element-input(
+                  @_type: input-text,
+                  @_border: @form-element-input__border,
+                  @_height: 35px,
+                 );
+        }
+
+
+   }
+}
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+      .stock-notify-form {
+            .lib-css(float, none);
+            .lib-css(margin-bottom, @indent__base);
+        }
+        .stock-notification {
+            float:none !important;
+            width: 100%  !important;
+            margin:0 auto  !important;
+
+         }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+      .stock-notify-form {
+            .lib-css(float, none);
+        }
+        .stock-notification {
+            float:none ;
+            width: 100%;
+            margin:0 auto;
+
+         }
+
+}
+
+
+//
+//    Desktop
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+  .stock-notify-form {
+    float:right;
+  }
+
+    .block.stock-notification {
+        .field {
+            .control {
+                width: 100%;
+            }
+
+        }
+        .action.notify {
+
+        }
+    }
+}

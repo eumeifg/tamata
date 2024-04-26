@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * KrishTechnolabs
+ *
+ * PHP version 7
+ *
+ * @category  KrishTechnolabs
+ * @package   Ktpl_ElasticSearch
+ * @author    Dhara Bhatti <dhara.bhatti@krishtechnolabs.com>
+ * @copyright 2019 (c) KrishTechnolabs (https://www.KrishTechnolabs.com/)
+ * @license   https://www.krishtechnolabs.com/LICENSE.txt Krish License
+ * @link      https://www.krishtechnolabs.com/
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="search" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Search</label>
+            <tab>ktpl</tab>
+            <resource>Ktpl_ElasticSearch::search_config</resource>
+
+            <group id="engine" translate="label" type="text" sortOrder="10" showInDefault="1">
+                <label>Search Engine Configuration</label>
+
+                <field id="engine" translate="label" type="select" sortOrder="19" showInDefault="1">
+                    <label>Search Engine</label>
+                    <source_model>Magento\Search\Model\Adminhtml\System\Config\Source\Engine</source_model>
+                </field>
+            </group>
+
+            <group id="advanced" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Search Settings</label>
+
+                <field id="wildcard" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Wildcard search</label>
+                    <source_model>Ktpl\ElasticSearch\Model\Config\Source\Wildcard</source_model>
+                </field>
+
+                <field id="fuzzysearch" translate="label" type="select" sortOrder="15" showInDefault="1">
+                    <label>Enable Fuzzy Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="noroute_to_search" translate="label" type="select" sortOrder="20" showInDefault="1">
+                    <label>Enable redirect from 404 to search results</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="redirect_on_single_result" translate="label" type="select" sortOrder="30" showInDefault="1">
+                    <label>Redirect if Single Result</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="google_sitelinks" translate="label" type="select" sortOrder="40" showInDefault="1">
+                    <label>Enable Google Sitelinks Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                            <a href="https://developers.google.com/structured-data/slsb-overview" target="_blank">
+                                https://developers.google.com/structured-data/slsb-overview
+                            </a>
+                        ]]>
+                    </comment>
+                </field>
+
+                <field id="terms_highlighting" translate="label comment" type="select" sortOrder="50" showInDefault="1">
+                    <label>Enable search terms highlighting</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="show_related_terms" translate="label comment" type="select" sortOrder="60" showInDefault="1">
+                    <label>Display Related Search Terms</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="results_limit" translate="label comment tooltip" type="text" sortOrder="70" showInDefault="1">
+                    <label>Max number of items in the result</label>
+                </field>
+
+                <field id="wildcard_exceptions" translate="label comment tooltip" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Wildcard Exceptions</label>
+                    <frontend_model>Ktpl\ElasticSearch\Block\Adminhtml\Config\Form\Field\WildcardExceptions</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+
+                <field id="replace_words" translate="label comment tooltip" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Replace words in search query</label>
+                    <frontend_model>Ktpl\ElasticSearch\Block\Adminhtml\Config\Form\Field\ReplaceWords</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+
+                <field id="not_words" translate="label comment tooltip" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>"Not" words</label>
+                    <frontend_model>Ktpl\ElasticSearch\Block\Adminhtml\Config\Form\Field\NotWords</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+
+                <field id="long_tail_expressions" translate="label comment tooltip" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Long Tail Expressions</label>
+                    <frontend_model>Ktpl\ElasticSearch\Block\Adminhtml\Config\Form\Field\LongTailExpressions</frontend_model>
+                    <backend_model>Ktpl\ElasticSearch\Model\Config\Form\Field\LongTailExpressions</backend_model>
+                    <comment>Full search reindex is required after change long tail expressions</comment>
+                </field>
+
+                <field id="match_mode" translate="label" type="select" sortOrder="120" showInDefault="1">
+                    <label>Match Mode</label>
+                    <source_model>Ktpl\ElasticSearch\Model\Config\Source\MatchMode</source_model>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>

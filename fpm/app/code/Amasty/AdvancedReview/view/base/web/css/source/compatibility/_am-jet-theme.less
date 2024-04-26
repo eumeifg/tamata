@@ -1,0 +1,49 @@
+//
+//  Amasty JetTheme compatibility
+//  ____________________________________
+
+//
+//  Common
+//  ------------------------------------
+
+& when (@media-common = true) {
+    .amasty-jet-theme.amtheme-ismobile {
+        .data.item.content .amrev-title-block.amreview-customer-review.pages {
+            display: none;
+        }
+    }
+
+    .amasty-jet-theme {
+        .amreview-recommend-wrap,
+        .amreview-gdpr-wrap {
+            > .amreview-checkboxlabel:before,
+            > .amreview-checkboxlabel:before,
+            > .amreview-checkbox:checked ~ .amreview-checkboxlabel:after,
+            > .amreview-checkbox:checked ~ .amreview-checkboxlabel:after {
+                margin: 0;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    body:not(.amtheme-ismobile) {
+        .amtheme-reviews-aside.-amrev {
+            display: none;
+        }
+    }
+}
+
+//
+//  Desktop
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amtheme-reviews-aside.-amrev {
+        display: none;
+    }
+}

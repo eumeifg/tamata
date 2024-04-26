@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Krish TechnoLabs, All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Ktpl\OrderComment\Api\Data\OrderCommentInterface" type="Ktpl\OrderComment\Model\Data\OrderComment" />
+    <preference for="Ktpl\OrderComment\Api\OrderCommentManagementInterface" type="Ktpl\OrderComment\Model\OrderCommentManagement" />
+    <preference for="Ktpl\OrderComment\Api\GuestOrderCommentManagementInterface" type="Ktpl\OrderComment\Model\GuestOrderCommentManagement" />
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="order_comment" xsi:type="string">sales_order.order_comment</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!--For Random Increment Id Generate-->
+    <!--<type name="Magento\SalesSequence\Model\Sequence">
+        <plugin name="order_increment_id" type="Ktpl\OrderComment\Plugin\Model\Sequence" sortOrder="10"/>
+    </type>-->
+</config>

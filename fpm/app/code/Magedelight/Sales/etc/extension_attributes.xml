@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Sales\Api\Data\OrderItemInterface">
+        <attribute code="vendor_data" type="Magedelight\Sales\Api\Data\OrderDataInterface"/>
+        <attribute code="order_item_image_data" type="Magedelight\Sales\Api\Data\OrderItemImageInterface"/>
+        <attribute code="attributes_info" type="Magedelight\Sales\Api\Data\OrderItemAttributeInfoInterface[]"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
+        <attribute code="vendor_orders" type="Magedelight\Sales\Api\Data\SubOrdersInterface"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Sales\Api\Data\ShipmentCreationArgumentsInterface">
+        <attribute code="vendor_id" type="int"/>
+        <attribute code="vendor_order_id" type="int"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Sales\Api\Data\InvoiceCreationArgumentsInterface">
+        <attribute code="vendor_id" type="int"/>
+        <attribute code="vendor_order_id" type="int"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Sales\Api\Data\InvoiceInterface">
+        <attribute code="vendor_data" type="Magedelight\Sales\Api\Data\OrderDataInterface"/>
+    </extension_attributes>
+</config>

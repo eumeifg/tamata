@@ -1,0 +1,17 @@
+{
+    "md_vendor_website_data": {
+        "column": {
+            "enable_microsite": true
+        }
+    },
+    "md_vendor_microsites": {
+        "column": {
+            "promo_banner_1": true,
+            "promo_banner_2": true,
+            "promo_banner_3": true,
+            "mobile_promo_banner_1": true,
+            "mobile_promo_banner_2": true,
+            "mobile_promo_banner_3": true
+        }
+    }
+}

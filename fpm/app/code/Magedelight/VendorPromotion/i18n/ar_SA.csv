@@ -1,0 +1,102 @@
+Rule Information,حكم معلومات
+Name,اسم
+Description,وصف
+Status,الحالة
+Active,نشيط
+Inactive,غير نشط
+Websites,المواقع
+Uses per Coupon,يستخدم في القسيمة
+Uses per Customer,يستخدم في خدمة العملاء
+Usage limit enforced for logged in customers only,حد الاستخدام القسري للتسجيل في عملاء فقط
+From Date,من التاريخ
+Priority,أفضلية
+To Date,ان يذهب في موعد
+Customer Groups,المجموعات العملاء
+Coupon Code,رمز القسيمة
+Conditions [Apply the rule only if the following conditions are met (leave blank for all products)],الظروف [تطبيق القاعدة إلا إذا تم استيفاء الشروط التالية (ترك فارغا لجميع المنتجات)]
+Conditions,الظروف
+Actions,أفعال
+Apply,تطبيق
+Percent of product price discount,في المئة من سعر الخصم المنتج
+Fixed amount discount,خصم مبلغ ثابت
+Fixed amount discount for whole cart,ثابت خصم المبلغ عربة كاملة
+Buy X get Y free (discount amount is Y),يبيع X Y الحصول مجانا (مبلغ الخصم هو Y)
+Discount Amount,مقدار الخصم
+Maximum Qty Discount is Applied To,يتم تطبيق الحد الأقصى الكمية الخصم ل
+Discount Qty Step (Buy X),خصم الكمية الخطوة (بيع X)
+Apply to Shipping Amount,تنطبق على شحن المبلغ
+Free Shipping,الشحن مجانا
+No,لا
+For matching items only,لمطابقة البنود فقط
+For shipment with matching items,للشحن مع العناصر المطابقة
+Actions Filter [Apply the rule only to cart items matching the following conditions (leave blank for all items)],إجراءات تصفية [تطبيق القاعدة فقط على العناصر عربة مطابقة الشروط التالية (ترك فارغا لجميع البنود)]
+Apply To,تطبيق ل
+Coupons,كوبونات
+Coupons Information,معلومات كوبونات
+Coupon Qty,قسيمة الكمية
+Code Length,رمز طول
+"Excluding prefix, suffix and separators.",باستثناء بادئة، لاحقة والفواصل.
+Code Format,تنسيق كود
+Code Prefix,كود البادئة
+Code Suffix,كود لاحقة
+Dash Every X Characters,اندفاعة أحرف كل X
+If empty no separation.,إذا فارغة لا يوجد فصل.
+Generate,توفير
+Rule Not Found,حكم لم يتم العثور على
+Not Authorised to Edit this Rule.,غير مصرح تحرير هذه المادة.
+Cart Price Rules,قوانين السلة السعر
+Rule not found.,حكم غير موجود.
+The rule has been saved.,تم حفظ القاعدة.
+An error occurred while saving the rule data.,حدث خطأ أثناء حفظ بيانات القاعدة.
+Unable to find a data to save,تعذر العثور على بيانات لحفظ
+You are not authorised to use this coupon code. Please try other than this.,غير مصرح لك لاستخدام هذا رمز القسيمة. من فضلك حاول البعض من هذا.
+Rules %1 to %2 of %3 total,قواعد٪ 1 إلى٪ 2 من٪ إجمالي 3
+%1 Rule,٪ 1 القاعدة
+%1 Rule(s),٪ 1 تنص المادة (ق)
+Page,صفحة
+Previous,سابق
+You're currently reading page,كنت تقرأ حاليا الصفحة
+Next,التالى
+Show,تبين
+per page,في كل صفحة
+Edit Cart Price Rule "%1",تحرير سلة الأسعار القاعدة "٪ 1"
+Create New Cart price Rule,إنشاء جديدة العربة سعر القاعدة
+* Indicated Required Fields,* الحقول المطلوبة يشار
+"Please wait, submitting...",يرجى الانتظار، وتقديم ...
+Save,حفظ
+Return to rules list,العودة إلى قائمة القواعد
+Search...,بحث...
+Search,بحث
+Reset,إعادة تعيين
+Clear,واضح
+Filters,مرشحات
+Add New,اضف جديد
+Rule,قاعدة
+Start Date,تاريخ البدء
+End Date,تاريخ الانتهاء
+selected,المحدد
+--Please Select--,--يرجى الاختيار--
+Cancel,إلغاء
+ID,هوية شخصية
+Start,بداية
+End,النهاية
+Website,موقع الكتروني
+Action,عمل
+Edit,تصحيح
+Select Date,حدد تاريخ
+Export to:,تصدير الى:
+records found,سجلات وجدت
+Previous page,الصفحة السابقة
+of %1,من 1٪
+Next page,الصفحة التالية
+This won't take long . . .,وهذا لن تستغرق وقتا طويلا. . .
+Vendor Promotion,بائع ترويج
+Licence Detail,رخصة التفاصيل
+Serial Key,رقم مسلسل
+Activation Key,مفتاح التفعيل
+Include Discount for Vendor Net Payable.,يشمل الخصم للبائع صافي المدفوعات.
+Vendor,بائع
+Promotions,الترقيات
+promotions,الترقيات
+Labels,تسميات
+Manage Coupon Codes,إدارة رموز القسيمة

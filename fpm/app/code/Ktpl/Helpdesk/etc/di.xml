@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Mirasvit\Helpdesk\Helper\Ticket">
+		<plugin disabled="false" name="Ktpl_Helpdesk_Plugin_Mirasvit_Helpdesk_Helper_Ticket" sortOrder="10" type="Ktpl\Helpdesk\Plugin\Mirasvit\Helpdesk\Helper\Ticket"/>
+	</type>
+	<preference for="Ktpl\Helpdesk\Api\TicketManagementInterface" type="Ktpl\Helpdesk\Model\TicketManagement" />
+	<preference for="Ktpl\Helpdesk\Api\Data\TicketInterface" type="Ktpl\Helpdesk\Model\Ticket" />
+	<preference for="Ktpl\Helpdesk\Api\Data\TicketSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+	<preference for="Ktpl\Helpdesk\Api\Data\HistoryInterface" type="Ktpl\Helpdesk\Model\History" />
+	<preference for="Ktpl\Helpdesk\Api\Data\AttachmentInterface" type="Ktpl\Helpdesk\Model\Attachment" />
+	<preference for="Ktpl\Helpdesk\Api\Data\CreateTicketInterface" type="Ktpl\Helpdesk\Model\CreateTicket" />
+	<preference for="Ktpl\Helpdesk\Api\Data\DepartmentInterface" type="Ktpl\Helpdesk\Model\Department" />
+	<preference for="Ktpl\Helpdesk\Api\Data\OrderDataInterface" type="Ktpl\Helpdesk\Model\OrderData" />
+	<preference for="Ktpl\Helpdesk\Api\Data\PriorityInterface" type="Ktpl\Helpdesk\Model\Priority" />
+</config>

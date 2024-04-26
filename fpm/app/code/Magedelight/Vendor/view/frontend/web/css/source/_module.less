@@ -1,0 +1,591 @@
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+.microsite_top_content{
+   .microsite_banner{
+      .lib-css(text-align, center);
+      .lib-css(padding, @indent__base + @indent__s 0);
+   }
+}
+.microsite-seller-box {
+   .lib-css(border, 0);
+   .lib-css(background, #ffffff);
+   .lib-css(width, 100%);
+   .lib-css(border, 1px solid #e1e1e1);
+   .lib-clearfix();
+   margin-bottom: @indent__base;
+
+}
+
+   .seller_profile_box {
+         .lib-css(display, table);
+         .lib-css(width, 100%);
+         
+         .seller-info-container {
+            display: table-row;
+         }
+      
+      .seller_profile {
+         display:  table-cell;
+         padding: 10px 10px;
+         vertical-align: top;
+         width: 220px;
+         background-color: #f5f5f5;
+         text-align: center;
+      }
+      .seller_desc {
+       display: table-cell;
+       padding: 10px;
+       vertical-align: top;
+       white-space: normal;
+       float: left;
+      }
+      ul.seller_links{
+         text-align: right;
+      }
+       
+   }
+
+.seller_logo {
+   .lib-css(margin-bottom, @indent__s);
+   .lib-css(width, auto);
+}
+.seller_information {
+   h3{
+      .lib-font-size(15);
+      .lib-css(margin, 0);
+      .lib-css(padding-right, @indent__s);
+   }
+   ul{
+      .lib-css(margin-bottom, 0);
+      .lib-css(padding, 0);
+      li{
+         list-style: none;
+         .lib-css(display, inline-block);
+         .lib-css(margin-bottom, 0);  
+      }
+   }
+}
+.seller_location {
+   .lib-font-size(12);
+   .lib-css(margin-bottom, @indent__s);
+}
+
+ul{
+   margin: 0 0 @indent__s 0;
+   padding: 0;
+   &.seller_links{
+      li{
+         list-style: none;
+         .lib-css(color, #333333);
+         .lib-font-size(15);
+         .lib-css(border-color, #333333);
+         .lib-css(display, inline-block);
+         .lib-css(border-right, 2px solid);
+         line-height: 17px;
+         .lib-css(padding, 0 @indent__s);
+         &:last-child{
+            .lib-css(border-right, 0);
+         }
+         box-sizing: border-box;
+         a{
+            .lib-css(color, #333333);
+         }
+         p{
+            .lib-font-size(15);
+            .lib-css(color, #999999);
+            text-align: justify;
+         }
+      }
+   }
+}
+
+.review_box {
+   .lib-css(border-top, 1px solid #e1e1e1);
+}
+
+.review_slider {
+   .lib-css(float, left);
+   .lib-css(width, 35%);
+   .lib-css(margin-top, 35px);
+   .lib-css(text-align, center);
+   .lib-css(border-right, 1px solid #efefef);
+}
+.review_content {
+   .lib-css(float, left);
+   .lib-css(width, 100%);
+   .lib-font-size(15);
+   .lib-css(color, #999999);
+   span{
+      .lib-css(float, left);
+      .lib-css(width, 100%);
+      .lib-css(text-align, center);
+   }
+}
+.review_date {
+   .lib-font-size(12);
+   .lib-css(color, #999999);
+   .lib-css(margin-top, @indent__xs + 2);
+   .lib-css(float, left);
+   .lib-css(width, 100%);
+   .lib-css(font-weight, @font-weight__light);
+}
+.review_count {
+   .lib-css(float, left);
+   .lib-css(width, 33%);
+   .lib-css(margin-top, 0);
+   .lib-css(margin-bottom, 0);
+   .lib-css(border-right, 1px solid #e1e1e1);
+   .lib-css(border-left, 1px solid #e1e1e1);
+   .lib-css(padding, @indent__base + 10 0); 
+   ul{
+      .lib-css(float, left);
+      .lib-css(width, 100%);
+      .lib-css(margin, 0);
+      .lib-css(padding, 0);
+       li{
+         list-style: none;
+         .lib-css(width, 32%);
+         .lib-css(display, inline-block);
+         .lib-css(margin, 0);
+         .lib-css(text-align, center);
+         .lib-font-size(12);
+         .lib-css(color, #999999);
+         span{
+            .lib-css(float, left);
+            .lib-css(width, 100%);
+            .lib-css(text-align, center);
+         }
+       }
+   }
+}
+
+.review_result{
+   .lib-css(float, left);
+   .lib-css(width, 100%);
+   .lib-css(text-align, center);
+   .lib-css(margin, @indent__base + 2 0 @indent__base 0 );
+   p{
+      .lib-css(float, left);
+      .lib-css(width, 100%);
+      .lib-font-size(12);
+      .lib-css(color, #999999);
+      .lib-css(margin, 0);
+      a{
+         .lib-font-size(16);
+         .lib-css(color, #000000);
+         .lib-css(font-weight, @font-weight__bold);
+         .lib-css(margin-right, @indent__xs);
+         .lib-css(margin-bottom, 0);
+      }
+   }
+}
+
+.allreview_box{
+      .lib-css(float, left);
+      .lib-css(width, 30%);
+      .lib-css(text-align, right);
+      .lib-css(padding-top, @indent__xs + 2);
+      box-sizing: border-box;
+      a{
+         list-style: none;
+         .lib-font-size(15);
+         .lib-css(color, #333333);
+         .lib-css(font-weight, @font-weight__semibold);
+         display: inline-block;
+         line-height: 1.7rem;
+         .lib-css(margin-bottom, @indent__xl );
+      }
+      span{
+         .lib-font-size(10);
+         .lib-css(font-weight, @font-weight__semibold);
+         .lib-css(color, #999999);
+         .lib-css(display, inline-block);
+         vertical-align: top;
+      }
+}
+.five_stars{
+   .lib-css(float, left);
+   .lib-css(width, 100%);
+}
+.review_progress {
+   .lib-css(margin-bottom, @indent__xs );
+}
+.meter {
+   .lib-css(background, #f2f2f2 );
+   .lib-css(height, 13px);
+   .lib-css(width, 72%);
+   .lib-css(display, inline-block);
+   .lib-css(text-align, center);
+   position: relative;
+}
+.viewmore {
+   .lib-css(float, right);
+   .lib-css(margin, @indent__base + 15 0);
+   .lib-css(text-align, center);
+   .lib-css(width, 100%);
+}
+
+.microsite-product-grid{
+   .product-item-info {
+      .lib-css(width, auto);
+   }
+}
+
+.sellerdirectory-sidebar{
+   .block-title{
+      strong{
+         .lib-css(display, block);
+         .lib-css(border-bottom, 1px solid #ccc);
+         .lib-font-size(14);
+         .lib-css(font-weight, @font-weight__semibold);
+         line-height: 1em;
+         .lib-css(padding, @indent__s @indent__s @indent__base);
+         .lib-css(margin, @indent__s + 5 0 0);
+      }
+   }
+   .block-content{
+      .seller-dir{
+         .lib-css(padding, 0);
+         .lib-css(margin, 0);
+         li{
+            list-style-type: none;
+            cursor: pointer;
+            .lib-font-size(14);
+            .lib-css(font-weight, @font-weight__semibold);
+            .lib-css(margin, 0);
+            .lib-css(padding, @indent__s 0 @indent__s @indent__s );
+            .lib-css(display, block);
+            .lib-css(border-bottom, 1px solid #ccc );
+            overflow: hidden;
+            position: relative;
+            text-transform: uppercase;
+            word-break: break-all;
+            z-index: 1;
+            text-decoration: none;
+            &:last-child{
+               .lib-css(border-bottom, none);
+            }
+            a{
+               .lib-css(color, #494949);
+               &:hover{
+                  text-decoration:none;
+               }
+               .icon-plus{
+                  &:after{
+                     content: '\e622';
+                     font-family: 'luma-icons';
+                     .lib-font-size(13);
+                     .lib-css(text-align, center);
+                     .lib-css(display, block);
+                     position: absolute;
+                     top: 15px;
+                     right: 0;
+                  }
+                  &.icon-minus{
+                     &:after{
+                        content: '\e621';
+                     }
+                  }
+               }
+            }
+            ul{
+               .lib-css(padding, 0);
+               .lib-css(margin, 0);
+               li{
+                  .lib-css(padding-right, 0);
+                  .lib-css(padding-bottom, 0);
+                  text-transform: none;
+                  .lib-css(border-bottom, none);
+               }
+               .level2{
+                  .lib-css(font-weight, @font-weight__regular);
+               }
+            }
+         }
+      }
+   }
+}
+
+.sellerdirectory-sidebar ul > li ul.o-list {
+      .lib-css(display, none);
+}
+
+.rb-block{
+   #form-validate-stock{
+      label{
+         .lib-css(display, block);
+      }
+   }
+}
+
+.product-social-links{
+   .lib-css(padding-top, @indent__s);
+}
+
+.rb-product-reviews-wrapper{
+   .rb-product-reviews-container{
+      .block-title{
+         strong{
+            font-size: 35px;
+            font-weight: @font-weight__regular;
+            margin: @indent__s + 5 0;
+            .lib-css(display, block);
+            line-height: 35px;
+         }
+      }
+      .toolbar{
+         .lib-css(width, 100%);
+         .lib-css(background, #fafafa);
+         border: solid 1px #e1e1e1;
+         padding: 15px 15px 7px 15px;
+         margin: 0;
+         text-align: left;
+         .microsite-total-review-count{
+            .lib-css(width, 33%);
+            .lib-css(float, left);
+            font-size: 14px;
+            strong{
+               font-weight: @font-weight__semibold;
+               line-height: 35px;
+            }
+         }
+         .pager{
+            .lib-css(float, left);
+            .lib-css(width, 33%);
+         }
+         .limiter{
+            .lib-css(display, none);
+         }
+         .microsite-sorting{
+            .lib-css(float, right);
+            .lib-css(width, 33%);
+            .sory-by{
+               .lib-css(display, inlilne-block);
+               .lib-css(text-align, right);
+               .lib-css(width, 100%);
+               .sort-select{
+                  .lib-css(width, 41%);
+               }
+            }
+         }
+      }
+   }
+}
+
+.customer_reviews_box{
+   .lib-css(background, #fafafa);
+   border: solid 1px #e1e1e1;
+   border-width: 0 1px 1px 1px;
+   padding: 35px 22px 15px;
+   .lib-clearfix();
+}
+
+.customer_photo{
+   .lib-css(width, 9%);
+   .lib-css(float, left);
+}
+
+.review_description{
+   .lib-css(width, 91%);
+   .lib-css(float, left);
+}
+
+.customer-circle {
+    .lib-font-size(24);
+    .lib-css(text-align, center);
+    .lib-css(color, @color-white);
+    .lib-css(display, inline-block);
+    .lib-css(width, 50px);
+    .lib-css(height, 50px);
+    line-height: 50px;
+    border-radius: 50%;
+}
+
+.customer-circle.alpha-a,
+.customer-circle.alpha-d,
+.customer-circle.alpha-g,
+.customer-circle.alpha-j,
+.customer-circle.alpha-m,
+.customer-circle.alpha-p,
+.customer-circle.alpha-s,
+.customer-circle.alpha-v,
+.customer-circle.alpha-y {
+  background: #daab85;
+}
+.customer-circle.alpha-b,
+.customer-circle.alpha-h,
+.customer-circle.alpha-n,
+.customer-circle.alpha-t,
+.customer-circle.alpha-z {
+  background: #aa8fb7;
+}
+.customer-circle.alpha-c,
+.customer-circle.alpha-i,
+.customer-circle.alpha-o,
+.customer-circle.alpha-u {
+  background: #e06a6e;
+}
+.customer-circle.alpha-e,
+.customer-circle.alpha-k,
+.customer-circle.alpha-q,
+.customer-circle.alpha-w {
+  background: #63d6d1;
+}
+.customer-circle.alpha-f,
+.customer-circle.alpha-l,
+.customer-circle.alpha-r,
+.customer-circle.alpha-x {
+  background: #fba565;
+}
+
+.meter {
+  height: 13px;
+  position: relative;
+  background: #f2f2f2;
+  width: 72%;
+  display: inline-block;
+  text-align: center;
+}
+.meter .positive {
+  background-color: #007f00;
+}
+.meter .natural {
+  background-color: #fea201;
+}
+.meter .negative {
+  background-color: #f80400;
+}
+.meter > span {
+  display: block;
+  height: 100%;
+  background-color: #016bb5;
+}
+.meter > span:after,
+.animate > span > span {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  -webkit-background-size: 50px 50px;
+  -moz-background-size: 50px 50px;
+  overflow: hidden;
+}
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .page-layout-1column .microsite-product-grid.products-grid .product-item {
+        margin-left: calc(~'(100% - 5 * (100%/6)) / 4');
+        width: 100%/6;
+
+        &:nth-child(4n + 1) {
+            margin-left: calc(~'(100% - 5 * (100%/6)) / 4');
+        }
+
+        &:nth-child(5n + 1) {
+            margin-left: 0;
+        }
+    }
+
+
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m){
+
+   .microsite-seller-box{
+      .seller_profile_box{
+         .seller_profile{
+            .lib-css(width, 100%);
+            .lib-css(text-align, center);
+            .lib-css(width, 100%);
+            display: block;
+         }
+         .seller_desc{
+            .lib-css(width, 100%);
+            display: block;
+         }
+         ul{
+            &.seller_links{
+               .lib-css(text-align, center);
+            }
+         }
+      }
+   }
+
+   .microsite-seller-box{
+      .review_box{
+         .review_slider{
+            .lib-css(width, 100%);
+            .lib-css(margin-top, @indent__s + 5);
+            .lib-css(padding-bottom, @indent__s);
+            position: relative;
+            &::after{
+               content: '';
+               .lib-css(height, 1px);
+               .lib-css(background, #e1e1e1);
+               position: absolute;
+               bottom: 0;
+               .lib-css(width, 90%);
+               .lib-css(margin, 0 auto);
+               left: 0;
+               right: 0;
+            }
+            .review_content{
+               .lib-css(float, none);
+            }
+         }
+         .review_count{
+            .lib-css(width, 100%);
+            .lib-css(border, none);
+            position: relative;
+            &::after{
+               content: '';
+               .lib-css(height, 1px);
+               .lib-css(background, #e1e1e1);
+               position: absolute;
+               bottom: 0;
+               .lib-css(width, 90%);
+               .lib-css(margin, 0 auto);
+               left: 0;
+               right: 0;
+            }
+         }
+         .allreview_box{
+            .lib-css(width, 100%);
+            .lib-css(padding, 0 @indent__base );
+            .lib-css(text-align, left);
+            float: none;
+            margin: 0 auto;
+            max-width: 350px;
+            a{
+               .lib-css(width, 100%);
+               .lib-css(text-align, center);
+               .lib-css(margin, @indent__s 0);
+            }
+         }
+      }
+   }
+
+
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2019 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Vendor
+ * @copyright Copyright (c) 2019 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <head>
+        <link src="Magedelight_Vendor::js/microsite/validation.js"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magedelight\Vendor\Block\Adminhtml\Microsite\Request\Edit" name="microsite_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Magedelight\Vendor\Block\Adminhtml\Microsite\Request\Edit\Tabs" name="microsite_edit_tabs">
+                <block class="Magedelight\Vendor\Block\Adminhtml\Microsite\Request\Edit\Tab\Form" name="microsite_edit_tab_main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">microsite_edit_tab_main</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

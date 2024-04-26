@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Ktpl
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Ktpl
+ * @package     Ktpl_TopCategory
+ * @copyright   Copyright (c) Ktpl (https://https://www.KrishTechnolabs.com/)
+ * @license     https://https://www.KrishTechnolabs.com/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Ktpl_TopCategory" setup_version="1.0.0">
+        <sequence>
+            <module name="Magento_Catalog"/>
+        </sequence>
+    </module>
+</config>

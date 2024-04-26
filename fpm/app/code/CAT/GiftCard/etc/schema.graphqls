@@ -1,0 +1,6 @@
+# Copyright © Magento, Inc. All rights reserved.
+# See COPYING.txt for license details.
+
+type GiftCardAccount @doc(description: "Contains details about the gift card account") {
+    store_credit: String @doc(description: "Store Credit Balance")
+}
